@@ -1,398 +1,672 @@
-import Head from 'next/head';
-import React, { useEffect, useState } from 'react';
-
-const isEmail = (v?: string) => /.+@.+\..+/.test(v || '');
-const nonEmpty = (v?: string) => (v || '').trim().length > 0;
-
-const LIVE =
-  typeof window !== 'undefined' &&
-  ((window as any).__LIVE__ || (typeof process !== 'undefined' && (process as any).env && (process as any).env.NEXT_PUBLIC_LIVE === '1'));
+import React, { useState } from "react";
 
 export default function Home() {
   const [sent, setSent] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    postcode: '',
-    projectType: '',
-    stage: '',
-    message: '',
-    consent: false,
-    company: '' // honeypot
-  });
-  const [errors, setErrors] = useState<{[k:string]: string}>({});
-  const [tests, setTests] = useState<{name:string; pass:boolean; note?:string}[]>([]);
+  const [submitting, setSubmitting] = useState(false);
 
-  useEffect(() => {}, []);
-
-  function updateField(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
-    const { name, value } = e.target as any;
-    const type = (e.target as any).type;
-    const checked = (e.target as any).checked;
-    setForm((f) => ({ ...f, [name]: type === 'checkbox' ? checked : value }));
-  }
-
-  function validate() {
-    const e: {[k:string]: string} = {};
-    if (!nonEmpty(form.name)) e.name = 'Required';
-    if (!nonEmpty(form.phone)) e.phone = 'Required';
-    if (!isEmail(form.email)) e.email = 'Invalid email';
-    if (!nonEmpty(form.postcode)) e.postcode = 'Required';
-    if (!nonEmpty(form.projectType)) e.projectType = 'Select one';
-    if (!nonEmpty(form.stage)) e.stage = 'Select one';
-    if (!form.consent) e.consent = 'Consent required';
-    setErrors(e);
-    return Object.keys(e).length === 0;
-  }
-
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    if (form.company) { setSent(true); return; }
-    if (!validate()) return;
+    setSubmitting(true);
 
-    setLoading(true);
-    try {
-      if (LIVE) {
-        const res = await fetch('/api/lead', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(form),
-        });
-        if (!res.ok) throw new Error('Lead API error: ' + res.status);
-      } else {
-        await new Promise((r) => setTimeout(r, 400));
-      }
+    // TODO: connect to your real endpoint
+    // For now this just simulates a send
+    setTimeout(() => {
+      setSubmitting(false);
       setSent(true);
-    } catch (err) {
-      console.error(err);
-      alert('There was an error sending your message. Please phone us instead.');
-    } finally {
-      setLoading(false);
-    }
+    }, 600);
   }
-
-  function runDiagnostics() {
-    const results: {name:string; pass:boolean; note?:string}[] = [];
-
-    try {
-      results.push({ name: 'useState initialises', pass: typeof sent === 'boolean' && typeof loading === 'boolean' });
-    } catch (e:any) {
-      results.push({ name: 'useState initialises', pass: false, note: e?.message });
-    }
-
-    try {
-      const guarded = typeof process !== 'undefined' && (process as any).env && (process as any).env.NEXT_PUBLIC_LIVE === '1';
-      results.push({ name: 'process guard safe', pass: typeof guarded === 'boolean' });
-    } catch (e:any) {
-      results.push({ name: 'process guard safe', pass: false, note: e?.message });
-    }
-
-    try {
-      const prev = { ...form };
-      const bad = { ...form, name: '', phone: '', email: 'bad', postcode: '', projectType: '', stage: '', consent: false };
-      setForm(bad);
-      const valid = validate();
-      results.push({ name: 'Validation fails on empty/invalid', pass: valid === false });
-      setForm(prev);
-    } catch (e:any) {
-      results.push({ name: 'Validation fails on empty/invalid', pass: false, note: e?.message });
-    }
-
-    try {
-      const prev = { ...form };
-      setForm({ ...form, name: 'Test', phone: '0700000000', email: 'a@b.com', postcode: 'SE1 1JA', projectType: 'Rear extension', stage: 'Planning drawings', consent: true, company: '' });
-      const valid = validate();
-      results.push({ name: 'Validation passes on valid input', pass: valid === true });
-      setForm(prev);
-    } catch (e:any) {
-      results.push({ name: 'Validation passes on valid input', pass: false, note: e?.message });
-    }
-
-    try {
-      const map = LIVE ? ((typeof process !== 'undefined' && (process as any).env && (process as any).env.NEXT_PUBLIC_MAP_EMBED_URL) || '') : '';
-      results.push({ name: 'mapEmbed safe', pass: typeof map === 'string' });
-    } catch (e:any) {
-      results.push({ name: 'mapEmbed safe', pass: false, note: e?.message });
-    }
-
-    setTests(results);
-  }
-
-  const mapEmbed =
-    LIVE
-      ? ((typeof process !== 'undefined' && (process as any).env && (process as any).env.NEXT_PUBLIC_MAP_EMBED_URL) || '')
-      : '';
 
   return (
     <>
-      <Head>
-        <title>WEDRAWPLANS — Architectural Drawings for Planning & Building Regs (London & M25)</title>
-        <meta name="description" content="Fast planning drawings, building regulation packs, and full design for home extensions, lofts, and new builds. Get a same‑day quote and speak to our team now." />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
-
-      <div className="min-h-screen bg-white text-neutral-900">
-        <div className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur border-b border-neutral-200">
-          <div className="mx-auto max-w-7xl px-4 py-2 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="h-9 w-9 rounded-xl bg-red-600 text-white grid place-items-center font-bold">W</div>
-              <span className="font-semibold">WEDRAWPLANS</span>
+      <main className="page">
+        {/* Top bar */}
+        <header className="topbar">
+          <div className="topbar-inner">
+            <div className="brand">
+              <div className="brand-logo">W</div>
+              <div className="brand-name">WEDRAWPLANS</div>
             </div>
-            <div className="flex items-center gap-3">
-              <a className="hidden md:inline-block text-sm underline" href="mailto:info@wedrawplans.com">info@wedrawplans.com</a>
-              <a className="inline-flex items-center rounded-xl border px-3 py-1.5 text-sm font-semibold bg-red-600 text-white hover:bg-red-700" href="tel:+442036548508">Call +44 20 3654 8508</a>
+            <div className="topbar-contact">
+              <a href="tel:+442036548508" className="topbar-link">
+                <span role="img" aria-label="phone">
+                  📞
+                </span>
+                +44 20 3654 8508
+              </a>
+              <span className="topbar-dot">•</span>
+              <a
+                href="mailto:info@wedrawplans.com"
+                className="topbar-link"
+              >
+                <span role="img" aria-label="email">
+                  ✉️
+                </span>
+                info@wedrawplans.com
+              </a>
             </div>
           </div>
-        </div>
+        </header>
 
-        <main className="pt-20">
-          <section className="bg-gradient-to-b from-neutral-50 to-white">
-            <div className="mx-auto max-w-7xl px-4 py-12 grid lg:grid-cols-2 gap-10 items-center">
-              <div>
-                <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight">
-                  Architectural drawings that win approvals
-                </h1>
-                <p className="mt-4 text-lg text-neutral-700">
-                  Planning drawings and building regulation packs for extensions, lofts, and conversions — across London and the M25. Fast, compliant, and council friendly. Get a same day quote now.
+        {/* Hero and form */}
+        <section className="hero">
+          <div className="hero-inner">
+            <div className="hero-left">
+              <div className="hero-badge">
+                London house extension drawings made easy
+              </div>
+              <h1 className="hero-title">
+                Planning drawings that win approvals and create build ready
+                quotes
+              </h1>
+              <p className="hero-text">
+                Fast, clear, council compliant drawings for extensions, lofts,
+                conversions and new builds across London and the M25. Share
+                your details for a free call and same day outline quote.
+              </p>
+
+              <ul className="hero-list">
+                <li>Council compliant drawings</li>
+                <li>Fixed transparent pricing</li>
+                <li>First issue in 48 hours</li>
+                <li>Aligned to UK 2025 Building Regulations</li>
+              </ul>
+
+              <div className="hero-ctas">
+                <a href="tel:+442036548508" className="btn-secondary">
+                  Call now
+                </a>
+                <a href="mailto:info@wedrawplans.com" className="btn-secondary">
+                  Email us
+                </a>
+                <span className="hero-open">
+                  ⏰ Open today for new enquiries
+                </span>
+              </div>
+            </div>
+
+            <div className="hero-right">
+              <div className="card">
+                <h2>Get your free call and outline quote</h2>
+                <p className="card-sub">
+                  No obligation. We respond within one business day.
                 </p>
-                <ul className="mt-6 grid sm:grid-cols-2 gap-3 text-sm">
-                  <li className="flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-green-600"/> Same day call back</li>
-                  <li className="flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-green-600"/> Fixed transparent pricing</li>
-                  <li className="flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-green-600"/> Council ready drawings</li>
-                  <li className="flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-green-600"/> 100% UK Building Regs 2025</li>
-                </ul>
-                <div className="mt-8 flex gap-3">
-                  <a href="#quote" className="inline-flex items-center rounded-2xl bg-red-600 text-white px-5 py-3 font-semibold hover:bg-red-700">Get a free quote</a>
-                  <a href="tel:+442036548508" className="inline-flex items-center rounded-2xl border px-5 py-3 font-semibold hover:bg-neutral-50">Call now</a>
-                </div>
-                <p className="mt-3 text-xs text-neutral-500">By WEDRAWPLANS • 201 Borough High Street, London SE1 1JA</p>
-              </div>
 
-              <div id="quote">
-                <div className="rounded-3xl shadow-xl border border-neutral-200 bg-white">
-                  <div className="p-6">
-                    <h2 className="text-2xl font-bold">Get your same day quote</h2>
-                    <p className="text-sm text-neutral-600 mt-1">We will email and phone you back quickly.</p>
-
-                    <form onSubmit={handleSubmit} className="mt-6 grid gap-4" method="post">
-                      <input type="text" name="company" value={form.company} onChange={updateField} className="hidden" tabIndex={-1} autoComplete="off" />
-
-                      <div className="grid sm:grid-cols-2 gap-4">
-                        <input className="w-full rounded-xl border px-3 py-2" name="name" placeholder="Full name" value={form.name} onChange={updateField} required />
-                        <input className="w-full rounded-xl border px-3 py-2" type="tel" name="phone" placeholder="Phone" value={form.phone} onChange={updateField} required />
-                      </div>
-                      <div className="grid sm:grid-cols-2 gap-4">
-                        <input className="w-full rounded-xl border px-3 py-2" type="email" name="email" placeholder="Email" value={form.email} onChange={updateField} required />
-                        <input className="w-full rounded-xl border px-3 py-2" name="postcode" placeholder="Postcode" value={form.postcode} onChange={updateField} required />
-                      </div>
-                      <div className="grid sm:grid-cols-2 gap-4">
-                        <select name="projectType" className="w-full rounded-xl border px-3 py-2" value={form.projectType} onChange={updateField} required>
-                          <option value="">Project type</option>
-                          <option>Rear extension</option>
-                          <option>Side return extension</option>
-                          <option>Loft conversion</option>
-                          <option>Garage conversion</option>
-                          <option>New build</option>
-                          <option>Flat conversion</option>
-                          <option>Basement</option>
-                        </select>
-                        <select name="stage" className="w-full rounded-xl border px-3 py-2" value={form.stage} onChange={updateField} required>
-                          <option value="">Stage</option>
-                          <option>Planning drawings</option>
-                          <option>Building regs pack</option>
-                          <option>Full package</option>
-                          <option>Measured survey</option>
-                        </select>
-                      </div>
-                      <textarea className="w-full rounded-xl border px-3 py-2" name="message" placeholder="Tell us about your project (optional)" rows={4} value={form.message} onChange={updateField} />
-
-                      <label className="text-xs text-neutral-600 flex items-center gap-2">
-                        <input type="checkbox" name="consent" checked={form.consent} onChange={updateField} className="rounded" /> I agree to be contacted by phone and email.
-                      </label>
-
-                      {Object.keys(errors).length > 0 && (
-                        <div className="text-red-700 text-sm">
-                          Please correct: {Object.keys(errors).join(', ')}
-                        </div>
-                      )}
-
-                      <div className="flex items-center gap-3">
-                        <button type="submit" disabled={loading} className="rounded-2xl bg-red-600 hover:bg-red-700 text-white px-5 py-3 font-semibold disabled:opacity-60">
-                          {loading ? 'Sending...' : 'Submit'}
-                        </button>
-                        <a className="text-sm underline" href="mailto:info@wedrawplans.com">Or email us instead</a>
-                      </div>
-
-                      {sent && (
-                        <p className="text-green-700 text-sm mt-2">Thank you. We have received your details. We will be in touch soon.</p>
-                      )}
-                    </form>
+                {sent ? (
+                  <div className="alert-success">
+                    Thank you. Your request has been received. We will contact
+                    you shortly.
                   </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section className="border-y bg-white">
-            <div className="mx-auto max-w-7xl px-4 py-6 grid sm:grid-cols-3 gap-4 text-center">
-              <div className="rounded-2xl border p-4"><strong>Same day call back</strong><div className="text-sm text-neutral-600">Fast quotes and clear pricing</div></div>
-              <div className="rounded-2xl border p-4"><strong>Building Regs 2025 ready</strong><div className="text-sm text-neutral-600">Fully compliant specification</div></div>
-              <div className="rounded-2xl border p-4"><strong>London + M25 coverage</strong><div className="text-sm text-neutral-600">Borough specific expertise</div></div>
-            </div>
-          </section>
-
-          <section className="bg-neutral-50">
-            <div className="mx-auto max-w-7xl px-4 py-12">
-              <h2 className="text-2xl sm:text-3xl font-bold">What we deliver</h2>
-              <div className="mt-6 grid md:grid-cols-3 gap-6">
-                {[{ title: 'Planning drawings', desc: 'Full plans, elevations, site and block plans, design statements.' },
-                  { title: 'Building regulations pack', desc: '2025 compliant specifications, details, notes, and schedules.' },
-                  { title: 'Measured survey', desc: 'On site survey with laser measure and photo record.' },
-                  { title: '3D visuals', desc: 'Optional visuals to help clients and planners understand proposals.' },
-                  { title: 'Consultant coordination', desc: 'Structural, drainage, and fire safety integration.' },
-                  { title: 'Submission support', desc: 'Planning Portal submission and validation support.' }].map((item) => (
-                    <div key={item.title} className="rounded-2xl bg-white p-6 border shadow-sm">
-                      <h3 className="font-semibold text-lg">{item.title}</h3>
-                      <p className="mt-2 text-sm text-neutral-700">{item.desc}</p>
-                    </div>
-                  ))}
-              </div>
-            </div>
-          </section>
-
-          <section className="bg-white">
-            <div className="mx-auto max-w-7xl px-4 py-12 grid lg:grid-cols-2 gap-8 items-start">
-              <div>
-                <h2 className="text-2xl sm:text-3xl font-bold">Find your borough page</h2>
-                <p className="mt-2 text-neutral-700">Dedicated landing pages for each borough and council area to match local policy and boost visibility.</p>
-                <div className="mt-4 grid sm:grid-cols-2 gap-3">
-                  {['Lewisham','Harrow','Newham','Redbridge','Camden','Barnet','Enfield','Haringey','Tower Hamlets','Southwark','Bromley','Croydon'].map((b) => (
-                    <a key={b} href={`/borough/${b.toLowerCase().replace(/\s+/g,'-')}`} className="rounded-xl border px-4 py-3 hover:bg-neutral-50">{b}</a>
-                  ))}
-                </div>
-              </div>
-              <div className="rounded-2xl overflow-hidden border shadow-sm min-h-[320px]">
-                {LIVE && mapEmbed ? (
-                  <iframe title="WEDRAWPLANS project map" src={mapEmbed} className="w-full h-[360px]" loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
                 ) : (
-                  <div className="w-full h-[360px] grid place-items-center bg-neutral-100 text-neutral-600">Project map preview (disabled in sandbox)</div>
+                  <form onSubmit={handleSubmit} className="lead-form">
+                    <div className="form-row two">
+                      <div className="form-field">
+                        <label>Full name</label>
+                        <input
+                          name="name"
+                          required
+                          placeholder="Your name"
+                        />
+                      </div>
+                      <div className="form-field">
+                        <label>Email</label>
+                        <input
+                          type="email"
+                          name="email"
+                          required
+                          placeholder="you@email.com"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="form-row two">
+                      <div className="form-field">
+                        <label>Phone</label>
+                        <input
+                          type="tel"
+                          name="phone"
+                          required
+                          placeholder="07…"
+                        />
+                      </div>
+                      <div className="form-field">
+                        <label>Postcode</label>
+                        <input
+                          name="postcode"
+                          required
+                          placeholder="SE5 7GD"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="form-row">
+                      <div className="form-field">
+                        <label>Project type</label>
+                        <select name="project" required>
+                          <option value="Extension">House extension</option>
+                          <option value="Loft">Loft conversion</option>
+                          <option value="Annexe">Garden annexe / outbuilding</option>
+                          <option value="Conversion">Flat or HMO conversion</option>
+                          <option value="New build">New build</option>
+                          <option value="Other">Other</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="form-row">
+                      <div className="form-field">
+                        <label>Tell us a bit more</label>
+                        <textarea
+                          name="message"
+                          rows={4}
+                          placeholder="What are you planning and when would you like to start"
+                        />
+                      </div>
+                    </div>
+
+                    <label className="form-consent">
+                      <input type="checkbox" required />
+                      <span>
+                        I agree to be contacted by WEDRAWPLANS. My details will
+                        not be shared with any third party.
+                      </span>
+                    </label>
+
+                    <button
+                      type="submit"
+                      className="btn-primary"
+                      disabled={submitting}
+                    >
+                      {submitting ? "Sending…" : "Request my free call"}
+                    </button>
+
+                    <p className="form-footer">
+                      Or call{" "}
+                      <a href="tel:+442036548508">
+                        +44 20 3654 8508
+                      </a>{" "}
+                      or email{" "}
+                      <a href="mailto:info@wedrawplans.com">
+                        info@wedrawplans.com
+                      </a>
+                    </p>
+                  </form>
                 )}
               </div>
             </div>
-          </section>
+          </div>
+        </section>
 
-          <section className="bg-neutral-50">
-            <div className="mx-auto max-w-7xl px-4 py-12">
-              <h2 className="text-2xl sm:text-3xl font-bold">Clients trust WEDRAWPLANS</h2>
-              <div className="mt-6 grid md:grid-cols-3 gap-6">
-                {[{ quote: 'Fast, clear, and got us approved first time.', name: 'Homeowner in Bromley' },
-                  { quote: 'Very detailed regs pack. Builder was impressed.', name: 'Developer in Harrow' },
-                  { quote: 'Smooth process from survey to submission.', name: 'Landlord in Lewisham' }].map((t, i) => (
-                    <div key={i} className="rounded-2xl bg-white p-6 border shadow-sm">
-                      <p className="text-neutral-800">“{t.quote}”</p>
-                      <p className="mt-3 text-sm text-neutral-600">{t.name}</p>
-                    </div>
-                  ))}
-              </div>
+        {/* Proof section */}
+        <section className="section">
+          <div className="section-inner three">
+            <div className="feature-card">
+              <h3>Council ready drawings</h3>
+              <p>
+                Drawings aligned to the latest UK Building Regulations and local
+                London validation lists, including fire safety and access
+                requirements.
+              </p>
             </div>
-          </section>
-
-          <section className="bg-white">
-            <div className="mx-auto max-w-7xl px-4 py-12">
-              <h2 className="text-2xl sm:text-3xl font-bold">FAQs</h2>
-              <div className="mt-6 grid md:grid-cols-2 gap-6">
-                {[{ q: 'How fast can you start?', a: 'We usually call back the same day and can schedule a survey within a few days.' },
-                  { q: 'Do you handle planning submission?', a: 'Yes. We prepare drawings and manage submission to the Planning Portal, including validation support.' },
-                  { q: 'Are your drawings compliant with 2025 Building Regulations?', a: 'Yes. Our specification pack aligns with current UK regulations and local guidance.' },
-                  { q: 'Do you work across the M25?', a: 'Yes. We cover all London boroughs and nearby areas.' }].map((f) => (
-                    <div key={f.q} className="rounded-2xl border p-6">
-                      <h3 className="font-semibold">{f.q}</h3>
-                      <p className="mt-2 text-neutral-700 text-sm">{f.a}</p>
-                    </div>
-                  ))}
-              </div>
+            <div className="feature-card">
+              <h3>All London boroughs</h3>
+              <p>
+                We focus on homeowners across London and the M25 and understand
+                how different boroughs behave, from Harrow to Lewisham.
+              </p>
             </div>
-          </section>
-
-          <section className="bg-gradient-to-b from-white to-neutral-50">
-            <div className="mx-auto max-w-7xl px-4 py-12 text-center">
-              <h2 className="text-2xl sm:text-3xl font-bold">Ready for your quote?</h2>
-              <p className="mt-2 text-neutral-700">Call us or send your details. We reply fast.</p>
-              <div className="mt-6 flex flex-wrap gap-3 justify-center">
-                <a href="tel:+442036548508" className="inline-flex items-center rounded-2xl bg-red-600 text-white px-5 py-3 font-semibold hover:bg-red-700">Call +44 20 3654 8508</a>
-                <a href="#quote" className="inline-flex items-center rounded-2xl border px-5 py-3 font-semibold hover:bg-neutral-50">Get a free quote</a>
-                <a href="mailto:info@wedrawplans.com" className="inline-flex items-center rounded-2xl border px-5 py-3 font-semibold hover:bg-neutral-50">info@wedrawplans.com</a>
-              </div>
-              <p className="mt-3 text-xs text-neutral-500">WEDRAWPLANS • 201 Borough High Street, London SE1 1JA</p>
-            </div>
-          </section>
-
-          <section className="bg-white border-t">
-            <div className="mx-auto max-w-7xl px-4 py-8">
-              <div className="flex items-center justify-between">
-                <h3 className="font-semibold">Diagnostics</h3>
-                <button onClick={runDiagnostics} className="rounded-xl border px-4 py-2 hover:bg-neutral-50">Run tests</button>
-              </div>
-              {tests.length > 0 && (
-                <ul className="mt-4 space-y-2 text-sm">
-                  {tests.map((t, i) => (
-                    <li key={i} className="flex items-center gap-2">
-                      <span className={`h-2.5 w-2.5 rounded-full ${t.pass ? 'bg-green-600' : 'bg-red-600'}`} />
-                      <span className="font-medium">{t.name}</span>
-                      {t.note && <span className="text-neutral-500">— {t.note}</span>}
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          </section>
-        </main>
-
-        <a href="tel:+442036548508" className="fixed bottom-5 right-5 md:hidden shadow-lg rounded-full px-5 py-3 bg-red-600 text-white font-semibold">Call</a>
-
-        <footer className="bg-black text-white mt-12">
-          <div className="mx-auto max-w-7xl px-4 py-10 grid md:grid-cols-4 gap-8">
-            <div>
-              <div className="inline-flex items-center gap-2">
-                <div className="h-9 w-9 rounded-xl bg-white text-black grid place-items-center font-bold">W</div>
-                <span className="font-semibold">WEDRAWPLANS</span>
-              </div>
-              <p className="mt-3 text-sm text-neutral-300">Architectural drawings for planning and building regulations across London and the M25.</p>
-            </div>
-            <div>
-              <h4 className="font-semibold">Contact</h4>
-              <ul className="mt-3 space-y-1 text-sm text-neutral-300">
-                <li><a href="tel:+442036548508" className="underline">+44 20 3654 8508</a></li>
-                <li><a href="mailto:info@wedrawplans.com" className="underline">info@wedrawplans.com</a></li>
-                <li>201 Borough High Street, London SE1 1JA</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold">Services</h4>
-              <ul className="mt-3 space-y-1 text-sm text-neutral-300">
-                <li>Planning drawings</li>
-                <li>Building regulations pack</li>
-                <li>Measured surveys</li>
-                <li>3D visuals</li>
-                <li>Consultant coordination</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold">Legal</h4>
-              <ul className="mt-3 space-y-1 text-sm text-neutral-300">
-                <li>Terms</li>
-                <li>Privacy</li>
-                <li>Cookies</li>
-              </ul>
+            <div className="feature-card">
+              <h3>Fast and precise</h3>
+              <p>
+                Typical extension projects receive first issue drawings within
+                48 hours of survey, with clear revisions and support until
+                approval.
+              </p>
             </div>
           </div>
-          <div className="border-t border-neutral-800">
-            <div className="mx-auto max-w-7xl px-4 py-4 text-xs text-neutral-400">© {new Date().getFullYear()} WEDRAWPLANS. All rights reserved.</div>
+        </section>
+
+        {/* Coverage section */}
+        <section className="section section-alt">
+          <div className="section-inner">
+            <div className="coverage-left">
+              <h2>Where we work</h2>
+              <p>
+                Inner and outer London, including suburban areas around the M25.
+                Estate agents and developers are welcome for repeat and bulk
+                instructions.
+              </p>
+              <ul className="borough-list">
+                {[
+                  "Lewisham",
+                  "Southwark",
+                  "Lambeth",
+                  "Greenwich",
+                  "Hackney",
+                  "Haringey",
+                  "Croydon",
+                  "Bromley",
+                  "Harrow",
+                  "Redbridge",
+                  "Newham",
+                  "Ealing",
+                ].map((b) => (
+                  <li key={b}>{b}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="coverage-right">
+              <div className="map-placeholder">
+                <div>London and M25 coverage</div>
+                <small>
+                  Replace this box later with an interactive SVG or map
+                  component
+                </small>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer className="footer">
+          <div className="footer-inner">
+            <div>
+              <strong>WEDRAWPLANS</strong> – Architectural planning and drawing
+              services for London homeowners
+            </div>
+            <div className="footer-contact">
+              <a href="tel:+442036548508">+44 20 3654 8508</a>
+              <span>·</span>
+              <a href="mailto:info@wedrawplans.com">info@wedrawplans.com</a>
+            </div>
           </div>
         </footer>
-      </div>
+      </main>
+
+      {/* Simple global styles */}
+      <style jsx global>{`
+        * {
+          box-sizing: border-box;
+        }
+        body {
+          margin: 0;
+          font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+            sans-serif;
+          color: #0f172a;
+          background: #f8fafc;
+        }
+        a {
+          color: inherit;
+        }
+        .page {
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+        }
+        .topbar {
+          border-bottom: 1px solid #e2e8f0;
+          background: rgba(255, 255, 255, 0.9);
+          backdrop-filter: blur(10px);
+          position: sticky;
+          top: 0;
+          z-index: 20;
+        }
+        .topbar-inner {
+          max-width: 1120px;
+          margin: 0 auto;
+          padding: 10px 16px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+        .brand {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+        .brand-logo {
+          height: 32px;
+          width: 32px;
+          border-radius: 999px;
+          background: #dc2626;
+          color: white;
+          display: grid;
+          place-items: center;
+          font-weight: 700;
+        }
+        .brand-name {
+          font-size: 18px;
+          font-weight: 600;
+        }
+        .topbar-contact {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 14px;
+        }
+        .topbar-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 4px;
+          text-decoration: none;
+        }
+        .topbar-link:hover {
+          opacity: 0.8;
+        }
+        .hero {
+          padding: 32px 16px 40px;
+          background: linear-gradient(to bottom, #ffffff, #f1f5f9);
+        }
+        .hero-inner {
+          max-width: 1120px;
+          margin: 0 auto;
+          display: grid;
+          gap: 32px;
+        }
+        @media (min-width: 900px) {
+          .hero-inner {
+            grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+          }
+        }
+        .hero-left {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+        .hero-badge {
+          display: inline-flex;
+          padding: 6px 12px;
+          border-radius: 999px;
+          border: 1px solid #e2e8f0;
+          font-size: 12px;
+          background: white;
+        }
+        .hero-title {
+          font-size: 32px;
+          line-height: 1.1;
+          margin: 0;
+        }
+        @media (min-width: 768px) {
+          .hero-title {
+            font-size: 40px;
+          }
+        }
+        .hero-text {
+          margin: 0;
+          font-size: 16px;
+          color: #475569;
+        }
+        .hero-list {
+          list-style: none;
+          padding: 0;
+          margin: 8px 0 0;
+          display: grid;
+          gap: 6px;
+        }
+        @media (min-width: 600px) {
+          .hero-list {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+        }
+        .hero-list li::before {
+          content: "✔";
+          color: #059669;
+          margin-right: 6px;
+        }
+        .hero-ctas {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+          align-items: center;
+          margin-top: 8px;
+        }
+        .btn-secondary {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: 8px 14px;
+          border-radius: 999px;
+          border: 1px solid #cbd5f5;
+          background: white;
+          font-size: 14px;
+          text-decoration: none;
+        }
+        .btn-secondary:hover {
+          background: #f8fafc;
+        }
+        .hero-open {
+          font-size: 13px;
+          color: #64748b;
+        }
+        .hero-right {
+          display: flex;
+          justify-content: center;
+        }
+        .card {
+          width: 100%;
+          max-width: 420px;
+          background: white;
+          border-radius: 18px;
+          border: 1px solid #e2e8f0;
+          padding: 20px 20px 22px;
+          box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+        }
+        .card h2 {
+          margin: 0;
+          font-size: 20px;
+        }
+        .card-sub {
+          margin: 4px 0 0;
+          font-size: 13px;
+          color: #64748b;
+        }
+        .alert-success {
+          margin-top: 16px;
+          padding: 12px;
+          border-radius: 12px;
+          background: #ecfdf3;
+          color: #166534;
+          font-size: 14px;
+          border: 1px solid #bbf7d0;
+        }
+        .lead-form {
+          margin-top: 16px;
+          display: grid;
+          gap: 10px;
+        }
+        .form-row {
+          display: grid;
+          gap: 10px;
+        }
+        .form-row.two {
+          grid-template-columns: 1fr;
+        }
+        @media (min-width: 640px) {
+          .form-row.two {
+            grid-template-columns: 1fr 1fr;
+          }
+        }
+        .form-field label {
+          display: block;
+          font-size: 13px;
+          margin-bottom: 4px;
+        }
+        .form-field input,
+        .form-field select,
+        .form-field textarea {
+          width: 100%;
+          border-radius: 8px;
+          border: 1px solid #cbd5e1;
+          padding: 7px 9px;
+          font-size: 14px;
+          outline: none;
+        }
+        .form-field input:focus,
+        .form-field select:focus,
+        .form-field textarea:focus {
+          border-color: #0f172a;
+        }
+        .form-consent {
+          display: flex;
+          align-items: flex-start;
+          gap: 8px;
+          font-size: 12px;
+          color: #64748b;
+        }
+        .form-consent input {
+          margin-top: 3px;
+        }
+        .btn-primary {
+          width: 100%;
+          border: none;
+          border-radius: 999px;
+          padding: 10px 16px;
+          font-size: 15px;
+          font-weight: 500;
+          background: #0f172a;
+          color: white;
+          cursor: pointer;
+        }
+        .btn-primary:disabled {
+          opacity: 0.7;
+          cursor: default;
+        }
+        .form-footer {
+          margin: 8px 0 0;
+          font-size: 12px;
+          text-align: center;
+          color: #64748b;
+        }
+        .form-footer a {
+          text-decoration: underline;
+        }
+        .section {
+          padding: 24px 16px 32px;
+        }
+        .section-inner {
+          max-width: 1120px;
+          margin: 0 auto;
+        }
+        .section-inner.three {
+          display: grid;
+          gap: 16px;
+        }
+        @media (min-width: 900px) {
+          .section-inner.three {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+          }
+        }
+        .feature-card {
+          background: white;
+          border-radius: 16px;
+          border: 1px solid #e2e8f0;
+          padding: 16px;
+          font-size: 14px;
+        }
+        .feature-card h3 {
+          margin: 0 0 4px;
+          font-size: 16px;
+        }
+        .feature-card p {
+          margin: 0;
+          color: #64748b;
+        }
+        .section-alt {
+          background: white;
+          border-top: 1px solid #e2e8f0;
+        }
+        .section-alt .section-inner {
+          display: grid;
+          gap: 24px;
+        }
+        @media (min-width: 900px) {
+          .section-alt .section-inner {
+            grid-template-columns: 1.2fr 1fr;
+          }
+        }
+        .coverage-left h2 {
+          margin: 0 0 8px;
+        }
+        .coverage-left p {
+          margin: 0 0 10px;
+          color: #475569;
+        }
+        .borough-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: grid;
+          gap: 6px;
+          font-size: 14px;
+        }
+        @media (min-width: 640px) {
+          .borough-list {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+          }
+        }
+        .borough-list li::before {
+          content: "●";
+          font-size: 10px;
+          margin-right: 6px;
+          color: #0f172a;
+        }
+        .coverage-right {
+          display: flex;
+          justify-content: center;
+        }
+        .map-placeholder {
+          width: 100%;
+          max-width: 420px;
+          height: 220px;
+          border-radius: 20px;
+          border: 1px dashed #cbd5e1;
+          background: radial-gradient(circle at center, #e2e8f0, #f8fafc);
+          display: grid;
+          place-items: center;
+          text-align: center;
+          font-size: 13px;
+          color: #475569;
+          padding: 12px;
+        }
+        .map-placeholder small {
+          display: block;
+          margin-top: 4px;
+          font-size: 11px;
+          color: #64748b;
+        }
+        .footer {
+          border-top: 1px solid #e2e8f0;
+          background: #0f172a;
+          color: #e2e8f0;
+          padding: 14px 16px;
+          margin-top: auto;
+        }
+        .footer-inner {
+          max-width: 1120px;
+          margin: 0 auto;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          font-size: 13px;
+        }
+        @media (min-width: 700px) {
+          .footer-inner {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+          }
+        }
+        .footer-contact {
+          display: flex;
+          gap: 6px;
+          align-items: center;
+        }
+        .footer-contact a {
+          text-decoration: none;
+        }
+        .footer-contact a:hover {
+          text-decoration: underline;
+        }
+      `}</style>
     </>
   );
 }
