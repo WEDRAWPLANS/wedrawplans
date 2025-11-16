@@ -48,157 +48,126 @@ export default function Home() {
   </div>
 </header>
 
-
-        {/* Hero and form */}
-        <section className="hero">
-          <div className="hero-inner">
-            <div className="hero-left">
-              <div className="hero-badge">
-                London house extension drawings made easy
-              </div>
-              <h1 className="hero-title">
-                Planning drawings that win approvals and create build ready
-                quotes
-              </h1>
-              <p className="hero-text">
-                Fast, clear, council compliant drawings for extensions, lofts,
-                conversions and new builds across London and the M25. Share
-                your details for a free call and same day outline quote.
-              </p>
-
-              <ul className="hero-list">
-                <li>Council compliant drawings</li>
-                <li>Fixed transparent pricing</li>
-                <li>First issue in 48 hours</li>
-                <li>Aligned to UK 2025 Building Regulations</li>
-              </ul>
-
-              <div className="hero-ctas">
-                <a href="tel:+442036548508" className="btn-secondary">
-                  Call now
-                </a>
-                <a href="mailto:info@wedrawplans.com" className="btn-secondary">
-                  Email us
-                </a>
-                <span className="hero-open">
-                  ⏰ Open today for new enquiries
-                </span>
-              </div>
+        {/* Hero content */}
+        <div className="grid gap-8 lg:grid-cols-[1.3fr,1fr] lg:items-start">
+          <div>
+            <div className="mb-3 inline-flex items-center rounded-full bg-white/80 px-3 py-1 text-xs text-slate-700 shadow-sm">
+              London house extension drawings made easy
             </div>
 
-            <div className="hero-right">
-              <div className="card">
-                <h2>Get your free call and outline quote</h2>
-                <p className="card-sub">
-                  No obligation. We respond within one business day.
-                </p>
+            <h1 className="text-3xl font-semibold leading-tight text-slate-900 sm:text-4xl">
+              Planning drawings that win approvals
+              <br />
+              and create build ready quotes
+            </h1>
 
-                {sent ? (
-                  <div className="alert-success">
-                    Thank you. Your request has been received. We will contact
-                    you shortly.
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="lead-form">
-                    <div className="form-row two">
-                      <div className="form-field">
-                        <label>Full name</label>
-                        <input
-                          name="name"
-                          required
-                          placeholder="Your name"
-                        />
-                      </div>
-                      <div className="form-field">
-                        <label>Email</label>
-                        <input
-                          type="email"
-                          name="email"
-                          required
-                          placeholder="you@email.com"
-                        />
-                      </div>
-                    </div>
+            <p className="mt-3 text-sm text-slate-700 sm:text-base">
+              Fast, clear, council compliant drawings for extensions, lofts,
+              conversions and new builds across London and the M25.
+              Share your details for a free call and same day outline quote.
+            </p>
 
-                    <div className="form-row two">
-                      <div className="form-field">
-                        <label>Phone</label>
-                        <input
-                          type="tel"
-                          name="phone"
-                          required
-                          placeholder="07…"
-                        />
-                      </div>
-                      <div className="form-field">
-                        <label>Postcode</label>
-                        <input
-                          name="postcode"
-                          required
-                          placeholder="SE5 7GD"
-                        />
-                      </div>
-                    </div>
+            <ul className="mt-4 space-y-2 text-sm text-slate-800">
+              <li className="flex items-start gap-2">
+                <span className="mt-[3px] h-4 w-4 rounded-full bg-emerald-500" />
+                <span>Council compliant planning drawings</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-[3px] h-4 w-4 rounded-full bg-emerald-500" />
+                <span>Fixed transparent pricing</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-[3px] h-4 w-4 rounded-full bg-emerald-500" />
+                <span>Initial survey within 48 hours</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-[3px] h-4 w-4 rounded-full bg-emerald-500" />
+                <span>Aligned to UK 2025 Building Regulations</span>
+              </li>
+            </ul>
 
-                    <div className="form-row">
-                      <div className="form-field">
-                        <label>Project type</label>
-                        <select name="project" required>
-                          <option value="Extension">House extension</option>
-                          <option value="Loft">Loft conversion</option>
-                          <option value="Annexe">Garden annexe / outbuilding</option>
-                          <option value="Conversion">Flat or HMO conversion</option>
-                          <option value="New build">New build</option>
-                          <option value="Other">Other</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div className="form-row">
-                      <div className="form-field">
-                        <label>Tell us a bit more</label>
-                        <textarea
-                          name="message"
-                          rows={4}
-                          placeholder="What are you planning and when would you like to start"
-                        />
-                      </div>
-                    </div>
-
-                    <label className="form-consent">
-                      <input type="checkbox" required />
-                      <span>
-                        I agree to be contacted by WEDRAWPLANS. My details will
-                        not be shared with any third party.
-                      </span>
-                    </label>
-
-                    <button
-                      type="submit"
-                      className="btn-primary"
-                      disabled={submitting}
-                    >
-                      {submitting ? "Sending…" : "Request my free call"}
-                    </button>
-
-                    <p className="form-footer">
-                      Or call{" "}
-                      <a href="tel:+442036548508">
-                        +44 20 3654 8508
-                      </a>{" "}
-                      or email{" "}
-                      <a href="mailto:info@wedrawplans.com">
-                        info@wedrawplans.com
-                      </a>
-                    </p>
-                  </form>
-                )}
-              </div>
+            {/* Extra trust row for mobile */}
+            <div className="mt-4 flex flex-wrap gap-2 text-xs text-slate-600">
+              <span className="rounded-full bg-white/80 px-3 py-1 shadow-sm">
+                10 plus years London planning experience
+              </span>
+              <span className="rounded-full bg-white/80 px-3 py-1 shadow-sm">
+                Covering all boroughs inside and around the M25
+              </span>
             </div>
           </div>
-        </section>
 
-        {/* Proof section */}
+          {/* Lead form card */}
+          <div className="rounded-2xl bg-white p-4 shadow-lg sm:p-6">
+            <h2 className="text-lg font-semibold text-slate-900">
+              Get your free call and outline quote
+            </h2>
+            <p className="mt-1 text-xs text-slate-600">
+              No obligation. We respond within one business day.
+            </p>
+
+            <form className="mt-4 space-y-3">
+              <div>
+                <label className="mb-1 block text-xs font-medium text-slate-700">
+                  Full name
+                </label>
+                <input
+                  type="text"
+                  className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm"
+                  placeholder="Your name"
+                />
+              </div>
+              <div>
+                <label className="mb-1 block text-xs font-medium text-slate-700">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm"
+                  placeholder="you@email.com"
+                />
+              </div>
+              <div>
+                <label className="mb-1 block text-xs font-medium text-slate-700">
+                  Phone
+                </label>
+                <input
+                  type="tel"
+                  className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm"
+                  placeholder="Mobile or landline"
+                />
+              </div>
+              <div>
+                <label className="mb-1 block text-xs font-medium text-slate-700">
+                  Project location and brief
+                </label>
+                <textarea
+                  className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm"
+                  rows={3}
+                  placeholder="House extension in Bromley, loft in Lewisham, new build in Enfield, and so on"
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="mt-2 inline-flex w-full items-center justify-center rounded-lg bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white"
+              >
+                Request my outline quote
+              </button>
+
+              <p className="mt-2 text-[11px] text-slate-500">
+                By sending this form you agree that WEDRAWPLANS can contact you
+                by phone or email about your enquiry only.
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+         {/* Proof section */}
         <section className="section">
           <div className="section-inner three">
             <div className="feature-card">
