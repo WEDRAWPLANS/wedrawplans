@@ -604,40 +604,96 @@ export default function Home() {
           font-size: 11px;
           color: #64748b;
         }
-        .footer {
-          border-top: 1px solid #e2e8f0;
-          background: #0f172a;
-          color: #e2e8f0;
-          padding: 14px 16px;
-          margin-top: auto;
-        }
-        .footer-inner {
-          max-width: 1120px;
-          margin: 0 auto;
-          display: flex;
-          flex-direction: column;
-          gap: 4px;
-          font-size: 13px;
-        }
-        @media (min-width: 700px) {
-          .footer-inner {
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-          }
-        }
-        .footer-contact {
-          display: flex;
-          gap: 6px;
-          align-items: center;
-        }
-        .footer-contact a {
-          text-decoration: none;
-        }
-        .footer-contact a:hover {
-          text-decoration: underline;
-        }
-      `}</style>
-    </>
-  );
-}
+             .footer {
+       border-top: 1px solid #e4e4e7;
+       margin-top: 64px;
+       padding: 24px 16px;
+     }
+
+     .footer-inner {
+       max-width: 1120px;
+       margin: 0 auto;
+       display: flex;
+       flex-direction: column;
+       gap: 4px;
+       font-size: 13px;
+     }
+
+     @media (min-width: 700px) {
+       .footer-inner {
+         flex-direction: row;
+         justify-content: space-between;
+         align-items: center;
+       }
+     }
+
+     .footer-contact {
+       display: flex;
+       gap: 6px;
+       align-items: center;
+     }
+
+     .footer-contact a {
+       text-decoration: none;
+     }
+
+     .footer-contact a:hover {
+       text-decoration: underline;
+     }
+
+     /* Sticky mobile call bar */
+     .mobile-call-bar {
+       position: fixed;
+       bottom: 0;
+       left: 0;
+       right: 0;
+       z-index: 50;
+       display: flex;
+       justify-content: space-around;
+       align-items: center;
+       padding: 10px 16px;
+       background: #ffffff;
+       border-top: 1px solid #e4e4e7;
+       box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.08);
+     }
+
+     .mobile-call-bar a {
+       font-size: 13px;
+       font-weight: 600;
+       color: #111827;
+       text-decoration: none;
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       gap: 2px;
+     }
+
+     .mobile-call-bar a.call {
+       color: #dc2626;
+     }
+
+     @media (min-width: 700px) {
+       .mobile-call-bar {
+         display: none; /* hide bar on tablet / desktop */
+       }
+     }
+   `}</style>
+
+   {/* Sticky mobile call bar */}
+   <div className="mobile-call-bar">
+     <a href="tel:+442036548508" className="call">
+       <span>📞</span>
+       <span>Call now</span>
+     </a>
+
+     <a href="mailto:info@wedrawplans.com">
+       <span>✉️</span>
+       <span>Email</span>
+     </a>
+
+     <a href="#quote">
+       <span>📝</span>
+       <span>Free quote</span>
+     </a>
+   </div>
+ </>
