@@ -20,32 +20,34 @@ export default function Home() {
     <>
       <main className="page">
         {/* Top bar */}
-        <header className="topbar">
-          <div className="topbar-inner">
-            <div className="brand">
-              <div className="brand-logo">W</div>
-              <div className="brand-name">WEDRAWPLANS</div>
-            </div>
-            <div className="topbar-contact">
-              <a href="tel:+442036548508" className="topbar-link">
-                <span role="img" aria-label="phone">
-                  📞
-                </span>
-                +44 20 3654 8508
-              </a>
-              <span className="topbar-dot">•</span>
-              <a
-                href="mailto:info@wedrawplans.com"
-                className="topbar-link"
-              >
-                <span role="img" aria-label="email">
-                  ✉️
-                </span>
-                info@wedrawplans.com
-              </a>
-            </div>
-          </div>
-        </header>
+        <header className="w-full border-b bg-white">
+  <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-2 text-sm sm:text-base">
+    {/* Left: brand + short tagline */}
+    <div className="font-semibold tracking-wide">
+      <span className="text-red-600">WEDRAWPLANS</span>{" "}
+      <span className="hidden sm:inline text-slate-600">
+        — London house extension drawings made easy
+      </span>
+    </div>
+
+    {/* Right: phone + email */}
+    <div className="flex flex-col items-end gap-1 text-right sm:flex-row sm:items-center sm:gap-4">
+      <a
+        href="tel:+442036548508"
+        className="whitespace-nowrap font-semibold text-slate-900"
+      >
+        +44 20 3654 8508
+      </a>
+      <a
+        href="mailto:info@wedrawplans.com"
+        className="whitespace-nowrap text-slate-600"
+      >
+        info@wedrawplans.com
+      </a>
+    </div>
+  </div>
+</header>
+
 
         {/* Hero and form */}
         <section className="hero">
