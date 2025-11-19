@@ -5,16 +5,35 @@ export default function Home() {
   const [submitting, setSubmitting] = useState(false);
 
   async function handleSubmit(e) {
-    e.preventDefault();
-    setSubmitting(true);
+  e.preventDefault();
+  setSubmitting(true);
 
-    // TODO: connect to your real endpoint
-    // For now this just simulates a send
-    setTimeout(() => {
-      setSubmitting(false);
-      setSent(true);
-    }, 600);
+  const formData = new FormData(e.target);
+  const data = {
+    name: formData.get("name"),
+    email: formData.get("email"),
+    phone: formData.get("phone"),
+    message: formData.get("message"),
+  };
+
+  try {
+    const res = await fetch("/api/lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    if (!res.ok) throw new Error("Request failed");
+
+    setSubmitting(false);
+    setSent(true);
+  } catch (error) {
+    console.error(error);
+    setSubmitting(false);
+    alert("Something went wrong, please try again.");
   }
+}
+
 
   return (
     <>
