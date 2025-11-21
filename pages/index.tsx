@@ -94,11 +94,12 @@ export default function Home() {
               </p>
 
               {/* Simple email form using FormSubmit */}
-              <form
-                className="space-y-4"
-                action="https://formsubmit.co/info@wedrawplans.com"
-                method="POST"
-              >
+          <form
+  action="https://formsubmit.co/architectabbey@gmail.com"
+  method="POST"
+  className="space-y-4"
+>
+
                 {/* FormSubmit options */}
                 <input
                   type="hidden"
