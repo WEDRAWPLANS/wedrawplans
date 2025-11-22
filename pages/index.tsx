@@ -9,6 +9,42 @@ const EMAIL_LINK = "mailto:info@wedrawplans.com";
 const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20my%20project";
 
+const BOROUGHS: { label: string; slug: string }[] = [
+  { label: "Architectural drawings Barking and Dagenham", slug: "barking-dagenham" },
+  { label: "Architectural drawings Barnet", slug: "barnet" },
+  { label: "Architectural drawings Bexley", slug: "bexley" },
+  { label: "Architectural drawings Brent", slug: "brent" },
+  { label: "Architectural drawings Bromley", slug: "bromley" },
+  { label: "Architectural drawings Camden", slug: "camden" },
+  { label: "Architectural drawings Croydon", slug: "croydon" },
+  { label: "Architectural drawings Ealing", slug: "ealing" },
+  { label: "Architectural drawings Enfield", slug: "enfield" },
+  { label: "Architectural drawings Greenwich", slug: "greenwich" },
+  { label: "Architectural drawings Hackney", slug: "hackney" },
+  { label: "Architectural drawings Hammersmith and Fulham", slug: "hammersmith-fulham" },
+  { label: "Architectural drawings Haringey", slug: "haringey" },
+  { label: "Architectural drawings Harrow", slug: "harrow" },
+  { label: "Architectural drawings Havering", slug: "havering" },
+  { label: "Architectural drawings Hillingdon", slug: "hillingdon" },
+  { label: "Architectural drawings Hounslow", slug: "hounslow" },
+  { label: "Architectural drawings Islington", slug: "islington" },
+  { label: "Architectural drawings Kensington and Chelsea", slug: "kensington-chelsea" },
+  { label: "Architectural drawings Kingston upon Thames", slug: "kingston" },
+  { label: "Architectural drawings Lambeth", slug: "lambeth" },
+  { label: "Architectural drawings Lewisham", slug: "lewisham" },
+  { label: "Architectural drawings Merton", slug: "merton" },
+  { label: "Architectural drawings Newham", slug: "newham" },
+  { label: "Architectural drawings Redbridge", slug: "redbridge" },
+  { label: "Architectural drawings Richmond upon Thames", slug: "richmond" },
+  { label: "Architectural drawings Southwark", slug: "southwark" },
+  { label: "Architectural drawings Sutton", slug: "sutton" },
+  { label: "Architectural drawings Tower Hamlets", slug: "tower-hamlets" },
+  { label: "Architectural drawings Waltham Forest", slug: "waltham-forest" },
+  { label: "Architectural drawings Wandsworth", slug: "wandsworth" },
+  { label: "Architectural drawings Westminster and City of London", slug: "westminster-city" },
+  { label: "Architectural drawings Surrey borders and M25", slug: "surrey-m25" },
+];
+
 export default function IndexPage() {
   function handleHeroSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -39,7 +75,7 @@ export default function IndexPage() {
     <>
       <Head>
         <title>
-          WEDRAWPLANS – London Extension, Loft and New Build Drawings
+          WEDRAWPLANS – London extension, loft and new build drawings
         </title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
@@ -70,37 +106,39 @@ export default function IndexPage() {
 
             {/* Desktop nav */}
             <nav className="hidden items-center gap-5 text-[13px] text-slate-700 lg:flex">
-              <NavMenu title="Local Designers">
-                <NavItem>Architectural drawings Lewisham</NavItem>
-                <NavItem>Architectural drawings Southwark</NavItem>
-                <NavItem>Architectural drawings Lambeth</NavItem>
-                <NavItem>Architectural drawings Greenwich</NavItem>
-                <NavItem>Architectural drawings Bromley</NavItem>
-                <NavItem>Architectural drawings Croydon</NavItem>
-                <NavItem>Architectural drawings Harrow</NavItem>
-                <NavItem>Architectural drawings Redbridge</NavItem>
+              <NavMenu title="Local designers">
+                {BOROUGHS.slice(0, 8).map((borough) => (
+                  <NavItem key={borough.slug}>
+                    <a
+                      href={`/areas/${borough.slug}`}
+                      className="block"
+                    >
+                      {borough.label}
+                    </a>
+                  </NavItem>
+                ))}
               </NavMenu>
-              <NavMenu title="Extension Plans">
+              <NavMenu title="Extension plans">
                 <NavItem>Rear extension plans</NavItem>
                 <NavItem>Side return extension plans</NavItem>
                 <NavItem>Wrap around extension plans</NavItem>
                 <NavItem>Two storey extension plans</NavItem>
                 <NavItem>Kitchen extension layouts</NavItem>
               </NavMenu>
-              <NavMenu title="Loft Plans">
+              <NavMenu title="Loft plans">
                 <NavItem>Dormer loft conversions</NavItem>
                 <NavItem>Hip to gable loft conversions</NavItem>
                 <NavItem>Mansard loft conversions</NavItem>
                 <NavItem>Velux loft layouts</NavItem>
                 <NavItem>Attic conversions</NavItem>
               </NavMenu>
-              <NavMenu title="New Build">
+              <NavMenu title="New build">
                 <NavItem>New build house plans</NavItem>
                 <NavItem>Small residential developments</NavItem>
                 <NavItem>Infill plots and backland sites</NavItem>
                 <NavItem>Conversion to flats</NavItem>
               </NavMenu>
-              <NavMenu title="Technical & Support">
+              <NavMenu title="Technical and support">
                 <NavItem>Building Regulation drawing packs</NavItem>
                 <NavItem>Fire and escape strategy plans</NavItem>
                 <NavItem>Measured surveys</NavItem>
@@ -118,7 +156,7 @@ export default function IndexPage() {
 
             {/* Quick contact right side */}
             <div className="hidden items-center gap-3 text-[13px] lg:flex">
-              <a href={PHONE_LINK} className="font-medium text-slate-900 hover:underline">
+              <a href={PHONE_LINK} className="font.medium text-slate-900 hover:underline">
                 {PHONE_DISPLAY}
               </a>
               <a
@@ -163,30 +201,42 @@ export default function IndexPage() {
               <p className="mt-3 max-w-xl text-[13px] leading-relaxed text-slate-700">
                 WEDRAWPLANS focus on practical, buildable designs for house
                 extensions, loft conversions, new builds and conversions across
-                London and the M25 area.
-              </p>
-              <p className="mt-2 hidden max-w-xl text-[13px] leading-relaxed text-slate-700 sm:block">
-                Drawings are tailored to planning and Building Regulation
-                requirements and to what builders need on site.
+                London and the M25 area. Drawings are tailored to planning and
+                Building Regulation requirements and to what builders need on
+                site.
               </p>
               <p className="mt-3 text-[12px] text-slate-600">
-                Speak to a designer today on{" "}
+                Many quotes are turned around the same working day. For urgent
+                projects we can often arrange an initial survey within 48 hours.
+              </p>
+              <p className="mt-3 text-[12px] text-slate-600">
+                Call{" "}
                 <a href={PHONE_LINK} className="font-semibold underline">
                   {PHONE_DISPLAY}
                 </a>{" "}
-                or request a free quote using the form.
+                or use the form to request a fixed fee.
               </p>
             </div>
 
-            {/* Hero form – A1 compact full lead form */}
+            {/* Hero form – psychological focus on speed and clarity */}
             <div className="flex-1">
               <div className="mx-auto max-w-md rounded-2xl bg-white p-5 shadow-md">
-                <h2 className="text-[15px] font-semibold uppercase tracking-[0.16em] text-slate-900">
-                  Free quote in minutes
+                <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-red-700 mb-2">
+                  Extension · loft · new build · conversions
+                </p>
+
+                <p className="text-[12px] font-medium leading-snug text-slate-900 mb-3">
+                  Londons leading architectural drawing consultants for adding
+                  space and value at sensible fixed fees.
+                </p>
+
+                <h2 className="text-[14px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+                  Free fixed fee quote
                 </h2>
-                <p className="mt-2 text-[12px] text-slate-600">
-                  Fill in your details and we will send a clear fixed fee for
-                  your drawings, usually the same working day.
+                <p className="mt-1 text-[12px] text-slate-600">
+                  Share a few details and receive a clear fixed price for your
+                  drawings. No obligation, no call centre, you deal directly
+                  with a designer.
                 </p>
 
                 <form
@@ -302,35 +352,27 @@ export default function IndexPage() {
         </section>
 
         {/* Local designers */}
-        <section className="border-b border-slate-200 bg.white py-10">
+        <section className="border-b border-slate-200 bg-white py-10">
           <div className="mx-auto max-w-6xl px-4 lg:px-6">
             <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
               Local architectural drawing services across London and M25
             </h2>
             <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-              Regular work in many boroughs means WEDRAWPLANS understand how
-              different councils approach extensions, loft conversions and new
-              build proposals. This local experience helps shape realistic,
-              approvable designs.
+              WEDRAWPLANS regularly prepare drawings in boroughs across London
+              and the wider M25 area. These local area pages are designed so
+              homeowners and small developers can see how typical extensions,
+              lofts and new builds are viewed in their council area.
             </p>
 
             <div className="mt-5 grid gap-2 text-[13px] sm:grid-cols-2 md:grid-cols-3">
-              {[
-                "Architectural drawings Lewisham",
-                "Architectural drawings Southwark",
-                "Architectural drawings Lambeth",
-                "Architectural drawings Greenwich",
-                "Architectural drawings Bromley",
-                "Architectural drawings Croydon",
-                "Architectural drawings Newham",
-                "Architectural drawings Redbridge",
-                "Architectural drawings Waltham Forest",
-                "Architectural drawings Harrow",
-                "Architectural drawings Barnet",
-                "Architectural drawings Surrey borders",
-              ].map((item) => (
-                <div key={item} className="border-b border-slate-200 py-1.5">
-                  {item}
+              {BOROUGHS.map((b) => (
+                <div key={b.slug} className="border-b border-slate-200 py-1.5">
+                  <a
+                    href={`/areas/${b.slug}`}
+                    className="text-slate-800 hover:text-[#29788a] hover:underline"
+                  >
+                    {b.label}
+                  </a>
                 </div>
               ))}
             </div>
@@ -344,9 +386,9 @@ export default function IndexPage() {
               Extension plans · loft plans · new build and technical drawings
             </h2>
             <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-              WEDRAWPLANS mirror the clear structure of Draw Plans and extend it
-              further, so every homeowner or small developer can quickly see the
-              type of drawings available.
+              WEDRAWPLANS follow a clear and structured approach similar in
+              spirit to the best online drawing studios, while adding more depth
+              around construction, structural coordination and on site delivery.
             </p>
 
             <div className="mt-6 grid gap-6 md:grid-cols-3 text-[13px]">
@@ -381,14 +423,14 @@ export default function IndexPage() {
                   "Conversion to self contained flats",
                   "HMO layout and licensing drawings",
                 ]}
-                body="Site layouts, access strategies and unit plans for small residential developments, backed by practical build knowledge."
+                body="Site layouts, access strategies and unit plans for small residential developments, supported by practical build experience."
               />
             </div>
           </div>
         </section>
 
         {/* Project types */}
-        <section className="border-b border-slate-200 bg.white py-10">
+        <section className="border-b border-slate-200 bg-white py-10">
           <div className="mx-auto max-w-6xl px-4 lg:px-6">
             <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
               Architectural drawings for almost any residential project
@@ -396,7 +438,7 @@ export default function IndexPage() {
             <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
               From a simple rear extension to full house remodelling and new
               build, WEDRAWPLANS provide drawings for a wide range of project
-              types so that you can handle everything through one studio.
+              types so that clients can handle everything through one studio.
             </p>
 
             <div className="mt-5 grid gap-2 text-[13px] sm:grid-cols-2 lg:grid-cols-3">
@@ -454,7 +496,7 @@ export default function IndexPage() {
               />
               <SupportCard
                 title="Party wall and neighbour support"
-                body="Plans and sections that support party wall procedures, including drawings highlighting areas of work near boundaries."
+                body="Plans and sections that support party wall procedures, including drawings that highlight areas of work near boundaries."
               />
               <SupportCard
                 title="Interior layout and finishes plans"
@@ -462,7 +504,7 @@ export default function IndexPage() {
               />
               <SupportCard
                 title="3D visuals and simple CGI"
-                body="Where helpful we provide basic three dimensional views or simple CGI images so clients and neighbours can better understand the proposal."
+                body="Where helpful we provide basic three dimensional views or simple CGI images so neighbours and decision makers can better understand the proposal."
               />
               <SupportCard
                 title="Contractor and supplier introductions"
@@ -473,27 +515,27 @@ export default function IndexPage() {
         </section>
 
         {/* Price guide */}
-        <section id="price-guide" className="border-b border-slate-200 bg.white py-10">
+        <section id="price-guide" className="border-b border-slate-200 bg-white py-10">
           <div className="mx-auto max-w-6xl px-4 lg:px-6">
-            <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+            <h2 className="text-[18px] font-semibold uppercase tracking.[0.16em] text-slate-900">
               Price guide for drawings
             </h2>
             <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-              Every project is quoted once we understand the scope and location.
+              Every project is quoted once the scope and location are understood.
               These guide figures reflect common extension and loft projects and
-              help set expectations before you contact us.
+              help set expectations before clients get in touch.
             </p>
 
             <div className="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-3 text-[13px]">
               <PriceCard
                 title="House extension planning drawings"
-                price="from £795 + VAT"
+                price="from £750 + VAT"
                 body="Existing and proposed floor plans and elevations set out for planning or lawful development applications."
               />
               <PriceCard
                 title="Loft conversion planning drawings"
-                price="from £795 + VAT"
-                body="Plans, elevations and key sections tailored to your roof form and staircase position."
+                price="from £750 + VAT"
+                body="Plans, elevations and key sections tailored to the roof form and staircase position."
               />
               <PriceCard
                 title="Building Regulation drawing packs"
@@ -505,18 +547,18 @@ export default function IndexPage() {
             <div className="mt-10 grid gap-4 md:grid-cols-3 text-[13px]">
               <HelpCard
                 title="Phone consultation"
-                body="Arrange a telephone consultation to talk through ideas, budget and planning routes before you commit."
+                body="Arrange a telephone consultation to talk through ideas, budget and planning routes before making any commitments."
                 linkText="Schedule a call with a designer"
               />
               <HelpCard
                 title="Give us a call now"
-                body={`Talk to WEDRAWPLANS today about your extension, loft or new build on ${PHONE_DISPLAY}.`}
+                body={`Talk to WEDRAWPLANS today about an extension, loft or new build on ${PHONE_DISPLAY}.`}
                 linkText="Call now"
               />
               <HelpCard
                 title="Free quote"
-                body="Use our enquiry form to send a short description and we will email a clear fixed fee for your drawings."
-                linkText="Use our enquiry form"
+                body="Use the enquiry form to send a short description and WEDRAWPLANS will email a clear fixed fee for the drawings."
+                linkText="Use the enquiry form"
               />
             </div>
           </div>
@@ -526,12 +568,12 @@ export default function IndexPage() {
         <section id="contact" className="bg-[#f8f4f0] py-10">
           <div className="mx-auto max-w-6xl px-4 lg:px-6">
             <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
-              Get in touch / tell us what you need
+              Get in touch and tell us what you need
             </h2>
             <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
               Share a short description of the property and what you would like
-              to achieve. We normally respond the same working day and can
-              follow up by phone, email or WhatsApp depending on what you
+              to achieve. WEDRAWPLANS normally respond the same working day and
+              can follow up by phone, email or WhatsApp depending on what you
               prefer.
             </p>
 
@@ -543,7 +585,7 @@ export default function IndexPage() {
         </section>
 
         {/* Footer */}
-        <footer className="border-t border-slate-200 bg.white">
+        <footer className="border-t border-slate-200 bg-white">
           <div className="mx-auto max-w-6xl px-4 py-8 text-[12px] text-slate-600 lg:px-6">
             <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
               <div>
@@ -799,8 +841,8 @@ function ContactSummary() {
       </p>
       <p className="mt-3">
         If you already have estate agent plans, older drawings or simple
-        sketches, you can email them to us together with photos so that we can
-        review the property before we speak.
+        sketches, you can email them together with photos so that the property
+        can be reviewed before a call.
       </p>
     </div>
   );
