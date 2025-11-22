@@ -46,30 +46,37 @@ const BOROUGHS: { label: string; slug: string }[] = [
 ];
 
 export default function IndexPage() {
-  function handleHeroSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleHeroSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const data = new FormData(form);
 
-    const name = data.get("name");
-    const phone = data.get("phone");
-    const emailLead = data.get("email");
-    const service = data.get("service");
-    const postcode = data.get("postcode");
+    const payload = {
+      name: data.get("name"),
+      phone: data.get("phone"),
+      email: data.get("email"),
+      service: data.get("service"),
+      postcode: data.get("postcode"),
+    };
 
-    console.log({
-      name,
-      phone,
-      email: emailLead,
-      service,
-      postcode,
-    });
+    try {
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
 
-    alert(
-      "Thank you. In the live site this form will email WEDRAWPLANS with your full details and trigger a same day call back."
-    );
-
-    e.currentTarget.reset();
+      if (res.ok) {
+        alert("Thank you — your request has been submitted. WEDRAWPLANS will contact you shortly.");
+        form.reset();
+      } else {
+        alert("Something went wrong. Please try again or call us directly.");
+      }
+    } catch (err) {
+      alert("Network error — please try again.");
+    }
   }
+
 
   return (
     <>
