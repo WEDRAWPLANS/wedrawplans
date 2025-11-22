@@ -14,7 +14,8 @@ type LeadResponse = {
 };
 
 const TO_EMAIL = "info@wedrawplans.com"; // where you receive leads
-const FROM_EMAIL = "leads@wedrawplans.com"; // sending identity for Resend
+// Use Resend default sender for now so emails do not fail
+const FROM_EMAIL = "onboarding@resend.dev";
 
 export default async function handler(
   req: NextApiRequest,
@@ -46,7 +47,6 @@ export default async function handler(
 
   if (!RESEND_API_KEY) {
     console.error("Missing RESEND_API_KEY environment variable");
-    // We still respond 200 so the user is not blocked, but you see it in logs
   }
 
   const subject = `New WEDRAWPLANS enquiry from ${name}`;
