@@ -188,11 +188,11 @@ export default function IndexPage() {
           </div>
         </header>
 
-        {/* Hero with compact lead form – form first on mobile */}
+        {/* HERO – heading block, then form, then explanatory text */}
         <section className="border-b border-slate-200 bg-[#fdf8f3]">
-          <div className="mx-auto flex max-w-6xl flex-col-reverse gap-8 px-4 py-6 lg:flex-row lg:items-center lg:gap-10 lg:px-6 lg:py-14">
-            {/* Hero text (left) */}
-            <div className="flex-1">
+          <div className="mx-auto max-w-3xl px-4 py-8 lg:px-6 lg:py-12">
+            {/* EXACT header block you showed, now above the form */}
+            <div className="text-left">
               <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-red-700">
                 Extension · loft · new build · conversions
               </p>
@@ -200,7 +200,131 @@ export default function IndexPage() {
                 Londons leading architectural drawing consultants for adding
                 space and value at sensible fixed fees
               </h1>
-              <p className="mt-3 max-w-xl text-[13px] leading-relaxed text-slate-700">
+            </div>
+
+            {/* Form card – starts with Free fixed fee quote */}
+            <div className="mt-5 rounded-2xl bg-white p-5 shadow-md">
+              <h2 className="text-[14px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+                Free fixed fee quote
+              </h2>
+              <p className="mt-1 text-[12px] text-slate-600">
+                Share a few details and receive a clear fixed price for your
+                drawings. No obligation, no call centre – you deal directly
+                with a designer.
+              </p>
+
+              <form
+                onSubmit={handleHeroSubmit}
+                className="mt-4 space-y-3 text-[13px]"
+              >
+                {/* Name */}
+                <div className="space-y-1">
+                  <label className="text-[11px] font-medium text-slate-700">
+                    Name
+                  </label>
+                  <input
+                    name="name"
+                    required
+                    className="w-full rounded-none border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
+                  />
+                </div>
+
+                {/* Telephone + Email */}
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  <div className="space-y-1">
+                    <label className="text-[11px] font-medium text-slate-700">
+                      Telephone
+                    </label>
+                    <input
+                      name="phone"
+                      type="tel"
+                      required
+                      className="w-full rounded-none border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
+                    />
+                  </div>
+                  <div className="space-y-1">
+                    <label className="text-[11px] font-medium text-slate-700">
+                      Email
+                    </label>
+                    <input
+                      name="email"
+                      type="email"
+                      required
+                      className="w-full rounded-none border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
+                    />
+                  </div>
+                </div>
+
+                {/* Postcode */}
+                <div className="space-y-1">
+                  <label className="text-[11px] font-medium text-slate-700">
+                    Postcode
+                  </label>
+                  <input
+                    name="postcode"
+                    required
+                    placeholder="Example SE5 7GD"
+                    className="w-full rounded-none border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
+                  />
+                </div>
+
+                {/* Service */}
+                <div className="space-y-1">
+                  <label className="text-[11px] font-medium text-slate-700">
+                    Which service do you need
+                  </label>
+                  <select
+                    name="service"
+                    required
+                    className="w-full rounded-none border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
+                    defaultValue=""
+                  >
+                    <option value="" disabled>
+                      Select service
+                    </option>
+                    <option value="House extension plans">
+                      House extension plans
+                    </option>
+                    <option value="Loft conversion plans">
+                      Loft conversion plans
+                    </option>
+                    <option value="New build or small development">
+                      New build or small residential development
+                    </option>
+                    <option value="Flat or HMO conversion plans">
+                      Flat or HMO conversion plans
+                    </option>
+                    <option value="Building Regulation drawing packs">
+                      Building Regulation drawing packs
+                    </option>
+                    <option value="Measured survey and as existing drawings">
+                      Measured survey and as existing drawings
+                    </option>
+                    <option value="Other architectural drawings">
+                      Other architectural drawings
+                    </option>
+                  </select>
+                </div>
+
+                {/* Submit */}
+                <button
+                  type="submit"
+                  className="mt-3 w-full rounded-full bg-[#64b7c4] px-4 py-2.5 text-[13px] font-semibold uppercase tracking-[0.2em] text-white shadow-sm hover:bg-[#4da4b4] focus:outline-none focus:ring-2 focus:ring-[#64b7c4]"
+                >
+                  Get my quote
+                </button>
+
+                <p className="mt-2 text-[11px] text-slate-500">
+                  Popular: rear extensions, side return extensions, wrap
+                  around extensions, loft dormers, hip to gable conversions,
+                  new build plots and flat conversions.
+                </p>
+              </form>
+            </div>
+
+            {/* Explanatory text – now directly BELOW the form */}
+            <div className="mt-5 text-[13px] leading-relaxed text-slate-700">
+              <p>
                 WEDRAWPLANS focus on practical, buildable designs for house
                 extensions, loft conversions, new builds and conversions across
                 London and the M25 area. Drawings are tailored to planning and
@@ -216,142 +340,8 @@ export default function IndexPage() {
                 <a href={PHONE_LINK} className="font-semibold underline">
                   {PHONE_DISPLAY}
                 </a>{" "}
-                or use the form to request a fixed fee.
+                or use the form above to request a fixed fee.
               </p>
-            </div>
-
-            {/* Hero form (right) */}
-            <div className="flex-1">
-              {/* Heading block ABOVE the form card */}
-              <div className="mb-3 text-center lg:text-left">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-red-700">
-                  Extension · loft · new build · conversions
-                </p>
-                <p className="mt-1 text-[14px] font-semibold uppercase tracking-[0.18em] text-slate-900">
-                  Londons leading architectural drawing consultants for adding
-                  space and value at sensible fixed fees
-                </p>
-              </div>
-
-              {/* Form card */}
-              <div className="mx-auto max-w-md rounded-2xl bg-white p-5 shadow-md">
-                <h2 className="text-[14px] font-semibold uppercase tracking-[0.16em] text-slate-900">
-                  Free fixed fee quote
-                </h2>
-                <p className="mt-1 text-[12px] text-slate-600">
-                  Share a few details and receive a clear fixed price for your
-                  drawings. No obligation, no call centre – you deal directly
-                  with a designer.
-                </p>
-
-                <form
-                  onSubmit={handleHeroSubmit}
-                  className="mt-4 space-y-3 text-[13px]"
-                >
-                  {/* Name */}
-                  <div className="space-y-1">
-                    <label className="text-[11px] font-medium text-slate-700">
-                      Name
-                    </label>
-                    <input
-                      name="name"
-                      required
-                      className="w-full rounded-none border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
-                    />
-                  </div>
-
-                  {/* Telephone + Email */}
-                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                    <div className="space-y-1">
-                      <label className="text-[11px] font-medium text-slate-700">
-                        Telephone
-                      </label>
-                      <input
-                        name="phone"
-                        type="tel"
-                        required
-                        className="w-full rounded-none border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
-                      />
-                    </div>
-                    <div className="space-y-1">
-                      <label className="text-[11px] font-medium text-slate-700">
-                        Email
-                      </label>
-                      <input
-                        name="email"
-                        type="email"
-                        required
-                        className="w-full rounded-none border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Postcode */}
-                  <div className="space-y-1">
-                    <label className="text-[11px] font-medium text-slate-700">
-                      Postcode
-                    </label>
-                    <input
-                      name="postcode"
-                      required
-                      placeholder="Example SE5 7GD"
-                      className="w-full rounded-none border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
-                    />
-                  </div>
-
-                  {/* Service */}
-                  <div className="space-y-1">
-                    <label className="text-[11px] font-medium text-slate-700">
-                      Which service do you need
-                    </label>
-                    <select
-                      name="service"
-                      required
-                      className="w-full rounded-none border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
-                      defaultValue=""
-                    >
-                      <option value="" disabled>
-                        Select service
-                      </option>
-                      <option value="House extension plans">
-                        House extension plans
-                      </option>
-                      <option value="Loft conversion plans">
-                        Loft conversion plans
-                      </option>
-                      <option value="New build or small development">
-                        New build or small residential development
-                      </option>
-                      <option value="Flat or HMO conversion plans">
-                        Flat or HMO conversion plans
-                      </option>
-                      <option value="Building Regulation drawing packs">
-                        Building Regulation drawing packs
-                      </option>
-                      <option value="Measured survey and as existing drawings">
-                        Measured survey and as existing drawings
-                      </option>
-                      <option value="Other architectural drawings">
-                        Other architectural drawings
-                      </option>
-                    </select>
-                  </div>
-
-                  {/* Submit */}
-                  <button
-                    type="submit"
-                    className="mt-3 w-full rounded-full bg-[#64b7c4] px-4 py-2.5 text-[13px] font-semibold uppercase tracking-[0.2em] text.white shadow-sm hover:bg-[#4da4b4] focus:outline-none focus:ring-2 focus:ring-[#64b7c4]"
-                  >
-                    Get my quote
-                  </button>
-
-                  <p className="mt-2 text-[11px] text-slate-500">
-                    Popular: rear extensions, side return extensions, wrap
-                    around extensions, loft dormers, hip to gable conversions,
-                    new build plots and flat conversions.
-                  </p>
-                </form>
-              </div>
             </div>
           </div>
         </section>
@@ -484,7 +474,7 @@ export default function IndexPage() {
             <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
               Support services around your drawings
             </h2>
-          <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
+            <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
               Beyond pure drawing production, WEDRAWPLANS help bring projects
               together by coordinating key professionals and offering additional
               documentation where needed.
@@ -590,7 +580,7 @@ export default function IndexPage() {
         </section>
 
         {/* Footer */}
-        <footer className="border-t border-slate-200 bg-white">
+        <footer className="border-t border-slate-200 bg.white">
           <div className="mx-auto max-w-6xl px-4 py-8 text-[12px] text-slate-600 lg:px-6">
             <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
               <div>
