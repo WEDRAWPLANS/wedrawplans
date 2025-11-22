@@ -13,7 +13,9 @@ type LeadResponse = {
   error?: string;
 };
 
-const TO_EMAIL = "info@wedrawplans.com"; // where you receive leads
+// Where you receive leads
+const TO_EMAILS = ["info@wedrawplans.com", "architectabbey@gmail.com"];
+
 // Use Resend default sender for now so emails do not fail
 const FROM_EMAIL = "onboarding@resend.dev";
 
@@ -84,12 +86,12 @@ export default async function handler(
   ].join("\n");
 
   try {
-    // 1) Send lead email to WEDRAWPLANS
+    // 1) Send lead email to WEDRAWPLANS (both inboxes)
     if (RESEND_API_KEY) {
       await sendEmailWithResend({
         apiKey: RESEND_API_KEY,
         from: `WEDRAWPLANS Leads <${FROM_EMAIL}>`,
-        to: TO_EMAIL,
+        to: TO_EMAILS,
         replyTo: email,
         subject,
         text: leadText,
@@ -99,7 +101,7 @@ export default async function handler(
       await sendEmailWithResend({
         apiKey: RESEND_API_KEY,
         from: `WEDRAWPLANS <${FROM_EMAIL}>`,
-        to: email,
+        to: [email],
         subject: autoReplySubject,
         text: autoReplyText,
       });
@@ -158,7 +160,7 @@ export default async function handler(
 type ResendEmailParams = {
   apiKey: string;
   from: string;
-  to: string;
+  to: string[];          // <-- can send to many addresses
   subject: string;
   text: string;
   replyTo?: string;
@@ -180,7 +182,7 @@ async function sendEmailWithResend({
     },
     body: JSON.stringify({
       from,
-      to: [to],
+      to,
       reply_to: replyTo,
       subject,
       text,
@@ -190,7 +192,7 @@ async function sendEmailWithResend({
   if (!resp.ok) {
     const errorText = await resp.text().catch(() => "Unknown error");
     console.error("Resend API error:", resp.status, errorText);
-    // IMPORTANT: do not throw – we still want the API to return ok
+    // Do not throw – we still want the API to return ok to the client
     return;
   }
 }
