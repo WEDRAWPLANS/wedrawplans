@@ -6,8 +6,7 @@ const PHONE_LINK = "tel:+442036548508";
 const EMAIL = "info@wedrawplans.com";
 const EMAIL_LINK = "mailto:info@wedrawplans.com";
 
-// WhatsApp now uses the LANDLINE number (as requested),
-// but the number is NOT shown on the screen – only the link text.
+// WhatsApp link uses the same number as the phone
 const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20my%20project";
 
@@ -21,7 +20,7 @@ export default function IndexPage() {
     console.log({ service, postcode });
 
     alert(
-      "Thank you. In the live site this form will send your service choice and postcode to WEDRAWPLANS and trigger a same-day call back."
+      "Thank you. In the live site this form will send your service choice and postcode to WEDRAWPLANS and trigger a same day call back."
     );
 
     e.currentTarget.reset();
@@ -31,18 +30,10 @@ export default function IndexPage() {
     <>
       <Head>
         <title>
-          WEDRAWPLANS – London House Extension & Loft Conversion Drawings
+          WEDRAWPLANS – London Extension, Loft and New Build Drawings
         </title>
-        {/* Google font similar to DrawPlans style */}
-        <link
-          rel="preconnect"
-          href="https://fonts.googleapis.com"
-        />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin=""
-        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
           href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
           rel="stylesheet"
@@ -50,19 +41,19 @@ export default function IndexPage() {
       </Head>
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
-        {/* Top bar / nav */}
+        {/* Header and nav */}
         <header className="border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur">
           <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 lg:px-6">
             {/* Logo */}
             <div className="flex items-center gap-2">
-              <div className="grid h-10 w-10 place-items-center rounded-full border border-slate-400 text-xs font-semibold tracking-[0.15em]">
+              <div className="grid h-10 w-10 place-items-center rounded-full border border-slate-500 text-xs font-semibold tracking-[0.18em] text-red-700">
                 WD
               </div>
               <div className="leading-tight">
-                <div className="text-lg font-semibold tracking-[0.18em] uppercase">
+                <div className="text-lg font-semibold tracking-[0.2em] uppercase">
                   WEDRAWPLANS
                 </div>
-                <div className="text-[11px] uppercase tracking-[0.18em] text-slate-500">
+                <div className="text-[11px] uppercase tracking-[0.2em] text-slate-500">
                   Architectural drawing consultants
                 </div>
               </div>
@@ -71,50 +62,54 @@ export default function IndexPage() {
             {/* Desktop nav */}
             <nav className="hidden items-center gap-5 text-[13px] text-slate-700 lg:flex">
               <NavMenu title="Local Designers">
-                <NavItem>Architectural designers Lewisham</NavItem>
-                <NavItem>Architectural designers Southwark</NavItem>
-                <NavItem>Architectural designers Lambeth</NavItem>
-                <NavItem>Architectural designers Greenwich</NavItem>
-                <NavItem>Architectural designers Bromley</NavItem>
-                <NavItem>Architectural designers Croydon</NavItem>
+                <NavItem>Architectural drawings Lewisham</NavItem>
+                <NavItem>Architectural drawings Southwark</NavItem>
+                <NavItem>Architectural drawings Lambeth</NavItem>
+                <NavItem>Architectural drawings Greenwich</NavItem>
+                <NavItem>Architectural drawings Bromley</NavItem>
+                <NavItem>Architectural drawings Croydon</NavItem>
+                <NavItem>Architectural drawings Harrow</NavItem>
+                <NavItem>Architectural drawings Redbridge</NavItem>
               </NavMenu>
               <NavMenu title="Extension Plans">
                 <NavItem>Rear extension plans</NavItem>
                 <NavItem>Side return extension plans</NavItem>
                 <NavItem>Wrap around extension plans</NavItem>
                 <NavItem>Two storey extension plans</NavItem>
+                <NavItem>Kitchen extension layouts</NavItem>
               </NavMenu>
               <NavMenu title="Loft Plans">
-                <NavItem>Dormer loft conversion plans</NavItem>
-                <NavItem>Hip to gable loft conversion</NavItem>
-                <NavItem>Mansard loft conversion</NavItem>
-                <NavItem>Velux loft conversion</NavItem>
+                <NavItem>Dormer loft conversions</NavItem>
+                <NavItem>Hip to gable loft conversions</NavItem>
+                <NavItem>Mansard loft conversions</NavItem>
+                <NavItem>Velux loft layouts</NavItem>
+                <NavItem>Attic conversions</NavItem>
               </NavMenu>
-              <NavMenu title="Building Regs">
+              <NavMenu title="New Build">
+                <NavItem>New build house plans</NavItem>
+                <NavItem>Small residential developments</NavItem>
+                <NavItem>Infill plots and backland sites</NavItem>
+                <NavItem>Conversion to flats</NavItem>
+              </NavMenu>
+              <NavMenu title="Technical & Support">
                 <NavItem>Building Regulation drawing packs</NavItem>
-                <NavItem>Construction details & sections</NavItem>
-                <NavItem>Fire strategy plans</NavItem>
+                <NavItem>Fire and escape strategy plans</NavItem>
+                <NavItem>Measured surveys</NavItem>
+                <NavItem>Structural engineer coordination</NavItem>
+                <NavItem>Party wall drawings and support</NavItem>
+                <NavItem>Interior layouts and finishes plans</NavItem>
               </NavMenu>
-              <a
-                href="#price-guide"
-                className="hover:underline"
-              >
+              <a href="#price-guide" className="hover:underline">
                 Price guide
               </a>
-              <a
-                href="#contact"
-                className="hover:underline"
-              >
+              <a href="#contact" className="hover:underline">
                 Contact
               </a>
             </nav>
 
-            {/* Contact CTA */}
+            {/* Quick contact right side */}
             <div className="hidden items-center gap-3 text-[13px] lg:flex">
-              <a
-                href={PHONE_LINK}
-                className="font-medium text-slate-900 hover:underline"
-              >
+              <a href={PHONE_LINK} className="font-medium text-slate-900 hover:underline">
                 {PHONE_DISPLAY}
               </a>
               <a
@@ -127,12 +122,9 @@ export default function IndexPage() {
               </a>
             </div>
 
-            {/* Mobile simple contact */}
+            {/* Mobile contact */}
             <div className="flex items-center gap-3 lg:hidden">
-              <a
-                href={PHONE_LINK}
-                className="text-[12px] font-medium text-slate-900"
-              >
+              <a href={PHONE_LINK} className="text-[12px] font-medium text-slate-900">
                 Call
               </a>
               <a
@@ -147,43 +139,43 @@ export default function IndexPage() {
           </div>
         </header>
 
-        {/* Hero with short form (fits one mobile screen) */}
+        {/* Hero with compact form that fits on mobile */}
         <section className="border-b border-slate-200 bg-[#fdf8f3]">
           <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 py-10 lg:flex-row lg:items-center lg:px-6 lg:py-14">
-            {/* Text column */}
+            {/* Hero text */}
             <div className="flex-1">
-              <h1 className="text-[22px] font-semibold uppercase leading-snug tracking-[0.14em] text-slate-900 sm:text-[26px]">
-                Londons leading extension & loft drawing consultants for adding
+              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-red-700">
+                Extension · loft · new build · conversions
+              </p>
+              <h1 className="mt-2 text-[22px] font-semibold uppercase leading-snug tracking-[0.14em] text-slate-900 sm:text-[26px]">
+                Londons leading architectural drawing consultants for adding
                 space and value at sensible fixed fees
               </h1>
               <p className="mt-4 max-w-xl text-[13px] leading-relaxed text-slate-700">
-                WEDRAWPLANS are London based architectural drawing specialists
-                focusing on house extensions, loft conversions and small
-                developments. We help homeowners plan, design and obtain
-                approvals for their projects across London and the M25 area.
+                WEDRAWPLANS focus on practical, buildable designs for house
+                extensions, loft conversions, new builds and conversions across
+                London and the M25 area. Drawings are tailored to planning and
+                Building Regulation requirements and to what builders need on
+                site.
               </p>
-
               <p className="mt-3 text-[12px] text-slate-600">
                 Speak to a designer today on{" "}
-                <a
-                  href={PHONE_LINK}
-                  className="font-semibold underline"
-                >
+                <a href={PHONE_LINK} className="font-semibold underline">
                   {PHONE_DISPLAY}
                 </a>{" "}
                 or request a free quote using the form.
               </p>
             </div>
 
-            {/* Lead form – compact like DrawPlans, no scroll on most phones */}
+            {/* Hero form – Service + Postcode only */}
             <div className="flex-1">
               <div className="mx-auto max-w-md rounded-2xl bg-white p-5 shadow-md">
                 <h2 className="text-[15px] font-semibold uppercase tracking-[0.16em] text-slate-900">
                   Free quote in minutes
                 </h2>
                 <p className="mt-2 text-[12px] text-slate-600">
-                  Choose the service and enter your postcode. We will reply with
-                  a fixed fee for your drawings.
+                  Choose a service and enter your postcode. We reply with a
+                  clear fixed fee and the next steps.
                 </p>
 
                 <form
@@ -209,16 +201,21 @@ export default function IndexPage() {
                       <option value="Loft conversion plans">
                         Loft conversion plans
                       </option>
+                      <option value="New build or small development">
+                        New build or small residential development
+                      </option>
                       <option value="Flat or HMO conversion plans">
                         Flat or HMO conversion plans
                       </option>
-                      <option value="New build drawings">
-                        New build or small development drawings
-                      </option>
-                      <option value="Building Regulation drawings">
+                      <option value="Building Regulation drawing packs">
                         Building Regulation drawing packs
                       </option>
-                      <option value="Other">Other architectural drawings</option>
+                      <option value="Measured survey and as existing drawings">
+                        Measured survey and as existing drawings
+                      </option>
+                      <option value="Other architectural drawings">
+                        Other architectural drawings
+                      </option>
                     </select>
                   </div>
 
@@ -234,7 +231,6 @@ export default function IndexPage() {
                     />
                   </div>
 
-                  {/* Button only – rest of contact details captured on next step / call back */}
                   <button
                     type="submit"
                     className="mt-3 w-full rounded-full bg-[#64b7c4] px-4 py-2.5 text-[13px] font-semibold uppercase tracking-[0.2em] text-white shadow-sm hover:bg-[#4da4b4] focus:outline-none focus:ring-2 focus:ring-[#64b7c4]"
@@ -244,8 +240,8 @@ export default function IndexPage() {
 
                   <p className="mt-2 text-[11px] text-slate-500">
                     Popular: rear extensions, side return extensions, wrap
-                    around extensions, loft dormers and hip to gable
-                    conversions.
+                    around extensions, loft dormers, hip to gable conversions,
+                    new build plots and flat conversions.
                   </p>
                 </form>
               </div>
@@ -253,16 +249,17 @@ export default function IndexPage() {
           </div>
         </section>
 
-        {/* Local designers style section */}
+        {/* Local designers */}
         <section className="border-b border-slate-200 bg-white py-10">
           <div className="mx-auto max-w-6xl px-4 lg:px-6">
             <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
-              Local architectural drawing services across London
+              Local architectural drawing services across London and M25
             </h2>
             <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-              We regularly work in many London boroughs and nearby towns. Local
-              experience helps us shape realistic designs and anticipate what
-              councils look for in extension and loft conversion drawings.
+              Regular work in many boroughs means WEDRAWPLANS understand how
+              different councils approach extensions, loft conversions and new
+              build proposals. This local experience helps shape realistic,
+              approvable designs.
             </p>
 
             <div className="mt-5 grid gap-2 text-[13px] sm:grid-cols-2 md:grid-cols-3">
@@ -271,19 +268,16 @@ export default function IndexPage() {
                 "Architectural drawings Southwark",
                 "Architectural drawings Lambeth",
                 "Architectural drawings Greenwich",
-                "Architectural drawings Newham",
                 "Architectural drawings Bromley",
                 "Architectural drawings Croydon",
-                "Architectural drawings Harrow",
+                "Architectural drawings Newham",
                 "Architectural drawings Redbridge",
-                "Architectural drawings Barnet",
                 "Architectural drawings Waltham Forest",
+                "Architectural drawings Harrow",
+                "Architectural drawings Barnet",
                 "Architectural drawings Surrey borders",
               ].map((item) => (
-                <div
-                  key={item}
-                  className="border-b border-slate-200 py-1.5"
-                >
+                <div key={item} className="border-b border-slate-200 py-1.5">
                   {item}
                 </div>
               ))}
@@ -291,16 +285,16 @@ export default function IndexPage() {
           </div>
         </section>
 
-        {/* Services / sub headings like their drop downs */}
+        {/* Extension, loft, new build and technical services */}
         <section className="border-b border-slate-200 bg-[#f8f4f0] py-10">
           <div className="mx-auto max-w-6xl px-4 lg:px-6">
             <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
-              Extension plans · loft plans · building regulation drawings
+              Extension plans · loft plans · new build and technical drawings
             </h2>
             <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-              As with Draw Plans, each service area branches into specific
-              project types. WEDRAWPLANS expands this further so homeowners can
-              quickly find the drawings they need.
+              WEDRAWPLANS mirror the clear structure of Draw Plans and extend it
+              further, so every homeowner or small developer can quickly see the
+              type of drawings available.
             </p>
 
             <div className="mt-6 grid gap-6 md:grid-cols-3 text-[13px]">
@@ -313,7 +307,7 @@ export default function IndexPage() {
                   "Two storey extension plans",
                   "Kitchen extension layouts",
                 ]}
-                body="Plans, elevations and roof layouts for single and two storey extensions prepared for planning and permitted development routes."
+                body="Plans, elevations and roof layouts for single and two storey extensions prepared for planning, lawful development certificates and construction."
               />
               <ServiceColumn
                 heading="Loft conversion plans"
@@ -324,89 +318,169 @@ export default function IndexPage() {
                   "Velux loft layouts",
                   "Attic conversions",
                 ]}
-                body="Stair positioning, headroom checks and dormer layouts with clear sections ready for structural engineer input and Building Control."
+                body="Stair design, headroom checks, dormer massing and roof plans set out with clear sections that are ready for structural engineer input."
               />
               <ServiceColumn
-                heading="Building Regs & construction"
+                heading="New build and conversions"
                 items={[
-                  "Building Regulation drawing packs",
-                  "Detail sections and junctions",
-                  "Thermal and insulation notes",
-                  "Drainage and foundations coordination",
-                  "Fire escape and compartmentation plans",
+                  "New build house layouts and elevations",
+                  "Backland and infill developments",
+                  "Blocks of flats and small schemes",
+                  "Conversion to self contained flats",
+                  "HMO layout and licensing drawings",
                 ]}
-                body="Technical drawings and notes to support Building Control applications and help builders deliver work to an agreed standard."
+                body="Site layouts, access strategies and unit plans for small residential developments, backed by practical build knowledge."
               />
             </div>
           </div>
         </section>
 
-        {/* Price guide + help options */}
-        <section
-          id="price-guide"
-          className="border-b border-slate-200 bg-white py-10"
-        >
+        {/* Big project type list – equivalent to their Get Architectural Plans for Any Project list */}
+        <section className="border-b border-slate-200 bg-white py-10">
+          <div className="mx-auto max-w-6xl px-4 lg:px-6">
+            <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+              Architectural drawings for almost any residential project
+            </h2>
+            <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
+              From a simple rear extension to full house remodelling and new
+              build, WEDRAWPLANS provide drawings for a wide range of project
+              types so that you can handle everything through one studio.
+            </p>
+
+            <div className="mt-5 grid gap-2 text-[13px] sm:grid-cols-2 lg:grid-cols-3">
+              {[
+                "House extension plans",
+                "Loft conversion plans",
+                "New build house plans",
+                "Garden room and outbuilding plans",
+                "Garage conversion plans",
+                "Basement and lower ground conversions",
+                "Internal remodelling and open plan layouts",
+                "Property conversion to flats",
+                "HMO layout and licensing drawings",
+                "Elevation drawings and street scenes",
+                "Fire escape and evacuation plans",
+                "Planning pre application reports",
+                "Listed and heritage building drawings",
+                "Lawful development certificate drawings",
+                "Measured survey and as existing drawings",
+                "3D visual and massing sketches",
+                "Disability and accessibility adaptations",
+                "Workplace and studio layout plans",
+              ].map((item) => (
+                <span
+                  key={item}
+                  className="inline-block rounded-full border border-slate-200 bg-[#fdf8f3] px-3 py-1"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Support services – measured survey, structural, party wall, interior etc */}
+        <section className="border-b border-slate-200 bg-[#f8f4f0] py-10">
+          <div className="mx-auto max-w-6xl px-4 lg:px-6">
+            <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+              Support services around your drawings
+            </h2>
+            <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
+              Beyond pure drawing production, WEDRAWPLANS help bring projects
+              together by coordinating key professionals and offering additional
+              documentation where needed.
+            </p>
+
+            <div className="mt-6 grid gap-6 md:grid-cols-3 text-[13px]">
+              <SupportCard
+                title="Measured surveys"
+                body="On site measured surveys to capture accurate as existing information, followed by clear survey drawings that can be reused by other consultants."
+              />
+              <SupportCard
+                title="Structural engineer coordination"
+                body="Close coordination with structural engineers so beams, padstones and foundations are correctly shown and noted on architectural plans."
+              />
+              <SupportCard
+                title="Party wall and neighbour support"
+                body="Plans and sections that support party wall procedures, including drawings highlighting areas of work near boundaries."
+              />
+              <SupportCard
+                title="Interior layout and finishes plans"
+                body="Interior layouts, kitchen and bathroom arrangements and simple finishes plans for clients who want more than basic space planning."
+              />
+              <SupportCard
+                title="3D visuals and simple CGI"
+                body="Where helpful we provide basic three dimensional views or simple CGI images so clients and neighbours can better understand the proposal."
+              />
+              <SupportCard
+                title="Contractor and supplier introductions"
+                body="For suitable projects WEDRAWPLANS can introduce builders and specialist suppliers so that the design can move efficiently into construction."
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Price guide and help cards */}
+        <section id="price-guide" className="border-b border-slate-200 bg-white py-10">
           <div className="mx-auto max-w-6xl px-4 lg:px-6">
             <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
               Price guide for drawings
             </h2>
             <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-              Each project is individually quoted once we see the property and
-              understand the brief, but these guide figures help set
-              expectations.
+              Every project is quoted once we understand the scope and location.
+              These guide figures reflect common extension and loft projects and
+              help set expectations before you contact us.
             </p>
 
             <div className="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-3 text-[13px]">
               <PriceCard
                 title="House extension planning drawings"
                 price="from £795 + VAT"
-                body="Includes existing and proposed plans and elevations ready for planning or lawful development applications."
+                body="Existing and proposed floor plans and elevations set out for planning or lawful development applications."
               />
               <PriceCard
                 title="Loft conversion planning drawings"
                 price="from £795 + VAT"
-                body="Plans, sections and elevations for dormer and hip to gable conversions tailored to your roof and staircase."
+                body="Plans, elevations and key sections tailored to your roof form and staircase position."
               />
               <PriceCard
                 title="Building Regulation drawing packs"
                 price="priced to scope"
-                body="Full technical sets with notes and sections, coordinated with structural engineer designs where required."
+                body="Technical sets with notes, sections and construction details coordinated with structural engineer designs."
               />
             </div>
 
-            {/* Three help options similar to their cards */}
             <div className="mt-10 grid gap-4 md:grid-cols-3 text-[13px]">
               <HelpCard
                 title="Phone consultation"
-                body="Book a telephone call to discuss your project and ask questions before committing."
+                body="Arrange a telephone consultation to talk through ideas, budget and planning routes before you commit."
                 linkText="Schedule a call with a designer"
               />
               <HelpCard
                 title="Give us a call now"
-                body={`Talk to us today about your extension or loft conversion on ${PHONE_DISPLAY}.`}
+                body={`Talk to WEDRAWPLANS today about your extension, loft or new build on ${PHONE_DISPLAY}.`}
                 linkText="Call now"
               />
               <HelpCard
                 title="Free quote"
-                body="Send basic details and we will email a clear fixed fee for your drawings."
+                body="Use our enquiry form to send a short description and we will email a clear fixed fee for your drawings."
                 linkText="Use our enquiry form"
               />
             </div>
           </div>
         </section>
 
-        {/* Contact form section */}
-        <section
-          id="contact"
-          className="bg-[#f8f4f0] py-10"
-        >
+        {/* Contact area */}
+        <section id="contact" className="bg-[#f8f4f0] py-10">
           <div className="mx-auto max-w-6xl px-4 lg:px-6">
             <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
               Get in touch / tell us what you need
             </h2>
             <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-              Share a short description of your project together with your
-              contact details. We normally respond the same working day.
+              Share a short description of the property and what you would like
+              to achieve. We normally respond the same working day and can
+              follow up by phone, email or WhatsApp depending on what you
+              prefer.
             </p>
 
             <div className="mt-6 grid gap-8 lg:grid-cols-2">
@@ -421,13 +495,13 @@ export default function IndexPage() {
           <div className="mx-auto max-w-6xl px-4 py-8 text-[12px] text-slate-600 lg:px-6">
             <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
               <div>
-                <div className="text-[14px] font-semibold tracking-[0.18em] uppercase text-slate-900">
+                <div className="text-[14px] font-semibold tracking-[0.2em] uppercase text-slate-900">
                   WEDRAWPLANS
                 </div>
                 <p className="mt-2 max-w-sm text-[12px] text-slate-600">
                   Architectural drawing consultants for extensions, loft
-                  conversions, conversions and small developments across London
-                  and the M25 area.
+                  conversions, new builds, conversions and small developments
+                  across London and the M25 area.
                 </p>
               </div>
               <div>
@@ -436,18 +510,12 @@ export default function IndexPage() {
                 </div>
                 <ul className="mt-2 space-y-1">
                   <li>
-                    <a
-                      href={PHONE_LINK}
-                      className="hover:underline"
-                    >
+                    <a href={PHONE_LINK} className="hover:underline">
                       Phone {PHONE_DISPLAY}
                     </a>
                   </li>
                   <li>
-                    <a
-                      href={EMAIL_LINK}
-                      className="hover:underline"
-                    >
+                    <a href={EMAIL_LINK} className="hover:underline">
                       {EMAIL}
                     </a>
                   </li>
@@ -484,7 +552,7 @@ export default function IndexPage() {
           </div>
         </footer>
 
-        {/* Floating WhatsApp bubble – no number shown, just icon */}
+        {/* Floating WhatsApp bubble */}
         <a
           href={WHATSAPP_LINK}
           target="_blank"
@@ -499,7 +567,7 @@ export default function IndexPage() {
   );
 }
 
-/* ---------- Small helper components ---------- */
+/* Helper components */
 
 type NavMenuProps = {
   title: string;
@@ -512,7 +580,7 @@ function NavMenu({ title, children }: NavMenuProps) {
       <button className="uppercase tracking-[0.14em] text-[11px] font-medium">
         {title}
       </button>
-      <div className="pointer-events-none absolute left-0 top-full z-20 mt-2 min-w-[220px] rounded-sm bg-white py-2 text-[12px] shadow-lg opacity-0 group-hover:pointer-events-auto group-hover:opacity-100">
+      <div className="pointer-events-none absolute left-0 top-full z-20 mt-2 min-w-[240px] rounded-sm bg-white py-2 text-[12px] shadow-lg opacity-0 group-hover:pointer-events-auto group-hover:opacity-100">
         {children}
       </div>
     </div>
@@ -520,9 +588,7 @@ function NavMenu({ title, children }: NavMenuProps) {
 }
 
 function NavItem({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="px-4 py-1 hover:bg-slate-100">{children}</div>
-  );
+  return <div className="px-4 py-1 hover:bg-slate-100">{children}</div>;
 }
 
 type ServiceColumnProps = {
@@ -547,6 +613,22 @@ function ServiceColumn({ heading, items, body }: ServiceColumnProps) {
   );
 }
 
+type SupportCardProps = {
+  title: string;
+  body: string;
+};
+
+function SupportCard({ title, body }: SupportCardProps) {
+  return (
+    <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
+      <h3 className="text-[13px] font-semibold uppercase tracking-[0.12em] text-slate-900">
+        {title}
+      </h3>
+      <p className="mt-2 text-[12px] text-slate-600">{body}</p>
+    </div>
+  );
+}
+
 type PriceCardProps = {
   title: string;
   price: string;
@@ -556,9 +638,7 @@ type PriceCardProps = {
 function PriceCard({ title, price, body }: PriceCardProps) {
   return (
     <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
-      <h3 className="text-[13px] font-semibold text-slate-900">
-        {title}
-      </h3>
+      <h3 className="text-[13px] font-semibold text-slate-900">{title}</h3>
       <div className="mt-1 text-[13px] font-semibold text-slate-900">
         {price}
       </div>
@@ -576,7 +656,7 @@ type HelpCardProps = {
 function HelpCard({ title, body, linkText }: HelpCardProps) {
   return (
     <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
-      <h3 className="text-[13px] font-semibold text-slate-900 uppercase tracking-[0.12em]">
+      <h3 className="text-[13px] font-semibold uppercase tracking-[0.12em] text-slate-900">
         {title}
       </h3>
       <p className="mt-2 text-[12px] text-slate-600">{body}</p>
@@ -597,14 +677,9 @@ function ContactForm() {
   }
 
   return (
-    <form
-      onSubmit={handleContactSubmit}
-      className="space-y-3 text-[13px]"
-    >
+    <form onSubmit={handleContactSubmit} className="space-y-3 text-[13px]">
       <div className="space-y-1">
-        <label className="text-[11px] font-medium text-slate-700">
-          Name
-        </label>
+        <label className="text-[11px] font-medium text-slate-700">Name</label>
         <input
           name="name"
           className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
@@ -662,17 +737,18 @@ function ContactSummary() {
     <div className="text-[13px] text-slate-700">
       <p>
         WEDRAWPLANS provide a full range of architectural drawing services for
-        house extensions, loft conversions, garage conversions, flat
-        conversions, HMOs and small developments.
+        house extensions, loft conversions, garage conversions, garden rooms,
+        flat conversions, HMOs and small new build developments.
       </p>
       <p className="mt-3">
-        We focus on practical, buildable designs and clear drawings that help
-        secure planning and Building Regulation approvals while supporting
-        builders on site.
+        The focus is on clear, buildable designs that support planning and
+        Building Regulation approvals and that help builders understand exactly
+        what is intended on site.
       </p>
       <p className="mt-3">
-        If you already have outline sketches or estate agent drawings, feel free
-        to attach them when you email us so we can review before we speak.
+        If you already have estate agent plans, older drawings or simple
+        sketches, you can email them to us together with photos so that we can
+        review the property before we speak.
       </p>
     </div>
   );
