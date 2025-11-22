@@ -14,13 +14,23 @@ export default function IndexPage() {
   function handleHeroSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
+
+    const name = data.get("name");
+    const phone = data.get("phone");
+    const emailLead = data.get("email");
     const service = data.get("service");
     const postcode = data.get("postcode");
 
-    console.log({ service, postcode });
+    console.log({
+      name,
+      phone,
+      email: emailLead,
+      service,
+      postcode,
+    });
 
     alert(
-      "Thank you. In the live site this form will send your service choice and postcode to WEDRAWPLANS and trigger a same day call back."
+      "Thank you. In the live site this form will email WEDRAWPLANS with your full details and trigger a same day call back."
     );
 
     e.currentTarget.reset();
@@ -139,7 +149,7 @@ export default function IndexPage() {
           </div>
         </header>
 
-        {/* Hero with compact form that fits on mobile */}
+        {/* Hero with full lead form */}
         <section className="border-b border-slate-200 bg-[#fdf8f3]">
           <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 py-10 lg:flex-row lg:items-center lg:px-6 lg:py-14">
             {/* Hero text */}
@@ -167,21 +177,68 @@ export default function IndexPage() {
               </p>
             </div>
 
-            {/* Hero form – Service + Postcode only */}
+            {/* Hero form – full lead capture, still compact */}
             <div className="flex-1">
               <div className="mx-auto max-w-md rounded-2xl bg-white p-5 shadow-md">
                 <h2 className="text-[15px] font-semibold uppercase tracking-[0.16em] text-slate-900">
                   Free quote in minutes
                 </h2>
                 <p className="mt-2 text-[12px] text-slate-600">
-                  Choose a service and enter your postcode. We reply with a
-                  clear fixed fee and the next steps.
+                  Enter your details and we will send a clear fixed fee for your
+                  drawings together with the next steps.
                 </p>
 
                 <form
                   onSubmit={handleHeroSubmit}
                   className="mt-4 space-y-3 text-[13px]"
                 >
+                  <div className="space-y-1">
+                    <label className="text-[11px] font-medium text-slate-700">
+                      Name
+                    </label>
+                    <input
+                      name="name"
+                      required
+                      className="w-full rounded-none border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                    <div className="space-y-1">
+                      <label className="text-[11px] font-medium text-slate-700">
+                        Telephone
+                      </label>
+                      <input
+                        name="phone"
+                        required
+                        className="w-full rounded-none border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <label className="text-[11px] font-medium text-slate-700">
+                        Email
+                      </label>
+                      <input
+                        name="email"
+                        type="email"
+                        required
+                        className="w-full rounded-none border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-1">
+                    <label className="text-[11px] font-medium text-slate-700">
+                      Postcode
+                    </label>
+                    <input
+                      name="postcode"
+                      required
+                      placeholder="Example SE5 7GD"
+                      className="w-full rounded-none border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
+                    />
+                  </div>
+
                   <div className="space-y-1">
                     <label className="text-[11px] font-medium text-slate-700">
                       Which service do you need
@@ -219,23 +276,11 @@ export default function IndexPage() {
                     </select>
                   </div>
 
-                  <div className="space-y-1">
-                    <label className="text-[11px] font-medium text-slate-700">
-                      Postcode
-                    </label>
-                    <input
-                      name="postcode"
-                      required
-                      placeholder="Example SE5 7GD"
-                      className="w-full rounded-none border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
-                    />
-                  </div>
-
                   <button
                     type="submit"
                     className="mt-3 w-full rounded-full bg-[#64b7c4] px-4 py-2.5 text-[13px] font-semibold uppercase tracking-[0.2em] text-white shadow-sm hover:bg-[#4da4b4] focus:outline-none focus:ring-2 focus:ring-[#64b7c4]"
                   >
-                    Next
+                    Get my quote
                   </button>
 
                   <p className="mt-2 text-[11px] text-slate-500">
@@ -335,7 +380,7 @@ export default function IndexPage() {
           </div>
         </section>
 
-        {/* Big project type list – equivalent to their Get Architectural Plans for Any Project list */}
+        {/* Big project type list */}
         <section className="border-b border-slate-200 bg-white py-10">
           <div className="mx-auto max-w-6xl px-4 lg:px-6">
             <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
@@ -379,7 +424,7 @@ export default function IndexPage() {
           </div>
         </section>
 
-        {/* Support services – measured survey, structural, party wall, interior etc */}
+        {/* Support services */}
         <section className="border-b border-slate-200 bg-[#f8f4f0] py-10">
           <div className="mx-auto max-w-6xl px-4 lg:px-6">
             <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
@@ -476,7 +521,7 @@ export default function IndexPage() {
             <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
               Get in touch / tell us what you need
             </h2>
-            <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
+          <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
               Share a short description of the property and what you would like
               to achieve. We normally respond the same working day and can
               follow up by phone, email or WhatsApp depending on what you
@@ -580,7 +625,7 @@ function NavMenu({ title, children }: NavMenuProps) {
       <button className="uppercase tracking-[0.14em] text-[11px] font-medium">
         {title}
       </button>
-      <div className="pointer-events-none absolute left-0 top-full z-20 mt-2 min-w-[240px] rounded-sm bg-white py-2 text-[12px] shadow-lg opacity-0 group-hover:pointer-events-auto group-hover:opacity-100">
+      <div className="pointer-events-none absolute left-0 top-full z-20 mt-2 min-w-[240px] rounded-sm bg.white py-2 text-[12px] shadow-lg opacity-0 group-hover:pointer-events-auto group-hover:opacity-100">
         {children}
       </div>
     </div>
@@ -724,7 +769,7 @@ function ContactForm() {
       </div>
       <button
         type="submit"
-        className="mt-2 w-full rounded-none bg-slate-900 py-2 text-[13px] font-semibold text-white"
+        className="mt-2 w-full rounded-none bg-slate-900 py-2 text-[13px] font-semibold text.white"
       >
         Submit
       </button>
