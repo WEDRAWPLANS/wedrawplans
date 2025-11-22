@@ -190,6 +190,7 @@ async function sendEmailWithResend({
   if (!resp.ok) {
     const errorText = await resp.text().catch(() => "Unknown error");
     console.error("Resend API error:", resp.status, errorText);
-    throw new Error("Failed to send email");
+    // IMPORTANT: do not throw – we still want the API to return ok
+    return;
   }
 }
