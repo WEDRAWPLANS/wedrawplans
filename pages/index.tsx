@@ -6,7 +6,6 @@ const PHONE_LINK = "tel:+442036548508";
 const EMAIL = "info@wedrawplans.com";
 const EMAIL_LINK = "mailto:info@wedrawplans.com";
 
-// WhatsApp link uses the same number as the phone
 const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20my%20project";
 
@@ -51,7 +50,7 @@ export default function IndexPage() {
       </Head>
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
-        {/* Header and nav */}
+        {/* Header */}
         <header className="border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur">
           <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 lg:px-6">
             {/* Logo */}
@@ -149,7 +148,7 @@ export default function IndexPage() {
           </div>
         </header>
 
-        {/* Hero with full lead form */}
+        {/* Hero with full compact lead form */}
         <section className="border-b border-slate-200 bg-[#fdf8f3]">
           <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 py-10 lg:flex-row lg:items-center lg:px-6 lg:py-14">
             {/* Hero text */}
@@ -177,21 +176,22 @@ export default function IndexPage() {
               </p>
             </div>
 
-            {/* Hero form – full lead capture, still compact */}
+            {/* Hero form – A1 compact full lead form */}
             <div className="flex-1">
               <div className="mx-auto max-w-md rounded-2xl bg-white p-5 shadow-md">
                 <h2 className="text-[15px] font-semibold uppercase tracking-[0.16em] text-slate-900">
                   Free quote in minutes
                 </h2>
                 <p className="mt-2 text-[12px] text-slate-600">
-                  Enter your details and we will send a clear fixed fee for your
-                  drawings together with the next steps.
+                  Fill in your details and we will send a clear fixed fee for
+                  your drawings, usually the same working day.
                 </p>
 
                 <form
                   onSubmit={handleHeroSubmit}
                   className="mt-4 space-y-3 text-[13px]"
                 >
+                  {/* Name */}
                   <div className="space-y-1">
                     <label className="text-[11px] font-medium text-slate-700">
                       Name
@@ -203,6 +203,7 @@ export default function IndexPage() {
                     />
                   </div>
 
+                  {/* Telephone + Email */}
                   <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                     <div className="space-y-1">
                       <label className="text-[11px] font-medium text-slate-700">
@@ -210,6 +211,7 @@ export default function IndexPage() {
                       </label>
                       <input
                         name="phone"
+                        type="tel"
                         required
                         className="w-full rounded-none border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
                       />
@@ -227,6 +229,7 @@ export default function IndexPage() {
                     </div>
                   </div>
 
+                  {/* Postcode */}
                   <div className="space-y-1">
                     <label className="text-[11px] font-medium text-slate-700">
                       Postcode
@@ -239,6 +242,7 @@ export default function IndexPage() {
                     />
                   </div>
 
+                  {/* Service */}
                   <div className="space-y-1">
                     <label className="text-[11px] font-medium text-slate-700">
                       Which service do you need
@@ -276,6 +280,7 @@ export default function IndexPage() {
                     </select>
                   </div>
 
+                  {/* Submit */}
                   <button
                     type="submit"
                     className="mt-3 w-full rounded-full bg-[#64b7c4] px-4 py-2.5 text-[13px] font-semibold uppercase tracking-[0.2em] text-white shadow-sm hover:bg-[#4da4b4] focus:outline-none focus:ring-2 focus:ring-[#64b7c4]"
@@ -380,7 +385,7 @@ export default function IndexPage() {
           </div>
         </section>
 
-        {/* Big project type list */}
+        {/* Project types */}
         <section className="border-b border-slate-200 bg-white py-10">
           <div className="mx-auto max-w-6xl px-4 lg:px-6">
             <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
@@ -465,7 +470,7 @@ export default function IndexPage() {
           </div>
         </section>
 
-        {/* Price guide and help cards */}
+        {/* Price guide */}
         <section id="price-guide" className="border-b border-slate-200 bg-white py-10">
           <div className="mx-auto max-w-6xl px-4 lg:px-6">
             <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
@@ -521,7 +526,7 @@ export default function IndexPage() {
             <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
               Get in touch / tell us what you need
             </h2>
-          <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
+            <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
               Share a short description of the property and what you would like
               to achieve. We normally respond the same working day and can
               follow up by phone, email or WhatsApp depending on what you
@@ -625,7 +630,7 @@ function NavMenu({ title, children }: NavMenuProps) {
       <button className="uppercase tracking-[0.14em] text-[11px] font-medium">
         {title}
       </button>
-      <div className="pointer-events-none absolute left-0 top-full z-20 mt-2 min-w-[240px] rounded-sm bg.white py-2 text-[12px] shadow-lg opacity-0 group-hover:pointer-events-auto group-hover:opacity-100">
+      <div className="pointer-events-none absolute left-0 top-full z-20 mt-2 min-w-[240px] rounded-sm bg-white py-2 text-[12px] shadow-lg opacity-0 group-hover:pointer-events-auto group-hover:opacity-100">
         {children}
       </div>
     </div>
@@ -769,7 +774,7 @@ function ContactForm() {
       </div>
       <button
         type="submit"
-        className="mt-2 w-full rounded-none bg-slate-900 py-2 text-[13px] font-semibold text.white"
+        className="mt-2 w-full bg-slate-900 py-2 text-[13px] font-semibold text-white"
       >
         Submit
       </button>
