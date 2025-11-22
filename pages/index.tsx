@@ -148,24 +148,26 @@ export default function IndexPage() {
           </div>
         </header>
 
-        {/* Hero with full compact lead form */}
+        {/* Hero with compact lead form – form first on mobile */}
         <section className="border-b border-slate-200 bg-[#fdf8f3]">
-          <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 py-10 lg:flex-row lg:items-center lg:px-6 lg:py-14">
+          <div className="mx-auto flex max-w-6xl flex-col-reverse gap-8 px-4 py-6 lg:flex-row lg:items-center lg:gap-10 lg:px-6 lg:py-14">
             {/* Hero text */}
             <div className="flex-1">
               <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-red-700">
                 Extension · loft · new build · conversions
               </p>
-              <h1 className="mt-2 text-[22px] font-semibold uppercase leading-snug tracking-[0.14em] text-slate-900 sm:text-[26px]">
+              <h1 className="mt-2 text-[20px] font-semibold uppercase leading-snug tracking-[0.14em] text-slate-900 sm:text-[24px]">
                 Londons leading architectural drawing consultants for adding
                 space and value at sensible fixed fees
               </h1>
-              <p className="mt-4 max-w-xl text-[13px] leading-relaxed text-slate-700">
+              <p className="mt-3 max-w-xl text-[13px] leading-relaxed text-slate-700">
                 WEDRAWPLANS focus on practical, buildable designs for house
                 extensions, loft conversions, new builds and conversions across
-                London and the M25 area. Drawings are tailored to planning and
-                Building Regulation requirements and to what builders need on
-                site.
+                London and the M25 area.
+              </p>
+              <p className="mt-2 hidden max-w-xl text-[13px] leading-relaxed text-slate-700 sm:block">
+                Drawings are tailored to planning and Building Regulation
+                requirements and to what builders need on site.
               </p>
               <p className="mt-3 text-[12px] text-slate-600">
                 Speak to a designer today on{" "}
@@ -300,7 +302,7 @@ export default function IndexPage() {
         </section>
 
         {/* Local designers */}
-        <section className="border-b border-slate-200 bg-white py-10">
+        <section className="border-b border-slate-200 bg.white py-10">
           <div className="mx-auto max-w-6xl px-4 lg:px-6">
             <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
               Local architectural drawing services across London and M25
@@ -386,7 +388,7 @@ export default function IndexPage() {
         </section>
 
         {/* Project types */}
-        <section className="border-b border-slate-200 bg-white py-10">
+        <section className="border-b border-slate-200 bg.white py-10">
           <div className="mx-auto max-w-6xl px-4 lg:px-6">
             <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
               Architectural drawings for almost any residential project
@@ -471,7 +473,7 @@ export default function IndexPage() {
         </section>
 
         {/* Price guide */}
-        <section id="price-guide" className="border-b border-slate-200 bg-white py-10">
+        <section id="price-guide" className="border-b border-slate-200 bg.white py-10">
           <div className="mx-auto max-w-6xl px-4 lg:px-6">
             <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
               Price guide for drawings
@@ -541,7 +543,7 @@ export default function IndexPage() {
         </section>
 
         {/* Footer */}
-        <footer className="border-t border-slate-200 bg-white">
+        <footer className="border-t border-slate-200 bg.white">
           <div className="mx-auto max-w-6xl px-4 py-8 text-[12px] text-slate-600 lg:px-6">
             <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
               <div>
