@@ -104,7 +104,7 @@ export default function IndexPage() {
               </div>
             </div>
 
-            {/* Desktop nav */}
+                        {/* Desktop nav */}
             <nav className="hidden items-center gap-5 text-[13px] text-slate-700 lg:flex">
               <NavMenu title="Local designers">
                 {BOROUGHS.slice(0, 8).map((borough) => (
@@ -115,6 +115,7 @@ export default function IndexPage() {
                   </NavItem>
                 ))}
               </NavMenu>
+
               <NavMenu title="Extension plans">
                 <NavItem>Rear extension plans</NavItem>
                 <NavItem>Side return extension plans</NavItem>
@@ -122,6 +123,7 @@ export default function IndexPage() {
                 <NavItem>Two storey extension plans</NavItem>
                 <NavItem>Kitchen extension layouts</NavItem>
               </NavMenu>
+
               <NavMenu title="Loft plans">
                 <NavItem>Dormer loft conversions</NavItem>
                 <NavItem>Hip to gable loft conversions</NavItem>
@@ -129,12 +131,14 @@ export default function IndexPage() {
                 <NavItem>Velux loft layouts</NavItem>
                 <NavItem>Attic conversions</NavItem>
               </NavMenu>
+
               <NavMenu title="New build">
                 <NavItem>New build house plans</NavItem>
                 <NavItem>Small residential developments</NavItem>
                 <NavItem>Infill plots and backland sites</NavItem>
                 <NavItem>Conversion to flats</NavItem>
               </NavMenu>
+
               <NavMenu title="Technical and support">
                 <NavItem>Building Regulation drawing packs</NavItem>
                 <NavItem>Fire and escape strategy plans</NavItem>
@@ -143,6 +147,12 @@ export default function IndexPage() {
                 <NavItem>Party wall drawings and support</NavItem>
                 <NavItem>Interior layouts and finishes plans</NavItem>
               </NavMenu>
+
+              {/* New link to the master Areas page */}
+              <a href="/areas" className="hover:underline">
+                Areas we cover
+              </a>
+
               <a href="#price-guide" className="hover:underline">
                 Price guide
               </a>
@@ -317,7 +327,8 @@ export default function IndexPage() {
                 {/* Submit */}
                 <button
                   type="submit"
-                  className="mt-2 w-full rounded-full bg[#64b7c4] px-4 py-2.5 text-[13px] font-semibold uppercase tracking-[0.2em] text-white shadow-sm hover:bg-[#4da4b4] focus:outline-none focus:ring-2 focus:ring-[#64b7c4]"
+                   className="mt-2 w-full rounded-full bg-[#64b7c4] ...
+px-4 py-2.5 text-[13px] font-semibold uppercase tracking-[0.2em] text-white shadow-sm hover:bg-[#4da4b4] focus:outline-none focus:ring-2 focus:ring-[#64b7c4]"
                 >
                   Get my quote
                 </button>
