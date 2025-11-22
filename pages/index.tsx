@@ -190,8 +190,8 @@ export default function IndexPage() {
 
         {/* HERO – heading block, then form, then explanatory text */}
         <section className="border-b border-slate-200 bg-[#fdf8f3]">
-          <div className="mx-auto max-w-3xl px-4 py-8 lg:px-6 lg:py-12">
-            {/* EXACT header block you showed, now above the form */}
+          <div className="mx-auto max-w-3xl px-4 py-7 lg:px-6 lg:py-10">
+            {/* Heading block (only here, once) */}
             <div className="text-left">
               <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-red-700">
                 Extension · loft · new build · conversions
@@ -202,8 +202,8 @@ export default function IndexPage() {
               </h1>
             </div>
 
-            {/* Form card – starts with Free fixed fee quote */}
-            <div className="mt-5 rounded-2xl bg-white p-5 shadow-md">
+            {/* Form card */}
+            <div className="mt-4 rounded-2xl bg-white p-5 shadow-md">
               <h2 className="text-[14px] font-semibold uppercase tracking-[0.16em] text-slate-900">
                 Free fixed fee quote
               </h2>
@@ -215,7 +215,7 @@ export default function IndexPage() {
 
               <form
                 onSubmit={handleHeroSubmit}
-                className="mt-4 space-y-3 text-[13px]"
+                className="mt-3 space-y-3 text-[13px]"
               >
                 {/* Name */}
                 <div className="space-y-1">
@@ -255,7 +255,7 @@ export default function IndexPage() {
                   </div>
                 </div>
 
-                {/* Postcode */}
+                {/* Postcode – PREMIUM VERSION */}
                 <div className="space-y-1">
                   <label className="text-[11px] font-medium text-slate-700">
                     Postcode
@@ -263,8 +263,16 @@ export default function IndexPage() {
                   <input
                     name="postcode"
                     required
-                    placeholder="Example SE5 7GD"
-                    className="w-full rounded-none border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
+                    placeholder="SE15 4LR"
+                    onFocus={(e) => {
+                      e.target.placeholder = "";
+                    }}
+                    onBlur={(e) => {
+                      if (!e.target.value) {
+                        e.target.placeholder = "SE15 4LR";
+                      }
+                    }}
+                    className="w-full rounded-none border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] text-slate-500/70 focus:text-slate-900 focus:border-[#64b7c4] focus:outline-none"
                   />
                 </div>
 
@@ -309,7 +317,7 @@ export default function IndexPage() {
                 {/* Submit */}
                 <button
                   type="submit"
-                  className="mt-3 w-full rounded-full bg-[#64b7c4] px-4 py-2.5 text-[13px] font-semibold uppercase tracking-[0.2em] text-white shadow-sm hover:bg-[#4da4b4] focus:outline-none focus:ring-2 focus:ring-[#64b7c4]"
+                  className="mt-2 w-full rounded-full bg[#64b7c4] px-4 py-2.5 text-[13px] font-semibold uppercase tracking-[0.2em] text-white shadow-sm hover:bg-[#4da4b4] focus:outline-none focus:ring-2 focus:ring-[#64b7c4]"
                 >
                   Get my quote
                 </button>
@@ -322,8 +330,8 @@ export default function IndexPage() {
               </form>
             </div>
 
-            {/* Explanatory text – now directly BELOW the form */}
-            <div className="mt-5 text-[13px] leading-relaxed text-slate-700">
+            {/* Text below form */}
+            <div className="mt-4 text-[13px] leading-relaxed text-slate-700">
               <p>
                 WEDRAWPLANS focus on practical, buildable designs for house
                 extensions, loft conversions, new builds and conversions across
@@ -331,11 +339,11 @@ export default function IndexPage() {
                 Building Regulation requirements and to what builders need on
                 site.
               </p>
-              <p className="mt-3 text-[12px] text-slate-600">
+              <p className="mt-2 text-[12px] text-slate-600">
                 Many quotes are turned around the same working day. For urgent
                 projects we can often arrange an initial survey within 48 hours.
               </p>
-              <p className="mt-3 text-[12px] text-slate-600">
+              <p className="mt-2 text-[12px] text-slate-600">
                 Call{" "}
                 <a href={PHONE_LINK} className="font-semibold underline">
                   {PHONE_DISPLAY}
@@ -580,7 +588,7 @@ export default function IndexPage() {
         </section>
 
         {/* Footer */}
-        <footer className="border-t border-slate-200 bg.white">
+        <footer className="border-t border-slate-200 bg-white">
           <div className="mx-auto max-w-6xl px-4 py-8 text-[12px] text-slate-600 lg:px-6">
             <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
               <div>
