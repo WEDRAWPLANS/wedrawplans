@@ -109,10 +109,7 @@ export default function IndexPage() {
               <NavMenu title="Local designers">
                 {BOROUGHS.slice(0, 8).map((borough) => (
                   <NavItem key={borough.slug}>
-                    <a
-                      href={`/areas/${borough.slug}`}
-                      className="block"
-                    >
+                    <a href={`/areas/${borough.slug}`} className="block">
                       {borough.label}
                     </a>
                   </NavItem>
@@ -154,18 +151,23 @@ export default function IndexPage() {
               </a>
             </nav>
 
-            {/* Quick contact right side */}
-            <div className="hidden items-center gap-3 text-[13px] lg:flex">
-              <a href={PHONE_LINK} className="font.medium text-slate-900 hover:underline">
-                {PHONE_DISPLAY}
+            {/* Desktop quick contact – modern buttons */}
+            <div className="hidden items-center gap-2 lg:flex">
+              <a
+                href={PHONE_LINK}
+                className="inline-flex items-center gap-1 rounded-full border border-slate-300 px-3 py-1.5 text-[12px] font-medium text-slate-900 shadow-sm hover:bg-slate-900 hover:text-white"
+              >
+                <span>📞</span>
+                <span>{PHONE_DISPLAY}</span>
               </a>
               <a
                 href={WHATSAPP_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full border border-[#64b7c4] px-3 py-1 text-[12px] font-medium text-[#29788a]"
+                className="inline-flex items-center gap-1 rounded-full bg-[#25D366] px-3 py-1.5 text-[12px] font-medium text-white shadow-sm hover:bg-[#1ebe57]"
               >
-                Chat on WhatsApp
+                <span>💬</span>
+                <span>WhatsApp us</span>
               </a>
             </div>
 
@@ -189,7 +191,7 @@ export default function IndexPage() {
         {/* Hero with compact lead form – form first on mobile */}
         <section className="border-b border-slate-200 bg-[#fdf8f3]">
           <div className="mx-auto flex max-w-6xl flex-col-reverse gap-8 px-4 py-6 lg:flex-row lg:items-center lg:gap-10 lg:px-6 lg:py-14">
-            {/* Hero text */}
+            {/* Hero text (left) */}
             <div className="flex-1">
               <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-red-700">
                 Extension · loft · new build · conversions
@@ -218,24 +220,27 @@ export default function IndexPage() {
               </p>
             </div>
 
-            {/* Hero form – psychological focus on speed and clarity */}
+            {/* Hero form (right) */}
             <div className="flex-1">
-              <div className="mx-auto max-w-md rounded-2xl bg-white p-5 shadow-md">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-red-700 mb-2">
+              {/* Heading block ABOVE the form card */}
+              <div className="mb-3 text-center lg:text-left">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-red-700">
                   Extension · loft · new build · conversions
                 </p>
-
-                <p className="text-[12px] font-medium leading-snug text-slate-900 mb-3">
+                <p className="mt-1 text-[14px] font-semibold uppercase tracking-[0.18em] text-slate-900">
                   Londons leading architectural drawing consultants for adding
-                  space and value at sensible fixed fees.
+                  space and value at sensible fixed fees
                 </p>
+              </div>
 
+              {/* Form card */}
+              <div className="mx-auto max-w-md rounded-2xl bg-white p-5 shadow-md">
                 <h2 className="text-[14px] font-semibold uppercase tracking-[0.16em] text-slate-900">
                   Free fixed fee quote
                 </h2>
                 <p className="mt-1 text-[12px] text-slate-600">
                   Share a few details and receive a clear fixed price for your
-                  drawings. No obligation, no call centre, you deal directly
+                  drawings. No obligation, no call centre – you deal directly
                   with a designer.
                 </p>
 
@@ -335,7 +340,7 @@ export default function IndexPage() {
                   {/* Submit */}
                   <button
                     type="submit"
-                    className="mt-3 w-full rounded-full bg-[#64b7c4] px-4 py-2.5 text-[13px] font-semibold uppercase tracking-[0.2em] text-white shadow-sm hover:bg-[#4da4b4] focus:outline-none focus:ring-2 focus:ring-[#64b7c4]"
+                    className="mt-3 w-full rounded-full bg-[#64b7c4] px-4 py-2.5 text-[13px] font-semibold uppercase tracking-[0.2em] text.white shadow-sm hover:bg-[#4da4b4] focus:outline-none focus:ring-2 focus:ring-[#64b7c4]"
                   >
                     Get my quote
                   </button>
@@ -479,7 +484,7 @@ export default function IndexPage() {
             <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
               Support services around your drawings
             </h2>
-            <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
+          <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
               Beyond pure drawing production, WEDRAWPLANS help bring projects
               together by coordinating key professionals and offering additional
               documentation where needed.
@@ -517,7 +522,7 @@ export default function IndexPage() {
         {/* Price guide */}
         <section id="price-guide" className="border-b border-slate-200 bg-white py-10">
           <div className="mx-auto max-w-6xl px-4 lg:px-6">
-            <h2 className="text-[18px] font-semibold uppercase tracking.[0.16em] text-slate-900">
+            <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
               Price guide for drawings
             </h2>
             <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
@@ -652,7 +657,7 @@ export default function IndexPage() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat on WhatsApp with WEDRAWPLANS"
-          className="fixed bottom-4 right-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#64b7c4] text-white shadow-lg ring-2 ring-white/70 hover:bg-[#4da4b4]"
+          className="fixed bottom-4 right-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg ring-2 ring-white/70 hover:bg-[#1ebe57]"
         >
           <span className="text-xl">💬</span>
         </a>
