@@ -1,30 +1,24 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-type Data =
-  | { success: true }
-  | { success: false; error: string };
+type Data = { success: true } | { success: false; error: string };
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
   if (req.method !== "POST") {
-    return res.status(405).json({ success: false, error: "Method not allowed" });
+    return res
+      .status(405)
+      .json({ success: false, error: "Method not allowed" });
   }
 
-  const {
-    name,
-    email,
-    phone,
-    message,
-    service,
-    borough,
-  } = req.body || {};
+  const { name, email, phone, message, service, borough, postcode } =
+    (req.body as any) || {};
 
-  if (!name || !email || !message) {
+  if (!name || !email) {
     return res
       .status(400)
-      .json({ success: false, error: "Missing name, email or message." });
+      .json({ success: false, error: "Missing name or email." });
   }
 
   try {
@@ -41,20 +35,21 @@ export default async function handler(
     const toAddress = "info@wedrawplans.com";
 
     const subject = `New enquiry from ${name} via wedrawplans.com`;
+
     const text = `
-New website enquiry
+New website enquiry from wedrawplans.com
 
 Name: ${name}
 Email: ${email}
 Phone: ${phone || "Not provided"}
+Postcode: ${postcode || "Not provided"}
 Service: ${service || "Not specified"}
 Borough: ${borough || "Not specified"}
 
 Message:
-${message}
+${message || "No message provided (quick quote form)."}
     `.trim();
 
-    // Call Resend REST API directly (no extra npm packages needed)
     const response = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
