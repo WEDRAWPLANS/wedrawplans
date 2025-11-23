@@ -8,15 +8,9 @@ const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Haringey";
 
 export default function HaringeyAreaPage() {
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    console.log(Object.fromEntries(data.entries()));
-    alert(
-      "Thank you. In the live site this form will email WEDRAWPLANS with your Haringey enquiry and trigger a same day call back."
-    );
-    e.currentTarget.reset();
-  }
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  await submitBoroughLead(e, { boroughName: "Haringey" });
+}
 
   function scrollToForm() {
     const el = document.getElementById("haringey-quote");
