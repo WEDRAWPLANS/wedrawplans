@@ -8,12 +8,12 @@ const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Barnet";
 
 export default function BarnetAreaPage() {
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-  await submitBoroughLead(e, { boroughName: "Barking and Dagenham" });
+async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  await submitBoroughLead(e, { boroughName: "Barnet" });
 }
 
 
-  function scrollToForm() {
+ function scrollToForm() {
     const el = document.getElementById("barnet-quote");
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
