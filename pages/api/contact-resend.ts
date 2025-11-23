@@ -12,7 +12,7 @@ export default async function handler(
       .json({ success: false, error: "Method not allowed" });
   }
 
-  const { name, email, phone, message, service, borough, postcode } =
+  const { name, email, phone, message, service, borough, postcode, raw } =
     (req.body as any) || {};
 
   if (!name || !email) {
@@ -31,28 +31,47 @@ export default async function handler(
         .json({ success: false, error: "Email service not configured." });
     }
 
-    // Use Resend's test sender
+    // Use Resend's sender for now (domain not yet fully verified)
     const fromAddress = "WeDrawPlans <onboarding@resend.dev>";
 
-    // IMPORTANT: Resend test mode only allows sending
-    // to the account email: architectabbey@gmail.com
+    // In test mode Resend only allows sending to architectabbey@gmail.com
     const toAddresses = ["architectabbey@gmail.com"];
 
-    const subject = `New enquiry from ${name} via wedrawplans.com`;
+    // Try to pull a useful description from raw if message is missing
+    let finalMessage: string | undefined = message;
+    if (!finalMessage && raw) {
+      finalMessage =
+        raw.message ||
+        raw.description ||
+        raw.projectDescription ||
+        raw.projectDetails ||
+        raw.details ||
+        raw.brief ||
+        raw.briefDescription;
+    }
 
-    const text = `
-New website enquiry from wedrawplans.com
+    const subject = `New enquiry from ${name} via wedrawplans.com${
+      borough ? ` (${borough})` : ""
+    }`;
 
-Name: ${name}
-Email: ${email}
-Phone: ${phone || "Not provided"}
-Postcode: ${postcode || "Not provided"}
-Service: ${service || "Not specified"}
-Borough: ${borough || "Not specified"}
+    const textLines = [
+      "New website enquiry from wedrawplans.com",
+      "",
+      `Name: ${name}`,
+      `Email: ${email}`,
+      `Phone: ${phone || "Not provided"}`,
+      `Postcode: ${postcode || "Not provided"}`,
+      `Service: ${service || "Not specified"}`,
+      `Borough: ${borough || "Not specified"}`,
+      "",
+      "Main message / description:",
+      finalMessage || "No clear description field was found.",
+      "",
+      "All submitted form fields:",
+      raw ? JSON.stringify(raw, null, 2) : "Not available",
+    ];
 
-Message:
-${message || "No message provided"}
-    `.trim();
+    const text = textLines.join("\n");
 
     const response = await fetch("https://api.resend.com/emails", {
       method: "POST",
