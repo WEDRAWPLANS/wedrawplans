@@ -57,10 +57,11 @@ export default function IndexPage() {
       email: data.get("email"),
       service: data.get("service"),
       postcode: data.get("postcode"),
+      message: "Quick quote from hero form",
     };
 
     try {
-      const res = await fetch("/api/lead", {
+      const res = await fetch("/api/contact-resend", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -76,7 +77,6 @@ export default function IndexPage() {
       alert("Network error — please try again.");
     }
   }
-
 
   return (
     <>
@@ -111,7 +111,7 @@ export default function IndexPage() {
               </div>
             </div>
 
-                        {/* Desktop nav */}
+            {/* Desktop nav */}
             <nav className="hidden items-center gap-5 text-[13px] text-slate-700 lg:flex">
               <NavMenu title="Local designers">
                 {BOROUGHS.slice(0, 8).map((borough) => (
@@ -208,7 +208,7 @@ export default function IndexPage() {
         {/* HERO – heading block, then form, then explanatory text */}
         <section className="border-b border-slate-200 bg-[#fdf8f3]">
           <div className="mx-auto max-w-3xl px-4 py-7 lg:px-6 lg:py-10">
-            {/* Heading block (only here, once) */}
+            {/* Heading block */}
             <div className="text-left">
               <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-red-700">
                 Extension · loft · new build · conversions
@@ -272,7 +272,7 @@ export default function IndexPage() {
                   </div>
                 </div>
 
-                {/* Postcode – PREMIUM VERSION */}
+                {/* Postcode */}
                 <div className="space-y-1">
                   <label className="text-[11px] font-medium text-slate-700">
                     Postcode
@@ -332,12 +332,12 @@ export default function IndexPage() {
                 </div>
 
                 {/* Submit */}
-<button
-  type="submit"
-  className="mt-2 w-full rounded-full bg-[#64b7c4] px-4 py-2.5 text-[13px] font-semibold uppercase tracking-[0.2em] text-white shadow-sm hover:bg-[#4da4b4] focus:outline-none focus:ring-2 focus:ring-[#64b7c4]"
->
-  Get my quote
-</button>
+                <button
+                  type="submit"
+                  className="mt-2 w-full rounded-full bg-[#64b7c4] px-4 py-2.5 text-[13px] font-semibold uppercase tracking-[0.2em] text-white shadow-sm hover:bg-[#4da4b4] focus:outline-none focus:ring-2 focus:ring-[#64b7c4]"
+                >
+                  Get my quote
+                </button>
 
                 <p className="mt-2 text-[11px] text-slate-500">
                   Popular: rear extensions, side return extensions, wrap
@@ -590,7 +590,7 @@ export default function IndexPage() {
             <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
               Get in touch and tell us what you need
             </h2>
-            <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
+          <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
               Share a short description of the property and what you would like
               to achieve. WEDRAWPLANS normally respond the same working day and
               can follow up by phone, email or WhatsApp depending on what you
@@ -780,14 +780,37 @@ function HelpCard({ title, body, linkText }: HelpCardProps) {
 }
 
 function ContactForm() {
-  function handleContactSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleContactSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    console.log(Object.fromEntries(data.entries()));
-    alert(
-      "Thank you. In the live site this form will email WEDRAWPLANS and trigger a follow up."
-    );
-    e.currentTarget.reset();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    const payload = {
+      name: data.get("name"),
+      phone: data.get("phone"),
+      postcode: data.get("postcode"),
+      email: data.get("email"),
+      message: data.get("message"),
+    };
+
+    try {
+      const res = await fetch("/api/contact-resend", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (res.ok) {
+        alert(
+          "Thank you — your message has been sent to WEDRAWPLANS. We will contact you shortly."
+        );
+        form.reset();
+      } else {
+        alert("Something went wrong. Please try again or call us directly.");
+      }
+    } catch (err) {
+      alert("Network error — please try again.");
+    }
   }
 
   return (
