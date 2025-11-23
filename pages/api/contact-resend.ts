@@ -31,8 +31,14 @@ export default async function handler(
         .json({ success: false, error: "Email service not configured." });
     }
 
+    // FROM: who the email appears to be from
     const fromAddress = "WeDrawPlans <info@wedrawplans.com>";
-    const toAddress = "info@wedrawplans.com";
+
+    // TO: send to both email accounts
+    const toAddresses = [
+      "info@wedrawplans.com",
+      "architectabbey@gmail.com",
+    ];
 
     const subject = `New enquiry from ${name} via wedrawplans.com`;
 
@@ -47,7 +53,7 @@ Service: ${service || "Not specified"}
 Borough: ${borough || "Not specified"}
 
 Message:
-${message || "No message provided (quick quote form)."}
+${message || "No message provided"}
     `.trim();
 
     const response = await fetch("https://api.resend.com/emails", {
@@ -58,7 +64,7 @@ ${message || "No message provided (quick quote form)."}
       },
       body: JSON.stringify({
         from: fromAddress,
-        to: [toAddress],
+        to: toAddresses,
         reply_to: email,
         subject,
         text,
