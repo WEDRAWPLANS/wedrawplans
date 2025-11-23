@@ -31,10 +31,12 @@ export default async function handler(
         .json({ success: false, error: "Email service not configured." });
     }
 
-    // FROM: who the email appears to be from
-    const fromAddress = "WeDrawPlans <info@wedrawplans.com>";
+    // IMPORTANT:
+    // Use Resend's own domain for now because wedrawplans.com
+    // is not fully verified yet.
+    const fromAddress = "WeDrawPlans <onboarding@resend.dev>";
 
-    // TO: send to both email accounts
+    // Deliver to BOTH of your inboxes
     const toAddresses = [
       "info@wedrawplans.com",
       "architectabbey@gmail.com",
