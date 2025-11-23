@@ -31,16 +31,12 @@ export default async function handler(
         .json({ success: false, error: "Email service not configured." });
     }
 
-    // IMPORTANT:
-    // Use Resend's own domain for now because wedrawplans.com
-    // is not fully verified yet.
+    // Use Resend's test sender
     const fromAddress = "WeDrawPlans <onboarding@resend.dev>";
 
-    // Deliver to BOTH of your inboxes
-    const toAddresses = [
-      "info@wedrawplans.com",
-      "architectabbey@gmail.com",
-    ];
+    // IMPORTANT: Resend test mode only allows sending
+    // to the account email: architectabbey@gmail.com
+    const toAddresses = ["architectabbey@gmail.com"];
 
     const subject = `New enquiry from ${name} via wedrawplans.com`;
 
