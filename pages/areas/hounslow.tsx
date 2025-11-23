@@ -1,3 +1,4 @@
+import { submitBoroughLead } from "../../lib/submitBoroughLead";
 import React from "react";
 import Head from "next/head";
 
@@ -7,15 +8,10 @@ const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Hounslow";
 
 export default function HounslowAreaPage() {
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    console.log(Object.fromEntries(data.entries()));
-    alert(
-      "Thank you. In the live site this form will email WEDRAWPLANS with your Hounslow enquiry and trigger a same day call back."
-    );
-    e.currentTarget.reset();
-  }
+  
+async function handleHounslowSubmit(e: React.FormEvent<HTMLFormElement>) {
+  await submitBoroughLead(e, { boroughName: "Hounslow" });
+}
 
   function scrollToForm() {
     const el = document.getElementById("hounslow-quote");
@@ -124,7 +120,7 @@ export default function HounslowAreaPage() {
                     Tell us about your property in Hounslow. We will send a clear fixed fee for your drawings.
                   </p>
 
-                  <form onSubmit={handleSubmit} className="mt-3 space-y-3 text-[13px]">
+                  <form onSubmit={handleHounslowSubmit} className="mt-3 space-y-3 text-[13px]">
 
                     <div className="space-y-1">
                       <label className="text-[11px] font-medium">Name</label>
