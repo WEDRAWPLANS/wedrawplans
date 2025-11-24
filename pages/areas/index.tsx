@@ -145,10 +145,10 @@ export default function AreasIndex() {
                 Priority areas for extensions and loft conversions
               </h2>
               <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-                These boroughs currently generate a very high number of householder projects such as rear
-                extensions, loft conversions and internal reconfiguration. WEDRAWPLANS focuses on these
-                for strong coverage and fast response.
-              </p>
+  These boroughs currently generate a very high number of householder projects...
+  WEDRAWPLANS focuses on these...
+</p>
+
               <div className="mt-5 grid gap-3 text-[13px] sm:grid-cols-2 md:grid-cols-3">
                 {topBoroughs.map((b) => (
                   <a
