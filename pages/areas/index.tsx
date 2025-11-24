@@ -170,9 +170,11 @@ export default function AreasIndex() {
                 Other London boroughs covered
               </h2>
               <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-                WEDRAWPLANS also assists clients in many other London boroughs. Additional dedicated pages
-                for these areas will be added in stages.
-              </p>
+  The boroughs below highlight locations where WEDRAWPLANS is frequently instructed
+  for extension and loft conversion drawings. We also work with homeowners and small
+  developers across the wider London and M25 area.
+</p>
+
               <div className="mt-4 grid gap-2 text-[13px] sm:grid-cols-2 md:grid-cols-3">
                 {otherBoroughs.map((name) => (
                   <div
