@@ -761,23 +761,32 @@ function PriceCard({ title, price, body }: PriceCardProps) {
   );
 }
 
-type HelpCardProps = {
-  title: string;
-  body: string;
-  linkText: string;
-};
-
 function HelpCard({ title, body, linkText }: HelpCardProps) {
+  function handleClick() {
+    // Scroll smoothly to the main contact section
+    const el = document.getElementById("contact");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
   return (
     <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
       <h3 className="text-[13px] font-semibold uppercase tracking-[0.12em] text-slate-900">
         {title}
       </h3>
       <p className="mt-2 text-[12px] text-slate-600">{body}</p>
-      <p className="mt-2 text-[12px] text-[#29788a] underline">{linkText}</p>
+      <button
+        type="button"
+        onClick={handleClick}
+        className="mt-2 text-[12px] text-[#29788a] underline"
+      >
+        {linkText}
+      </button>
     </div>
   );
 }
+
 
 function ContactForm() {
   async function handleContactSubmit(e: React.FormEvent<HTMLFormElement>) {
