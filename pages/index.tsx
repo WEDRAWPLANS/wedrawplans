@@ -760,6 +760,11 @@ function PriceCard({ title, price, body }: PriceCardProps) {
     </div>
   );
 }
+type HelpCardProps = {
+  title: string;
+  body: string;
+  linkText: string;
+};
 
 function HelpCard({ title, body, linkText }: HelpCardProps) {
   function handleClick() {
