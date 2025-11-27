@@ -1,202 +1,141 @@
-import React from "react";
+Architectural Drawings in Barnet
 
-export default function Barnet() {
-  return (
-    <main className="mx-auto max-w-4xl px-4 py-10 space-y-10">
-      <header className="space-y-3">
-        <p className="text-xs font-semibold tracking-wide text-gray-500 uppercase">
-          WEDRAWPLANS • Barnet
-        </p>
-        <h1 className="text-3xl md:text-4xl font-bold">
-          Architectural Drawings in Barnet
-        </h1>
-        <p className="text-lg text-gray-700">
-          Planning permission, extensions, loft conversions and full building regulation
-          drawings for homes in Barnet, Finchley, Hendon, Mill Hill, Totteridge,
-          Whetstone and all surrounding areas.
-        </p>
-        <p className="text-sm text-gray-600">
-          Fast surveys, clear drawings, strong planning strategy and compliant building
-          regulation packs tailored to Barnet Council.
-        </p>
-      </header>
+WEDRAWPLANS provides professional planning drawings, permitted development advice, building regulation plans, and full architectural support for homeowners in the London Borough of Barnet. We specialise in fast, accurate, and compliant drawings for extensions, loft conversions, outbuildings, and flat conversions across every part of Barnet.
 
-      <section className="rounded-lg border border-emerald-200 bg-emerald-50 p-5 space-y-2">
-        <h2 className="text-xl font-semibold">
-          Get your Barnet extension or loft project moving today
-        </h2>
-        <p className="text-sm text-gray-700">
-          Send us your address in Barnet and a short description of your project. We will
-          confirm what is possible under planning or permitted development and provide a
-          clear fixed quote for your drawings.
-        </p>
+We cover all areas including Finchley, Hendon, Edgware, Whetstone, Totteridge, Colindale, Mill Hill, Golders Green, Burnt Oak, Woodside Park, New Barnet, High Barnet, Friern Barnet, West Finchley, East Finchley, and surrounding neighbourhoods.
 
-        <ul className="text-sm text-gray-700 list-disc pl-5 space-y-1">
-          <li>Measured survey and photo record</li>
-          <li>Full planning or permitted development drawings</li>
-          <li>Building regulation drawings and structural coordination</li>
-          <li>Submission to Barnet Council and follow up</li>
-        </ul>
+If you are planning an extension, loft conversion, garden room, garage conversion, new build, or internal layout change in Barnet, we prepare all drawings with full compliance to Barnet Council guidance and 2025 UK Building Regulations.
 
-        <div className="pt-2 text-sm">
-          <p>
-            Phone:{" "}
-            <a href="tel:+442036548508" className="font-semibold text-emerald-700 underline">
-              +44 20 3654 8508
-            </a>
-          </p>
-          <p>
-            Email:{" "}
-            <a
-              href="mailto:info@wedrawplans.com"
-              className="font-semibold text-emerald-700 underline"
-            >
-              info@wedrawplans.com
-            </a>
-          </p>
-        </div>
-      </section>
+Why Homeowners in Barnet Choose WEDRAWPLANS
 
-      <section className="space-y-3">
-        <h2 className="text-2xl font-semibold">Barnet areas we cover</h2>
-        <p className="text-sm text-gray-700">
-          We provide drawings across the whole borough of Barnet, including:
-        </p>
+• Fast turnaround and local knowledge of Barnet planning policies
+• Clear drawings based on exact requirements of Barnet Council
+• Full support with planning applications and permitted development
+• Building Regulation packages aligned with 2025 standards
+• Fixed quotes with no hidden fees
+• Friendly and professional team ready to assist at any time
+• Years of experience delivering approved projects across Barnet
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-gray-700">
-          <ul className="list-disc pl-5 space-y-1">
-            <li>Finchley Central (N3)</li>
-            <li>North Finchley (N12)</li>
-            <li>East Finchley (N2)</li>
-            <li>Hendon (NW4)</li>
-            <li>Mill Hill (NW7)</li>
-          </ul>
+Popular Projects We Complete in Barnet
 
-          <ul className="list-disc pl-5 space-y-1">
-            <li>Totteridge & Whetstone (N20)</li>
-            <li>High Barnet (EN5)</li>
-            <li>Chipping Barnet</li>
-            <li>Golders Green & NW11 borders</li>
-            <li>EN4, EN5 & all Barnet postcodes</li>
-          </ul>
-        </div>
+• Rear Extensions (3 m, 4 m, 6 m deep depending on type)
+• Side Extensions and Wrap Extensions
+• Loft Conversions including L Shaped Dormers
+• Hip to Gable Loft Conversions
+• Outbuildings and Garden Rooms under permitted development
+• Internal reconfiguration and structural alterations
+• Garage Conversions
+• Flats, HMOs, and change of use
+• Front porches and single storey infill extensions
 
-        <p className="text-sm text-gray-700">
-          Typical projects in these areas include rear and side extensions, wraparound
-          extensions, large loft conversions, garden studios and full refurbishments.
-        </p>
-      </section>
+Our drawings cover planning, permitted development, building control, structural coordination, and all compliance details required by Barnet Council.
 
-      <section className="space-y-4">
-        <h2 className="text-2xl font-semibold">What WEDRAWPLANS does in Barnet</h2>
+Permitted Development Rules in Barnet
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700">
-          <div className="space-y-2">
-            <h3 className="font-semibold">Extensions</h3>
-            <ul className="list-disc pl-5 space-y-1">
-              <li>Single storey rear extensions</li>
-              <li>Side and side return extensions</li>
-              <li>Wraparound & L-shaped extensions</li>
-              <li>Double storey side/rear extensions</li>
-              <li>Kitchen & open-plan extensions</li>
-            </ul>
-          </div>
+Below is a simplified summary of common PD limits in Barnet. Full rules apply based on house type and location, and we can confirm this during the initial review.
 
-          <div className="space-y-2">
-            <h3 className="font-semibold">Loft conversions</h3>
-            <ul className="list-disc pl-5 space-y-1">
-              <li>Rear dormer loft conversions</li>
-              <li>Hip-to-gable conversions</li>
-              <li>L-shaped dormers</li>
-              <li>Mansard-style lofts</li>
-              <li>Staircase & layout design</li>
-            </ul>
-          </div>
+Rear Extensions
+• Up to 3 m deep on terraced houses
+• Up to 4 m on semi detached houses
+• Up to 6 m or 8 m with prior approval for larger home extensions
+• Maximum height 4 m under PD for single storey additions
 
-          <div className="space-y-2">
-            <h3 className="font-semibold">Garden buildings</h3>
-            <ul className="list-disc pl-5 space-y-1">
-              <li>Home offices & studios</li>
-              <li>Gym rooms</li>
-              <li>Guest rooms</li>
-              <li>Permitted development outbuildings</li>
-            </ul>
-          </div>
+Loft Conversions
+• Up to 40 cubic metres for terraced homes
+• Up to 50 cubic metres for semi detached and detached homes
+• No roof extension beyond the front plane
+• Materials must match existing
+• Side facing windows to be obscure glazed and fixed at 1.7 m
 
-          <div className="space-y-2">
-            <h3 className="font-semibold">Flats, HMOs & new builds</h3>
-            <ul className="list-disc pl-5 space-y-1">
-              <li>Flat conversion drawings</li>
-              <li>HMO layouts</li>
-              <li>Fire safety & AOV plans</li>
-              <li>Small new-build developments</li>
-              <li>Full planning & building regs packs</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+Outbuildings
+• Maximum height 2.5 m if within 2 m of boundary
+• Cannot be used as a separate dwelling
+• Must be incidental to the use of the house
+• Total area covered must not exceed 50 percent of the garden
 
-      <section className="space-y-4">
-        <h2 className="text-2xl font-semibold">Barnet planning & permitted development</h2>
-        <p className="text-sm text-gray-700">
-          Barnet Council follows national PD rules but interprets them carefully. Many
-          extensions and loft conversions can be approved under permitted development if
-          drawn correctly.
-        </p>
+We confirm all limits based on the exact address, conservation area status, and Article 4 restrictions.
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700">
-          <div>
-            <h3 className="font-semibold">Planning application types</h3>
-            <ul className="list-disc pl-5 space-y-1">
-              <li>Householder planning applications</li>
-              <li>Lawful Development Certificates</li>
-              <li>Prior Approval (6m & 8m extensions)</li>
-              <li>Full planning for conversions & new builds</li>
-            </ul>
-          </div>
+Planning Application Drawings for Barnet
 
-          <div>
-            <h3 className="font-semibold">PD limits in Barnet</h3>
-            <ul className="list-disc pl-5 space-y-1">
-              <li>3m rear extension (semis)</li>
-              <li>4m rear extension (detached)</li>
-              <li>6m/8m with Prior Approval</li>
-              <li>Loft volume: 40–50m³</li>
-              <li>Outbuildings: 2.5m near boundaries</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+We prepare every plan required for a planning application or lawful development certificate, including:
 
-      <section className="space-y-3">
-        <h2 className="text-2xl font-semibold">Building regulation drawings</h2>
-        <p className="text-sm text-gray-700">
-          We prepare full building regulation drawings including structure, fire safety,
-          thermal compliance, drainage, and construction details required by Barnet
-          Building Control.
-        </p>
-      </section>
+• Existing Floor Plans
+• Proposed Floor Plans
+• Existing Elevations
+• Proposed Elevations
+• Roof Plans
+• Sections
+• Block Plans and Location Plans
+• Site Layouts
+• Drainage and construction notes
+• Design and Access Statements where required
+• Heritage Statements for conservation areas
 
-      <section className="space-y-3">
-        <h2 className="text-2xl font-semibold">FAQ</h2>
+We handle the entire submission to Barnet Council on your behalf from start to finish.
 
-        <div className="space-y-2 text-sm text-gray-700">
-          <div>
-            <h3 className="font-semibold">Can I build a 6m extension in Barnet?</h3>
-            <p>Yes, under Prior Approval with correct drawings and neighbour consultation.</p>
-          </div>
+Building Regulation Drawings for Barnet
 
-          <div>
-            <h3 className="font-semibold">Are loft conversions allowed under PD?</h3>
-            <p>Most are, as long as volume and design rules are followed.</p>
-          </div>
+Our full Building Control package includes:
 
-          <div>
-            <h3 className="font-semibold">Do you help with submissions?</h3>
-            <p>Yes — we handle full submissions to Barnet Council.</p>
-          </div>
-        </div>
-      </section>
-    </main>
-  );
-}
+• Compliance with 2025 Building Regulations
+• Wall, roof, and floor construction build ups
+• Insulation specifications
+• Fire safety and escape layout
+• Minimum head height in loft conversions
+• Foundations and structural layout (coordinated with engineer)
+• Drainage layout
+• Ventilation and MVHR
+• Sound insulation
+• Energy performance details
+• Staircase compliance
+• Full technical notes for contractors and building inspectors
+
+This ensures your builder has everything needed to build safely and correctly.
+
+Local Knowledge for Barnet Projects
+
+Barnet is one of the largest boroughs in London with varied housing stock including Victorian terraces, 1930s semis, detached homes, and modern developments. Many areas also contain:
+
+• Conservation areas
+• Article 4 zones
+• Large plots with design sensitivity
+• Tight terraced streets
+• Backland development rules
+• Strict building regulation checks
+
+We design all drawings with these local conditions in mind to increase your chance of approval.
+
+Frequently Asked Questions for Barnet
+
+Do I need planning permission for a rear extension in Barnet
+Not always. Many extensions fall under permitted development. We confirm this instantly once we check your address.
+
+How long does Barnet Council take to decide
+Planning applications typically take 6 to 8 weeks. Lawful Development Certificates take 4 to 6 weeks.
+
+Is Barnet strict with loft conversions
+Barnet follows national PD rules but can be stricter in conservation areas and on street facing roofs.
+
+Can I build an outbuilding
+Yes under PD rules, but it cannot be a separate living unit.
+
+Do you submit the application for me
+Yes we handle the full submission from start to finish.
+
+Can you help with structural calculations
+Yes we coordinate with qualified engineers to provide structural design for beams and load bearing walls.
+
+How fast can you survey the property
+We complete the initial survey within 48 hours.
+
+Do you cover every part of Barnet
+Yes including Finchley, Hendon, Mill Hill, Edgware, Colindale, Totteridge, Whetstone, Golders Green, Burnt Oak and all nearby areas.
+
+Contact WEDRAWPLANS
+
+For a fast quote, send your address and brief project description to:
+
+📞 +44 20 3654 8508
+📧 info@wedrawplans.com
+
+We will review your property, confirm permitted development limits, and provide a fixed quote within the same day.
