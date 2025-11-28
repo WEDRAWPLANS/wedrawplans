@@ -157,11 +157,11 @@ export default function Barnet() {
 
   {/* NEW BUTTON */}
   <a
-    href="/#quote"
-    className="inline-flex items-center justify-center rounded-full bg-emerald-700 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 mt-2"
-  >
-    Get your free Barnet quote
-  </a>
+  href="/#quote"
+  className="mt-4 inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-emerald-800 shadow-md shadow-emerald-900/20 hover:bg-emerald-50 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-emerald-800"
+>
+  Get your free Barnet quote
+</a>
 
   <p className="text-xs text-slate-500">
     Typical Barnet projects include rear extensions, hip to gable loft
