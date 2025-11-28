@@ -134,40 +134,40 @@ export default function Barnet() {
               </ul>
             </div>
 
-            <div className="rounded-2xl bg-white/95 text-slate-900 shadow-lg shadow-emerald-900/20 p-5 space-y-3">
-              <h2 className="text-lg font-semibold">
-                Get your Barnet project moving today
-              </h2>
-              <p className="text-sm text-slate-700">
-                Send your address and a short description of your extension or loft
-                project. We confirm what is possible in Barnet and provide a clear fixed
-                quote for your drawings.
-              </p>
-              <div className="space-y-1 text-sm">
-                <p>
-                  Phone{" "}
-                  <a
-                    href="tel:+442036548508"
-                    className="font-semibold text-emerald-700 underline"
-                  >
-                    +44 20 3654 8508
-                  </a>
-                </p>
-                <p>
-                  Email{" "}
-                  <a
-                    href="mailto:info@wedrawplans.com"
-                    className="font-semibold text-emerald-700 underline"
-                  >
-                    info@wedrawplans.com
-                  </a>
-                </p>
-              </div>
-              <p className="text-xs text-slate-500">
-                Typical Barnet projects include rear extensions, hip to gable loft
-                conversions, wrap extensions and garden rooms.
-              </p>
-            </div>
+  <div className="space-y-1 text-sm">
+    <p>
+      Phone{" "}
+      <a
+        href="tel:+442036548508"
+        className="font-semibold text-emerald-700 underline"
+      >
+        +44 20 3654 8508
+      </a>
+    </p>
+    <p>
+      Email{" "}
+      <a
+        href="mailto:info@wedrawplans.com"
+        className="font-semibold text-emerald-700 underline"
+      >
+        info@wedrawplans.com
+      </a>
+    </p>
+  </div>
+
+  {/* NEW BUTTON */}
+  <a
+    href="/#quote"
+    className="inline-flex items-center justify-center rounded-full bg-emerald-700 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 mt-2"
+  >
+    Get your free Barnet quote
+  </a>
+
+  <p className="text-xs text-slate-500">
+    Typical Barnet projects include rear extensions, hip to gable loft
+    conversions, wrap extensions and garden rooms.
+  </p>
+
           </div>
         </section>
 
