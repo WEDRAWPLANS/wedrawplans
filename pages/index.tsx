@@ -93,117 +93,121 @@ export default function IndexPage() {
       </Head>
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
-        {/* Header */}
+        {/* HEADER */}
         <header className="border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur">
-          <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 lg:px-6">
-            {/* Logo */}
-            <div className="flex items-center gap-2">
-              {/* use the enhanced PNG logo */}
-              <img
-                src="/images/wedrawplans-logo.png"
-                alt="WEDRAWPLANS logo"
-                className="h-10 w-auto"
-              />
-              <div className="leading-tight">
-                <div className="text-lg font-semibold tracking-[0.2em] uppercase">
-                  WEDRAWPLANS
-                </div>
-                <div className="text-[11px] uppercase tracking-[0.2em] text-slate-500">
-                  Architectural drawing consultants
+          <div className="mx-auto max-w-6xl px-4 py-3 lg:px-6">
+            <div className="flex items-center justify-between gap-4">
+              {/* Left: logo + strapline */}
+              <div className="flex items-center gap-3">
+                <div className="flex flex-col">
+                  <img
+                    src="/images/wedrawplans-logo.png"
+                    alt="wedrawplans"
+                    className="h-10 w-auto"
+                  />
+                  <span className="mt-1 text-[11px] tracking-wide text-slate-500">
+                    Architectural drawing consultants
+                  </span>
                 </div>
               </div>
-            </div>
 
-            {/* Desktop nav */}
-            <nav className="hidden items-center gap-5 text-[13px] text-slate-700 lg:flex">
-              <NavMenu title="Local designers">
-                {BOROUGHS.slice(0, 8).map((borough) => (
-                  <NavItem key={borough.slug}>
-                    <a href={`/areas/${borough.slug}`} className="block">
-                      {borough.label}
+              {/* Centre: navigation */}
+              <nav className="hidden flex-1 items-center justify-center gap-6 text-sm text-slate-800 lg:flex">
+                <NavMenu title="Local Designers">
+                  {BOROUGHS.slice(0, 8).map((borough) => (
+                    <NavItem key={borough.slug}>
+                      <a href={`/areas/${borough.slug}`} className="block">
+                        {borough.label}
+                      </a>
+                    </NavItem>
+                  ))}
+                  <NavItem>
+                    <a href="/areas" className="block font-semibold text-[#29788a]">
+                      View all boroughs
                     </a>
                   </NavItem>
-                ))}
-              </NavMenu>
+                </NavMenu>
 
-              <NavMenu title="Extension plans">
-                <NavItem>Rear extension plans</NavItem>
-                <NavItem>Side return extension plans</NavItem>
-                <NavItem>Wrap around extension plans</NavItem>
-                <NavItem>Two storey extension plans</NavItem>
-                <NavItem>Kitchen extension layouts</NavItem>
-              </NavMenu>
+                <NavMenu title="Extension Plans">
+                  <NavItem>Rear extension plans</NavItem>
+                  <NavItem>Side return extension plans</NavItem>
+                  <NavItem>Wrap-around extension plans</NavItem>
+                  <NavItem>Two storey extension plans</NavItem>
+                  <NavItem>Kitchen extension layouts</NavItem>
+                </NavMenu>
 
-              <NavMenu title="Loft plans">
-                <NavItem>Dormer loft conversions</NavItem>
-                <NavItem>Hip to gable loft conversions</NavItem>
-                <NavItem>Mansard loft conversions</NavItem>
-                <NavItem>Velux loft layouts</NavItem>
-                <NavItem>Attic conversions</NavItem>
-              </NavMenu>
+                <NavMenu title="Loft Plans">
+                  <NavItem>Dormer loft conversions</NavItem>
+                  <NavItem>Hip to gable loft conversions</NavItem>
+                  <NavItem>Mansard loft conversions</NavItem>
+                  <NavItem>Velux loft layouts</NavItem>
+                  <NavItem>Attic conversions</NavItem>
+                </NavMenu>
 
-              <NavMenu title="New build">
-                <NavItem>New build house plans</NavItem>
-                <NavItem>Small residential developments</NavItem>
-                <NavItem>Infill plots and backland sites</NavItem>
-                <NavItem>Conversion to flats</NavItem>
-              </NavMenu>
+                <NavMenu title="New Build">
+                  <NavItem>New build house plans</NavItem>
+                  <NavItem>Small residential developments</NavItem>
+                  <NavItem>Infill plots and backland sites</NavItem>
+                  <NavItem>Conversion to flats</NavItem>
+                </NavMenu>
 
-              <NavMenu title="Technical and support">
-                <NavItem>Building Regulation drawing packs</NavItem>
-                <NavItem>Fire and escape strategy plans</NavItem>
-                <NavItem>Measured surveys</NavItem>
-                <NavItem>Structural engineer coordination</NavItem>
-                <NavItem>Party wall drawings and support</NavItem>
-                <NavItem>Interior layouts and finishes plans</NavItem>
-              </NavMenu>
+                <NavMenu title="Technical & Support">
+                  <NavItem>Building Regulation drawing packs</NavItem>
+                  <NavItem>Fire and escape strategy plans</NavItem>
+                  <NavItem>Measured surveys</NavItem>
+                  <NavItem>Structural engineer coordination</NavItem>
+                  <NavItem>Party wall drawings and support</NavItem>
+                  <NavItem>Interior layouts and finishes plans</NavItem>
+                </NavMenu>
 
-              {/* New link to the master Areas page */}
-              <a href="/areas" className="hover:underline">
-                Areas we cover
-              </a>
+                <a href="/areas" className="hover:text-[#29788a]">
+                  Areas we cover
+                </a>
+                <a href="#price-guide" className="hover:text-[#29788a]">
+                  Price guide
+                </a>
+                <a href="#contact" className="hover:text-[#29788a]">
+                  Contact
+                </a>
+              </nav>
 
-              <a href="#price-guide" className="hover:underline">
-                Price guide
-              </a>
-              <a href="#contact" className="hover:underline">
-                Contact
-              </a>
-            </nav>
+              {/* Right: phone + WhatsApp (desktop) */}
+              <div className="hidden items-center gap-3 lg:flex">
+                <a
+                  href={PHONE_LINK}
+                  className="flex h-16 items-center rounded-full border border-slate-300 bg-white px-4 text-[11px] font-semibold text-slate-900 shadow-sm"
+                >
+                  <span className="mr-2 text-sm">📞</span>
+                  <span className="flex flex-col leading-snug">
+                    <span>020</span>
+                    <span>3654</span>
+                    <span>8508</span>
+                  </span>
+                </a>
+                <a
+                  href={WHATSAPP_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#1ebe57]"
+                >
+                  <span>WhatsApp us</span>
+                </a>
+              </div>
 
-            {/* Desktop quick contact – modern buttons */}
-            <div className="hidden items-center gap-2 lg:flex">
-              <a
-                href={PHONE_LINK}
-                className="inline-flex items-center gap-1 rounded-full border border-slate-300 px-3 py-1.5 text-[12px] font-medium text-slate-900 shadow-sm hover:bg-slate-900 hover:text-white"
-              >
-                <span>📞</span>
-                <span>{PHONE_DISPLAY}</span>
-              </a>
-              <a
-                href={WHATSAPP_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 rounded-full bg-[#25D366] px-3 py-1.5 text-[12px] font-medium text-white shadow-sm hover:bg-[#1ebe57]"
-              >
-                <span>💬</span>
-                <span>WhatsApp us</span>
-              </a>
-            </div>
-
-            {/* Mobile contact */}
-            <div className="flex items-center gap-3 lg:hidden">
-              <a href={PHONE_LINK} className="text-[12px] font-medium text-slate-900">
-                Call
-              </a>
-              <a
-                href={WHATSAPP_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[12px] text-[#29788a]"
-              >
-                WhatsApp
-              </a>
+              {/* Right: mobile contact only */}
+              <div className="flex items-center gap-3 lg:hidden">
+                <a href={PHONE_LINK} className="text-[12px] font-medium text-slate-900">
+                  Call
+                </a>
+                <a
+                  href={WHATSAPP_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[12px] text-[#29788a]"
+                >
+                  WhatsApp
+                </a>
+              </div>
             </div>
           </div>
         </header>
@@ -220,7 +224,8 @@ export default function IndexPage() {
                 WEDRAWPLANS — Londons leading architectural drawing services
               </h1>
               <p className="mt-2 text-[13px] font-medium text-slate-800">
-                Planning | Extensions | Loft Conversions | New Build | Building Regs — High Quality, Low Cost Plans
+                Planning | Extensions | Loft Conversions | New Build | Building Regs — High
+                Quality, Low Cost Plans
               </p>
             </div>
 
@@ -696,10 +701,10 @@ type NavMenuProps = {
 function NavMenu({ title, children }: NavMenuProps) {
   return (
     <div className="relative group">
-      <button className="uppercase tracking-[0.14em] text-[11px] font-medium">
+      <button className="text-sm font-medium text-slate-800">
         {title}
       </button>
-      <div className="pointer-events-none absolute left-0 top-full z-20 mt-2 min-w-[240px] rounded-sm bg-white py-2 text-[12px] shadow-lg opacity-0 group-hover:pointer-events-auto group-hover:opacity-100">
+      <div className="pointer-events-none absolute left-0 top-full z-20 mt-2 min-w-[260px] rounded-md bg-white py-2 text-[13px] shadow-lg opacity-0 group-hover:pointer-events-auto group-hover:opacity-100">
         {children}
       </div>
     </div>
@@ -765,6 +770,7 @@ function PriceCard({ title, price, body }: PriceCardProps) {
     </div>
   );
 }
+
 type HelpCardProps = {
   title: string;
   body: string;
