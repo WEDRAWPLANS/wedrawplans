@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import Image from "next/image";
 
 export default function Barnet() {
   const localBusinessJson = {
@@ -9,6 +10,7 @@ export default function Barnet() {
     url: "https://www.wedrawplans.co.uk/barnet",
     telephone: "+44 20 3654 8508",
     email: "info@wedrawplans.com",
+    image: "https://www.wedrawplans.co.uk/images/hero.jpg",
     address: {
       "@type": "PostalAddress",
       streetAddress: "201 Borough High Street",
@@ -16,25 +18,24 @@ export default function Barnet() {
       postalCode: "SE1 1JA",
       addressCountry: "UK"
     },
-    description:
-      "Architectural drawings, planning applications, permitted development, extensions, loft conversions and building regulation plans for homeowners across Barnet.",
     areaServed: [
       "Barnet",
       "Finchley",
       "Hendon",
-      "Mill Hill",
       "Edgware",
       "Totteridge",
       "Whetstone",
+      "Mill Hill",
       "Colindale",
-      "New Barnet",
+      "Golders Green",
+      "Burnt Oak",
       "High Barnet",
       "Friern Barnet",
       "East Finchley",
-      "West Finchley",
-      "Golders Green",
-      "Burnt Oak"
-    ]
+      "West Finchley"
+    ],
+    description:
+      "Architectural drawing services in Barnet for extensions, loft conversions, outbuildings, refurbishments and building regulations."
   };
 
   const faqJson = {
@@ -43,34 +44,38 @@ export default function Barnet() {
     mainEntity: [
       {
         "@type": "Question",
-        name: "Do I need planning permission for a rear extension in Barnet",
+        name: "Do I need planning permission for a rear extension in Barnet?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Not always. Many extensions fall under permitted development. We confirm this instantly once we check your address and property type."
+          text:
+            "Not always. Many extensions fall under permitted development. We confirm the correct route once we review your address and house type."
         }
       },
       {
         "@type": "Question",
-        name: "How long does Barnet Council take to decide",
+        name: "Is Barnet strict with loft conversions?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Planning applications typically take 6 to 8 weeks. Lawful Development Certificates take 4 to 6 weeks."
+          text:
+            "Barnet follows national permitted development rules but can be stricter in conservation areas and where roof changes affect the street scene."
         }
       },
       {
         "@type": "Question",
-        name: "Is Barnet strict with loft conversions",
+        name: "How long does Barnet Council take to decide?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Barnet follows national permitted development rules but can be stricter in conservation areas and on street facing roofs."
+          text:
+            "Householder planning applications usually take six to eight weeks after validation. Lawful Development Certificates normally take four to six weeks."
         }
       },
       {
         "@type": "Question",
-        name: "Can I build an outbuilding in Barnet",
+        name: "Do you manage the full application to Barnet Council?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes under permitted development rules in many cases, but it cannot be used as a separate self contained dwelling and must respect height and area limits."
+          text:
+            "Yes. We prepare drawings, complete forms, upload documents, submit to Barnet Council and respond to planning officer queries."
         }
       }
     ]
@@ -79,18 +84,20 @@ export default function Barnet() {
   return (
     <>
       <Head>
-        <title>Architectural Drawings Barnet | Planning Permissions | WEDRAWPLANS</title>
-
+        <title>
+          Architectural Drawings Barnet | Extensions, Lofts, New Builds |
+          WEDRAWPLANS
+        </title>
         <meta
           name="description"
-          content="WEDRAWPLANS provides fast architectural drawings, planning applications, loft conversions, extensions, outbuildings and building regulation plans across Barnet including Finchley, Hendon, Edgware, Whetstone, Totteridge, Mill Hill and surrounding areas. Survey within 48 hours. Call 020 3654 8508."
+          content="Architectural drawing services in Barnet for extensions, loft conversions, outbuildings, refurbishments and building regulation plans. Fast surveys, clear drawings and full planning support."
         />
-
         <link rel="canonical" href="https://www.wedrawplans.co.uk/barnet" />
-
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(localBusinessJson)
+          }}
         />
         <script
           type="application/ld+json"
@@ -100,128 +107,134 @@ export default function Barnet() {
 
       <main className="bg-slate-50">
         {/* HERO */}
-        <section className="bg-gradient-to-r from-emerald-700 to-emerald-900 text-white">
-          <div className="mx-auto max-w-5xl px-4 py-12 md:py-16 grid gap-8 md:grid-cols-[2fr,1.2fr] items-center">
-            <div className="space-y-4">
-              <p className="text-xs font-semibold tracking-[0.2em] uppercase text-emerald-100">
-                WEDRAWPLANS • Barnet
-              </p>
-              <h1 className="text-3xl md:text-4xl font-bold leading-tight">
-                Architectural Drawings in Barnet
-              </h1>
-              <p className="text-sm md:text-base text-emerald-100">
-                Full planning, permitted development and building regulation drawings for
-                house extensions, loft conversions, outbuildings and refurbishments across
-                every part of Barnet.
-              </p>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
-                <li className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-200" />
-                  Survey within 48 hours
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-200" />
-                  Drawings tailored to Barnet Council
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-200" />
-                  Planning and permitted development advice
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-200" />
-                  Building regulation packages for 2025 standards
-                </li>
-              </ul>
+        <section className="bg-emerald-900 text-white">
+          <div className="mx-auto max-w-5xl px-6 py-16 space-y-8">
+            <p className="text-xs font-semibold tracking-[0.2em] text-emerald-100">
+              WEDRAWPLANS • BARNET
+            </p>
+
+            <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+              Architectural Drawings in Barnet
+            </h1>
+
+            <p className="max-w-3xl text-sm md:text-base text-emerald-100">
+              Architectural drawing services in Barnet for house extensions,
+              loft conversions, outbuildings, refurbishments and new build
+              homes. Every set of drawings is prepared to Barnet Council
+              guidance and current Building Regulations.
+            </p>
+
+            <div className="grid md:grid-cols-[2fr,1.2fr] gap-8 items-start">
+              <div className="space-y-3 text-sm">
+                <div className="grid sm:grid-cols-2 gap-3">
+                  <ul className="space-y-1 list-disc pl-4">
+                    <li>Survey within 48 hours</li>
+                    <li>Planning and permitted development advice</li>
+                    <li>Full planning and Lawful Development applications</li>
+                  </ul>
+                  <ul className="space-y-1 list-disc pl-4">
+                    <li>Drawings tailored to Barnet Council policies</li>
+                    <li>Building regulation packages for 2025 standards</li>
+                    <li>Fixed quotes with clear scope</li>
+                  </ul>
+                </div>
+
+                <p className="mt-2 text-xs text-emerald-100">
+                  Typical Barnet projects include rear extensions, wrap
+                  extensions, hip to gable loft conversions, L shaped dormers
+                  and high quality garden rooms.
+                </p>
+              </div>
+
+              <div className="space-y-2 text-sm text-right md:text-left">
+                <p className="text-xs text-emerald-100">Talk to us</p>
+                <p className="text-sm text-white">
+                  Phone{" "}
+                  <a
+                    href="tel:+442036548508"
+                    className="font-semibold text-white underline"
+                  >
+                    +44 20 3654 8508
+                  </a>
+                </p>
+                <p className="text-sm text-white">
+                  Email{" "}
+                  <a
+                    href="mailto:info@wedrawplans.com"
+                    className="font-semibold text-white underline"
+                  >
+                    info@wedrawplans.com
+                  </a>
+                </p>
+              </div>
             </div>
 
-  <div className="space-y-1 text-sm">
-    <p>
-      Phone{" "}
-      <a
-        href="tel:+442036548508"
-        className="font-semibold text-emerald-700 underline"
-      >
-        +44 20 3654 8508
-      </a>
-    </p>
-    <p>
-      Email{" "}
-      <a
-        href="mailto:info@wedrawplans.com"
-        className="font-semibold text-emerald-700 underline"
-      >
-        info@wedrawplans.com
-      </a>
-    </p>
-  </div>
-
-  {/* NEW BUTTON */}
-  <a
-  href="/#quote"
-  className="mt-4 inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-emerald-800 shadow-md shadow-emerald-900/20 hover:bg-emerald-50 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-emerald-800"
->
-  Get your free Barnet quote
-</a>
-
-  <p className="text-xs text-slate-500">
-    Typical Barnet projects include rear extensions, hip to gable loft
-    conversions, wrap extensions and garden rooms.
-  </p>
-
+            <div className="pt-2">
+              <a
+                href="/#quote"
+                className="inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-semibold text-emerald-900 shadow-lg shadow-emerald-900/30 hover:bg-emerald-50 transition"
+              >
+                Get your free Barnet quote
+              </a>
+            </div>
           </div>
         </section>
 
         {/* MAIN CONTENT */}
-        <section className="mx-auto max-w-5xl px-4 py-10 md:py-14 space-y-12">
-          {/* INTRO AND WHY WEDRAWPLANS */}
-          <div className="grid gap-8 md:grid-cols-[1.7fr,1.3fr] items-start">
+        <section className="mx-auto max-w-5xl px-6 py-14 space-y-14">
+          {/* INTRO + DRAWINGS IMAGE */}
+          <div className="grid md:grid-cols-[1.7fr,1.3fr] gap-10 items-start">
             <div className="space-y-4">
               <h2 className="text-2xl font-semibold">
-                Barnet architectural drawings for real homes
+                Architectural drawing services in Barnet
               </h2>
               <p className="text-sm md:text-base text-slate-700">
-                WEDRAWPLANS provides professional planning drawings, permitted development
-                advice, building regulation plans and full architectural support for
-                homeowners in the London Borough of Barnet. We specialise in fast,
-                accurate and compliant drawings for extensions, loft conversions,
-                outbuildings and flat conversions.
+                WEDRAWPLANS provides full drawing packages for single and double
+                storey extensions, loft conversions, internal alterations,
+                outbuildings, flat conversions and small new developments
+                across the borough of Barnet.
               </p>
               <p className="text-sm md:text-base text-slate-700">
-                We cover Finchley, Hendon, Edgware, Whetstone, Totteridge, Colindale, Mill
-                Hill, Golders Green, Burnt Oak, Woodside Park, New Barnet, High Barnet,
-                Friern Barnet, East Finchley, West Finchley and all surrounding
-                neighbourhoods.
-              </p>
-              <p className="text-sm md:text-base text-slate-700">
-                If you are planning an extension, loft conversion, garden room, garage
-                conversion, new build or internal layout change, we prepare all drawings
-                with full compliance to Barnet planning guidance and 2025 Building
-                Regulations.
+                We work throughout Finchley, Hendon, Whetstone, Totteridge,
+                Mill Hill, Edgware, Colindale, Golders Green, Burnt Oak, High
+                Barnet, Friern Barnet, East Finchley and West Finchley.
               </p>
             </div>
 
-            <div className="rounded-2xl border border-emerald-100 bg-white shadow-sm p-5 space-y-3">
-              <h3 className="text-lg font-semibold">
-                Why Barnet homeowners choose WEDRAWPLANS
-              </h3>
-              <ul className="text-sm text-slate-700 space-y-1.5">
-                <li>Fast turnaround and clear communication</li>
-                <li>Local knowledge of Barnet planning policies</li>
-                <li>Drawings based on the exact requirements of Barnet Council</li>
-                <li>Support with planning applications and permitted development</li>
-                <li>Building Regulation packages aligned with 2025 standards</li>
-                <li>Fixed quotes with no hidden fees</li>
-                <li>Friendly and professional team ready to assist at any time</li>
-              </ul>
+            <div className="rounded-2xl bg-white shadow-md border border-slate-100 overflow-hidden">
+              <Image
+                src="/images/drawings.jpg"
+                alt="Example of architectural drawings for a Barnet extension"
+                width={800}
+                height={500}
+                className="object-cover w-full h-48 md:h-56"
+              />
+              <div className="p-5 space-y-2">
+                <h3 className="text-lg font-semibold">
+                  Technical drawings your builder can build from
+                </h3>
+                <p className="text-sm text-slate-700">
+                  Clear floor plans, elevations, sections and notes, coordinated
+                  with structural design so that builders and inspectors have
+                  everything they need.
+                </p>
+              </div>
             </div>
           </div>
 
-          {/* AREAS AND PROJECT TYPES */}
-          <div className="grid gap-8 md:grid-cols-2">
-            <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-5 space-y-3">
+          {/* AREAS + PROJECT TYPES */}
+          <div className="grid md:grid-cols-2 gap-10">
+            <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
               <h3 className="text-lg font-semibold">Barnet areas we cover</h3>
+              <Image
+                src="/images/area.jpg"
+                alt="Barnet local high street"
+                width={800}
+                height={500}
+                className="rounded-xl object-cover mb-3"
+              />
               <p className="text-sm text-slate-700">
-                We provide drawings across the whole borough of Barnet, including
+                Drawings for the whole borough of Barnet, including:
               </p>
               <div className="grid grid-cols-2 gap-2 text-sm text-slate-700">
                 <ul className="list-disc pl-4 space-y-1">
@@ -236,215 +249,223 @@ export default function Barnet() {
                   <li>Totteridge and Whetstone N20</li>
                   <li>High Barnet EN5</li>
                   <li>Friern Barnet</li>
-                  <li>Golders Green and NW11 borders</li>
-                  <li>Burnt Oak and Edgware</li>
-                  <li>All EN and NW Barnet postcodes</li>
+                  <li>Golders Green NW11</li>
+                  <li>Burnt Oak</li>
+                  <li>Edgware</li>
                 </ul>
               </div>
-              <p className="text-xs text-slate-500">
-                Typical projects include rear and side extensions, wraparound extensions,
-                loft conversions and garden studios.
-              </p>
             </div>
 
-            <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-5 space-y-3">
+            <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
               <h3 className="text-lg font-semibold">Popular projects in Barnet</h3>
               <div className="grid grid-cols-2 gap-3 text-sm text-slate-700">
                 <ul className="list-disc pl-4 space-y-1">
-                  <li>Rear extensions 3 m, 4 m and 6 m</li>
-                  <li>Side and wraparound extensions</li>
-                  <li>Kitchen and open plan layouts</li>
+                  <li>Rear and side extensions</li>
+                  <li>Wraparound and L shaped extensions</li>
                   <li>Hip to gable loft conversions</li>
                   <li>L shaped dormers</li>
+                  <li>Kitchen and open plan layouts</li>
                 </ul>
                 <ul className="list-disc pl-4 space-y-1">
-                  <li>Outbuildings and garden rooms</li>
+                  <li>Garden rooms and studios</li>
                   <li>Garage conversions</li>
-                  <li>Internal reconfiguration and new stairs</li>
+                  <li>Internal reconfiguration</li>
                   <li>Flats, HMOs and change of use</li>
-                  <li>Front porches and infill extensions</li>
+                  <li>Small new build schemes</li>
                 </ul>
               </div>
+              <Image
+                src="/images/hero.jpg"
+                alt="Completed extension and loft project"
+                width={800}
+                height={500}
+                className="rounded-xl object-cover mt-2"
+              />
             </div>
           </div>
 
-          {/* PERMITTED DEVELOPMENT AND PLANNING */}
+          {/* PERMITTED DEVELOPMENT */}
           <div className="space-y-5">
-            <h2 className="text-2xl font-semibold">Permitted development rules in Barnet</h2>
+            <h2 className="text-2xl font-semibold">
+              Permitted development limits in Barnet
+            </h2>
             <p className="text-sm text-slate-700">
-              Below is a simplified summary of common permitted development limits in
-              Barnet. Full rules depend on house type, location and any Article 4
-              directions. We confirm all details once we have checked your address.
+              Below is a simplified guide to common permitted development
+              limits. Final confirmation always depends on your house type,
+              location and any Article 4 directions.
             </p>
 
-            <div className="grid gap-6 md:grid-cols-3 text-sm text-slate-700">
-              <div className="space-y-2">
-                <h3 className="font-semibold">Rear extensions</h3>
+            <div className="grid md:grid-cols-3 gap-8 text-sm text-slate-700">
+              <div>
+                <h3 className="font-semibold mb-2">Rear extensions</h3>
                 <ul className="list-disc pl-4 space-y-1">
-                  <li>Up to 3 m deep on many terraced houses</li>
-                  <li>Up to 4 m on many semi detached and detached homes</li>
-                  <li>Up to 6 or 8 m with Prior Approval in some cases</li>
-                  <li>Typical single storey height up to around 4 m</li>
+                  <li>Up to 3 m deep on terrace houses</li>
+                  <li>Up to 4 m on semi detached houses</li>
+                  <li>Up to 6 to 8 m with Prior Approval</li>
+                  <li>Maximum 4 m high for single storey</li>
                 </ul>
               </div>
-
-              <div className="space-y-2">
-                <h3 className="font-semibold">Loft conversions</h3>
+              <div>
+                <h3 className="font-semibold mb-2">Loft conversions</h3>
                 <ul className="list-disc pl-4 space-y-1">
-                  <li>Up to 40 cubic metres for terraced homes</li>
-                  <li>Up to 50 cubic metres for semi detached and detached</li>
-                  <li>No extension beyond the front roof plane</li>
-                  <li>Side windows obscure glazed and fixed above 1.7 m</li>
+                  <li>Up to 40 to 50 cubic metres volume</li>
+                  <li>No extensions on the front roof slope</li>
+                  <li>Side windows obscure glazed and fixed</li>
+                  <li>External materials to be similar</li>
                 </ul>
               </div>
-
-              <div className="space-y-2">
-                <h3 className="font-semibold">Outbuildings</h3>
+              <div>
+                <h3 className="font-semibold mb-2">Outbuildings</h3>
                 <ul className="list-disc pl-4 space-y-1">
-                  <li>Maximum height 2.5 m if within 2 m of a boundary</li>
-                  <li>Use must be incidental to the main house</li>
-                  <li>Not a separate dwelling</li>
-                  <li>Total area usually not more than half the garden</li>
+                  <li>Maximum 2.5 m high near boundaries</li>
+                  <li>Cannot be used as a separate dwelling</li>
+                  <li>Use must be incidental to the house</li>
+                  <li>Not more than 50 percent of garden area</li>
                 </ul>
               </div>
             </div>
           </div>
 
-          {/* DRAWING PACKAGES */}
-          <div className="grid gap-8 md:grid-cols-2">
-            <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-5 space-y-3">
+          {/* PLANNING & BUILDING REG PACKS */}
+          <div className="grid md:grid-cols-2 gap-10">
+            <div className="rounded-2xl bg-white shadow-sm p-6 border border-slate-100 space-y-4">
               <h3 className="text-lg font-semibold">
-                Planning application drawings for Barnet
+                Planning drawings for Barnet
               </h3>
-              <p className="text-sm text-slate-700">
-                We prepare every plan required for a planning application or Lawful
-                Development Certificate in Barnet.
-              </p>
-              <ul className="list-disc pl-4 text-sm text-slate-700 space-y-1">
+              <ul className="list-disc pl-4 space-y-1 text-sm text-slate-700">
                 <li>Existing and proposed floor plans</li>
                 <li>Existing and proposed elevations</li>
-                <li>Roof plans and sections</li>
+                <li>Roof plans and key sections</li>
                 <li>Block plans and location plans</li>
-                <li>Site layout and access notes</li>
-                <li>Drainage and basic construction notes</li>
-                <li>Design and Access content where required</li>
-                <li>Heritage information for conservation areas</li>
+                <li>Drainage and construction notes</li>
+                <li>Design and access statements where needed</li>
               </ul>
             </div>
 
-            <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-5 space-y-3">
+            <div className="rounded-2xl bg-white shadow-sm p-6 border border-slate-100 space-y-4">
               <h3 className="text-lg font-semibold">
                 Building regulation drawings for Barnet
               </h3>
-              <p className="text-sm text-slate-700">
-                Our full Building Control package is designed for 2025 regulations and
-                coordinated with your structural engineer.
-              </p>
-              <ul className="list-disc pl-4 text-sm text-slate-700 space-y-1">
-                <li>Wall, roof and floor build ups with insulation</li>
-                <li>Fire safety, protected routes and escape windows</li>
-                <li>Foundation layouts and structural notes</li>
-                <li>Drainage, ventilation and MVHR information</li>
-                <li>Sound insulation and acoustic notes where relevant</li>
-                <li>Energy performance and fabric efficiency notes</li>
-                <li>Stair, guarding and balustrade compliance</li>
-                <li>Full technical notes for builders and inspectors</li>
+              <ul className="list-disc pl-4 space-y-1 text-sm text-slate-700">
+                <li>Structural layouts and coordination</li>
+                <li>Foundation and beam information</li>
+                <li>Fire safety and escape routes</li>
+                <li>Thermal build ups and insulation specs</li>
+                <li>Ventilation and extract positions</li>
+                <li>Drainage runs and manhole information</li>
               </ul>
             </div>
           </div>
 
           {/* LOCAL KNOWLEDGE */}
-          <div className="rounded-2xl bg-emerald-50 border border-emerald-100 p-5 space-y-3">
+          <div className="rounded-2xl bg-emerald-50 border border-emerald-100 p-6 space-y-3">
             <h2 className="text-2xl font-semibold text-emerald-900">
-              Local knowledge for Barnet projects
+              Local planning knowledge for Barnet projects
             </h2>
             <p className="text-sm text-emerald-900">
-              Barnet is one of the largest boroughs in London with a mix of Victorian
-              terraces, 1930s semis, detached homes and newer developments. Many streets
-              sit in conservation areas or Article 4 zones and planners can be strict
-              about roof shapes, materials and overlooking.
-            </p>
-            <p className="text-sm text-emerald-900">
-              We design every set of drawings with these local conditions in mind to give
-              your project a stronger chance of approval the first time.
+              Barnet includes conservation areas, Article 4 zones, deep garden
+              plots, backland policies and detailed guidance on roof extensions.
+              We design each scheme to work with these local rules so that the
+              chances of approval are as strong as possible.
             </p>
           </div>
 
           {/* FAQ */}
           <div className="space-y-4">
-            <h2 className="text-2xl font-semibold">Frequently asked questions in Barnet</h2>
-            <div className="grid gap-4 md:grid-cols-2 text-sm text-slate-700">
+            <h2 className="text-2xl font-semibold">Frequently asked questions</h2>
+            <div className="grid md:grid-cols-2 gap-6 text-sm text-slate-700">
               <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
                 <h3 className="font-semibold">
-                  Do I need planning permission for a rear extension in Barnet
+                  Do I need planning permission for my Barnet project?
                 </h3>
                 <p>
-                  Not always. Many extensions fall under permitted development. We confirm
-                  this once we have checked your address, drawings and any local
-                  restrictions.
+                  Many extensions and lofts can proceed under permitted
+                  development. We check your address and advise the best route
+                  at the start.
                 </p>
               </div>
               <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
                 <h3 className="font-semibold">
-                  How long does Barnet Council take to decide applications
+                  How fast can you visit and survey the property?
                 </h3>
                 <p>
-                  Most householder planning applications take around 6 to 8 weeks. Lawful
-                  Development Certificates usually take 4 to 6 weeks once validated.
+                  In most cases we can arrange the initial measured survey
+                  within forty eight hours of instruction.
                 </p>
               </div>
               <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
                 <h3 className="font-semibold">
-                  Can I build an outbuilding or garden room in Barnet
+                  Do you submit the application to Barnet Council?
                 </h3>
                 <p>
-                  Yes in many cases this is permitted development, as long as height, size
-                  and use remain within the rules. We confirm this for you and show the
-                  building on clear scaled drawings.
+                  Yes. We handle the full submission, monitor progress and
+                  respond to any planning officer comments.
                 </p>
               </div>
               <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
                 <h3 className="font-semibold">
-                  Do you handle submissions and structural design as well
+                  Can you help with structural calculations?
                 </h3>
                 <p>
-                  We submit the application to Barnet Council, respond to their technical
-                  questions and coordinate with structural engineers for beams, openings
-                  and loft structures where required.
+                  We coordinate with qualified structural engineers so that
+                  beams, padstones and load bearing walls are all designed and
+                  shown correctly on the drawings.
                 </p>
               </div>
             </div>
           </div>
 
-          {/* CONTACT */}
-          <div className="rounded-2xl bg-slate-900 text-slate-50 px-5 py-6 md:px-7 md:py-7 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          {/* FINAL CTA */}
+          <div className="rounded-2xl bg-slate-900 text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
               <h2 className="text-xl font-semibold">
-                Ready to talk about your Barnet project
+                Ready to start your Barnet project
               </h2>
-              <p className="text-sm text-slate-200">
-                Send your address and a short description of what you would like to build.
-                We review the property, confirm permitted development limits and send a
-                fixed quote the same day.
+              <p className="text-sm text-slate-300">
+                Send us your address and a short description of the extension,
+                loft or refurbishment you have in mind. We will review it and
+                provide a fixed quote the same day.
               </p>
             </div>
-            <div className="space-y-1 text-sm">
-              <p>
-                Phone{" "}
-                <a href="tel:+442036548508" className="font-semibold text-emerald-300 underline">
-                  +44 20 3654 8508
-                </a>
-              </p>
-              <p>
-                Email{" "}
-                <a
-                  href="mailto:info@wedrawplans.com"
-                  className="font-semibold text-emerald-300 underline"
-                >
-                  info@wedrawplans.com
-                </a>
-              </p>
+            <div className="flex flex-col space-y-1 text-sm">
+              <a
+                href="tel:+442036548508"
+                className="font-semibold text-emerald-300 underline"
+              >
+                +44 20 3654 8508
+              </a>
+              <a
+                href="mailto:info@wedrawplans.com"
+                className="font-semibold text-emerald-300 underline"
+              >
+                info@wedrawplans.com
+              </a>
+              <a
+                href="/#quote"
+                className="mt-2 inline-flex items-center justify-center rounded-full bg-white px-5 py-2 text-sm font-semibold text-emerald-900 shadow hover:bg-emerald-100"
+              >
+                Get your free Barnet quote
+              </a>
             </div>
+          </div>
+
+          {/* INTERNAL LINKS */}
+          <div className="text-xs text-slate-500 pt-4">
+            <p>
+              See also:{" "}
+              <a href="/extension-plans" className="underline text-emerald-700">
+                House extension drawings
+              </a>
+              ,{" "}
+              <a href="/loft-conversion-plans" className="underline text-emerald-700">
+                Loft conversion drawings
+              </a>{" "}
+              and{" "}
+              <a href="/" className="underline text-emerald-700">
+                WEDRAWPLANS home page
+              </a>
+              .
+            </p>
           </div>
         </section>
       </main>
