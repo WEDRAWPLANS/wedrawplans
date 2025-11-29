@@ -394,18 +394,20 @@ export default function IndexPage() {
               lofts and new builds are viewed in their council area.
             </p>
 
-            <div className="mt-5 grid gap-2 text-[13px] sm:grid-cols-2 md:grid-cols-3">
-              {BOROUGHS.map((b) => (
-                <div key={b.slug} className="border-b border-slate-200 py-1.5">
-                  <a
-                    href={`/areas/${b.slug}`}
-                    className="text-slate-800 hover:text-[#29788a] hover:underline"
-                  >
-                    {b.label}
-                  </a>
-                </div>
-              ))}
-            </div>
+           <div className="mt-6 grid gap-3 text-[14px] sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+  {BOROUGHS.map((b) => (
+    <a
+      key={b.slug}
+      href={`/areas/${b.slug}`}
+      className="block rounded-md border border-[#d7e8ee] bg-[#e8f4f8] px-4 py-3 text-center font-medium text-slate-800 
+                 transition-all duration-200 transform
+                 hover:-translate-y-0.5 hover:bg-[#29788a] hover:text-white hover:border-[#29788a] hover:shadow-md"
+    >
+      {b.label}
+    </a>
+  ))}
+</div>
+
           </div>
         </section>
 
