@@ -1,656 +1,909 @@
-import React, { useState } from "react";
-import Link from "next/link";
+import React from "react";
+import Head from "next/head";
 
-type MenuKey = "local" | "services" | "portfolio" | "planning" | "more" | null;
+const PHONE_DISPLAY = "020 3654 8508";
+const PHONE_LINK = "tel:+442036548508";
+const EMAIL = "info@wedrawplans.com";
+const EMAIL_LINK = "mailto:info@wedrawplans.com";
 
-const HomePage: React.FC = () => {
-  const [openMenu, setOpenMenu] = useState<MenuKey>(null);
-  const [mobileOpen, setMobileOpen] = useState(false);
+const WHATSAPP_LINK =
+  "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20my%20project";
 
-  const handleOpen = (key: MenuKey) => setOpenMenu(key);
-  const handleClose = () => setOpenMenu(null);
+const BOROUGHS: { label: string; slug: string }[] = [
+  { label: "Architectural drawings Barking and Dagenham", slug: "barking-dagenham" },
+  { label: "Architectural drawings Barnet", slug: "barnet" },
+  { label: "Architectural drawings Bexley", slug: "bexley" },
+  { label: "Architectural drawings Brent", slug: "brent" },
+  { label: "Architectural drawings Bromley", slug: "bromley" },
+  { label: "Architectural drawings Camden", slug: "camden" },
+  { label: "Architectural drawings Croydon", slug: "croydon" },
+  { label: "Architectural drawings Ealing", slug: "ealing" },
+  { label: "Architectural drawings Enfield", slug: "enfield" },
+  { label: "Architectural drawings Greenwich", slug: "greenwich" },
+  { label: "Architectural drawings Hackney", slug: "hackney" },
+  { label: "Architectural drawings Hammersmith and Fulham", slug: "hammersmith-fulham" },
+  { label: "Architectural drawings Haringey", slug: "haringey" },
+  { label: "Architectural drawings Harrow", slug: "harrow" },
+  { label: "Architectural drawings Havering", slug: "havering" },
+  { label: "Architectural drawings Hillingdon", slug: "hillingdon" },
+  { label: "Architectural drawings Hounslow", slug: "hounslow" },
+  { label: "Architectural drawings Islington", slug: "islington" },
+  { label: "Architectural drawings Kensington and Chelsea", slug: "kensington-chelsea" },
+  { label: "Architectural drawings Kingston upon Thames", slug: "kingston" },
+  { label: "Architectural drawings Lambeth", slug: "lambeth" },
+  { label: "Architectural drawings Lewisham", slug: "lewisham" },
+  { label: "Architectural drawings Merton", slug: "merton" },
+  { label: "Architectural drawings Newham", slug: "newham" },
+  { label: "Architectural drawings Redbridge", slug: "redbridge" },
+  { label: "Architectural drawings Richmond upon Thames", slug: "richmond" },
+  { label: "Architectural drawings Southwark", slug: "southwark" },
+  { label: "Architectural drawings Sutton", slug: "sutton" },
+  { label: "Architectural drawings Tower Hamlets", slug: "tower-hamlets" },
+  { label: "Architectural drawings Waltham Forest", slug: "waltham-forest" },
+  { label: "Architectural drawings Wandsworth", slug: "wandsworth" },
+  { label: "Architectural drawings Westminster and City of London", slug: "westminster-city" },
+  { label: "Architectural drawings Surrey borders and M25", slug: "surrey-m25" },
+];
+
+export default function IndexPage() {
+  async function handleHeroSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    const payload = {
+      name: data.get("name"),
+      phone: data.get("phone"),
+      email: data.get("email"),
+      service: data.get("service"),
+      postcode: data.get("postcode"),
+      message: "Quick quote from hero form",
+    };
+
+    try {
+      const res = await fetch("/api/contact-resend", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (res.ok) {
+        alert("Thank you — your request has been submitted. WEDRAWPLANS will contact you shortly.");
+        form.reset();
+      } else {
+        alert("Something went wrong. Please try again or call us directly.");
+      }
+    } catch (err) {
+      alert("Network error — please try again.");
+    }
+  }
 
   return (
-    <main className="min-h-screen bg-white text-slate-900">
-      {/* HEADER / NAVBAR */}
-      <header className="relative z-20 border-b border-slate-200 bg-white">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-          {/* Logo / Brand */}
-          <Link href="/" className="flex items-center gap-3">
-            {/* When you have your real logo, replace this div with an <img> */}
-            {/* <img src="/images/wedrawplans-logo.png" alt="WEDRAWPLANS" className="h-10" /> */}
-            <div className="flex h-10 w-10 items-center justify-center rounded-md bg-emerald-500 text-slate-900 text-lg font-extrabold">
-              WD
-            </div>
-            <div className="flex flex-col leading-tight">
-              <span className="text-sm font-semibold tracking-[0.18em] uppercase">
-                WEDRAWPLANS
-              </span>
-              <span className="text-xs text-slate-500">
-                Architectural Drawing Services
-              </span>
-            </div>
-          </Link>
+    <>
+      <Head>
+        <title>
+          WEDRAWPLANS – London extension, loft and new build drawings
+        </title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
 
-          {/* Desktop nav */}
-          <nav className="hidden items-center gap-6 text-sm font-medium text-slate-700 md:flex">
-            {/* Local Designers */}
-            <div
-              className="relative"
-              onMouseEnter={() => handleOpen("local")}
-              onMouseLeave={handleClose}
-            >
-              <button
-                type="button"
-                className="flex items-center gap-1 hover:text-emerald-600"
-              >
-                <span>Local Designers</span>
-                <span className="text-xs">▼</span>
-              </button>
-              {openMenu === "local" && (
-                <div className="absolute left-0 mt-3 w-64 rounded-md border border-slate-200 bg-white shadow-lg shadow-slate-200/70">
-                  <div className="px-4 py-2 text-[11px] font-semibold uppercase tracking-wide text-slate-500">
-                    London Boroughs
-                  </div>
-                  <div className="grid grid-cols-2 gap-1 px-4 pb-4 text-xs">
-                    <Link href="/boroughs/barnet" className="hover:text-emerald-600">
-                      Barnet
-                    </Link>
-                    <Link href="/boroughs/enfield" className="hover:text-emerald-600">
-                      Enfield
-                    </Link>
-                    <Link href="/boroughs/haringey" className="hover:text-emerald-600">
-                      Haringey
-                    </Link>
-                    <Link href="/boroughs/islington" className="hover:text-emerald-600">
-                      Islington
-                    </Link>
-                    <Link href="/boroughs/redbridge" className="hover:text-emerald-600">
-                      Redbridge
-                    </Link>
-                    <Link href="/boroughs/bromley" className="hover:text-emerald-600">
-                      Bromley
-                    </Link>
-                    <Link href="/boroughs/croydon" className="hover:text-emerald-600">
-                      Croydon
-                    </Link>
-                    <Link
-                      href="/boroughs/tower-hamlets"
-                      className="hover:text-emerald-600"
-                    >
-                      Tower Hamlets
-                    </Link>
-                    <Link href="/boroughs/lambeth" className="hover:text-emerald-600">
-                      Lambeth
-                    </Link>
-                    <Link
-                      href="/boroughs/southwark"
-                      className="hover:text-emerald-600"
-                    >
-                      Southwark
-                    </Link>
-                    <Link
-                      href="/boroughs/waltham-forest"
-                      className="hover:text-emerald-600"
-                    >
-                      Waltham Forest
-                    </Link>
-                    <Link
-                      href="/boroughs/all"
-                      className="font-semibold text-emerald-600"
-                    >
-                      View all boroughs
-                    </Link>
-                  </div>
+      <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
+        {/* Header */}
+        <header className="border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur">
+          <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 lg:px-6">
+            {/* Logo */}
+            <div className="flex items-center gap-2">
+              {/* use the enhanced PNG logo */}
+              <img
+                src="/images/wedrawplans-logo.png"
+                alt="WEDRAWPLANS logo"
+                className="h-10 w-auto"
+              />
+              <div className="leading-tight">
+                <div className="text-lg font-semibold tracking-[0.2em] uppercase">
+                  WEDRAWPLANS
                 </div>
-              )}
+                <div className="text-[11px] uppercase tracking-[0.2em] text-slate-500">
+                  Architectural drawing consultants
+                </div>
+              </div>
             </div>
 
-            {/* Services */}
-            <div
-              className="relative"
-              onMouseEnter={() => handleOpen("services")}
-              onMouseLeave={handleClose}
-            >
-              <button
-                type="button"
-                className="flex items-center gap-1 hover:text-emerald-600"
-              >
-                <span>Services</span>
-                <span className="text-xs">▼</span>
-              </button>
-              {openMenu === "services" && (
-                <div className="absolute left-0 mt-3 w-72 rounded-md border border-slate-200 bg-white shadow-lg shadow-slate-200/70">
-                  <div className="px-4 py-2 text-[11px] font-semibold uppercase tracking-wide text-slate-500">
-                    Residential Plans
-                  </div>
-                  <div className="flex flex-col gap-1 px-4 pb-2 text-xs">
-                    <Link href="/services/extensions" className="hover:text-emerald-600">
-                      Extension Plans
-                    </Link>
-                    <Link href="/services/lofts" className="hover:text-emerald-600">
-                      Loft Conversion Plans
-                    </Link>
-                    <Link href="/services/garage" className="hover:text-emerald-600">
-                      Garage Conversion Plans
-                    </Link>
-                    <Link href="/services/2d-plans" className="hover:text-emerald-600">
-                      2D Planning Drawings
-                    </Link>
-                    <Link href="/services/3d" className="hover:text-emerald-600">
-                      3D Visuals and Views
-                    </Link>
-                  </div>
-                  <div className="border-t border-slate-100 px-4 py-2 text-[11px] font-semibold uppercase tracking-wide text-slate-500">
-                    Compliance and Technical
-                  </div>
-                  <div className="flex flex-col gap-1 px-4 pb-4 text-xs">
-                    <Link
-                      href="/services/building-regs"
-                      className="hover:text-emerald-600"
-                    >
-                      Building Regulation Drawings
-                    </Link>
-                    <Link
-                      href="/services/structural"
-                      className="hover:text-emerald-600"
-                    >
-                      Structural Coordination
-                    </Link>
-                    <Link
-                      href="/services/commercial"
-                      className="hover:text-emerald-600"
-                    >
-                      Commercial and Mixed Use
-                    </Link>
-                  </div>
-                </div>
-              )}
-            </div>
+            {/* Desktop nav */}
+            <nav className="hidden items-center gap-5 text-[13px] text-slate-700 lg:flex">
+              <NavMenu title="Local designers">
+                {BOROUGHS.slice(0, 8).map((borough) => (
+                  <NavItem key={borough.slug}>
+                    <a href={`/areas/${borough.slug}`} className="block">
+                      {borough.label}
+                    </a>
+                  </NavItem>
+                ))}
+              </NavMenu>
 
-            {/* Portfolio / Projects */}
-            <div
-              className="relative"
-              onMouseEnter={() => handleOpen("portfolio")}
-              onMouseLeave={handleClose}
-            >
-              <button
-                type="button"
-                className="flex items-center gap-1 hover:text-emerald-600"
-              >
-                <span>Portfolio</span>
-                <span className="text-xs">▼</span>
-              </button>
-              {openMenu === "portfolio" && (
-                <div className="absolute left-0 mt-3 w-56 rounded-md border border-slate-200 bg-white shadow-lg shadow-slate-200/70 text-xs">
-                  <div className="flex flex-col gap-1 px-4 py-3">
-                    <Link
-                      href="/projects/residential"
-                      className="hover:text-emerald-600"
-                    >
-                      Residential Projects
-                    </Link>
-                    <Link
-                      href="/projects/commercial"
-                      className="hover:text-emerald-600"
-                    >
-                      Commercial Projects
-                    </Link>
-                    <Link
-                      href="/projects/planning-approvals"
-                      className="hover:text-emerald-600"
-                    >
-                      Planning Approvals
-                    </Link>
-                    <Link
-                      href="/projects/before-after"
-                      className="hover:text-emerald-600"
-                    >
-                      Before &amp; After Drawings
-                    </Link>
-                  </div>
-                </div>
-              )}
-            </div>
+              <NavMenu title="Extension plans">
+                <NavItem>Rear extension plans</NavItem>
+                <NavItem>Side return extension plans</NavItem>
+                <NavItem>Wrap around extension plans</NavItem>
+                <NavItem>Two storey extension plans</NavItem>
+                <NavItem>Kitchen extension layouts</NavItem>
+              </NavMenu>
 
-            {/* Price Guide */}
-            <Link href="/price-guide" className="hover:text-emerald-600">
-              Price Guide
-            </Link>
+              <NavMenu title="Loft plans">
+                <NavItem>Dormer loft conversions</NavItem>
+                <NavItem>Hip to gable loft conversions</NavItem>
+                <NavItem>Mansard loft conversions</NavItem>
+                <NavItem>Velux loft layouts</NavItem>
+                <NavItem>Attic conversions</NavItem>
+              </NavMenu>
 
-            {/* Planning */}
-            <div
-              className="relative"
-              onMouseEnter={() => handleOpen("planning")}
-              onMouseLeave={handleClose}
-            >
-              <button
-                type="button"
-                className="flex items-center gap-1 hover:text-emerald-600"
-              >
-                <span>Planning</span>
-                <span className="text-xs">▼</span>
-              </button>
-              {openMenu === "planning" && (
-                <div className="absolute left-0 mt-3 w-64 rounded-md border border-slate-200 bg-white shadow-lg shadow-slate-200/70 text-xs">
-                  <div className="flex flex-col gap-1 px-4 py-3">
-                    <Link
-                      href="/planning/householder"
-                      className="hover:text-emerald-600"
-                    >
-                      Householder Planning Applications
-                    </Link>
-                    <Link
-                      href="/planning/permitted-development"
-                      className="hover:text-emerald-600"
-                    >
-                      Permitted Development Packs
-                    </Link>
-                    <Link
-                      href="/planning/listed-buildings"
-                      className="hover:text-emerald-600"
-                    >
-                      Heritage &amp; Listed Building Advice
-                    </Link>
-                    <Link
-                      href="/planning/change-of-use"
-                      className="hover:text-emerald-600"
-                    >
-                      Change of Use Applications
-                    </Link>
-                  </div>
-                </div>
-              )}
-            </div>
+              <NavMenu title="New build">
+                <NavItem>New build house plans</NavItem>
+                <NavItem>Small residential developments</NavItem>
+                <NavItem>Infill plots and backland sites</NavItem>
+                <NavItem>Conversion to flats</NavItem>
+              </NavMenu>
 
-            {/* Contact */}
-            <Link href="/contact" className="hover:text-emerald-600">
-              Contact
-            </Link>
+              <NavMenu title="Technical and support">
+                <NavItem>Building Regulation drawing packs</NavItem>
+                <NavItem>Fire and escape strategy plans</NavItem>
+                <NavItem>Measured surveys</NavItem>
+                <NavItem>Structural engineer coordination</NavItem>
+                <NavItem>Party wall drawings and support</NavItem>
+                <NavItem>Interior layouts and finishes plans</NavItem>
+              </NavMenu>
 
-            {/* More */}
-            <div
-              className="relative"
-              onMouseEnter={() => handleOpen("more")}
-              onMouseLeave={handleClose}
-            >
-              <button
-                type="button"
-                className="flex items-center gap-1 hover:text-emerald-600"
-              >
-                <span>More</span>
-                <span className="text-xs">▼</span>
-              </button>
-              {openMenu === "more" && (
-                <div className="absolute left-0 mt-3 w-52 rounded-md border border-slate-200 bg-white shadow-lg shadow-slate-200/70 text-xs">
-                  <div className="flex flex-col gap-1 px-4 py-3">
-                    <Link href="/about" className="hover:text-emerald-600">
-                      About WEDRAWPLANS
-                    </Link>
-                    <Link href="/faq" className="hover:text-emerald-600">
-                      FAQ &amp; Process
-                    </Link>
-                    <Link href="/blog" className="hover:text-emerald-600">
-                      Guides &amp; Articles
-                    </Link>
-                    <Link href="/for-agents" className="hover:text-emerald-600">
-                      For Estate Agents
-                    </Link>
-                  </div>
-                </div>
-              )}
-            </div>
+              {/* New link to the master Areas page */}
+              <a href="/areas" className="hover:underline">
+                Areas we cover
+              </a>
 
-            {/* Call to action */}
-            <Link
-              href="#lead-form"
-              className="rounded-full bg-emerald-500 px-4 py-2 text-xs font-semibold text-white hover:bg-emerald-600"
-            >
-              Get a Free Quote
-            </Link>
-          </nav>
-
-          {/* Mobile menu button */}
-          <button
-            type="button"
-            className="inline-flex items-center justify-center rounded-md border border-slate-300 px-3 py-1 text-xs md:hidden"
-            onClick={() => setMobileOpen((v) => !v)}
-          >
-            {mobileOpen ? "Close" : "Menu"}
-          </button>
-        </div>
-
-        {/* Mobile nav panel */}
-        {mobileOpen && (
-          <div className="border-t border-slate-200 bg-white md:hidden">
-            <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-4 text-sm">
-              <details>
-                <summary className="cursor-pointer py-1 text-slate-800">
-                  Local Designers
-                </summary>
-                <div className="mt-1 flex flex-wrap gap-2 text-xs text-slate-600">
-                  <Link href="/boroughs/barnet">Barnet</Link>
-                  <Link href="/boroughs/enfield">Enfield</Link>
-                  <Link href="/boroughs/haringey">Haringey</Link>
-                  <Link href="/boroughs/islington">Islington</Link>
-                  <Link href="/boroughs/redbridge">Redbridge</Link>
-                  <Link href="/boroughs/croydon">Croydon</Link>
-                  <Link href="/boroughs/all" className="text-emerald-600">
-                    View all boroughs
-                  </Link>
-                </div>
-              </details>
-
-              <details>
-                <summary className="cursor-pointer py-1 text-slate-800">
-                  Services
-                </summary>
-                <div className="mt-1 flex flex-col gap-1 text-xs text-slate-600">
-                  <Link href="/services/extensions">Extension Plans</Link>
-                  <Link href="/services/lofts">Loft Conversion Plans</Link>
-                  <Link href="/services/garage">Garage Conversion Plans</Link>
-                  <Link href="/services/2d-plans">2D Planning Drawings</Link>
-                  <Link href="/services/3d">3D Visuals &amp; Views</Link>
-                  <Link href="/services/building-regs">
-                    Building Regulation Drawings
-                  </Link>
-                  <Link href="/services/commercial">Commercial &amp; Mixed Use</Link>
-                </div>
-              </details>
-
-              <details>
-                <summary className="cursor-pointer py-1 text-slate-800">
-                  Portfolio
-                </summary>
-                <div className="mt-1 flex flex-col gap-1 text-xs text-slate-600">
-                  <Link href="/projects/residential">Residential Projects</Link>
-                  <Link href="/projects/commercial">Commercial Projects</Link>
-                  <Link href="/projects/planning-approvals">
-                    Planning Approvals
-                  </Link>
-                </div>
-              </details>
-
-              <Link href="/price-guide" className="py-1 text-slate-800">
-                Price Guide
-              </Link>
-
-              <details>
-                <summary className="cursor-pointer py-1 text-slate-800">
-                  Planning
-                </summary>
-                <div className="mt-1 flex flex-col gap-1 text-xs text-slate-600">
-                  <Link href="/planning/householder">
-                    Householder Applications
-                  </Link>
-                  <Link href="/planning/permitted-development">
-                    Permitted Development
-                  </Link>
-                  <Link href="/planning/listed-buildings">
-                    Heritage &amp; Listed
-                  </Link>
-                  <Link href="/planning/change-of-use">Change of Use</Link>
-                </div>
-              </details>
-
-              <Link href="/contact" className="py-1 text-slate-800">
+              <a href="#price-guide" className="hover:underline">
+                Price guide
+              </a>
+              <a href="#contact" className="hover:underline">
                 Contact
-              </Link>
+              </a>
+            </nav>
 
-              <details>
-                <summary className="cursor-pointer py-1 text-slate-800">
-                  More
-                </summary>
-                <div className="mt-1 flex flex-col gap-1 text-xs text-slate-600">
-                  <Link href="/about">About WEDRAWPLANS</Link>
-                  <Link href="/faq">FAQ &amp; Process</Link>
-                  <Link href="/blog">Guides &amp; Articles</Link>
-                  <Link href="/for-agents">For Estate Agents</Link>
-                </div>
-              </details>
-
-              <Link
-                href="#lead-form"
-                className="mt-2 inline-flex items-center justify-center rounded-full bg-emerald-500 px-4 py-2 text-xs font-semibold text-white"
+            {/* Desktop quick contact – modern buttons */}
+            <div className="hidden items-center gap-2 lg:flex">
+              <a
+                href={PHONE_LINK}
+                className="inline-flex items-center gap-1 rounded-full border border-slate-300 px-3 py-1.5 text-[12px] font-medium text-slate-900 shadow-sm hover:bg-slate-900 hover:text-white"
               >
-                Get a Free Quote
-              </Link>
+                <span>📞</span>
+                <span>{PHONE_DISPLAY}</span>
+              </a>
+              <a
+                href={WHATSAPP_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 rounded-full bg-[#25D366] px-3 py-1.5 text-[12px] font-medium text-white shadow-sm hover:bg-[#1ebe57]"
+              >
+                <span>💬</span>
+                <span>WhatsApp us</span>
+              </a>
+            </div>
+
+            {/* Mobile contact */}
+            <div className="flex items-center gap-3 lg:hidden">
+              <a href={PHONE_LINK} className="text-[12px] font-medium text-slate-900">
+                Call
+              </a>
+              <a
+                href={WHATSAPP_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[12px] text-[#29788a]"
+              >
+                WhatsApp
+              </a>
             </div>
           </div>
-        )}
-      </header>
+        </header>
 
-      {/* HERO SECTION */}
-      <section className="relative">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(16,185,129,0.10),_transparent_60%)]" />
-
-        <div className="relative mx-auto flex max-w-6xl flex-col gap-10 px-4 pb-16 pt-10 md:flex-row md:items-start md:pb-20 md:pt-16">
-          {/* Text side */}
-          <div className="flex-1">
-            <p className="mb-3 inline-flex items-center rounded-full border border-emerald-300 bg-emerald-50 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.14em] text-emerald-700">
-              Planning and Building Regulation Drawings for London
-            </p>
-
-            <h1 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
-              WEDRAWPLANS — Your Architectural Drawing Services
-            </h1>
-
-            <h2 className="mt-4 text-sm font-medium text-slate-700 sm:text-base">
-              Planning | Extensions | Loft Conversions | New Build | Building Regs — High
-              Quality, Low Cost Plans
-            </h2>
-
-            <p className="mt-3 text-sm text-slate-600 sm:text-base">
-              Initial Survey Within 48 Hours — Serving All London Boroughs. We are
-              architectural draftsmen focused purely on drawings: clear planning and
-              building regulation packs that planners, builders and building control can
-              work from without questions.
-            </p>
-
-            {/* CTAs */}
-            <div className="mt-6 flex flex-wrap items-center gap-3">
-              <Link
-                href="#lead-form"
-                className="inline-flex items-center justify-center rounded-full bg-emerald-500 px-5 py-2.5 text-sm font-semibold text-white hover:bg-emerald-600"
-              >
-                Get a Free Drawing Quote
-              </Link>
-              <Link
-                href="/projects/planning-approvals"
-                className="inline-flex items-center justify-center rounded-full border border-slate-300 px-5 py-2.5 text-sm font-medium text-slate-700 hover:border-emerald-500 hover:text-emerald-700"
-              >
-                View Example Drawings
-              </Link>
+        {/* HERO – heading block, then form, then explanatory text */}
+        <section className="border-b border-slate-200 bg-[#fdf8f3]">
+          <div className="mx-auto max-w-3xl px-4 py-7 lg:px-6 lg:py-10">
+            {/* Heading block */}
+            <div className="text-left">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-red-700">
+                Planning and Building Regulation Drawings for London
+              </p>
+              <h1 className="mt-2 text-[20px] font-semibold uppercase leading-snug tracking-[0.14em] text-slate-900 sm:text-[24px]">
+                WEDRAWPLANS — Londons leading architectural drawing services
+              </h1>
+              <p className="mt-2 text-[13px] font-medium text-slate-800">
+                Planning | Extensions | Loft Conversions | New Build | Building Regs — High Quality, Low Cost Plans
+              </p>
             </div>
 
-            {/* Quick trust bar */}
-            <div className="mt-6 grid gap-4 text-xs text-slate-600 sm:grid-cols-3">
-              <div>
-                <div className="font-semibold text-slate-900">Drawings Only Focus</div>
-                <div>
-                  Plans for extensions, lofts and new homes prepared to current London
-                  standards.
-                </div>
-              </div>
-              <div>
-                <div className="font-semibold text-slate-900">
-                  All 32 London Boroughs
-                </div>
-                <div>
-                  Local planning experience across inner and outer London, including
-                  conservation areas.
-                </div>
-              </div>
-              <div>
-                <div className="font-semibold text-slate-900">Fixed Low Cost Fees</div>
-                <div>
-                  Transparent prices with clear drawing scopes so you know exactly what is
-                  included.
-                </div>
-              </div>
-            </div>
-
-            {/* Who we serve */}
-            <div className="mt-6 grid gap-4 text-xs text-slate-600 sm:grid-cols-3">
-              <div className="rounded-lg border border-slate-200 bg-white p-3">
-                <div className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-emerald-700">
-                  Homeowners
-                </div>
-                <p>
-                  Rear and side extensions, loft conversions, garage conversions and full
-                  house refurb plans.
-                </p>
-              </div>
-              <div className="rounded-lg border border-slate-200 bg-white p-3">
-                <div className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-emerald-700">
-                  Developers &amp; Builders
-                </div>
-                <p>
-                  Planning packs, building regulation drawings and coordination with your
-                  structural engineer.
-                </p>
-              </div>
-              <div className="rounded-lg border border-slate-200 bg-white p-3">
-                <div className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-emerald-700">
-                  Estate Agents
-                </div>
-                <p>
-                  Fast, clear drawings for marketing, lease plans and conversion studies
-                  across London.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Lead form side */}
-          <div id="lead-form" className="flex-1 md:max-w-md md:pt-3">
-            <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-lg shadow-slate-200/70">
-              <h3 className="text-base font-semibold text-slate-900">
-                Get a Free Drawing Quote
-              </h3>
-              <p className="mt-1 text-xs text-slate-600">
-                Tell us about your project and we will come back with an outline scope and
-                fee guide. No obligation.
+            {/* Form card */}
+            <div className="mt-4 rounded-2xl bg-white p-5 shadow-md">
+              <h2 className="text-[14px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+                Free fixed fee quote
+              </h2>
+              <p className="mt-1 text-[12px] text-slate-600">
+                Share a few details and receive a clear fixed price for your
+                drawings. No obligation, no call centre – you deal directly
+                with a designer.
               </p>
 
               <form
-                className="mt-4 space-y-3 text-sm"
-                action="mailto:info@wedrawplans.com"
-                method="post"
+                onSubmit={handleHeroSubmit}
+                className="mt-3 space-y-3 text-[13px]"
               >
-                <div className="flex flex-col gap-1">
-                  <label htmlFor="name" className="text-xs text-slate-700">
+                {/* Name */}
+                <div className="space-y-1">
+                  <label className="text-[11px] font-medium text-slate-700">
                     Name
                   </label>
                   <input
-                    id="name"
                     name="name"
                     required
-                    className="rounded-md border border-slate-300 bg-white px-3 py-2 text-xs text-slate-900 outline-none focus:border-emerald-500"
-                    placeholder="Your full name"
+                    className="w-full rounded-none border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
                   />
                 </div>
 
-                <div className="flex flex-col gap-1">
-                  <label htmlFor="email" className="text-xs text-slate-700">
-                    Email
+                {/* Telephone + Email */}
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  <div className="space-y-1">
+                    <label className="text-[11px] font-medium text-slate-700">
+                      Telephone
+                    </label>
+                    <input
+                      name="phone"
+                      type="tel"
+                      required
+                      className="w-full rounded-none border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
+                    />
+                  </div>
+                  <div className="space-y-1">
+                    <label className="text-[11px] font-medium text-slate-700">
+                      Email
+                    </label>
+                    <input
+                      name="email"
+                      type="email"
+                      required
+                      className="w-full rounded-none border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
+                    />
+                  </div>
+                </div>
+
+                {/* Postcode */}
+                <div className="space-y-1">
+                  <label className="text-[11px] font-medium text-slate-700">
+                    Postcode
                   </label>
                   <input
-                    id="email"
-                    name="email"
-                    type="email"
+                    name="postcode"
                     required
-                    className="rounded-md border border-slate-300 bg-white px-3 py-2 text-xs text-slate-900 outline-none focus:border-emerald-500"
-                    placeholder="you@example.com"
+                    placeholder="SE15 4LR"
+                    onFocus={(e) => {
+                      e.target.placeholder = "";
+                    }}
+                    onBlur={(e) => {
+                      if (!e.target.value) {
+                        e.target.placeholder = "SE15 4LR";
+                      }
+                    }}
+                    className="w-full rounded-none border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] text-slate-500/70 focus:text-slate-900 focus:border-[#64b7c4] focus:outline-none"
                   />
                 </div>
 
-                <div className="flex flex-col gap-1">
-                  <label htmlFor="phone" className="text-xs text-slate-700">
-                    Phone
-                  </label>
-                  <input
-                    id="phone"
-                    name="phone"
-                    className="rounded-md border border-slate-300 bg-white px-3 py-2 text-xs text-slate-900 outline-none focus:border-emerald-500"
-                    placeholder="+44..."
-                  />
-                </div>
-
-                <div className="flex flex-col gap-1">
-                  <label htmlFor="borough" className="text-xs text-slate-700">
-                    London Borough
-                  </label>
-                  <input
-                    id="borough"
-                    name="borough"
-                    className="rounded-md border border-slate-300 bg-white px-3 py-2 text-xs text-slate-900 outline-none focus:border-emerald-500"
-                    placeholder="e.g. Redbridge, Barnet, Southwark"
-                  />
-                </div>
-
-                <div className="flex flex-col gap-1">
-                  <label htmlFor="projectType" className="text-xs text-slate-700">
-                    Project Type
+                {/* Service */}
+                <div className="space-y-1">
+                  <label className="text-[11px] font-medium text-slate-700">
+                    Which service do you need
                   </label>
                   <select
-                    id="projectType"
-                    name="projectType"
-                    className="rounded-md border border-slate-300 bg-white px-3 py-2 text-xs text-slate-900 outline-none focus:border-emerald-500"
+                    name="service"
+                    required
+                    className="w-full rounded-none border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
+                    defaultValue=""
                   >
-                    <option value="">Select</option>
-                    <option value="extension">Rear / Side Extension</option>
-                    <option value="loft">Loft Conversion</option>
-                    <option value="new-build">New Build House / Flats</option>
-                    <option value="garage">Garage Conversion</option>
-                    <option value="internal">Internal Reconfiguration</option>
-                    <option value="commercial">Commercial Project</option>
-                    <option value="other">Other / Not Sure</option>
+                    <option value="" disabled>
+                      Select service
+                    </option>
+                    <option value="House extension plans">
+                      House extension plans
+                    </option>
+                    <option value="Loft conversion plans">
+                      Loft conversion plans
+                    </option>
+                    <option value="New build or small development">
+                      New build or small residential development
+                    </option>
+                    <option value="Flat or HMO conversion plans">
+                      Flat or HMO conversion plans
+                    </option>
+                    <option value="Building Regulation drawing packs">
+                      Building Regulation drawing packs
+                    </option>
+                    <option value="Measured survey and as existing drawings">
+                      Measured survey and as existing drawings
+                    </option>
+                    <option value="Other architectural drawings">
+                      Other architectural drawings
+                    </option>
                   </select>
                 </div>
 
-                <div className="flex flex-col gap-1">
-                  <label htmlFor="message" className="text-xs text-slate-700">
-                    Brief Description
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={3}
-                    className="rounded-md border border-slate-300 bg-white px-3 py-2 text-xs text-slate-900 outline-none focus:border-emerald-500"
-                    placeholder="Tell us about your extension, loft or new build..."
-                  />
-                </div>
-
+                {/* Submit */}
                 <button
                   type="submit"
-                  className="mt-2 w-full rounded-full bg-emerald-500 px-4 py-2.5 text-xs font-semibold text-white hover:bg-emerald-600"
+                  className="mt-2 w-full rounded-full bg-[#64b7c4] px-4 py-2.5 text-[13px] font-semibold uppercase tracking-[0.2em] text-white shadow-sm hover:bg-[#4da4b4] focus:outline-none focus:ring-2 focus:ring-[#64b7c4]"
                 >
-                  Send My Drawing Enquiry
+                  Get my quote
                 </button>
 
-                <p className="mt-2 text-[10px] leading-snug text-slate-500">
-                  By sending this form you agree for WEDRAWPLANS to contact you regarding
-                  your project. We never share your details with third parties.
+                <p className="mt-2 text-[11px] text-slate-500">
+                  Popular: rear extensions, side return extensions, wrap
+                  around extensions, loft dormers, hip to gable conversions,
+                  new build plots and flat conversions.
                 </p>
               </form>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Floating WhatsApp / Call button – keeps what you had before in spirit */}
-      <a
-        href="https://wa.me/442036548508"
-        target="_blank"
-        rel="noreferrer"
-        className="fixed bottom-5 right-5 inline-flex items-center gap-2 rounded-full bg-emerald-500 px-4 py-2 text-xs font-semibold text-white shadow-lg shadow-emerald-300/60 hover:bg-emerald-600"
-      >
-        <span>WhatsApp / Call</span>
-        <span className="hidden sm:inline">+44 20 3654 8508</span>
-      </a>
-    </main>
+            {/* Text below form */}
+            <div className="mt-4 text-[13px] leading-relaxed text-slate-700">
+              <p>
+                WEDRAWPLANS focus on practical, buildable designs for house
+                extensions, loft conversions, new builds and conversions across
+                London and the M25 area. Drawings are tailored to planning and
+                Building Regulation requirements and to what builders need on
+                site.
+              </p>
+              <p className="mt-2 text-[12px] text-slate-600">
+                Many quotes are turned around the same working day. For urgent
+                projects we can often arrange an initial survey within 48 hours.
+              </p>
+              <p className="mt-2 text-[12px] text-slate-600">
+                Call{" "}
+                <a href={PHONE_LINK} className="font-semibold underline">
+                  {PHONE_DISPLAY}
+                </a>{" "}
+                or use the form above to request a fixed fee.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Local designers */}
+        <section className="border-b border-slate-200 bg-white py-10">
+          <div className="mx-auto max-w-6xl px-4 lg:px-6">
+            <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+              Local architectural drawing services across London and M25
+            </h2>
+            <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
+              WEDRAWPLANS regularly prepare drawings in boroughs across London
+              and the wider M25 area. These local area pages are designed so
+              homeowners and small developers can see how typical extensions,
+              lofts and new builds are viewed in their council area.
+            </p>
+
+            <div className="mt-5 grid gap-2 text-[13px] sm:grid-cols-2 md:grid-cols-3">
+              {BOROUGHS.map((b) => (
+                <div key={b.slug} className="border-b border-slate-200 py-1.5">
+                  <a
+                    href={`/areas/${b.slug}`}
+                    className="text-slate-800 hover:text-[#29788a] hover:underline"
+                  >
+                    {b.label}
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Extension, loft, new build and technical services */}
+        <section className="border-b border-slate-200 bg-[#f8f4f0] py-10">
+          <div className="mx-auto max-w-6xl px-4 lg:px-6">
+            <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+              Extension plans · loft plans · new build and technical drawings
+            </h2>
+            <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
+              WEDRAWPLANS follow a clear and structured approach similar in
+              spirit to the best online drawing studios, while adding more depth
+              around construction, structural coordination and on site delivery.
+            </p>
+
+            <div className="mt-6 grid gap-6 md:grid-cols-3 text-[13px]">
+              <ServiceColumn
+                heading="Extension plans"
+                items={[
+                  "Rear extension plans",
+                  "Side return extension plans",
+                  "Wrap around extension plans",
+                  "Two storey extension plans",
+                  "Kitchen extension layouts",
+                ]}
+                body="Plans, elevations and roof layouts for single and two storey extensions prepared for planning, lawful development certificates and construction."
+              />
+              <ServiceColumn
+                heading="Loft conversion plans"
+                items={[
+                  "Dormer loft conversions",
+                  "Hip to gable conversions",
+                  "Mansard loft conversions",
+                  "Velux loft layouts",
+                  "Attic conversions",
+                ]}
+                body="Stair design, headroom checks, dormer massing and roof plans set out with clear sections that are ready for structural engineer input."
+              />
+              <ServiceColumn
+                heading="New build and conversions"
+                items={[
+                  "New build house layouts and elevations",
+                  "Backland and infill developments",
+                  "Blocks of flats and small schemes",
+                  "Conversion to self contained flats",
+                  "HMO layout and licensing drawings",
+                ]}
+                body="Site layouts, access strategies and unit plans for small residential developments, supported by practical build experience."
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Project types */}
+        <section className="border-b border-slate-200 bg-white py-10">
+          <div className="mx-auto max-w-6xl px-4 lg:px-6">
+            <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+              Architectural drawings for almost any residential project
+            </h2>
+            <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
+              From a simple rear extension to full house remodelling and new
+              build, WEDRAWPLANS provide drawings for a wide range of project
+              types so that clients can handle everything through one studio.
+            </p>
+
+            <div className="mt-5 grid gap-2 text-[13px] sm:grid-cols-2 lg:grid-cols-3">
+              {[
+                "House extension plans",
+                "Loft conversion plans",
+                "New build house plans",
+                "Garden room and outbuilding plans",
+                "Garage conversion plans",
+                "Basement and lower ground conversions",
+                "Internal remodelling and open plan layouts",
+                "Property conversion to flats",
+                "HMO layout and licensing drawings",
+                "Elevation drawings and street scenes",
+                "Fire escape and evacuation plans",
+                "Planning pre application reports",
+                "Listed and heritage building drawings",
+                "Lawful development certificate drawings",
+                "Measured survey and as existing drawings",
+                "3D visual and massing sketches",
+                "Disability and accessibility adaptations",
+                "Workplace and studio layout plans",
+              ].map((item) => (
+                <span
+                  key={item}
+                  className="inline-block rounded-full border border-slate-200 bg-[#fdf8f3] px-3 py-1"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Support services */}
+        <section className="border-b border-slate-200 bg-[#f8f4f0] py-10">
+          <div className="mx-auto max-w-6xl px-4 lg:px-6">
+            <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+              Support services around your drawings
+            </h2>
+            <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
+              Beyond pure drawing production, WEDRAWPLANS help bring projects
+              together by coordinating key professionals and offering additional
+              documentation where needed.
+            </p>
+
+            <div className="mt-6 grid gap-6 md:grid-cols-3 text-[13px]">
+              <SupportCard
+                title="Measured surveys"
+                body="On site measured surveys to capture accurate as existing information, followed by clear survey drawings that can be reused by other consultants."
+              />
+              <SupportCard
+                title="Structural engineer coordination"
+                body="Close coordination with structural engineers so beams, padstones and foundations are correctly shown and noted on architectural plans."
+              />
+              <SupportCard
+                title="Party wall and neighbour support"
+                body="Plans and sections that support party wall procedures, including drawings that highlight areas of work near boundaries."
+              />
+              <SupportCard
+                title="Interior layout and finishes plans"
+                body="Interior layouts, kitchen and bathroom arrangements and simple finishes plans for clients who want more than basic space planning."
+              />
+              <SupportCard
+                title="3D visuals and simple CGI"
+                body="Where helpful we provide basic three dimensional views or simple CGI images so neighbours and decision makers can better understand the proposal."
+              />
+              <SupportCard
+                title="Contractor and supplier introductions"
+                body="For suitable projects WEDRAWPLANS can introduce builders and specialist suppliers so that the design can move efficiently into construction."
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Price guide */}
+        <section id="price-guide" className="border-b border-slate-200 bg-white py-10">
+          <div className="mx-auto max-w-6xl px-4 lg:px-6">
+            <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+              Price guide for drawings
+            </h2>
+            <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
+              Every project is quoted once the scope and location are understood.
+              These guide figures reflect common extension and loft projects and
+              help set expectations before clients get in touch.
+            </p>
+
+            <div className="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-3 text-[13px]">
+              <PriceCard
+                title="House extension planning drawings"
+                price="from £750 + VAT"
+                body="Existing and proposed floor plans and elevations set out for planning or lawful development applications."
+              />
+              <PriceCard
+                title="Loft conversion planning drawings"
+                price="from £750 + VAT"
+                body="Plans, elevations and key sections tailored to the roof form and staircase position."
+              />
+              <PriceCard
+                title="Building Regulation drawing packs"
+                price="priced to scope"
+                body="Technical sets with notes, sections and construction details coordinated with structural engineer designs."
+              />
+            </div>
+
+            <div className="mt-10 grid gap-4 md:grid-cols-3 text-[13px]">
+              <HelpCard
+                title="Phone consultation"
+                body="Arrange a telephone consultation to talk through ideas, budget and planning routes before making any commitments."
+                linkText="Schedule a call with a designer"
+              />
+              <HelpCard
+                title="Give us a call now"
+                body={`Talk to WEDRAWPLANS today about an extension, loft or new build on ${PHONE_DISPLAY}.`}
+                linkText="Call now"
+              />
+              <HelpCard
+                title="Free quote"
+                body="Use the enquiry form to send a short description and WEDRAWPLANS will email a clear fixed fee for the drawings."
+                linkText="Use the enquiry form"
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Contact area */}
+        <section id="contact" className="bg-[#f8f4f0] py-10">
+          <div className="mx-auto max-w-6xl px-4 lg:px-6">
+            <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+              Get in touch and tell us what you need
+            </h2>
+            <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
+              Share a short description of the property and what you would like
+              to achieve. WEDRAWPLANS normally respond the same working day and
+              can follow up by phone, email or WhatsApp depending on what you
+              prefer.
+            </p>
+
+            <div className="mt-6 grid gap-8 lg:grid-cols-2">
+              <ContactForm />
+              <ContactSummary />
+            </div>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer className="border-t border-slate-200 bg-white">
+          <div className="mx-auto max-w-6xl px-4 py-8 text-[12px] text-slate-600 lg:px-6">
+            <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+              <div>
+                <div className="text-[14px] font-semibold tracking-[0.2em] uppercase text-slate-900">
+                  WEDRAWPLANS
+                </div>
+                <p className="mt-2 max-w-sm text-[12px] text-slate-600">
+                  Architectural drawing consultants for extensions, loft
+                  conversions, new builds, conversions and small developments
+                  across London and the M25 area.
+                </p>
+              </div>
+              <div>
+                <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+                  Contact
+                </div>
+                <ul className="mt-2 space-y-1">
+                  <li>
+                    <a href={PHONE_LINK} className="hover:underline">
+                      Phone {PHONE_DISPLAY}
+                    </a>
+                  </li>
+                  <li>
+                    <a href={EMAIL_LINK} className="hover:underline">
+                      {EMAIL}
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={WHATSAPP_LINK}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:underline"
+                    >
+                      Chat on WhatsApp
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+                  Studio
+                </div>
+                <p className="mt-2 text-[12px] text-slate-600">
+                  201 Borough High Street
+                  <br />
+                  London SE1 1JA
+                  <br />
+                  United Kingdom
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-6 border-t border-slate-200 pt-3 text-center text-[11px] text-slate-500">
+              Copyright {new Date().getFullYear()} WEDRAWPLANS. All rights
+              reserved.
+            </div>
+          </div>
+        </footer>
+
+        {/* Floating WhatsApp bubble */}
+        <a
+          href={WHATSAPP_LINK}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Chat on WhatsApp with WEDRAWPLANS"
+          className="fixed bottom-4 right-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg ring-2 ring-white/70 hover:bg-[#1ebe57]"
+        >
+          <span className="text-xl">💬</span>
+        </a>
+      </div>
+    </>
   );
+}
+
+/* Helper components */
+
+type NavMenuProps = {
+  title: string;
+  children: React.ReactNode;
 };
 
-export default HomePage;
+function NavMenu({ title, children }: NavMenuProps) {
+  return (
+    <div className="relative group">
+      <button className="uppercase tracking-[0.14em] text-[11px] font-medium">
+        {title}
+      </button>
+      <div className="pointer-events-none absolute left-0 top-full z-20 mt-2 min-w-[240px] rounded-sm bg-white py-2 text-[12px] shadow-lg opacity-0 group-hover:pointer-events-auto group-hover:opacity-100">
+        {children}
+      </div>
+    </div>
+  );
+}
+
+function NavItem({ children }: { children: React.ReactNode }) {
+  return <div className="px-4 py-1 hover:bg-slate-100">{children}</div>;
+}
+
+type ServiceColumnProps = {
+  heading: string;
+  items: string[];
+  body: string;
+};
+
+function ServiceColumn({ heading, items, body }: ServiceColumnProps) {
+  return (
+    <div>
+      <h3 className="text-[14px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+        {heading}
+      </h3>
+      <ul className="mt-2 space-y-1 text-[13px] text-slate-700">
+        {items.map((x) => (
+          <li key={x}>• {x}</li>
+        ))}
+      </ul>
+      <p className="mt-3 text-[12px] text-slate-600">{body}</p>
+    </div>
+  );
+}
+
+type SupportCardProps = {
+  title: string;
+  body: string;
+};
+
+function SupportCard({ title, body }: SupportCardProps) {
+  return (
+    <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
+      <h3 className="text-[13px] font-semibold uppercase tracking-[0.12em] text-slate-900">
+        {title}
+      </h3>
+      <p className="mt-2 text-[12px] text-slate-600">{body}</p>
+    </div>
+  );
+}
+
+type PriceCardProps = {
+  title: string;
+  price: string;
+  body: string;
+};
+
+function PriceCard({ title, price, body }: PriceCardProps) {
+  return (
+    <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
+      <h3 className="text-[13px] font-semibold text-slate-900">{title}</h3>
+      <div className="mt-1 text-[13px] font-semibold text-slate-900">
+        {price}
+      </div>
+      <p className="mt-2 text-[12px] text-slate-600">{body}</p>
+    </div>
+  );
+}
+type HelpCardProps = {
+  title: string;
+  body: string;
+  linkText: string;
+};
+
+function HelpCard({ title, body, linkText }: HelpCardProps) {
+  function handleClick() {
+    const el = document.getElementById("contact");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
+  return (
+    <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
+      <h3 className="text-[13px] font-semibold uppercase tracking-[0.12em] text-slate-900">
+        {title}
+      </h3>
+      <p className="mt-2 text-[12px] text-slate-600">{body}</p>
+      <button
+        type="button"
+        onClick={handleClick}
+        className="mt-2 text-[12px] text-[#29788a] underline"
+      >
+        {linkText}
+      </button>
+    </div>
+  );
+}
+
+function ContactForm() {
+  async function handleContactSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    const payload = {
+      name: data.get("name"),
+      phone: data.get("phone"),
+      postcode: data.get("postcode"),
+      email: data.get("email"),
+      message: data.get("message"),
+    };
+
+    try {
+      const res = await fetch("/api/contact-resend", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (res.ok) {
+        alert(
+          "Thank you — your message has been sent to WEDRAWPLANS. We will contact you shortly."
+        );
+        form.reset();
+      } else {
+        alert("Something went wrong. Please try again or call us directly.");
+      }
+    } catch (err) {
+      alert("Network error — please try again.");
+    }
+  }
+
+  return (
+    <form onSubmit={handleContactSubmit} className="space-y-3 text-[13px]">
+      <div className="space-y-1">
+        <label className="text-[11px] font-medium text-slate-700">Name</label>
+        <input
+          name="name"
+          className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
+        />
+      </div>
+      <div className="space-y-1">
+        <label className="text-[11px] font-medium text-slate-700">
+          Telephone
+        </label>
+        <input
+          name="phone"
+          className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
+        />
+      </div>
+      <div className="space-y-1">
+        <label className="text-[11px] font-medium text-slate-700">
+          Postcode
+        </label>
+        <input
+          name="postcode"
+          className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
+        />
+      </div>
+      <div className="space-y-1">
+        <label className="text-[11px] font-medium text-slate-700">
+          Email
+        </label>
+        <input
+          name="email"
+          className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
+        />
+      </div>
+      <div className="space-y-1">
+        <label className="text-[11px] font-medium text-slate-700">
+          Type your message here
+        </label>
+        <textarea
+          name="message"
+          rows={4}
+          className="w-full border border-slate-300 bg-white px-2 py-2 text-[13px] focus:border-[#64b7c4] focus:outline-none"
+        />
+      </div>
+      <button
+        type="submit"
+        className="mt-2 w-full bg-slate-900 py-2 text-[13px] font-semibold text-white"
+      >
+        Submit
+      </button>
+    </form>
+  );
+}
+
+function ContactSummary() {
+  return (
+    <div className="text-[13px] text-slate-700">
+      <p>
+        WEDRAWPLANS provide a full range of architectural drawing services for
+        house extensions, loft conversions, garage conversions, garden rooms,
+        flat conversions, HMOs and small new build developments.
+      </p>
+      <p className="mt-3">
+        The focus is on clear, buildable designs that support planning and
+        Building Regulation approvals and that help builders understand exactly
+        what is intended on site.
+      </p>
+      <p className="mt-3">
+        If you already have estate agent plans, older drawings or simple
+        sketches, you can email them together with photos so that the property
+        can be reviewed before a call.
+      </p>
+    </div>
+  );
+}
