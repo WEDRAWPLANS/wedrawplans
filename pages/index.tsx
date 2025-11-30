@@ -99,30 +99,24 @@ export default function IndexPage() {
             <div className="flex items-center justify-between gap-4">
               {/* Left: logo + strapline (fixed width so it looks the same on all screens) */}
 
-{/* Left: WEDRAWPLANS logo block – bigger, clean strapline in one line */}
-<div className="flex items-center gap-6">
-  <div className="flex flex-col items-start">
-    {/* Logo */}
-    <div className="w-[230px]">
-      <img
-        src="/images/wedrawplans-logo.png"
-        alt="WEDRAWPLANS"
-        className="h-14 w-full object-contain"
-      />
-    </div>
-
-    {/* Strapline – same width as logo, single line */}
-    <span
-      className="mt-1 w-[230px] text-[11px] tracking-[0.18em] uppercase text-slate-500 whitespace-nowrap"
-    >
+{/* Left: WEDRAWPLANS logo block */}
+<div className="flex items-center">
+  <div className="w-[210px]">
+    <img
+      src="/images/wedrawplans-logo.png"
+      alt="WEDRAWPLANS"
+      className="h-14 w-full object-contain"
+    />
+    <div className="mt-1 w-full text-center text-[11px] tracking-[0.18em] uppercase text-slate-500 whitespace-nowrap">
       Architectural Drawing Consultants
-    </span>
+    </div>
   </div>
 </div>
 
 
+
               {/* Centre: navigation */}
-<nav className="hidden flex-1 items-center justify-center gap-8 text-[14px] text-slate-900 lg:flex">
+<nav className="hidden flex-1 items-center justify-center gap-6 text-[13px] text-slate-900 lg:flex">
   {/* 1. Local Designers */}
   <NavMenu title="Local Designers">
     {BOROUGHS.slice(0, 8).map((borough) => (
@@ -752,7 +746,7 @@ type ServiceColumnProps = {
 function ServiceColumn({ heading, items, body }: ServiceColumnProps) {
   return (
     <div>
-      <h3 className="text-[14px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+      <h3 className="text-[13px] font-normal text-slate-900 whitespace-nowrap hover:text-black">
         {heading}
       </h3>
       <ul className="mt-2 space-y-1 text-[13px] text-slate-700">
