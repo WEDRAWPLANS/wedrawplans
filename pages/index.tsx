@@ -93,159 +93,134 @@ export default function IndexPage() {
       </Head>
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
-        {/* HEADER */}
-        <header className="border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur">
-          <div className="mx-auto max-w-6xl px-4 py-3 lg:px-6">
-            <div className="flex items-center justify-between gap-4">
-              {/* Left: logo + strapline (fixed width so it looks the same on all screens) */}
+{/* HEADER */}
+<header className="border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur">
+  <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 lg:px-6">
+    {/* Left: logo + strapline */}
+    <div className="flex items-center">
+      <div className="flex flex-col items-start w-[210px]">
+        <img
+          src="/images/wedrawplans-logo.png"
+          alt="WEDRAWPLANS"
+          className="h-12 w-full object-contain lg:h-14"
+        />
+        <div className="mt-1 text-[9px] tracking-[0.12em] text-slate-500 uppercase">
+          Architectural Drawing Consultants
+        </div>
+      </div>
+    </div>
 
-{/* Left: WEDRAWPLANS logo block */}
-<div className="flex items-center">
- {/* Logo block */}
-<div className="flex flex-col items-start w-[170px] sm:w-[200px]">
-  <img
-    src="/images/wedrawplans-logo.png"
-    alt="WEDRAWPLANS"
-    className="h-12 w-full object-contain sm:h-14"
-  />
-<div className="mt-1 text-[9px] tracking-[0.08em] text-slate-500 uppercase w-[170px] sm:w-[200px]">
-  Architectural Drawing Consultants
-</div>
+    {/* Desktop nav */}
+    <nav className="hidden flex-1 items-center justify-center gap-6 text-[13px] text-slate-900 lg:flex">
+      {/* 1. Local Designers */}
+      <NavMenu title="Local Designers">
+        {BOROUGHS.slice(0, 8).map((borough) => (
+          <NavItem key={borough.slug}>
+            <a href={`/areas/${borough.slug}`} className="block">
+              {borough.label}
+            </a>
+          </NavItem>
+        ))}
+        <NavItem>
+          <a href="/areas" className="block font-semibold text-[#29788a]">
+            View all boroughs
+          </a>
+        </NavItem>
+      </NavMenu>
 
-</div>
-    {/* Logo */}
-    <img
-      src="/images/wedrawplans-logo.png"
-      alt="WEDRAWPLANS"
-      className="h-14 w-full object-contain"
-    />
+      {/* 2. Extension Plans */}
+      <NavMenu title="Extension Plans">
+        <NavItem>Rear extension plans</NavItem>
+        <NavItem>Side return extensions</NavItem>
+        <NavItem>Wrap-around extensions</NavItem>
+        <NavItem>Two storey extensions</NavItem>
+        <NavItem>Kitchen extension layouts</NavItem>
+        <NavItem>Garage conversion plans</NavItem>
+        <NavItem>Garden room / studio plans</NavItem>
+      </NavMenu>
 
-    {/* Strapline (EXACT same width as logo) */}
-    <div className="mt-1 w-full text-[11px] tracking-[0.18em] text-slate-500 uppercase whitespace-nowrap text-left">
-      Architectural Drawing Consultants
+      {/* 3. Loft Plans */}
+      <NavMenu title="Loft Plans">
+        <NavItem>Dormer loft conversions</NavItem>
+        <NavItem>Hip to gable lofts</NavItem>
+        <NavItem>Mansard loft conversions</NavItem>
+        <NavItem>Velux loft layouts</NavItem>
+        <NavItem>Attic conversions</NavItem>
+      </NavMenu>
+
+      {/* 4. New Build */}
+      <NavMenu title="New Build">
+        <NavItem>New build house plans</NavItem>
+        <NavItem>Small residential developments</NavItem>
+        <NavItem>Backland and infill sites</NavItem>
+        <NavItem>Conversion to self-contained flats</NavItem>
+        <NavItem>Basement and lower ground conversions</NavItem>
+      </NavMenu>
+
+      {/* 5. Technical & Support */}
+      <NavMenu title="Technical & Support">
+        <NavItem>Building Regulation drawing packs</NavItem>
+        <NavItem>Fire and escape strategy plans</NavItem>
+        <NavItem>Measured surveys</NavItem>
+        <NavItem>Structural engineer coordination</NavItem>
+        <NavItem>Party wall plans and support</NavItem>
+        <NavItem>HMO layout and licensing drawings</NavItem>
+        <NavItem>Interior layouts and finishes</NavItem>
+      </NavMenu>
+
+      {/* 6. Areas we cover */}
+      <a href="/areas" className="whitespace-nowrap hover:text-black">
+        Areas we cover
+      </a>
+
+      {/* 7. Price guide */}
+      <a href="#price-guide" className="whitespace-nowrap hover:text-black">
+        Price guide
+      </a>
+
+      {/* 8. Contact */}
+      <a href="#contact" className="whitespace-nowrap hover:text-black">
+        Contact
+      </a>
+    </nav>
+
+    {/* Desktop quick contact */}
+    <div className="hidden items-center gap-3 lg:flex">
+      <a
+        href={PHONE_LINK}
+        className="inline-flex items-center gap-1 rounded-full border border-slate-300 px-3 py-1.5 text-[12px] font-medium text-slate-900 shadow-sm hover:bg-slate-900 hover:text-white"
+      >
+        <span>📞</span>
+        <span>{PHONE_DISPLAY}</span>
+      </a>
+      <a
+        href={WHATSAPP_LINK}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center gap-1 rounded-full bg-[#25D366] px-3 py-1.5 text-[12px] font-medium text-white shadow-sm hover:bg-[#1ebe57]"
+      >
+        <span>💬</span>
+        <span>WhatsApp us</span>
+      </a>
+    </div>
+
+    {/* Mobile contact */}
+    <div className="flex items-center gap-3 lg:hidden">
+      <a href={PHONE_LINK} className="text-[12px] font-medium text-slate-900">
+        Call
+      </a>
+      <a
+        href={WHATSAPP_LINK}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-[12px] text-[#29788a]"
+      >
+        WhatsApp
+      </a>
     </div>
   </div>
-</div>
+</header>
 
-
-
-
-              {/* Centre: navigation */}
-<nav className="hidden flex-1 items-center justify-center gap-6 text-[13px] text-slate-900 lg:flex">
-  {/* 1. Local Designers */}
-  <NavMenu title="Local Designers">
-    {BOROUGHS.slice(0, 8).map((borough) => (
-      <NavItem key={borough.slug}>
-        <a href={`/areas/${borough.slug}`} className="block">
-          {borough.label}
-        </a>
-      </NavItem>
-    ))}
-    <NavItem>
-      <a href="/areas" className="block font-semibold text-[#29788a]">
-        View all boroughs
-      </a>
-    </NavItem>
-  </NavMenu>
-
-  {/* 2. Extension Plans */}
-  <NavMenu title="Extension Plans">
-    <NavItem>Rear extension plans</NavItem>
-    <NavItem>Side return extensions</NavItem>
-    <NavItem>Wrap-around extensions</NavItem>
-    <NavItem>Two storey extensions</NavItem>
-    <NavItem>Kitchen extension layouts</NavItem>
-    <NavItem>Garage conversion plans</NavItem>
-    <NavItem>Garden room / studio plans</NavItem>
-  </NavMenu>
-
-  {/* 3. Loft Plans */}
-  <NavMenu title="Loft Plans">
-    <NavItem>Dormer loft conversions</NavItem>
-    <NavItem>Hip to gable lofts</NavItem>
-    <NavItem>Mansard loft conversions</NavItem>
-    <NavItem>Velux loft layouts</NavItem>
-    <NavItem>Attic conversions</NavItem>
-  </NavMenu>
-
-  {/* 4. New Build */}
-  <NavMenu title="New Build">
-    <NavItem>New build house plans</NavItem>
-    <NavItem>Small residential developments</NavItem>
-    <NavItem>Backland and infill sites</NavItem>
-    <NavItem>Conversion to self-contained flats</NavItem>
-    <NavItem>Basement and lower ground conversions</NavItem>
-  </NavMenu>
-
-  {/* 5. Technical & Support */}
-  <NavMenu title="Technical & Support">
-    <NavItem>Building Regulation drawing packs</NavItem>
-    <NavItem>Fire and escape strategy plans</NavItem>
-    <NavItem>Measured surveys</NavItem>
-    <NavItem>Structural engineer coordination</NavItem>
-    <NavItem>Party wall plans and support</NavItem>
-    <NavItem>HMO layout and licensing drawings</NavItem>
-    <NavItem>Interior layouts and finishes</NavItem>
-  </NavMenu>
-
-  {/* 6. Areas we cover */}
-  <a href="/areas" className="whitespace-nowrap hover:text-black">
-    Areas we cover
-  </a>
-
-  {/* 7. Price guide */}
-  <a href="#price-guide" className="whitespace-nowrap hover:text-black">
-    Price guide
-  </a>
-
-  {/* 8. Contact */}
-  <a href="#contact" className="whitespace-nowrap hover:text-black">
-    Contact
-  </a>
-</nav>
-
-
-
-              {/* Right: phone + WhatsApp (desktop) */}
-              <div className="hidden items-center gap-3 lg:flex">
-                <a
-                  href={PHONE_LINK}
-                  className="flex h-16 items-center rounded-full border border-slate-300 bg-white px-4 text-[11px] font-semibold text-slate-900 shadow-sm"
-                >
-                  <span className="mr-2 text-sm">📞</span>
-                  <span className="flex flex-col leading-snug">
-                    <span>020</span>
-                    <span>3654</span>
-                    <span>8508</span>
-                  </span>
-                </a>
-                <a
-                  href={WHATSAPP_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#1ebe57]"
-                >
-                  <span>WhatsApp us</span>
-                </a>
-              </div>
-
-              {/* Right: mobile contact only */}
-              <div className="flex items-center gap-3 lg:hidden">
-                <a href={PHONE_LINK} className="text-[12px] font-medium text-slate-900">
-                  Call
-                </a>
-                <a
-                  href={WHATSAPP_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[12px] text-[#29788a]"
-                >
-                  WhatsApp
-                </a>
-              </div>
-            </div>
-          </div>
-        </header>
 
         {/* HERO – heading block, then form, then explanatory text */}
         <section className="border-b border-slate-200 bg-[#fdf8f3]">
