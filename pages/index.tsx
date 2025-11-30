@@ -109,11 +109,9 @@ export default function IndexPage() {
     className="h-12 w-full object-contain sm:h-14"
   />
 
-  <div
-    className="mt-1 w-full text-[9px] sm:text-[11px] tracking-[0.18em] text-slate-500 uppercase whitespace-nowrap"
-  >
-    Architectural Drawing Consultants
-  </div>
+<div className="mt-1 w-full text-[8px] sm:text-[10px] tracking-[0.10em] text-slate-500 uppercase whitespace-nowrap">
+  Architectural Drawing Consultants
+</div>
 </div>
     {/* Logo */}
     <img
