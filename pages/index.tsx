@@ -108,10 +108,10 @@ export default function IndexPage() {
     alt="WEDRAWPLANS"
     className="h-12 w-full object-contain sm:h-14"
   />
-
-<div className="mt-1 w-full text-[8px] sm:text-[10px] tracking-[0.10em] text-slate-500 uppercase whitespace-nowrap">
+<div className="mt-1 text-[9px] tracking-[0.08em] text-slate-500 uppercase w-[170px] sm:w-[200px]">
   Architectural Drawing Consultants
 </div>
+
 </div>
     {/* Logo */}
     <img
