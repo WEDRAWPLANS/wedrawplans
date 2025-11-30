@@ -112,7 +112,7 @@ export default function IndexPage() {
               </div>
 
               {/* Centre: navigation */}
-<nav className="hidden flex-1 items-center justify-center gap-5 text-[13px] text-slate-800 lg:flex">
+<nav className="hidden flex-1 items-center justify-center gap-8 text-[14px] text-slate-900 lg:flex">
   {/* 1. Local Designers */}
   <NavMenu title="Local Designers">
     {BOROUGHS.slice(0, 8).map((borough) => (
@@ -136,6 +136,8 @@ export default function IndexPage() {
     <NavItem>Wrap-around extensions</NavItem>
     <NavItem>Two storey extensions</NavItem>
     <NavItem>Kitchen extension layouts</NavItem>
+    <NavItem>Garage conversion plans</NavItem>
+    <NavItem>Garden room / studio plans</NavItem>
   </NavMenu>
 
   {/* 3. Loft Plans */}
@@ -152,50 +154,37 @@ export default function IndexPage() {
     <NavItem>New build house plans</NavItem>
     <NavItem>Small residential developments</NavItem>
     <NavItem>Backland and infill sites</NavItem>
-    <NavItem>Conversion to flats</NavItem>
-  </NavMenu>
-
-  {/* 5. Garage & Garden Rooms */}
-  <NavMenu title="Garage & Garden Rooms">
-    <NavItem>Garage conversion plans</NavItem>
-    <NavItem>Detached garage designs</NavItem>
-    <NavItem>Garden room / studio plans</NavItem>
-    <NavItem>Home office outbuildings</NavItem>
-  </NavMenu>
-
-  {/* 6. Basements & Conversions */}
-  <NavMenu title="Basements & Conversions">
-    <NavItem>Basement conversion plans</NavItem>
-    <NavItem>Lower ground alterations</NavItem>
     <NavItem>Conversion to self-contained flats</NavItem>
-    <NavItem>HMO layout and licensing drawings</NavItem>
+    <NavItem>Basement and lower ground conversions</NavItem>
   </NavMenu>
 
-  {/* 7. Technical & Support */}
+  {/* 5. Technical & Support */}
   <NavMenu title="Technical & Support">
     <NavItem>Building Regulation drawing packs</NavItem>
     <NavItem>Fire and escape strategy plans</NavItem>
     <NavItem>Measured surveys</NavItem>
     <NavItem>Structural engineer coordination</NavItem>
     <NavItem>Party wall plans and support</NavItem>
+    <NavItem>HMO layout and licensing drawings</NavItem>
     <NavItem>Interior layouts and finishes</NavItem>
   </NavMenu>
 
-  {/* 8. Areas we cover */}
-  <a href="/areas" className="whitespace-nowrap hover:text-[#29788a]">
+  {/* 6. Areas we cover */}
+  <a href="/areas" className="whitespace-nowrap hover:text-black">
     Areas we cover
   </a>
 
-  {/* 9. Price guide */}
-  <a href="#price-guide" className="whitespace-nowrap hover:text-[#29788a]">
+  {/* 7. Price guide */}
+  <a href="#price-guide" className="whitespace-nowrap hover:text-black">
     Price guide
   </a>
 
-  {/* 10. Contact */}
-  <a href="#contact" className="whitespace-nowrap hover:text-[#29788a]">
+  {/* 8. Contact */}
+  <a href="#contact" className="whitespace-nowrap hover:text-black">
     Contact
   </a>
 </nav>
+
 
 
               {/* Right: phone + WhatsApp (desktop) */}
@@ -730,7 +719,7 @@ type NavMenuProps = {
 function NavMenu({ title, children }: NavMenuProps) {
   return (
     <div className="relative group">
-      <button className="text-[13px] font-medium text-slate-800 whitespace-nowrap">
+      <button className="text-[14px] font-normal text-slate-900 whitespace-nowrap hover:text-black">
         {title}
       </button>
       <div className="pointer-events-none absolute left-0 top-full z-20 mt-2 min-w-[260px] rounded-md bg-white py-2 text-[13px] shadow-lg opacity-0 group-hover:pointer-events-auto group-hover:opacity-100">
