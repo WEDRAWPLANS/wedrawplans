@@ -81,9 +81,7 @@ export default function IndexPage() {
   return (
     <>
       <Head>
-        <title>
-          WEDRAWPLANS – London extension, loft and new build drawings
-        </title>
+        <title>WEDRAWPLANS – London extension, loft and new build drawings</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
@@ -93,150 +91,135 @@ export default function IndexPage() {
       </Head>
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
-{/* HEADER */}
-<header className="border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur">
-  <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 lg:px-6">
-    {/* Left: logo + strapline */}
-    <div className="flex items-center">
-      <div className="flex flex-col items-start w-[210px]">
-        <img
-          src="/images/wedrawplans-logo.png"
-          alt="WEDRAWPLANS"
-          className="h-12 w-full object-contain lg:h-14"
-        />
-        <div className="mt-1 text-[9px] tracking-[0.12em] text-slate-500 uppercase">
-          Architectural Drawing Consultants
-        </div>
-      </div>
-    </div>
+        {/* HEADER */}
+        <header className="border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur">
+          <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 lg:px-6">
+            {/* Left: logo + strapline */}
+            <div className="flex items-center gap-8 flex-shrink-0">
+              <div className="flex flex-col items-start w-[210px]">
+                <img
+                  src="/images/wedrawplans-logo.png"
+                  alt="WEDRAWPLANS"
+                  className="h-12 w-full object-contain lg:h-14"
+                />
+                <div className="mt-1 text-[9px] tracking-[0.16em] text-slate-900 uppercase">
+                  Architectural Drawing Consultants
+                </div>
+              </div>
+            </div>
 
-    {/* Desktop nav */}
-    <nav className="hidden flex-1 items-center justify-center gap-6 text-[13px] text-slate-900 lg:flex">
-      {/* 1. Local Designers */}
-      <NavMenu title="Local Designers">
-        {BOROUGHS.slice(0, 8).map((borough) => (
-          <NavItem key={borough.slug}>
-            <a href={`/areas/${borough.slug}`} className="block">
-              {borough.label}
-            </a>
-          </NavItem>
-        ))}
-        <NavItem>
-          <a href="/areas" className="block font-semibold text-[#29788a]">
-            View all boroughs
-          </a>
-        </NavItem>
-      </NavMenu>
+            {/* Desktop nav */}
+            <nav className="hidden lg:flex flex-1 items-center justify-center gap-8 text-[13px] text-slate-900">
+              <NavMenu title="Local Designers">
+                {BOROUGHS.slice(0, 8).map((borough) => (
+                  <NavItem key={borough.slug}>
+                    <a href={`/areas/${borough.slug}`} className="block">
+                      {borough.label}
+                    </a>
+                  </NavItem>
+                ))}
+                <NavItem>
+                  <a href="/areas" className="block font-semibold text-[#29788a]">
+                    View all boroughs
+                  </a>
+                </NavItem>
+              </NavMenu>
 
-      {/* 2. Extension Plans */}
-      <NavMenu title="Extension Plans">
-        <NavItem>Rear extension plans</NavItem>
-        <NavItem>Side return extensions</NavItem>
-        <NavItem>Wrap-around extensions</NavItem>
-        <NavItem>Two storey extensions</NavItem>
-        <NavItem>Kitchen extension layouts</NavItem>
-        <NavItem>Garage conversion plans</NavItem>
-        <NavItem>Garden room / studio plans</NavItem>
-      </NavMenu>
+              <NavMenu title="Extension Plans">
+                <NavItem>Rear extension plans</NavItem>
+                <NavItem>Side return extensions</NavItem>
+                <NavItem>Wrap-around extensions</NavItem>
+                <NavItem>Two storey extensions</NavItem>
+                <NavItem>Kitchen extension layouts</NavItem>
+                <NavItem>Garage conversion plans</NavItem>
+                <NavItem>Garden room and studio plans</NavItem>
+              </NavMenu>
 
-      {/* 3. Loft Plans */}
-      <NavMenu title="Loft Plans">
-        <NavItem>Dormer loft conversions</NavItem>
-        <NavItem>Hip to gable lofts</NavItem>
-        <NavItem>Mansard loft conversions</NavItem>
-        <NavItem>Velux loft layouts</NavItem>
-        <NavItem>Attic conversions</NavItem>
-      </NavMenu>
+              <NavMenu title="Loft Plans">
+                <NavItem>Dormer loft conversions</NavItem>
+                <NavItem>Hip to gable loft conversions</NavItem>
+                <NavItem>Mansard loft conversions</NavItem>
+                <NavItem>Velux loft layouts</NavItem>
+                <NavItem>Attic conversions</NavItem>
+              </NavMenu>
 
-      {/* 4. New Build */}
-      <NavMenu title="New Build">
-        <NavItem>New build house plans</NavItem>
-        <NavItem>Small residential developments</NavItem>
-        <NavItem>Backland and infill sites</NavItem>
-        <NavItem>Conversion to self-contained flats</NavItem>
-        <NavItem>Basement and lower ground conversions</NavItem>
-      </NavMenu>
+              <NavMenu title="New Build">
+                <NavItem>New build house plans</NavItem>
+                <NavItem>Small residential developments</NavItem>
+                <NavItem>Backland and infill sites</NavItem>
+                <NavItem>Conversion to self-contained flats</NavItem>
+                <NavItem>Basement and lower ground conversions</NavItem>
+              </NavMenu>
 
-      {/* 5. Technical & Support */}
-      <NavMenu title="Technical & Support">
-        <NavItem>Building Regulation drawing packs</NavItem>
-        <NavItem>Fire and escape strategy plans</NavItem>
-        <NavItem>Measured surveys</NavItem>
-        <NavItem>Structural engineer coordination</NavItem>
-        <NavItem>Party wall plans and support</NavItem>
-        <NavItem>HMO layout and licensing drawings</NavItem>
-        <NavItem>Interior layouts and finishes</NavItem>
-      </NavMenu>
+              <NavMenu title="Technical & Support">
+                <NavItem>Building Regulation drawing packs</NavItem>
+                <NavItem>Fire and escape strategy plans</NavItem>
+                <NavItem>Measured surveys</NavItem>
+                <NavItem>Structural engineer coordination</NavItem>
+                <NavItem>Party wall plans and support</NavItem>
+                <NavItem>HMO layout and licensing drawings</NavItem>
+                <NavItem>Interior layouts and finishes</NavItem>
+              </NavMenu>
 
-      {/* 6. Areas we cover */}
-      <a href="/areas" className="whitespace-nowrap hover:text-black">
-        Areas we cover
-      </a>
+              <a href="/areas" className="whitespace-nowrap hover:text-black">
+                Areas we cover
+              </a>
+              <a href="#price-guide" className="whitespace-nowrap hover:text-black">
+                Price guide
+              </a>
+              <a href="#contact" className="whitespace-nowrap hover:text-black">
+                Contact
+              </a>
+            </nav>
 
-      {/* 7. Price guide */}
-      <a href="#price-guide" className="whitespace-nowrap hover:text-black">
-        Price guide
-      </a>
+            {/* Desktop contact buttons */}
+            <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
+              <a
+                href={PHONE_LINK}
+                className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-2 text-[12px] font-semibold text-white shadow-sm hover:bg-[#1ebe57]"
+              >
+                <span>📞</span>
+                <span>Call us</span>
+              </a>
+              <a
+                href={WHATSAPP_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-[#1ebe57] px-4 py-2 text-[12px] font-semibold text-white shadow-sm hover:bg-[#159e48]"
+              >
+                <span>💬</span>
+                <span>WhatsApp us</span>
+              </a>
+            </div>
 
-      {/* 8. Contact */}
-      <a href="#contact" className="whitespace-nowrap hover:text-black">
-        Contact
-      </a>
-    </nav>
+            {/* Mobile contact (right of logo) */}
+            <div className="flex items-center gap-3 lg:hidden">
+              <a href={PHONE_LINK} className="text-[12px] font-medium text-slate-900">
+                Call
+              </a>
+              <a
+                href={WHATSAPP_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[12px] text-[#29788a]"
+              >
+                WhatsApp
+              </a>
+            </div>
+          </div>
+        </header>
 
-    {/* Desktop quick contact */}
-    <div className="hidden items-center gap-3 lg:flex">
-      <a
-        href={PHONE_LINK}
-        className="inline-flex items-center gap-1 rounded-full border border-slate-300 px-3 py-1.5 text-[12px] font-medium text-slate-900 shadow-sm hover:bg-slate-900 hover:text-white"
-      >
-        <span>📞</span>
-        <span>{PHONE_DISPLAY}</span>
-      </a>
-      <a
-        href={WHATSAPP_LINK}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center gap-1 rounded-full bg-[#25D366] px-3 py-1.5 text-[12px] font-medium text-white shadow-sm hover:bg-[#1ebe57]"
-      >
-        <span>💬</span>
-        <span>WhatsApp us</span>
-      </a>
-    </div>
-
-    {/* Mobile contact */}
-    <div className="flex items-center gap-3 lg:hidden">
-      <a href={PHONE_LINK} className="text-[12px] font-medium text-slate-900">
-        Call
-      </a>
-      <a
-        href={WHATSAPP_LINK}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-[12px] text-[#29788a]"
-      >
-        WhatsApp
-      </a>
-    </div>
-  </div>
-</header>
-
-
-        {/* HERO – heading block, then form, then explanatory text */}
+        {/* HERO */}
         <section className="border-b border-slate-200 bg-[#fdf8f3]">
           <div className="mx-auto max-w-3xl px-4 py-7 lg:px-6 lg:py-10">
             {/* Heading block */}
             <div className="text-left">
               <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-red-700">
-                Planning and Building Regulation Drawings for London
+                Planning and building regulation drawings for London
               </p>
               <h1 className="mt-2 text-[20px] font-semibold uppercase leading-snug tracking-[0.14em] text-slate-900 sm:text-[24px]">
-                WEDRAWPLANS — Londons leading architectural drawing services
+                Wedrawplans — Londons leading architectural drawing services
               </h1>
-              <p className="mt-2 text-[13px] font-medium text-slate-800">
-                Planning | Extensions | Loft Conversions | New Build | Building Regs — High
-                Quality, Low Cost Plans
-              </p>
             </div>
 
             {/* Form card */}
@@ -245,20 +228,12 @@ export default function IndexPage() {
                 Free fixed fee quote
               </h2>
               <p className="mt-1 text-[12px] text-slate-600">
-                Share a few details and receive a clear fixed price for your
-                drawings. No obligation, no call centre – you deal directly
-                with a designer.
+                Share a few details and receive a clear fixed price for your drawings. No obligation, no call centre – you deal directly with a designer.
               </p>
 
-              <form
-                onSubmit={handleHeroSubmit}
-                className="mt-3 space-y-3 text-[13px]"
-              >
-                {/* Name */}
+              <form onSubmit={handleHeroSubmit} className="mt-3 space-y-3 text-[13px]">
                 <div className="space-y-1">
-                  <label className="text-[11px] font-medium text-slate-700">
-                    Name
-                  </label>
+                  <label className="text-[11px] font-medium text-slate-700">Name</label>
                   <input
                     name="name"
                     required
@@ -266,12 +241,9 @@ export default function IndexPage() {
                   />
                 </div>
 
-                {/* Telephone + Email */}
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                   <div className="space-y-1">
-                    <label className="text-[11px] font-medium text-slate-700">
-                      Telephone
-                    </label>
+                    <label className="text-[11px] font-medium text-slate-700">Telephone</label>
                     <input
                       name="phone"
                       type="tel"
@@ -280,9 +252,7 @@ export default function IndexPage() {
                     />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-[11px] font-medium text-slate-700">
-                      Email
-                    </label>
+                    <label className="text-[11px] font-medium text-slate-700">Email</label>
                     <input
                       name="email"
                       type="email"
@@ -292,11 +262,8 @@ export default function IndexPage() {
                   </div>
                 </div>
 
-                {/* Postcode */}
                 <div className="space-y-1">
-                  <label className="text-[11px] font-medium text-slate-700">
-                    Postcode
-                  </label>
+                  <label className="text-[11px] font-medium text-slate-700">Postcode</label>
                   <input
                     name="postcode"
                     required
@@ -313,11 +280,8 @@ export default function IndexPage() {
                   />
                 </div>
 
-                {/* Service */}
                 <div className="space-y-1">
-                  <label className="text-[11px] font-medium text-slate-700">
-                    Which service do you need
-                  </label>
+                  <label className="text-[11px] font-medium text-slate-700">Which service do you need</label>
                   <select
                     name="service"
                     required
@@ -327,31 +291,18 @@ export default function IndexPage() {
                     <option value="" disabled>
                       Select service
                     </option>
-                    <option value="House extension plans">
-                      House extension plans
-                    </option>
-                    <option value="Loft conversion plans">
-                      Loft conversion plans
-                    </option>
-                    <option value="New build or small development">
-                      New build or small residential development
-                    </option>
-                    <option value="Flat or HMO conversion plans">
-                      Flat or HMO conversion plans
-                    </option>
-                    <option value="Building Regulation drawing packs">
-                      Building Regulation drawing packs
-                    </option>
+                    <option value="House extension plans">House extension plans</option>
+                    <option value="Loft conversion plans">Loft conversion plans</option>
+                    <option value="New build or small development">New build or small residential development</option>
+                    <option value="Flat or HMO conversion plans">Flat or HMO conversion plans</option>
+                    <option value="Building Regulation drawing packs">Building Regulation drawing packs</option>
                     <option value="Measured survey and as existing drawings">
                       Measured survey and as existing drawings
                     </option>
-                    <option value="Other architectural drawings">
-                      Other architectural drawings
-                    </option>
+                    <option value="Other architectural drawings">Other architectural drawings</option>
                   </select>
                 </div>
 
-                {/* Submit */}
                 <button
                   type="submit"
                   className="mt-2 w-full rounded-full bg-[#64b7c4] px-4 py-2.5 text-[13px] font-semibold uppercase tracking-[0.2em] text-white shadow-sm hover:bg-[#4da4b4] focus:outline-none focus:ring-2 focus:ring-[#64b7c4]"
@@ -360,25 +311,17 @@ export default function IndexPage() {
                 </button>
 
                 <p className="mt-2 text-[11px] text-slate-500">
-                  Popular: rear extensions, side return extensions, wrap
-                  around extensions, loft dormers, hip to gable conversions,
-                  new build plots and flat conversions.
+                  Popular: rear extensions, side return extensions, wrap around extensions, loft dormers, hip to gable conversions, new build plots and flat conversions.
                 </p>
               </form>
             </div>
 
-            {/* Text below form */}
             <div className="mt-4 text-[13px] leading-relaxed text-slate-700">
               <p>
-                WEDRAWPLANS focus on practical, buildable designs for house
-                extensions, loft conversions, new builds and conversions across
-                London and the M25 area. Drawings are tailored to planning and
-                Building Regulation requirements and to what builders need on
-                site.
+                Wedrawplans focus on practical, buildable designs for house extensions, loft conversions, new builds and conversions across London and the M25 area. Drawings are tailored to planning and Building Regulation requirements and to what builders need on site.
               </p>
               <p className="mt-2 text-[12px] text-slate-600">
-                Many quotes are turned around the same working day. For urgent
-                projects we can often arrange an initial survey within 48 hours.
+                Many quotes are turned around the same working day. For urgent projects an initial survey can often be arranged within 48 hours.
               </p>
               <p className="mt-2 text-[12px] text-slate-600">
                 Call{" "}
@@ -398,26 +341,18 @@ export default function IndexPage() {
               Local architectural drawing services across London and M25
             </h2>
             <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-              WEDRAWPLANS regularly prepare drawings in boroughs across London
-              and the wider M25 area. These local area pages are designed so
-              homeowners and small developers can see how typical extensions,
-              lofts and new builds are viewed in their council area.
+              Wedrawplans regularly prepare drawings in boroughs across London and the wider M25 area. These local area pages are designed so homeowners and small developers can see how typical extensions, lofts and new builds are viewed in their council area.
             </p>
 
-           <div className="mt-6 grid gap-3 text-[14px] sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-  {BOROUGHS.map((b) => (
-    <a
-      key={b.slug}
-      href={`/areas/${b.slug}`}
-      className="block rounded-md border border-[#d7e8ee] bg-[#e8f4f8] px-4 py-3 text-center font-medium text-slate-800 
-                 transition-all duration-200 transform
-                 hover:-translate-y-0.5 hover:bg-[#29788a] hover:text-white hover:border-[#29788a] hover:shadow-md"
-    >
-      {b.label}
-    </a>
-  ))}
-</div>
-
+            <div className="mt-5 grid gap-2 text-[13px] sm:grid-cols-2 md:grid-cols-3">
+              {BOROUGHS.map((b) => (
+                <div key={b.slug} className="border-b border-slate-200 py-1.5">
+                  <a href={`/areas/${b.slug}`} className="text-slate-800 hover:text-[#29788a] hover:underline">
+                    {b.label}
+                  </a>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -428,9 +363,7 @@ export default function IndexPage() {
               Extension plans · loft plans · new build and technical drawings
             </h2>
             <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-              WEDRAWPLANS follow a clear and structured approach similar in
-              spirit to the best online drawing studios, while adding more depth
-              around construction, structural coordination and on site delivery.
+              Wedrawplans follow a clear and structured approach similar in spirit to the best online drawing studios, while adding more depth around construction, structural coordination and on site delivery.
             </p>
 
             <div className="mt-6 grid gap-6 md:grid-cols-3 text-[13px]">
@@ -478,9 +411,7 @@ export default function IndexPage() {
               Architectural drawings for almost any residential project
             </h2>
             <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-              From a simple rear extension to full house remodelling and new
-              build, WEDRAWPLANS provide drawings for a wide range of project
-              types so that clients can handle everything through one studio.
+              From a simple rear extension to full house remodelling and new build, Wedrawplans provide drawings for a wide range of project types so that clients can handle everything through one studio.
             </p>
 
             <div className="mt-5 grid gap-2 text-[13px] sm:grid-cols-2 lg:grid-cols-3">
@@ -522,9 +453,7 @@ export default function IndexPage() {
               Support services around your drawings
             </h2>
             <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-              Beyond pure drawing production, WEDRAWPLANS help bring projects
-              together by coordinating key professionals and offering additional
-              documentation where needed.
+              Beyond pure drawing production, Wedrawplans help bring projects together by coordinating key professionals and offering additional documentation where needed.
             </p>
 
             <div className="mt-6 grid gap-6 md:grid-cols-3 text-[13px]">
@@ -550,7 +479,7 @@ export default function IndexPage() {
               />
               <SupportCard
                 title="Contractor and supplier introductions"
-                body="For suitable projects WEDRAWPLANS can introduce builders and specialist suppliers so that the design can move efficiently into construction."
+                body="For suitable projects Wedrawplans can introduce builders and specialist suppliers so that the design can move efficiently into construction."
               />
             </div>
           </div>
@@ -563,9 +492,7 @@ export default function IndexPage() {
               Price guide for drawings
             </h2>
             <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-              Every project is quoted once the scope and location are understood.
-              These guide figures reflect common extension and loft projects and
-              help set expectations before clients get in touch.
+              Every project is quoted once the scope and location are understood. These guide figures reflect common extension and loft projects and help set expectations before clients get in touch.
             </p>
 
             <div className="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-3 text-[13px]">
@@ -594,12 +521,12 @@ export default function IndexPage() {
               />
               <HelpCard
                 title="Give us a call now"
-                body={`Talk to WEDRAWPLANS today about an extension, loft or new build on ${PHONE_DISPLAY}.`}
+                body={`Talk to Wedrawplans today about an extension, loft or new build on ${PHONE_DISPLAY}.`}
                 linkText="Call now"
               />
               <HelpCard
                 title="Free quote"
-                body="Use the enquiry form to send a short description and WEDRAWPLANS will email a clear fixed fee for the drawings."
+                body="Use the enquiry form to send a short description and Wedrawplans will email a clear fixed fee for the drawings."
                 linkText="Use the enquiry form"
               />
             </div>
@@ -613,10 +540,7 @@ export default function IndexPage() {
               Get in touch and tell us what you need
             </h2>
             <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-              Share a short description of the property and what you would like
-              to achieve. WEDRAWPLANS normally respond the same working day and
-              can follow up by phone, email or WhatsApp depending on what you
-              prefer.
+              Share a short description of the property and what you would like to achieve. Wedrawplans normally respond the same working day and can follow up by phone, email or WhatsApp depending on what you prefer.
             </p>
 
             <div className="mt-6 grid gap-8 lg:grid-cols-2">
@@ -632,12 +556,10 @@ export default function IndexPage() {
             <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
               <div>
                 <div className="text-[14px] font-semibold tracking-[0.2em] uppercase text-slate-900">
-                  WEDRAWPLANS
+                  Wedrawplans
                 </div>
                 <p className="mt-2 max-w-sm text-[12px] text-slate-600">
-                  Architectural drawing consultants for extensions, loft
-                  conversions, new builds, conversions and small developments
-                  across London and the M25 area.
+                  Architectural drawing consultants for extensions, loft conversions, new builds, conversions and small developments across London and the M25 area.
                 </p>
               </div>
               <div>
@@ -682,8 +604,7 @@ export default function IndexPage() {
             </div>
 
             <div className="mt-6 border-t border-slate-200 pt-3 text-center text-[11px] text-slate-500">
-              Copyright {new Date().getFullYear()} WEDRAWPLANS. All rights
-              reserved.
+              Copyright {new Date().getFullYear()} Wedrawplans. All rights reserved.
             </div>
           </div>
         </footer>
@@ -693,7 +614,7 @@ export default function IndexPage() {
           href={WHATSAPP_LINK}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Chat on WhatsApp with WEDRAWPLANS"
+          aria-label="Chat on WhatsApp with Wedrawplans"
           className="fixed bottom-4 right-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg ring-2 ring-white/70 hover:bg-[#1ebe57]"
         >
           <span className="text-xl">💬</span>
@@ -713,10 +634,10 @@ type NavMenuProps = {
 function NavMenu({ title, children }: NavMenuProps) {
   return (
     <div className="relative group">
-      <button className="text-[14px] font-normal text-slate-900 whitespace-nowrap hover:text-black">
+      <button className="text-[13px] font-normal text-slate-900 whitespace-nowrap hover:text-black">
         {title}
       </button>
-      <div className="pointer-events-none absolute left-0 top-full z-20 mt-2 min-w-[260px] rounded-md bg-white py-2 text-[13px] shadow-lg opacity-0 group-hover:pointer-events-auto group-hover:opacity-100">
+      <div className="pointer-events-none absolute left-0 top-full z-20 mt-2 min-w-[240px] rounded-sm bg-white py-2 text-[12px] shadow-lg opacity-0 group-hover:pointer-events-auto group-hover:opacity-100">
         {children}
       </div>
     </div>
@@ -736,7 +657,7 @@ type ServiceColumnProps = {
 function ServiceColumn({ heading, items, body }: ServiceColumnProps) {
   return (
     <div>
-      <h3 className="text-[13px] font-normal text-slate-900 whitespace-nowrap hover:text-black">
+      <h3 className="text-[14px] font-semibold uppercase tracking-[0.16em] text-slate-900">
         {heading}
       </h3>
       <ul className="mt-2 space-y-1 text-[13px] text-slate-700">
@@ -775,9 +696,7 @@ function PriceCard({ title, price, body }: PriceCardProps) {
   return (
     <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
       <h3 className="text-[13px] font-semibold text-slate-900">{title}</h3>
-      <div className="mt-1 text-[13px] font-semibold text-slate-900">
-        {price}
-      </div>
+      <div className="mt-1 text-[13px] font-semibold text-slate-900">{price}</div>
       <p className="mt-2 text-[12px] text-slate-600">{body}</p>
     </div>
   );
@@ -836,9 +755,7 @@ function ContactForm() {
       });
 
       if (res.ok) {
-        alert(
-          "Thank you — your message has been sent to WEDRAWPLANS. We will contact you shortly."
-        );
+        alert("Thank you — your message has been sent to Wedrawplans. We will contact you shortly.");
         form.reset();
       } else {
         alert("Something went wrong. Please try again or call us directly.");
@@ -858,36 +775,28 @@ function ContactForm() {
         />
       </div>
       <div className="space-y-1">
-        <label className="text-[11px] font-medium text-slate-700">
-          Telephone
-        </label>
+        <label className="text-[11px] font-medium text-slate-700">Telephone</label>
         <input
           name="phone"
           className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
         />
       </div>
       <div className="space-y-1">
-        <label className="text-[11px] font-medium text-slate-700">
-          Postcode
-        </label>
+        <label className="text-[11px] font-medium text-slate-700">Postcode</label>
         <input
           name="postcode"
           className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
         />
       </div>
       <div className="space-y-1">
-        <label className="text-[11px] font-medium text-slate-700">
-          Email
-        </label>
+        <label className="text-[11px] font-medium text-slate-700">Email</label>
         <input
           name="email"
           className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
         />
       </div>
       <div className="space-y-1">
-        <label className="text-[11px] font-medium text-slate-700">
-          Type your message here
-        </label>
+        <label className="text-[11px] font-medium text-slate-700">Type your message here</label>
         <textarea
           name="message"
           rows={4}
@@ -908,19 +817,13 @@ function ContactSummary() {
   return (
     <div className="text-[13px] text-slate-700">
       <p>
-        WEDRAWPLANS provide a full range of architectural drawing services for
-        house extensions, loft conversions, garage conversions, garden rooms,
-        flat conversions, HMOs and small new build developments.
+        Wedrawplans provide a full range of architectural drawing services for house extensions, loft conversions, garage conversions, garden rooms, flat conversions, HMOs and small new build developments.
       </p>
       <p className="mt-3">
-        The focus is on clear, buildable designs that support planning and
-        Building Regulation approvals and that help builders understand exactly
-        what is intended on site.
+        The focus is on clear, buildable designs that support planning and Building Regulation approvals and that help builders understand exactly what is intended on site.
       </p>
       <p className="mt-3">
-        If you already have estate agent plans, older drawings or simple
-        sketches, you can email them together with photos so that the property
-        can be reviewed before a call.
+        If you already have estate agent plans, older drawings or simple sketches, you can email them together with photos so that the property can be reviewed before a call.
       </p>
     </div>
   );
