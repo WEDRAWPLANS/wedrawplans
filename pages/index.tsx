@@ -98,7 +98,7 @@ export default function IndexPage() {
         <header className="border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur">
           <div className="mx-auto max-w-6xl px-4 py-3 lg:px-6">
             <div className="flex items-center justify-between gap-4">
-              {/* Left: logo + strapline (fixed width so it looks the same on all screens) */}
+              {/* Left: logo +  strapline (fixed width so it looks the same on all screens) */}
 
 {/* Left: WEDRAWPLANS logo block */}
 <div className="flex items-center">
@@ -252,64 +252,7 @@ export default function IndexPage() {
               </p>
             </div>
 
-            {/* Rolling project preview (like drawplans hero, but text-only for now) */}
-            <div className="mt-4 rounded-2xl bg-slate-900 text-white">
-              <div className="relative overflow-hidden rounded-2xl">
-                {/* Placeholder for drawings – later we can swap this background for real plan images */}
-                <div className="h-40 bg-gradient-to-r from-emerald-400/20 via-sky-400/25 to-slate-900 px-5 py-4 sm:h-44">
-                  <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-emerald-200/80">
-                    Sample WEDRAWPLANS drawings
-                  </p>
-                  <p className="mt-2 text-[14px] font-semibold">
-                    {heroSlides[heroSlideIndex].title}
-                  </p>
-                  <p className="mt-2 max-w-xl text-[12px] text-slate-100/90">
-                    {heroSlides[heroSlideIndex].caption}
-                  </p>
-                </div>
-              </div>
-
-              {/* Controls + dots */}
-              <div className="flex items-center justify-between px-4 py-2 text-[11px]">
-                <div className="flex items-center gap-2">
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setHeroSlideIndex(
-                        (i) => (i - 1 + heroSlides.length) % heroSlides.length
-                      )
-                    }
-                    className="rounded-full border border-slate-500 px-3 py-1 font-semibold tracking-wide hover:bg-white hover:text-slate-900 transition"
-                  >
-                    Prev
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setHeroSlideIndex(
-                        (i) => (i + 1) % heroSlides.length
-                      )
-                    }
-                    className="rounded-full border border-emerald-300 bg-emerald-300 px-3 py-1 font-semibold tracking-wide text-slate-900 hover:bg-emerald-200 transition"
-                  >
-                    Next
-                  </button>
-                </div>
-                <div className="flex items-center gap-1">
-                  {heroSlides.map((_, index) => (
-                    <span
-                      key={index}
-                      className={[
-                        "h-1.5 w-1.5 rounded-full border border-emerald-300 transition",
-                        index === heroSlideIndex
-                          ? "bg-emerald-300"
-                          : "bg-transparent opacity-60",
-                      ].join(" ")}
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
+      
 
             {/* Form card */}
             <div className="mt-4 rounded-2xl bg-white p-5 shadow-md">
