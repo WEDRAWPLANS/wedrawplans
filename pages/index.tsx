@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
 
 const PHONE_DISPLAY = "020 3654 8508";
@@ -46,6 +46,34 @@ const BOROUGHS: { label: string; slug: string }[] = [
 ];
 
 export default function IndexPage() {
+    // --- SIMPLE HERO SLIDER DATA & STATE ---
+  const heroSlides = [
+    {
+      title: "Rear extension planning drawings",
+      caption:
+        "Typical London terrace with full width doors, rooflights and internal reconfiguration.",
+    },
+    {
+      title: "Loft conversion drawings",
+      caption:
+        "Dormer loft with new staircase, bedroom and bathroom set out ready for structural design.",
+    },
+    {
+      title: "New build and small developments",
+      caption:
+        "Compact apartment and small development layouts prepared for planning and Building Regulations.",
+    },
+  ];
+
+  const [heroSlideIndex, setHeroSlideIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setHeroSlideIndex((i) => (i + 1) % heroSlides.length);
+    }, 6000); // 6 seconds
+
+    return () => clearInterval(timer);
+  }, [heroSlides.length]);
   async function handleHeroSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
@@ -234,7 +262,7 @@ export default function IndexPage() {
           </div>
         </header>
 
-        {/* HERO – heading block, then form, then explanatory text */}
+             {/* HERO – heading block, then form, then explanatory text */}
         <section className="border-b border-slate-200 bg-[#fdf8f3]">
           <div className="mx-auto max-w-3xl px-4 py-7 lg:px-6 lg:py-10">
             {/* Heading block */}
@@ -251,8 +279,68 @@ export default function IndexPage() {
               </p>
             </div>
 
+            {/* Rolling project preview (like drawplans hero, but text-only for now) */}
+            <div className="mt-4 rounded-2xl bg-slate-900 text-white">
+              <div className="relative overflow-hidden rounded-2xl">
+                {/* Placeholder for drawings – later we can swap this background for real plan images */}
+                <div className="h-40 bg-gradient-to-r from-emerald-400/20 via-sky-400/25 to-slate-900 px-5 py-4 sm:h-44">
+                  <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-emerald-200/80">
+                    Sample WEDRAWPLANS drawings
+                  </p>
+                  <p className="mt-2 text-[14px] font-semibold">
+                    {heroSlides[heroSlideIndex].title}
+                  </p>
+                  <p className="mt-2 max-w-xl text-[12px] text-slate-100/90">
+                    {heroSlides[heroSlideIndex].caption}
+                  </p>
+                </div>
+              </div>
+
+              {/* Controls + dots */}
+              <div className="flex items-center justify-between px-4 py-2 text-[11px]">
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setHeroSlideIndex(
+                        (i) => (i - 1 + heroSlides.length) % heroSlides.length
+                      )
+                    }
+                    className="rounded-full border border-slate-500 px-3 py-1 font-semibold tracking-wide hover:bg-white hover:text-slate-900 transition"
+                  >
+                    Prev
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setHeroSlideIndex(
+                        (i) => (i + 1) % heroSlides.length
+                      )
+                    }
+                    className="rounded-full border border-emerald-300 bg-emerald-300 px-3 py-1 font-semibold tracking-wide text-slate-900 hover:bg-emerald-200 transition"
+                  >
+                    Next
+                  </button>
+                </div>
+                <div className="flex items-center gap-1">
+                  {heroSlides.map((_, index) => (
+                    <span
+                      key={index}
+                      className={[
+                        "h-1.5 w-1.5 rounded-full border border-emerald-300 transition",
+                        index === heroSlideIndex
+                          ? "bg-emerald-300"
+                          : "bg-transparent opacity-60",
+                      ].join(" ")}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+
             {/* Form card */}
             <div className="mt-4 rounded-2xl bg-white p-5 shadow-md">
+
               <h2 className="text-[14px] font-semibold uppercase tracking-[0.16em] text-slate-900">
                 Free fixed fee quote
               </h2>
