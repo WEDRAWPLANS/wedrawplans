@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Head from "next/head";
 
 const PHONE_DISPLAY = "020 3654 8508";
@@ -46,34 +46,7 @@ const BOROUGHS: { label: string; slug: string }[] = [
 ];
 
 export default function IndexPage() {
-    // --- SIMPLE HERO SLIDER DATA & STATE ---
-  const heroSlides = [
-    {
-      title: "Rear extension planning drawings",
-      caption:
-        "Typical London terrace with full width doors, rooflights and internal reconfiguration.",
-    },
-    {
-      title: "Loft conversion drawings",
-      caption:
-        "Dormer loft with new staircase, bedroom and bathroom set out ready for structural design.",
-    },
-    {
-      title: "New build and small developments",
-      caption:
-        "Compact apartment and small development layouts prepared for planning and Building Regulations.",
-    },
-  ];
 
-  const [heroSlideIndex, setHeroSlideIndex] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setHeroSlideIndex((i) => (i + 1) % heroSlides.length);
-    }, 6000); // 6 seconds
-
-    return () => clearInterval(timer);
-  }, [heroSlides.length]);
   async function handleHeroSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
