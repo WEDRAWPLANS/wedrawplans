@@ -97,19 +97,22 @@ export default function IndexPage() {
         <header className="border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur">
           <div className="mx-auto max-w-6xl px-4 py-3 lg:px-6">
             <div className="flex items-center justify-between gap-4">
-              {/* Left: logo + strapline */}
-              <div className="flex items-center gap-3">
-                <div className="flex flex-col">
-                  <img
-                    src="/images/wedrawplans-logo.png"
-                    alt="wedrawplans"
-                    className="h-10 w-auto"
-                  />
-                  <span className="mt-1 text-[11px] tracking-wide text-slate-500">
-                    Architectural drawing consultants
-                  </span>
-                </div>
-              </div>
+              {/* Left: logo + strapline (fixed width so it looks the same on all screens) */}
+<div className="flex items-center gap-4">
+  <div className="flex flex-col items-start">
+    <div className="w-[150px]">
+      <img
+        src="/images/wedrawplans-logo.png"
+        alt="wedrawplans"
+        className="h-10 w-full object-contain"
+      />
+    </div>
+    <span className="mt-1 w-[150px] text-[11px] text-slate-500 tracking-[0.12em] text-center">
+      Architectural drawing consultants
+    </span>
+  </div>
+</div>
+
 
               {/* Centre: navigation */}
 <nav className="hidden flex-1 items-center justify-center gap-8 text-[14px] text-slate-900 lg:flex">
