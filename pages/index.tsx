@@ -197,26 +197,24 @@ export default function IndexPage() {
 
               {/* Right: phone + WhatsApp (desktop) */}
               <div className="hidden items-center gap-3 lg:flex">
-                <a
-                  href={PHONE_LINK}
-                  className="flex h-16 items-center rounded-full border border-slate-300 bg-white px-4 text-[11px] font-semibold text-slate-900 shadow-sm"
-                >
-                  <span className="mr-2 text-sm">📞</span>
-                  <span className="flex flex-col leading-snug">
-                    <span>020</span>
-                    <span>3654</span>
-                    <span>8508</span>
-                  </span>
-                </a>
-                <a
-                  href={WHATSAPP_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#1ebe57]"
-                >
-                  <span>WhatsApp us</span>
-                </a>
-              </div>
+                
+              <a
+    href={PHONE_LINK}
+    className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#1ebe57]"
+  >
+    <span className="text-base">📞</span>
+    <span>Call us</span>
+  </a>
+
+  <a
+    href={WHATSAPP_LINK}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#1ebe57]"
+  >
+    <span>WhatsApp us</span>
+  </a>
+</div>
 
               {/* Right: mobile contact only */}
               <div className="flex items-center gap-3 lg:hidden">
