@@ -101,7 +101,20 @@ export default function IndexPage() {
 
 {/* Left: WEDRAWPLANS logo block */}
 <div className="flex items-center">
-  <div className="flex flex-col items-start w-[200px]">
+ {/* Logo block */}
+<div className="flex flex-col items-start w-[170px] sm:w-[200px]">
+  <img
+    src="/images/wedrawplans-logo.png"
+    alt="WEDRAWPLANS"
+    className="h-12 w-full object-contain sm:h-14"
+  />
+
+  <div
+    className="mt-1 w-full text-[9px] sm:text-[11px] tracking-[0.18em] text-slate-500 uppercase whitespace-nowrap"
+  >
+    Architectural Drawing Consultants
+  </div>
+</div>
     {/* Logo */}
     <img
       src="/images/wedrawplans-logo.png"
