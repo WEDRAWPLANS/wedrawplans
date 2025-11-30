@@ -112,64 +112,91 @@ export default function IndexPage() {
               </div>
 
               {/* Centre: navigation */}
-              <nav className="hidden flex-1 items-center justify-center gap-6 text-sm text-slate-800 lg:flex">
-                <NavMenu title="Local Designers">
-                  {BOROUGHS.slice(0, 8).map((borough) => (
-                    <NavItem key={borough.slug}>
-                      <a href={`/areas/${borough.slug}`} className="block">
-                        {borough.label}
-                      </a>
-                    </NavItem>
-                  ))}
-                  <NavItem>
-                    <a href="/areas" className="block font-semibold text-[#29788a]">
-                      View all boroughs
-                    </a>
-                  </NavItem>
-                </NavMenu>
+<nav className="hidden flex-1 items-center justify-center gap-5 text-[13px] text-slate-800 lg:flex">
+  {/* 1. Local Designers */}
+  <NavMenu title="Local Designers">
+    {BOROUGHS.slice(0, 8).map((borough) => (
+      <NavItem key={borough.slug}>
+        <a href={`/areas/${borough.slug}`} className="block">
+          {borough.label}
+        </a>
+      </NavItem>
+    ))}
+    <NavItem>
+      <a href="/areas" className="block font-semibold text-[#29788a]">
+        View all boroughs
+      </a>
+    </NavItem>
+  </NavMenu>
 
-                <NavMenu title="Extension Plans">
-                  <NavItem>Rear extension plans</NavItem>
-                  <NavItem>Side return extension plans</NavItem>
-                  <NavItem>Wrap-around extension plans</NavItem>
-                  <NavItem>Two storey extension plans</NavItem>
-                  <NavItem>Kitchen extension layouts</NavItem>
-                </NavMenu>
+  {/* 2. Extension Plans */}
+  <NavMenu title="Extension Plans">
+    <NavItem>Rear extension plans</NavItem>
+    <NavItem>Side return extensions</NavItem>
+    <NavItem>Wrap-around extensions</NavItem>
+    <NavItem>Two storey extensions</NavItem>
+    <NavItem>Kitchen extension layouts</NavItem>
+  </NavMenu>
 
-                <NavMenu title="Loft Plans">
-                  <NavItem>Dormer loft conversions</NavItem>
-                  <NavItem>Hip to gable loft conversions</NavItem>
-                  <NavItem>Mansard loft conversions</NavItem>
-                  <NavItem>Velux loft layouts</NavItem>
-                  <NavItem>Attic conversions</NavItem>
-                </NavMenu>
+  {/* 3. Loft Plans */}
+  <NavMenu title="Loft Plans">
+    <NavItem>Dormer loft conversions</NavItem>
+    <NavItem>Hip to gable lofts</NavItem>
+    <NavItem>Mansard loft conversions</NavItem>
+    <NavItem>Velux loft layouts</NavItem>
+    <NavItem>Attic conversions</NavItem>
+  </NavMenu>
 
-                <NavMenu title="New Build">
-                  <NavItem>New build house plans</NavItem>
-                  <NavItem>Small residential developments</NavItem>
-                  <NavItem>Infill plots and backland sites</NavItem>
-                  <NavItem>Conversion to flats</NavItem>
-                </NavMenu>
+  {/* 4. New Build */}
+  <NavMenu title="New Build">
+    <NavItem>New build house plans</NavItem>
+    <NavItem>Small residential developments</NavItem>
+    <NavItem>Backland and infill sites</NavItem>
+    <NavItem>Conversion to flats</NavItem>
+  </NavMenu>
 
-                <NavMenu title="Technical & Support">
-                  <NavItem>Building Regulation drawing packs</NavItem>
-                  <NavItem>Fire and escape strategy plans</NavItem>
-                  <NavItem>Measured surveys</NavItem>
-                  <NavItem>Structural engineer coordination</NavItem>
-                  <NavItem>Party wall drawings and support</NavItem>
-                  <NavItem>Interior layouts and finishes plans</NavItem>
-                </NavMenu>
+  {/* 5. Garage & Garden Rooms */}
+  <NavMenu title="Garage & Garden Rooms">
+    <NavItem>Garage conversion plans</NavItem>
+    <NavItem>Detached garage designs</NavItem>
+    <NavItem>Garden room / studio plans</NavItem>
+    <NavItem>Home office outbuildings</NavItem>
+  </NavMenu>
 
-                <a href="/areas" className="hover:text-[#29788a]">
-                  Areas we cover
-                </a>
-                <a href="#price-guide" className="hover:text-[#29788a]">
-                  Price guide
-                </a>
-                <a href="#contact" className="hover:text-[#29788a]">
-                  Contact
-                </a>
-              </nav>
+  {/* 6. Basements & Conversions */}
+  <NavMenu title="Basements & Conversions">
+    <NavItem>Basement conversion plans</NavItem>
+    <NavItem>Lower ground alterations</NavItem>
+    <NavItem>Conversion to self-contained flats</NavItem>
+    <NavItem>HMO layout and licensing drawings</NavItem>
+  </NavMenu>
+
+  {/* 7. Technical & Support */}
+  <NavMenu title="Technical & Support">
+    <NavItem>Building Regulation drawing packs</NavItem>
+    <NavItem>Fire and escape strategy plans</NavItem>
+    <NavItem>Measured surveys</NavItem>
+    <NavItem>Structural engineer coordination</NavItem>
+    <NavItem>Party wall plans and support</NavItem>
+    <NavItem>Interior layouts and finishes</NavItem>
+  </NavMenu>
+
+  {/* 8. Areas we cover */}
+  <a href="/areas" className="whitespace-nowrap hover:text-[#29788a]">
+    Areas we cover
+  </a>
+
+  {/* 9. Price guide */}
+  <a href="#price-guide" className="whitespace-nowrap hover:text-[#29788a]">
+    Price guide
+  </a>
+
+  {/* 10. Contact */}
+  <a href="#contact" className="whitespace-nowrap hover:text-[#29788a]">
+    Contact
+  </a>
+</nav>
+
 
               {/* Right: phone + WhatsApp (desktop) */}
               <div className="hidden items-center gap-3 lg:flex">
@@ -703,7 +730,7 @@ type NavMenuProps = {
 function NavMenu({ title, children }: NavMenuProps) {
   return (
     <div className="relative group">
-      <button className="text-sm font-medium text-slate-800">
+      <button className="text-[13px] font-medium text-slate-800 whitespace-nowrap">
         {title}
       </button>
       <div className="pointer-events-none absolute left-0 top-full z-20 mt-2 min-w-[260px] rounded-md bg-white py-2 text-[13px] shadow-lg opacity-0 group-hover:pointer-events-auto group-hover:opacity-100">
