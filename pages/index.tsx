@@ -98,17 +98,24 @@ export default function IndexPage() {
           <div className="mx-auto max-w-6xl px-4 py-3 lg:px-6">
             <div className="flex items-center justify-between gap-4">
               {/* Left: logo + strapline (fixed width so it looks the same on all screens) */}
-<div className="flex items-center gap-4">
+
+{/* Left: WEDRAWPLANS logo block – bigger, clean strapline in one line */}
+<div className="flex items-center gap-6">
   <div className="flex flex-col items-start">
-    <div className="w-[150px]">
+    {/* Logo */}
+    <div className="w-[230px]">
       <img
         src="/images/wedrawplans-logo.png"
-        alt="wedrawplans"
-        className="h-10 w-full object-contain"
+        alt="WEDRAWPLANS"
+        className="h-14 w-full object-contain"
       />
     </div>
-    <span className="mt-1 w-[150px] text-[11px] text-slate-500 tracking-[0.12em] text-center">
-      Architectural drawing consultants
+
+    {/* Strapline – same width as logo, single line */}
+    <span
+      className="mt-1 w-[230px] text-[11px] tracking-[0.18em] uppercase text-slate-500 whitespace-nowrap"
+    >
+      Architectural Drawing Consultants
     </span>
   </div>
 </div>
