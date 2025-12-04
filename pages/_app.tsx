@@ -5,44 +5,53 @@ import Script from 'next/script'
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
-      {/* Google Analytics Lead Tracking */}
+      {/* Lead tracking for phone, email and WhatsApp */}
       <Script id="lead-tracking" strategy="afterInteractive">
         {`
           // Track phone click
           function trackPhoneClick() {
-            gtag('event', 'phone_click', {
-              event_category: 'lead',
-              event_label: 'Phone Number Clicked'
-            });
+            if (typeof gtag === 'function') {
+              gtag('event', 'phone_click', {
+                event_category: 'lead',
+                event_label: 'Phone number clicked'
+              });
+            }
           }
 
           // Track email click
           function trackEmailClick() {
-            gtag('event', 'email_click', {
-              event_category: 'lead',
-              event_label: 'Email Clicked'
-            });
+            if (typeof gtag === 'function') {
+              gtag('event', 'email_click', {
+                event_category: 'lead',
+                event_label: 'Email clicked'
+              });
+            }
           }
 
           // Track WhatsApp click
           function trackWhatsAppClick() {
-            gtag('event', 'whatsapp_click', {
-              event_category: 'lead',
-              event_label: 'WhatsApp Clicked'
-            });
+            if (typeof gtag === 'function') {
+              gtag('event', 'whatsapp_click', {
+                event_category: 'lead',
+                event_label: 'WhatsApp clicked'
+              });
+            }
           }
 
           // Attach listeners after page loads
           document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('a[href^="tel:"]').forEach(el => {
+            // All phone links
+            document.querySelectorAll('a[href^="tel:"]').forEach((el) => {
               el.addEventListener('click', trackPhoneClick);
             });
 
-            document.querySelectorAll('a[href^="mailto:"]').forEach(el => {
+            // All email links
+            document.querySelectorAll('a[href^="mailto:"]').forEach((el) => {
               el.addEventListener('click', trackEmailClick);
             });
 
-            document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp"]').forEach(el => {
+            // All WhatsApp links
+            document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp"]').forEach((el) => {
               el.addEventListener('click', trackWhatsAppClick);
             });
           });
