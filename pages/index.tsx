@@ -8,6 +8,16 @@ const EMAIL_LINK = "mailto:info@wedrawplans.com";
 
 const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20my%20project";
+const trackLeadEvent = (
+  action: "phone_click" | "email_click" | "whatsapp_click"
+) => {
+  if (typeof window !== "undefined" && typeof (window as any).gtag === "function") {
+    (window as any).gtag("event", action, {
+      event_category: "lead",
+      event_label: action,
+    });
+  }
+};
 
 const BOROUGHS: { label: string; slug: string }[] = [
   { label: "Architectural drawings Barking and Dagenham", slug: "barking-dagenham" },
@@ -660,28 +670,38 @@ export default function IndexPage() {
                 <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-900">
                   Contact
                 </div>
-                <ul className="mt-2 space-y-1">
-                  <li>
-                    <a href={PHONE_LINK} className="hover:underline">
-                      Phone {PHONE_DISPLAY}
-                    </a>
-                  </li>
-                  <li>
-                    <a href={EMAIL_LINK} className="hover:underline">
-                      {EMAIL}
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href={WHATSAPP_LINK}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hover:underline"
-                    >
-                      Chat on WhatsApp
-                    </a>
-                  </li>
-                </ul>
+<ul className="mt-2 space-y-1">
+  <li>
+    <a
+      href={PHONE_LINK}
+      className="hover:underline"
+      onClick={() => trackLeadEvent("phone_click")}
+    >
+      Phone {PHONE_DISPLAY}
+    </a>
+  </li>
+  <li>
+    <a
+      href={EMAIL_LINK}
+      className="hover:underline"
+      onClick={() => trackLeadEvent("email_click")}
+    >
+      {EMAIL}
+    </a>
+  </li>
+  <li>
+    <a
+      href={WHATSAPP_LINK}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="hover:underline"
+      onClick={() => trackLeadEvent("whatsapp_click")}
+    >
+      Chat on WhatsApp
+    </a>
+  </li>
+</ul>
+
               </div>
               <div>
                 <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-900">
