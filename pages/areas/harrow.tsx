@@ -27,6 +27,9 @@ export default function HarrowAreaPage() {
           name="description"
           content="Architectural drawings in Harrow for house extensions, loft conversions, new builds and building regulation packs. Fixed fees from £750 with fast turnaround."
         />
+        <link rel="canonical" href="https://wedrawplans.co.uk/harrow" />
+<meta name="robots" content="noindex,follow" />
+
       </Head>
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
