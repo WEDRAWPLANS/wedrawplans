@@ -30,6 +30,9 @@ export default function WestminsterAreaPage() {
           name="description"
           content="Architectural drawings in Westminster for flat refurbishments, internal remodelling, listed buildings, extensions, roof alterations and building regulation packs. Fixed fees from £750 with fast turnaround."
         />
+        <link rel="canonical" href="https://wedrawplans.co.uk/westminster" />
+<meta name="robots" content="noindex,follow" />
+
       </Head>
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
