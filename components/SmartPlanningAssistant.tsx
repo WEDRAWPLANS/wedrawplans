@@ -51,30 +51,36 @@ export function SmartPlanningAssistant({ boroughName }: SmartPlanningAssistantPr
       ? `You are planning a ${projectType.toLowerCase()} to a ${propertyType.toLowerCase()} in ${effectiveBorough}. You are currently at the stage: ${stage.toLowerCase()}. WEDRAWPLANS can prepare drawings aimed at planning approval and building regulations for this type of project.`
       : `Answer the questions and we will outline the likely planning route for your project and send a fixed fee.`;
 
+  // THANK YOU STATE
   if (done) {
     return (
-      <div className="overflow-hidden rounded-2xl border border-emerald-200 bg-emerald-50 text-[13px] text-slate-800 shadow-sm">
-        <div className="bg-red-700 px-4 py-2 text-white">
-          <div className="flex items-center gap-2">
-            <div className="grid h-8 w-8 place-items-center rounded-full bg-white text-[10px] font-semibold tracking-[0.18em] text-red-700">
-              WDP
-            </div>
+      <div className="overflow-hidden rounded-2xl border border-emerald-200 bg-white text-[13px] text-slate-800 shadow-[0_8px_30px_rgba(15,23,42,0.08)]">
+        {/* HEADER WITH LOGO */}
+        <div className="border-b border-emerald-100 bg-slate-50 px-4 py-3">
+          <div className="flex items-center justify-between gap-3">
             <div>
-              <div className="text-[11px] font-semibold uppercase tracking-[0.2em]">
+              <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700">
                 WEDRAWPLANS
               </div>
-              <div className="text-[10px] uppercase tracking-[0.2em] text-red-100/90">
+              <div className="text-[11px] uppercase tracking-[0.18em] text-slate-500">
                 Planning approval assistant
               </div>
+            </div>
+
+            {/* WEDRAWPLANS BANNER LOGO */}
+            <div className="inline-flex items-center rounded-[4px] bg-red-600 px-3 py-1 shadow-sm">
+              <span className="text-[13px] font-semibold uppercase tracking-[0.18em] text-white">
+                wedrawplans
+              </span>
             </div>
           </div>
         </div>
 
         <div className="px-4 py-4">
           <h3 className="text-[14px] font-semibold text-emerald-800">
-            Thank you, your details have been received
+            Thank you. Your details have been received
           </h3>
-          <p className="mt-2">
+          <p className="mt-2 text-[13px] text-slate-700">
             We will review your answers and reply with a clear fixed fee and planning advice for
             your project in {effectiveBorough}.
           </p>
@@ -83,36 +89,39 @@ export function SmartPlanningAssistant({ boroughName }: SmartPlanningAssistantPr
     );
   }
 
+  // MAIN ASSISTANT
   return (
-    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white text-[13px] shadow-sm">
-      {/* RED WDP BANNER */}
-      <div className="bg-red-700 px-4 py-2 text-white">
-        <div className="flex items-center gap-2">
-          <div className="grid h-8 w-8 place-items-center rounded-full bg-white text-[10px] font-semibold tracking-[0.18em] text-red-700">
-            WDP
-          </div>
+    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white text-[13px] text-slate-800 shadow-[0_8px_30px_rgba(15,23,42,0.08)]">
+      {/* HEADER WITH LOGO */}
+      <div className="border-b border-slate-200 bg-slate-50 px-4 py-3">
+        <div className="flex items-center justify-between gap-3">
           <div>
-            <div className="text-[11px] font-semibold uppercase tracking-[0.2em]">
-              WEDRAWPLANS
-            </div>
-            <div className="text-[10px] uppercase tracking-[0.2em] text-red-100/90">
+            <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-900">
               Smart planning assistant
             </div>
+            <div className="text-[11px] uppercase tracking-[0.18em] text-slate-500">
+              For homeowners in {effectiveBorough}
+            </div>
+          </div>
+
+          {/* WEDRAWPLANS BANNER LOGO */}
+          <div className="inline-flex items-center rounded-[4px] bg-red-600 px-3 py-1 shadow-sm">
+            <span className="text-[13px] font-semibold uppercase tracking-[0.18em] text-white">
+              wedrawplans
+            </span>
           </div>
         </div>
       </div>
 
       {/* BODY */}
       <div className="px-4 py-4">
-        <h2 className="text-[15px] font-semibold uppercase tracking-[0.16em] text-slate-900">
-          Find your route to planning approval
-        </h2>
-        <p className="mt-2 text-[12px] text-slate-700">
+        <p className="text-[12px] text-slate-700">
           Answer a few quick questions and WEDRAWPLANS will assess your project and send a fixed fee
-          for the drawings. This is designed for homeowners in {effectiveBorough}.
+          for the drawings. Designed for house extensions, lofts and home projects in{" "}
+          {effectiveBorough}.
         </p>
 
-        {/* PROGRESS BAR */}
+        {/* PROGRESS */}
         <div className="mt-3 flex items-center gap-2 text-[11px] text-slate-600">
           <div className="h-1 flex-1 rounded-full bg-slate-200">
             <div
@@ -267,7 +276,7 @@ export function SmartPlanningAssistant({ boroughName }: SmartPlanningAssistantPr
                 </div>
               </div>
 
-              {/* Hidden field for full summary */}
+              {/* Hidden summary field */}
               <input type="hidden" name="projectDetails" value={summaryText} />
             </div>
           )}
