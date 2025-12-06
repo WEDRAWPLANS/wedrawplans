@@ -27,6 +27,9 @@ export default function HaveringAreaPage() {
           name="description"
           content="Architectural drawings in Havering for house extensions, loft conversions, new builds, garage conversions and building regulation packs. Fixed fees from £750 with fast turnaround."
         />
+<link rel="canonical" href="https://wedrawplans.co.uk/havering" />
+<meta name="robots" content="noindex,follow" />
+
       </Head>
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
