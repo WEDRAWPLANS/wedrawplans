@@ -55,7 +55,7 @@ export function SmartPlanningAssistant({ boroughName }: SmartPlanningAssistantPr
   if (done) {
     return (
       <div className="overflow-hidden rounded-2xl border border-emerald-200 bg-white text-[13px] text-slate-800 shadow-[0_8px_30px_rgba(15,23,42,0.08)]">
-        {/* HEADER WITH LOGO */}
+        {/* HEADER WITH REAL LOGO IMAGE */}
         <div className="border-b border-emerald-100 bg-slate-50 px-4 py-3">
           <div className="flex items-center justify-between gap-3">
             <div>
@@ -67,11 +67,13 @@ export function SmartPlanningAssistant({ boroughName }: SmartPlanningAssistantPr
               </div>
             </div>
 
-            {/* WEDRAWPLANS BANNER LOGO */}
-            <div className="inline-flex items-center rounded-[4px] bg-red-600 px-3 py-1 shadow-sm">
-              <span className="text-[13px] font-semibold uppercase tracking-[0.18em] text-white">
-                wedrawplans
-              </span>
+            {/* EXACT BRAND LOGO FROM /public/images/wedrawplans-logo.png */}
+            <div className="flex items-center">
+              <img
+                src="/images/wedrawplans-logo.png"
+                alt="WEDRAWPLANS logo"
+                className="h-8 w-auto object-contain"
+              />
             </div>
           </div>
         </div>
@@ -92,7 +94,7 @@ export function SmartPlanningAssistant({ boroughName }: SmartPlanningAssistantPr
   // MAIN ASSISTANT
   return (
     <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white text-[13px] text-slate-800 shadow-[0_8px_30px_rgba(15,23,42,0.08)]">
-      {/* HEADER WITH LOGO */}
+      {/* HEADER WITH REAL LOGO IMAGE */}
       <div className="border-b border-slate-200 bg-slate-50 px-4 py-3">
         <div className="flex items-center justify-between gap-3">
           <div>
@@ -104,11 +106,13 @@ export function SmartPlanningAssistant({ boroughName }: SmartPlanningAssistantPr
             </div>
           </div>
 
-          {/* WEDRAWPLANS BANNER LOGO */}
-          <div className="inline-flex items-center rounded-[4px] bg-red-600 px-3 py-1 shadow-sm">
-            <span className="text-[13px] font-semibold uppercase tracking-[0.18em] text-white">
-              wedrawplans
-            </span>
+          {/* EXACT BRAND LOGO FROM /public/images/wedrawplans-logo.png */}
+          <div className="flex items-center">
+            <img
+              src="/images/wedrawplans-logo.png"
+              alt="WEDRAWPLANS logo"
+              className="h-8 w-auto object-contain"
+            />
           </div>
         </div>
       </div>
