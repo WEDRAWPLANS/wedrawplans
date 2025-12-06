@@ -28,6 +28,9 @@ async function handleHounslowSubmit(e: React.FormEvent<HTMLFormElement>) {
           name="description"
           content="Architectural drawings in Hounslow for house extensions, loft conversions, new builds, flat conversions and building regulation packs. Fixed fees from £750 with fast turnaround."
         />
+      <link rel="canonical" href="https://wedrawplans.co.uk/hounslow" />
+<meta name="robots" content="noindex,follow" />
+
       </Head>
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
