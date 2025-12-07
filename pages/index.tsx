@@ -245,138 +245,6 @@ export default function IndexPage() {
   </div>
 </header>
 
-
-              {/* ROW: NAV (centre) + DESKTOP CONTACT (right) */}
-              <div className="mt-1 flex w-full items-center justify-between">
-                {/* Centre: navigation (desktop only) */}
-                <nav className="hidden flex-1 items-center justify-center gap-6 text-[13px] text-slate-900 lg:flex">
-                  {/* 1. Local Designers */}
-                  <NavMenu title="Local Designers">
-                    {BOROUGHS.slice(0, 8).map((borough) => (
-                      <NavItem key={borough.slug}>
-                        <a href={`/areas/${borough.slug}`} className="block">
-                          {borough.label}
-                        </a>
-                      </NavItem>
-                    ))}
-                    <NavItem>
-                      <a
-                        href="/areas"
-                        className="block font-semibold text-[#29788a]"
-                      >
-                        View all boroughs
-                      </a>
-                    </NavItem>
-                  </NavMenu>
-
-                  {/* 2. Extension Plans */}
-                  <NavMenu title="Extension Plans">
-                    <NavItem>Rear extension plans</NavItem>
-                    <NavItem>Side return extensions</NavItem>
-                    <NavItem>Wrap-around extensions</NavItem>
-                    <NavItem>Two storey extensions</NavItem>
-                    <NavItem>Kitchen extension layouts</NavItem>
-                    <NavItem>Garage conversion plans</NavItem>
-                    <NavItem>Garden room / studio plans</NavItem>
-                  </NavMenu>
-
-                  {/* 3. Loft Plans */}
-                  <NavMenu title="Loft Plans">
-                    <NavItem>Dormer loft conversions</NavItem>
-                    <NavItem>Hip to gable lofts</NavItem>
-                    <NavItem>Mansard loft conversions</NavItem>
-                    <NavItem>Velux loft layouts</NavItem>
-                    <NavItem>Attic conversions</NavItem>
-                  </NavMenu>
-
-                  {/* 4. New Build */}
-                  <NavMenu title="New Build">
-                    <NavItem>New build house plans</NavItem>
-                    <NavItem>Small residential developments</NavItem>
-                    <NavItem>Backland and infill sites</NavItem>
-                    <NavItem>Conversion to self-contained flats</NavItem>
-                    <NavItem>Basement and lower ground conversions</NavItem>
-                  </NavMenu>
-
-                  {/* 5. Technical & Support */}
-                  <NavMenu title="Technical & Support">
-                    <NavItem>Building Regulation drawing packs</NavItem>
-                    <NavItem>Fire and escape strategy plans</NavItem>
-                    <NavItem>Measured surveys</NavItem>
-                    <NavItem>Structural engineer coordination</NavItem>
-                    <NavItem>Party wall plans and support</NavItem>
-                    <NavItem>HMO layout and licensing drawings</NavItem>
-                    <NavItem>Interior layouts and finishes</NavItem>
-                  </NavMenu>
-
-                  {/* 6. Areas we cover */}
-                  <a
-                    href="/areas"
-                    className="whitespace-nowrap hover:text-black"
-                  >
-                    Areas we cover
-                  </a>
-
-                  {/* 7. Price guide */}
-                  <a
-                    href="#price-guide"
-                    className="whitespace-nowrap hover:text-black"
-                  >
-                    Price guide
-                  </a>
-
-                  {/* 8. Contact */}
-                  <a
-                    href="#contact"
-                    className="whitespace-nowrap hover:text-black"
-                  >
-                    Contact
-                  </a>
-                </nav>
-
-                {/* Right: phone + WhatsApp (desktop) */}
-                <div className="hidden items-center gap-3 lg:flex">
-                  <a
-                    href={PHONE_LINK}
-                    className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#1ebe57]"
-                  >
-                    <span className="text-base">📞</span>
-                    <span>Call us</span>
-                  </a>
-
-                  <a
-                    href={WHATSAPP_LINK}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#1ebe57]"
-                  >
-                    <span>WhatsApp us</span>
-                  </a>
-                </div>
-              </div>
-
-              {/* MOBILE: contact links under logo (no desktop nav) */}
-              <div className="flex w-full items-center justify-end gap-3 lg:hidden">
-                <a
-                  href={PHONE_LINK}
-                  className="text-[12px] font-medium text-slate-900"
-                >
-                  Call
-                </a>
-                <a
-                  href={WHATSAPP_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[12px] text-[#29788a]"
-                >
-                  WhatsApp
-                </a>
-              </div>
-            </div>
-          </div>
-        </header>
-
-
              {/* HERO – heading block, then form, then explanatory text */}
         <section className="border-b border-slate-200 bg-[#fdf8f3]">
           <div className="mx-auto max-w-3xl px-4 py-7 lg:px-6 lg:py-10">
@@ -386,7 +254,7 @@ export default function IndexPage() {
                 Planning and Building Regulation Drawings for London
               </p>
               <h1 className="mt-2 text-[20px] font-semibold uppercase leading-snug tracking-[0.14em] text-slate-900 sm:text-[24px]">
-                WEDRAWPLANS — Londons leading architectural drawing services
+                WEDRAWPLANS — Londons affordable fixed cost architectural drawing services
               </h1>
               <p className="mt-2 text-[13px] font-medium text-slate-800">
                 Planning | Extensions | Loft Conversions | New Build | Building Regs — High
