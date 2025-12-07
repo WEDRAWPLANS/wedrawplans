@@ -106,7 +106,7 @@ export default function IndexPage() {
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
         {/* HEADER */}
               {/* HEADER */}
-<header className="border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur">
+<header className="bg-[#fdf8f3]/95 backdrop-blur">
   <div className="mx-auto max-w-6xl px-4 pt-6 pb-3 lg:px-6">
     {/* LOGO + STRAPLINES (CENTRED) */}
     <div className="flex flex-col items-center text-center">
@@ -129,7 +129,7 @@ export default function IndexPage() {
     </div>
 
     {/* Strong horizontal line like drawplans.uk */}
-    <hr className="mt-5 border-t border-slate-300" />
+    <hr className="mt-5 border-t border-slate-500" />
 
     {/* ROW: NAV (centre) + DESKTOP CONTACT (right) */}
     <div className="mt-1 flex w-full items-center justify-between">
