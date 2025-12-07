@@ -55,9 +55,16 @@ export function SmartPlanningAssistant({ boroughName }: SmartPlanningAssistantPr
   if (done) {
     return (
       <div className="overflow-hidden rounded-2xl border border-emerald-200 bg-white text-[13px] text-slate-800 shadow-[0_8px_30px_rgba(15,23,42,0.08)]">
-        {/* HEADER WITH REAL LOGO IMAGE */}
+        {/* HEADER WITH INTEGRATED LOGO */}
         <div className="border-b border-emerald-100 bg-slate-50 px-4 py-3">
-          <div className="flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#e31c23]">
+              <img
+                src="/images/wedrawplans-logo.png"
+                alt="WEDRAWPLANS logo"
+                className="h-8 w-auto object-contain"
+              />
+            </div>
             <div>
               <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700">
                 WEDRAWPLANS
@@ -65,15 +72,6 @@ export function SmartPlanningAssistant({ boroughName }: SmartPlanningAssistantPr
               <div className="text-[11px] uppercase tracking-[0.18em] text-slate-500">
                 Planning approval assistant
               </div>
-            </div>
-
-            {/* EXACT BRAND LOGO FROM /public/images/wedrawplans-logo.png */}
-            <div className="flex items-center">
-              <img
-                src="/images/wedrawplans-logo.png"
-                alt="WEDRAWPLANS logo"
-                className="h-8 w-auto object-contain"
-              />
             </div>
           </div>
         </div>
@@ -94,9 +92,16 @@ export function SmartPlanningAssistant({ boroughName }: SmartPlanningAssistantPr
   // MAIN ASSISTANT
   return (
     <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white text-[13px] text-slate-800 shadow-[0_8px_30px_rgba(15,23,42,0.08)]">
-      {/* HEADER WITH REAL LOGO IMAGE */}
+      {/* HEADER WITH INTEGRATED LOGO */}
       <div className="border-b border-slate-200 bg-slate-50 px-4 py-3">
-        <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center gap-3">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#e31c23]">
+            <img
+              src="/images/wedrawplans-logo.png"
+              alt="WEDRAWPLANS logo"
+              className="h-8 w-auto object-contain"
+            />
+          </div>
           <div>
             <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-900">
               Smart planning assistant
@@ -104,15 +109,6 @@ export function SmartPlanningAssistant({ boroughName }: SmartPlanningAssistantPr
             <div className="text-[11px] uppercase tracking-[0.18em] text-slate-500">
               For homeowners in {effectiveBorough}
             </div>
-          </div>
-
-          {/* EXACT BRAND LOGO FROM /public/images/wedrawplans-logo.png */}
-          <div className="flex items-center">
-            <img
-              src="/images/wedrawplans-logo.png"
-              alt="WEDRAWPLANS logo"
-              className="h-8 w-auto object-contain"
-            />
           </div>
         </div>
       </div>
