@@ -58,13 +58,14 @@ export function SmartPlanningAssistant({ boroughName }: SmartPlanningAssistantPr
         {/* HEADER WITH INTEGRATED LOGO */}
         <div className="border-b border-emerald-100 bg-slate-50 px-4 py-3">
           <div className="flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#e31c23]">
-              <img
-                src="/images/wedrawplans-logo.png"
-                alt="WEDRAWPLANS logo"
-                className="h-8 w-auto object-contain"
-              />
-            </div>
+           <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#e31c23]">
+  <img
+    src="/images/wedrawplans-emblem.png"
+    alt="WEDRAWPLANS"
+    className="h-7 w-7 object-contain"
+  />
+</div>
+
             <div>
               <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700">
                 WEDRAWPLANS
