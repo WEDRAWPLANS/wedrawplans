@@ -129,7 +129,7 @@ export default function IndexPage() {
     </div>
 
     {/* Strong horizontal line like drawplans.uk */}
-    <hr className="mt-5 border-t border-slate-500" />
+    <hr className="mt-5 border-t border-slate-600" />
 
     {/* ROW: NAV (centre) + DESKTOP CONTACT (right) */}
     <div className="mt-1 flex w-full items-center justify-between">
