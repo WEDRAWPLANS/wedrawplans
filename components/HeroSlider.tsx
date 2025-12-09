@@ -16,18 +16,17 @@ const HeroSlider: React.FC<HeroSliderProps> = ({
 }) => {
   const [current, setCurrent] = useState(0);
 
-  // Auto-slide smoothly, no jump back
+  // Auto-advance
   useEffect(() => {
     if (slides.length <= 1) return;
-
-    const id = setTimeout(() => {
+    const id = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
     }, intervalMs);
-
-    return () => clearTimeout(id);
-  }, [current, slides.length, intervalMs]);
+    return () => clearInterval(id);
+  }, [slides.length, intervalMs]);
 
   const goTo = (index: number) => {
+    if (!slides.length) return;
     if (index < 0) index = slides.length - 1;
     if (index >= slides.length) index = 0;
     setCurrent(index);
@@ -36,55 +35,62 @@ const HeroSlider: React.FC<HeroSliderProps> = ({
   if (!slides.length) return null;
 
   return (
-    <section className="bg-white border-b border-slate-200">
-      <div className="mx-auto max-w-6xl px-4 lg:px-6">
-        <div className="relative w-full overflow-hidden">
-          {/* Track */}
-          <div
-            className="flex transition-transform duration-700 ease-in-out"
-            style={{ transform: `translateX(-${current * 100}%)` }}
-          >
-            {slides.map((slide, idx) => (
-              <div
-                key={idx}
-                className="
-                  w-full flex-shrink-0
-                  h-[220px]
-                  sm:h-[260px]
-                  md:h-[340px]
-                  lg:h-[410px]
-                  xl:h-[440px]
-                "
-              >
-                <img
-                  src={slide.src}
-                  alt={slide.alt}
-                  className="h-full w-full object-contain bg-white"
-                />
-              </div>
-            ))}
-          </div>
+    <section className="w-full bg-white border-b border-slate-200 overflow-hidden">
+      {/* FULL WIDTH CONTAINER */}
+      <div className="w-full relative overflow-hidden">
 
-          {/* Left Arrow */}
-          {slides.length > 1 && (
-            <>
-              <button
-                onClick={() => goTo(current - 1)}
-                className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-white/90 px-3 py-2 text-[20px] shadow-md"
-              >
-                ‹
-              </button>
-
-              {/* Right Arrow */}
-              <button
-                onClick={() => goTo(current + 1)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-white/90 px-3 py-2 text-[20px] shadow-md"
-              >
-                ›
-              </button>
-            </>
-          )}
+        {/* Sliding Track */}
+        <div
+          className="flex transition-transform duration-700 ease-in-out"
+          style={{ transform: `translateX(-${current * 100}%)` }}
+        >
+          {slides.map((slide, idx) => (
+            <div
+              key={idx}
+              className="
+                w-full flex-shrink-0
+                h-[260px] 
+                sm:h-[330px]
+                md:h-[420px]
+                lg:h-[520px]
+                xl:h-[560px]
+              "
+            >
+              <img
+                src={slide.src}
+                alt={slide.alt}
+                className="h-full w-full object-cover object-center"
+              />
+            </div>
+          ))}
         </div>
+
+        {/* LEFT ARROW */}
+        <button
+          onClick={() => goTo(current - 1)}
+          aria-label="Prev"
+          className="
+            absolute left-4 top-1/2 -translate-y-1/2 
+            z-20 bg-white/80 hover:bg-white 
+            shadow-md rounded-full px-3 py-2 text-xl
+          "
+        >
+          ‹
+        </button>
+
+        {/* RIGHT ARROW */}
+        <button
+          onClick={() => goTo(current + 1)}
+          aria-label="Next"
+          className="
+            absolute right-4 top-1/2 -translate-y-1/2 
+            z-20 bg-white/80 hover:bg-white 
+            shadow-md rounded-full px-3 py-2 text-xl
+          "
+        >
+          ›
+        </button>
+
       </div>
     </section>
   );
