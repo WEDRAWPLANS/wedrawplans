@@ -245,8 +245,18 @@ export default function IndexPage() {
   </div>
 </header>
 
-             {/* HERO – heading block, then form, then explanatory text */}
-        <section className="border-b border-slate-200 bg-[#fdf8f3]">
+{/* IMAGE SLIDER UNDER THE HEADER */}
+<HeroSlider
+  slides={[
+    { src: "/hero/one.jpg", alt: "Kitchen extension with rooflight" },
+    { src: "/hero/two.jpg", alt: "Loft conversion with dormer" },
+    { src: "/hero/three.jpg", alt: "Open plan living with garden" },
+  ]}
+/>
+
+{/* HERO – heading block, then form, then explanatory text */}
+<section className="border-b border-slate-200 bg-[#fdf8f3]">
+
           <div className="mx-auto max-w-3xl px-4 py-7 lg:px-6 lg:py-10">
             {/* Heading block */}
             <div className="text-left">
