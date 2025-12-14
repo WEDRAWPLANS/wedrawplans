@@ -1,7 +1,6 @@
 import { BuilderComponent, builder } from "@builder.io/react";
-import "@builder.io/react/dist/lib.css";
 
-builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
+builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY || "");
 
 export default function BuilderPage({ content }: any) {
   if (!content) {
