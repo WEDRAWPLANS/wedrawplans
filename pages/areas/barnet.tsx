@@ -28,7 +28,7 @@ async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
           name="description"
           content="Architectural drawings in Barnet for house extensions, loft conversions, new builds and building regulation packs. Fixed fees from £750 with fast turnaround."
         />
-        <link rel="canonical" href="https://wedrawplans.co.uk/barnet" />
+        <link rel="canonical" href="https://www.wedrawplans.co.uk/barnet" />
 <meta name="robots" content="noindex,follow" />
 
       </Head>
@@ -90,6 +90,13 @@ async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
                   the London Borough of Barnet. Fixed fees with clear scope and
                   fast communication.
                 </p>
+                <p className="mt-3 text-[13px] text-slate-700">
+  Want the detailed Barnet planning guidance and FAQs{" "}
+  <a href="/barnet" className="font-semibold underline">
+    Read the Barnet details page
+  </a>
+</p>
+
                 <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
                   <li>• House extensions, loft conversions and internal remodelling</li>
                   <li>• New build houses and small residential schemes</li>
@@ -414,6 +421,13 @@ async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
                   <span>Chat on WhatsApp</span>
                 </a>
               </div>
+           <p className="mt-4 text-[13px] text-slate-700 text-center">
+  Want to read full planning guidance first{" "}
+  <a href="/barnet" className="font-semibold underline">
+    View the Barnet drawings guide
+  </a>
+</p>
+   
             </div>
           </section>
         </main>
