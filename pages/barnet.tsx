@@ -170,12 +170,22 @@ export default function Barnet() {
             </div>
 
             <div className="pt-2">
-              <a
-                href="/#quote"
-                className="inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-semibold text-emerald-900 shadow-lg shadow-emerald-900/30 hover:bg-emerald-50 transition"
-              >
-                Get your free Barnet quote
-              </a>
+<div className="pt-2 flex flex-col sm:flex-row gap-3">
+  <a
+    href="/areas/barnet"
+    className="inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-semibold text-emerald-900 shadow-lg shadow-emerald-900/30 hover:bg-emerald-50 transition"
+  >
+    Get a fast Barnet quote
+  </a>
+
+  <a
+    href="/#quote"
+    className="inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-emerald-800 px-8 py-3 text-sm font-semibold text-white border border-emerald-200/20 hover:bg-emerald-700 transition"
+  >
+    Quick quote on this page
+  </a>
+</div>
+
             </div>
           </div>
         </section>
@@ -451,21 +461,26 @@ export default function Barnet() {
 
           {/* INTERNAL LINKS */}
           <div className="text-xs text-slate-500 pt-4">
-            <p>
-              See also:{" "}
-              <a href="/extension-plans" className="underline text-emerald-700">
-                House extension drawings
-              </a>
-              ,{" "}
-              <a href="/loft-conversion-plans" className="underline text-emerald-700">
-                Loft conversion drawings
-              </a>{" "}
-              and{" "}
-              <a href="/" className="underline text-emerald-700">
-                WEDRAWPLANS home page
-              </a>
-              .
-            </p>
+        <p>
+  See also:{" "}
+  <a href="/areas/barnet" className="underline text-emerald-700">
+    Barnet quote form
+  </a>
+  ,{" "}
+  <a href="/extension-plans" className="underline text-emerald-700">
+    House extension drawings
+  </a>
+  ,{" "}
+  <a href="/loft-conversion-plans" className="underline text-emerald-700">
+    Loft conversion drawings
+  </a>{" "}
+  and{" "}
+  <a href="/" className="underline text-emerald-700">
+    WEDRAWPLANS home page
+  </a>
+  .
+</p>
+
           </div>
         </section>
       </main>
