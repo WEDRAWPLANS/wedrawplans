@@ -112,6 +112,8 @@ export default function Harrow() {
               alt="Architectural drawings for Harrow extensions and lofts"
               fill
               className="object-cover"
+              sizes="100vw"
+              priority
             />
           </div>
 
@@ -332,9 +334,7 @@ export default function Harrow() {
           {/* PLANNING & BUILDING REG PACKS */}
           <div className="grid md:grid-cols-2 gap-10">
             <div className="rounded-2xl bg-white shadow-sm p-6 border border-slate-100 space-y-4">
-              <h3 className="text-lg font-semibold">
-                Planning drawings for Harrow
-              </h3>
+              <h3 className="text-lg font-semibold">Planning drawings for Harrow</h3>
               <ul className="list-disc pl-4 space-y-1 text-sm text-slate-700">
                 <li>Existing and proposed floor plans</li>
                 <li>Existing and proposed elevations</li>
@@ -375,9 +375,7 @@ export default function Harrow() {
 
           {/* FAQ */}
           <div className="space-y-4">
-            <h2 className="text-2xl font-semibold">
-              Frequently asked questions
-            </h2>
+            <h2 className="text-2xl font-semibold">Frequently asked questions</h2>
             <div className="grid md:grid-cols-2 gap-6 text-sm text-slate-700">
               <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
                 <h3 className="font-semibold">
@@ -420,12 +418,11 @@ export default function Harrow() {
               </div>
             </div>
           </div>
+
           {/* FINAL CTA */}
           <div className="rounded-2xl bg-slate-900 text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
-              <h2 className="text-xl font-semibold">
-                Ready to start your Harrow project
-              </h2>
+              <h2 className="text-xl font-semibold">Ready to start your Harrow project</h2>
               <p className="text-sm text-slate-300">
                 Send us your address and a short description of the extension,
                 loft or refurbishment you have in mind. We will review it and
@@ -472,10 +469,7 @@ export default function Harrow() {
                 House extension drawings
               </a>
               ,{" "}
-              <a
-                href="/loft-conversion-plans"
-                className="underline text-emerald-700"
-              >
+              <a href="/loft-conversion-plans" className="underline text-emerald-700">
                 Loft conversion drawings
               </a>{" "}
               and{" "}
@@ -485,3 +479,8 @@ export default function Harrow() {
               .
             </p>
           </div>
+        </section>
+      </main>
+    </>
+  );
+}
