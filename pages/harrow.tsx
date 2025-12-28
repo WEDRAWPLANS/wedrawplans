@@ -447,6 +447,13 @@ export default function Harrow() {
                 info@wedrawplans.com
               </a>
               <a
+                <a
+  href="/areas/harrow"
+  className="mt-2 inline-flex items-center justify-center rounded-full bg-white px-5 py-2 text-sm font-semibold text-emerald-900 shadow hover:bg-emerald-100"
+>
+  Get a fast Harrow quote
+</a>
+
                 href="/#quote"
                 className="mt-2 inline-flex items-center justify-center rounded-full bg-white px-5 py-2 text-sm font-semibold text-emerald-900 shadow hover:bg-emerald-100"
               >
