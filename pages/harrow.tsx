@@ -435,26 +435,36 @@ export default function Harrow() {
             </div>
             <div className="flex flex-col space-y-1 text-sm">
               <a
-                href="tel:+442036548508"
-                className="font-semibold text-emerald-300 underline"
-              >
-                +44 20 3654 8508
-              </a>
-              <a
-                href="mailto:info@wedrawplans.com"
-                className="font-semibold text-emerald-300 underline"
-              >
-                info@wedrawplans.com
-              </a>
-              <a
-                <a
-  href="/areas/harrow"
-  className="mt-2 inline-flex items-center justify-center rounded-full bg-white px-5 py-2 text-sm font-semibold text-emerald-900 shadow hover:bg-emerald-100"
->
-  Get a fast Harrow quote
-</a>
+                <div className="flex flex-col space-y-1 text-sm">
+  <a
+    href="tel:+442036548508"
+    className="font-semibold text-emerald-300 underline"
+  >
+    +44 20 3654 8508
+  </a>
 
-                href="/#quote"
+  <a
+    href="mailto:info@wedrawplans.com"
+    className="font-semibold text-emerald-300 underline"
+  >
+    info@wedrawplans.com
+  </a>
+
+  <a
+    href="/areas/harrow"
+    className="mt-2 inline-flex items-center justify-center rounded-full bg-white px-5 py-2 text-sm font-semibold text-emerald-900 shadow hover:bg-emerald-100"
+  >
+    Get a fast Harrow quote
+  </a>
+
+  <a
+    href="/#quote"
+    className="mt-2 inline-flex items-center justify-center rounded-full bg-white px-5 py-2 text-sm font-semibold text-emerald-900 shadow hover:bg-emerald-100"
+  >
+    Get your free Harrow quote
+  </a>
+</div>
+
                 className="mt-2 inline-flex items-center justify-center rounded-full bg-white px-5 py-2 text-sm font-semibold text-emerald-900 shadow hover:bg-emerald-100"
               >
                 Get your free Harrow quote
