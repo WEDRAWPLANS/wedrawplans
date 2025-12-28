@@ -420,7 +420,6 @@ export default function Harrow() {
               </div>
             </div>
           </div>
-
           {/* FINAL CTA */}
           <div className="rounded-2xl bg-slate-900 text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
@@ -433,36 +432,31 @@ export default function Harrow() {
                 provide a fixed quote the same day.
               </p>
             </div>
-           <div className="flex flex-col space-y-1 text-sm">
-  <a
-    href="tel:+442036548508"
-    className="font-semibold text-emerald-300 underline"
-  >
-    +44 20 3654 8508
-  </a>
 
-  <a
-    href="mailto:info@wedrawplans.com"
-    className="font-semibold text-emerald-300 underline"
-  >
-    info@wedrawplans.com
-  </a>
+            <div className="flex flex-col space-y-1 text-sm">
+              <a
+                href="tel:+442036548508"
+                className="font-semibold text-emerald-300 underline"
+              >
+                +44 20 3654 8508
+              </a>
 
-  <a
-    href="/areas/harrow"
-    className="mt-2 inline-flex items-center justify-center rounded-full bg-white px-5 py-2 text-sm font-semibold text-emerald-900 shadow hover:bg-emerald-100"
-  >
-    Get a fast Harrow quote
-  </a>
+              <a
+                href="mailto:info@wedrawplans.com"
+                className="font-semibold text-emerald-300 underline"
+              >
+                info@wedrawplans.com
+              </a>
 
-  <a
-    href="/#quote"
-    className="mt-2 inline-flex items-center justify-center rounded-full bg-white px-5 py-2 text-sm font-semibold text-emerald-900 shadow hover:bg-emerald-100"
-  >
-    Get your free Harrow quote
-  </a>
-</div>
+              <a
+                href="/areas/harrow"
+                className="mt-2 inline-flex items-center justify-center rounded-full bg-white px-5 py-2 text-sm font-semibold text-emerald-900 shadow hover:bg-emerald-100"
+              >
+                Get a fast Harrow quote
+              </a>
 
+              <a
+                href="/#quote"
                 className="mt-2 inline-flex items-center justify-center rounded-full bg-white px-5 py-2 text-sm font-semibold text-emerald-900 shadow hover:bg-emerald-100"
               >
                 Get your free Harrow quote
@@ -491,8 +485,3 @@ export default function Harrow() {
               .
             </p>
           </div>
-        </section>
-      </main>
-    </>
-  );
-}
