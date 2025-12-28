@@ -433,9 +433,7 @@ export default function Harrow() {
                 provide a fixed quote the same day.
               </p>
             </div>
-            <div className="flex flex-col space-y-1 text-sm">
-              <a
-                <div className="flex flex-col space-y-1 text-sm">
+           <div className="flex flex-col space-y-1 text-sm">
   <a
     href="tel:+442036548508"
     className="font-semibold text-emerald-300 underline"
