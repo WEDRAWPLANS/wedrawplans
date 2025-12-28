@@ -1,37 +1,45 @@
 import { BuilderComponent, builder } from "@builder.io/react";
+import type { GetStaticPaths, GetStaticProps } from "next";
 
-builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY || "");
+const apiKey = process.env.NEXT_PUBLIC_BUILDER_API_KEY || "";
+if (apiKey) builder.init(apiKey);
 
-export default function BuilderPage({ content }: any) {
-  if (!content) {
-    return null;
-  }
+type Props = {
+  content: any | null;
+};
 
+export default function BuilderPage({ content }: Props) {
+  if (!content) return null;
   return <BuilderComponent model="page" content={content} />;
 }
 
-export async function getStaticProps({ params }: any) {
-  const urlPath = "/" + (params?.builder?.join("/") || "");
+export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
+  const slugParts = (params?.builder as string[]) || [];
+  const urlPath = "/areas/" + slugParts.join("/");
+
+  if (!apiKey) {
+    return { notFound: true, revalidate: 60 };
+  }
 
   const content = await builder
     .get("page", {
-      userAttributes: {
-        urlPath,
-      },
+      userAttributes: { urlPath },
     })
     .toPromise();
 
-  return {
-    props: {
-      content: content || null,
-    },
-    revalidate: 5,
-  };
-}
+  if (!content) {
+    return { notFound: true, revalidate: 60 };
+  }
 
-export async function getStaticPaths() {
+  return {
+    props: { content },
+    revalidate: 60,
+  };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [],
     fallback: "blocking",
   };
-}
+};
