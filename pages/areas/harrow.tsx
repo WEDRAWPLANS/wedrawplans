@@ -116,7 +116,7 @@ export default function HarrowAreaPage() {
                     type="button"
                     className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-white text-[13px] font-semibold uppercase tracking-[0.18em] hover:bg-[#4da4b4]"
                   >
-                    Get my Harrow quote
+                    Get a quick quote
                   </button>
 
                   <a href={PHONE_LINK} className="text-[13px] underline text-slate-800">
@@ -129,7 +129,7 @@ export default function HarrowAreaPage() {
               <div id="harrow-quote" className="lg:w-1/2">
                 <div className="bg-white p-5 rounded-2xl shadow-md">
                   <h2 className="text-[14px] uppercase font-semibold tracking-[0.16em] text-slate-900">
-                    Free fixed quote for Harrow projects
+                    Free fixed quote for your projects
                   </h2>
 
                   <p className="mt-1 text-[12px] text-slate-600">
@@ -354,7 +354,7 @@ export default function HarrowAreaPage() {
                   onClick={scrollToForm}
                   className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-white uppercase tracking-[0.18em] text-[13px] hover:bg-[#4da4b4]"
                 >
-                  Request my Harrow fee
+                  Request my Drawing fee
                 </button>
               </div>
             </div>
@@ -364,7 +364,7 @@ export default function HarrowAreaPage() {
           <section className="bg-[#f8f4f0] py-10">
             <div className="max-w-5xl mx-auto text-center px-4 lg:px-6">
               <h2 className="text-[18px] uppercase tracking-[0.16em] font-semibold">
-                Ready to move your Harrow project forward
+                Ready to move your project forward
               </h2>
 
               <p className="mt-3 text-[13px] text-slate-700">
@@ -376,7 +376,7 @@ export default function HarrowAreaPage() {
                   onClick={scrollToForm}
                   className="rounded-full bg-[#64b7c4] px-5 py-2.5 uppercase text-white text-[13px] tracking-[0.18em] hover:bg-[#4da4b4]"
                 >
-                  Get my Harrow quote
+                  Get a quick quote
                 </button>
 
                 <a
