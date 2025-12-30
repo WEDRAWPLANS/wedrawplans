@@ -14,7 +14,10 @@ const WHATSAPP_LINK =
 const trackLeadEvent = (
   action: "phone_click" | "email_click" | "whatsapp_click"
 ) => {
-  if (typeof window !== "undefined" && typeof (window as any).gtag === "function") {
+  if (
+    typeof window !== "undefined" &&
+    typeof (window as any).gtag === "function"
+  ) {
     (window as any).gtag("event", action, {
       event_category: "lead",
       event_label: action,
@@ -106,11 +109,22 @@ const LOCAL_DESIGNERS_ITEMS: { label: string; href: string }[] = [
   { label: "View all boroughs", href: "/areas" },
 ];
 
+const COMMERCIAL_ITEMS: { label: string; href: string }[] = [
+  { label: "Shopfronts and signage drawings", href: "/commercial/shopfronts" },
+  { label: "Restaurant and cafe layouts", href: "/commercial/restaurants" },
+  { label: "Office fit out plans", href: "/commercial/office-fitout" },
+  { label: "Change of use applications (Class E, Sui Generis)", href: "/commercial/change-of-use" },
+  { label: "Mixed use schemes above shops", href: "/commercial/mixed-use" },
+  { label: "Basements and plant rooms", href: "/commercial/basements" },
+  { label: "Fire strategy and means of escape", href: "/commercial/fire-strategy" },
+  { label: "Building Regulations packs", href: "/building-regulation-drawings" },
+  { label: "Commercial drawings overview", href: "/commercial" },
+];
+
 function LocalDesignersDropdown() {
   const [open, setOpen] = useState(false);
   const wrapRef = useRef<HTMLDivElement | null>(null);
 
-  // Close when clicking outside
   useEffect(() => {
     function onDocMouseDown(e: MouseEvent) {
       if (!wrapRef.current) return;
@@ -121,7 +135,6 @@ function LocalDesignersDropdown() {
     return () => document.removeEventListener("mousedown", onDocMouseDown);
   }, []);
 
-  // Close on Escape
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape") setOpen(false);
@@ -167,6 +180,65 @@ function LocalDesignersDropdown() {
   );
 }
 
+function CommercialDropdown() {
+  const [open, setOpen] = useState(false);
+  const wrapRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    function onDocMouseDown(e: MouseEvent) {
+      if (!wrapRef.current) return;
+      const target = e.target as Node | null;
+      if (target && !wrapRef.current.contains(target)) setOpen(false);
+    }
+    document.addEventListener("mousedown", onDocMouseDown);
+    return () => document.removeEventListener("mousedown", onDocMouseDown);
+  }, []);
+
+  useEffect(() => {
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") setOpen(false);
+    }
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, []);
+
+  return (
+    <div
+      ref={wrapRef}
+      className="relative"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+    >
+      <button
+        type="button"
+        className="text-[14px] font-normal text-slate-900 whitespace-nowrap hover:text-black"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        aria-haspopup="true"
+      >
+        Commercial
+      </button>
+
+      {open && (
+        <div className="absolute left-0 top-full z-[9999]">
+          <div className="mt-2 w-80 max-h-[70vh] overflow-auto rounded-xl border border-slate-200 bg-white p-2 shadow-lg">
+            {COMMERCIAL_ITEMS.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="block rounded-lg px-3 py-2 text-[14px] text-slate-900 hover:bg-slate-100"
+                onClick={() => setOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function IndexPage() {
   async function handleHeroSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -190,7 +262,9 @@ export default function IndexPage() {
       });
 
       if (res.ok) {
-        alert("Thank you — your request has been submitted. WEDRAWPLANS will contact you shortly.");
+        alert(
+          "Thank you — your request has been submitted. WEDRAWPLANS will contact you shortly."
+        );
         form.reset();
       } else {
         alert("Something went wrong. Please try again or call us directly.");
@@ -216,7 +290,6 @@ export default function IndexPage() {
         {/* HEADER */}
         <header className="relative z-[50] bg-[#fdf8f3]/95 backdrop-blur">
           <div className="mx-auto max-w-6xl px-4 pt-6 pb-3 lg:px-6">
-            {/* LOGO + STRAPLINES (CENTRED) */}
             <div className="flex flex-col items-center text-center">
               <img
                 src="/images/wedrawplans-logo.png"
@@ -229,20 +302,18 @@ export default function IndexPage() {
               </div>
 
               <div className="mt-2 max-w-3xl text-[13px] font-medium text-slate-800">
-                Architectural Drawings for Extensions, Lofts + New Builds at an Affordable Fixed Cost
+                Architectural Drawings for Extensions, Lofts + New Builds at an
+                Affordable Fixed Cost
               </div>
             </div>
 
             <hr className="mt-5 border-t border-slate-600" />
 
-            {/* ROW: NAV (centre) + DESKTOP CONTACT (right) */}
             <div className="mt-1 flex w-full items-center justify-between">
-              {/* Centre: navigation (desktop only) */}
               <nav className="hidden flex-1 items-center justify-center gap-6 text-[13px] text-slate-900 lg:flex">
-                {/* 1. Local Designers (CLICK + HOVER WORKING) */}
                 <LocalDesignersDropdown />
+                <CommercialDropdown />
 
-                {/* 2. Extension Plans */}
                 <NavMenu title="Extension Plans">
                   <NavItem>Rear extension plans</NavItem>
                   <NavItem>Side return extensions</NavItem>
@@ -253,7 +324,6 @@ export default function IndexPage() {
                   <NavItem>Garden room / studio plans</NavItem>
                 </NavMenu>
 
-                {/* 3. Loft Plans */}
                 <NavMenu title="Loft Plans">
                   <NavItem>Dormer loft conversions</NavItem>
                   <NavItem>Hip to gable lofts</NavItem>
@@ -262,7 +332,6 @@ export default function IndexPage() {
                   <NavItem>Attic conversions</NavItem>
                 </NavMenu>
 
-                {/* 4. New Build */}
                 <NavMenu title="New Build">
                   <NavItem>New build house plans</NavItem>
                   <NavItem>Small residential developments</NavItem>
@@ -271,7 +340,6 @@ export default function IndexPage() {
                   <NavItem>Basement and lower ground conversions</NavItem>
                 </NavMenu>
 
-                {/* 5. Technical & Support */}
                 <NavMenu title="Technical & Support">
                   <NavItem>Building Regulation drawing packs</NavItem>
                   <NavItem>Fire and escape strategy plans</NavItem>
@@ -282,27 +350,22 @@ export default function IndexPage() {
                   <NavItem>Interior layouts and finishes</NavItem>
                 </NavMenu>
 
-                {/* 6. Areas we cover */}
                 <a href="/areas" className="whitespace-nowrap hover:text-black">
                   Areas we cover
                 </a>
-
-                {/* 7. Price guide */}
                 <a href="#price-guide" className="whitespace-nowrap hover:text-black">
                   Price guide
                 </a>
-
-                {/* 8. Contact */}
                 <a href="#contact" className="whitespace-nowrap hover:text-black">
                   Contact
                 </a>
               </nav>
 
-              {/* Right: phone + WhatsApp (desktop) */}
               <div className="hidden items-center gap-3 lg:flex">
                 <a
                   href={PHONE_LINK}
                   className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#1ebe57]"
+                  onClick={() => trackLeadEvent("phone_click")}
                 >
                   <span className="text-base">📞</span>
                   <span>Call us</span>
@@ -313,14 +376,18 @@ export default function IndexPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#1ebe57]"
+                  onClick={() => trackLeadEvent("whatsapp_click")}
                 >
                   <span>WhatsApp us</span>
                 </a>
               </div>
 
-              {/* Right: mobile contact only */}
               <div className="flex items-center gap-3 lg:hidden">
-                <a href={PHONE_LINK} className="text-[12px] font-medium text-slate-900">
+                <a
+                  href={PHONE_LINK}
+                  className="text-[12px] font-medium text-slate-900"
+                  onClick={() => trackLeadEvent("phone_click")}
+                >
                   Call
                 </a>
                 <a
@@ -328,6 +395,7 @@ export default function IndexPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[12px] text-[#29788a]"
+                  onClick={() => trackLeadEvent("whatsapp_click")}
                 >
                   WhatsApp
                 </a>
@@ -336,7 +404,6 @@ export default function IndexPage() {
           </div>
         </header>
 
-        {/* IMAGE SLIDER UNDER THE HEADER */}
         <HeroSlider
           slides={[
             { src: "/hero/one.jpg", alt: "Kitchen extension with rooflight" },
@@ -345,38 +412,40 @@ export default function IndexPage() {
           ]}
         />
 
-        {/* HERO – heading block, then form, then explanatory text */}
         <section className="border-b border-slate-200 bg-[#fdf8f3]">
           <div className="mx-auto max-w-3xl px-4 py-7 lg:px-6 lg:py-10">
-            {/* Heading block */}
             <div className="text-left">
               <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-red-700">
                 Planning and Building Regulation Drawings for London
               </p>
               <h1 className="mt-2 text-[20px] font-semibold uppercase leading-snug tracking-[0.14em] text-slate-900 sm:text-[24px]">
-                WEDRAWPLANS — Londons affordable fixed cost architectural drawing services
+                WEDRAWPLANS — Londons affordable fixed cost architectural drawing
+                services
               </h1>
               <p className="mt-2 text-[13px] font-medium text-slate-800">
-                Planning | Extensions | Loft Conversions | New Build | Building Regs — High
-                Quality, Low Cost Plans
+                Planning | Extensions | Loft Conversions | New Build | Building
+                Regs — High Quality, Low Cost Plans
               </p>
             </div>
 
-            {/* Form card */}
             <div className="mt-4 rounded-2xl bg-white p-5 shadow-md">
               <h2 className="text-[14px] font-semibold uppercase tracking-[0.16em] text-slate-900">
                 Free fixed fee quote
               </h2>
               <p className="mt-1 text-[12px] text-slate-600">
                 Share a few details and receive a clear fixed price for your
-                drawings. No obligation, no call centre – you deal directly
-                with a designer.
+                drawings. No obligation, no call centre – you deal directly with
+                a designer.
               </p>
 
-              <form onSubmit={handleHeroSubmit} className="mt-3 space-y-3 text-[13px]">
-                {/* Name */}
+              <form
+                onSubmit={handleHeroSubmit}
+                className="mt-3 space-y-3 text-[13px]"
+              >
                 <div className="space-y-1">
-                  <label className="text-[11px] font-medium text-slate-700">Name</label>
+                  <label className="text-[11px] font-medium text-slate-700">
+                    Name
+                  </label>
                   <input
                     name="name"
                     required
@@ -384,10 +453,11 @@ export default function IndexPage() {
                   />
                 </div>
 
-                {/* Telephone + Email */}
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                   <div className="space-y-1">
-                    <label className="text-[11px] font-medium text-slate-700">Telephone</label>
+                    <label className="text-[11px] font-medium text-slate-700">
+                      Telephone
+                    </label>
                     <input
                       name="phone"
                       type="tel"
@@ -396,7 +466,9 @@ export default function IndexPage() {
                     />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-[11px] font-medium text-slate-700">Email</label>
+                    <label className="text-[11px] font-medium text-slate-700">
+                      Email
+                    </label>
                     <input
                       name="email"
                       type="email"
@@ -406,9 +478,10 @@ export default function IndexPage() {
                   </div>
                 </div>
 
-                {/* Postcode */}
                 <div className="space-y-1">
-                  <label className="text-[11px] font-medium text-slate-700">Postcode</label>
+                  <label className="text-[11px] font-medium text-slate-700">
+                    Postcode
+                  </label>
                   <input
                     name="postcode"
                     required
@@ -425,7 +498,6 @@ export default function IndexPage() {
                   />
                 </div>
 
-                {/* Service */}
                 <div className="space-y-1">
                   <label className="text-[11px] font-medium text-slate-700">
                     Which service do you need
@@ -439,8 +511,12 @@ export default function IndexPage() {
                     <option value="" disabled>
                       Select service
                     </option>
-                    <option value="House extension plans">House extension plans</option>
-                    <option value="Loft conversion plans">Loft conversion plans</option>
+                    <option value="House extension plans">
+                      House extension plans
+                    </option>
+                    <option value="Loft conversion plans">
+                      Loft conversion plans
+                    </option>
                     <option value="New build or small development">
                       New build or small residential development
                     </option>
@@ -453,11 +529,12 @@ export default function IndexPage() {
                     <option value="Measured survey and as existing drawings">
                       Measured survey and as existing drawings
                     </option>
-                    <option value="Other architectural drawings">Other architectural drawings</option>
+                    <option value="Other architectural drawings">
+                      Other architectural drawings
+                    </option>
                   </select>
                 </div>
 
-                {/* Submit */}
                 <button
                   type="submit"
                   className="mt-2 w-full rounded-full bg-[#64b7c4] px-4 py-2.5 text-[13px] font-semibold uppercase tracking-[0.2em] text-white shadow-sm hover:bg-[#4da4b4] focus:outline-none focus:ring-2 focus:ring-[#64b7c4]"
@@ -466,14 +543,13 @@ export default function IndexPage() {
                 </button>
 
                 <p className="mt-2 text-[11px] text-slate-500">
-                  Popular: rear extensions, side return extensions, wrap
-                  around extensions, loft dormers, hip to gable conversions,
-                  new build plots and flat conversions.
+                  Popular: rear extensions, side return extensions, wrap around
+                  extensions, loft dormers, hip to gable conversions, new build
+                  plots and flat conversions.
                 </p>
               </form>
             </div>
 
-            {/* Text below form */}
             <div className="mt-4 text-[13px] leading-relaxed text-slate-700">
               <p>
                 WEDRAWPLANS focus on practical, buildable designs for house
@@ -497,7 +573,6 @@ export default function IndexPage() {
           </div>
         </section>
 
-        {/* Local designers */}
         <section className="border-b border-slate-200 bg-white py-10">
           <div className="mx-auto max-w-6xl px-4 lg:px-6">
             <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
@@ -526,7 +601,46 @@ export default function IndexPage() {
           </div>
         </section>
 
-        {/* Extension, loft, new build and technical services */}
+        {/* NEW: Commercial section */}
+        <section className="border-b border-slate-200 bg-white py-10">
+          <div className="mx-auto max-w-6xl px-4 lg:px-6">
+            <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+              Commercial and mixed use drawings
+            </h2>
+            <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
+              WEDRAWPLANS also provide commercial and mixed use drawings across
+              London, including shopfront upgrades, restaurant layouts, office
+              fit outs, change of use applications and Building Regulation packs.
+            </p>
+
+            <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4 text-[13px]">
+              {COMMERCIAL_ITEMS.map((x) => (
+                <Link
+                  key={x.href}
+                  href={x.href}
+                  className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4 hover:border-[#29788a] hover:shadow-sm transition"
+                >
+                  <div className="text-[13px] font-semibold text-slate-900">
+                    {x.label}
+                  </div>
+                  <div className="mt-2 text-[12px] text-slate-600">
+                    View guidance and request a fixed fee quote
+                  </div>
+                </Link>
+              ))}
+            </div>
+
+            <div className="mt-6">
+              <Link
+                href="/commercial"
+                className="inline-flex items-center rounded-full bg-[#64b7c4] px-5 py-2 text-[12px] font-semibold uppercase tracking-[0.18em] text-white shadow-sm hover:bg-[#4da4b4]"
+              >
+                View commercial services
+              </Link>
+            </div>
+          </div>
+        </section>
+
         <section className="border-b border-slate-200 bg-[#f8f4f0] py-10">
           <div className="mx-auto max-w-6xl px-4 lg:px-6">
             <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
@@ -576,7 +690,6 @@ export default function IndexPage() {
           </div>
         </section>
 
-        {/* Project types */}
         <section className="border-b border-slate-200 bg-white py-10">
           <div className="mx-auto max-w-6xl px-4 lg:px-6">
             <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
@@ -620,7 +733,6 @@ export default function IndexPage() {
           </div>
         </section>
 
-        {/* Support services */}
         <section className="border-b border-slate-200 bg-[#f8f4f0] py-10">
           <div className="mx-auto max-w-6xl px-4 lg:px-6">
             <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
@@ -661,16 +773,18 @@ export default function IndexPage() {
           </div>
         </section>
 
-        {/* Price guide */}
-        <section id="price-guide" className="border-b border-slate-200 bg-white py-10">
+        <section
+          id="price-guide"
+          className="border-b border-slate-200 bg-white py-10"
+        >
           <div className="mx-auto max-w-6xl px-4 lg:px-6">
             <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
               Price guide for drawings
             </h2>
             <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-              Every project is quoted once the scope and location are understood.
-              These guide figures reflect common extension and loft projects and
-              help set expectations before clients get in touch.
+              Every project is quoted once the scope and location are
+              understood. These guide figures reflect common extension and loft
+              projects and help set expectations before clients get in touch.
             </p>
 
             <div className="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-3 text-[13px]">
@@ -711,7 +825,6 @@ export default function IndexPage() {
           </div>
         </section>
 
-        {/* Contact area */}
         <section id="contact" className="bg-[#f8f4f0] py-10">
           <div className="mx-auto max-w-6xl px-4 lg:px-6">
             <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
@@ -731,7 +844,6 @@ export default function IndexPage() {
           </div>
         </section>
 
-        {/* Footer */}
         <footer className="border-t border-slate-200 bg-white">
           <div className="mx-auto max-w-6xl px-4 py-8 text-[12px] text-slate-600 lg:px-6">
             <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
@@ -802,13 +914,13 @@ export default function IndexPage() {
           </div>
         </footer>
 
-        {/* Floating WhatsApp bubble */}
         <a
           href={WHATSAPP_LINK}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat on WhatsApp with WEDRAWPLANS"
           className="fixed bottom-4 right-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg ring-2 ring-white/70 hover:bg-[#1ebe57]"
+          onClick={() => trackLeadEvent("whatsapp_click")}
         >
           <span className="text-xl">💬</span>
         </a>
@@ -946,7 +1058,9 @@ function ContactForm() {
       });
 
       if (res.ok) {
-        alert("Thank you — your message has been sent to WEDRAWPLANS. We will contact you shortly.");
+        alert(
+          "Thank you — your message has been sent to WEDRAWPLANS. We will contact you shortly."
+        );
         form.reset();
       } else {
         alert("Something went wrong. Please try again or call us directly.");
@@ -987,14 +1101,19 @@ function ContactForm() {
         />
       </div>
       <div className="space-y-1">
-        <label className="text-[11px] font-medium text-slate-700">Type your message here</label>
+        <label className="text-[11px] font-medium text-slate-700">
+          Type your message here
+        </label>
         <textarea
           name="message"
           rows={4}
           className="w-full border border-slate-300 bg-white px-2 py-2 text-[13px] focus:border-[#64b7c4] focus:outline-none"
         />
       </div>
-      <button type="submit" className="mt-2 w-full bg-slate-900 py-2 text-[13px] font-semibold text-white">
+      <button
+        type="submit"
+        className="mt-2 w-full bg-slate-900 py-2 text-[13px] font-semibold text-white"
+      >
         Submit
       </button>
     </form>
