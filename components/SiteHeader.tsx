@@ -1,13 +1,11 @@
 import React from "react";
 import Link from "next/link";
 
-const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20my%20project";
 
 const LOCAL_DESIGNERS_ITEMS = [
-  // Pinned high lead boroughs first
   { label: "Barnet", href: "/areas/barnet" },
   { label: "Harrow", href: "/areas/harrow" },
   { label: "Croydon", href: "/areas/croydon" },
@@ -19,7 +17,6 @@ const LOCAL_DESIGNERS_ITEMS = [
   { label: "Wandsworth", href: "/areas/wandsworth" },
   { label: "Camden", href: "/areas/camden" },
 
-  // Remaining boroughs (alphabetical)
   { label: "Barking and Dagenham", href: "/areas/barking-dagenham" },
   { label: "Bexley", href: "/areas/bexley" },
   { label: "Brent", href: "/areas/brent" },
@@ -44,52 +41,24 @@ const LOCAL_DESIGNERS_ITEMS = [
   { label: "Waltham Forest", href: "/areas/waltham-forest" },
   { label: "Westminster", href: "/areas/westminster" },
 
-  // Region page
   { label: "Surrey Borders (M25)", href: "/areas/surrey-borders-m25" },
-
-  // Final link
   { label: "View all boroughs", href: "/areas" },
 ];
 
 function LocalDesignersDropdown() {
-  const detailsRef = React.useRef<HTMLDetailsElement | null>(null);
-
-  // Close on Escape
-  React.useEffect(() => {
-    function onKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") detailsRef.current?.removeAttribute("open");
-    }
-    document.addEventListener("keydown", onKeyDown);
-    return () => document.removeEventListener("keydown", onKeyDown);
-  }, []);
-
-  // Close if clicking anywhere outside the dropdown panel
-  React.useEffect(() => {
-    function onDocMouseDown(e: MouseEvent) {
-      const el = detailsRef.current;
-      if (!el) return;
-      const target = e.target as Node | null;
-      if (target && !el.contains(target)) el.removeAttribute("open");
-    }
-    document.addEventListener("mousedown", onDocMouseDown);
-    return () => document.removeEventListener("mousedown", onDocMouseDown);
-  }, []);
-
   return (
-    <details ref={detailsRef} className="relative">
+    <details className="relative">
       <summary className="list-none cursor-pointer px-3 py-2 text-[15px] font-medium text-slate-900 hover:text-slate-700">
         Local Designers
       </summary>
 
-      {/* Fixed panel prevents stacking-context issues with sliders/overflow parents */}
-      <div className="fixed left-1/2 top-[180px] z-[2147483647] -translate-x-1/2">
-        <div className="w-80 rounded-xl border border-slate-200 bg-white shadow-lg p-2 max-h-[70vh] overflow-auto">
+      <div className="absolute left-0 top-full z-[9999]">
+        <div className="mt-2 w-80 rounded-xl border border-slate-200 bg-white shadow-lg p-2 max-h-[70vh] overflow-auto">
           {LOCAL_DESIGNERS_ITEMS.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               className="block rounded-lg px-3 py-2 text-[14px] text-slate-900 hover:bg-slate-100"
-              onClick={() => detailsRef.current?.removeAttribute("open")}
             >
               {item.label}
             </Link>
@@ -102,7 +71,7 @@ function LocalDesignersDropdown() {
 
 export default function SiteHeader() {
   return (
-    <header className="relative z-[2147483647] bg-[#fdf8f3]/95 backdrop-blur">
+    <header className="bg-[#fdf8f3]/95 backdrop-blur relative z-[9999]">
       <div className="mx-auto max-w-6xl px-4 pt-6 pb-3 lg:px-6">
         <div className="flex flex-col items-center text-center">
           <img
@@ -122,13 +91,20 @@ export default function SiteHeader() {
 
         <hr className="mt-5 border-t border-slate-600" />
 
-        {/* Nav row */}
-        <nav className="mt-3 flex w-full items-center justify-center gap-6">
-          <LocalDesignersDropdown />
-        </nav>
+        <div className="mt-3 flex w-full items-center justify-between gap-3">
+          <nav className="flex items-center gap-6">
+            <LocalDesignersDropdown />
+            <Link href="/extension-plans" className="px-3 py-2 text-[15px] font-medium text-slate-900 hover:text-slate-700">
+              Extension Plans
+            </Link>
+            <Link href="/loft-plans" className="px-3 py-2 text-[15px] font-medium text-slate-900 hover:text-slate-700">
+              Loft Plans
+            </Link>
+            <Link href="/new-build-plans" className="px-3 py-2 text-[15px] font-medium text-slate-900 hover:text-slate-700">
+              New Build
+            </Link>
+          </nav>
 
-        {/* Call and WhatsApp row */}
-        <div className="mt-1 flex w-full items-center justify-end gap-3">
           <div className="hidden items-center gap-3 lg:flex">
             <a
               href={PHONE_LINK}
@@ -145,20 +121,6 @@ export default function SiteHeader() {
               className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#1ebe57]"
             >
               <span>WhatsApp us</span>
-            </a>
-          </div>
-
-          <div className="flex items-center gap-3 lg:hidden">
-            <a href={PHONE_LINK} className="text-[12px] font-medium text-slate-900">
-              Call
-            </a>
-            <a
-              href={WHATSAPP_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[12px] text-[#29788a]"
-            >
-              WhatsApp
             </a>
           </div>
         </div>
