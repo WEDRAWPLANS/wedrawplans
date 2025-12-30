@@ -1,13 +1,13 @@
 import React from "react";
 import Link from "next/link";
 
-
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20my%20project";
+
 const LOCAL_DESIGNERS_ITEMS = [
-  // Pinned high-lead boroughs
+  // Pinned high lead boroughs first
   { label: "Barnet", href: "/areas/barnet" },
   { label: "Harrow", href: "/areas/harrow" },
   { label: "Croydon", href: "/areas/croydon" },
@@ -19,7 +19,7 @@ const LOCAL_DESIGNERS_ITEMS = [
   { label: "Wandsworth", href: "/areas/wandsworth" },
   { label: "Camden", href: "/areas/camden" },
 
-  // Remaining boroughs
+  // Remaining boroughs (alphabetical)
   { label: "Barking and Dagenham", href: "/areas/barking-dagenham" },
   { label: "Bexley", href: "/areas/bexley" },
   { label: "Brent", href: "/areas/brent" },
@@ -44,42 +44,53 @@ const LOCAL_DESIGNERS_ITEMS = [
   { label: "Waltham Forest", href: "/areas/waltham-forest" },
   { label: "Westminster", href: "/areas/westminster" },
 
-  // Extra region
+  // Region page
   { label: "Surrey Borders (M25)", href: "/areas/surrey-borders-m25" },
 
   // Final link
   { label: "View all boroughs", href: "/areas" },
 ];
+
 function LocalDesignersDropdown() {
+  const [open, setOpen] = React.useState(false);
+
   return (
-    <div className="relative group">
+    <div
+      className="relative"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+    >
       <button
         type="button"
         className="px-3 py-2 text-[15px] font-medium text-slate-900 hover:text-slate-700"
+        onClick={() => setOpen((v) => !v)}
       >
         Local Designers
       </button>
 
-      <div className="absolute left-0 top-full hidden group-hover:block z-50">
-        <div className="mt-2 w-80 rounded-xl border bg-white shadow-lg p-2 max-h-[70vh] overflow-auto">
-          {LOCAL_DESIGNERS_ITEMS.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="block rounded-lg px-3 py-2 hover:bg-slate-100"
-            >
-              {item.label}
-            </Link>
-          ))}
+      {open ? (
+        <div className="absolute left-0 top-full z-[9999]">
+          <div className="mt-2 w-80 rounded-xl border border-slate-200 bg-white shadow-lg p-2 max-h-[70vh] overflow-auto">
+            {LOCAL_DESIGNERS_ITEMS.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="block rounded-lg px-3 py-2 text-[14px] text-slate-900 hover:bg-slate-100"
+                onClick={() => setOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
         </div>
-      </div>
+      ) : null}
     </div>
   );
 }
 
 export default function SiteHeader() {
   return (
-    <header className="bg-[#fdf8f3]/95 backdrop-blur">
+    <header className="relative z-50 bg-[#fdf8f3]/95 backdrop-blur">
       <div className="mx-auto max-w-6xl px-4 pt-6 pb-3 lg:px-6">
         <div className="flex flex-col items-center text-center">
           <img
@@ -93,15 +104,19 @@ export default function SiteHeader() {
           </div>
 
           <div className="mt-2 max-w-3xl text-[13px] font-medium text-slate-800">
-            Architectural Drawings for Extensions, Lofts + New Builds at an Affordable Fixed Cost
+            Architectural Drawings for Extensions, Lofts + New Builds at an
+            Affordable Fixed Cost
           </div>
         </div>
 
         <hr className="mt-5 border-t border-slate-600" />
-<nav className="mt-3 hidden w-full justify-center lg:flex">
-  <LocalDesignersDropdown />
-</nav>
 
+        {/* Desktop nav row */}
+        <nav className="mt-3 hidden w-full items-center justify-center gap-6 lg:flex">
+          <LocalDesignersDropdown />
+        </nav>
+
+        {/* Call/WhatsApp row */}
         <div className="mt-1 flex w-full items-center justify-end gap-3">
           <div className="hidden items-center gap-3 lg:flex">
             <a
