@@ -53,22 +53,41 @@ const LOCAL_DESIGNERS_ITEMS = [
 
 function LocalDesignersDropdown() {
   const [open, setOpen] = React.useState(false);
+  const wrapRef = React.useRef<HTMLDivElement | null>(null);
+
+  // Close when clicking outside
+  React.useEffect(() => {
+    function onDocMouseDown(e: MouseEvent) {
+      if (!wrapRef.current) return;
+      const target = e.target as Node | null;
+      if (target && !wrapRef.current.contains(target)) setOpen(false);
+    }
+    document.addEventListener("mousedown", onDocMouseDown);
+    return () => document.removeEventListener("mousedown", onDocMouseDown);
+  }, []);
+
+  // Close on Escape
+  React.useEffect(() => {
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") setOpen(false);
+    }
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, []);
 
   return (
-    <div
-      className="relative"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-    >
+    <div ref={wrapRef} className="relative">
       <button
         type="button"
         className="px-3 py-2 text-[15px] font-medium text-slate-900 hover:text-slate-700"
         onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        aria-haspopup="true"
       >
         Local Designers
       </button>
 
-      {open ? (
+      {open && (
         <div className="absolute left-0 top-full z-[9999]">
           <div className="mt-2 w-80 rounded-xl border border-slate-200 bg-white shadow-lg p-2 max-h-[70vh] overflow-auto">
             {LOCAL_DESIGNERS_ITEMS.map((item) => (
@@ -83,14 +102,14 @@ function LocalDesignersDropdown() {
             ))}
           </div>
         </div>
-      ) : null}
+      )}
     </div>
   );
 }
 
 export default function SiteHeader() {
   return (
-    <header className="relative z-50 bg-[#fdf8f3]/95 backdrop-blur">
+    <header className="relative z-[9999] bg-[#fdf8f3]/95 backdrop-blur">
       <div className="mx-auto max-w-6xl px-4 pt-6 pb-3 lg:px-6">
         <div className="flex flex-col items-center text-center">
           <img
@@ -104,19 +123,18 @@ export default function SiteHeader() {
           </div>
 
           <div className="mt-2 max-w-3xl text-[13px] font-medium text-slate-800">
-            Architectural Drawings for Extensions, Lofts + New Builds at an
-            Affordable Fixed Cost
+            Architectural Drawings for Extensions, Lofts + New Builds at an Affordable Fixed Cost
           </div>
         </div>
 
         <hr className="mt-5 border-t border-slate-600" />
 
-        {/* Desktop nav row */}
-        <nav className="mt-3 hidden w-full items-center justify-center gap-6 lg:flex">
+        {/* Nav row */}
+        <nav className="mt-3 flex w-full items-center justify-center gap-6">
           <LocalDesignersDropdown />
         </nav>
 
-        {/* Call/WhatsApp row */}
+        {/* Call and WhatsApp row */}
         <div className="mt-1 flex w-full items-center justify-end gap-3">
           <div className="hidden items-center gap-3 lg:flex">
             <a
