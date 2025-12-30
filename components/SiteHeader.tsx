@@ -52,64 +52,57 @@ const LOCAL_DESIGNERS_ITEMS = [
 ];
 
 function LocalDesignersDropdown() {
-  const [open, setOpen] = React.useState(false);
-  const wrapRef = React.useRef<HTMLDivElement | null>(null);
-
-  // Close when clicking outside
-  React.useEffect(() => {
-    function onDocMouseDown(e: MouseEvent) {
-      if (!wrapRef.current) return;
-      const target = e.target as Node | null;
-      if (target && !wrapRef.current.contains(target)) setOpen(false);
-    }
-    document.addEventListener("mousedown", onDocMouseDown);
-    return () => document.removeEventListener("mousedown", onDocMouseDown);
-  }, []);
+  const detailsRef = React.useRef<HTMLDetailsElement | null>(null);
 
   // Close on Escape
   React.useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") detailsRef.current?.removeAttribute("open");
     }
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
   }, []);
 
-  return (
-    <div ref={wrapRef} className="relative">
-      <button
-        type="button"
-        className="px-3 py-2 text-[15px] font-medium text-slate-900 hover:text-slate-700"
-        onClick={() => setOpen((v) => !v)}
-        aria-expanded={open}
-        aria-haspopup="true"
-      >
-        Local Designers
-      </button>
+  // Close if clicking anywhere outside the dropdown panel
+  React.useEffect(() => {
+    function onDocMouseDown(e: MouseEvent) {
+      const el = detailsRef.current;
+      if (!el) return;
+      const target = e.target as Node | null;
+      if (target && !el.contains(target)) el.removeAttribute("open");
+    }
+    document.addEventListener("mousedown", onDocMouseDown);
+    return () => document.removeEventListener("mousedown", onDocMouseDown);
+  }, []);
 
-      {open && (
-        <div className="absolute left-0 top-full z-[9999]">
-          <div className="mt-2 w-80 rounded-xl border border-slate-200 bg-white shadow-lg p-2 max-h-[70vh] overflow-auto">
-            {LOCAL_DESIGNERS_ITEMS.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="block rounded-lg px-3 py-2 text-[14px] text-slate-900 hover:bg-slate-100"
-                onClick={() => setOpen(false)}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </div>
+  return (
+    <details ref={detailsRef} className="relative">
+      <summary className="list-none cursor-pointer px-3 py-2 text-[15px] font-medium text-slate-900 hover:text-slate-700">
+        Local Designers
+      </summary>
+
+      {/* Fixed panel prevents stacking-context issues with sliders/overflow parents */}
+      <div className="fixed left-1/2 top-[180px] z-[2147483647] -translate-x-1/2">
+        <div className="w-80 rounded-xl border border-slate-200 bg-white shadow-lg p-2 max-h-[70vh] overflow-auto">
+          {LOCAL_DESIGNERS_ITEMS.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="block rounded-lg px-3 py-2 text-[14px] text-slate-900 hover:bg-slate-100"
+              onClick={() => detailsRef.current?.removeAttribute("open")}
+            >
+              {item.label}
+            </Link>
+          ))}
         </div>
-      )}
-    </div>
+      </div>
+    </details>
   );
 }
 
 export default function SiteHeader() {
   return (
-    <header className="relative z-[9999] bg-[#fdf8f3]/95 backdrop-blur">
+    <header className="relative z-[2147483647] bg-[#fdf8f3]/95 backdrop-blur">
       <div className="mx-auto max-w-6xl px-4 pt-6 pb-3 lg:px-6">
         <div className="flex flex-col items-center text-center">
           <img
