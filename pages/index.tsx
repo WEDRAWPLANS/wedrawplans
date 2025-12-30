@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Head from "next/head";
 import HeroSlider from "../components/HeroSlider";
+import Link from "next/link";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
@@ -9,6 +10,7 @@ const EMAIL_LINK = "mailto:info@wedrawplans.com";
 
 const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20my%20project";
+
 const trackLeadEvent = (
   action: "phone_click" | "email_click" | "whatsapp_click"
 ) => {
@@ -20,6 +22,7 @@ const trackLeadEvent = (
   }
 };
 
+// This list is used for the grid section further down
 const BOROUGHS: { label: string; slug: string }[] = [
   { label: "Architectural drawings Barking and Dagenham", slug: "barking-dagenham" },
   { label: "Architectural drawings Barnet", slug: "barnet" },
@@ -52,12 +55,119 @@ const BOROUGHS: { label: string; slug: string }[] = [
   { label: "Architectural drawings Tower Hamlets", slug: "tower-hamlets" },
   { label: "Architectural drawings Waltham Forest", slug: "waltham-forest" },
   { label: "Architectural drawings Wandsworth", slug: "wandsworth" },
+  // keep your labels, but for the header dropdown we will use the real /areas routes below
   { label: "Architectural drawings Westminster and City of London", slug: "westminster-city" },
   { label: "Architectural drawings Surrey borders and M25", slug: "surrey-m25" },
 ];
 
-export default function IndexPage() {
+// Header dropdown must match real /pages/areas/*.tsx routes
+const LOCAL_DESIGNERS_ITEMS: { label: string; href: string }[] = [
+  // High lead first
+  { label: "Barnet", href: "/areas/barnet" },
+  { label: "Harrow", href: "/areas/harrow" },
+  { label: "Croydon", href: "/areas/croydon" },
+  { label: "Ealing", href: "/areas/ealing" },
+  { label: "Enfield", href: "/areas/enfield" },
+  { label: "Redbridge", href: "/areas/redbridge" },
+  { label: "Hillingdon", href: "/areas/hillingdon" },
+  { label: "Bromley", href: "/areas/bromley" },
+  { label: "Wandsworth", href: "/areas/wandsworth" },
+  { label: "Camden", href: "/areas/camden" },
 
+  // Remaining (matching your /pages/areas folder)
+  { label: "Barking and Dagenham", href: "/areas/barking-dagenham" },
+  { label: "Bexley", href: "/areas/bexley" },
+  { label: "Brent", href: "/areas/brent" },
+  { label: "City of London", href: "/areas/city-of-london" },
+  { label: "Greenwich", href: "/areas/greenwich" },
+  { label: "Hackney", href: "/areas/hackney" },
+  { label: "Hammersmith and Fulham", href: "/areas/hammersmith-fulham" },
+  { label: "Haringey", href: "/areas/haringey" },
+  { label: "Havering", href: "/areas/havering" },
+  { label: "Hounslow", href: "/areas/hounslow" },
+  { label: "Islington", href: "/areas/islington" },
+  { label: "Kensington and Chelsea", href: "/areas/kensington-chelsea" },
+  { label: "Kingston upon Thames", href: "/areas/kingston" },
+  { label: "Lambeth", href: "/areas/lambeth" },
+  { label: "Lewisham", href: "/areas/lewisham" },
+  { label: "Merton", href: "/areas/merton" },
+  { label: "Newham", href: "/areas/newham" },
+  { label: "Richmond upon Thames", href: "/areas/richmond" },
+  { label: "Southwark", href: "/areas/southwark" },
+  { label: "Sutton", href: "/areas/sutton" },
+  { label: "Tower Hamlets", href: "/areas/tower-hamlets" },
+  { label: "Waltham Forest", href: "/areas/waltham-forest" },
+  { label: "Westminster", href: "/areas/westminster" },
+
+  // Region
+  { label: "Surrey Borders (M25)", href: "/areas/surrey-borders-m25" },
+
+  // Final
+  { label: "View all boroughs", href: "/areas" },
+];
+
+function LocalDesignersDropdown() {
+  const [open, setOpen] = useState(false);
+  const wrapRef = useRef<HTMLDivElement | null>(null);
+
+  // Close when clicking outside
+  useEffect(() => {
+    function onDocMouseDown(e: MouseEvent) {
+      if (!wrapRef.current) return;
+      const target = e.target as Node | null;
+      if (target && !wrapRef.current.contains(target)) setOpen(false);
+    }
+    document.addEventListener("mousedown", onDocMouseDown);
+    return () => document.removeEventListener("mousedown", onDocMouseDown);
+  }, []);
+
+  // Close on Escape
+  useEffect(() => {
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") setOpen(false);
+    }
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, []);
+
+  return (
+    <div
+      ref={wrapRef}
+      className="relative"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+    >
+      <button
+        type="button"
+        className="text-[14px] font-normal text-slate-900 whitespace-nowrap hover:text-black"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        aria-haspopup="true"
+      >
+        Local Designers
+      </button>
+
+      {open && (
+        <div className="absolute left-0 top-full z-[9999]">
+          <div className="mt-2 w-80 max-h-[70vh] overflow-auto rounded-xl border border-slate-200 bg-white p-2 shadow-lg">
+            {LOCAL_DESIGNERS_ITEMS.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="block rounded-lg px-3 py-2 text-[14px] text-slate-900 hover:bg-slate-100"
+                onClick={() => setOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default function IndexPage() {
   async function handleHeroSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
@@ -93,9 +203,7 @@ export default function IndexPage() {
   return (
     <>
       <Head>
-        <title>
-          WEDRAWPLANS – London extension, loft and new build drawings
-        </title>
+        <title>WEDRAWPLANS – London extension, loft and new build drawings</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
@@ -106,158 +214,139 @@ export default function IndexPage() {
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
         {/* HEADER */}
-              {/* HEADER */}
-<header className="bg-[#fdf8f3]/95 backdrop-blur">
-  <div className="mx-auto max-w-6xl px-4 pt-6 pb-3 lg:px-6">
-    {/* LOGO + STRAPLINES (CENTRED) */}
-    <div className="flex flex-col items-center text-center">
-      {/* Bigger centred logo */}
-      <img
-        src="/images/wedrawplans-logo.png"
-        alt="WEDRAWPLANS"
-        className="h-24 w-auto object-contain"
-      />
+        <header className="relative z-[50] bg-[#fdf8f3]/95 backdrop-blur">
+          <div className="mx-auto max-w-6xl px-4 pt-6 pb-3 lg:px-6">
+            {/* LOGO + STRAPLINES (CENTRED) */}
+            <div className="flex flex-col items-center text-center">
+              <img
+                src="/images/wedrawplans-logo.png"
+                alt="WEDRAWPLANS"
+                className="h-24 w-auto object-contain"
+              />
 
-      {/* Line 1 – existing strapline */}
-      <div className="mt-3 text-[11px] tracking-[0.18em] text-slate-600 uppercase">
-        Architectural Drawing Consultants
-      </div>
+              <div className="mt-3 text-[11px] tracking-[0.18em] text-slate-600 uppercase">
+                Architectural Drawing Consultants
+              </div>
 
-      {/* Line 2 – new slogan */}
-      <div className="mt-2 max-w-3xl text-[13px] font-medium text-slate-800">
-        Architectural Drawings for Extensions, Lofts + New Builds at an Affordable Fixed Cost
-      </div>
-    </div>
+              <div className="mt-2 max-w-3xl text-[13px] font-medium text-slate-800">
+                Architectural Drawings for Extensions, Lofts + New Builds at an Affordable Fixed Cost
+              </div>
+            </div>
 
-    {/* Strong horizontal line like drawplans.uk */}
-    <hr className="mt-5 border-t border-slate-600" />
+            <hr className="mt-5 border-t border-slate-600" />
 
-    {/* ROW: NAV (centre) + DESKTOP CONTACT (right) */}
-    <div className="mt-1 flex w-full items-center justify-between">
-      {/* Centre: navigation (desktop only) */}
-      <nav className="hidden flex-1 items-center justify-center gap-6 text-[13px] text-slate-900 lg:flex">
-        {/* 1. Local Designers */}
-        <NavMenu title="Local Designers">
-          {BOROUGHS.slice(0, 8).map((borough) => (
-            <NavItem key={borough.slug}>
-              <a href={`/areas/${borough.slug}`} className="block">
-                {borough.label}
-              </a>
-            </NavItem>
-          ))}
-          <NavItem>
-            <a href="/areas" className="block font-semibold text-[#29788a]">
-              View all boroughs
-            </a>
-          </NavItem>
-        </NavMenu>
+            {/* ROW: NAV (centre) + DESKTOP CONTACT (right) */}
+            <div className="mt-1 flex w-full items-center justify-between">
+              {/* Centre: navigation (desktop only) */}
+              <nav className="hidden flex-1 items-center justify-center gap-6 text-[13px] text-slate-900 lg:flex">
+                {/* 1. Local Designers (CLICK + HOVER WORKING) */}
+                <LocalDesignersDropdown />
 
-        {/* 2. Extension Plans */}
-        <NavMenu title="Extension Plans">
-          <NavItem>Rear extension plans</NavItem>
-          <NavItem>Side return extensions</NavItem>
-          <NavItem>Wrap-around extensions</NavItem>
-          <NavItem>Two storey extensions</NavItem>
-          <NavItem>Kitchen extension layouts</NavItem>
-          <NavItem>Garage conversion plans</NavItem>
-          <NavItem>Garden room / studio plans</NavItem>
-        </NavMenu>
+                {/* 2. Extension Plans */}
+                <NavMenu title="Extension Plans">
+                  <NavItem>Rear extension plans</NavItem>
+                  <NavItem>Side return extensions</NavItem>
+                  <NavItem>Wrap-around extensions</NavItem>
+                  <NavItem>Two storey extensions</NavItem>
+                  <NavItem>Kitchen extension layouts</NavItem>
+                  <NavItem>Garage conversion plans</NavItem>
+                  <NavItem>Garden room / studio plans</NavItem>
+                </NavMenu>
 
-        {/* 3. Loft Plans */}
-        <NavMenu title="Loft Plans">
-          <NavItem>Dormer loft conversions</NavItem>
-          <NavItem>Hip to gable lofts</NavItem>
-          <NavItem>Mansard loft conversions</NavItem>
-          <NavItem>Velux loft layouts</NavItem>
-          <NavItem>Attic conversions</NavItem>
-        </NavMenu>
+                {/* 3. Loft Plans */}
+                <NavMenu title="Loft Plans">
+                  <NavItem>Dormer loft conversions</NavItem>
+                  <NavItem>Hip to gable lofts</NavItem>
+                  <NavItem>Mansard loft conversions</NavItem>
+                  <NavItem>Velux loft layouts</NavItem>
+                  <NavItem>Attic conversions</NavItem>
+                </NavMenu>
 
-        {/* 4. New Build */}
-        <NavMenu title="New Build">
-          <NavItem>New build house plans</NavItem>
-          <NavItem>Small residential developments</NavItem>
-          <NavItem>Backland and infill sites</NavItem>
-          <NavItem>Conversion to self-contained flats</NavItem>
-          <NavItem>Basement and lower ground conversions</NavItem>
-        </NavMenu>
+                {/* 4. New Build */}
+                <NavMenu title="New Build">
+                  <NavItem>New build house plans</NavItem>
+                  <NavItem>Small residential developments</NavItem>
+                  <NavItem>Backland and infill sites</NavItem>
+                  <NavItem>Conversion to self-contained flats</NavItem>
+                  <NavItem>Basement and lower ground conversions</NavItem>
+                </NavMenu>
 
-        {/* 5. Technical & Support */}
-        <NavMenu title="Technical & Support">
-          <NavItem>Building Regulation drawing packs</NavItem>
-          <NavItem>Fire and escape strategy plans</NavItem>
-          <NavItem>Measured surveys</NavItem>
-          <NavItem>Structural engineer coordination</NavItem>
-          <NavItem>Party wall plans and support</NavItem>
-          <NavItem>HMO layout and licensing drawings</NavItem>
-          <NavItem>Interior layouts and finishes</NavItem>
-        </NavMenu>
+                {/* 5. Technical & Support */}
+                <NavMenu title="Technical & Support">
+                  <NavItem>Building Regulation drawing packs</NavItem>
+                  <NavItem>Fire and escape strategy plans</NavItem>
+                  <NavItem>Measured surveys</NavItem>
+                  <NavItem>Structural engineer coordination</NavItem>
+                  <NavItem>Party wall plans and support</NavItem>
+                  <NavItem>HMO layout and licensing drawings</NavItem>
+                  <NavItem>Interior layouts and finishes</NavItem>
+                </NavMenu>
 
-        {/* 6. Areas we cover */}
-        <a href="/areas" className="whitespace-nowrap hover:text-black">
-          Areas we cover
-        </a>
+                {/* 6. Areas we cover */}
+                <a href="/areas" className="whitespace-nowrap hover:text-black">
+                  Areas we cover
+                </a>
 
-        {/* 7. Price guide */}
-        <a href="#price-guide" className="whitespace-nowrap hover:text-black">
-          Price guide
-        </a>
+                {/* 7. Price guide */}
+                <a href="#price-guide" className="whitespace-nowrap hover:text-black">
+                  Price guide
+                </a>
 
-        {/* 8. Contact */}
-        <a href="#contact" className="whitespace-nowrap hover:text-black">
-          Contact
-        </a>
-      </nav>
+                {/* 8. Contact */}
+                <a href="#contact" className="whitespace-nowrap hover:text-black">
+                  Contact
+                </a>
+              </nav>
 
-      {/* Right: phone + WhatsApp (desktop) */}
-      <div className="hidden items-center gap-3 lg:flex">
-        <a
-          href={PHONE_LINK}
-          className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#1ebe57]"
-        >
-          <span className="text-base">📞</span>
-          <span>Call us</span>
-        </a>
+              {/* Right: phone + WhatsApp (desktop) */}
+              <div className="hidden items-center gap-3 lg:flex">
+                <a
+                  href={PHONE_LINK}
+                  className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#1ebe57]"
+                >
+                  <span className="text-base">📞</span>
+                  <span>Call us</span>
+                </a>
 
-        <a
-          href={WHATSAPP_LINK}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#1ebe57]"
-        >
-          <span>WhatsApp us</span>
-        </a>
-      </div>
+                <a
+                  href={WHATSAPP_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#1ebe57]"
+                >
+                  <span>WhatsApp us</span>
+                </a>
+              </div>
 
-      {/* Right: mobile contact only */}
-      <div className="flex items-center gap-3 lg:hidden">
-        <a href={PHONE_LINK} className="text-[12px] font-medium text-slate-900">
-          Call
-        </a>
-        <a
-          href={WHATSAPP_LINK}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-[12px] text-[#29788a]"
-        >
-          WhatsApp
-        </a>
-      </div>
-    </div>
-  </div>
-</header>
+              {/* Right: mobile contact only */}
+              <div className="flex items-center gap-3 lg:hidden">
+                <a href={PHONE_LINK} className="text-[12px] font-medium text-slate-900">
+                  Call
+                </a>
+                <a
+                  href={WHATSAPP_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[12px] text-[#29788a]"
+                >
+                  WhatsApp
+                </a>
+              </div>
+            </div>
+          </div>
+        </header>
 
-{/* IMAGE SLIDER UNDER THE HEADER */}
-<HeroSlider
-  slides={[
-    { src: "/hero/one.jpg", alt: "Kitchen extension with rooflight" },
-    { src: "/hero/two.jpg", alt: "Loft conversion with dormer" },
-    { src: "/hero/three.jpg", alt: "Open plan living with garden" },
-  ]}
-/>
+        {/* IMAGE SLIDER UNDER THE HEADER */}
+        <HeroSlider
+          slides={[
+            { src: "/hero/one.jpg", alt: "Kitchen extension with rooflight" },
+            { src: "/hero/two.jpg", alt: "Loft conversion with dormer" },
+            { src: "/hero/three.jpg", alt: "Open plan living with garden" },
+          ]}
+        />
 
-{/* HERO – heading block, then form, then explanatory text */}
-<section className="border-b border-slate-200 bg-[#fdf8f3]">
-
+        {/* HERO – heading block, then form, then explanatory text */}
+        <section className="border-b border-slate-200 bg-[#fdf8f3]">
           <div className="mx-auto max-w-3xl px-4 py-7 lg:px-6 lg:py-10">
             {/* Heading block */}
             <div className="text-left">
@@ -273,11 +362,8 @@ export default function IndexPage() {
               </p>
             </div>
 
-      
-
             {/* Form card */}
             <div className="mt-4 rounded-2xl bg-white p-5 shadow-md">
-
               <h2 className="text-[14px] font-semibold uppercase tracking-[0.16em] text-slate-900">
                 Free fixed fee quote
               </h2>
@@ -287,15 +373,10 @@ export default function IndexPage() {
                 with a designer.
               </p>
 
-              <form
-                onSubmit={handleHeroSubmit}
-                className="mt-3 space-y-3 text-[13px]"
-              >
+              <form onSubmit={handleHeroSubmit} className="mt-3 space-y-3 text-[13px]">
                 {/* Name */}
                 <div className="space-y-1">
-                  <label className="text-[11px] font-medium text-slate-700">
-                    Name
-                  </label>
+                  <label className="text-[11px] font-medium text-slate-700">Name</label>
                   <input
                     name="name"
                     required
@@ -306,9 +387,7 @@ export default function IndexPage() {
                 {/* Telephone + Email */}
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                   <div className="space-y-1">
-                    <label className="text-[11px] font-medium text-slate-700">
-                      Telephone
-                    </label>
+                    <label className="text-[11px] font-medium text-slate-700">Telephone</label>
                     <input
                       name="phone"
                       type="tel"
@@ -317,9 +396,7 @@ export default function IndexPage() {
                     />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-[11px] font-medium text-slate-700">
-                      Email
-                    </label>
+                    <label className="text-[11px] font-medium text-slate-700">Email</label>
                     <input
                       name="email"
                       type="email"
@@ -331,9 +408,7 @@ export default function IndexPage() {
 
                 {/* Postcode */}
                 <div className="space-y-1">
-                  <label className="text-[11px] font-medium text-slate-700">
-                    Postcode
-                  </label>
+                  <label className="text-[11px] font-medium text-slate-700">Postcode</label>
                   <input
                     name="postcode"
                     required
@@ -364,12 +439,8 @@ export default function IndexPage() {
                     <option value="" disabled>
                       Select service
                     </option>
-                    <option value="House extension plans">
-                      House extension plans
-                    </option>
-                    <option value="Loft conversion plans">
-                      Loft conversion plans
-                    </option>
+                    <option value="House extension plans">House extension plans</option>
+                    <option value="Loft conversion plans">Loft conversion plans</option>
                     <option value="New build or small development">
                       New build or small residential development
                     </option>
@@ -382,9 +453,7 @@ export default function IndexPage() {
                     <option value="Measured survey and as existing drawings">
                       Measured survey and as existing drawings
                     </option>
-                    <option value="Other architectural drawings">
-                      Other architectural drawings
-                    </option>
+                    <option value="Other architectural drawings">Other architectural drawings</option>
                   </select>
                 </div>
 
@@ -441,20 +510,19 @@ export default function IndexPage() {
               lofts and new builds are viewed in their council area.
             </p>
 
-           <div className="mt-6 grid gap-3 text-[14px] sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-  {BOROUGHS.map((b) => (
-    <a
-      key={b.slug}
-      href={`/areas/${b.slug}`}
-      className="block rounded-md border border-[#d7e8ee] bg-[#e8f4f8] px-4 py-3 text-center font-medium text-slate-800 
+            <div className="mt-6 grid gap-3 text-[14px] sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              {BOROUGHS.map((b) => (
+                <a
+                  key={b.slug}
+                  href={`/areas/${b.slug}`}
+                  className="block rounded-md border border-[#d7e8ee] bg-[#e8f4f8] px-4 py-3 text-center font-medium text-slate-800 
                  transition-all duration-200 transform
                  hover:-translate-y-0.5 hover:bg-[#29788a] hover:text-white hover:border-[#29788a] hover:shadow-md"
-    >
-      {b.label}
-    </a>
-  ))}
-</div>
-
+                >
+                  {b.label}
+                </a>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -681,38 +749,37 @@ export default function IndexPage() {
                 <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-900">
                   Contact
                 </div>
-<ul className="mt-2 space-y-1">
-  <li>
-    <a
-      href={PHONE_LINK}
-      className="hover:underline"
-      onClick={() => trackLeadEvent("phone_click")}
-    >
-      Phone {PHONE_DISPLAY}
-    </a>
-  </li>
-  <li>
-    <a
-      href={EMAIL_LINK}
-      className="hover:underline"
-      onClick={() => trackLeadEvent("email_click")}
-    >
-      {EMAIL}
-    </a>
-  </li>
-  <li>
-    <a
-      href={WHATSAPP_LINK}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="hover:underline"
-      onClick={() => trackLeadEvent("whatsapp_click")}
-    >
-      Chat on WhatsApp
-    </a>
-  </li>
-</ul>
-
+                <ul className="mt-2 space-y-1">
+                  <li>
+                    <a
+                      href={PHONE_LINK}
+                      className="hover:underline"
+                      onClick={() => trackLeadEvent("phone_click")}
+                    >
+                      Phone {PHONE_DISPLAY}
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={EMAIL_LINK}
+                      className="hover:underline"
+                      onClick={() => trackLeadEvent("email_click")}
+                    >
+                      {EMAIL}
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={WHATSAPP_LINK}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:underline"
+                      onClick={() => trackLeadEvent("whatsapp_click")}
+                    >
+                      Chat on WhatsApp
+                    </a>
+                  </li>
+                </ul>
               </div>
               <div>
                 <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-900">
@@ -822,9 +889,7 @@ function PriceCard({ title, price, body }: PriceCardProps) {
   return (
     <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
       <h3 className="text-[13px] font-semibold text-slate-900">{title}</h3>
-      <div className="mt-1 text-[13px] font-semibold text-slate-900">
-        {price}
-      </div>
+      <div className="mt-1 text-[13px] font-semibold text-slate-900">{price}</div>
       <p className="mt-2 text-[12px] text-slate-600">{body}</p>
     </div>
   );
@@ -839,9 +904,7 @@ type HelpCardProps = {
 function HelpCard({ title, body, linkText }: HelpCardProps) {
   function handleClick() {
     const el = document.getElementById("contact");
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   return (
@@ -883,9 +946,7 @@ function ContactForm() {
       });
 
       if (res.ok) {
-        alert(
-          "Thank you — your message has been sent to WEDRAWPLANS. We will contact you shortly."
-        );
+        alert("Thank you — your message has been sent to WEDRAWPLANS. We will contact you shortly.");
         form.reset();
       } else {
         alert("Something went wrong. Please try again or call us directly.");
@@ -905,46 +966,35 @@ function ContactForm() {
         />
       </div>
       <div className="space-y-1">
-        <label className="text-[11px] font-medium text-slate-700">
-          Telephone
-        </label>
+        <label className="text-[11px] font-medium text-slate-700">Telephone</label>
         <input
           name="phone"
           className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
         />
       </div>
       <div className="space-y-1">
-        <label className="text-[11px] font-medium text-slate-700">
-          Postcode
-        </label>
+        <label className="text-[11px] font-medium text-slate-700">Postcode</label>
         <input
           name="postcode"
           className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
         />
       </div>
       <div className="space-y-1">
-        <label className="text-[11px] font-medium text-slate-700">
-          Email
-        </label>
+        <label className="text-[11px] font-medium text-slate-700">Email</label>
         <input
           name="email"
           className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
         />
       </div>
       <div className="space-y-1">
-        <label className="text-[11px] font-medium text-slate-700">
-          Type your message here
-        </label>
+        <label className="text-[11px] font-medium text-slate-700">Type your message here</label>
         <textarea
           name="message"
           rows={4}
           className="w-full border border-slate-300 bg-white px-2 py-2 text-[13px] focus:border-[#64b7c4] focus:outline-none"
         />
       </div>
-      <button
-        type="submit"
-        className="mt-2 w-full bg-slate-900 py-2 text-[13px] font-semibold text-white"
-      >
+      <button type="submit" className="mt-2 w-full bg-slate-900 py-2 text-[13px] font-semibold text-white">
         Submit
       </button>
     </form>
