@@ -302,8 +302,7 @@ export default function IndexPage() {
               </div>
 
               <div className="mt-2 max-w-3xl text-[13px] font-medium text-slate-800">
-                Architectural Drawings for Extensions, Lofts + New Builds at an
-                Affordable Fixed Cost
+               Architectural Drawings for New Builds, Extensions and Lofts — at an Affordable Fixed Cost
               </div>
             </div>
 
