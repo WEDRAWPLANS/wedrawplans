@@ -415,7 +415,7 @@ export default function IndexPage() {
           <div className="mx-auto max-w-3xl px-4 py-7 lg:px-6 lg:py-10">
             <div className="text-left">
               <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-red-700">
-                Planning and Building Regulation Drawings for London
+                Planning and Building Regulation Drawings for London and the M25 area. 
               </p>
               <h1 className="mt-2 text-[20px] font-semibold uppercase leading-snug tracking-[0.14em] text-slate-900 sm:text-[24px]">
                 WEDRAWPLANS — Affordable Fixed-Cost Architectural Drawing Services for Homeowners and Developers
@@ -850,8 +850,8 @@ export default function IndexPage() {
                   WEDRAWPLANS
                 </div>
                 <p className="mt-2 max-w-sm text-[12px] text-slate-600">
-                  Architectural drawing consultants for New Builds, extrensions,loft
-                  conversions, conversions and commercial developments
+                  Architectural drawing consultants for New Builds, extrensions, loft
+                  conversions, and commercial developments
                   across London and the M25 area.
                 </p>
               </div>
