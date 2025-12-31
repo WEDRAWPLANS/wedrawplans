@@ -418,8 +418,7 @@ export default function IndexPage() {
                 Planning and Building Regulation Drawings for London
               </p>
               <h1 className="mt-2 text-[20px] font-semibold uppercase leading-snug tracking-[0.14em] text-slate-900 sm:text-[24px]">
-                WEDRAWPLANS — Londons affordable fixed cost architectural drawing
-                services
+                WEDRAWPLANS — Affordable Fixed-Cost Architectural Drawing Services for Homeowners and Developers
               </h1>
               <p className="mt-2 text-[13px] font-medium text-slate-800">
                 Planning | Extensions | Loft Conversions | New Build | Building
