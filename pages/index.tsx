@@ -277,7 +277,7 @@ export default function IndexPage() {
   return (
     <>
       <Head>
-        <title>WEDRAWPLANS – London extension, loft and new build drawings</title>
+        <title>WEDRAWPLANS – New build ,extension & loft conversion drawings</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
@@ -850,8 +850,8 @@ export default function IndexPage() {
                   WEDRAWPLANS
                 </div>
                 <p className="mt-2 max-w-sm text-[12px] text-slate-600">
-                  Architectural drawing consultants for extensions, loft
-                  conversions, new builds, conversions and small developments
+                  Architectural drawing consultants for New Builds, extrensions,loft
+                  conversions, conversions and commercial developments
                   across London and the M25 area.
                 </p>
               </div>
@@ -1123,8 +1123,8 @@ function ContactSummary() {
     <div className="text-[13px] text-slate-700">
       <p>
         WEDRAWPLANS provide a full range of architectural drawing services for
-        house extensions, loft conversions, garage conversions, garden rooms,
-        flat conversions, HMOs and small new build developments.
+        New builds, house extensions, loft conversions, garage conversions, garden rooms,
+        flat conversions, HMOs & commercial Developments.
       </p>
       <p className="mt-3">
         The focus is on clear, buildable designs that support planning and
