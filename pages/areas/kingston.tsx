@@ -1,3 +1,4 @@
+// pages/areas/kingston.tsx
 import React from "react";
 import Head from "next/head";
 import Image from "next/image";
@@ -5,9 +6,6 @@ import { submitBoroughLead } from "../../lib/submitBoroughLead";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
-const EMAIL_DISPLAY = "info@wedrawplans.com";
-const EMAIL_LINK = "mailto:info@wedrawplans.com";
-
 const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Kingston%20upon%20Thames";
 
@@ -34,7 +32,7 @@ export default function KingstonAreaPage() {
       streetAddress: "201 Borough High Street",
       addressLocality: "London",
       postalCode: "SE1 1JA",
-      addressCountry: "UK"
+      addressCountry: "UK",
     },
     areaServed: [
       "Kingston upon Thames",
@@ -45,12 +43,13 @@ export default function KingstonAreaPage() {
       "Tolworth",
       "Berrylands",
       "Kingston Vale",
-      "Hampton Wick",
-      "Coombe",
-      "Hook"
+      "Old Malden",
+      "North Kingston",
+      "Hampton Wick borders",
+      "Thames riverside area",
     ],
     description:
-      "Architectural drawing services in Kingston upon Thames for extensions, loft conversions, refurbishments, outbuildings and building regulation packs."
+      "Architectural drawing services in Kingston upon Thames for extensions, loft conversions, refurbishments, outbuildings and building regulation packs.",
   };
 
   const faqJson = {
@@ -59,12 +58,13 @@ export default function KingstonAreaPage() {
     mainEntity: [
       {
         "@type": "Question",
-        name: "Do I need planning permission for a rear extension in Kingston upon Thames?",
+        name:
+          "Do I need planning permission for a rear extension in Kingston upon Thames?",
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Not always. Many rear extensions in Kingston can be carried out under permitted development. We confirm the correct route once we review your address and house type."
-        }
+            "Not always. Many houses can extend under permitted development, but flats and some conservation areas need full planning permission. We confirm the correct route once we review your address and house type.",
+        },
       },
       {
         "@type": "Question",
@@ -72,8 +72,8 @@ export default function KingstonAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "River locations, conservation areas and character roads can be more sensitive. Good proportions, materials and clear drawings are important for a smooth application."
-        }
+            "Kingston can be more sensitive near the river, in conservation areas and on character roads. Roof changes, dormer proportions and neighbour impact are often reviewed closely, so accurate drawings and a clear design approach help.",
+        },
       },
       {
         "@type": "Question",
@@ -81,8 +81,8 @@ export default function KingstonAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Householder applications usually take around six to eight weeks after validation. Lawful Development Certificates often take around four to six weeks."
-        }
+            "Householder planning applications often take around six to eight weeks after validation. Lawful Development Certificates often take around four to six weeks depending on workload.",
+        },
       },
       {
         "@type": "Question",
@@ -90,21 +90,27 @@ export default function KingstonAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Yes. We prepare drawings, complete forms, upload documents, submit to Kingston Council and respond to planning officer queries."
-        }
-      }
-    ]
+            "Yes. We prepare drawings, complete forms, upload documents, submit to Kingston Council and respond to planning officer queries.",
+        },
+      },
+    ],
   };
 
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Kingston upon Thames | Extensions and Lofts</title>
+        <title>
+          Architectural Drawings in Kingston upon Thames | Extensions, Lofts, New
+          Builds
+        </title>
         <meta
           name="description"
-          content="Architectural drawings in Kingston upon Thames for extensions, loft conversions, refurbishments and building regulation packs. Fixed fees, fast surveys and full planning submission support."
+          content="Architectural drawings in Kingston upon Thames for house extensions, loft conversions, refurbishments, new builds and building regulation packs. Fixed fees with clear scope and fast communication."
         />
-        <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/kingston" />
+        <link
+          rel="canonical"
+          href="https://www.wedrawplans.co.uk/areas/kingston"
+        />
 
         <script
           type="application/ld+json"
@@ -135,7 +141,8 @@ export default function KingstonAreaPage() {
               </div>
 
               <div className="mt-2 max-w-3xl text-[13px] font-medium text-slate-800">
-                Architectural Drawings for Extensions, Lofts + Conversions at an Affordable Fixed Cost
+                Architectural Drawings for Extensions, Lofts + New Builds at an
+                Affordable Fixed Cost
               </div>
             </div>
 
@@ -143,13 +150,16 @@ export default function KingstonAreaPage() {
 
             <div className="mt-2 flex w-full items-center justify-between gap-3">
               <div className="text-[12px] text-slate-700">
-                <span className="font-semibold text-slate-900">Kingston upon Thames</span> borough page
+                <span className="font-semibold text-slate-900">
+                  Kingston upon Thames
+                </span>{" "}
+                borough page
               </div>
 
               <div className="flex items-center gap-2">
                 <a
                   href={PHONE_LINK}
-                  className="hidden sm:inline-flex items-center gap-1 rounded-full border border-slate-300 px-3 py-1.5 text-[12px] font-medium text-slate-900 shadow-sm hover:bg-slate-900 hover:text-white"
+                  className="hidden items-center gap-1 rounded-full border border-slate-300 px-3 py-1.5 text-[12px] font-medium text-slate-900 shadow-sm hover:bg-slate-900 hover:text-white sm:inline-flex"
                 >
                   📞 {PHONE_DISPLAY}
                 </a>
@@ -178,22 +188,23 @@ export default function KingstonAreaPage() {
                 </p>
 
                 <h1 className="mt-2 text-[22px] sm:text-[26px] font-semibold uppercase leading-snug tracking-[0.14em]">
-                  Plans for extensions, lofts and home improvements in Kingston
+                  Plans for extensions, lofts and new builds in Kingston
                 </h1>
 
                 <p className="mt-3 text-[13px] text-slate-700">
-                  We prepare planning and technical drawings for homes across Kingston upon Thames,
-                  including Surbiton, New Malden, Norbiton, Tolworth, Berrylands and Chessington.
-                  Fixed fees with clear scope and fast communication.
+                  WEDRAWPLANS prepare planning and technical drawings for house
+                  extensions, loft conversions, refurbishments and conversions
+                  across the Royal Borough of Kingston upon Thames. Fixed fees
+                  with clear scope and fast communication.
                 </p>
 
                 <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
-                  <li>• Large rear and side extensions</li>
-                  <li>• Wraparound and L shaped extensions</li>
-                  <li>• Loft conversions and dormers</li>
-                  <li>• Garden studios and outbuildings</li>
-                  <li>• Refurbishments and internal reconfiguration</li>
-                  <li>• Building regulation packs for 2025 standards</li>
+                  <li>• Rear extensions, side extensions and wrap around layouts</li>
+                  <li>• Loft conversions including dormers and hip to gable</li>
+                  <li>• Refurbishments, internal re planning and structural openings</li>
+                  <li>• Planning drawings and building regulation packs</li>
+                  <li>• Covering Surbiton, New Malden, Chessington and more</li>
+                  <li>• Same day response on most enquiries</li>
                 </ul>
 
                 <div className="mt-5 flex flex-wrap gap-3 items-center">
@@ -209,16 +220,6 @@ export default function KingstonAreaPage() {
                     Or call {PHONE_DISPLAY}
                   </a>
                 </div>
-
-                <div className="mt-3 flex flex-wrap items-center gap-3 text-[13px] text-slate-700">
-                  <a className="underline" href={EMAIL_LINK}>
-                    {EMAIL_DISPLAY}
-                  </a>
-                  <span className="text-slate-400">•</span>
-                  <a className="underline" href={PHONE_LINK}>
-                    {PHONE_DISPLAY}
-                  </a>
-                </div>
               </div>
 
               {/* RIGHT FORM */}
@@ -229,7 +230,8 @@ export default function KingstonAreaPage() {
                   </h2>
 
                   <p className="mt-1 text-[12px] text-slate-600">
-                    Share your postcode and project details. We will reply with a clear fixed fee for your drawings.
+                    Tell us a little about your property and what you plan to build.
+                    We will reply with a clear fixed fee for your drawings.
                   </p>
 
                   <form onSubmit={handleSubmit} className="mt-3 space-y-3 text-[13px]">
@@ -271,7 +273,9 @@ export default function KingstonAreaPage() {
                         required
                         placeholder="KT1 1AA"
                         onFocus={(e) => (e.target.placeholder = "")}
-                        onBlur={(e) => !e.target.value && (e.target.placeholder = "KT1 1AA")}
+                        onBlur={(e) =>
+                          !e.target.value && (e.target.placeholder = "KT1 1AA")
+                        }
                         className="w-full border-b border-slate-300 bg-transparent py-1.5 px-1 text-slate-500/70 focus:text-slate-900 focus:border-[#64b7c4] outline-none"
                       />
                     </div>
@@ -290,8 +294,8 @@ export default function KingstonAreaPage() {
                         <option>House extension</option>
                         <option>Loft conversion</option>
                         <option>Internal remodelling</option>
-                        <option>Outbuilding / garden room</option>
-                        <option>Flat conversion</option>
+                        <option>New build house</option>
+                        <option>Conversion to flats</option>
                         <option>Building regulation pack only</option>
                         <option>Other domestic project</option>
                       </select>
@@ -304,7 +308,7 @@ export default function KingstonAreaPage() {
                       <textarea
                         name="projectDetails"
                         rows={4}
-                        placeholder="For example: rear extension and loft conversion, plus structural openings."
+                        placeholder="For example: rear extension to a semi with open plan kitchen, plus a dormer loft room."
                         className="w-full border border-slate-300 rounded bg-white px-2 py-2 focus:border-[#64b7c4] outline-none"
                       />
                     </div>
@@ -316,8 +320,9 @@ export default function KingstonAreaPage() {
                       Get a fixed fee quote
                     </button>
 
-                    <p className="text-[11px] text-slate-500 mt-2 leading-relaxed">
-                      By submitting, you agree we may contact you about your enquiry. We do not sell your data.
+                    <p className="text-[11px] text-slate-500 mt-2">
+                      Typical Kingston projects include rear extensions, wrap around
+                      extensions, loft conversions and garden studios.
                     </p>
                   </form>
                 </div>
@@ -325,7 +330,7 @@ export default function KingstonAreaPage() {
             </div>
           </section>
 
-          {/* RICH CONTENT */}
+          {/* MERGED RICH CONTENT */}
           <section className="bg-white border-b border-slate-200 py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
               <div className="grid md:grid-cols-[1.7fr,1.3fr] gap-10 items-start">
@@ -334,12 +339,14 @@ export default function KingstonAreaPage() {
                     Architectural drawing services in Kingston upon Thames
                   </h2>
                   <p className="text-[13px] text-slate-700">
-                    We prepare full drawing packages for rear and side extensions, wraparound extensions,
-                    loft conversions, refurbishments and outbuildings across Kingston upon Thames.
-                    Many properties are on generous plots, so good proportion and detailing are key.
+                    WEDRAWPLANS provide full drawing packages for single and double
+                    storey extensions, loft conversions, internal alterations,
+                    outbuildings and refurbishment projects across Kingston upon
+                    Thames.
                   </p>
                   <p className="text-[13px] text-slate-700">
-                    We work in Kingston, Surbiton, New Malden, Norbiton, Tolworth, Berrylands, Chessington and nearby locations.
+                    We work throughout Surbiton, New Malden, Chessington, Norbiton,
+                    Tolworth, Berrylands, Kingston Vale and nearby riverside areas.
                   </p>
 
                   <div className="flex flex-wrap gap-3 items-center">
@@ -363,19 +370,20 @@ export default function KingstonAreaPage() {
 
                 <div className="rounded-2xl bg-white shadow-md border border-slate-100 overflow-hidden">
                   <Image
-                    src="/images/kingston-drawings.jpg"
-                    alt="Example architectural drawings for a Kingston project"
+                    src="/images/drawings.jpg"
+                    alt="Example of architectural drawings for a Kingston extension"
                     width={800}
                     height={500}
                     className="object-cover w-full h-48 md:h-56"
                   />
                   <div className="p-5 space-y-2">
                     <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                      Drawings for high value homes
+                      Technical drawings builders can price from
                     </h3>
                     <p className="text-[13px] text-slate-700">
-                      Clear drawings that communicate quality, proportion and careful detailing, especially important
-                      near riverside settings and conservation areas.
+                      Clear floor plans, elevations, sections and notes, coordinated
+                      with structural design so builders and inspectors have what
+                      they need.
                     </p>
                   </div>
                 </div>
@@ -386,16 +394,23 @@ export default function KingstonAreaPage() {
                   <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
                     Kingston areas we cover
                   </h3>
+
+                  {/* IMPORTANT:
+                      Make sure your file name and extension match exactly.
+                      Recommended: /public/images/kingston-area.jpg
+                  */}
                   <Image
                     src="/images/kingston-area.jpg"
-                    alt="Kingston upon Thames residential area"
+                    alt="Kingston area map and coverage"
                     width={800}
                     height={500}
                     className="rounded-xl object-cover mb-3"
                   />
+
                   <p className="text-[13px] text-slate-700">
-                    Drawings for Kingston upon Thames and surrounding areas, including:
+                    Drawings for the whole borough of Kingston upon Thames, including:
                   </p>
+
                   <div className="grid grid-cols-2 gap-2 text-[13px] text-slate-700">
                     <ul className="list-disc pl-4 space-y-1">
                       <li>Kingston upon Thames</li>
@@ -409,9 +424,9 @@ export default function KingstonAreaPage() {
                       <li>Tolworth</li>
                       <li>Chessington</li>
                       <li>Kingston Vale</li>
-                      <li>Hampton Wick</li>
-                      <li>Coombe</li>
-                      <li>Hook</li>
+                      <li>North Kingston</li>
+                      <li>Thames riverside area</li>
+                      <li>Nearby estates and streets</li>
                     </ul>
                   </div>
                 </div>
@@ -423,23 +438,23 @@ export default function KingstonAreaPage() {
                   <div className="grid grid-cols-2 gap-3 text-[13px] text-slate-700">
                     <ul className="list-disc pl-4 space-y-1">
                       <li>Large rear kitchen extensions</li>
-                      <li>Wraparound and L shaped extensions</li>
-                      <li>Side extensions and garage upgrades</li>
+                      <li>Wrap around and L shaped extensions</li>
+                      <li>Side extensions and garage conversions</li>
                       <li>Loft conversions and dormers</li>
                       <li>Hip to gable loft conversions</li>
                     </ul>
                     <ul className="list-disc pl-4 space-y-1">
-                      <li>Garden studios and home offices</li>
-                      <li>Internal reconfiguration</li>
-                      <li>High quality refurbishments</li>
-                      <li>Better links between house and garden</li>
+                      <li>Garden studios and outbuildings</li>
+                      <li>Internal re planning for family living</li>
+                      <li>Refurbishment and compliance upgrades</li>
+                      <li>Roof changes in sensitive streets</li>
                       <li>Energy and insulation upgrades</li>
                     </ul>
                   </div>
 
                   <Image
-                    src="/images/kingston-hero.jpg"
-                    alt="Extension and refurbishment example"
+                    src="/images/hero.jpg"
+                    alt="Completed extension and loft project"
                     width={800}
                     height={500}
                     className="rounded-xl object-cover mt-2"
@@ -449,12 +464,12 @@ export default function KingstonAreaPage() {
 
               <div className="space-y-5">
                 <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
-                  Planning and permitted development in Kingston
+                  Permitted development limits in Kingston
                 </h2>
                 <p className="text-[13px] text-slate-700">
-                  Kingston homes often have strong potential for extensions, but river locations, conservation areas and key character roads
-                  can require more careful design. Flats and maisonettes do not have permitted development rights, so planning is required.
-                  We confirm the correct route at the start and advise the quickest path to approval.
+                  This is a simplified guide to common permitted development limits.
+                  Final confirmation depends on your house type, location and any
+                  conservation constraints.
                 </p>
 
                 <div className="grid md:grid-cols-3 gap-8 text-[13px] text-slate-700">
@@ -463,10 +478,10 @@ export default function KingstonAreaPage() {
                       Rear extensions
                     </h3>
                     <ul className="list-disc pl-4 space-y-1">
-                      <li>Typical PD depths around 3 to 4 metres</li>
-                      <li>Longer schemes may use Prior Approval</li>
-                      <li>Neighbour daylight and privacy reviewed</li>
-                      <li>We check similar approvals nearby</li>
+                      <li>Up to 3 m deep on terrace houses</li>
+                      <li>Up to 4 m on semi detached houses</li>
+                      <li>Up to 6 to 8 m with Prior Approval</li>
+                      <li>Maximum 4 m high for single storey</li>
                     </ul>
                   </div>
                   <div>
@@ -474,21 +489,21 @@ export default function KingstonAreaPage() {
                       Loft conversions
                     </h3>
                     <ul className="list-disc pl-4 space-y-1">
-                      <li>Volume limits usually 40 to 50 cubic metres</li>
-                      <li>Front roof changes are restricted</li>
-                      <li>Dormer design guided by roof form</li>
-                      <li>Side windows usually obscure glazed</li>
+                      <li>Up to 40 to 50 cubic metres volume</li>
+                      <li>No extensions on the front roof slope</li>
+                      <li>Side windows obscure glazed and fixed</li>
+                      <li>External materials to be similar</li>
                     </ul>
                   </div>
                   <div>
                     <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">
-                      Design quality
+                      Outbuildings
                     </h3>
                     <ul className="list-disc pl-4 space-y-1">
-                      <li>Proportions and materials matter</li>
-                      <li>Riverside context can be sensitive</li>
-                      <li>Heritage settings assessed carefully</li>
-                      <li>We present a clear planning case</li>
+                      <li>Maximum 2.5 m high near boundaries</li>
+                      <li>Cannot be used as a separate dwelling</li>
+                      <li>Use must be incidental to the house</li>
+                      <li>Not more than 50 percent of garden area</li>
                     </ul>
                   </div>
                 </div>
@@ -497,29 +512,29 @@ export default function KingstonAreaPage() {
               <div className="grid md:grid-cols-2 gap-10">
                 <div className="rounded-2xl bg-white shadow-sm p-6 border border-slate-100 space-y-4">
                   <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                    Planning drawings
+                    Planning drawings for Kingston
                   </h3>
                   <ul className="list-disc pl-4 space-y-1 text-[13px] text-slate-700">
                     <li>Existing and proposed floor plans</li>
                     <li>Existing and proposed elevations</li>
-                    <li>Key sections and roof layouts</li>
-                    <li>Block plan and location plan</li>
-                    <li>Design statements where needed</li>
-                    <li>Submission support and responses</li>
+                    <li>Roof plans and key sections</li>
+                    <li>Block plans and location plans</li>
+                    <li>Drainage and construction notes</li>
+                    <li>Design and heritage statements where needed</li>
                   </ul>
                 </div>
 
                 <div className="rounded-2xl bg-white shadow-sm p-6 border border-slate-100 space-y-4">
                   <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                    Building regulation drawings
+                    Building regulation drawings for Kingston
                   </h3>
                   <ul className="list-disc pl-4 space-y-1 text-[13px] text-slate-700">
                     <li>Structural layouts and coordination</li>
+                    <li>Foundation and beam information</li>
                     <li>Fire safety and escape routes</li>
                     <li>Thermal build ups and insulation specs</li>
                     <li>Ventilation and extract positions</li>
-                    <li>Drainage layouts and notes</li>
-                    <li>Compliance notes for contractors</li>
+                    <li>Drainage runs and manhole information</li>
                   </ul>
                 </div>
               </div>
@@ -529,8 +544,10 @@ export default function KingstonAreaPage() {
                   Local planning knowledge for Kingston projects
                 </h2>
                 <p className="text-[13px] text-emerald-900">
-                  Kingston includes riverside settings, leafy suburban streets and conservation areas. We design proposals that respect
-                  these contexts while delivering more usable space, light and value.
+                  Kingston includes riverside settings, conservation areas and
+                  character roads where massing, roof form and neighbour impact are
+                  assessed carefully. We shape each scheme to fit local context so
+                  approval chances are as strong as possible.
                 </p>
               </div>
 
@@ -541,11 +558,12 @@ export default function KingstonAreaPage() {
                 <div className="grid md:grid-cols-2 gap-6 text-[13px] text-slate-700">
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
                     <h3 className="font-semibold text-slate-900">
-                      Can you help with large extensions in Kingston
+                      Do I need planning permission in Kingston
                     </h3>
                     <p>
-                      Yes. We prepare drawings for generous rear and wrap extensions on semi detached and detached homes,
-                      including both planning and building regulation stages.
+                      Many houses can proceed under permitted development, but flats
+                      and conservation areas often need planning permission. We check
+                      your address and advise the best route at the start.
                     </p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
@@ -553,7 +571,8 @@ export default function KingstonAreaPage() {
                       How fast can you survey
                     </h3>
                     <p>
-                      In most cases we can arrange a measured survey within forty eight hours, subject to access and location.
+                      In most cases we can arrange the initial measured survey within
+                      forty eight hours of instruction.
                     </p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
@@ -561,15 +580,17 @@ export default function KingstonAreaPage() {
                       Do you submit to Kingston Council
                     </h3>
                     <p>
-                      Yes. We manage submission, monitor progress and respond to any planning officer requests through to decision.
+                      Yes. We handle the submission, monitor progress and respond to
+                      planning officer queries.
                     </p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
                     <h3 className="font-semibold text-slate-900">
-                      Can you coordinate structural calculations
+                      Can you coordinate structural design
                     </h3>
                     <p>
-                      Yes. We coordinate with structural engineers so beams, supports and load paths are designed and shown correctly.
+                      Yes. We coordinate with structural engineers so beams and load
+                      paths are designed and shown correctly on the drawings.
                     </p>
                   </div>
                 </div>
@@ -578,18 +599,25 @@ export default function KingstonAreaPage() {
               <div className="rounded-2xl bg-slate-900 text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
                   <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
-                    Ready to start your Kingston project
+                    Ready to start your project
                   </h2>
                   <p className="text-[13px] text-slate-300 mt-2">
-                    Send your address and a short description. We will review and reply with a fixed fee and recommended next steps.
+                    Send your postcode and a short description. We review and reply
+                    with a fixed fee and recommended next steps.
                   </p>
                 </div>
                 <div className="flex flex-col space-y-2 text-[13px]">
-                  <a href={PHONE_LINK} className="font-semibold text-emerald-300 underline">
+                  <a
+                    href={PHONE_LINK}
+                    className="font-semibold text-emerald-300 underline"
+                  >
                     {PHONE_DISPLAY}
                   </a>
-                  <a href={EMAIL_LINK} className="font-semibold text-emerald-300 underline">
-                    {EMAIL_DISPLAY}
+                  <a
+                    href="mailto:info@wedrawplans.com"
+                    className="font-semibold text-emerald-300 underline"
+                  >
+                    info@wedrawplans.com
                   </a>
                   <button
                     type="button"
