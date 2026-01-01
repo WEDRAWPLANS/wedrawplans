@@ -381,7 +381,7 @@ export default function RedbridgeAreaPage() {
                     Redbridge areas we cover
                   </h3>
                   <Image
-                    src="/images/area.jpg"
+                    src="/images/redbridge-area.jpg"
                     alt="Redbridge local high street"
                     width={800}
                     height={500}
