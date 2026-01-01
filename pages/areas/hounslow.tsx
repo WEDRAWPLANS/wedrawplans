@@ -1,6 +1,7 @@
-import { submitBoroughLead } from "../../lib/submitBoroughLead";
 import React from "react";
 import Head from "next/head";
+import Image from "next/image";
+import { submitBoroughLead } from "../../lib/submitBoroughLead";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
@@ -8,106 +9,202 @@ const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Hounslow";
 
 export default function HounslowAreaPage() {
-  
-async function handleHounslowSubmit(e: React.FormEvent<HTMLFormElement>) {
-  await submitBoroughLead(e, { boroughName: "Hounslow" });
-}
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    await submitBoroughLead(e, { boroughName: "Hounslow" });
+  }
 
   function scrollToForm() {
     const el = document.getElementById("hounslow-quote");
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
+  const localBusinessJson = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "WEDRAWPLANS",
+    url: "https://www.wedrawplans.co.uk/areas/hounslow",
+    telephone: "+44 20 3654 8508",
+    email: "info@wedrawplans.com",
+    image: "https://www.wedrawplans.co.uk/images/hero.jpg",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "201 Borough High Street",
+      addressLocality: "London",
+      postalCode: "SE1 1JA",
+      addressCountry: "UK"
+    },
+    areaServed: [
+      "Hounslow",
+      "Chiswick",
+      "Brentford",
+      "Isleworth",
+      "Osterley",
+      "Heston",
+      "Whitton",
+      "Twickenham borders",
+      "Feltham",
+      "Hanworth",
+      "Bedfont",
+      "Cranford",
+      "Heathrow area"
+    ],
+    description:
+      "Architectural drawing services in Hounslow for extensions, loft conversions, refurbishments, planning applications and building regulation packs."
+  };
+
+  const faqJson = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "Do I need planning permission for an extension in Hounslow?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "Not always. Many houses can extend under permitted development, but flats and maisonettes need planning permission. We confirm the correct route once we review your address and house type."
+        }
+      },
+      {
+        "@type": "Question",
+        name: "Can you help with a lawful development certificate in Hounslow?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "Yes. If your project is permitted development, we prepare the drawings and supporting information for a lawful development certificate so you have written confirmation for your records."
+        }
+      },
+      {
+        "@type": "Question",
+        name: "How long do Hounslow planning decisions take?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "Householder planning applications often take around six to eight weeks after validation. Lawful development certificates are often around four to six weeks depending on validation and workload."
+        }
+      },
+      {
+        "@type": "Question",
+        name: "Do you manage the full submission to Hounslow Council?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "Yes. We prepare drawings, complete forms, upload documents, submit to Hounslow Council and respond to planning officer queries until decision."
+        }
+      }
+    ]
+  };
+
   return (
     <>
       <Head>
-        <title>
-          Architectural Drawings in Hounslow – Extensions, Lofts and New Builds
-        </title>
+        <title>Architectural Drawings in Hounslow | Extensions, Lofts, New Builds</title>
         <meta
           name="description"
-          content="Architectural drawings in Hounslow for house extensions, loft conversions, new builds, flat conversions and building regulation packs. Fixed fees from £750 with fast turnaround."
+          content="Architectural drawings in Hounslow for house extensions, loft conversions, new builds and building regulation packs. Fixed fees with clear scope and fast turnaround."
         />
-      <link rel="canonical" href="https://wedrawplans.co.uk/hounslow" />
-<meta name="robots" content="noindex,follow" />
+        <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/hounslow" />
 
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }}
+        />
       </Head>
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
-        {/* HEADER */}
-        <header className="border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur">
-          <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 lg:px-6">
-            <div className="flex items-center gap-2">
-              <div className="grid h-10 w-10 place-items-center rounded-full border border-slate-500 text-xs font-semibold tracking-[0.18em] text-red-700">
-                WD
+        {/* HEADER MATCH HOMEPAGE STYLE */}
+        <header className="bg-[#fdf8f3]/95 backdrop-blur border-b border-slate-200">
+          <div className="mx-auto max-w-6xl px-4 pt-6 pb-3 lg:px-6">
+            <div className="flex flex-col items-center text-center">
+              <Image
+                src="/images/wedrawplans-logo.png"
+                alt="WEDRAWPLANS"
+                width={420}
+                height={140}
+                priority
+                className="h-24 w-auto object-contain"
+              />
+
+              <div className="mt-3 text-[11px] tracking-[0.18em] text-slate-600 uppercase">
+                Architectural Drawing Consultants
               </div>
-              <div className="leading-tight">
-                <div className="text-lg font-semibold tracking-[0.2em] uppercase">
-                  WEDRAWPLANS
-                </div>
-                <div className="text-[11px] uppercase tracking-[0.2em] text-slate-500">
-                  Architectural drawing consultants
-                </div>
+
+              <div className="mt-2 max-w-3xl text-[13px] font-medium text-slate-800">
+                Architectural Drawings for Extensions, Lofts + New Builds at an Affordable Fixed Cost
               </div>
             </div>
-            <div className="flex items-center gap-2">
-              <a
-                href={PHONE_LINK}
-                className="hidden sm:inline-flex items-center gap-1 rounded-full border border-slate-300 px-3 py-1.5 text-[12px] shadow-sm hover:bg-slate-900 hover:text-white"
-              >
-                📞 {PHONE_DISPLAY}
-              </a>
-              <a
-                href={WHATSAPP_LINK}
-                target="_blank"
-                className="inline-flex items-center gap-1 bg-[#25D366] px-3 py-1.5 rounded-full text-[12px] text-white shadow-sm hover:bg-[#1ebe57]"
-              >
-                💬 <span className="hidden sm:inline">WhatsApp us</span>
-              </a>
+
+            <hr className="mt-5 border-t border-slate-600" />
+
+            <div className="mt-2 flex w-full items-center justify-between gap-3">
+              <div className="text-[12px] text-slate-700">
+                <span className="font-semibold text-slate-900">Hounslow</span> borough page
+              </div>
+
+              <div className="flex items-center gap-2">
+                <a
+                  href={PHONE_LINK}
+                  className="hidden items-center gap-1 rounded-full border border-slate-300 px-3 py-1.5 text-[12px] font-medium text-slate-900 shadow-sm hover:bg-slate-900 hover:text-white sm:inline-flex"
+                >
+                  📞 {PHONE_DISPLAY}
+                </a>
+
+                <a
+                  href={WHATSAPP_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 bg-[#25D366] text-white px-3 py-1.5 rounded-full text-[12px] font-medium shadow-sm hover:bg-[#1ebe57]"
+                >
+                  💬 <span className="hidden sm:inline">WhatsApp us</span>
+                </a>
+              </div>
             </div>
           </div>
         </header>
 
         <main>
-          {/* HERO SECTION */}
+          {/* HERO + FORM */}
           <section className="border-b border-slate-200 bg-[#fdf8f3]">
             <div className="mx-auto max-w-5xl flex flex-col lg:flex-row gap-6 px-4 py-8 lg:px-6 lg:py-10">
-
               {/* LEFT TEXT */}
               <div className="lg:w-1/2">
-                <p className="text-[11px] uppercase font-semibold tracking-[0.26em] text-red-700">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-red-700">
                   Hounslow architectural drawings
                 </p>
 
-                <h1 className="mt-2 text-[22px] sm:text-[26px] uppercase font-semibold leading-snug tracking-[0.14em]">
+                <h1 className="mt-2 text-[22px] sm:text-[26px] font-semibold uppercase leading-snug tracking-[0.14em]">
                   Plans for extensions, lofts and new builds in Hounslow
                 </h1>
 
                 <p className="mt-3 text-[13px] text-slate-700">
-                  WEDRAWPLANS prepare planning and technical drawings for house
-                  extensions, loft conversions, flat conversions and new builds across
-                  the London Borough of Hounslow. Fixed fees with clear scope and fast communication.
+                  WEDRAWPLANS prepare planning and technical drawings for house extensions,
+                  loft conversions, new builds and conversions across the London Borough of Hounslow.
+                  Fixed fees with clear scope and fast communication.
                 </p>
 
                 <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
-                  <li>• Rear, side and wrap-around extensions</li>
-                  <li>• Loft conversions to terraces and semis</li>
-                  <li>• Internal reconfiguration and layout redesign</li>
-                  <li>• New build houses and small residential plots</li>
-                  <li>• Planning drawings + building regulation packs</li>
-                  <li>• Covering Hounslow, Isleworth, Brentford, Chiswick & Feltham</li>
+                  <li>• House extensions, wrap around extensions and internal remodelling</li>
+                  <li>• Loft conversions including rear dormers and hip to gable conversions</li>
+                  <li>• New build houses and small residential schemes</li>
+                  <li>• Planning drawings and building regulation packs</li>
+                  <li>• Covering Chiswick, Brentford, Isleworth, Osterley, Heston and Feltham</li>
+                  <li>• Same day response on most enquiries</li>
                 </ul>
 
-                <div className="mt-5 flex flex-wrap items-center gap-3">
+                <div className="mt-5 flex flex-wrap gap-3 items-center">
                   <button
-                    type="button"
                     onClick={scrollToForm}
-                    className="rounded-full bg-[#64b7c4] text-white px-5 py-2.5 text-[13px] font-semibold uppercase tracking-[0.18em] hover:bg-[#4da4b4]"
+                    type="button"
+                    className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-white text-[13px] font-semibold uppercase tracking-[0.18em] hover:bg-[#4da4b4]"
                   >
-                    Get my Hounslow quote
+                    Get a quick quote
                   </button>
 
-                  <a href={PHONE_LINK} className="underline text-[13px] text-slate-800">
+                  <a href={PHONE_LINK} className="text-[13px] underline text-slate-800">
                     Or call {PHONE_DISPLAY}
                   </a>
                 </div>
@@ -115,22 +212,22 @@ async function handleHounslowSubmit(e: React.FormEvent<HTMLFormElement>) {
 
               {/* RIGHT FORM */}
               <div id="hounslow-quote" className="lg:w-1/2">
-                <div className="p-5 bg-white rounded-2xl shadow-md">
-                  <h2 className="text-[14px] uppercase font-semibold tracking-[0.16em]">
-                    Free fixed quote for Hounslow projects
+                <div className="bg-white p-5 rounded-2xl shadow-md">
+                  <h2 className="text-[14px] uppercase font-semibold tracking-[0.16em] text-slate-900">
+                    Free fixed fee quote
                   </h2>
+
                   <p className="mt-1 text-[12px] text-slate-600">
-                    Tell us about your property in Hounslow. We will send a clear fixed fee for your drawings.
+                    Tell us a little about your property and what you plan to build. We will reply with a clear fixed fee for your drawings.
                   </p>
 
-                  <form onSubmit={handleHounslowSubmit} className="mt-3 space-y-3 text-[13px]">
-
+                  <form onSubmit={handleSubmit} className="mt-3 space-y-3 text-[13px]">
                     <div className="space-y-1">
                       <label className="text-[11px] font-medium">Name</label>
                       <input
                         name="name"
                         required
-                        className="w-full border-b border-slate-300 bg-transparent py-1.5 px-1 focus:border-[#64b7c4]"
+                        className="w-full bg-transparent border-b border-slate-300 py-1.5 px-1 focus:border-[#64b7c4] outline-none"
                       />
                     </div>
 
@@ -141,7 +238,7 @@ async function handleHounslowSubmit(e: React.FormEvent<HTMLFormElement>) {
                           name="phone"
                           required
                           type="tel"
-                          className="w-full border-b border-slate-300 bg-transparent py-1.5 px-1 focus:border-[#64b7c4]"
+                          className="w-full bg-transparent border-b border-slate-300 py-1.5 px-1 focus:border-[#64b7c4] outline-none"
                         />
                       </div>
 
@@ -151,7 +248,7 @@ async function handleHounslowSubmit(e: React.FormEvent<HTMLFormElement>) {
                           name="email"
                           required
                           type="email"
-                          className="w-full border-b border-slate-300 bg-transparent py-1.5 px-1 focus:border-[#64b7c4]"
+                          className="w-full bg-transparent border-b border-slate-300 py-1.5 px-1 focus:border-[#64b7c4] outline-none"
                         />
                       </div>
                     </div>
@@ -161,10 +258,10 @@ async function handleHounslowSubmit(e: React.FormEvent<HTMLFormElement>) {
                       <input
                         name="postcode"
                         required
-                        placeholder="TW3 4AA"
+                        placeholder="TW3 1AB"
                         onFocus={(e) => (e.target.placeholder = "")}
-                        onBlur={(e) => !e.target.value && (e.target.placeholder = "TW3 4AA")}
-                        className="w-full border-b border-slate-300 bg-transparent py-1.5 px-1 text-slate-500/70 focus:text-slate-900 focus:border-[#64b7c4]"
+                        onBlur={(e) => !e.target.value && (e.target.placeholder = "TW3 1AB")}
+                        className="w-full border-b border-slate-300 bg-transparent py-1.5 px-1 text-slate-500/70 focus:text-slate-900 focus:border-[#64b7c4] outline-none"
                       />
                     </div>
 
@@ -174,9 +271,11 @@ async function handleHounslowSubmit(e: React.FormEvent<HTMLFormElement>) {
                         name="projectType"
                         required
                         defaultValue=""
-                        className="w-full border-b border-slate-300 bg-transparent py-1.5 px-1 focus:border-[#64b7c4]"
+                        className="w-full border-b border-slate-300 bg-transparent py-1.5 px-1 focus:border-[#64b7c4] outline-none"
                       >
-                        <option value="" disabled>Select project type</option>
+                        <option value="" disabled>
+                          Select project type
+                        </option>
                         <option>House extension</option>
                         <option>Loft conversion</option>
                         <option>Internal remodelling</option>
@@ -188,203 +287,321 @@ async function handleHounslowSubmit(e: React.FormEvent<HTMLFormElement>) {
                     </div>
 
                     <div className="space-y-1">
-                      <label className="text-[11px] font-medium">Brief description of your Hounslow project</label>
+                      <label className="text-[11px] font-medium">
+                        Brief description of your project
+                      </label>
                       <textarea
                         name="projectDetails"
                         rows={4}
-                        placeholder="For example: rear extension and loft conversion to a 1930s terrace in Hounslow with open plan kitchen."
-                        className="w-full border border-slate-300 rounded px-2 py-2 bg-white focus:border-[#64b7c4]"
+                        placeholder="For example: rear and side extension to create open plan kitchen, plus a rear dormer loft room."
+                        className="w-full border border-slate-300 rounded bg-white px-2 py-2 focus:border-[#64b7c4] outline-none"
                       />
                     </div>
 
                     <button
                       type="submit"
-                      className="w-full rounded-full bg-[#64b7c4] py-2.5 text-white uppercase tracking-[0.2em] text-[13px] hover:bg-[#4da4b4]"
+                      className="w-full rounded-full bg-[#64b7c4] py-2.5 text-white text-[13px] font-semibold uppercase tracking-[0.2em] hover:bg-[#4da4b4]"
                     >
-                      Get my Hounslow quote
+                      Get a fixed fee quote
                     </button>
 
                     <p className="text-[11px] text-slate-500 mt-2">
-                      Typical Hounslow projects include extensions, lofts, and flat conversions across
-                      Hounslow, Isleworth, Brentford and Chiswick.
+                      Typical Hounslow projects include rear extensions in Heston and Feltham, loft dormers in Brentford and Isleworth, and refurbishments in Chiswick and Osterley.
                     </p>
                   </form>
                 </div>
               </div>
-
             </div>
           </section>
 
-          {/* COMMON PROJECT TYPES */}
+          {/* MERGED RICH CONTENT */}
           <section className="bg-white border-b border-slate-200 py-10">
-            <div className="max-w-5xl mx-auto px-4 lg:px-6">
-              <h2 className="text-[18px] uppercase font-semibold tracking-[0.16em]">
-                Common project types in Hounslow
-              </h2>
-
-              <p className="mt-3 text-[13px] max-w-3xl text-slate-700">
-                Hounslow has a mix of Victorian terraces, interwar semis, and modern estates.
-                Many homeowners extend or convert lofts to add space without moving.
-              </p>
-
-              <div className="mt-5 grid md:grid-cols-2 gap-5 text-[13px]">
-
-                <div>
-                  <h3 className="text-[14px] uppercase font-semibold tracking-[0.14em]">
-                    Rear & wrap-around extensions
-                  </h3>
-                  <p className="mt-2 text-slate-700">
-                    Extensions to create large kitchen and dining spaces are common across Hounslow,
-                    Isleworth and Brentford. We plan structure and daylight carefully.
+            <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
+              <div className="grid md:grid-cols-[1.7fr,1.3fr] gap-10 items-start">
+                <div className="space-y-4">
+                  <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
+                    Architectural drawing services in Hounslow
+                  </h2>
+                  <p className="text-[13px] text-slate-700">
+                    WEDRAWPLANS provide full drawing packages for single and double storey extensions,
+                    loft conversions, internal alterations, garage conversions, outbuildings, flat conversions and small new developments
+                    across the borough of Hounslow.
                   </p>
+                  <p className="text-[13px] text-slate-700">
+                    We work throughout Chiswick, Brentford, Isleworth, Osterley, Heston, Whitton borders,
+                    Feltham, Hanworth, Bedfont, Cranford and the Heathrow area.
+                  </p>
+
+                  <div className="flex flex-wrap gap-3 items-center">
+                    <button
+                      type="button"
+                      onClick={scrollToForm}
+                      className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-white text-[13px] font-semibold uppercase tracking-[0.18em] hover:bg-[#4da4b4]"
+                    >
+                      Get a quick quote
+                    </button>
+                    <a
+                      href={WHATSAPP_LINK}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-300 bg-white text-[13px] text-slate-800 hover:bg-slate-900 hover:text-white"
+                    >
+                      💬 Chat on WhatsApp
+                    </a>
+                  </div>
                 </div>
 
-                <div>
-                  <h3 className="text-[14px] uppercase font-semibold tracking-[0.14em]">
-                    Loft conversions
-                  </h3>
-                  <p className="mt-2 text-slate-700">
-                    Dormer and hip-to-gable conversions add bedrooms and bathrooms to 1930s semis
-                    and terraces across TW3, TW4 and TW7.
-                  </p>
+                <div className="rounded-2xl bg-white shadow-md border border-slate-100 overflow-hidden">
+                  <Image
+                    src="/images/drawings.jpg"
+                    alt="Example of architectural drawings for a Hounslow extension"
+                    width={800}
+                    height={500}
+                    className="object-cover w-full h-48 md:h-56"
+                  />
+                  <div className="p-5 space-y-2">
+                    <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
+                      Technical drawings builders can price from
+                    </h3>
+                    <p className="text-[13px] text-slate-700">
+                      Clear floor plans, elevations, sections and notes, coordinated with structural design so builders and inspectors have what they need.
+                    </p>
+                  </div>
                 </div>
-
-                <div>
-                  <h3 className="text-[14px] uppercase font-semibold tracking-[0.14em]">
-                    Flat conversions
-                  </h3>
-                  <p className="mt-2 text-slate-700">
-                    Suitable houses can be converted into self-contained flats. We prepare layouts
-                    and amenity plans in line with Hounslow policies.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="text-[14px] uppercase font-semibold tracking-[0.14em]">
-                    New build plots
-                  </h3>
-                  <p className="mt-2 text-slate-700">
-                    Side land and deep gardens often allow opportunities for small new build schemes
-                    near transport hubs.
-                  </p>
-                </div>
-
-              </div>
-            </div>
-          </section>
-
-          {/* AREAS */}
-          <section className="bg-[#f8f4f0] border-b border-slate-200 py-10">
-            <div className="max-w-5xl mx-auto px-4 lg:px-6">
-              <h2 className="text-[18px] uppercase font-semibold tracking-[0.16em]">
-                Areas of Hounslow covered
-              </h2>
-
-              <p className="mt-3 text-[13px] max-w-3xl text-slate-700">
-                WEDRAWPLANS support projects across the whole borough, including:
-              </p>
-
-              <ul className="mt-4 grid md:grid-cols-2 gap-2 text-[13px] text-slate-800">
-                <li>• Hounslow, Hounslow Central & Hounslow West</li>
-                <li>• Isleworth & Osterley</li>
-                <li>• Brentford</li>
-                <li>• Chiswick</li>
-                <li>• Feltham & Hanworth</li>
-                <li>• Cranford & Heston</li>
-              </ul>
-
-              <p className="mt-3 text-[13px] text-slate-700 max-w-3xl">
-                We can work fully remotely, or conduct a full measured survey on site when required.
-              </p>
-            </div>
-          </section>
-
-          {/* PRICING */}
-          <section className="bg-white border-b border-slate-200 py-10">
-            <div className="max-w-5xl mx-auto px-4 lg:px-6">
-
-              <h2 className="text-[18px] uppercase font-semibold tracking-[0.16em]">
-                Clear fixed fees for Hounslow projects
-              </h2>
-
-              <p className="mt-3 text-[13px] max-w-3xl text-slate-700">
-                Fees follow the same clear structure across London, with adjustments for size
-                and project complexity.
-              </p>
-
-              <div className="mt-5 grid md:grid-cols-3 gap-4 text-[13px]">
-
-                <div className="p-4 bg-[#fdf8f3] border border-slate-200 rounded-md">
-                  <h3 className="font-semibold">Extension or loft planning drawings</h3>
-                  <div className="mt-1 font-semibold">from £750 + VAT</div>
-                  <p className="mt-2 text-[12px] text-slate-600">
-                    Full existing & proposed plans/elevations for planning applications.
-                  </p>
-                </div>
-
-                <div className="p-4 bg-[#fdf8f3] border border-slate-200 rounded-md">
-                  <h3 className="font-semibold">Measured survey in Hounslow</h3>
-                  <div className="mt-1 font-semibold">from £150 + VAT</div>
-                  <p className="mt-2 text-[12px] text-slate-600">
-                    Accurate laser-measured site survey for drawings.
-                  </p>
-                </div>
-
-                <div className="p-4 bg-[#fdf8f3] border border-slate-200 rounded-md">
-                  <h3 className="font-semibold">Building regulation packs</h3>
-                  <div className="mt-1 font-semibold">from £950 + VAT</div>
-                  <p className="mt-2 text-[12px] text-slate-600">
-                    Detailed construction drawings coordinated with structural engineers.
-                  </p>
-                </div>
-
               </div>
 
-              <div className="mt-5">
-                <button
-                  type="button"
-                  onClick={scrollToForm}
-                  className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-white text-[13px] uppercase tracking-[0.18em] hover:bg-[#4da4b4]"
-                >
-                  Request my Hounslow fee
-                </button>
+              <div className="grid md:grid-cols-2 gap-10">
+                <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
+                  <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
+                    Hounslow areas we cover
+                  </h3>
+                  <Image
+                    src="/images/hounslow-area.jpg"
+                    alt="Hounslow local high street"
+                    width={800}
+                    height={500}
+                    className="rounded-xl object-cover mb-3"
+                  />
+                  <p className="text-[13px] text-slate-700">
+                    Drawings for the whole borough of Hounslow, including:
+                  </p>
+                  <div className="grid grid-cols-2 gap-2 text-[13px] text-slate-700">
+                    <ul className="list-disc pl-4 space-y-1">
+                      <li>Chiswick W4</li>
+                      <li>Brentford TW8</li>
+                      <li>Isleworth TW7</li>
+                      <li>Osterley TW5</li>
+                      <li>Heston</li>
+                      <li>Cranford</li>
+                    </ul>
+                    <ul className="list-disc pl-4 space-y-1">
+                      <li>Hounslow TW3</li>
+                      <li>Feltham TW13 and TW14</li>
+                      <li>Hanworth</li>
+                      <li>Bedfont</li>
+                      <li>Whitton borders</li>
+                      <li>Heathrow area</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
+                  <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
+                    Popular projects in Hounslow
+                  </h3>
+                  <div className="grid grid-cols-2 gap-3 text-[13px] text-slate-700">
+                    <ul className="list-disc pl-4 space-y-1">
+                      <li>Rear and side extensions</li>
+                      <li>Wrap around and L shaped extensions</li>
+                      <li>Loft dormers and roof extensions</li>
+                      <li>Hip to gable loft conversions</li>
+                      <li>Kitchen and open plan layouts</li>
+                    </ul>
+                    <ul className="list-disc pl-4 space-y-1">
+                      <li>Garage conversions</li>
+                      <li>Internal reconfiguration</li>
+                      <li>Outbuildings and studios</li>
+                      <li>Flats and HMO layouts</li>
+                      <li>Small new build schemes</li>
+                    </ul>
+                  </div>
+                  <Image
+                    src="/images/hero.jpg"
+                    alt="Completed extension and loft project"
+                    width={800}
+                    height={500}
+                    className="rounded-xl object-cover mt-2"
+                  />
+                </div>
               </div>
 
-            </div>
-          </section>
+              <div className="space-y-5">
+                <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
+                  Permitted development limits in Hounslow
+                </h2>
+                <p className="text-[13px] text-slate-700">
+                  This is a simplified guide to common permitted development limits. Final confirmation depends on your house type, location and any Article 4 directions.
+                </p>
 
-          {/* FINAL CTA */}
-          <section className="bg-[#f8f4f0] py-10">
-            <div className="max-w-5xl mx-auto text-center px-4 lg:px-6">
+                <div className="grid md:grid-cols-3 gap-8 text-[13px] text-slate-700">
+                  <div>
+                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">
+                      Rear extensions
+                    </h3>
+                    <ul className="list-disc pl-4 space-y-1">
+                      <li>Up to 3 m deep on terrace houses</li>
+                      <li>Up to 4 m on semi detached houses</li>
+                      <li>Up to 6 to 8 m with Prior Approval</li>
+                      <li>Maximum 4 m high for single storey</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">
+                      Loft conversions
+                    </h3>
+                    <ul className="list-disc pl-4 space-y-1">
+                      <li>Up to 40 to 50 cubic metres volume</li>
+                      <li>No extensions on the front roof slope</li>
+                      <li>Side windows obscure glazed and fixed</li>
+                      <li>External materials to be similar</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">
+                      Outbuildings
+                    </h3>
+                    <ul className="list-disc pl-4 space-y-1">
+                      <li>Maximum 2.5 m high near boundaries</li>
+                      <li>Cannot be used as a separate dwelling</li>
+                      <li>Use must be incidental to the house</li>
+                      <li>Not more than 50 percent of garden area</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
 
-              <h2 className="text-[18px] uppercase font-semibold tracking-[0.16em]">
-                Ready to move your Hounslow project forward
-              </h2>
+              <div className="grid md:grid-cols-2 gap-10">
+                <div className="rounded-2xl bg-white shadow-sm p-6 border border-slate-100 space-y-4">
+                  <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
+                    Planning drawings for Hounslow
+                  </h3>
+                  <ul className="list-disc pl-4 space-y-1 text-[13px] text-slate-700">
+                    <li>Existing and proposed floor plans</li>
+                    <li>Existing and proposed elevations</li>
+                    <li>Roof plans and key sections</li>
+                    <li>Block plans and location plans</li>
+                    <li>Drainage and construction notes</li>
+                    <li>Design and access statements where needed</li>
+                  </ul>
+                </div>
 
-              <p className="mt-3 text-[13px] text-slate-700">
-                Share a few details and WEDRAWPLANS will reply with a clear fixed fee
-                and recommended next steps for your Hounslow extension, loft, conversion or new build.
-              </p>
+                <div className="rounded-2xl bg-white shadow-sm p-6 border border-slate-100 space-y-4">
+                  <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
+                    Building regulation drawings for Hounslow
+                  </h3>
+                  <ul className="list-disc pl-4 space-y-1 text-[13px] text-slate-700">
+                    <li>Structural layouts and coordination</li>
+                    <li>Foundation and beam information</li>
+                    <li>Fire safety and escape routes</li>
+                    <li>Thermal build ups and insulation specs</li>
+                    <li>Ventilation and extract positions</li>
+                    <li>Drainage runs and manhole information</li>
+                  </ul>
+                </div>
+              </div>
 
-              <div className="mt-5 flex flex-wrap justify-center gap-3">
-                <button
-                  onClick={scrollToForm}
-                  className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-white uppercase tracking-[0.18em] text-[13px] hover:bg-[#4da4b4]"
-                >
-                  Get my Hounslow quote
-                </button>
+              <div className="rounded-2xl bg-emerald-50 border border-emerald-100 p-6 space-y-3">
+                <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-emerald-900">
+                  Local planning knowledge for Hounslow projects
+                </h2>
+                <p className="text-[13px] text-emerald-900">
+                  Hounslow includes conservation areas and character streets in places like Chiswick and parts of Brentford and Isleworth, plus suburban family housing across Heston, Feltham and Cranford. We shape each scheme to suit local context and submission requirements so approval chances are as strong as possible.
+                </p>
+              </div>
 
-                <a
-                  href={WHATSAPP_LINK}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-300 bg-white text-[13px] text-slate-800 hover:bg-slate-900 hover:text-white"
-                >
-                  💬 Chat on WhatsApp
+              <div className="space-y-4">
+                <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
+                  Frequently asked questions
+                </h2>
+                <div className="grid md:grid-cols-2 gap-6 text-[13px] text-slate-700">
+                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                    <h3 className="font-semibold text-slate-900">
+                      Do I need planning permission in Hounslow
+                    </h3>
+                    <p>
+                      Many extensions and lofts can proceed under permitted development. We check your address and advise the best route at the start.
+                    </p>
+                  </div>
+                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                    <h3 className="font-semibold text-slate-900">
+                      How fast can you survey
+                    </h3>
+                    <p>
+                      In most cases we can arrange the initial measured survey within forty eight hours of instruction.
+                    </p>
+                  </div>
+                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                    <h3 className="font-semibold text-slate-900">
+                      Do you submit to Hounslow Council
+                    </h3>
+                    <p>
+                      Yes. We handle the submission, monitor progress and respond to planning officer queries.
+                    </p>
+                  </div>
+                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                    <h3 className="font-semibold text-slate-900">
+                      Can you coordinate structural design
+                    </h3>
+                    <p>
+                      Yes. We coordinate with structural engineers so beams and load paths are designed and shown correctly on the drawings.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="rounded-2xl bg-slate-900 text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                  <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
+                    Ready to start your project
+                  </h2>
+                  <p className="text-[13px] text-slate-300 mt-2">
+                    Send your postcode and a short description. We review and reply with a fixed fee and recommended next steps.
+                  </p>
+                </div>
+                <div className="flex flex-col space-y-2 text-[13px]">
+                  <a href={PHONE_LINK} className="font-semibold text-emerald-300 underline">
+                    {PHONE_DISPLAY}
+                  </a>
+                  <a href="mailto:info@wedrawplans.com" className="font-semibold text-emerald-300 underline">
+                    info@wedrawplans.com
+                  </a>
+                  <button
+                    type="button"
+                    onClick={scrollToForm}
+                    className="mt-2 inline-flex items-center justify-center rounded-full bg-white px-5 py-2 text-[13px] font-semibold text-slate-900 shadow hover:bg-emerald-100"
+                  >
+                    Get a quick quote
+                  </button>
+                </div>
+              </div>
+
+              <div className="text-[12px] text-slate-600 pt-2">
+                See also{" "}
+                <a href="/extension-plans" className="underline">
+                  extension plans
                 </a>
+                ,{" "}
+                <a href="/loft-plans" className="underline">
+                  loft plans
+                </a>{" "}
+                and{" "}
+                <a href="/new-build-plans" className="underline">
+                  new build plans
+                </a>
+                .
               </div>
-
             </div>
           </section>
-
         </main>
       </div>
     </>
