@@ -97,17 +97,12 @@ export default function IslingtonAreaPage() {
   return (
     <>
       <Head>
-        <title>
-          Architectural Drawings in Islington | Extensions, Lofts, New Builds
-        </title>
+        <title>Architectural Drawings in Islington | Extensions, Lofts, New Builds</title>
         <meta
           name="description"
           content="Architectural drawings in Islington for house extensions, loft conversions, new builds and building regulation packs. Fixed fees with clear scope and fast turnaround."
         />
-        <link
-          rel="canonical"
-          href="https://www.wedrawplans.co.uk/areas/islington"
-        />
+        <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/islington" />
 
         <script
           type="application/ld+json"
@@ -120,7 +115,7 @@ export default function IslingtonAreaPage() {
       </Head>
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
-        {/* HEADER MATCH HOMEPAGE STYLE */}
+        {/* BARNET STYLE HEADER */}
         <header className="bg-[#fdf8f3]/95 backdrop-blur border-b border-slate-200">
           <div className="mx-auto max-w-6xl px-4 pt-6 pb-3 lg:px-6">
             <div className="flex flex-col items-center text-center">
@@ -138,8 +133,7 @@ export default function IslingtonAreaPage() {
               </div>
 
               <div className="mt-2 max-w-3xl text-[13px] font-medium text-slate-800">
-                Architectural Drawings for Extensions, Lofts + New Builds at an
-                Affordable Fixed Cost
+                Architectural Drawings for Extensions, Lofts + New Builds at an Affordable Fixed Cost
               </div>
             </div>
 
@@ -147,8 +141,7 @@ export default function IslingtonAreaPage() {
 
             <div className="mt-2 flex w-full items-center justify-between gap-3">
               <div className="text-[12px] text-slate-700">
-                <span className="font-semibold text-slate-900">Islington</span>{" "}
-                borough page
+                <span className="font-semibold text-slate-900">Islington</span> borough page
               </div>
 
               <div className="flex items-center gap-2">
@@ -173,10 +166,9 @@ export default function IslingtonAreaPage() {
         </header>
 
         <main>
-          {/* HERO + FORM */}
+          {/* BARNET STYLE HERO + FORM (THIS IS THE TOP YOU WANT) */}
           <section className="border-b border-slate-200 bg-[#fdf8f3]">
             <div className="mx-auto max-w-5xl flex flex-col lg:flex-row gap-6 px-4 py-8 lg:px-6 lg:py-10">
-              {/* LEFT TEXT */}
               <div className="lg:w-1/2">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-red-700">
                   Islington architectural drawings
@@ -187,10 +179,9 @@ export default function IslingtonAreaPage() {
                 </h1>
 
                 <p className="mt-3 text-[13px] text-slate-700">
-                  WEDRAWPLANS prepare planning and technical drawings for house
-                  extensions, loft conversions, new builds and conversions across
-                  the London Borough of Islington. Fixed fees with clear scope and
-                  fast communication.
+                  WEDRAWPLANS prepare planning and technical drawings for house extensions,
+                  loft conversions, new builds and conversions across the London Borough of Islington.
+                  Fixed fees with clear scope and fast communication.
                 </p>
 
                 <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
@@ -211,16 +202,12 @@ export default function IslingtonAreaPage() {
                     Get a quick quote
                   </button>
 
-                  <a
-                    href={PHONE_LINK}
-                    className="text-[13px] underline text-slate-800"
-                  >
+                  <a href={PHONE_LINK} className="text-[13px] underline text-slate-800">
                     Or call {PHONE_DISPLAY}
                   </a>
                 </div>
               </div>
 
-              {/* RIGHT FORM */}
               <div id="islington-quote" className="lg:w-1/2">
                 <div className="bg-white p-5 rounded-2xl shadow-md">
                   <h2 className="text-[14px] uppercase font-semibold tracking-[0.16em] text-slate-900">
@@ -228,14 +215,10 @@ export default function IslingtonAreaPage() {
                   </h2>
 
                   <p className="mt-1 text-[12px] text-slate-600">
-                    Tell us a little about your property and what you plan to
-                    build. We will reply with a clear fixed fee for your drawings.
+                    Tell us a little about your property and what you plan to build. We will reply with a clear fixed fee for your drawings.
                   </p>
 
-                  <form
-                    onSubmit={handleSubmit}
-                    className="mt-3 space-y-3 text-[13px]"
-                  >
+                  <form onSubmit={handleSubmit} className="mt-3 space-y-3 text-[13px]">
                     <div className="space-y-1">
                       <label className="text-[11px] font-medium">Name</label>
                       <input
@@ -247,9 +230,7 @@ export default function IslingtonAreaPage() {
 
                     <div className="grid sm:grid-cols-2 gap-3">
                       <div className="space-y-1">
-                        <label className="text-[11px] font-medium">
-                          Telephone
-                        </label>
+                        <label className="text-[11px] font-medium">Telephone</label>
                         <input
                           name="phone"
                           required
@@ -270,25 +251,19 @@ export default function IslingtonAreaPage() {
                     </div>
 
                     <div className="space-y-1">
-                      <label className="text-[11px] font-medium">
-                        Islington postcode
-                      </label>
+                      <label className="text-[11px] font-medium">Islington postcode</label>
                       <input
                         name="postcode"
                         required
                         placeholder="N1 8XX"
                         onFocus={(e) => (e.target.placeholder = "")}
-                        onBlur={(e) =>
-                          !e.target.value && (e.target.placeholder = "N1 8XX")
-                        }
+                        onBlur={(e) => !e.target.value && (e.target.placeholder = "N1 8XX")}
                         className="w-full border-b border-slate-300 bg-transparent py-1.5 px-1 text-slate-500/70 focus:text-slate-900 focus:border-[#64b7c4] outline-none"
                       />
                     </div>
 
                     <div className="space-y-1">
-                      <label className="text-[11px] font-medium">
-                        Project type
-                      </label>
+                      <label className="text-[11px] font-medium">Project type</label>
                       <select
                         name="projectType"
                         required
@@ -309,9 +284,7 @@ export default function IslingtonAreaPage() {
                     </div>
 
                     <div className="space-y-1">
-                      <label className="text-[11px] font-medium">
-                        Brief description of your project
-                      </label>
+                      <label className="text-[11px] font-medium">Brief description of your project</label>
                       <textarea
                         name="projectDetails"
                         rows={4}
@@ -328,9 +301,7 @@ export default function IslingtonAreaPage() {
                     </button>
 
                     <p className="text-[11px] text-slate-500 mt-2">
-                      Typical Islington projects include rear extensions, side
-                      infill extensions, loft conversions, flat conversions and
-                      refurbishment drawings.
+                      Typical Islington projects include rear extensions, side infill extensions, loft conversions, flat conversions and refurbishment drawings.
                     </p>
                   </form>
                 </div>
@@ -338,7 +309,7 @@ export default function IslingtonAreaPage() {
             </div>
           </section>
 
-          {/* MERGED RICH CONTENT */}
+          {/* REST OF PAGE (UNCHANGED) */}
           <section className="bg-white border-b border-slate-200 py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
               <div className="grid md:grid-cols-[1.7fr,1.3fr] gap-10 items-start">
@@ -347,15 +318,13 @@ export default function IslingtonAreaPage() {
                     Architectural drawing services in Islington
                   </h2>
                   <p className="text-[13px] text-slate-700">
-                    WEDRAWPLANS provide full drawing packages for rear and side
-                    extensions, loft conversions, internal alterations,
-                    outbuildings, flat conversions and small infill developments
-                    across the borough of Islington.
+                    WEDRAWPLANS provide full drawing packages for rear and side extensions,
+                    loft conversions, internal alterations, outbuildings, flat conversions
+                    and small infill developments across the borough of Islington.
                   </p>
                   <p className="text-[13px] text-slate-700">
-                    We work throughout Angel, Upper Street, Highbury, Canonbury,
-                    Barnsbury, Holloway, Archway, Finsbury Park (Islington side),
-                    and the Old Street and City Road area.
+                    We work throughout Angel, Upper Street, Highbury, Canonbury, Barnsbury,
+                    Holloway, Archway, Finsbury Park (Islington side), and the Old Street and City Road area.
                   </p>
 
                   <div className="flex flex-wrap gap-3 items-center">
@@ -390,9 +359,7 @@ export default function IslingtonAreaPage() {
                       Technical drawings builders can price from
                     </h3>
                     <p className="text-[13px] text-slate-700">
-                      Clear floor plans, elevations, sections and notes, coordinated
-                      with structural design so builders and inspectors have what
-                      they need.
+                      Clear floor plans, elevations, sections and notes, coordinated with structural design so builders and inspectors have what they need.
                     </p>
                   </div>
                 </div>
@@ -468,9 +435,7 @@ export default function IslingtonAreaPage() {
                   Permitted development limits in Islington
                 </h2>
                 <p className="text-[13px] text-slate-700">
-                  This is a simplified guide to common permitted development limits.
-                  Final confirmation depends on your house type, location and any
-                  Article 4 directions or conservation constraints.
+                  This is a simplified guide to common permitted development limits. Final confirmation depends on your house type, location and any Article 4 directions or conservation constraints.
                 </p>
 
                 <div className="grid md:grid-cols-3 gap-8 text-[13px] text-slate-700">
@@ -545,11 +510,7 @@ export default function IslingtonAreaPage() {
                   Local planning knowledge for Islington projects
                 </h2>
                 <p className="text-[13px] text-emerald-900">
-                  Islington includes many conservation areas and consistent rear
-                  building lines. Extensions and roof works are often assessed
-                  closely for neighbour impact, daylight and character. We shape
-                  each scheme to fit local context so approval chances are as strong
-                  as possible.
+                  Islington includes many conservation areas and consistent rear building lines. Extensions and roof works are often assessed closely for neighbour impact, daylight and character. We shape each scheme to fit local context so approval chances are as strong as possible.
                 </p>
               </div>
 
@@ -559,40 +520,27 @@ export default function IslingtonAreaPage() {
                 </h2>
                 <div className="grid md:grid-cols-2 gap-6 text-[13px] text-slate-700">
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Do I need planning permission in Islington
-                    </h3>
+                    <h3 className="font-semibold text-slate-900">Do I need planning permission in Islington</h3>
                     <p>
-                      Some houses can proceed under permitted development, but flats
-                      and many conservation areas require planning permission. We
-                      check your address and advise the best route at the start.
+                      Some houses can proceed under permitted development, but flats and many conservation areas require planning permission. We check your address and advise the best route at the start.
                     </p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      How fast can you survey
-                    </h3>
+                    <h3 className="font-semibold text-slate-900">How fast can you survey</h3>
                     <p>
-                      In most cases we can arrange the initial measured survey within
-                      forty eight hours of instruction.
+                      In most cases we can arrange the initial measured survey within forty eight hours of instruction.
                     </p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Do you submit to Islington Council
-                    </h3>
+                    <h3 className="font-semibold text-slate-900">Do you submit to Islington Council</h3>
                     <p>
-                      Yes. We handle the submission, monitor progress and respond to
-                      planning officer queries.
+                      Yes. We handle the submission, monitor progress and respond to planning officer queries.
                     </p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Can you coordinate structural design
-                    </h3>
+                    <h3 className="font-semibold text-slate-900">Can you coordinate structural design</h3>
                     <p>
-                      Yes. We coordinate with structural engineers so beams and load
-                      paths are designed and shown correctly on the drawings.
+                      Yes. We coordinate with structural engineers so beams and load paths are designed and shown correctly on the drawings.
                     </p>
                   </div>
                 </div>
@@ -604,21 +552,14 @@ export default function IslingtonAreaPage() {
                     Ready to start your project
                   </h2>
                   <p className="text-[13px] text-slate-300 mt-2">
-                    Send your postcode and a short description. We review and reply
-                    with a fixed fee and recommended next steps.
+                    Send your postcode and a short description. We review and reply with a fixed fee and recommended next steps.
                   </p>
                 </div>
                 <div className="flex flex-col space-y-2 text-[13px]">
-                  <a
-                    href={PHONE_LINK}
-                    className="font-semibold text-emerald-300 underline"
-                  >
+                  <a href={PHONE_LINK} className="font-semibold text-emerald-300 underline">
                     {PHONE_DISPLAY}
                   </a>
-                  <a
-                    href="mailto:info@wedrawplans.com"
-                    className="font-semibold text-emerald-300 underline"
-                  >
+                  <a href="mailto:info@wedrawplans.com" className="font-semibold text-emerald-300 underline">
                     info@wedrawplans.com
                   </a>
                   <button
