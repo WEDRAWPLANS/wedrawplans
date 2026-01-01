@@ -1,5 +1,7 @@
+// pages/merton.tsx
 import Head from "next/head";
 import React from "react";
+import Image from "next/image";
 import { submitBoroughLead } from "../lib/submitBoroughLead";
 import { SmartPlanningAssistant } from "../components/SmartPlanningAssistant";
 
@@ -18,61 +20,194 @@ export default function MertonPage() {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
+  const localBusinessJson = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "WEDRAWPLANS",
+    url: "https://www.wedrawplans.co.uk/merton",
+    telephone: "+44 20 3654 8508",
+    email: "info@wedrawplans.com",
+    image: "https://www.wedrawplans.co.uk/images/drawings.jpg",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "201 Borough High Street",
+      addressLocality: "London",
+      postalCode: "SE1 1JA",
+      addressCountry: "UK",
+    },
+    areaServed: [
+      "London Borough of Merton",
+      "Wimbledon",
+      "South Wimbledon",
+      "Wimbledon Park",
+      "Raynes Park",
+      "West Wimbledon",
+      "Morden",
+      "Mitcham",
+      "Colliers Wood",
+      "Merton Park",
+      "Lower Morden",
+      "Pollards Hill",
+      "Tooting borders",
+      "Southfields borders",
+    ],
+    description:
+      "Architectural drawing services in Merton for home extensions, loft conversions, internal reconfiguration and building regulation packs. Fixed fees with clear scope for projects in Wimbledon, Mitcham, Morden, Raynes Park and Colliers Wood.",
+    priceRange: "££",
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        opens: "08:00",
+        closes: "20:00",
+      },
+    ],
+    sameAs: ["https://twitter.com/WEDRAWPLANS"],
+  };
+
+  const faqJson = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "Do I need planning permission for a rear extension in Merton?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "Some rear extensions can be permitted development, but it depends on your property type, previous extensions, conservation constraints and dimensions. We check your site, confirm whether permitted development applies, and advise whether a lawful development certificate or a householder planning application is the safer route.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can you help with loft conversion drawings in Wimbledon and Raynes Park?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "Yes. We prepare existing and proposed drawings for dormers and hip to gable lofts, plus building regulation packs with key construction details. We design to suit the roof form and keep neighbour impact, ridge height and overlooking in mind.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What do I need to get a fixed quote?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "Your address or postcode, a short description of the works, and any photos or agent floorplans you already have. If you are not sure, send what you have and we will tell you the best next step.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Do you provide measured surveys in Merton?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "Yes. We can measure the existing property so the drawings are accurate before design begins. This is recommended for most extensions, lofts and building regulation packs.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can you produce building regulation drawings as well as planning drawings?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "Yes. After planning, we can produce a building regulation pack with key plans, sections and details for building control and construction. We can also coordinate with a structural engineer where required.",
+        },
+      },
+    ],
+  };
+
   return (
     <>
       <Head>
-        <title>
-          Architectural Drawings in Merton – Extensions, Lofts and Home Projects
-        </title>
+        <title>Architectural Drawings in Merton – Extensions, Lofts and Home Projects</title>
         <meta
           name="description"
           content="Planning drawings, extension layouts, loft conversion plans and building regulation packs for homes in Wimbledon, Mitcham, Morden and the wider London Borough of Merton. Fixed fees with clear scope."
         />
+        <link rel="canonical" href="https://www.wedrawplans.co.uk/merton" />
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }}
+        />
       </Head>
 
-      <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
-        {/* HEADER */}
-        <header className="border-b border-slate-200 bg-[#fdf8f3]/90 backdrop-blur">
-          <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 lg:px-6">
-            <div className="flex items-center gap-2">
-              <div className="grid h-10 w-10 place-items-center rounded-full border border-slate-500 text-xs font-semibold tracking-[0.18em] text-red-700">
-                WDP
+      <main className="min-h-screen bg-[#f8f4f0] text-slate-900">
+        {/* BARNET STYLE HEADER */}
+        <header className="bg-[#fdf8f3]/95 backdrop-blur border-b border-slate-200">
+          <div className="mx-auto max-w-6xl px-4 pt-6 pb-3 lg:px-6">
+            <div className="flex flex-col items-center text-center">
+              <Image
+                src="/images/wedrawplans-logo.png"
+                alt="WEDRAWPLANS"
+                width={420}
+                height={140}
+                priority
+                className="h-24 w-auto object-contain"
+              />
+
+              <div className="mt-3 text-[11px] uppercase tracking-[0.18em] text-slate-600">
+                Architectural drawing consultants
               </div>
-              <div>
-                <div className="text-lg font-semibold tracking-[0.2em] uppercase">
-                  WEDRAWPLANS
-                </div>
-                <div className="text-[11px] uppercase tracking-[0.2em] text-slate-500">
-                  Architectural drawing consultants
-                </div>
+
+              <div className="mt-2 max-w-3xl text-[13px] font-medium text-slate-800">
+                Architectural Drawings for Extensions, Lofts + New Builds at an Affordable Fixed Cost
               </div>
             </div>
 
-            <div className="flex items-center gap-2">
-              <a
-                href={PHONE_LINK}
-                className="hidden sm:inline-flex items-center gap-1 rounded-full border border-slate-300 px-3 py-1.5 text-[12px] font-medium text-slate-900 hover:bg-slate-900 hover:text-white"
-              >
-                📞 {PHONE_DISPLAY}
-              </a>
-              <a
-                href={WHATSAPP_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-3 py-1.5 text-[12px] font-medium text-white hover:bg-[#1ebe57]"
-              >
-                💬 WhatsApp
-              </a>
+            <hr className="mt-5 border-t border-slate-600" />
+
+            <div className="mt-2 flex w-full items-center justify-between gap-3">
+              <div className="text-[12px] text-slate-700">
+                <span className="font-semibold text-slate-900">Merton</span> borough page
+              </div>
+
+              <div className="flex items-center gap-2">
+                <a
+                  href={PHONE_LINK}
+                  className="hidden sm:inline-flex items-center gap-1 rounded-full border border-slate-300 px-3 py-1.5 text-[12px] font-medium text-slate-900 shadow-sm hover:bg-slate-900 hover:text-white"
+                >
+                  📞 {PHONE_DISPLAY}
+                </a>
+
+                <a
+                  href={WHATSAPP_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 bg-[#25D366] text-white px-3 py-1.5 rounded-full text-[12px] font-medium shadow-sm hover:bg-[#1ebe57]"
+                >
+                  💬 <span className="hidden sm:inline">WhatsApp us</span>
+                </a>
+              </div>
             </div>
           </div>
         </header>
 
-        <main>
-          {/* HERO + FORM */}
-          <section className="border-b border-slate-200 bg-[#fdf8f3]">
-            <div className="mx-auto flex max-w-5xl flex-col gap-6 px-4 py-8 lg:flex-row lg:items-start lg:px-6 lg:py-10">
+        {/* HERO (with reliable background image) */}
+        <section className="relative border-b border-slate-200 bg-[#fdf8f3]">
+          <div className="absolute inset-0 opacity-10">
+            {/* FIX: parent is relative with fixed height */}
+            <div className="relative h-full min-h-[420px] w-full">
+              <Image
+                src="/images/drawings.jpg"
+                alt="Architectural drawings background"
+                fill
+                sizes="100vw"
+                priority
+                className="object-cover"
+              />
+            </div>
+          </div>
+
+          <div className="relative mx-auto max-w-5xl px-4 py-8 lg:px-6 lg:py-10">
+            <div className="grid gap-6 lg:grid-cols-2 lg:items-start">
               {/* TEXT SIDE */}
-              <div className="lg:w-1/2">
+              <div>
                 <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-red-700">
                   Merton architectural drawings
                 </p>
@@ -104,24 +239,33 @@ export default function MertonPage() {
                   >
                     Get my quote
                   </button>
-                  <a
-                    href={PHONE_LINK}
-                    className="text-[13px] font-medium text-slate-800 underline"
-                  >
-                    Or call {PHONE_DISPLAY}
+
+                  <a href={PHONE_LINK} className="text-[13px] font-medium text-slate-800 underline">
+                    Call {PHONE_DISPLAY}
                   </a>
+                </div>
+
+                <div className="mt-6 rounded-xl border border-slate-200 bg-white/80 p-4">
+                  <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-slate-900">
+                    What you get
+                  </p>
+                  <ul className="mt-2 space-y-1 text-[13px] text-slate-700">
+                    <li>• Clear drawing set the council can validate quickly</li>
+                    <li>• Fixed fee with scope, deliverables and turnaround explained</li>
+                    <li>• Advice on PD vs planning and best submission route</li>
+                    <li>• Optional structural coordination and building regs pack</li>
+                  </ul>
                 </div>
               </div>
 
               {/* FORM SIDE */}
-              <div id="merton-quote" className="lg:w-1/2">
+              <div id="merton-quote">
                 <div className="rounded-2xl bg-white p-5 shadow-md">
                   <h2 className="text-[14px] font-semibold uppercase tracking-[0.16em] text-slate-900">
                     Free fixed quote for your home
                   </h2>
                   <p className="mt-1 text-[12px] text-slate-600">
-                    Share some basic details and WEDRAWPLANS will send a clear fixed fee for the
-                    drawings for your project in Merton.
+                    Share some basic details and WEDRAWPLANS will send a clear fixed fee for the drawings for your project in Merton.
                   </p>
 
                   <form onSubmit={handleSubmit} className="mt-3 space-y-3 text-[13px]">
@@ -136,15 +280,15 @@ export default function MertonPage() {
 
                     <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                       <div>
-                        <label className="text-[11px] font-medium text-slate-700">
-                          Telephone
-                        </label>
+                        <label className="text-[11px] font-medium text-slate-700">Telephone</label>
                         <input
                           name="phone"
                           required
+                          type="tel"
                           className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 focus:border-[#64b7c4] focus:outline-none"
                         />
                       </div>
+
                       <div>
                         <label className="text-[11px] font-medium text-slate-700">Email</label>
                         <input
@@ -157,9 +301,7 @@ export default function MertonPage() {
                     </div>
 
                     <div>
-                      <label className="text-[11px] font-medium text-slate-700">
-                        Merton postcode
-                      </label>
+                      <label className="text-[11px] font-medium text-slate-700">Merton postcode</label>
                       <input
                         name="postcode"
                         required
@@ -169,9 +311,7 @@ export default function MertonPage() {
                     </div>
 
                     <div>
-                      <label className="text-[11px] font-medium text-slate-700">
-                        Project type
-                      </label>
+                      <label className="text-[11px] font-medium text-slate-700">Project type</label>
                       <select
                         name="projectType"
                         required
@@ -193,9 +333,7 @@ export default function MertonPage() {
                     </div>
 
                     <div>
-                      <label className="text-[11px] font-medium text-slate-700">
-                        Brief description
-                      </label>
+                      <label className="text-[11px] font-medium text-slate-700">Brief description</label>
                       <textarea
                         name="projectDetails"
                         rows={4}
@@ -210,188 +348,193 @@ export default function MertonPage() {
                     >
                       Get my quote
                     </button>
+
+                    <p className="pt-2 text-[11px] text-slate-500">
+                      Tip: If you have Rightmove screenshots, photos, or sketches, mention it in the brief and we will tell you what helps speed up the quote.
+                    </p>
                   </form>
                 </div>
               </div>
             </div>
-          </section>
+          </div>
+        </section>
 
-          {/* COMMON PROJECT TYPES */}
-          <section className="border-b border-slate-200 bg-white py-10">
-            <div className="mx-auto max-w-5xl px-4 lg:px-6">
-              <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
-                Typical home projects in Merton
-              </h2>
-              <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-                Merton includes Victorian and Edwardian terraces, post war houses and newer
-                developments. Many owners extend or reconfigure their existing home to create more
-                family space instead of moving.
-              </p>
+        {/* COMMON PROJECT TYPES */}
+        <section className="border-b border-slate-200 bg-white py-10">
+          <div className="mx-auto max-w-5xl px-4 lg:px-6">
+            <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+              Typical home projects in Merton
+            </h2>
+            <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
+              Merton includes Victorian and Edwardian terraces, post war houses and newer developments. Many owners extend or reconfigure their existing home to create more family space instead of moving.
+            </p>
 
-              <div className="mt-5 grid gap-5 text-[13px] md:grid-cols-2">
-                <div>
-                  <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                    Rear and side extensions
-                  </h3>
-                  <p className="mt-2 text-[13px] text-slate-700">
-                    Rear kitchen and living extensions, often combined with side infill to create
-                    wider open plan rooms with better connection to the garden.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                    Loft conversions
-                  </h3>
-                  <p className="mt-2 text-[13px] text-slate-700">
-                    Dormer and hip to gable loft conversions to add bedrooms and bathrooms above,
-                    designed to respect local roof guidance where it applies.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                    Internal remodelling
-                  </h3>
-                  <p className="mt-2 text-[13px] text-slate-700">
-                    Adjusting layouts, removing walls with structural input and making better use of
-                    ground floor and first floor space for day to day living.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                    Conversions and small schemes
-                  </h3>
-                  <p className="mt-2 text-[13px] text-slate-700">
-                    Feasibility layouts and full planning drawings for small infill plots and
-                    conversions to self contained flats where local policies allow.
-                  </p>
-                </div>
+            <div className="mt-5 grid gap-5 text-[13px] md:grid-cols-2">
+              <div>
+                <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
+                  Rear and side extensions
+                </h3>
+                <p className="mt-2 text-[13px] text-slate-700">
+                  Rear kitchen and living extensions, often combined with side infill to create wider open plan rooms with better connection to the garden.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
+                  Loft conversions
+                </h3>
+                <p className="mt-2 text-[13px] text-slate-700">
+                  Dormer and hip to gable loft conversions to add bedrooms and bathrooms above, designed to suit the roof form and limit overlooking.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
+                  Internal remodelling
+                </h3>
+                <p className="mt-2 text-[13px] text-slate-700">
+                  Adjusting layouts, removing walls with structural input and making better use of ground floor space for day to day living.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
+                  Conversions and small schemes
+                </h3>
+                <p className="mt-2 text-[13px] text-slate-700">
+                  Feasibility layouts and full planning drawings for small infill plots and conversions to self contained flats where local policies allow.
+                </p>
               </div>
             </div>
-          </section>
+          </div>
+        </section>
 
-          {/* SMART PLANNING ASSISTANT – WDP TOOL */}
-          <section className="border-b border-slate-200 bg-[#f8f4f0] py-10">
-            <div className="mx-auto max-w-5xl px-4 lg:px-6">
-              <SmartPlanningAssistant boroughName="Merton" />
-            </div>
-          </section>
+        {/* SMART PLANNING ASSISTANT */}
+        <section className="border-b border-slate-200 bg-[#f8f4f0] py-10">
+          <div className="mx-auto max-w-5xl px-4 lg:px-6">
+            <SmartPlanningAssistant boroughName="Merton" />
+          </div>
+        </section>
 
-          {/* PLANNING GUIDANCE */}
-          <section className="border-b border-slate-200 bg-white py-10">
-            <div className="mx-auto max-w-5xl px-4 lg:px-6">
-              <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
-                Planning guidance for Merton
-              </h2>
-              <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-                Merton has local guidance on house extensions, roof enlargements, daylight, outlook
-                and neighbour impact. Many projects are possible when size, height and windows are
-                set out carefully.
-              </p>
+        {/* AREAS + IMAGE + PROJECT TYPES (Barnet-style cards) */}
+        <section className="border-b border-slate-200 bg-white py-10">
+          <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
+            <div className="grid md:grid-cols-2 gap-10">
+              <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
+                <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
+                  Merton areas we cover
+                </h3>
 
-              <ul className="mt-4 space-y-2 text-[13px] text-slate-800">
-                <li>• Review of local policies that relate to your street</li>
-                <li>• Checks on whether permitted development rights still apply</li>
-                <li>• Preparation of householder or full planning applications</li>
-                <li>• Coordination with structural engineers where needed</li>
-              </ul>
+                <Image
+                  src="/images/merton-area.jpg"
+                  alt="Merton coverage map"
+                  width={800}
+                  height={500}
+                  className="rounded-xl object-cover mb-3"
+                />
 
-              <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-                The aim is to give the council a clear and professional set of drawings that show
-                how your proposal fits with the property and the wider terrace or street.
-              </p>
-            </div>
-          </section>
+                <p className="text-[13px] text-slate-700">
+                  Architectural drawings for the whole borough of Merton, including:
+                </p>
 
-          {/* FEES */}
-          <section className="border-b border-slate-200 bg-white py-10">
-            <div className="mx-auto max-w-5xl px-4 lg:px-6">
-              <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
-                Clear fixed fees for your home project
-              </h2>
-
-              <div className="mt-5 grid gap-4 text-[13px] md:grid-cols-3">
-                <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
-                  <h3 className="text-[13px] font-semibold text-slate-900">
-                    Planning drawings
-                  </h3>
-                  <p className="mt-1 text-[13px] font-semibold text-slate-900">
-                    from £750 + VAT
-                  </p>
-                  <p className="mt-2 text-[12px] text-slate-600">
-                    Existing and proposed plans and elevations ready for planning or lawful
-                    development applications.
-                  </p>
-                </div>
-
-                <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
-                  <h3 className="text-[13px] font-semibold text-slate-900">
-                    Measured surveys
-                  </h3>
-                  <p className="mt-1 text-[13px] font-semibold text-slate-900">
-                    from £150 + VAT
-                  </p>
-                  <p className="mt-2 text-[12px] text-slate-600">
-                    On site measured surveys so existing drawings reflect the property accurately
-                    before design begins.
-                  </p>
-                </div>
-
-                <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
-                  <h3 className="text-[13px] font-semibold text-slate-900">
-                    Building regulation packs
-                  </h3>
-                  <p className="mt-1 text-[13px] font-semibold text-slate-900">
-                    from £950 + VAT
-                  </p>
-                  <p className="mt-2 text-[12px] text-slate-600">
-                    Technical sections, details and coordinated notes ready for building control
-                    and tender.
-                  </p>
+                <div className="grid grid-cols-2 gap-2 text-[13px] text-slate-700">
+                  <ul className="list-disc pl-4 space-y-1">
+                    <li>Wimbledon</li>
+                    <li>South Wimbledon</li>
+                    <li>Wimbledon Park</li>
+                    <li>Raynes Park</li>
+                    <li>Merton Park</li>
+                    <li>Colliers Wood</li>
+                  </ul>
+                  <ul className="list-disc pl-4 space-y-1">
+                    <li>Morden</li>
+                    <li>Lower Morden</li>
+                    <li>Mitcham</li>
+                    <li>Pollards Hill</li>
+                    <li>Tooting borders</li>
+                    <li>Southfields borders</li>
+                  </ul>
                 </div>
               </div>
 
-              <button
-                type="button"
-                onClick={scrollToForm}
-                className="mt-5 rounded-full bg-[#64b7c4] px-5 py-2.5 text-[13px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-[#4da4b4]"
-              >
-                Request my fixed fee
-              </button>
+              <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
+                <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
+                  Popular projects in Merton
+                </h3>
+
+                <div className="grid grid-cols-2 gap-3 text-[13px] text-slate-700">
+                  <ul className="list-disc pl-4 space-y-1">
+                    <li>Rear and wrap extensions</li>
+                    <li>Side infill layouts</li>
+                    <li>Loft conversions and dormers</li>
+                    <li>Hip to gable loft conversions</li>
+                    <li>Internal remodelling</li>
+                  </ul>
+                  <ul className="list-disc pl-4 space-y-1">
+                    <li>Garden studios</li>
+                    <li>Garage conversions</li>
+                    <li>Flat conversions and layouts</li>
+                    <li>Energy upgrades</li>
+                    <li>Small infill schemes</li>
+                  </ul>
+                </div>
+
+                <Image
+                  src="/images/hero.jpg"
+                  alt="Residential extension example"
+                  width={800}
+                  height={500}
+                  className="rounded-xl object-cover mt-2"
+                />
+              </div>
             </div>
-          </section>
 
-          {/* FINAL CTA */}
-          <section className="bg-[#f8f4f0] py-10">
-            <div className="mx-auto max-w-5xl px-4 text-center lg:px-6">
-              <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
-                Ready to obtain your planning approval
+            <div className="rounded-2xl bg-emerald-50 border border-emerald-100 p-6 space-y-3">
+              <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-emerald-900">
+                Local planning knowledge for Merton projects
               </h2>
-              <p className="mt-3 text-[13px] text-slate-700">
-                Share a few details and WEDRAWPLANS will respond with a clear fixed fee and suggested
-                next steps for your extension, loft or internal remodelling in Merton.
+              <p className="text-[13px] text-emerald-900">
+                Merton includes strong character streets and suburban plots. We set out massing, heights and window strategy clearly so planning review is quicker and builders can price accurately.
               </p>
+            </div>
 
-              <div className="mt-5 flex flex-wrap justify-center gap-3">
+            <div className="rounded-2xl bg-slate-900 text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div>
+                <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
+                  Ready to start your Merton project
+                </h2>
+                <p className="text-[13px] text-slate-300 mt-2">
+                  Send your postcode and a short description. We reply with a fixed fee and recommended next steps.
+                </p>
+              </div>
+              <div className="flex flex-col space-y-2 text-[13px]">
+                <a href={PHONE_LINK} className="font-semibold text-emerald-300 underline">
+                  {PHONE_DISPLAY}
+                </a>
+                <a href="mailto:info@wedrawplans.com" className="font-semibold text-emerald-300 underline">
+                  info@wedrawplans.com
+                </a>
                 <button
                   type="button"
                   onClick={scrollToForm}
-                  className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-[13px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-[#4da4b4]"
+                  className="mt-2 inline-flex items-center justify-center rounded-full bg-white px-5 py-2 text-[13px] font-semibold text-slate-900 shadow hover:bg-emerald-100"
                 >
                   Get my quote
                 </button>
-                <a
-                  href={WHATSAPP_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-[13px] text-slate-800 shadow-sm hover:bg-slate-900 hover:text-white"
-                >
-                  💬 WhatsApp
-                </a>
               </div>
             </div>
-          </section>
-        </main>
-      </div>
+
+            <div className="text-[12px] text-slate-600 pt-2">
+              See also{" "}
+              <a href="/extension-plans" className="underline text-emerald-700">
+                extension plans
+              </a>{" "}
+              and{" "}
+              <a href="/" className="underline text-emerald-700">
+                WEDRAWPLANS home
+              </a>
+              .
+            </div>
+          </div>
+        </section>
+      </main>
     </>
   );
 }
