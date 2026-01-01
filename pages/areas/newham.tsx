@@ -2,6 +2,7 @@ import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
+import { SmartPlanningAssistant } from "../../components/SmartPlanningAssistant";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
@@ -22,7 +23,7 @@ export default function NewhamAreaPage() {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: "WEDRAWPLANS",
-    url: "https://www.wedrawplans.co.uk/areas/newham",
+    url: "https://www.wedrawplans.co.uk/newham",
     telephone: "+44 20 3654 8508",
     email: "info@wedrawplans.com",
     image: "https://www.wedrawplans.co.uk/images/drawings.jpg",
@@ -49,6 +50,23 @@ export default function NewhamAreaPage() {
     ],
     description:
       "Architectural drawing services in Newham for extensions, loft conversions, flat conversions, HMOs, outbuildings and building regulation plans.",
+    priceRange: "££",
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+        ],
+        opens: "08:00",
+        closes: "20:00",
+      },
+    ],
+    sameAs: ["https://twitter.com/WEDRAWPLANS"],
   };
 
   const faqJson = {
@@ -57,38 +75,42 @@ export default function NewhamAreaPage() {
     mainEntity: [
       {
         "@type": "Question",
-        name: "Do I need planning permission for a rear extension in Newham",
+        name: "Do I need planning permission for a rear extension in Newham?",
         acceptedAnswer: {
           "@type": "Answer",
-          text:
-            "Not always. Some rear extensions in Newham can be done under permitted development. We confirm the right route after we review your address, property type and what has been done before.",
+          text: "Not always. Many rear extensions in Newham can be carried out under permitted development. We confirm the correct route once we review your address and house type.",
         },
       },
       {
         "@type": "Question",
-        name: "Is Newham strict with loft conversions, HMOs and extensions",
+        name: "Is Newham strict with loft conversions, HMOs and extensions?",
         acceptedAnswer: {
           "@type": "Answer",
-          text:
-            "Newham is careful with HMOs, flat conversions and larger extensions, especially where parking, amenity space and overcrowding are concerns. Clear drawings and a solid planning case are important.",
+          text: "Newham is careful with HMOs, flat conversions and large extensions, especially where parking, overcrowding and amenity space are affected. Good quality drawings and clear planning arguments are important.",
         },
       },
       {
         "@type": "Question",
-        name: "How long does Newham Council take to decide",
+        name: "How long does Newham Council take to decide?",
         acceptedAnswer: {
           "@type": "Answer",
-          text:
-            "Householder applications are commonly around six to eight weeks after validation. Lawful Development Certificates often take around four to six weeks depending on validation and workload.",
+          text: "Householder planning applications normally take six to eight weeks after validation. Lawful Development Certificates usually take around four to six weeks.",
         },
       },
       {
         "@type": "Question",
-        name: "Do you manage the full application to Newham Council",
+        name: "Do you manage the full application to Newham Council?",
         acceptedAnswer: {
           "@type": "Answer",
-          text:
-            "Yes. We prepare drawings, complete the forms, upload documents, submit to Newham Council and respond to planning officer queries through to decision.",
+          text: "Yes. We prepare drawings, complete forms, upload documents, submit to Newham Council and respond to planning officer queries.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can you produce building regulation drawings as well as planning drawings?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. After planning we can produce a building regulation pack with key plans, sections and construction notes for building control and for builders to price accurately. We can also coordinate with a structural engineer where required.",
         },
       },
     ],
@@ -97,457 +119,525 @@ export default function NewhamAreaPage() {
   return (
     <>
       <Head>
-        <title>
-          Architectural Drawings in Newham – Extensions, Lofts, HMOs and Planning
-        </title>
+        <title>Architectural Drawings in Newham – Extensions, Lofts and HMOs</title>
         <meta
           name="description"
-          content="Architectural drawings in Newham for extensions, loft conversions, HMOs, flat conversions and building regulation packs. Initial survey within 48 hours and full planning support."
+          content="Planning drawings, loft conversion plans, HMO and flat conversion layouts, and building regulation packs for homes in Newham. Serving East Ham, Stratford, Forest Gate, Plaistow, Canning Town and Beckton. Fixed fees with clear scope."
         />
-        <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/newham" />
-
-        <meta property="og:title" content="Architectural Drawings in Newham | WEDRAWPLANS" />
-        <meta
-          property="og:description"
-          content="Extensions, loft conversions, HMOs, flat conversions and building regs packs across Newham. Initial survey within 48 hours and full planning support."
-        />
-        <meta property="og:url" content="https://www.wedrawplans.co.uk/areas/newham" />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://www.wedrawplans.co.uk/images/drawings.jpg" />
+        <link rel="canonical" href="https://www.wedrawplans.co.uk/newham" />
 
         <script
           type="application/ld+json"
-          // @ts-ignore
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
         />
         <script
           type="application/ld+json"
-          // @ts-ignore
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }}
         />
       </Head>
 
-      <main className="bg-slate-50">
-        {/* HERO */}
-        <section className="relative bg-emerald-900 text-white overflow-hidden">
-          {/* FIX: next/image fill must have a relative parent with size */}
-          <div className="absolute inset-0 opacity-15 mix-blend-soft-light">
-            <div className="relative w-full h-full">
-              <Image
-                src="/images/drawings.jpg"
-                alt="Architectural drawings for Newham extensions and lofts"
-                fill
-                sizes="100vw"
-                priority
-                className="object-cover"
-              />
+      <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
+        {/* HEADER */}
+        <header className="border-b border-slate-200 bg-[#fdf8f3]/90 backdrop-blur">
+          <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 lg:px-6">
+            <div className="flex items-center gap-2">
+              <div className="grid h-10 w-10 place-items-center rounded-full border border-slate-500 text-xs font-semibold tracking-[0.18em] text-red-700">
+                WDP
+              </div>
+              <div>
+                <div className="text-lg font-semibold tracking-[0.2em] uppercase">
+                  WEDRAWPLANS
+                </div>
+                <div className="text-[11px] uppercase tracking-[0.2em] text-slate-500">
+                  Architectural drawing consultants
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <a
+                href={PHONE_LINK}
+                className="hidden sm:inline-flex items-center gap-1 rounded-full border border-slate-300 px-3 py-1.5 text-[12px] font-medium text-slate-900 hover:bg-slate-900 hover:text-white"
+              >
+                📞 {PHONE_DISPLAY}
+              </a>
+              <a
+                href={WHATSAPP_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-3 py-1.5 text-[12px] font-medium text-white hover:bg-[#1ebe57]"
+              >
+                💬 WhatsApp
+              </a>
             </div>
           </div>
+        </header>
 
-          <div className="relative mx-auto max-w-5xl px-6 py-16 space-y-8">
-            <p className="text-xs font-semibold tracking-[0.2em] text-emerald-100">
-              WEDRAWPLANS • NEWHAM
-            </p>
+        <main>
+          {/* HERO + FORM */}
+          <section className="border-b border-slate-200 bg-[#fdf8f3]">
+            <div className="mx-auto flex max-w-5xl flex-col gap-6 px-4 py-8 lg:flex-row lg:items-start lg:px-6 lg:py-10">
+              {/* TEXT SIDE */}
+              <div className="lg:w-1/2">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-red-700">
+                  Newham architectural drawings
+                </p>
 
-            <h1 className="text-4xl md:text-5xl font-bold leading-tight">
-              Architectural Drawings in Newham
-            </h1>
+                <h1 className="mt-2 text-[22px] font-semibold uppercase leading-snug tracking-[0.14em] sm:text-[26px]">
+                  Planning drawings for extensions, lofts, HMOs and conversions
+                </h1>
 
-            <p className="max-w-3xl text-sm md:text-base text-emerald-50">
-              Architectural drawing services in Newham for extensions, loft conversions, HMOs,
-              flat conversions, outbuildings and building regulation packs. We prepare drawings
-              aligned with Newham Council expectations and current Building Regulations.
-            </p>
+                <p className="mt-3 text-[13px] text-slate-700">
+                  WEDRAWPLANS prepares planning and technical drawings for houses and
+                  flats across the London Borough of Newham, including Stratford,
+                  East Ham, Forest Gate, Plaistow, Canning Town, Beckton and Upton
+                  Park.
+                </p>
 
-            <div className="grid md:grid-cols-[2fr,1.2fr] gap-8 items-start">
-              <div className="space-y-3 text-sm">
-                <div className="grid sm:grid-cols-2 gap-3">
-                  <ul className="space-y-1 list-disc pl-4">
-                    <li>Initial survey within 48 hours</li>
-                    <li>Planning and permitted development advice</li>
-                    <li>Support with HMOs and flat conversions</li>
+                <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
+                  <li>• Rear and side extensions to family homes</li>
+                  <li>• Loft conversions with dormers or hip to gable roofs</li>
+                  <li>• Flat conversions and internal layout upgrades</li>
+                  <li>• HMO layouts and compliance minded design</li>
+                  <li>• Building regulation and construction packs</li>
+                  <li>• Support from first sketch through to detailed drawings</li>
+                </ul>
+
+                <div className="mt-5 flex flex-wrap items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={scrollToForm}
+                    className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-[13px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-[#4da4b4]"
+                  >
+                    Get my quote
+                  </button>
+                  <a
+                    href={PHONE_LINK}
+                    className="text-[13px] font-medium text-slate-800 underline"
+                  >
+                    Or call {PHONE_DISPLAY}
+                  </a>
+                </div>
+
+                {/* IMAGE (Barnet style) */}
+                <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                  <div className="relative h-44 w-full sm:h-52">
+                    <Image
+                      src="/images/drawings.jpg"
+                      alt="Example architectural drawings for a Newham project"
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="object-cover"
+                      priority
+                    />
+                  </div>
+                  <div className="p-4">
+                    <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-slate-900">
+                      Clear drawings for dense streets
+                    </p>
+                    <p className="mt-1 text-[13px] text-slate-700">
+                      Newham sites often have tight plots, shared boundaries and
+                      parking constraints. We set out proposals clearly so councils
+                      can validate quickly and builders can price accurately.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Local trust bullets */}
+                <div className="mt-6 rounded-xl border border-slate-200 bg-white/70 p-4">
+                  <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-slate-900">
+                    What you get
+                  </p>
+                  <ul className="mt-2 space-y-1 text-[13px] text-slate-700">
+                    <li>• Initial survey within 48 hours</li>
+                    <li>• Fixed fee with scope, deliverables and turnaround explained</li>
+                    <li>• Advice on PD vs planning and best submission route</li>
+                    <li>• Optional structural coordination and building regs pack</li>
                   </ul>
-                  <ul className="space-y-1 list-disc pl-4">
-                    <li>Drawings tailored to Newham policies</li>
-                    <li>Building regulation packages for 2025 standards</li>
-                    <li>Fixed quotes with clear scope of work</li>
+                </div>
+              </div>
+
+              {/* FORM SIDE */}
+              <div id="newham-quote" className="lg:w-1/2">
+                <div className="rounded-2xl bg-white p-5 shadow-md">
+                  <h2 className="text-[14px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+                    Free fixed quote for your home
+                  </h2>
+                  <p className="mt-1 text-[12px] text-slate-600">
+                    Share some basic details and WEDRAWPLANS will send a clear fixed
+                    fee for the drawings for your project in Newham.
+                  </p>
+
+                  <form
+                    onSubmit={handleSubmit}
+                    className="mt-3 space-y-3 text-[13px]"
+                  >
+                    <div>
+                      <label className="text-[11px] font-medium text-slate-700">
+                        Name
+                      </label>
+                      <input
+                        name="name"
+                        required
+                        className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 focus:border-[#64b7c4] focus:outline-none"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                      <div>
+                        <label className="text-[11px] font-medium text-slate-700">
+                          Telephone
+                        </label>
+                        <input
+                          name="phone"
+                          required
+                          className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 focus:border-[#64b7c4] focus:outline-none"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-[11px] font-medium text-slate-700">
+                          Email
+                        </label>
+                        <input
+                          name="email"
+                          type="email"
+                          required
+                          className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 focus:border-[#64b7c4] focus:outline-none"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="text-[11px] font-medium text-slate-700">
+                        Newham postcode
+                      </label>
+                      <input
+                        name="postcode"
+                        required
+                        placeholder="E6, E7, E13, E15, E16 or E12"
+                        className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 focus:border-[#64b7c4] focus:outline-none"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="text-[11px] font-medium text-slate-700">
+                        Project type
+                      </label>
+                      <select
+                        name="projectType"
+                        required
+                        defaultValue=""
+                        className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 focus:border-[#64b7c4] focus:outline-none"
+                      >
+                        <option value="" disabled>
+                          Select project type
+                        </option>
+                        <option value="Rear extension">Rear extension</option>
+                        <option value="Side or wrap extension">Side or wrap extension</option>
+                        <option value="Loft conversion">Loft conversion</option>
+                        <option value="Internal remodelling">Internal remodelling</option>
+                        <option value="Conversion to flats">Conversion to flats</option>
+                        <option value="HMO layout">HMO layout</option>
+                        <option value="New build house">New build house</option>
+                        <option value="Building regulation pack">Building regulation pack only</option>
+                        <option value="Other project">Other domestic project</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="text-[11px] font-medium text-slate-700">
+                        Brief description
+                      </label>
+                      <textarea
+                        name="projectDetails"
+                        rows={4}
+                        placeholder="For example: loft conversion with rear dormer in East Ham, or flat conversion layout near Stratford."
+                        className="w-full rounded border border-slate-300 bg-white px-2 py-2 text-[13px] focus:border-[#64b7c4] focus:outline-none"
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="mt-2 w-full rounded-full bg-[#64b7c4] px-4 py-2.5 text-[13px] font-semibold uppercase tracking-[0.2em] text-white hover:bg-[#4da4b4] focus:outline-none focus:ring-2 focus:ring-[#64b7c4]"
+                    >
+                      Get my quote
+                    </button>
+
+                    <p className="pt-2 text-[11px] text-slate-500">
+                      Tip: If you have Rightmove screenshots, photos, or sketches,
+                      mention it in the brief and we will tell you what helps speed
+                      up the quote.
+                    </p>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* COMMON PROJECT TYPES */}
+          <section className="border-b border-slate-200 bg-white py-10">
+            <div className="mx-auto max-w-5xl px-4 lg:px-6">
+              <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+                Typical home projects in Newham
+              </h2>
+              <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
+                Newham includes dense terraces, mixed use streets and regeneration
+                areas. Many owners extend, convert or reorganise their property to
+                create more space or better rental layouts.
+              </p>
+
+              <div className="mt-5 grid gap-5 text-[13px] md:grid-cols-2">
+                <div>
+                  <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
+                    Extensions and open plan layouts
+                  </h3>
+                  <p className="mt-2 text-[13px] text-slate-700">
+                    Rear and side extensions, often combined with internal knock throughs,
+                    designed to work on tight plots with shared boundaries.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
+                    Loft conversions
+                  </h3>
+                  <p className="mt-2 text-[13px] text-slate-700">
+                    Dormer and hip to gable loft conversions to add bedrooms and bathrooms,
+                    with window strategy to limit overlooking.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
+                    HMOs and flat conversions
+                  </h3>
+                  <p className="mt-2 text-[13px] text-slate-700">
+                    Layouts that consider fire safety, amenity standards and practical
+                    circulation, plus drawings set up for planning review.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
+                    Small schemes and shop conversions
+                  </h3>
+                  <p className="mt-2 text-[13px] text-slate-700">
+                    Feasibility layouts and planning drawings for small residential schemes
+                    and mixed use conversions where policy allows.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* SMART PLANNING ASSISTANT */}
+          <section className="border-b border-slate-200 bg-[#f8f4f0] py-10">
+            <div className="mx-auto max-w-5xl px-4 lg:px-6">
+              <SmartPlanningAssistant boroughName="Newham" />
+            </div>
+          </section>
+
+          {/* PLANNING GUIDANCE */}
+          <section className="border-b border-slate-200 bg-white py-10">
+            <div className="mx-auto max-w-5xl px-4 lg:px-6">
+              <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+                Planning guidance for Newham
+              </h2>
+
+              <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
+                Newham can be more sensitive around conversions, HMOs, amenity space,
+                parking and overcrowding. A clear drawing set and a sensible layout
+                strategy reduces planning risk.
+              </p>
+
+              <div className="mt-5 grid gap-5 text-[13px] md:grid-cols-2">
+                <div className="rounded-xl border border-slate-200 bg-[#fdf8f3] p-5">
+                  <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
+                    How we reduce planning risk
+                  </h3>
+                  <ul className="mt-3 space-y-2 text-slate-800">
+                    <li>• Check if PD rights still apply for your property</li>
+                    <li>• Layout strategy for conversions, bins, cycle and amenity</li>
+                    <li>• Window and overlooking approach where neighbours are close</li>
+                    <li>• Drawings that explain massing, height and constraints clearly</li>
                   </ul>
                 </div>
 
-                <p className="mt-2 text-xs text-emerald-100">
-                  Typical Newham projects include rear and wrap extensions in East Ham and Forest
-                  Gate, loft conversions in Manor Park and Plaistow, and HMO or flat conversion
-                  layouts around Stratford, Upton Park and Canning Town.
-                </p>
+                <div className="rounded-xl border border-slate-200 bg-white p-5">
+                  <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
+                    Typical planning submission
+                  </h3>
+                  <ul className="mt-3 space-y-2 text-slate-700">
+                    <li>• Existing and proposed plans and elevations</li>
+                    <li>• Location plan and block plan</li>
+                    <li>• Roof plan and sections where needed</li>
+                    <li>• Support during comments and minor revisions</li>
+                  </ul>
+                </div>
               </div>
 
-              <div className="space-y-2 text-sm text-right md:text-left">
-                <p className="text-xs text-emerald-100">Talk to us</p>
-                <p className="text-sm text-white">
-                  Phone{" "}
-                  <a href={PHONE_LINK} className="font-semibold text-white underline">
-                    +44 20 3654 8508
-                  </a>
-                </p>
-                <p className="text-sm text-white">
-                  Email{" "}
-                  <a href="mailto:info@wedrawplans.com" className="font-semibold text-white underline">
-                    info@wedrawplans.com
-                  </a>
-                </p>
+              <p className="mt-4 max-w-3xl text-[13px] text-slate-700">
+                The goal is simple: give the council a clear, professional set of
+                drawings that show how the proposal fits with the property and the
+                wider street.
+              </p>
+            </div>
+          </section>
 
+          {/* FAQ (visible) */}
+          <section className="border-b border-slate-200 bg-white py-10">
+            <div className="mx-auto max-w-5xl px-4 lg:px-6">
+              <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+                Newham drawings FAQ
+              </h2>
+
+              <div className="mt-5 space-y-4 text-[13px]">
+                <div className="rounded-xl border border-slate-200 p-5">
+                  <p className="font-semibold text-slate-900">
+                    How fast can you start in Newham
+                  </p>
+                  <p className="mt-2 text-slate-700">
+                    We typically arrange an initial survey within 48 hours depending on
+                    availability, then confirm the drawing programme once the existing
+                    layout is captured.
+                  </p>
+                </div>
+
+                <div className="rounded-xl border border-slate-200 p-5">
+                  <p className="font-semibold text-slate-900">
+                    Do you handle HMO and conversion layouts
+                  </p>
+                  <p className="mt-2 text-slate-700">
+                    Yes. We can prepare layouts and drawings for HMOs and flat conversions,
+                    with a focus on compliance minded design and clear planning presentation.
+                  </p>
+                </div>
+
+                <div className="rounded-xl border border-slate-200 p-5">
+                  <p className="font-semibold text-slate-900">
+                    Do you handle the planning submission
+                  </p>
+                  <p className="mt-2 text-slate-700">
+                    Yes. We can prepare the drawings and support the full submission route.
+                    If you prefer to submit yourself, we will still provide everything in a
+                    validation ready format.
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-6">
                 <button
                   type="button"
                   onClick={scrollToForm}
-                  className="mt-3 inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-emerald-900 shadow-lg shadow-emerald-900/30 hover:bg-emerald-50 transition"
+                  className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-[13px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-[#4da4b4]"
                 >
-                  Get your free quote
+                  Get my quote
                 </button>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* MAIN CONTENT */}
-        <section className="mx-auto max-w-5xl px-6 py-14 space-y-14">
-          {/* FORM */}
-          <div
-            id="newham-quote"
-            className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 md:p-8"
-          >
-            <div className="grid md:grid-cols-[1.2fr,1fr] gap-8 items-start">
-              <div className="space-y-3">
-                <h2 className="text-2xl font-semibold">Free fixed quote for your Newham project</h2>
-                <p className="text-sm text-slate-700">
-                  Tell us the address and what you want to build. We will reply with a clear fixed fee
-                  and the best route, permitted development, lawful development certificate or planning.
-                </p>
-                <ul className="text-sm text-slate-700 list-disc pl-4 space-y-1">
-                  <li>Extensions and lofts to houses</li>
-                  <li>Flat conversions and HMO layouts</li>
-                  <li>Building regulation packs and tender drawings</li>
-                </ul>
-              </div>
+          {/* FEES */}
+          <section className="border-b border-slate-200 bg-white py-10">
+            <div className="mx-auto max-w-5xl px-4 lg:px-6">
+              <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+                Clear fixed fees for your home project
+              </h2>
 
-              <form onSubmit={handleSubmit} className="space-y-3 text-sm">
-                <div>
-                  <label className="block text-xs font-semibold text-slate-600">Name</label>
-                  <input
-                    name="name"
-                    required
-                    className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-200"
-                  />
+              <div className="mt-5 grid gap-4 text-[13px] md:grid-cols-3">
+                <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
+                  <h3 className="text-[13px] font-semibold text-slate-900">
+                    Planning drawings
+                  </h3>
+                  <p className="mt-1 text-[13px] font-semibold text-slate-900">
+                    from £750 + VAT
+                  </p>
+                  <p className="mt-2 text-[12px] text-slate-600">
+                    Existing and proposed plans and elevations ready for planning or lawful
+                    development applications.
+                  </p>
                 </div>
 
-                <div className="grid sm:grid-cols-2 gap-3">
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-600">Phone</label>
-                    <input
-                      name="phone"
-                      required
-                      className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-200"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-600">Email</label>
-                    <input
-                      name="email"
-                      type="email"
-                      required
-                      className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-200"
-                    />
-                  </div>
+                <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
+                  <h3 className="text-[13px] font-semibold text-slate-900">
+                    Measured surveys
+                  </h3>
+                  <p className="mt-1 text-[13px] font-semibold text-slate-900">
+                    from £150 + VAT
+                  </p>
+                  <p className="mt-2 text-[12px] text-slate-600">
+                    On site measured surveys so existing drawings reflect the property accurately
+                    before design begins.
+                  </p>
                 </div>
 
-                <div>
-                  <label className="block text-xs font-semibold text-slate-600">Postcode</label>
-                  <input
-                    name="postcode"
-                    required
-                    placeholder="E6, E7, E12, E13, E15, E16"
-                    className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-200"
-                  />
+                <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
+                  <h3 className="text-[13px] font-semibold text-slate-900">
+                    Building regulation packs
+                  </h3>
+                  <p className="mt-1 text-[13px] font-semibold text-slate-900">
+                    from £950 + VAT
+                  </p>
+                  <p className="mt-2 text-[12px] text-slate-600">
+                    Technical sections, details and coordinated notes ready for building control
+                    and tender.
+                  </p>
                 </div>
-
-                <div>
-                  <label className="block text-xs font-semibold text-slate-600">Project type</label>
-                  <select
-                    name="projectType"
-                    required
-                    defaultValue=""
-                    className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-emerald-200"
-                  >
-                    <option value="" disabled>
-                      Select project type
-                    </option>
-                    <option value="Rear extension">Rear extension</option>
-                    <option value="Side or wrap extension">Side or wrap extension</option>
-                    <option value="Loft conversion">Loft conversion</option>
-                    <option value="Flat conversion">Flat conversion</option>
-                    <option value="HMO layout">HMO layout</option>
-                    <option value="Outbuilding / garden room">Outbuilding / garden room</option>
-                    <option value="Building regulation pack">Building regulation pack</option>
-                    <option value="Other">Other</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold text-slate-600">Brief description</label>
-                  <textarea
-                    name="projectDetails"
-                    rows={4}
-                    placeholder="For example: rear extension to terraced house in East Ham with new open plan kitchen"
-                    className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-200"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full rounded-full bg-emerald-700 px-5 py-3 text-sm font-semibold text-white hover:bg-emerald-800 transition"
-                >
-                  Get my fixed quote
-                </button>
-
-                <p className="text-xs text-slate-500">
-                  Or WhatsApp us:{" "}
-                  <a className="underline" href={WHATSAPP_LINK} target="_blank" rel="noreferrer">
-                    message WEDRAWPLANS
-                  </a>
-                </p>
-              </form>
-            </div>
-          </div>
-
-          {/* INTRO + DRAWINGS CARD */}
-          <div className="grid md:grid-cols-[1.7fr,1.3fr] gap-10 items-start">
-            <div className="space-y-4">
-              <h2 className="text-2xl font-semibold">Architectural drawing services in Newham</h2>
-              <p className="text-sm md:text-base text-slate-700">
-                WEDRAWPLANS prepares planning and building regulation drawings across Newham, including
-                East Ham, West Ham, Upton Park, Plaistow, Forest Gate, Manor Park, Stratford, Beckton,
-                Canning Town and Custom House.
-              </p>
-              <p className="text-sm md:text-base text-slate-700">
-                We are experienced with tight plots, shared boundaries, HMO layout rules and daylight
-                and amenity standards, so your submission is clear and council ready.
-              </p>
-            </div>
-
-            <div className="rounded-2xl bg-white shadow-md border border-slate-100 overflow-hidden">
-              <Image
-                src="/images/drawings.jpg"
-                alt="Example of architectural drawings for a Newham project"
-                width={800}
-                height={500}
-                className="object-cover w-full h-48 md:h-56"
-              />
-              <div className="p-5 space-y-2">
-                <h3 className="text-lg font-semibold">Validation ready drawings</h3>
-                <p className="text-sm text-slate-700">
-                  Clear plans, elevations, sections and notes so planners, builders and building control
-                  can review quickly with fewer questions.
-                </p>
               </div>
-            </div>
-          </div>
 
-          {/* AREAS + PROJECT TYPES */}
-          <div className="grid md:grid-cols-2 gap-10">
-            <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
-              <h3 className="text-lg font-semibold">Newham areas we cover</h3>
-              <Image
-                src="/images/newham-area.jpg"
-                alt="Newham area street scene"
-                width={800}
-                height={500}
-                className="rounded-xl object-cover mb-3"
-              />
-              <p className="text-sm text-slate-700">
-                Drawings across the borough of Newham, including:
-              </p>
-              <div className="grid grid-cols-2 gap-2 text-sm text-slate-700">
-                <ul className="list-disc pl-4 space-y-1">
-                  <li>East Ham</li>
-                  <li>West Ham</li>
-                  <li>Upton Park</li>
-                  <li>Plaistow</li>
-                  <li>Forest Gate</li>
-                  <li>Manor Park</li>
-                </ul>
-                <ul className="list-disc pl-4 space-y-1">
-                  <li>Canning Town</li>
-                  <li>Custom House</li>
-                  <li>Stratford</li>
-                  <li>Maryland</li>
-                  <li>Beckton</li>
-                  <li>Royal Docks fringe</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
-              <h3 className="text-lg font-semibold">Popular projects in Newham</h3>
-              <div className="grid grid-cols-2 gap-3 text-sm text-slate-700">
-                <ul className="list-disc pl-4 space-y-1">
-                  <li>Rear and wrap extensions</li>
-                  <li>Side infill extensions</li>
-                  <li>Loft conversions and dormers</li>
-                  <li>Hip to gable loft conversions</li>
-                  <li>Internal remodelling</li>
-                </ul>
-                <ul className="list-disc pl-4 space-y-1">
-                  <li>Flat conversions</li>
-                  <li>HMO layouts</li>
-                  <li>Outbuildings and garden rooms</li>
-                  <li>Shop to residential layouts</li>
-                  <li>Small infill schemes</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* PLANNING / PD */}
-          <div className="space-y-5">
-            <h2 className="text-2xl font-semibold">Planning and permitted development in Newham</h2>
-            <p className="text-sm text-slate-700">
-              Many houses have permitted development rights, but flat conversions and HMOs normally need
-              full planning permission and may also require licensing compliance. We confirm the correct
-              route and advise what evidence is needed so your submission is not delayed.
-            </p>
-
-            <div className="grid md:grid-cols-3 gap-8 text-sm text-slate-700">
-              <div>
-                <h3 className="font-semibold mb-2">House extensions</h3>
-                <ul className="list-disc pl-4 space-y-1">
-                  <li>PD checks for previous extensions</li>
-                  <li>Neighbour and daylight impacts reviewed</li>
-                  <li>Sections used to explain height</li>
-                  <li>Clear boundary and visibility notes</li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="font-semibold mb-2">Loft conversions</h3>
-                <ul className="list-disc pl-4 space-y-1">
-                  <li>Dormer design to suit roof form</li>
-                  <li>Overlooking managed with window strategy</li>
-                  <li>Volume and set back considerations</li>
-                  <li>Fire escape and stairs considered early</li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="font-semibold mb-2">HMOs and conversions</h3>
-                <ul className="list-disc pl-4 space-y-1">
-                  <li>Room sizes and amenity standards</li>
-                  <li>Fire safety and protected routes</li>
-                  <li>Refuse, cycle and storage planning</li>
-                  <li>Parking and transport impacts</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* PACKS */}
-          <div className="grid md:grid-cols-2 gap-10">
-            <div className="rounded-2xl bg-white shadow-sm p-6 border border-slate-100 space-y-4">
-              <h3 className="text-lg font-semibold">Planning drawings for Newham</h3>
-              <ul className="list-disc pl-4 space-y-1 text-sm text-slate-700">
-                <li>Existing and proposed floor plans</li>
-                <li>Existing and proposed elevations</li>
-                <li>Sections through key spaces</li>
-                <li>Roof plans and external layouts</li>
-                <li>Block plans and location plans</li>
-                <li>Statements where required</li>
-              </ul>
-            </div>
-
-            <div className="rounded-2xl bg-white shadow-sm p-6 border border-slate-100 space-y-4">
-              <h3 className="text-lg font-semibold">Building regulation drawings for Newham</h3>
-              <ul className="list-disc pl-4 space-y-1 text-sm text-slate-700">
-                <li>Structural layouts and coordination</li>
-                <li>Thermal build ups and insulation notes</li>
-                <li>Fire protection and escape strategy</li>
-                <li>Ventilation and extracts</li>
-                <li>Acoustics between rooms and units</li>
-                <li>Drainage layouts and construction notes</li>
-              </ul>
-            </div>
-          </div>
-
-          {/* FAQ */}
-          <div className="space-y-4">
-            <h2 className="text-2xl font-semibold">Frequently asked questions</h2>
-            <div className="grid md:grid-cols-2 gap-6 text-sm text-slate-700">
-              <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                <h3 className="font-semibold">Can you help with HMO and flat conversion layouts</h3>
-                <p>
-                  Yes. We prepare layouts for HMOs and flat conversions to meet space and fire standards,
-                  and we help you understand what planning and licensing steps may apply.
-                </p>
-              </div>
-              <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                <h3 className="font-semibold">How fast can you start in Newham</h3>
-                <p>In most cases we can arrange an initial survey within 48 hours, subject to access.</p>
-              </div>
-              <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                <h3 className="font-semibold">Do you manage submissions to Newham Council</h3>
-                <p>Yes. We can prepare, submit and support the application through to decision.</p>
-              </div>
-              <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                <h3 className="font-semibold">Can you do building regs after planning</h3>
-                <p>
-                  Yes. We provide building regulation packs with key details and coordination, ready for
-                  building control and construction pricing.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* FINAL CTA */}
-          <div className="rounded-2xl bg-slate-900 text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div>
-              <h2 className="text-xl font-semibold">Ready to start your Newham project</h2>
-              <p className="text-sm text-slate-300">
-                Send your address and a short description. We will reply with a fixed quote and the best
-                submission route.
-              </p>
-            </div>
-            <div className="flex flex-col space-y-1 text-sm">
-              <a href={PHONE_LINK} className="font-semibold text-emerald-300 underline">
-                +44 20 3654 8508
-              </a>
-              <a href="mailto:info@wedrawplans.com" className="font-semibold text-emerald-300 underline">
-                info@wedrawplans.com
-              </a>
               <button
                 type="button"
                 onClick={scrollToForm}
-                className="mt-2 inline-flex items-center justify-center rounded-full bg-white px-5 py-2 text-sm font-semibold text-emerald-900 shadow hover:bg-emerald-100"
+                className="mt-5 rounded-full bg-[#64b7c4] px-5 py-2.5 text-[13px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-[#4da4b4]"
               >
-                Get your free quote
+                Request my fixed fee
               </button>
             </div>
-          </div>
+          </section>
 
-          {/* INTERNAL LINKS */}
-          <div className="text-xs text-slate-500 pt-4">
-            <p>
-              See also:{" "}
-              <a href="/extension-plans" className="underline text-emerald-700">
-                House extension drawings
-              </a>
-              ,{" "}
-              <a href="/loft-conversion-plans" className="underline text-emerald-700">
-                Loft conversion drawings
-              </a>{" "}
-              and{" "}
-              <a href="/" className="underline text-emerald-700">
-                WEDRAWPLANS home page
-              </a>
-              .
-            </p>
-          </div>
-        </section>
-      </main>
+          {/* FINAL CTA */}
+          <section className="bg-[#f8f4f0] py-10">
+            <div className="mx-auto max-w-5xl px-4 text-center lg:px-6">
+              <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+                Ready to obtain your planning approval
+              </h2>
+              <p className="mt-3 text-[13px] text-slate-700">
+                Share a few details and WEDRAWPLANS will respond with a clear fixed fee and suggested
+                next steps for your extension, loft, HMO or conversion in Newham.
+              </p>
+
+              <div className="mt-5 flex flex-wrap justify-center gap-3">
+                <button
+                  type="button"
+                  onClick={scrollToForm}
+                  className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-[13px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-[#4da4b4]"
+                >
+                  Get my quote
+                </button>
+                <a
+                  href={WHATSAPP_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-[13px] text-slate-800 shadow-sm hover:bg-slate-900 hover:text-white"
+                >
+                  💬 WhatsApp
+                </a>
+                <a
+                  href={PHONE_LINK}
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-[13px] text-slate-800 shadow-sm hover:bg-slate-900 hover:text-white"
+                >
+                  📞 Call {PHONE_DISPLAY}
+                </a>
+              </div>
+
+              <p className="mt-4 text-[11px] text-slate-500">
+                Areas covered in Newham: Stratford, East Ham, West Ham, Forest Gate, Manor Park,
+                Plaistow, Upton Park, Canning Town, Custom House, Beckton and nearby streets.
+              </p>
+            </div>
+          </section>
+        </main>
+      </div>
     </>
   );
 }
