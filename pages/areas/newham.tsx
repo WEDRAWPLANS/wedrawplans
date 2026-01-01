@@ -1,10 +1,3 @@
-You do **not** delete anything first.
-
-For each borough page, **replace the entire file content** with the new borough code (Barnet style). Do not paste on top of old code because you will get duplicate imports, duplicate components, and errors.
-
-Here is **NEWHAM in the exact Barnet structure** (same layout, header, sections, styling, and submitBoroughLead path):
-
-```tsx
 import React from "react";
 import Head from "next/head";
 import Image from "next/image";
@@ -622,4 +615,3 @@ export default function NewhamAreaPage() {
     </>
   );
 }
-```
