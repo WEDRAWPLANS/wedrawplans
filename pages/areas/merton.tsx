@@ -2,8 +2,8 @@
 import Head from "next/head";
 import React from "react";
 import Image from "next/image";
-import { submitBoroughLead } from "../lib/submitBoroughLead";
-import { SmartPlanningAssistant } from "../components/SmartPlanningAssistant";
+import { submitBoroughLead } from "../../lib/submitBoroughLead";
+import { SmartPlanningAssistant } from "../../components/SmartPlanningAssistant";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
