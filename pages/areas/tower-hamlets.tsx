@@ -398,7 +398,7 @@ export default function TowerHamletsAreaPage() {
                     Tower Hamlets areas we cover
                   </h3>
                   <Image
-                    src="/images/tower-hamlets-area.jpg"
+                    src="/images/towerhamlets-area.jpg"
                     alt="Tower Hamlets local high street"
                     width={800}
                     height={500}
