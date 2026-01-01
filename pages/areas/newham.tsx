@@ -381,7 +381,7 @@ export default function NewhamAreaPage() {
                     Newham areas we cover
                   </h3>
                   <Image
-                    src="/images/area.jpg"
+                    src="/images/newham-area.jpg"
                     alt="Newham local high street"
                     width={800}
                     height={500}
