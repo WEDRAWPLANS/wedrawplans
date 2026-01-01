@@ -383,13 +383,13 @@ export default function IslingtonAreaPage() {
                 </div>
 
                 <div className="rounded-2xl bg-white shadow-md border border-slate-100 overflow-hidden">
-          <Image
-  src="/images/islington-area.jpg"
-  alt="Islington area map and coverage"
-  width={800}
-  height={500}
-  className="rounded-xl object-cover mb-3"
-/>
+                 <Image
+                    src="/images/area.jpg"
+                    alt="Islington local high street"
+                    width={800}
+                    height={500}
+                    className="rounded-xl object-cover mb-3"
+                  />
                   <div className="p-5 space-y-2">
                     <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
                       Technical drawings builders can price from
