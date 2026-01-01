@@ -7,7 +7,7 @@ export default function Haringey() {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: "WEDRAWPLANS",
-    url: "https://www.wedrawplans.co.uk/haringey",
+    url: "https://www.wedrawplans.co.uk/areas/haringey",
     telephone: "+44 20 3654 8508",
     email: "info@wedrawplans.com",
     image: "https://www.wedrawplans.co.uk/images/drawings.jpg",
@@ -34,7 +34,7 @@ export default function Haringey() {
       "Alexandra Palace area"
     ],
     description:
-      "Architectural drawing services in Haringey for extensions, loft conversions, outbuildings, refurbishments and building regulations."
+      "Architectural drawing services in Haringey for extensions, loft conversions, flat conversions, refurbishments and building regulations."
   };
 
   const faqJson = {
@@ -43,38 +43,38 @@ export default function Haringey() {
     mainEntity: [
       {
         "@type": "Question",
-        name: "Do I need planning permission for a rear extension in Haringey?",
+        name: "Do I need planning permission for an extension in Haringey?",
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Not always. Many rear extensions in Haringey can be carried out under permitted development. We confirm the correct route once we review your address and house type."
+            "Not always. Many houses can extend under permitted development, but flats and maisonettes typically require full planning permission. We confirm the best route once we check your address and property type."
         }
       },
       {
         "@type": "Question",
-        name: "Is Haringey strict with loft conversions?",
+        name: "Do conservation areas affect loft conversions in Haringey?",
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Haringey follows national permitted development rules but can be stricter in conservation areas, near Highgate and Muswell Hill, and on prominent street facing roofs."
+            "Yes. In conservation areas and character streets, roof forms, dormer size and materials can be more sensitive. We design to match the existing street scene and prepare a clear submission pack."
         }
       },
       {
         "@type": "Question",
-        name: "How long does Haringey Council take to decide?",
+        name: "How long do Haringey planning decisions take?",
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Householder planning applications normally take six to eight weeks after validation. Lawful Development Certificates usually take around four to six weeks."
+            "Householder planning applications often take around eight weeks after validation. Lawful Development Certificates usually take several weeks depending on workload and validation speed."
         }
       },
       {
         "@type": "Question",
-        name: "Do you manage the full application to Haringey Council?",
+        name: "Can you handle the full submission to Haringey Council?",
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Yes. We prepare all drawings, complete the forms, upload documents, submit to Haringey Council and respond to planning officer queries."
+            "Yes. We prepare drawings, complete the forms, upload documents, submit to the portal and respond to planning officer queries until decision."
         }
       }
     ]
@@ -88,9 +88,9 @@ export default function Haringey() {
         </title>
         <meta
           name="description"
-          content="Architectural drawing services in Haringey for extensions, loft conversions, outbuildings, refurbishments and building regulation plans. Fast surveys, clear drawings and full planning support with Haringey Council."
+          content="Architectural drawing services in Haringey for house extensions, loft conversions, refurbishments and building regulation packs. Initial survey within 48 hours, clear drawings and full submission support."
         />
-        <link rel="canonical" href="https://www.wedrawplans.co.uk/haringey" />
+        <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/haringey" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
@@ -101,377 +101,308 @@ export default function Haringey() {
         />
       </Head>
 
-      <main className="bg-slate-50">
-        {/* HERO – drawing focused */}
-        <section className="relative bg-emerald-900 text-white">
-          {/* blueprint background */}
-          <div className="absolute inset-0 opacity-15 mix-blend-soft-light">
-            <Image
-              src="/images/drawings.jpg"
-              alt="Architectural drawings for Haringey extensions and lofts"
-              fill
-              className="object-cover"
-            />
-          </div>
-
-          <div className="relative mx-auto max-w-5xl px-6 py-16 space-y-8">
-            <p className="text-xs font-semibold tracking-[0.2em] text-emerald-100">
-              WEDRAWPLANS • HARINGEY
-            </p>
-
-            <h1 className="text-4xl md:text-5xl font-bold leading-tight">
-              Architectural Drawings in Haringey
-            </h1>
-
-            <p className="max-w-3xl text-sm md:text-base text-emerald-50">
-              Architectural drawing services in Haringey for house extensions,
-              loft conversions, outbuildings, flat conversions and small new
-              build homes. All drawings are prepared to Haringey Council
-              guidance and current Building Regulations.
-            </p>
-
-            <div className="grid md:grid-cols-[2fr,1.2fr] gap-8 items-start">
-              <div className="space-y-3 text-sm">
-                <div className="grid sm:grid-cols-2 gap-3">
-                  <ul className="space-y-1 list-disc pl-4">
-                    <li>Measured survey within 48 hours</li>
-                    <li>Planning and permitted development advice</li>
-                    <li>Full planning and Lawful Development applications</li>
-                  </ul>
-                  <ul className="space-y-1 list-disc pl-4">
-                    <li>Drawings tailored to Haringey planning policies</li>
-                    <li>Building regulation packages for 2025 standards</li>
-                    <li>Fixed quotes with clear scope of work</li>
-                  </ul>
-                </div>
-
-                <p className="mt-2 text-xs text-emerald-100">
-                  Typical Haringey projects include rear extensions in Crouch
-                  End and Muswell Hill, loft conversions on Victorian terraces
-                  in Harringay Ladder and Green Lanes, and flat conversions in
-                  Tottenham and Wood Green.
-                </p>
-              </div>
-
-              <div className="space-y-2 text-sm text-right md:text-left">
-                <p className="text-xs text-emerald-100">Talk to us</p>
-                <p className="text-sm text-white">
-                  Phone{" "}
-                  <a
-                    href="tel:+442036548508"
-                    className="font-semibold text-white underline"
-                  >
-                    +44 20 3654 8508
-                  </a>
-                </p>
-                <p className="text-sm text-white">
-                  Email{" "}
-                  <a
-                    href="mailto:info@wedrawplans.com"
-                    className="font-semibold text-white underline"
-                  >
-                    info@wedrawplans.com
-                  </a>
-                </p>
+      <main className="bg-white">
+        {/* Header bar - same structure as Hackney */}
+        <div className="border-b">
+          <div className="mx-auto max-w-5xl px-6 py-5 flex items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <div className="text-sm font-semibold">WEDRAWPLANS</div>
+              <div className="hidden sm:block text-sm text-slate-600">
+                Architectural drawing consultants
               </div>
             </div>
 
-            <div className="pt-2">
+            <div className="text-sm text-right">
+              <a href="tel:+442036548508" className="font-semibold underline">
+                020 3654 8508
+              </a>
+              <span className="mx-2 text-slate-400">|</span>
               <a
-                href="/#quote"
-                className="inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-semibold text-emerald-900 shadow-lg shadow-emerald-900/30 hover:bg-emerald-50 transition"
+                href="https://wa.me/442036548508"
+                className="font-semibold underline"
+                target="_blank"
+                rel="noreferrer"
               >
-                Get your free quote
+                WhatsApp us Chat
               </a>
             </div>
+          </div>
+        </div>
+
+        {/* HERO - same structure as Hackney */}
+        <section className="mx-auto max-w-5xl px-6 py-10">
+          <p className="text-sm text-slate-600 mb-2">Haringey borough page</p>
+
+          <p className="text-sm font-semibold text-slate-700 mb-2">
+            Haringey architectural drawings
+          </p>
+
+          <h1 className="text-3xl md:text-4xl font-bold tracking-tight">
+            Plans for extensions, lofts and conversions in Haringey
+          </h1>
+
+          <p className="mt-4 text-slate-700">
+            We deliver planning and building regulation drawing packages across the London
+            Borough of Haringey. From terrace houses in Harringay Ladder and Hornsey to larger
+            homes around Crouch End and Muswell Hill, we produce clear layouts and elevations
+            that help approvals and builder pricing.
+          </p>
+
+          <ul className="mt-5 space-y-1 text-slate-700">
+            <li>• Initial survey within 48 hours</li>
+            <li>• Permitted development checks and Lawful Development Certificates</li>
+            <li>• Full planning applications where required</li>
+            <li>• Lofts, dormers, hip to gable and stair solutions</li>
+            <li>• Flat conversions and internal reconfiguration strategies</li>
+            <li>• Building regulation packs aligned to 2025 standards</li>
+          </ul>
+
+          <div className="mt-6 flex flex-col sm:flex-row sm:items-center gap-3">
+            <a
+              href="#quote"
+              className="inline-flex items-center justify-center rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white hover:bg-slate-800"
+            >
+              Get a quick quote
+            </a>
+
+            <div className="text-sm text-slate-700">
+              Or call{" "}
+              <a href="tel:+442036548508" className="font-semibold underline">
+                020 3654 8508
+              </a>
+            </div>
+          </div>
+
+          <p className="mt-4 text-sm text-slate-600">
+            Areas covered include Crouch End, Muswell Hill, Hornsey, Wood Green, Tottenham,
+            Seven Sisters, Bounds Green, Green Lanes, Finsbury Park and the Alexandra Palace area.
+          </p>
+        </section>
+
+        {/* Quote block - same structure as Hackney */}
+        <section id="quote" className="bg-slate-50 border-y">
+          <div className="mx-auto max-w-5xl px-6 py-10">
+            <h2 className="text-2xl font-bold">Free fixed fee quote</h2>
+            <p className="mt-2 text-slate-700">
+              Send your postcode and a short project brief. We reply with a clear fixed fee and
+              the best planning route for your property type.
+            </p>
+
+            <form className="mt-6 grid gap-4 sm:grid-cols-2">
+              <input
+                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm"
+                placeholder="Name"
+                name="name"
+              />
+              <input
+                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm"
+                placeholder="Telephone"
+                name="telephone"
+              />
+              <input
+                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm sm:col-span-2"
+                placeholder="Email"
+                name="email"
+              />
+              <input
+                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm"
+                placeholder="Haringey postcode"
+                name="postcode"
+              />
+
+              <select
+                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm"
+                name="projectType"
+                defaultValue=""
+              >
+                <option value="" disabled>
+                  Project type
+                </option>
+                <option>House extension</option>
+                <option>Loft conversion</option>
+                <option>Flat conversion</option>
+                <option>Internal remodelling</option>
+                <option>New build house</option>
+                <option>Building regulation pack only</option>
+                <option>Other domestic project</option>
+              </select>
+
+              <textarea
+                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm sm:col-span-2"
+                placeholder="Brief description of your project"
+                name="brief"
+                rows={4}
+              />
+
+              <button
+                type="button"
+                className="sm:col-span-2 inline-flex items-center justify-center rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white hover:bg-slate-800"
+              >
+                Get a fixed fee quote
+              </button>
+
+              <p className="sm:col-span-2 text-sm text-slate-600">
+                We send a fixed fee with a clear scope, timeline, and the recommended route to approval.
+              </p>
+            </form>
           </div>
         </section>
 
-        {/* MAIN CONTENT */}
-        <section className="mx-auto max-w-5xl px-6 py-14 space-y-14">
-          {/* INTRO + DRAWINGS CARD */}
-          <div className="grid md:grid-cols-[1.7fr,1.3fr] gap-10 items-start">
-            <div className="space-y-4">
-              <h2 className="text-2xl font-semibold">
-                Architectural drawing services in Haringey
-              </h2>
-              <p className="text-sm md:text-base text-slate-700">
-                WEDRAWPLANS prepares full drawing packages for rear and side
-                extensions, double storey additions, loft conversions, internal
-                alterations, flat conversions, HMOs and small new developments
-                across the borough of Haringey.
-              </p>
-              <p className="text-sm md:text-base text-slate-700">
-                We work throughout Crouch End, Muswell Hill, Harringay Ladder,
-                Green Lanes, Wood Green, Hornsey, Tottenham, Seven Sisters,
-                Bounds Green, Highgate borders and Finsbury Park.
-              </p>
-            </div>
+        {/* Main content - same structure as Hackney */}
+        <section className="mx-auto max-w-5xl px-6 py-12">
+          <h2 className="text-2xl font-bold">Architectural drawing services in Haringey</h2>
+          <p className="mt-3 text-slate-700">
+            We prepare drawings for rear and side extensions, wrap around layouts, loft conversions,
+            internal alterations, flat conversions and small infill development proposals in Haringey.
+            Our packs are designed to be easy for planners to assess and easy for builders to price.
+          </p>
 
-            <div className="rounded-2xl bg-white shadow-md border border-slate-100 overflow-hidden">
+          <h3 className="mt-8 text-lg font-bold">Haringey design factors that matter</h3>
+          <ul className="mt-3 space-y-1 text-slate-700">
+            <li>• Tight rear gardens and overlooking between neighbours</li>
+            <li>• Daylight and scale on terrace streets</li>
+            <li>• Boundary structure and party wall considerations</li>
+            <li>• Roof changes that stay in character</li>
+            <li>• Flats and conversions needing a clear planning strategy</li>
+          </ul>
+
+          <div className="mt-6">
+            <a
+              href="#quote"
+              className="inline-flex items-center justify-center rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white hover:bg-slate-800"
+            >
+              Get a quick quote
+            </a>
+            <a
+              href="https://wa.me/442036548508"
+              className="ml-3 inline-flex items-center justify-center rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-900 hover:bg-slate-50"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Chat on WhatsApp
+            </a>
+          </div>
+
+          {/* Borough image - unique to Haringey */}
+          <div className="mt-10 grid md:grid-cols-2 gap-8 items-start">
+            <div className="rounded-2xl overflow-hidden border border-slate-200 bg-white">
               <Image
-                src="/images/drawings.jpg"
-                alt="Example of architectural drawings for a Haringey extension"
-                width={800}
-                height={500}
-                className="object-cover w-full h-48 md:h-56"
+                src="/images/areas/haringey.jpg"
+                alt="Haringey residential streets and housing types"
+                width={1200}
+                height={800}
+                className="w-full h-64 object-cover"
               />
-              <div className="p-5 space-y-2">
-                <h3 className="text-lg font-semibold">
-                  Clear drawings focused on planning and Building Control
-                </h3>
-                <p className="text-sm text-slate-700">
-                  Detailed floor plans, elevations, sections and notes
-                  coordinated with structural design so that Haringey Council
-                  and your builder can work from a single, accurate set of
-                  plans.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* AREAS COVERED + PROJECT TYPES */}
-          <div className="grid md:grid-cols-2 gap-10">
-            <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
-              <h3 className="text-lg font-semibold">Haringey areas we cover</h3>
-              <Image
-                src="/images/haringey-area.jpg"
-                alt="Haringey local high street and residential area"
-                width={800}
-                height={500}
-                className="rounded-xl object-cover mb-3"
-              />
-              <p className="text-sm text-slate-700">
-                Architectural drawings for the whole borough of Haringey,
-                including:
-              </p>
-              <div className="grid grid-cols-2 gap-2 text-sm text-slate-700">
-                <ul className="list-disc pl-4 space-y-1">
-                  <li>Crouch End</li>
-                  <li>Muswell Hill</li>
-                  <li>Harringay Ladder</li>
-                  <li>Green Lanes</li>
-                  <li>Hornsey</li>
-                  <li>Highgate borders</li>
-                </ul>
-                <ul className="list-disc pl-4 space-y-1">
-                  <li>Wood Green</li>
-                  <li>Tottenham</li>
-                  <li>Seven Sisters</li>
-                  <li>Bounds Green</li>
-                  <li>Finsbury Park</li>
-                  <li>Alexandra Palace area</li>
-                </ul>
-              </div>
             </div>
 
-            <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
-              <h3 className="text-lg font-semibold">Popular projects in Haringey</h3>
-              <div className="grid grid-cols-2 gap-3 text-sm text-slate-700">
-                <ul className="list-disc pl-4 space-y-1">
-                  <li>Rear and side extensions on terraces</li>
-                  <li>Wraparound and L shaped extensions</li>
-                  <li>Loft dormers on Victorian streets</li>
-                  <li>Hip to gable loft conversions</li>
-                  <li>Kitchen and open plan layouts</li>
-                </ul>
-                <ul className="list-disc pl-4 space-y-1">
-                  <li>Garden rooms and studios</li>
-                  <li>Flat conversions and layouts</li>
-                  <li>Internal reconfiguration and knock throughs</li>
-                  <li>HMOs and small new build schemes</li>
-                  <li>Front porches and infill extensions</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* PERMITTED DEVELOPMENT */}
-          <div className="space-y-5">
-            <h2 className="text-2xl font-semibold">
-              Permitted development limits in Haringey
-            </h2>
-            <p className="text-sm text-slate-700">
-              Below is a simplified summary of typical permitted development
-              limits. Final advice depends on your house type, location and any
-              Article 4 directions or conservation area status in your part of
-              Haringey.
-            </p>
-
-            <div className="grid md:grid-cols-3 gap-8 text-sm text-slate-700">
-              <div>
-                <h3 className="font-semibold mb-2">Rear extensions</h3>
-                <ul className="list-disc pl-4 space-y-1">
-                  <li>Up to 3 m deep on terrace houses</li>
-                  <li>Up to 4 m on semi detached houses</li>
-                  <li>Up to 6 to 8 m with Prior Approval</li>
-                  <li>Maximum 4 m height for single storey</li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="font-semibold mb-2">Loft conversions</h3>
-                <ul className="list-disc pl-4 space-y-1">
-                  <li>Up to 40 to 50 cubic metres volume</li>
-                  <li>No dormers on the principal front roof slope</li>
-                  <li>Side windows obscure glazed and fixed shut</li>
-                  <li>External materials similar to existing</li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="font-semibold mb-2">Outbuildings</h3>
-                <ul className="list-disc pl-4 space-y-1">
-                  <li>Maximum 2.5 m high near boundaries</li>
-                  <li>Cannot be used as a separate dwelling</li>
-                  <li>Use must be incidental to the house</li>
-                  <li>Not more than 50 percent of garden area</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* PLANNING & BUILDING REG PACKS */}
-          <div className="grid md:grid-cols-2 gap-10">
-            <div className="rounded-2xl bg-white shadow-sm p-6 border border-slate-100 space-y-4">
-              <h3 className="text-lg font-semibold">
-                Planning drawings for Haringey
-              </h3>
-              <ul className="list-disc pl-4 space-y-1 text-sm text-slate-700">
-                <li>Existing and proposed floor plans</li>
-                <li>Existing and proposed elevations</li>
-                <li>Roof plans and key sections</li>
-                <li>Block plans and location plans</li>
-                <li>Drainage and construction notes</li>
-                <li>Design statements where required</li>
-              </ul>
-            </div>
-
-            <div className="rounded-2xl bg-white shadow-sm p-6 border border-slate-100 space-y-4">
-              <h3 className="text-lg font-semibold">
-                Building regulation drawings for Haringey
-              </h3>
-              <ul className="list-disc pl-4 space-y-1 text-sm text-slate-700">
-                <li>Structural layouts and coordination with engineer</li>
-                <li>Foundation, beam and bearing information</li>
-                <li>Fire safety and escape routes</li>
-                <li>Thermal build ups and insulation specs</li>
-                <li>Ventilation and extract positions</li>
-                <li>Drainage runs and manhole information</li>
-              </ul>
-            </div>
-          </div>
-
-          {/* LOCAL KNOWLEDGE */}
-          <div className="rounded-2xl bg-emerald-50 border border-emerald-100 p-6 space-y-3">
-            <h2 className="text-2xl font-semibold text-emerald-900">
-              Local planning knowledge for Haringey projects
-            </h2>
-            <p className="text-sm text-emerald-900">
-              Haringey includes conservation areas in Crouch End, Muswell Hill
-              and Highgate borders, together with character streets and dense
-              terraces in Harringay Ladder and Tottenham. We design each scheme
-              to work with these local rules so that the approval process is as
-              smooth as possible.
-            </p>
-          </div>
-
-          {/* FAQ */}
-          <div className="space-y-4">
-            <h2 className="text-2xl font-semibold">
-              Frequently asked questions
-            </h2>
-            <div className="grid md:grid-cols-2 gap-6 text-sm text-slate-700">
-              <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                <h3 className="font-semibold">
-                  Do I need planning permission for my Haringey extension?
-                </h3>
-                <p>
-                  Many extensions and lofts can proceed under permitted
-                  development. We check your address, house type and location
-                  and then advise the best route at the start.
-                </p>
-              </div>
-              <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                <h3 className="font-semibold">
-                  How fast can you visit and survey the property?
-                </h3>
-                <p>
-                  In most cases we can arrange the initial measured survey in
-                  Haringey within forty eight hours of instruction.
-                </p>
-              </div>
-              <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                <h3 className="font-semibold">
-                  Do you submit the application to Haringey Council?
-                </h3>
-                <p>
-                  Yes. We handle the full submission process, monitor progress
-                  on the planning portal and respond to any planning officer
-                  comments or requests.
-                </p>
-              </div>
-              <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                <h3 className="font-semibold">
-                  Can you help with structural calculations?
-                </h3>
-                <p>
-                  We coordinate with qualified structural engineers so that
-                  beams, padstones and load bearing elements are fully designed
-                  and shown on the drawings.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* FINAL CTA */}
-          <div className="rounded-2xl bg-slate-900 text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
-              <h2 className="text-xl font-semibold">
-                Ready to start your Haringey project
-              </h2>
-              <p className="text-sm text-slate-300">
-                Send us your address and a short description of the extension,
-                loft or refurbishment you have in mind. We will review it and
-                provide a fixed quote the same day.
+              <h3 className="text-lg font-bold">Drawings that reduce objections and delays</h3>
+              <p className="mt-2 text-slate-700">
+                We set out depth, height, openings, boundary relationships and neighbour impact
+                clearly. A clean drawing pack reduces confusion and helps the decision move faster.
               </p>
             </div>
-            <div className="flex flex-col space-y-1 text-sm">
-              <a
-                href="tel:+442036548508"
-                className="font-semibold text-emerald-300 underline"
-              >
-                +44 20 3654 8508
+          </div>
+
+          <h3 className="mt-12 text-lg font-bold">Haringey areas we cover</h3>
+          <div className="mt-3 grid md:grid-cols-2 gap-6 text-slate-700">
+            <ul className="space-y-1">
+              <li>• Crouch End</li>
+              <li>• Muswell Hill</li>
+              <li>• Hornsey</li>
+              <li>• Harringay Ladder</li>
+              <li>• Green Lanes</li>
+              <li>• Highgate borders</li>
+            </ul>
+            <ul className="space-y-1">
+              <li>• Wood Green</li>
+              <li>• Bounds Green</li>
+              <li>• Seven Sisters</li>
+              <li>• Tottenham</li>
+              <li>• Finsbury Park</li>
+              <li>• Alexandra Palace area</li>
+            </ul>
+          </div>
+
+          <div className="mt-12">
+            <h2 className="text-2xl font-bold">Planning and permitted development in Haringey</h2>
+            <p className="mt-3 text-slate-700">
+              Houses may be eligible for permitted development, but flats and maisonettes usually are not.
+              Conservation and character streets can influence roof changes, dormer design and materials.
+              We confirm the correct route and design accordingly.
+            </p>
+          </div>
+
+          <div className="mt-12">
+            <h2 className="text-2xl font-bold">Frequently asked questions</h2>
+
+            <div className="mt-5 space-y-6">
+              <div>
+                <h3 className="text-lg font-bold">Do I need planning permission for my Haringey project</h3>
+                <p className="mt-2 text-slate-700">
+                  Many houses can proceed under permitted development, but the correct route depends on your
+                  property type, location, and any constraints. Flats typically require full planning permission.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-bold">How fast can you do the initial survey</h3>
+                <p className="mt-2 text-slate-700">
+                  We aim to arrange the initial survey within forty eight hours, subject to access and schedule.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-bold">Do you submit to Haringey Council</h3>
+                <p className="mt-2 text-slate-700">
+                  Yes. We submit, track progress and respond to planning queries until decision.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-bold">Can you include building regulation drawings</h3>
+                <p className="mt-2 text-slate-700">
+                  Yes. We produce building regulation packs and coordinate key structural requirements so Building
+                  Control can approve details and your builder can price accurately.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Final CTA - same structure as Hackney */}
+          <div className="mt-14 rounded-2xl bg-slate-900 text-white p-7">
+            <h2 className="text-2xl font-bold">Ready to start your Haringey project</h2>
+            <p className="mt-2 text-slate-200">
+              Send your postcode and a short brief. We reply with a fixed fee and the recommended route for
+              your extension, loft conversion or conversion project.
+            </p>
+
+            <div className="mt-5 flex flex-col sm:flex-row sm:items-center gap-3">
+              <a href="tel:+442036548508" className="font-semibold underline text-white">
+                020 3654 8508
               </a>
-              <a
-                href="mailto:info@wedrawplans.com"
-                className="font-semibold text-emerald-300 underline"
-              >
+              <a href="mailto:info@wedrawplans.com" className="font-semibold underline text-white">
                 info@wedrawplans.com
               </a>
               <a
-                href="/#quote"
-                className="mt-2 inline-flex items-center justify-center rounded-full bg-white px-5 py-2 text-sm font-semibold text-emerald-900 shadow hover:bg-emerald-100"
+                href="#quote"
+                className="sm:ml-auto inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-900 hover:bg-slate-100"
               >
-                Get your free quote
+                Get a quick quote
               </a>
             </div>
-          </div>
 
-          {/* INTERNAL LINKS */}
-          <div className="text-xs text-slate-500 pt-4">
-            <p>
-              See also:{" "}
-              <a href="/extension-plans" className="underline text-emerald-700">
-                House extension drawings
+            <p className="mt-4 text-sm text-slate-300">
+              See also{" "}
+              <a href="/extension-plans" className="underline text-white">
+                extension plans
               </a>
               ,{" "}
-              <a
-                href="/loft-conversion-plans"
-                className="underline text-emerald-700"
-              >
-                Loft conversion drawings
+              <a href="/loft-conversion-plans" className="underline text-white">
+                loft conversion plans
               </a>{" "}
               and{" "}
-              <a href="/" className="underline text-emerald-700">
+              <a href="/" className="underline text-white">
                 WEDRAWPLANS home page
               </a>
               .
