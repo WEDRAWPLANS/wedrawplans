@@ -1,8 +1,25 @@
-import React from "react";
 import Head from "next/head";
-import Image from "next/image";
+import React from "react";
+import { submitBoroughLead } from "../lib/submitBoroughLead";
 
-export default function Islington() {
+const PHONE_DISPLAY = "020 3654 8508";
+const PHONE_LINK = "tel:+442036548508";
+const EMAIL_DISPLAY = "info@wedrawplans.com";
+const EMAIL_LINK = "mailto:info@wedrawplans.com";
+
+const WHATSAPP_LINK =
+  "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20need%20a%20quote%20for%20plans%20in%20Islington";
+
+export default function IslingtonPage() {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    await submitBoroughLead(e, { boroughName: "Islington" });
+  }
+
+  function scrollToForm() {
+    const el = document.getElementById("islington-quote");
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
   const localBusinessJson = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -33,7 +50,7 @@ export default function Islington() {
       "Old Street and City Road area",
     ],
     description:
-      "Architectural drawing services in Islington for extensions, loft conversions, flat conversions, refurbishments and building regulations.",
+      "Architectural drawing services in Islington for extensions, loft conversions, flat conversions, refurbishments and building regulation packs.",
   };
 
   const faqJson = {
@@ -46,7 +63,7 @@ export default function Islington() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Not always. Many rear extensions in Islington can be carried out under permitted development. We confirm the correct route once we review your address and house type.",
+            "Not always. Some houses can extend under permitted development, but flats and many conservation area properties require planning permission. We confirm the correct route once we review your address and house type.",
         },
       },
       {
@@ -55,25 +72,25 @@ export default function Islington() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Islington can be strict, especially in conservation areas and streets with strong character and consistent rear building lines. Well presented drawings and planning arguments are important.",
+            "Islington can be strict, especially in conservation areas and streets with strong character. High quality drawings and a clear planning case usually make the process smoother.",
         },
       },
       {
         "@type": "Question",
-        name: "How long does Islington Council take to decide?",
+        name: "How long do Islington planning decisions take?",
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Householder planning applications normally take six to eight weeks after validation. Lawful Development Certificates usually take around four to six weeks.",
+            "Householder planning applications are often decided in around six to eight weeks after validation. Lawful Development Certificates are often around four to six weeks depending on workload.",
         },
       },
       {
         "@type": "Question",
-        name: "Do you manage the full application to Islington Council?",
+        name: "Do you manage the full submission to Islington Council?",
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Yes. We prepare all drawings, complete the forms, upload documents, submit to Islington Council and respond to planning officer queries.",
+            "Yes. We prepare drawings, complete forms, upload documents, submit to Islington Council and respond to planning officer queries until decision.",
         },
       },
     ],
@@ -83,406 +100,369 @@ export default function Islington() {
     <>
       <Head>
         <title>
-          Architectural Drawings Islington | Extensions, Lofts, Conversions |
-          WEDRAWPLANS
+          Architectural Drawings in Islington – Extensions, Lofts and Planning
+          Applications | WEDRAWPLANS
         </title>
         <meta
           name="description"
-          content="Architectural drawing services in Islington for extensions, loft conversions, flat conversions, outbuildings and building regulation plans. Fast surveys, clear drawings and full planning support with Islington Council."
+          content="Planning drawings, loft conversion plans, extension layouts and building regulation packs for homes across Islington, including Angel, Highbury, Canonbury, Barnsbury, Holloway and Archway. Fixed fees and fast turnaround."
         />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/islington" />
+
         <script
           type="application/ld+json"
+          // @ts-ignore
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
         />
         <script
           type="application/ld+json"
+          // @ts-ignore
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }}
         />
       </Head>
 
-      <main className="bg-slate-50">
-        {/* HERO */}
-        <section className="relative bg-emerald-900 text-white">
-          <div className="absolute inset-0 opacity-15 mix-blend-soft-light">
-            <Image
-              src="/images/drawings.jpg"
-              alt="Architectural drawings for Islington extensions and lofts"
-              fill
-              className="object-cover"
-              sizes="100vw"
-              priority
-            />
-          </div>
+      <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
+        {/* HEADER */}
+        <header className="border-b border-slate-200 bg-[#fdf8f3]/90 backdrop-blur">
+          <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 lg:px-6">
+            <div className="flex items-center gap-2">
+              <div className="grid h-10 w-10 place-items-center rounded-full border border-slate-500 text-xs font-semibold tracking-[0.18em] text-red-700">
+                WD
+              </div>
 
-          <div className="relative mx-auto max-w-5xl px-6 py-16 space-y-8">
-            <p className="text-xs font-semibold tracking-[0.2em] text-emerald-100">
-              WEDRAWPLANS • ISLINGTON
-            </p>
-
-            <h1 className="text-4xl md:text-5xl font-bold leading-tight">
-              Architectural Drawings in Islington
-            </h1>
-
-            <p className="max-w-3xl text-sm md:text-base text-emerald-50">
-              Architectural drawing services in Islington for house extensions,
-              loft conversions, flat conversions, outbuildings and small new
-              build homes. All drawings are prepared to Islington Council
-              guidance and current Building Regulations.
-            </p>
-
-            <div className="grid md:grid-cols-[2fr,1.2fr] gap-8 items-start">
-              <div className="space-y-3 text-sm">
-                <div className="grid sm:grid-cols-2 gap-3">
-                  <ul className="space-y-1 list-disc pl-4">
-                    <li>Measured survey within 48 hours</li>
-                    <li>Planning and permitted development advice</li>
-                    <li>Flat and maisonette planning strategy</li>
-                  </ul>
-                  <ul className="space-y-1 list-disc pl-4">
-                    <li>Drawings tailored to Islington policies</li>
-                    <li>Building regulation packages for 2025 standards</li>
-                    <li>Fixed quotes with clear scope of work</li>
-                  </ul>
+              <div>
+                <div className="text-lg font-semibold tracking-[0.2em] uppercase">
+                  WEDRAWPLANS
                 </div>
-
-                <p className="mt-2 text-xs text-emerald-100">
-                  Typical Islington projects include rear and side extensions to
-                  terraces in Highbury, Canonbury and Barnsbury, loft conversions
-                  and roof alterations in Holloway and Archway, and flat
-                  conversions and refurbishments around Angel and Upper Street.
-                </p>
-              </div>
-
-              <div className="space-y-2 text-sm text-right md:text-left">
-                <p className="text-xs text-emerald-100">Talk to us</p>
-                <p className="text-sm text-white">
-                  Phone{" "}
-                  <a
-                    href="tel:+442036548508"
-                    className="font-semibold text-white underline"
-                  >
-                    +44 20 3654 8508
-                  </a>
-                </p>
-                <p className="text-sm text-white">
-                  Email{" "}
-                  <a
-                    href="mailto:info@wedrawplans.com"
-                    className="font-semibold text-white underline"
-                  >
-                    info@wedrawplans.com
-                  </a>
-                </p>
+                <div className="text-[11px] uppercase tracking-[0.2em] text-slate-500">
+                  Architectural drawing consultants
+                </div>
               </div>
             </div>
 
-            <div className="pt-2">
+            <div className="flex items-center gap-2">
               <a
-                href="/#quote"
-                className="inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-semibold text-emerald-900 shadow-lg shadow-emerald-900/30 hover:bg-emerald-50 transition"
+                href={PHONE_LINK}
+                className="hidden sm:inline-flex items-center gap-1 rounded-full border border-slate-300 px-3 py-1.5 text-[12px] font-medium text-slate-900 hover:bg-slate-900 hover:text-white"
               >
-                Get your free quote
+                📞 {PHONE_DISPLAY}
               </a>
+
+              <a
+                href={WHATSAPP_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-3 py-1.5 text-[12px] font-medium text-white hover:bg-[#1ebe57]"
+              >
+                💬 WhatsApp
+              </a>
+            </div>
+          </div>
+        </header>
+
+        {/* HERO + FORM */}
+        <section className="border-b border-slate-200 bg-[#fdf8f3]">
+          <div className="mx-auto max-w-5xl flex flex-col gap-6 px-4 py-8 lg:flex-row lg:items-start lg:px-6 lg:py-10">
+            {/* TEXT SIDE */}
+            <div className="lg:w-1/2">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-red-700">
+                Islington architectural drawings
+              </p>
+
+              <h1 className="mt-2 text-[22px] sm:text-[26px] font-semibold uppercase tracking-[0.14em] leading-snug">
+                Planning drawings for extensions, lofts and home renovations
+              </h1>
+
+              <p className="mt-3 text-[13px] text-slate-700">
+                We prepare planning, technical and building regulation drawings
+                for homes across Islington, including Angel, Upper Street,
+                Highbury, Canonbury, Barnsbury, Holloway and Archway.
+              </p>
+
+              <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
+                <li>• Rear and side extensions</li>
+                <li>• Loft conversions and dormers</li>
+                <li>• Internal reconfigurations</li>
+                <li>• Flat conversions and layouts</li>
+                <li>• Roof terraces and access stairs</li>
+                <li>• Building regulation packs</li>
+              </ul>
+
+              <div className="mt-5 flex items-center gap-3">
+                <button
+                  onClick={scrollToForm}
+                  className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-[13px] text-white font-semibold uppercase tracking-[0.18em] hover:bg-[#4da4b4]"
+                >
+                  Get your free quote
+                </button>
+
+                <a href={PHONE_LINK} className="text-[13px] text-slate-800 underline">
+                  Or call {PHONE_DISPLAY}
+                </a>
+              </div>
+
+              <div className="mt-3 flex flex-wrap items-center gap-3 text-[13px] text-slate-700">
+                <a className="underline" href={EMAIL_LINK}>
+                  {EMAIL_DISPLAY}
+                </a>
+                <span className="text-slate-400">•</span>
+                <a className="underline" href={PHONE_LINK}>
+                  {PHONE_DISPLAY}
+                </a>
+              </div>
+            </div>
+
+            {/* FORM SIDE */}
+            <div id="islington-quote" className="lg:w-1/2">
+              <div className="rounded-2xl bg-white p-5 shadow-md">
+                <h2 className="text-[14px] font-semibold uppercase tracking-[0.16em]">
+                  Free fixed quote for your home
+                </h2>
+
+                <form onSubmit={handleSubmit} className="mt-3 space-y-3 text-[13px]">
+                  <div>
+                    <label className="text-[11px] font-medium">Name</label>
+                    <input
+                      name="name"
+                      required
+                      className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 focus:border-[#64b7c4] outline-none"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                      <label className="text-[11px] font-medium">Telephone</label>
+                      <input
+                        name="phone"
+                        required
+                        className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 focus:border-[#64b7c4] outline-none"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="text-[11px] font-medium">Email</label>
+                      <input
+                        name="email"
+                        required
+                        className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 focus:border-[#64b7c4] outline-none"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="text-[11px] font-medium">Islington postcode</label>
+                    <input
+                      name="postcode"
+                      required
+                      placeholder="N1 8XX"
+                      className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 focus:border-[#64b7c4] outline-none"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="text-[11px] font-medium">Project type</label>
+                    <select
+                      name="projectType"
+                      required
+                      defaultValue=""
+                      className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 focus:border-[#64b7c4] outline-none"
+                    >
+                      <option value="" disabled>
+                        Select one
+                      </option>
+                      <option>Extension</option>
+                      <option>Loft conversion</option>
+                      <option>Internal remodelling</option>
+                      <option>Flat conversion</option>
+                      <option>Roof terrace</option>
+                      <option>Building regulation pack</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="text-[11px] font-medium">Project details</label>
+                    <textarea
+                      name="projectDetails"
+                      rows={4}
+                      className="w-full border border-slate-300 rounded px-2 py-2 focus:border-[#64b7c4] outline-none"
+                      placeholder="Tell us what you want to do and your address, if possible"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full rounded-full bg-[#64b7c4] px-4 py-2.5 text-[13px] text-white font-semibold tracking-[0.2em] hover:bg-[#4da4b4]"
+                  >
+                    Get my quote
+                  </button>
+
+                  <p className="text-[11px] text-slate-500 leading-relaxed">
+                    By submitting, you agree we may contact you about your enquiry.
+                    We do not sell your data.
+                  </p>
+                </form>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* MAIN CONTENT */}
-        <section className="mx-auto max-w-5xl px-6 py-14 space-y-14">
-          {/* INTRO + DRAWINGS CARD */}
-          <div className="grid md:grid-cols-[1.7fr,1.3fr] gap-10 items-start">
-            <div className="space-y-4">
-              <h2 className="text-2xl font-semibold">
-                Architectural drawing services in Islington
-              </h2>
-              <p className="text-sm md:text-base text-slate-700">
-                WEDRAWPLANS prepares full drawing packages for rear and side
-                extensions, loft conversions, internal reconfiguration, flat
-                conversions, roof terraces and small infill developments across
-                the borough of Islington.
-              </p>
-              <p className="text-sm md:text-base text-slate-700">
-                We work throughout Angel, Upper Street, Highbury, Highbury
-                Fields, Canonbury, Barnsbury, Holloway, Archway, Finsbury Park
-                (Islington side), and the Old Street and City Road area.
-              </p>
-            </div>
-
-            <div className="rounded-2xl bg-white shadow-md border border-slate-100 overflow-hidden">
-              <Image
-                src="/images/drawings.jpg"
-                alt="Example of architectural drawings for an Islington project"
-                width={800}
-                height={500}
-                className="object-cover w-full h-48 md:h-56"
-              />
-              <div className="p-5 space-y-2">
-                <h3 className="text-lg font-semibold">
-                  Clear drawings for tight Islington sites
-                </h3>
-                <p className="text-sm text-slate-700">
-                  Detailed plans, elevations and sections that respond to tight
-                  gardens, shared walls, light considerations and outlook so that
-                  Islington planners and Building Control can assess the scheme
-                  quickly.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* AREAS COVERED + PROJECT TYPES */}
-          <div className="grid md:grid-cols-2 gap-10">
-            <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
-              <h3 className="text-lg font-semibold">Islington areas we cover</h3>
-              <Image
-                src="/images/islington-area.jpg"
-                alt="Islington local high street and residential area"
-                width={800}
-                height={500}
-                className="rounded-xl object-cover mb-3"
-              />
-              <p className="text-sm text-slate-700">
-                Architectural drawings for the whole borough of Islington,
-                including:
-              </p>
-              <div className="grid grid-cols-2 gap-2 text-sm text-slate-700">
-                <ul className="list-disc pl-4 space-y-1">
-                  <li>Angel and Upper Street</li>
-                  <li>Highbury and Highbury Fields</li>
-                  <li>Canonbury</li>
-                  <li>Barnsbury</li>
-                  <li>Holloway</li>
-                  <li>Archway</li>
-                </ul>
-                <ul className="list-disc pl-4 space-y-1">
-                  <li>Finsbury Park (Islington side)</li>
-                  <li>Tufnell Park borders</li>
-                  <li>Old Street area</li>
-                  <li>City Road corridor</li>
-                  <li>New North Road area</li>
-                  <li>Nearby estates and streets</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
-              <h3 className="text-lg font-semibold">
-                Popular projects in Islington
-              </h3>
-              <div className="grid grid-cols-2 gap-3 text-sm text-slate-700">
-                <ul className="list-disc pl-4 space-y-1">
-                  <li>Rear and side extensions to terraces</li>
-                  <li>Side infill and wrap extensions</li>
-                  <li>Loft conversions and mansards</li>
-                  <li>Internal reconfiguration and knock throughs</li>
-                  <li>Flat and maisonette conversions</li>
-                </ul>
-                <ul className="list-disc pl-4 space-y-1">
-                  <li>Roof terraces and access stairs</li>
-                  <li>Garden rooms and studios</li>
-                  <li>Change of use layouts</li>
-                  <li>Refurbishment and compliance upgrades</li>
-                  <li>Small mews and infill schemes</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* PERMITTED DEVELOPMENT */}
-          <div className="space-y-5">
-            <h2 className="text-2xl font-semibold">
-              Permitted development and planning in Islington
+        {/* COMMON PROJECT TYPES */}
+        <section className="border-b border-slate-200 bg-white py-10">
+          <div className="mx-auto max-w-5xl px-4 lg:px-6">
+            <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
+              Common home projects in Islington
             </h2>
-            <p className="text-sm text-slate-700">
-              Many houses in Islington still benefit from permitted development
-              rights, but flats, maisonettes and many conservation areas require
-              full planning permission. We confirm the correct route at the
-              start.
+
+            <p className="mt-3 text-[13px] max-w-3xl text-slate-700">
+              Islington has dense terraces, conservation streets and many properties
+              with party walls. The best results come from accurate surveys, clear
+              drawings and a planning approach tailored to the street.
             </p>
 
-            <div className="grid md:grid-cols-3 gap-8 text-sm text-slate-700">
+            <div className="grid md:grid-cols-2 gap-5 mt-5 text-[13px]">
               <div>
-                <h3 className="font-semibold mb-2">Rear extensions</h3>
-                <ul className="list-disc pl-4 space-y-1">
-                  <li>Commonly 3 m on terraces, 4 m on semis</li>
-                  <li>Depth and height controlled by local design guides</li>
-                  <li>Deeper schemes often need planning</li>
-                  <li>We check similar approvals on your street</li>
-                </ul>
+                <h3 className="text-[14px] font-semibold uppercase">Extensions</h3>
+                <p className="mt-2">
+                  Rear and side infill extensions to create larger kitchens, better
+                  layouts and improved links to the garden.
+                </p>
               </div>
+
               <div>
-                <h3 className="font-semibold mb-2">Loft conversions</h3>
-                <ul className="list-disc pl-4 space-y-1">
-                  <li>Volume limits around 40 to 50 cubic metres</li>
-                  <li>Front roof changes heavily restricted</li>
-                  <li>Dormer shape and size often street specific</li>
-                  <li>Conservation areas assessed case by case</li>
-                </ul>
+                <h3 className="text-[14px] font-semibold uppercase">Loft conversions</h3>
+                <p className="mt-2">
+                  Rear dormers, L shaped dormers and roof alterations designed with
+                  neighbour impact and conservation rules in mind.
+                </p>
               </div>
+
               <div>
-                <h3 className="font-semibold mb-2">Flats and maisonettes</h3>
-                <ul className="list-disc pl-4 space-y-1">
-                  <li>No permitted development rights for flats</li>
-                  <li>Full planning permission required</li>
-                  <li>Daylight, outlook and amenity carefully tested</li>
-                  <li>We design to Islington space standards</li>
-                </ul>
+                <h3 className="text-[14px] font-semibold uppercase">Flat conversions</h3>
+                <p className="mt-2">
+                  Converting houses into flats, re planning existing layouts and
+                  ensuring access, daylight, refuse and cycle storage are addressed.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-[14px] font-semibold uppercase">Refurbishments</h3>
+                <p className="mt-2">
+                  Internal remodelling, structural knock throughs and upgrade packs
+                  coordinated for builders and Building Control.
+                </p>
               </div>
             </div>
           </div>
+        </section>
 
-          {/* PLANNING & BUILDING REG PACKS */}
-          <div className="grid md:grid-cols-2 gap-10">
-            <div className="rounded-2xl bg-white shadow-sm p-6 border border-slate-100 space-y-4">
-              <h3 className="text-lg font-semibold">
-                Planning drawings for Islington
-              </h3>
-              <ul className="list-disc pl-4 space-y-1 text-sm text-slate-700">
-                <li>Existing and proposed floor plans</li>
-                <li>Existing and proposed elevations</li>
-                <li>Sections through key spaces</li>
-                <li>Roof and terrace layouts</li>
-                <li>Block plans and location plans</li>
-                <li>Design and heritage statements where required</li>
-              </ul>
-            </div>
-
-            <div className="rounded-2xl bg-white shadow-sm p-6 border border-slate-100 space-y-4">
-              <h3 className="text-lg font-semibold">
-                Building regulation drawings for Islington
-              </h3>
-              <ul className="list-disc pl-4 space-y-1 text-sm text-slate-700">
-                <li>Structural layouts and engineer coordination</li>
-                <li>Fire escape routes and compartmentation</li>
-                <li>Thermal build ups and insulation specs</li>
-                <li>Acoustic performance between units</li>
-                <li>Ventilation, extracts and air quality</li>
-                <li>Drainage and compliance notes for builders</li>
-              </ul>
-            </div>
-          </div>
-
-          {/* LOCAL KNOWLEDGE */}
-          <div className="rounded-2xl bg-emerald-50 border border-emerald-100 p-6 space-y-3">
-            <h2 className="text-2xl font-semibold text-emerald-900">
-              Local planning knowledge for Islington projects
+        {/* PLANNING GUIDANCE */}
+        <section className="border-b border-slate-200 bg-[#f8f4f0] py-10">
+          <div className="mx-auto max-w-5xl px-4 lg:px-6">
+            <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
+              Planning guidance for Islington
             </h2>
-            <p className="text-sm text-emerald-900">
-              Islington has some of the most closely reviewed extensions and
-              lofts in London, with detailed policies on depth, height, roof
-              form, daylight and neighbour impact. We design schemes that reflect
-              these rules and similar approvals nearby so that your application
-              has a clear planning case.
+
+            <p className="mt-3 text-[13px] max-w-3xl text-slate-700">
+              Islington is often sensitive due to conservation areas, consistent
+              rear building lines and tight neighbour relationships. Clear drawings
+              and a good planning narrative are key.
             </p>
-          </div>
 
-          {/* FAQ */}
-          <div className="space-y-4">
-            <h2 className="text-2xl font-semibold">
-              Frequently asked questions
-            </h2>
-            <div className="grid md:grid-cols-2 gap-6 text-sm text-slate-700">
-              <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                <h3 className="font-semibold">
-                  Can you help with flat conversions in Islington
-                </h3>
-                <p>
-                  Yes. Many Islington projects involve converting houses into
-                  flats or reorganising existing units. We design layouts that
-                  meet space standards and access, daylight and amenity
-                  requirements.
-                </p>
-              </div>
-              <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                <h3 className="font-semibold">
-                  How fast can you survey a property in Islington
-                </h3>
-                <p>
-                  In most cases we can book the measured survey within forty
-                  eight hours of instruction, subject to access.
-                </p>
-              </div>
-              <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                <h3 className="font-semibold">
-                  Do you handle the planning submission to Islington Council
-                </h3>
-                <p>
-                  Yes. We manage the full application, upload drawings and
-                  documents, and respond to any planner comments or requests for
-                  clarification.
-                </p>
-              </div>
-              <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                <h3 className="font-semibold">
-                  Can you coordinate structural calculations
-                </h3>
-                <p>
-                  We work with structural engineers so that beams, joists and
-                  load bearing elements are designed and clearly shown on the
-                  plans.
-                </p>
-              </div>
-            </div>
-          </div>
+            <ul className="mt-4 space-y-2 text-[13px] text-slate-800">
+              <li>• We check constraints that affect permitted development and planning</li>
+              <li>• We prepare householder applications for extensions and lofts</li>
+              <li>• We produce lawful development certificate drawings where applicable</li>
+              <li>• We coordinate structural input for party wall and opening works</li>
+            </ul>
 
-          {/* FINAL CTA */}
-          <div className="rounded-2xl bg-slate-900 text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div>
-              <h2 className="text-xl font-semibold">
-                Ready to start your Islington project
-              </h2>
-              <p className="text-sm text-slate-300">
-                Send us your address and a short description of the extension,
-                loft, flat conversion or refurbishment you have in mind. We will
-                review it and provide a fixed quote the same day.
-              </p>
-            </div>
-            <div className="flex flex-col space-y-1 text-sm">
-              <a
-                href="tel:+442036548508"
-                className="font-semibold text-emerald-300 underline"
-              >
-                +44 20 3654 8508
-              </a>
-              <a
-                href="mailto:info@wedrawplans.com"
-                className="font-semibold text-emerald-300 underline"
-              >
-                info@wedrawplans.com
-              </a>
-              <a
-                href="/#quote"
-                className="mt-2 inline-flex items-center justify-center rounded-full bg-white px-5 py-2 text-sm font-semibold text-emerald-900 shadow hover:bg-emerald-100"
-              >
-                Get your free quote
-              </a>
-            </div>
-          </div>
-
-          {/* INTERNAL LINKS */}
-          <div className="text-xs text-slate-500 pt-4">
-            <p>
-              See also:{" "}
-              <a href="/extension-plans" className="underline text-emerald-700">
-                House extension drawings
-              </a>
-              ,{" "}
-              <a
-                href="/loft-conversion-plans"
-                className="underline text-emerald-700"
-              >
-                Loft conversion drawings
-              </a>{" "}
-              and{" "}
-              <a href="/" className="underline text-emerald-700">
-                WEDRAWPLANS home page
-              </a>
-              .
+            <p className="mt-3 text-[13px] max-w-3xl text-slate-700">
+              Many Islington approvals succeed when submissions are accurate and the
+              design respects neighbours, daylight and the character of the street.
             </p>
           </div>
         </section>
-      </main>
+
+        {/* FEES */}
+        <section className="border-b border-slate-200 bg-white py-10">
+          <div className="mx-auto max-w-5xl px-4 lg:px-6">
+            <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
+              Clear fixed fees for your home project
+            </h2>
+
+            <div className="mt-5 grid md:grid-cols-3 gap-4 text-[13px]">
+              <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
+                <h3 className="text-[13px] font-semibold">Planning drawings</h3>
+                <p className="mt-1 text-[13px] font-semibold">from £750 + VAT</p>
+                <p className="mt-2 text-[12px]">
+                  Existing and proposed plans and elevations for extensions, lofts and conversions.
+                </p>
+              </div>
+
+              <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
+                <h3 className="text-[13px] font-semibold">Measured surveys</h3>
+                <p className="mt-1 text-[13px] font-semibold">from £150 + VAT</p>
+                <p className="mt-2 text-[12px]">
+                  On site measured surveys for accurate existing drawings.
+                </p>
+              </div>
+
+              <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
+                <h3 className="text-[13px] font-semibold">Building regulation packs</h3>
+                <p className="mt-1 text-[13px] font-semibold">from £950 + VAT</p>
+                <p className="mt-2 text-[12px]">
+                  Technical drawings coordinated with structural engineers.
+                </p>
+              </div>
+            </div>
+
+            <button
+              onClick={scrollToForm}
+              className="mt-5 rounded-full bg-[#64b7c4] px-5 py-2.5 text-[13px] text-white font-semibold hover:bg-[#4da4b4]"
+            >
+              Request your fixed fee
+            </button>
+          </div>
+        </section>
+
+        {/* FINAL CTA */}
+        <section className="bg-[#f8f4f0] py-10">
+          <div className="mx-auto max-w-5xl px-4 text-center lg:px-6">
+            <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
+              Ready to obtain planning approval
+            </h2>
+
+            <p className="mt-3 text-[13px] text-slate-700">
+              Share a few details using the form above and we will provide a clear fixed fee and next steps
+              for your extension, loft conversion or refurbishment in Islington.
+            </p>
+
+            <div className="mt-5 flex justify-center gap-3 flex-wrap">
+              <button
+                onClick={scrollToForm}
+                className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-[13px] text-white font-semibold hover:bg-[#4da4b4]"
+              >
+                Get your free quote
+              </button>
+
+              <a
+                href={WHATSAPP_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-slate-300 px-4 py-2 text-[13px] hover:bg-slate-900 hover:text-white"
+              >
+                💬 WhatsApp
+              </a>
+
+              <a
+                href={EMAIL_LINK}
+                className="inline-flex items-center gap-2 rounded-full border border-slate-300 px-4 py-2 text-[13px] hover:bg-slate-900 hover:text-white"
+              >
+                ✉️ Email
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
     </>
   );
 }
