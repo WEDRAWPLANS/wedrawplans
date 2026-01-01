@@ -384,7 +384,7 @@ export default function IslingtonAreaPage() {
 
                 <div className="rounded-2xl bg-white shadow-md border border-slate-100 overflow-hidden">
    <Image
-  src="/images/islington-area.jpg"
+  src="/images/Islington-area.jpg"
   alt="Islington area and coverage"
   width={800}
   height={500}
