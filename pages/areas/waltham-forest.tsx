@@ -382,7 +382,7 @@ export default function WalthamCrossAreaPage() {
                   </h3>
 
                   <Image
-                    src="/images/waltham-cross-area.jpg"
+                    src="/images/walthamforest-area.jpg"
                     alt="Waltham Cross local area"
                     width={800}
                     height={500}
