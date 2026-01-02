@@ -74,11 +74,14 @@ export default function SiteHeader() {
     <header className="bg-[#fdf8f3]/95 backdrop-blur relative z-[9999]">
       <div className="mx-auto max-w-6xl px-4 pt-6 pb-3 lg:px-6">
         <div className="flex flex-col items-center text-center">
-          <img
-            src="/images/wedrawplans-logo.png"
-            alt="WEDRAWPLANS"
-            className="h-24 w-auto object-contain"
-          />
+          {/* CLICKABLE LOGO -> HOMEPAGE */}
+          <Link href="/" aria-label="Go to homepage" className="inline-block">
+            <img
+              src="/images/wedrawplans-logo.png"
+              alt="WEDRAWPLANS"
+              className="h-24 w-auto object-contain cursor-pointer"
+            />
+          </Link>
 
           <div className="mt-3 text-[11px] tracking-[0.18em] text-slate-600 uppercase">
             Architectural Drawing Consultants
@@ -94,13 +97,22 @@ export default function SiteHeader() {
         <div className="mt-3 flex w-full items-center justify-between gap-3">
           <nav className="flex items-center gap-6">
             <LocalDesignersDropdown />
-            <Link href="/extension-plans" className="px-3 py-2 text-[15px] font-medium text-slate-900 hover:text-slate-700">
+            <Link
+              href="/extension-plans"
+              className="px-3 py-2 text-[15px] font-medium text-slate-900 hover:text-slate-700"
+            >
               Extension Plans
             </Link>
-            <Link href="/loft-plans" className="px-3 py-2 text-[15px] font-medium text-slate-900 hover:text-slate-700">
+            <Link
+              href="/loft-plans"
+              className="px-3 py-2 text-[15px] font-medium text-slate-900 hover:text-slate-700"
+            >
               Loft Plans
             </Link>
-            <Link href="/new-build-plans" className="px-3 py-2 text-[15px] font-medium text-slate-900 hover:text-slate-700">
+            <Link
+              href="/new-build-plans"
+              className="px-3 py-2 text-[15px] font-medium text-slate-900 hover:text-slate-700"
+            >
               New Build
             </Link>
           </nav>
