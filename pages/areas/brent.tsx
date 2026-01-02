@@ -2,6 +2,8 @@ import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
+import AreaTopHeader from "../../components/AreaTopHeader";
+import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
@@ -31,7 +33,7 @@ export default function BrentAreaPage() {
       streetAddress: "201 Borough High Street",
       addressLocality: "London",
       postalCode: "SE1 1JA",
-      addressCountry: "UK"
+      addressCountry: "UK",
     },
     areaServed: [
       "Brent",
@@ -47,10 +49,10 @@ export default function BrentAreaPage() {
       "Queensbury",
       "Kilburn (Brent side)",
       "Cricklewood",
-      "Kenton"
+      "Kenton",
     ],
     description:
-      "Architectural drawing services in Brent for extensions, loft conversions, outbuildings, refurbishments and building regulations."
+      "Architectural drawing services in Brent for extensions, loft conversions, outbuildings, refurbishments and building regulations.",
   };
 
   const faqJson = {
@@ -63,8 +65,8 @@ export default function BrentAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Not always. Many rear extensions in Brent can be carried out under permitted development. We confirm the correct route once we review your address and house type."
-        }
+            "Not always. Many rear extensions in Brent can be carried out under permitted development. We confirm the correct route once we review your address and house type.",
+        },
       },
       {
         "@type": "Question",
@@ -72,8 +74,8 @@ export default function BrentAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Brent follows national permitted development rules but can be stricter near conservation areas, around key routes and where extensions affect neighbour amenity."
-        }
+            "Brent follows national permitted development rules but can be stricter near conservation areas, around key routes and where extensions affect neighbour amenity.",
+        },
       },
       {
         "@type": "Question",
@@ -81,8 +83,8 @@ export default function BrentAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Householder planning applications normally take six to eight weeks after validation. Lawful Development Certificates usually take around four to six weeks."
-        }
+            "Householder planning applications normally take six to eight weeks after validation. Lawful Development Certificates usually take around four to six weeks.",
+        },
       },
       {
         "@type": "Question",
@@ -90,10 +92,10 @@ export default function BrentAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Yes. We prepare all drawings, complete the forms, upload documents, submit to Brent Council and respond to planning officer queries."
-        }
-      }
-    ]
+            "Yes. We prepare all drawings, complete the forms, upload documents, submit to Brent Council and respond to planning officer queries.",
+        },
+      },
+    ],
   };
 
   return (
@@ -116,57 +118,10 @@ export default function BrentAreaPage() {
         />
       </Head>
 
+      {/* CLICKABLE TOP HEADER (Barnet style header component) */}
+      <AreaTopHeader />
+
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
-        {/* HEADER MATCH HOMEPAGE STYLE */}
-        <header className="bg-[#fdf8f3]/95 backdrop-blur border-b border-slate-200">
-          <div className="mx-auto max-w-6xl px-4 pt-6 pb-3 lg:px-6">
-            <div className="flex flex-col items-center text-center">
-              <Image
-                src="/images/wedrawplans-logo.png"
-                alt="WEDRAWPLANS"
-                width={420}
-                height={140}
-                priority
-                className="h-24 w-auto object-contain"
-              />
-
-              <div className="mt-3 text-[11px] tracking-[0.18em] text-slate-600 uppercase">
-                Architectural Drawing Consultants
-              </div>
-
-              <div className="mt-2 max-w-3xl text-[13px] font-medium text-slate-800">
-                Architectural Drawings for Extensions, Lofts + New Builds at an Affordable Fixed Cost
-              </div>
-            </div>
-
-            <hr className="mt-5 border-t border-slate-600" />
-
-            <div className="mt-2 flex w-full items-center justify-between gap-3">
-              <div className="text-[12px] text-slate-700">
-                <span className="font-semibold text-slate-900">Brent</span> borough page
-              </div>
-
-              <div className="flex items-center gap-2">
-                <a
-                  href={PHONE_LINK}
-                  className="hidden items-center gap-1 rounded-full border border-slate-300 px-3 py-1.5 text-[12px] font-medium text-slate-900 shadow-sm hover:bg-slate-900 hover:text-white sm:inline-flex"
-                >
-                  📞 {PHONE_DISPLAY}
-                </a>
-
-                <a
-                  href={WHATSAPP_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 bg-[#25D366] text-white px-3 py-1.5 rounded-full text-[12px] font-medium shadow-sm hover:bg-[#1ebe57]"
-                >
-                  💬 <span className="hidden sm:inline">WhatsApp us</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </header>
-
         <main>
           {/* HERO + FORM */}
           <section className="border-b border-slate-200 bg-[#fdf8f3]">
@@ -182,13 +137,13 @@ export default function BrentAreaPage() {
                 </h1>
 
                 <p className="mt-3 text-[13px] text-slate-700">
-                  WEDRAWPLANS prepare planning and technical drawings for house extensions,
-                  loft conversions, outbuildings and refurbishments across the London Borough of Brent.
-                  Fixed fees with clear scope and fast communication.
+                  WEDRAWPLANS prepare planning and technical drawings for house extensions, loft conversions,
+                  outbuildings and refurbishments across the London Borough of Brent. Fixed fees with clear scope and
+                  fast communication.
                 </p>
 
                 <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
-                  <li>• Measured survey within 48 hours</li>
+                  <li>• Initial survey within 48 hours</li>
                   <li>• Planning and permitted development advice</li>
                   <li>• Full planning and Lawful Development applications</li>
                   <li>• Rear extensions, wrap arounds and side extensions</li>
@@ -219,7 +174,8 @@ export default function BrentAreaPage() {
                   </h2>
 
                   <p className="mt-1 text-[12px] text-slate-600">
-                    Tell us a little about your property and what you plan to build. We will reply with a clear fixed fee for your drawings.
+                    Tell us a little about your property and what you plan to build. We will reply with a clear fixed
+                    fee for your drawings.
                   </p>
 
                   <form onSubmit={handleSubmit} className="mt-3 space-y-3 text-[13px]">
@@ -288,9 +244,7 @@ export default function BrentAreaPage() {
                     </div>
 
                     <div className="space-y-1">
-                      <label className="text-[11px] font-medium">
-                        Brief description of your project
-                      </label>
+                      <label className="text-[11px] font-medium">Brief description of your project</label>
                       <textarea
                         name="projectDetails"
                         rows={4}
@@ -307,13 +261,17 @@ export default function BrentAreaPage() {
                     </button>
 
                     <p className="text-[11px] text-slate-500 mt-2">
-                      Typical Brent projects include rear and wrap around extensions, loft conversions, and internal reconfiguration with open plan layouts.
+                      Typical Brent projects include rear and wrap around extensions, loft conversions, and internal
+                      reconfiguration with open plan layouts.
                     </p>
                   </form>
                 </div>
               </div>
             </div>
           </section>
+
+          {/* INTERNAL LINKS (SERVICE PAGES) */}
+          <ServiceInternalLinks boroughName="Brent" />
 
           {/* MERGED RICH CONTENT */}
           <section className="bg-white border-b border-slate-200 py-10">
@@ -325,7 +283,8 @@ export default function BrentAreaPage() {
                   </h2>
                   <p className="text-[13px] text-slate-700">
                     WEDRAWPLANS provides full drawing packages for rear and side extensions, double storey additions,
-                    loft conversions, internal alterations, garage conversions, flat conversions and small new developments across Brent.
+                    loft conversions, internal alterations, garage conversions, flat conversions and small new
+                    developments across Brent.
                   </p>
                   <p className="text-[13px] text-slate-700">
                     We work throughout Willesden, Willesden Green, Dollis Hill, Neasden, Harlesden, Stonebridge,
@@ -364,7 +323,8 @@ export default function BrentAreaPage() {
                       Technical drawings builders can price from
                     </h3>
                     <p className="text-[13px] text-slate-700">
-                      Clear floor plans, elevations, sections and notes, coordinated with structural design so builders and inspectors have what they need.
+                      Clear floor plans, elevations, sections and notes, coordinated with structural design so
+                      builders and inspectors have what they need.
                     </p>
                   </div>
                 </div>
@@ -377,14 +337,12 @@ export default function BrentAreaPage() {
                   </h3>
                   <Image
                     src="/images/brent-area.jpg"
-                    alt="Brent local high street and residential area"
+                    alt="Brent local area"
                     width={800}
                     height={500}
                     className="rounded-xl object-cover mb-3"
                   />
-                  <p className="text-[13px] text-slate-700">
-                    Drawings for the whole borough of Brent, including:
-                  </p>
+                  <p className="text-[13px] text-slate-700">Drawings for the whole borough of Brent, including:</p>
                   <div className="grid grid-cols-2 gap-2 text-[13px] text-slate-700">
                     <ul className="list-disc pl-4 space-y-1">
                       <li>Willesden and Willesden Green</li>
@@ -415,7 +373,7 @@ export default function BrentAreaPage() {
                       <li>Wrap around and L shaped extensions</li>
                       <li>Side and side return extensions</li>
                       <li>Hip to gable loft conversions</li>
-                      <li>Dormer lofts with Juliet balconies</li>
+                      <li>Dormer lofts with ensuite</li>
                     </ul>
                     <ul className="list-disc pl-4 space-y-1">
                       <li>Garden rooms and studios</li>
@@ -425,6 +383,13 @@ export default function BrentAreaPage() {
                       <li>Small new build schemes</li>
                     </ul>
                   </div>
+                  <Image
+                    src="/images/hero.jpg"
+                    alt="Completed extension and loft project"
+                    width={800}
+                    height={500}
+                    className="rounded-xl object-cover mt-2"
+                  />
                 </div>
               </div>
 
@@ -433,15 +398,13 @@ export default function BrentAreaPage() {
                   Permitted development limits in Brent
                 </h2>
                 <p className="text-[13px] text-slate-700">
-                  This is a simplified guide to common permitted development limits. Final confirmation depends on your house type, location
-                  and any Article 4 directions or conservation area status in Brent.
+                  This is a simplified guide to common permitted development limits. Final confirmation depends on
+                  your house type, location and any Article 4 directions or conservation area status in Brent.
                 </p>
 
                 <div className="grid md:grid-cols-3 gap-8 text-[13px] text-slate-700">
                   <div>
-                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">
-                      Rear extensions
-                    </h3>
+                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">Rear extensions</h3>
                     <ul className="list-disc pl-4 space-y-1">
                       <li>Up to 3 m deep on terrace houses</li>
                       <li>Up to 4 m on semi detached houses</li>
@@ -450,9 +413,7 @@ export default function BrentAreaPage() {
                     </ul>
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">
-                      Loft conversions
-                    </h3>
+                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">Loft conversions</h3>
                     <ul className="list-disc pl-4 space-y-1">
                       <li>Up to 40 to 50 cubic metres volume</li>
                       <li>No extensions on the front roof slope</li>
@@ -461,9 +422,7 @@ export default function BrentAreaPage() {
                     </ul>
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">
-                      Outbuildings
-                    </h3>
+                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">Outbuildings</h3>
                     <ul className="list-disc pl-4 space-y-1">
                       <li>Maximum 2.5 m high near boundaries</li>
                       <li>Cannot be used as a separate dwelling</li>
@@ -509,56 +468,40 @@ export default function BrentAreaPage() {
                   Local planning knowledge for Brent projects
                 </h2>
                 <p className="text-[13px] text-emerald-900">
-                  Brent includes conservation areas, dense terraces, busy corridors around Wembley and a mix of post war housing and period streets.
-                  We shape each scheme to suit local character and neighbour amenity so approval chances are as strong as possible.
+                  Brent includes conservation areas, dense terraces, busy corridors around Wembley and a mix of post
+                  war housing and period streets. We shape each scheme to suit local character and neighbour amenity so
+                  approval chances are as strong as possible.
                 </p>
               </div>
 
               <div className="space-y-4">
-                <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
-                  Frequently asked questions
-                </h2>
+                <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">Frequently asked questions</h2>
                 <div className="grid md:grid-cols-2 gap-6 text-[13px] text-slate-700">
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Do I need planning permission in Brent
-                    </h3>
+                    <h3 className="font-semibold text-slate-900">Do I need planning permission in Brent</h3>
                     <p>
-                      Many extensions and lofts can proceed under permitted development. We check your address and advise the best route at the start.
+                      Many extensions and lofts can proceed under permitted development. We check your address and
+                      advise the best route at the start.
                     </p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      How fast can you survey
-                    </h3>
-                    <p>
-                      In most cases we can arrange the initial measured survey within forty eight hours of instruction.
-                    </p>
+                    <h3 className="font-semibold text-slate-900">How fast can you survey</h3>
+                    <p>In most cases we can arrange the initial measured survey within forty eight hours of instruction.</p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Do you submit to Brent Council
-                    </h3>
-                    <p>
-                      Yes. We handle the submission, monitor progress and respond to planning officer queries.
-                    </p>
+                    <h3 className="font-semibold text-slate-900">Do you submit to Brent Council</h3>
+                    <p>Yes. We handle the submission, monitor progress and respond to planning officer queries.</p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Can you coordinate structural design
-                    </h3>
-                    <p>
-                      Yes. We coordinate with structural engineers so beams and load paths are designed and shown correctly on the drawings.
-                    </p>
+                    <h3 className="font-semibold text-slate-900">Can you coordinate structural design</h3>
+                    <p>Yes. We coordinate with structural engineers so beams and load paths are designed and shown correctly on the drawings.</p>
                   </div>
                 </div>
               </div>
 
               <div className="rounded-2xl bg-slate-900 text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
-                  <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
-                    Ready to start your project
-                  </h2>
+                  <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">Ready to start your project</h2>
                   <p className="text-[13px] text-slate-300 mt-2">
                     Send your postcode and a short description. We review and reply with a fixed fee and recommended next steps.
                   </p>
