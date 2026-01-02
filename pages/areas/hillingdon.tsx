@@ -1,3 +1,4 @@
+```tsx
 import Head from "next/head";
 import React from "react";
 import { submitBoroughLead } from "../lib/submitBoroughLead";
@@ -36,19 +37,18 @@ export default function HillingdonPage() {
       "Hillingdon",
       "Uxbridge",
       "Hayes",
+      "Ruislip",
+      "Ickenham",
       "West Drayton",
       "Yiewsley",
-      "Ruislip",
+      "Hillingdon Village",
       "Ruislip Manor",
       "Ruislip Gardens",
-      "Ickenham",
-      "Hillingdon Village",
-      "Eastcote borders",
       "Northwood borders",
       "Heathrow borders",
     ],
     description:
-      "Architectural drawing services in Hillingdon for extensions, loft conversions, garage conversions, refurbishments and building regulation packs. We prepare clear planning drawings and technical packages for homes in Uxbridge, Hayes, West Drayton, Ruislip, Ickenham and surrounding areas.",
+      "Planning drawings, loft conversion plans, extension layouts and building regulation packs for homes across Hillingdon, including Uxbridge, Hayes, Ruislip, Ickenham and West Drayton. Fixed fees and fast turnaround.",
     priceRange: "££",
     sameAs: ["https://twitter.com/WEDRAWPLANS"],
   };
@@ -63,43 +63,43 @@ export default function HillingdonPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "It depends on the property and scope. Some home improvements may fall under permitted development, but constraints such as conservation areas, Article 4 directions or local policy can change what is allowed. We review your address and proposal, then advise the correct route (planning, lawful development or building regulations only).",
+            "It depends on your property and proposal. Some works can be permitted development, but constraints like conservation areas or Article 4 directions can change what is allowed. We check your address and advise the best route: planning, lawful development, or building regulations only.",
         },
       },
       {
         "@type": "Question",
-        name: "Can you help with side extensions and wrap around extensions in Hillingdon?",
+        name: "Can you help with extensions and loft conversions in Hillingdon?",
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Yes. We produce drawings for rear, side and wrap around extensions, including layout options, elevations, roof design and key sections. We also prepare supporting notes to reduce objections and improve approval chances.",
+            "Yes. We produce clear planning drawings for rear and side extensions, wrap around extensions, and loft conversions including dormers. We also prepare sections and notes where needed to support smoother approvals.",
         },
       },
       {
         "@type": "Question",
-        name: "How much do drawings cost for a Hillingdon project?",
+        name: "Do you provide building regulation drawing packs?",
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Fees depend on scope, size and constraints. As a guide: planning drawings from £950 + VAT, measured surveys from £250 + VAT and building regulation packs from £1,150 + VAT. Use the form to get a fixed fee quotation based on your exact project.",
+            "Yes. We prepare building regulation packs with plans, sections and key details suitable for Building Control and construction. We also coordinate with structural engineers when openings or strengthening are required.",
         },
       },
       {
         "@type": "Question",
-        name: "Do you provide building regulation drawings and details?",
+        name: "How quickly can you start?",
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Yes. We produce building regulation packs with plans, sections, key details and coordinated notes, suitable for Building Control review and tendering. We also coordinate with structural engineers when openings or strengthening are required.",
+            "We can usually arrange an initial survey within 48 hours, then move into drawing production once scope is agreed.",
         },
       },
       {
         "@type": "Question",
-        name: "Do you cover all of Hillingdon including Uxbridge, Hayes and Ruislip?",
+        name: "Which areas of Hillingdon do you cover?",
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Yes. We cover the full borough including Uxbridge, Hayes, West Drayton, Yiewsley, Ruislip, Ickenham and nearby areas.",
+            "We cover the full borough including Uxbridge, Hayes, Ruislip, Ickenham, West Drayton, Yiewsley and surrounding areas.",
         },
       },
     ],
@@ -109,11 +109,11 @@ export default function HillingdonPage() {
     <>
       <Head>
         <title>
-          Architectural Drawings in Hillingdon – Extensions, Lofts and Refurbishments
+          Architectural Drawings in Hillingdon – Extensions, Lofts & Planning Applications
         </title>
         <meta
           name="description"
-          content="Planning drawings, extension layouts, loft conversion plans and building regulation packs for homes in Hillingdon, Uxbridge, Hayes, West Drayton, Ruislip and Ickenham. Fixed fees with clear scope."
+          content="Planning drawings, loft conversion plans, extension layouts and building regulation packs for homes across Hillingdon, Uxbridge, Hayes, Ruislip, Ickenham and West Drayton. Fixed fees and fast turnaround."
         />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/hillingdon" />
         <script
@@ -172,22 +172,23 @@ export default function HillingdonPage() {
                 Hillingdon architectural drawings
               </p>
 
-              <h1 className="mt-2 text-[22px] sm:text-[26px] font-semibold uppercase leading-snug tracking-[0.14em]">
-                Planning drawings for extensions, lofts and home refurbishments
+              <h1 className="mt-2 text-[22px] font-semibold uppercase leading-snug tracking-[0.14em] sm:text-[26px]">
+                Planning drawings for extensions, lofts and home renovations
               </h1>
 
               <p className="mt-3 text-[13px] text-slate-700">
-                We prepare planning and technical drawings for houses and flats across Hillingdon,
-                including Uxbridge, Hayes, West Drayton, Ruislip and Ickenham.
+                We prepare planning, technical and building regulation drawings for homes across
+                Hillingdon, including Uxbridge, Hayes, Ruislip, Ickenham, Hillingdon Village and
+                West Drayton.
               </p>
 
               <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
                 <li>• Rear and side extensions</li>
                 <li>• Loft conversions and dormers</li>
-                <li>• Garage conversions and internal reconfiguration</li>
-                <li>• Outbuildings and home offices</li>
-                <li>• HMO layouts and compliance support</li>
-                <li>• Building regulation and tender packs</li>
+                <li>• Internal reconfigurations</li>
+                <li>• New build infill homes</li>
+                <li>• Flat conversions</li>
+                <li>• Building regulation packs</li>
               </ul>
 
               <div className="mt-5 flex flex-wrap items-center gap-3">
@@ -196,7 +197,7 @@ export default function HillingdonPage() {
                   onClick={scrollToForm}
                   className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-[13px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-[#4da4b4]"
                 >
-                  Get my quote
+                  Get my Hillingdon quote
                 </button>
                 <a href={PHONE_LINK} className="text-[13px] font-medium text-slate-800 underline">
                   Or call {PHONE_DISPLAY}
@@ -208,9 +209,9 @@ export default function HillingdonPage() {
                   Hillingdon tip
                 </p>
                 <p className="mt-2 text-[13px] text-slate-700">
-                  Many homes have side access, garages and generous roof space. A clean measured
-                  survey and simple, well explained massing usually speeds up decisions and reduces
-                  back and forth.
+                  Many streets suit tidy rear extensions and simple dormer layouts. Accurate
+                  measured drawings and clear massing normally reduce planning questions and speed
+                  up decisions.
                 </p>
               </div>
             </div>
@@ -245,6 +246,7 @@ export default function HillingdonPage() {
                         className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 focus:border-[#64b7c4] focus:outline-none"
                       />
                     </div>
+
                     <div>
                       <label className="text-[11px] font-medium text-slate-700">Email</label>
                       <input
@@ -263,7 +265,7 @@ export default function HillingdonPage() {
                     <input
                       name="postcode"
                       required
-                      placeholder="UB3, UB4, UB7, UB8, UB10, HA4 and nearby"
+                      placeholder="UB10 8XX"
                       className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 focus:border-[#64b7c4] focus:outline-none"
                     />
                   </div>
@@ -281,13 +283,10 @@ export default function HillingdonPage() {
                       </option>
                       <option>Extension</option>
                       <option>Loft conversion</option>
-                      <option>Garage conversion</option>
                       <option>Internal remodelling</option>
-                      <option>Outbuilding</option>
+                      <option>New build</option>
                       <option>Flat conversion</option>
-                      <option>HMO layout support</option>
                       <option>Building regulation pack</option>
-                      <option>Planning + building regs package</option>
                     </select>
                   </div>
 
@@ -296,8 +295,8 @@ export default function HillingdonPage() {
                     <textarea
                       name="projectDetails"
                       rows={4}
-                      placeholder="Tell us about your Hillingdon project…"
                       className="w-full rounded border border-slate-300 bg-white px-2 py-2 text-[13px] focus:border-[#64b7c4] focus:outline-none"
+                      placeholder="Tell us about your Hillingdon project…"
                     />
                   </div>
 
@@ -321,73 +320,53 @@ export default function HillingdonPage() {
         <section className="border-b border-slate-200 bg-white py-10">
           <div className="mx-auto max-w-5xl px-4 lg:px-6">
             <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
-              Typical projects in Hillingdon
+              Common home projects in Hillingdon
             </h2>
+
             <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-              Hillingdon includes suburban family homes, larger plots and streets where extensions,
-              lofts and garage conversions are common. Well measured drawings and a clear scope help
-              builders price accurately.
+              Hillingdon includes a wide mix of 1930s houses, suburban estates, post war homes and
+              large detached properties. Many households extend or remodel instead of moving.
             </p>
 
             <div className="mt-5 grid gap-5 text-[13px] md:grid-cols-2">
               <div>
                 <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                  Rear and side extensions
+                  Extensions
                 </h3>
                 <p className="mt-2 text-[13px] text-slate-700">
-                  Single storey and double storey extensions designed around daylight, kitchen
-                  layouts and garden access.
+                  Rear, side and wrap around extensions to create larger kitchens, open plan layouts
+                  and additional bedrooms.
                 </p>
-                <ul className="mt-2 space-y-1 text-[13px] text-slate-800">
-                  <li>• Layout options and furniture planning</li>
-                  <li>• Roof types, drainage notes and materials</li>
-                  <li>• Structural openings with beam coordination</li>
-                </ul>
               </div>
 
               <div>
                 <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                  Loft conversions and dormers
+                  Loft conversions
                 </h3>
                 <p className="mt-2 text-[13px] text-slate-700">
-                  Dormers, hip to gable and rear roof extensions to create bedrooms, bathrooms and
-                  home offices.
+                  Hip to gable lofts, rear dormers and L shaped conversions suitable for planning or
+                  lawful development certificates.
                 </p>
-                <ul className="mt-2 space-y-1 text-[13px] text-slate-800">
-                  <li>• Stair layouts and headroom checks</li>
-                  <li>• Roof plans, sections and insulation strategy</li>
-                  <li>• Fire safety basics for protected routes</li>
-                </ul>
               </div>
 
               <div>
                 <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                  Garage conversions and internal remodelling
+                  Internal remodelling
                 </h3>
                 <p className="mt-2 text-[13px] text-slate-700">
-                  Converting garages to habitable rooms and improving ground floor layouts for open
-                  plan living.
+                  We redesign internal layouts, remove walls with structural input and create modern
+                  open plan spaces.
                 </p>
-                <ul className="mt-2 space-y-1 text-[13px] text-slate-800">
-                  <li>• Wall build ups and insulation notes</li>
-                  <li>• New windows, doors and ventilation approach</li>
-                  <li>• Building regulations coordination for compliance</li>
-                </ul>
               </div>
 
               <div>
                 <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                  Outbuildings and garden rooms
+                  New build and infill
                 </h3>
                 <p className="mt-2 text-[13px] text-slate-700">
-                  Detached garden rooms, studios and home offices with clear plans, elevations and
-                  specification notes.
+                  Some plots in Hillingdon can support a new dwelling. We prepare feasibility layouts
+                  and full planning drawings.
                 </p>
-                <ul className="mt-2 space-y-1 text-[13px] text-slate-800">
-                  <li>• Simple planning drawings where required</li>
-                  <li>• Layout, glazing and materials coordination</li>
-                  <li>• Practical details for builders to price properly</li>
-                </ul>
               </div>
             </div>
           </div>
@@ -399,10 +378,11 @@ export default function HillingdonPage() {
             <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
               Planning guidance for Hillingdon
             </h2>
+
             <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-              Many projects can be straightforward, but certain streets and constraints can affect
-              what is acceptable. We focus on clear drawings and a clean application package to
-              reduce delays.
+              Hillingdon follows London Plan policies and its Local Plan. Certain locations have
+              stricter controls, including some conservation areas around Uxbridge, Ruislip and
+              Ickenham.
             </p>
 
             <div className="mt-4 grid gap-4 md:grid-cols-2">
@@ -411,10 +391,10 @@ export default function HillingdonPage() {
                   What we check first
                 </h3>
                 <ul className="mt-2 space-y-2 text-[13px] text-slate-800">
-                  <li>• Planning history and previous approvals</li>
-                  <li>• Street character and typical extension forms</li>
-                  <li>• Any local constraints affecting permitted development</li>
-                  <li>• Neighbour impact: overlooking and daylight basics</li>
+                  <li>• Planning history and nearby approvals</li>
+                  <li>• Any Article 4 directions affecting permitted development</li>
+                  <li>• Roof form, side spacing and neighbour impact basics</li>
+                  <li>• Conservation constraints where relevant</li>
                 </ul>
               </div>
 
@@ -425,15 +405,15 @@ export default function HillingdonPage() {
                 <ul className="mt-2 space-y-2 text-[13px] text-slate-800">
                   <li>• Existing and proposed plans and elevations</li>
                   <li>• Site plan and location plan</li>
-                  <li>• Sections where needed (lofts and larger extensions)</li>
-                  <li>• Clear notes to support the proposal and reduce objections</li>
+                  <li>• Sections where needed for lofts and larger extensions</li>
+                  <li>• Clear notes to support smoother approvals</li>
                 </ul>
               </div>
             </div>
 
             <p className="mt-4 max-w-3xl text-[13px] text-slate-700">
-              Strong presentation, accurate existing drawings and a sensible scale usually produce a
-              smoother decision.
+              Many extensions in Hillingdon are approved when drawings are clear, accurate and in
+              line with local policy. We tailor each submission to your address.
             </p>
           </div>
         </section>
@@ -448,19 +428,17 @@ export default function HillingdonPage() {
             <div className="mt-5 grid gap-4 text-[13px] md:grid-cols-3">
               <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
                 <h3 className="text-[13px] font-semibold text-slate-900">Planning drawings</h3>
-                <p className="mt-1 text-[13px] font-semibold text-slate-900">from £950 + VAT</p>
+                <p className="mt-1 text-[13px] font-semibold text-slate-900">from £750 + VAT</p>
                 <p className="mt-2 text-[12px] text-slate-600">
-                  Existing and proposed plans and elevations prepared for planning or lawful
-                  development applications.
+                  Existing and proposed plans and elevations for extensions, lofts and remodels.
                 </p>
               </div>
 
               <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
                 <h3 className="text-[13px] font-semibold text-slate-900">Measured surveys</h3>
-                <p className="mt-1 text-[13px] font-semibold text-slate-900">from £250 + VAT</p>
+                <p className="mt-1 text-[13px] font-semibold text-slate-900">from £150 + VAT</p>
                 <p className="mt-2 text-[12px] text-slate-600">
-                  Detailed measured surveys for flats and houses so drawings reflect existing
-                  conditions accurately.
+                  On site measured surveys for accurate existing drawings.
                 </p>
               </div>
 
@@ -468,36 +446,10 @@ export default function HillingdonPage() {
                 <h3 className="text-[13px] font-semibold text-slate-900">
                   Building regulation packs
                 </h3>
-                <p className="mt-1 text-[13px] font-semibold text-slate-900">from £1,150 + VAT</p>
+                <p className="mt-1 text-[13px] font-semibold text-slate-900">from £950 + VAT</p>
                 <p className="mt-2 text-[12px] text-slate-600">
-                  Technical sections, details and coordinated information ready for building control
-                  and tender.
+                  Technical drawings coordinated with structural engineers.
                 </p>
-              </div>
-            </div>
-
-            <div className="mt-5 grid gap-4 md:grid-cols-2">
-              <div className="rounded-xl border border-slate-200 bg-white p-4">
-                <h3 className="text-[12px] font-semibold uppercase tracking-[0.2em] text-slate-900">
-                  What your fixed fee includes
-                </h3>
-                <ul className="mt-2 space-y-2 text-[13px] text-slate-800">
-                  <li>• A defined scope and drawing list</li>
-                  <li>• One clear price with no surprise add ons</li>
-                  <li>• Fast turnaround dates agreed at the start</li>
-                  <li>• Support notes for planning where helpful</li>
-                </ul>
-              </div>
-              <div className="rounded-xl border border-slate-200 bg-white p-4">
-                <h3 className="text-[12px] font-semibold uppercase tracking-[0.2em] text-slate-900">
-                  Add ons if needed
-                </h3>
-                <ul className="mt-2 space-y-2 text-[13px] text-slate-800">
-                  <li>• Certificate of lawful development drawings</li>
-                  <li>• Design options and massing comparisons</li>
-                  <li>• Coordination with structural engineer</li>
-                  <li>• Tender issue set for builders</li>
-                </ul>
               </div>
             </div>
 
@@ -531,17 +483,17 @@ export default function HillingdonPage() {
 
               <div className="rounded-xl border border-slate-200 bg-white p-4">
                 <h3 className="text-[13px] font-semibold text-slate-900">
-                  How quickly can you start?
+                  Do you handle lawful development certificates?
                 </h3>
                 <p className="mt-2 text-[13px] text-slate-700">
-                  We can usually arrange an initial survey within 48 hours, then move straight into
-                  drawing production once scope is agreed.
+                  Yes. If your proposal fits permitted development rules, we can produce a clean
+                  drawing set for a lawful development certificate application.
                 </p>
               </div>
 
               <div className="rounded-xl border border-slate-200 bg-white p-4">
                 <h3 className="text-[13px] font-semibold text-slate-900">
-                  Can you coordinate with my builder and engineer?
+                  Can you work with my builder and engineer?
                 </h3>
                 <p className="mt-2 text-[13px] text-slate-700">
                   Yes. We coordinate drawings with structural information and can issue a tender set
@@ -551,11 +503,11 @@ export default function HillingdonPage() {
 
               <div className="rounded-xl border border-slate-200 bg-white p-4">
                 <h3 className="text-[13px] font-semibold text-slate-900">
-                  Do you help with building regulations as well as planning?
+                  How quickly can you start?
                 </h3>
                 <p className="mt-2 text-[13px] text-slate-700">
-                  Yes. We produce building regulation packs with sections and details, ready for
-                  Building Control review and construction.
+                  We can usually arrange an initial survey within 48 hours, then move into drawing
+                  production once scope is agreed.
                 </p>
               </div>
             </div>
@@ -568,9 +520,10 @@ export default function HillingdonPage() {
             <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
               Ready to obtain your planning approval?
             </h2>
+
             <p className="mt-3 text-[13px] text-slate-700">
-              Use the form above to share a few details and we will respond with a clear fixed fee
-              and suggested next steps for your extension, loft or refurbishment in Hillingdon.
+              Share a few details using the form above and we will provide a clear fixed fee and
+              next steps for your extension, loft conversion or home renovation in Hillingdon.
             </p>
 
             <div className="mt-5 flex flex-wrap justify-center gap-3">
@@ -581,6 +534,7 @@ export default function HillingdonPage() {
               >
                 Get my quote
               </button>
+
               <a
                 href={WHATSAPP_LINK}
                 target="_blank"
@@ -589,6 +543,7 @@ export default function HillingdonPage() {
               >
                 💬 WhatsApp
               </a>
+
               <a
                 href={PHONE_LINK}
                 className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-[13px] text-slate-800 shadow-sm hover:bg-slate-900 hover:text-white"
@@ -602,3 +557,4 @@ export default function HillingdonPage() {
     </>
   );
 }
+```
