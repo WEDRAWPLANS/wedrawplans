@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import NextImage from "next/image";
+import Image from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
 import AreaTopHeader from "../../components/AreaTopHeader";
 
@@ -99,32 +99,6 @@ export default function HarrowAreaPage() {
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Harrow</title>
-        <meta
-          name="description"
-          content="Architectural drawings in Harrow for extensions, loft conversions and new builds."
-        />
-        <link
-          rel="canonical"
-          href="https://www.wedrawplans.co.uk/areas/harrow"
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }}
-        />
-      </Head>
-
-      {/* ✅ THIS IS THE CLICKABLE TOP HEADER */}
-      <AreaTopHeader boroughName="Harrow" />
-
-      {/* PAGE CONTENT CONTINUES BELOW */}
-
-    <>
-      <Head>
         <title>Architectural Drawings in Harrow | Extensions, Lofts, New Builds</title>
         <meta
           name="description"
@@ -141,57 +115,10 @@ export default function HarrowAreaPage() {
         />
       </Head>
 
+      {/* CLICKABLE TOP HEADER (this should be the one with the clickable logo) */}
+      <AreaTopHeader boroughName="Harrow" />
+
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
-        {/* HEADER MATCH HOMEPAGE STYLE */}
-        <header className="bg-[#fdf8f3]/95 backdrop-blur border-b border-slate-200">
-          <div className="mx-auto max-w-6xl px-4 pt-6 pb-3 lg:px-6">
-            <div className="flex flex-col items-center text-center">
-              <Image
-                src="/images/wedrawplans-logo.png"
-                alt="WEDRAWPLANS"
-                width={420}
-                height={140}
-                priority
-                className="h-24 w-auto object-contain"
-              />
-
-              <div className="mt-3 text-[11px] tracking-[0.18em] text-slate-600 uppercase">
-                Architectural Drawing Consultants
-              </div>
-
-              <div className="mt-2 max-w-3xl text-[13px] font-medium text-slate-800">
-                Architectural Drawings for Extensions, Lofts + New Builds at an Affordable Fixed Cost
-              </div>
-            </div>
-
-            <hr className="mt-5 border-t border-slate-600" />
-
-            <div className="mt-2 flex w-full items-center justify-between gap-3">
-              <div className="text-[12px] text-slate-700">
-                <span className="font-semibold text-slate-900">Harrow</span> borough page
-              </div>
-
-              <div className="flex items-center gap-2">
-                <a
-                  href={PHONE_LINK}
-                  className="hidden items-center gap-1 rounded-full border border-slate-300 px-3 py-1.5 text-[12px] font-medium text-slate-900 shadow-sm hover:bg-slate-900 hover:text-white sm:inline-flex"
-                >
-                  📞 {PHONE_DISPLAY}
-                </a>
-
-                <a
-                  href={WHATSAPP_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 bg-[#25D366] text-white px-3 py-1.5 rounded-full text-[12px] font-medium shadow-sm hover:bg-[#1ebe57]"
-                >
-                  💬 <span className="hidden sm:inline">WhatsApp us</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </header>
-
         <main>
           {/* HERO + FORM */}
           <section className="border-b border-slate-200 bg-[#fdf8f3]">
@@ -598,7 +525,10 @@ export default function HarrowAreaPage() {
                   <a href={PHONE_LINK} className="font-semibold text-emerald-300 underline">
                     {PHONE_DISPLAY}
                   </a>
-                  <a href="mailto:info@wedrawplans.com" className="font-semibold text-emerald-300 underline">
+                  <a
+                    href="mailto:info@wedrawplans.com"
+                    className="font-semibold text-emerald-300 underline"
+                  >
                     info@wedrawplans.com
                   </a>
                   <button
