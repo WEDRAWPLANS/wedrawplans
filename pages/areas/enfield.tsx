@@ -2,6 +2,8 @@ import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
+import AreaTopHeader from "../../components/AreaTopHeader";
+import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
@@ -21,17 +23,19 @@ export default function EnfieldAreaPage() {
   const localBusinessJson = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
+    "@id": "https://www.wedrawplans.co.uk/areas/enfield#business",
     name: "WEDRAWPLANS",
     url: "https://www.wedrawplans.co.uk/areas/enfield",
     telephone: "+44 20 3654 8508",
     email: "info@wedrawplans.com",
     image: "https://www.wedrawplans.co.uk/images/drawings.jpg",
+    priceRange: "££",
     address: {
       "@type": "PostalAddress",
       streetAddress: "201 Borough High Street",
       addressLocality: "London",
       postalCode: "SE1 1JA",
-      addressCountry: "UK"
+      addressCountry: "UK",
     },
     areaServed: [
       "Enfield",
@@ -54,10 +58,50 @@ export default function EnfieldAreaPage() {
       "Lower Edmonton",
       "Upper Edmonton",
       "Tottenham borders",
-      "Chingford borders"
+      "Chingford borders",
     ],
     description:
-      "Architectural drawing services in Enfield for extensions, loft conversions, outbuildings, refurbishments and building regulations."
+      "Architectural drawing services in Enfield for extensions, loft conversions, refurbishments, outbuildings and building regulation plans. Survey within 48 hours and full planning submission support.",
+  };
+
+  const breadcrumbJson = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.wedrawplans.co.uk/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Enfield",
+        item: "https://www.wedrawplans.co.uk/areas/enfield",
+      },
+    ],
+  };
+
+  const serviceJson = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": "https://www.wedrawplans.co.uk/areas/enfield#service",
+    name: "Architectural drawings in Enfield",
+    provider: {
+      "@type": "LocalBusiness",
+      "@id": "https://www.wedrawplans.co.uk/areas/enfield#business",
+    },
+    areaServed: "London Borough of Enfield",
+    serviceType: [
+      "Planning drawings",
+      "Permitted development drawings",
+      "Lawful Development Certificate drawings",
+      "Building regulation drawings",
+      "Measured survey",
+    ],
+    description:
+      "Planning and building regulation drawing packages for Enfield homes, including extensions, loft conversions, refurbishments and outbuildings.",
   };
 
   const faqJson = {
@@ -70,8 +114,8 @@ export default function EnfieldAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Not always. Many rear extensions in Enfield can be carried out under permitted development. We confirm the correct route once we review your address and house type."
-        }
+            "Not always. Many rear extensions in Enfield can be permitted development, but it depends on your house type, site constraints, and whether restrictions apply. We confirm the best route after a quick review of your address and goals.",
+        },
       },
       {
         "@type": "Question",
@@ -79,8 +123,8 @@ export default function EnfieldAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Enfield follows national permitted development rules but can be stricter in conservation areas and where roof alterations face the street or affect neighbour amenity."
-        }
+            "Enfield follows national rules but can be stricter in conservation areas and on streets where roof alterations face the road or affect neighbour amenity. We design the scheme to suit local character and guidance.",
+        },
       },
       {
         "@type": "Question",
@@ -88,8 +132,8 @@ export default function EnfieldAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Householder planning applications normally take six to eight weeks after validation. Lawful Development Certificates usually take around four to six weeks."
-        }
+            "Timescales vary, but householder applications are commonly decided within several weeks after validation. Lawful Development Certificates can be a safer option if you want written confirmation for a permitted development style scheme.",
+        },
       },
       {
         "@type": "Question",
@@ -97,21 +141,47 @@ export default function EnfieldAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Yes. We prepare all drawings, complete the forms, upload documents, submit to Enfield Council and respond to planning officer queries."
-        }
-      }
-    ]
+            "Yes. We prepare drawings, complete forms, upload documents, submit to the council portal, and respond to planning officer queries through to decision.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How fast can you survey a property in Enfield",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "In most cases we can arrange a measured survey within 48 hours, subject to access and location.",
+        },
+      },
+    ],
   };
 
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Enfield | Extensions, Lofts, New Builds</title>
+        <title>Architectural Drawings in Enfield | Extensions, Lofts, Building Regs</title>
         <meta
           name="description"
-          content="Architectural drawing services in Enfield for extensions, loft conversions, outbuildings, refurbishments and building regulation packs. Fixed fees with clear scope and fast turnaround."
+          content="Architectural drawings in Enfield for extensions, loft conversions, refurbishments and building regulation plans. Measured survey within 48 hours, clear drawings, fixed quotes, and full planning submission support."
         />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/enfield" />
+
+        <meta property="og:title" content="Architectural Drawings Enfield | WEDRAWPLANS" />
+        <meta
+          property="og:description"
+          content="Extensions, loft conversions, refurbishments and building regulation drawings in Enfield. Survey within 48 hours and full planning support."
+        />
+        <meta property="og:url" content="https://www.wedrawplans.co.uk/areas/enfield" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://www.wedrawplans.co.uk/images/drawings.jpg" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Architectural Drawings Enfield | WEDRAWPLANS" />
+        <meta
+          name="twitter:description"
+          content="Planning and building regulation drawing packages in Enfield. Survey within 48 hours, fixed quote, and full submission support."
+        />
+        <meta name="twitter:image" content="https://www.wedrawplans.co.uk/images/drawings.jpg" />
 
         <script
           type="application/ld+json"
@@ -119,61 +189,22 @@ export default function EnfieldAreaPage() {
         />
         <script
           type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJson) }}
+        />
+        <script
+          type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }}
         />
       </Head>
 
+      {/* BARNET STYLE HEADER COMPONENT */}
+      <AreaTopHeader />
+
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
-        {/* HEADER MATCH HOMEPAGE STYLE */}
-        <header className="bg-[#fdf8f3]/95 backdrop-blur border-b border-slate-200">
-          <div className="mx-auto max-w-6xl px-4 pt-6 pb-3 lg:px-6">
-            <div className="flex flex-col items-center text-center">
-              <Image
-                src="/images/wedrawplans-logo.png"
-                alt="WEDRAWPLANS"
-                width={420}
-                height={140}
-                priority
-                className="h-24 w-auto object-contain"
-              />
-
-              <div className="mt-3 text-[11px] tracking-[0.18em] text-slate-600 uppercase">
-                Architectural Drawing Consultants
-              </div>
-
-              <div className="mt-2 max-w-3xl text-[13px] font-medium text-slate-800">
-                Architectural Drawings for Extensions, Lofts + New Builds at an Affordable Fixed Cost
-              </div>
-            </div>
-
-            <hr className="mt-5 border-t border-slate-600" />
-
-            <div className="mt-2 flex w-full items-center justify-between gap-3">
-              <div className="text-[12px] text-slate-700">
-                <span className="font-semibold text-slate-900">Enfield</span> borough page
-              </div>
-
-              <div className="flex items-center gap-2">
-                <a
-                  href={PHONE_LINK}
-                  className="hidden items-center gap-1 rounded-full border border-slate-300 px-3 py-1.5 text-[12px] font-medium text-slate-900 shadow-sm hover:bg-slate-900 hover:text-white sm:inline-flex"
-                >
-                  📞 {PHONE_DISPLAY}
-                </a>
-
-                <a
-                  href={WHATSAPP_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 bg-[#25D366] text-white px-3 py-1.5 rounded-full text-[12px] font-medium shadow-sm hover:bg-[#1ebe57]"
-                >
-                  💬 <span className="hidden sm:inline">WhatsApp us</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </header>
-
         <main>
           {/* HERO + FORM */}
           <section className="border-b border-slate-200 bg-[#fdf8f3]">
@@ -185,21 +216,20 @@ export default function EnfieldAreaPage() {
                 </p>
 
                 <h1 className="mt-2 text-[22px] sm:text-[26px] font-semibold uppercase leading-snug tracking-[0.14em]">
-                  Plans for extensions, lofts and conversions in Enfield
+                  Plans for extensions, lofts and building regs in Enfield
                 </h1>
 
                 <p className="mt-3 text-[13px] text-slate-700">
-                  WEDRAWPLANS prepare planning and technical drawings for house extensions,
-                  loft conversions, outbuildings and refurbishments across the London Borough of Enfield.
-                  Fixed fees with clear scope and fast communication.
+                  WEDRAWPLANS prepare planning and technical drawings for Enfield homes, including extensions,
+                  loft conversions, refurbishments and outbuildings. Fixed fees with clear scope and fast communication.
                 </p>
 
                 <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
                   <li>• Measured survey within 48 hours</li>
-                  <li>• Planning and permitted development advice</li>
-                  <li>• Full planning and Lawful Development applications</li>
-                  <li>• Rear extensions, wrap arounds and side extensions</li>
-                  <li>• Hip to gable and dormer loft conversions</li>
+                  <li>• Planning, Prior Approval or LDC route confirmed early</li>
+                  <li>• Rear, side and wrap around extensions</li>
+                  <li>• Loft dormers and hip to gable conversions</li>
+                  <li>• Building regulation packs for 2025 standards</li>
                   <li>• Same day response on most enquiries</li>
                 </ul>
 
@@ -295,9 +325,7 @@ export default function EnfieldAreaPage() {
                     </div>
 
                     <div className="space-y-1">
-                      <label className="text-[11px] font-medium">
-                        Brief description of your project
-                      </label>
+                      <label className="text-[11px] font-medium">Brief description of your project</label>
                       <textarea
                         name="projectDetails"
                         rows={4}
@@ -322,7 +350,10 @@ export default function EnfieldAreaPage() {
             </div>
           </section>
 
-          {/* MERGED RICH CONTENT */}
+          {/* INTERNAL LINKS (BARNET STYLE) */}
+          <ServiceInternalLinks boroughName="Enfield" />
+
+          {/* RICH CONTENT */}
           <section className="bg-white border-b border-slate-200 py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
               <div className="grid md:grid-cols-[1.7fr,1.3fr] gap-10 items-start">
@@ -331,12 +362,12 @@ export default function EnfieldAreaPage() {
                     Architectural drawing services in Enfield
                   </h2>
                   <p className="text-[13px] text-slate-700">
-                    WEDRAWPLANS prepares full drawing packages for rear and side extensions, double storey additions,
+                    WEDRAWPLANS prepare full drawing packages for rear and side extensions, double storey additions,
                     loft conversions, internal alterations, garage conversions, flat conversions and small new developments across Enfield.
                   </p>
                   <p className="text-[13px] text-slate-700">
-                    We work throughout Enfield Town, Southgate, Palmers Green, Winchmore Hill, Grange Park, Oakwood,
-                    Bush Hill Park, Edmonton, Ponders End, Enfield Highway, Enfield Lock, Cockfosters and nearby areas.
+                    We cover Enfield Town, Southgate, Palmers Green, Winchmore Hill, Grange Park, Oakwood, Bush Hill Park,
+                    Edmonton, Ponders End, Enfield Highway, Enfield Lock, Cockfosters and nearby areas.
                   </p>
 
                   <div className="flex flex-wrap gap-3 items-center">
@@ -361,202 +392,17 @@ export default function EnfieldAreaPage() {
                 <div className="rounded-2xl bg-white shadow-md border border-slate-100 overflow-hidden">
                   <Image
                     src="/images/drawings.jpg"
-                    alt="Example of architectural drawings for an Enfield extension"
+                    alt="Example of architectural drawings for an Enfield project"
                     width={800}
                     height={500}
                     className="object-cover w-full h-48 md:h-56"
                   />
                   <div className="p-5 space-y-2">
                     <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                      Clear drawings focused on planning and Building Control
+                      Technical drawings builders can price from
                     </h3>
                     <p className="text-[13px] text-slate-700">
-                      Detailed plans, elevations, sections and notes coordinated with structural design so Enfield Council,
-                      Building Control and your builder can work from a single accurate set of information.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-10">
-                <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
-                  <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                    Enfield areas we cover
-                  </h3>
-                  <Image
-                    src="/images/enfield-area.jpg"
-                    alt="Enfield high street and residential area"
-                    width={800}
-                    height={500}
-                    className="rounded-xl object-cover mb-3"
-                  />
-                  <p className="text-[13px] text-slate-700">
-                    We provide architectural drawings across the whole borough of Enfield, including:
-                  </p>
-                  <div className="grid grid-cols-2 gap-2 text-[13px] text-slate-700">
-                    <ul className="list-disc pl-4 space-y-1">
-                      <li>Enfield Town</li>
-                      <li>Southgate</li>
-                      <li>Palmers Green</li>
-                      <li>Winchmore Hill</li>
-                      <li>Grange Park</li>
-                      <li>Oakwood</li>
-                    </ul>
-                    <ul className="list-disc pl-4 space-y-1">
-                      <li>Bush Hill Park</li>
-                      <li>Edmonton</li>
-                      <li>Ponders End</li>
-                      <li>Enfield Highway</li>
-                      <li>Enfield Lock</li>
-                      <li>Cockfosters</li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
-                  <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                    Popular projects in Enfield
-                  </h3>
-                  <div className="grid grid-cols-2 gap-3 text-[13px] text-slate-700">
-                    <ul className="list-disc pl-4 space-y-1">
-                      <li>3 m and 6 m rear extensions</li>
-                      <li>Wrap around and L shaped extensions</li>
-                      <li>Side and side return extensions</li>
-                      <li>Hip to gable loft conversions</li>
-                      <li>Dormer lofts with Juliet balconies</li>
-                    </ul>
-                    <ul className="list-disc pl-4 space-y-1">
-                      <li>Garden rooms and studios</li>
-                      <li>Garage conversions</li>
-                      <li>Internal reconfiguration</li>
-                      <li>Flats, HMOs and change of use</li>
-                      <li>Small new build schemes</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <div className="space-y-5">
-                <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
-                  Permitted development limits in Enfield
-                </h2>
-                <p className="text-[13px] text-slate-700">
-                  This is a simplified guide to common permitted development limits. Final confirmation depends on your house type,
-                  location and any Article 4 directions in your part of Enfield.
-                </p>
-
-                <div className="grid md:grid-cols-3 gap-8 text-[13px] text-slate-700">
-                  <div>
-                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">
-                      Rear extensions
-                    </h3>
-                    <ul className="list-disc pl-4 space-y-1">
-                      <li>Up to 3 m deep on terrace houses</li>
-                      <li>Up to 4 m on semi detached houses</li>
-                      <li>Up to 6 to 8 m with Prior Approval</li>
-                      <li>Maximum 4 m high for single storey</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">
-                      Loft conversions
-                    </h3>
-                    <ul className="list-disc pl-4 space-y-1">
-                      <li>Up to 40 to 50 cubic metres volume</li>
-                      <li>No extensions on the front roof slope</li>
-                      <li>Side windows obscure glazed and fixed</li>
-                      <li>External materials to be similar</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">
-                      Outbuildings
-                    </h3>
-                    <ul className="list-disc pl-4 space-y-1">
-                      <li>Maximum 2.5 m high near boundaries</li>
-                      <li>Cannot be used as a separate dwelling</li>
-                      <li>Use must be incidental to the house</li>
-                      <li>Not more than 50 percent of garden area</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-10">
-                <div className="rounded-2xl bg-white shadow-sm p-6 border border-slate-100 space-y-4">
-                  <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                    Planning drawings for Enfield
-                  </h3>
-                  <ul className="list-disc pl-4 space-y-1 text-[13px] text-slate-700">
-                    <li>Existing and proposed floor plans</li>
-                    <li>Existing and proposed elevations</li>
-                    <li>Roof plans and key sections</li>
-                    <li>Block plans and location plans</li>
-                    <li>Drainage and construction notes</li>
-                    <li>Design statements where required</li>
-                  </ul>
-                </div>
-
-                <div className="rounded-2xl bg-white shadow-sm p-6 border border-slate-100 space-y-4">
-                  <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                    Building regulation drawings for Enfield
-                  </h3>
-                  <ul className="list-disc pl-4 space-y-1 text-[13px] text-slate-700">
-                    <li>Structural layouts and coordination with engineer</li>
-                    <li>Foundation, beam and bearing information</li>
-                    <li>Fire safety and escape routes</li>
-                    <li>Thermal build ups and insulation specs</li>
-                    <li>Ventilation and extract positions</li>
-                    <li>Drainage runs and manhole information</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className="rounded-2xl bg-emerald-50 border border-emerald-100 p-6 space-y-3">
-                <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-emerald-900">
-                  Local planning knowledge for Enfield projects
-                </h2>
-                <p className="text-[13px] text-emerald-900">
-                  Enfield includes conservation areas, character streets and corner plots with specific design guidance.
-                  We design each scheme to work with local rules and improve the chances of a smooth approval process.
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
-                  Frequently asked questions
-                </h2>
-                <div className="grid md:grid-cols-2 gap-6 text-[13px] text-slate-700">
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Do I need planning permission for my Enfield extension
-                    </h3>
-                    <p>
-                      Many extensions and lofts can proceed under permitted development. We check your address and advise the best route at the start.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      How fast can you visit and survey the property
-                    </h3>
-                    <p>
-                      In most cases we can arrange the initial measured survey in Enfield within forty eight hours of instruction.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Do you submit the application to Enfield Council
-                    </h3>
-                    <p>
-                      Yes. We handle the full submission process, monitor progress and respond to planning officer comments or requests.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Can you help with structural calculations
-                    </h3>
-                    <p>
-                      We coordinate with structural engineers so beams and load bearing elements are fully designed and shown on the drawings.
+                      Clear plans, elevations, sections and notes, coordinated with structural design so builders and inspectors have what they need.
                     </p>
                   </div>
                 </div>
