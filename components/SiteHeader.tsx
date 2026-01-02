@@ -74,12 +74,16 @@ export default function SiteHeader() {
     <header className="bg-[#fdf8f3]/95 backdrop-blur relative z-[9999]">
       <div className="mx-auto max-w-6xl px-4 pt-6 pb-3 lg:px-6">
         <div className="flex flex-col items-center text-center">
-          {/* CLICKABLE LOGO -> HOMEPAGE */}
-          <Link href="/" aria-label="Go to homepage" className="inline-block">
+          {/* CLICKABLE LOGO */}
+          <Link
+            href="/"
+            aria-label="Go to homepage"
+            className="inline-flex cursor-pointer"
+          >
             <img
               src="/images/wedrawplans-logo.png"
               alt="WEDRAWPLANS"
-              className="h-24 w-auto object-contain cursor-pointer"
+              className="h-24 w-auto object-contain"
             />
           </Link>
 
