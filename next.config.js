@@ -21,7 +21,9 @@ const nextConfig = {
       { source: "/hounslow", destination: "/areas/hounslow", permanent: true },
       { source: "/islington", destination: "/areas/islington", permanent: true },
       { source: "/kensington-and-chelsea", destination: "/areas/kensington-and-chelsea", permanent: true },
-      { source: "/kingston-upon-thames", destination: "/areas/kingston-upon-thames", permanent: true },
+     { source: "/kingston", destination: "/areas/kingston", permanent: true },
+{ source: "/kingston-upon-thames", destination: "/areas/kingston", permanent: true },
+
       { source: "/lambeth", destination: "/areas/lambeth", permanent: true },
       { source: "/lewisham", destination: "/areas/lewisham", permanent: true },
       { source: "/merton", destination: "/areas/merton", permanent: true },
@@ -34,6 +36,8 @@ const nextConfig = {
       { source: "/waltham-forest", destination: "/areas/waltham-forest", permanent: true },
       { source: "/wandsworth", destination: "/areas/wandsworth", permanent: true },
       { source: "/westminster", destination: "/areas/westminster", permanent: true },
+      { source: "/westmister", destination: "/areas/westminster", permanent: true },
+
       { source: "/city-of-london", destination: "/areas/city-of-london", permanent: true },
     ];
   },
