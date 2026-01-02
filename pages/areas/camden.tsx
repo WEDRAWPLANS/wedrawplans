@@ -2,6 +2,7 @@ import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
+import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
@@ -313,6 +314,9 @@ export default function CamdenAreaPage() {
             </div>
           </section>
 
+          {/* INTERNAL LINKS BLOCK (ONE INSERT, HUGE SEO VALUE) */}
+          <ServiceInternalLinks boroughName="Camden" />
+
           {/* MERGED RICH CONTENT (YOUR CAMDEN CONTENT, BARNET STYLING) */}
           <section className="bg-white border-b border-slate-200 py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
@@ -435,132 +439,6 @@ export default function CamdenAreaPage() {
                 </div>
               </div>
 
-              <div className="space-y-5">
-                <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
-                  Permitted development and planning in Camden
-                </h2>
-                <p className="text-[13px] text-slate-700">
-                  This is a simplified guide to common permitted development points. Final confirmation depends on your property type,
-                  any conservation area constraints and any Article 4 directions.
-                </p>
-
-                <div className="grid md:grid-cols-3 gap-8 text-[13px] text-slate-700">
-                  <div>
-                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">
-                      Rear extensions
-                    </h3>
-                    <ul className="list-disc pl-4 space-y-1">
-                      <li>Often around 3 m deep on terraces and 4 m on semis</li>
-                      <li>Height and boundary rules still apply</li>
-                      <li>Deeper schemes may need Prior Approval or planning</li>
-                      <li>We reference local precedents on your street</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">
-                      Loft conversions
-                    </h3>
-                    <ul className="list-disc pl-4 space-y-1">
-                      <li>Volume limits around 40 to 50 cubic metres</li>
-                      <li>Front roof alterations are tightly controlled</li>
-                      <li>Dormer design is often street specific</li>
-                      <li>Conservation areas need careful approach</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">
-                      Flats and maisonettes
-                    </h3>
-                    <ul className="list-disc pl-4 space-y-1">
-                      <li>No permitted development rights for flats</li>
-                      <li>Full planning permission required</li>
-                      <li>Daylight, outlook and amenity are closely checked</li>
-                      <li>We design to fit Camden layout expectations</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-10">
-                <div className="rounded-2xl bg-white shadow-sm p-6 border border-slate-100 space-y-4">
-                  <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                    Planning drawings for Camden
-                  </h3>
-                  <ul className="list-disc pl-4 space-y-1 text-[13px] text-slate-700">
-                    <li>Existing and proposed floor plans</li>
-                    <li>Existing and proposed elevations</li>
-                    <li>Sections through key areas</li>
-                    <li>Roof plans and terrace layouts</li>
-                    <li>Block plans and location plans</li>
-                    <li>Design and heritage statements where needed</li>
-                  </ul>
-                </div>
-
-                <div className="rounded-2xl bg-white shadow-sm p-6 border border-slate-100 space-y-4">
-                  <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                    Building regulation drawings for Camden
-                  </h3>
-                  <ul className="list-disc pl-4 space-y-1 text-[13px] text-slate-700">
-                    <li>Structural layouts and engineer coordination</li>
-                    <li>Fire safety and escape routes for houses and flats</li>
-                    <li>Thermal build ups and insulation specs</li>
-                    <li>Acoustic details between habitable rooms</li>
-                    <li>Ventilation and extract positions</li>
-                    <li>Drainage runs and compliance notes</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className="rounded-2xl bg-emerald-50 border border-emerald-100 p-6 space-y-3">
-                <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-emerald-900">
-                  Local planning knowledge for Camden projects
-                </h2>
-                <p className="text-[13px] text-emerald-900">
-                  Camden includes conservation areas, tight terraces and blocks of flats where daylight and neighbour amenity are closely checked.
-                  We shape each scheme to fit local context so approval chances are as strong as possible.
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
-                  Frequently asked questions
-                </h2>
-                <div className="grid md:grid-cols-2 gap-6 text-[13px] text-slate-700">
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Can you help with flat and maisonette projects in Camden
-                    </h3>
-                    <p>
-                      Yes. Many Camden projects involve flats, roof space, lower ground floors and complex access. We design layouts and sections that respond to these constraints and planning rules.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      How fast can you survey
-                    </h3>
-                    <p>
-                      In most cases we can arrange the initial measured survey within forty eight hours of instruction.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Do you submit to Camden Council
-                    </h3>
-                    <p>
-                      Yes. We handle the submission, monitor progress and respond to planning officer queries.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Can you coordinate structural design
-                    </h3>
-                    <p>
-                      Yes. We coordinate with structural engineers so beams and load paths are designed and shown correctly on the drawings.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
               <div className="rounded-2xl bg-slate-900 text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
                   <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
@@ -589,15 +467,24 @@ export default function CamdenAreaPage() {
 
               <div className="text-[12px] text-slate-600 pt-2">
                 See also{" "}
-                <a href="/extension-plans" className="underline">
+                <a
+                  href="/extension-plans"
+                  className="text-blue-600 underline underline-offset-4 hover:text-blue-700"
+                >
                   extension plans
                 </a>
                 ,{" "}
-                <a href="/loft-plans" className="underline">
-                  loft plans
+                <a
+                  href="/loft-conversion-plans"
+                  className="text-blue-600 underline underline-offset-4 hover:text-blue-700"
+                >
+                  loft conversion plans
                 </a>{" "}
                 and{" "}
-                <a href="/new-build-plans" className="underline">
+                <a
+                  href="/new-build-plans"
+                  className="text-blue-600 underline underline-offset-4 hover:text-blue-700"
+                >
                   new build plans
                 </a>
                 .
