@@ -1,14 +1,14 @@
-import Head from "next/head";
 import React from "react";
+import Head from "next/head";
+import Image from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
-
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20need%20a%20quote%20for%20plans%20in%20Barking%20and%20Dagenham";
 
-export default function BarkingAndDagenhamPage() {
+export default function BarkingAndDagenhamAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     await submitBoroughLead(e, { boroughName: "Barking and Dagenham" });
   }
@@ -18,15 +18,99 @@ export default function BarkingAndDagenhamPage() {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
+  const canonicalUrl =
+    "https://www.wedrawplans.co.uk/areas/barking-and-dagenham";
+
+  const localBusinessJson = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "WEDRAWPLANS",
+    url: canonicalUrl,
+    telephone: "+44 20 3654 8508",
+    email: "info@wedrawplans.com",
+    image: "https://www.wedrawplans.co.uk/images/drawings.jpg",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "201 Borough High Street",
+      addressLocality: "London",
+      postalCode: "SE1 1JA",
+      addressCountry: "GB",
+    },
+    areaServed: [
+      "Barking and Dagenham",
+      "Barking",
+      "Dagenham",
+      "Becontree",
+      "Chadwell Heath",
+      "Marks Gate",
+      "Rush Green",
+      "Thames View",
+      "Creekmouth",
+      "Heathway",
+    ],
+    description:
+      "Architectural drawing services in Barking and Dagenham. Planning drawings, extension layouts, loft conversion plans and building regulation packs with clear fixed fees and fast response.",
+    sameAs: ["https://twitter.com/WEDRAWPLANS"],
+  };
+
+  const faqJson = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "Do you cover all of Barking and Dagenham?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. We cover Barking, Dagenham, Becontree, Chadwell Heath and nearby areas. Use the form and we will confirm survey and delivery dates.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can you help with permitted development and lawful development certificates?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. We can check whether permitted development rights apply and prepare drawings for a lawful development certificate when suitable.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What do I need to get a fixed quote?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Send your postcode, project type and a short description. If you have photos or a Rightmove link you can mention it in the details box.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Do you provide building regulation drawings as well as planning drawings?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. We provide building regulation packs including sections, details and notes, coordinated with structural design where required.",
+        },
+      },
+    ],
+  };
+
   return (
     <>
       <Head>
         <title>
-          Architectural Drawings in Barking and Dagenham – Extensions, Lofts and New Homes
+          Architectural Drawings in Barking and Dagenham – Extensions, Lofts and
+          New Homes
         </title>
         <meta
           name="description"
           content="Planning drawings, extension layouts, loft conversion plans and building regulation packs for homes in Barking, Dagenham, Becontree and the wider borough. Fixed fees with clear scope and fast response."
+        />
+        <link rel="canonical" href={canonicalUrl} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }}
         />
       </Head>
 
@@ -76,15 +160,32 @@ export default function BarkingAndDagenhamPage() {
                 Barking and Dagenham architectural drawings
               </p>
 
-              <h1 className="mt-2 text-[22px] sm:text-[26px] font-semibold uppercase leading-snug tracking-[0.14em]">
+              <h1 className="mt-2 text-[22px] font-semibold uppercase leading-snug tracking-[0.14em] sm:text-[26px]">
                 Planning drawings for extensions, lofts and home upgrades
               </h1>
 
               <p className="mt-3 text-[13px] text-slate-700">
-                WEDRAWPLANS prepares planning and building regulation drawings for homes across
-                Barking and Dagenham, including Barking, Dagenham, Becontree, Chadwell Heath and
-                surrounding neighbourhoods.
+                WEDRAWPLANS prepares planning and building regulation drawings
+                for homes across Barking and Dagenham, including Barking,
+                Dagenham, Becontree, Chadwell Heath and surrounding
+                neighbourhoods.
               </p>
+
+              <div className="mt-4 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                <div className="relative h-44 w-full">
+                  <Image
+                    src="/images/drawings.jpg"
+                    alt="Architectural drawings and planning support in Barking and Dagenham"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+                <div className="p-3 text-[12px] text-slate-700">
+                  Fixed fee quotes, fast response, professional drawings ready
+                  for planning and building control.
+                </div>
+              </div>
 
               <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
                 <li>• Rear and side extensions</li>
@@ -119,13 +220,15 @@ export default function BarkingAndDagenhamPage() {
                   Free fixed quote for your home
                 </h2>
                 <p className="mt-1 text-[12px] text-slate-600">
-                  Share a few details about your property and project and we will send a clear
-                  fixed fee for the drawings.
+                  Share a few details about your property and project and we
+                  will send a clear fixed fee for the drawings.
                 </p>
 
                 <form onSubmit={handleSubmit} className="mt-3 space-y-3 text-[13px]">
                   <div>
-                    <label className="text-[11px] font-medium text-slate-700">Name</label>
+                    <label className="text-[11px] font-medium text-slate-700">
+                      Name
+                    </label>
                     <input
                       name="name"
                       required
@@ -145,7 +248,9 @@ export default function BarkingAndDagenhamPage() {
                       />
                     </div>
                     <div>
-                      <label className="text-[11px] font-medium text-slate-700">Email</label>
+                      <label className="text-[11px] font-medium text-slate-700">
+                        Email
+                      </label>
                       <input
                         name="email"
                         type="email"
@@ -207,6 +312,11 @@ export default function BarkingAndDagenhamPage() {
                   >
                     Get my quote
                   </button>
+
+                  <p className="pt-1 text-[11px] text-slate-500">
+                    Prefer WhatsApp. Use the green button at the top of this
+                    page.
+                  </p>
                 </form>
               </div>
             </div>
@@ -220,8 +330,9 @@ export default function BarkingAndDagenhamPage() {
               Typical home projects in Barking and Dagenham
             </h2>
             <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-              The borough includes many 1930s terraces, post war estates and newer developments.
-              Many households choose to extend or reconfigure their current home rather than move.
+              The borough includes many 1930s terraces, post war estates and
+              newer developments. Many households choose to extend or
+              reconfigure their current home rather than move.
             </p>
 
             <div className="mt-5 grid gap-5 text-[13px] md:grid-cols-2">
@@ -230,8 +341,8 @@ export default function BarkingAndDagenhamPage() {
                   Rear and side extensions
                 </h3>
                 <p className="mt-2 text-[13px] text-slate-700">
-                  Kitchen and living extensions to the rear, with side infill where possible,
-                  creating larger open plan family rooms.
+                  Kitchen and living extensions to the rear, with side infill
+                  where possible, creating larger open plan family rooms.
                 </p>
               </div>
               <div>
@@ -239,8 +350,8 @@ export default function BarkingAndDagenhamPage() {
                   Loft conversions
                 </h3>
                 <p className="mt-2 text-[13px] text-slate-700">
-                  Dormer lofts to terraces and semis, designed to work within local guidance
-                  and permitted development where it applies.
+                  Dormer lofts to terraces and semis, designed to work within
+                  local guidance and permitted development where it applies.
                 </p>
               </div>
               <div>
@@ -248,8 +359,8 @@ export default function BarkingAndDagenhamPage() {
                   Internal remodelling
                 </h3>
                 <p className="mt-2 text-[13px] text-slate-700">
-                  Reworked layouts, removal of walls with structural input and more efficient
-                  use of ground floor or first floor space.
+                  Reworked layouts, removal of walls with structural input and
+                  more efficient use of ground floor or first floor space.
                 </p>
               </div>
               <div>
@@ -257,8 +368,8 @@ export default function BarkingAndDagenhamPage() {
                   New build and small schemes
                 </h3>
                 <p className="mt-2 text-[13px] text-slate-700">
-                  Feasibility layouts and full planning drawings for infill plots and
-                  small residential developments within the borough.
+                  Feasibility layouts and full planning drawings for infill
+                  plots and small residential developments within the borough.
                 </p>
               </div>
             </div>
@@ -272,9 +383,9 @@ export default function BarkingAndDagenhamPage() {
               Planning guidance for Barking and Dagenham
             </h2>
             <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-              Barking and Dagenham has local policies on extensions, roof forms, privacy and
-              parking. Many projects are possible when massing, outlook and neighbour impact
-              are managed carefully.
+              Barking and Dagenham has local policies on extensions, roof forms,
+              privacy and parking. Many projects are possible when massing,
+              outlook and neighbour impact are managed carefully.
             </p>
 
             <ul className="mt-4 space-y-2 text-[13px] text-slate-800">
@@ -285,8 +396,9 @@ export default function BarkingAndDagenhamPage() {
             </ul>
 
             <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-              Our aim is to give the council a clear, professional set of drawings that show
-              how your proposal fits the property and the wider street.
+              Our aim is to give the council a clear, professional set of
+              drawings that show how your proposal fits the property and the
+              wider street.
             </p>
           </div>
         </section>
@@ -307,8 +419,8 @@ export default function BarkingAndDagenhamPage() {
                   from £750 + VAT
                 </p>
                 <p className="mt-2 text-[12px] text-slate-600">
-                  Existing and proposed plans and elevations ready for planning or lawful
-                  development applications.
+                  Existing and proposed plans and elevations ready for planning
+                  or lawful development applications.
                 </p>
               </div>
 
@@ -320,7 +432,8 @@ export default function BarkingAndDagenhamPage() {
                   from £150 + VAT
                 </p>
                 <p className="mt-2 text-[12px] text-slate-600">
-                  On site measured surveys so existing drawings reflect the property accurately.
+                  On site measured surveys so existing drawings reflect the
+                  property accurately.
                 </p>
               </div>
 
@@ -332,8 +445,8 @@ export default function BarkingAndDagenhamPage() {
                   from £950 + VAT
                 </p>
                 <p className="mt-2 text-[12px] text-slate-600">
-                  Technical sections, details and notes coordinated with structural design for
-                  building control.
+                  Technical sections, details and notes coordinated with
+                  structural design for building control.
                 </p>
               </div>
             </div>
@@ -355,8 +468,9 @@ export default function BarkingAndDagenhamPage() {
               Ready to obtain your planning approval
             </h2>
             <p className="mt-3 text-[13px] text-slate-700">
-              Use the form above to send a few details and we will respond with a clear fixed fee
-              and next steps for your extension, loft or home upgrade in Barking and Dagenham.
+              Use the form above to send a few details and we will respond with
+              a clear fixed fee and next steps for your extension, loft or home
+              upgrade in Barking and Dagenham.
             </p>
 
             <div className="mt-5 flex flex-wrap justify-center gap-3">
@@ -374,6 +488,12 @@ export default function BarkingAndDagenhamPage() {
                 className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-[13px] text-slate-800 shadow-sm hover:bg-slate-900 hover:text-white"
               >
                 💬 WhatsApp
+              </a>
+              <a
+                href={PHONE_LINK}
+                className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-[13px] text-slate-800 shadow-sm hover:bg-slate-900 hover:text-white"
+              >
+                📞 {PHONE_DISPLAY}
               </a>
             </div>
           </div>
