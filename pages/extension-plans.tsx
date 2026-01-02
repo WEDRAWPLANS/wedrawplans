@@ -1,6 +1,5 @@
 import React from "react";
 import Head from "next/head";
-import Link from "next/link";
 import { submitBoroughLead } from "../lib/submitBoroughLead";
 
 const PHONE_DISPLAY = "020 3654 8508";
@@ -35,7 +34,7 @@ export default function ExtensionPlansPage() {
     },
     areaServed: "Greater London and M25",
     description:
-      "House extension planning drawings in London with fixed fees. Rear extensions, side return, wrap around and double storey extensions."
+      "House extension planning drawings in London with clear fixed fees. Rear extensions, side return, wrap around and double storey extensions. Measured survey where required. Covering all London boroughs and the M25."
   };
 
   const faqJson = {
@@ -127,7 +126,10 @@ export default function ExtensionPlansPage() {
       <Head>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
-        <link rel="canonical" href="https://www.wedrawplans.co.uk/extension-plans" />
+        <link
+          rel="canonical"
+          href="https://www.wedrawplans.co.uk/extension-plans"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
@@ -138,42 +140,8 @@ export default function ExtensionPlansPage() {
         />
       </Head>
 
-      {/* Page wrapper to match Barnet style approach */}
+      {/* No custom header here. Global header will display automatically like Barnet. */}
       <main className="min-h-screen bg-white text-slate-900">
-        {/* Simple top bar so page always feels branded even if global header changes */}
-        <div className="border-b bg-white">
-          <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-            <Link href="/" className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full border text-sm font-bold">
-                WD
-              </div>
-              <div className="leading-tight">
-                <div className="text-lg font-semibold tracking-wide">
-                  WEDRAWPLANS
-                </div>
-                <div className="text-xs tracking-[0.2em] text-slate-500">
-                  ARCHITECTURAL DRAWING CONSULTANTS
-                </div>
-              </div>
-            </Link>
-
-            <div className="flex items-center gap-3">
-              <a
-                href={PHONE_LINK}
-                className="hidden rounded-full border px-4 py-2 text-sm font-semibold hover:bg-slate-50 sm:inline-flex"
-              >
-                Call {PHONE_DISPLAY}
-              </a>
-              <a
-                href={WHATSAPP_LINK}
-                className="inline-flex items-center justify-center rounded-full bg-emerald-500 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-600"
-              >
-                WhatsApp us
-              </a>
-            </div>
-          </div>
-        </div>
-
         {/* HERO + FORM */}
         <section className="bg-slate-50">
           <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-4 py-10 lg:grid-cols-2 lg:py-14">
@@ -237,10 +205,10 @@ export default function ExtensionPlansPage() {
 
               <div className="mt-6 rounded-2xl border bg-white p-5">
                 <div className="text-sm font-semibold">
-                  Want faster results
+                  Want faster replies
                 </div>
                 <div className="mt-1 text-sm text-slate-700">
-                  Use WhatsApp for quick replies and attach photos if you want.
+                  Use WhatsApp and attach photos if you want.
                 </div>
                 <div className="mt-3">
                   <a
@@ -762,27 +730,6 @@ export default function ExtensionPlansPage() {
             </div>
           </div>
         </section>
-
-        {/* Small footer */}
-        <footer className="border-t bg-white">
-          <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
-            <div>© {new Date().getFullYear()} WEDRAWPLANS</div>
-            <div className="flex gap-4">
-              <Link href="/areas/barnet" className="hover:underline">
-                Barnet
-              </Link>
-              <Link href="/areas" className="hover:underline">
-                Areas
-              </Link>
-              <a href={PHONE_LINK} className="hover:underline">
-                Call
-              </a>
-              <a href={WHATSAPP_LINK} className="hover:underline">
-                WhatsApp
-              </a>
-            </div>
-          </div>
-        </footer>
       </main>
     </>
   );
