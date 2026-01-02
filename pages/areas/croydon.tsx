@@ -1,4 +1,3 @@
-```tsx
 import React from "react";
 import Head from "next/head";
 import Image from "next/image";
@@ -161,19 +160,27 @@ export default function CroydonAreaPage() {
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Croydon | Extensions, Lofts, Building Regs</title>
+        <title>
+          Architectural Drawings in Croydon | Extensions, Lofts, Building Regs
+        </title>
         <meta
           name="description"
           content="Architectural drawings in Croydon for extensions, loft conversions, refurbishments and building regulation plans. Measured survey within 48 hours, clear drawings, fixed quotes, and full planning submission support."
         />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/croydon" />
 
-        <meta property="og:title" content="Architectural Drawings Croydon | WEDRAWPLANS" />
+        <meta
+          property="og:title"
+          content="Architectural Drawings Croydon | WEDRAWPLANS"
+        />
         <meta
           property="og:description"
           content="Extensions, loft conversions, refurbishments and building regulation drawings in Croydon. Survey within 48 hours and full planning support."
         />
-        <meta property="og:url" content="https://www.wedrawplans.co.uk/areas/croydon" />
+        <meta
+          property="og:url"
+          content="https://www.wedrawplans.co.uk/areas/croydon"
+        />
         <meta property="og:type" content="website" />
         <meta
           property="og:image"
@@ -181,7 +188,10 @@ export default function CroydonAreaPage() {
         />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Architectural Drawings Croydon | WEDRAWPLANS" />
+        <meta
+          name="twitter:title"
+          content="Architectural Drawings Croydon | WEDRAWPLANS"
+        />
         <meta
           name="twitter:description"
           content="Planning and building regulation drawing packages in Croydon. Survey within 48 hours, fixed quote, and full submission support."
@@ -216,21 +226,22 @@ export default function CroydonAreaPage() {
         <main>
           {/* HERO + FORM (Barnet structure) */}
           <section className="border-b border-slate-200 bg-[#fdf8f3]">
-            <div className="mx-auto max-w-5xl flex flex-col lg:flex-row gap-6 px-4 py-8 lg:px-6 lg:py-10">
+            <div className="mx-auto max-w-5xl flex flex-col gap-6 px-4 py-8 lg:flex-row lg:px-6 lg:py-10">
               {/* LEFT TEXT */}
               <div className="lg:w-1/2">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-red-700">
                   Croydon architectural drawings
                 </p>
 
-                <h1 className="mt-2 text-[22px] sm:text-[26px] font-semibold uppercase leading-snug tracking-[0.14em]">
+                <h1 className="mt-2 text-[22px] font-semibold uppercase leading-snug tracking-[0.14em] sm:text-[26px]">
                   Plans for extensions, lofts and building regs in Croydon
                 </h1>
 
                 <p className="mt-3 text-[13px] text-slate-700">
-                  WEDRAWPLANS prepare planning and technical drawings for Croydon homes,
-                  including extensions, loft conversions, refurbishments and outbuildings.
-                  Fixed fees with clear scope and fast communication.
+                  WEDRAWPLANS prepare planning and technical drawings for Croydon
+                  homes, including extensions, loft conversions, refurbishments
+                  and outbuildings. Fixed fees with clear scope and fast
+                  communication.
                 </p>
 
                 <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
@@ -242,16 +253,19 @@ export default function CroydonAreaPage() {
                   <li>• Same day response on most enquiries</li>
                 </ul>
 
-                <div className="mt-5 flex flex-wrap gap-3 items-center">
+                <div className="mt-5 flex flex-wrap items-center gap-3">
                   <button
                     onClick={scrollToForm}
                     type="button"
-                    className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-white text-[13px] font-semibold uppercase tracking-[0.18em] hover:bg-[#4da4b4]"
+                    className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-[13px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-[#4da4b4]"
                   >
                     Get a quick quote
                   </button>
 
-                  <a href={PHONE_LINK} className="text-[13px] underline text-slate-800">
+                  <a
+                    href={PHONE_LINK}
+                    className="text-[13px] underline text-slate-800"
+                  >
                     Or call {PHONE_DISPLAY}
                   </a>
                 </div>
@@ -259,33 +273,40 @@ export default function CroydonAreaPage() {
 
               {/* RIGHT FORM */}
               <div id="croydon-quote" className="lg:w-1/2">
-                <div className="bg-white p-5 rounded-2xl shadow-md">
-                  <h2 className="text-[14px] uppercase font-semibold tracking-[0.16em] text-slate-900">
+                <div className="rounded-2xl bg-white p-5 shadow-md">
+                  <h2 className="text-[14px] font-semibold uppercase tracking-[0.16em] text-slate-900">
                     Free fixed fee quote
                   </h2>
 
                   <p className="mt-1 text-[12px] text-slate-600">
-                    Tell us a little about your property and what you plan to build. We will reply with a clear fixed fee for your drawings.
+                    Tell us a little about your property and what you plan to
+                    build. We will reply with a clear fixed fee for your
+                    drawings.
                   </p>
 
-                  <form onSubmit={handleSubmit} className="mt-3 space-y-3 text-[13px]">
+                  <form
+                    onSubmit={handleSubmit}
+                    className="mt-3 space-y-3 text-[13px]"
+                  >
                     <div className="space-y-1">
                       <label className="text-[11px] font-medium">Name</label>
                       <input
                         name="name"
                         required
-                        className="w-full bg-transparent border-b border-slate-300 py-1.5 px-1 focus:border-[#64b7c4] outline-none"
+                        className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 outline-none focus:border-[#64b7c4]"
                       />
                     </div>
 
-                    <div className="grid sm:grid-cols-2 gap-3">
+                    <div className="grid gap-3 sm:grid-cols-2">
                       <div className="space-y-1">
-                        <label className="text-[11px] font-medium">Telephone</label>
+                        <label className="text-[11px] font-medium">
+                          Telephone
+                        </label>
                         <input
                           name="phone"
                           required
                           type="tel"
-                          className="w-full bg-transparent border-b border-slate-300 py-1.5 px-1 focus:border-[#64b7c4] outline-none"
+                          className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 outline-none focus:border-[#64b7c4]"
                         />
                       </div>
 
@@ -295,30 +316,37 @@ export default function CroydonAreaPage() {
                           name="email"
                           required
                           type="email"
-                          className="w-full bg-transparent border-b border-slate-300 py-1.5 px-1 focus:border-[#64b7c4] outline-none"
+                          className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 outline-none focus:border-[#64b7c4]"
                         />
                       </div>
                     </div>
 
                     <div className="space-y-1">
-                      <label className="text-[11px] font-medium">Croydon postcode</label>
+                      <label className="text-[11px] font-medium">
+                        Croydon postcode
+                      </label>
                       <input
                         name="postcode"
                         required
                         placeholder="CR0 1AA"
                         onFocus={(e) => (e.target.placeholder = "")}
-                        onBlur={(e) => !e.target.value && (e.target.placeholder = "CR0 1AA")}
-                        className="w-full border-b border-slate-300 bg-transparent py-1.5 px-1 text-slate-500/70 focus:text-slate-900 focus:border-[#64b7c4] outline-none"
+                        onBlur={(e) =>
+                          !e.target.value &&
+                          (e.target.placeholder = "CR0 1AA")
+                        }
+                        className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 text-slate-500/70 outline-none focus:border-[#64b7c4] focus:text-slate-900"
                       />
                     </div>
 
                     <div className="space-y-1">
-                      <label className="text-[11px] font-medium">Project type</label>
+                      <label className="text-[11px] font-medium">
+                        Project type
+                      </label>
                       <select
                         name="projectType"
                         required
                         defaultValue=""
-                        className="w-full border-b border-slate-300 bg-transparent py-1.5 px-1 focus:border-[#64b7c4] outline-none"
+                        className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 outline-none focus:border-[#64b7c4]"
                       >
                         <option value="" disabled>
                           Select project type
@@ -334,24 +362,27 @@ export default function CroydonAreaPage() {
                     </div>
 
                     <div className="space-y-1">
-                      <label className="text-[11px] font-medium">Brief description of your project</label>
+                      <label className="text-[11px] font-medium">
+                        Brief description of your project
+                      </label>
                       <textarea
                         name="projectDetails"
                         rows={4}
                         placeholder="For example: wrap around extension to a semi detached house with open plan kitchen and a dormer loft room."
-                        className="w-full border border-slate-300 rounded bg-white px-2 py-2 focus:border-[#64b7c4] outline-none"
+                        className="w-full rounded border border-slate-300 bg-white px-2 py-2 outline-none focus:border-[#64b7c4]"
                       />
                     </div>
 
                     <button
                       type="submit"
-                      className="w-full rounded-full bg-[#64b7c4] py-2.5 text-white text-[13px] font-semibold uppercase tracking-[0.2em] hover:bg-[#4da4b4]"
+                      className="w-full rounded-full bg-[#64b7c4] py-2.5 text-[13px] font-semibold uppercase tracking-[0.2em] text-white hover:bg-[#4da4b4]"
                     >
                       Get a fixed fee quote
                     </button>
 
-                    <p className="text-[11px] text-slate-500 mt-2">
-                      Typical Croydon projects include wrap around extensions, loft dormers, garage conversions and full refurbishments.
+                    <p className="mt-2 text-[11px] text-slate-500">
+                      Typical Croydon projects include wrap around extensions,
+                      loft dormers, garage conversions and full refurbishments.
                     </p>
                   </form>
                 </div>
@@ -363,27 +394,30 @@ export default function CroydonAreaPage() {
           <ServiceInternalLinks boroughName="Croydon" />
 
           {/* MERGED RICH CONTENT */}
-          <section className="bg-white border-b border-slate-200 py-10">
-            <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
-              <div className="grid md:grid-cols-[1.7fr,1.3fr] gap-10 items-start">
+          <section className="border-b border-slate-200 bg-white py-10">
+            <div className="mx-auto max-w-5xl space-y-10 px-4 lg:px-6">
+              <div className="grid items-start gap-10 md:grid-cols-[1.7fr,1.3fr]">
                 <div className="space-y-4">
                   <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
                     Architectural drawing services in Croydon
                   </h2>
                   <p className="text-[13px] text-slate-700">
-                    WEDRAWPLANS prepare full drawing packages for rear and side extensions, loft conversions,
-                    refurbishments, internal alterations, outbuildings and small residential development projects across Croydon.
+                    WEDRAWPLANS prepare full drawing packages for rear and side
+                    extensions, loft conversions, refurbishments, internal
+                    alterations, outbuildings and small residential development
+                    projects across Croydon.
                   </p>
                   <p className="text-[13px] text-slate-700">
-                    We cover Croydon, South Croydon, Purley, Coulsdon, Kenley, Sanderstead, Selhurst, Thornton Heath,
-                    Norbury, Shirley, New Addington and nearby streets.
+                    We cover Croydon, South Croydon, Purley, Coulsdon, Kenley,
+                    Sanderstead, Selhurst, Thornton Heath, Norbury, Shirley, New
+                    Addington and nearby streets.
                   </p>
 
-                  <div className="flex flex-wrap gap-3 items-center">
+                  <div className="flex flex-wrap items-center gap-3">
                     <button
                       type="button"
                       onClick={scrollToForm}
-                      className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-white text-[13px] font-semibold uppercase tracking-[0.18em] hover:bg-[#4da4b4]"
+                      className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-[13px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-[#4da4b4]"
                     >
                       Get a quick quote
                     </button>
@@ -391,34 +425,36 @@ export default function CroydonAreaPage() {
                       href={WHATSAPP_LINK}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-300 bg-white text-[13px] text-slate-800 hover:bg-slate-900 hover:text-white"
+                      className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-[13px] text-slate-800 hover:bg-slate-900 hover:text-white"
                     >
                       💬 Chat on WhatsApp
                     </a>
                   </div>
                 </div>
 
-                <div className="rounded-2xl bg-white shadow-md border border-slate-100 overflow-hidden">
+                <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-md">
                   <Image
                     src="/images/drawings.jpg"
                     alt="Example of architectural drawings for a Croydon extension"
                     width={800}
                     height={500}
-                    className="object-cover w-full h-48 md:h-56"
+                    className="h-48 w-full object-cover md:h-56"
                   />
-                  <div className="p-5 space-y-2">
+                  <div className="space-y-2 p-5">
                     <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
                       Technical drawings builders can price from
                     </h3>
                     <p className="text-[13px] text-slate-700">
-                      Clear floor plans, elevations, sections and notes, coordinated with structural design so builders and inspectors have what they need.
+                      Clear floor plans, elevations, sections and notes,
+                      coordinated with structural design so builders and
+                      inspectors have what they need.
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-10">
-                <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
+              <div className="grid gap-10 md:grid-cols-2">
+                <div className="space-y-4 rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
                   <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
                     Croydon areas we cover
                   </h3>
@@ -427,11 +463,13 @@ export default function CroydonAreaPage() {
                     alt="Croydon local area"
                     width={800}
                     height={500}
-                    className="rounded-xl object-cover mb-3"
+                    className="mb-3 rounded-xl object-cover"
                   />
-                  <p className="text-[13px] text-slate-700">Drawings for the whole borough of Croydon, including:</p>
+                  <p className="text-[13px] text-slate-700">
+                    Drawings for the whole borough of Croydon, including:
+                  </p>
                   <div className="grid grid-cols-2 gap-2 text-[13px] text-slate-700">
-                    <ul className="list-disc pl-4 space-y-1">
+                    <ul className="list-disc space-y-1 pl-4">
                       <li>Croydon</li>
                       <li>South Croydon</li>
                       <li>Purley</li>
@@ -439,7 +477,7 @@ export default function CroydonAreaPage() {
                       <li>Kenley</li>
                       <li>Sanderstead</li>
                     </ul>
-                    <ul className="list-disc pl-4 space-y-1">
+                    <ul className="list-disc space-y-1 pl-4">
                       <li>Thornton Heath</li>
                       <li>Norbury</li>
                       <li>Shirley</li>
@@ -450,19 +488,19 @@ export default function CroydonAreaPage() {
                   </div>
                 </div>
 
-                <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
+                <div className="space-y-4 rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
                   <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
                     Popular projects in Croydon
                   </h3>
                   <div className="grid grid-cols-2 gap-3 text-[13px] text-slate-700">
-                    <ul className="list-disc pl-4 space-y-1">
+                    <ul className="list-disc space-y-1 pl-4">
                       <li>3 m and larger rear extensions</li>
                       <li>Wrap around and L shaped extensions</li>
                       <li>Side extensions and infill extensions</li>
                       <li>Hip to gable loft conversions</li>
                       <li>Rear dormers with ensuite</li>
                     </ul>
-                    <ul className="list-disc pl-4 space-y-1">
+                    <ul className="list-disc space-y-1 pl-4">
                       <li>Garage conversions</li>
                       <li>Internal reconfiguration</li>
                       <li>Outbuildings and studios</li>
@@ -478,13 +516,17 @@ export default function CroydonAreaPage() {
                   Permitted development limits in Croydon
                 </h2>
                 <p className="text-[13px] text-slate-700">
-                  This is a simplified guide to common permitted development limits. Final confirmation depends on your house type, location and any Article 4 directions.
+                  This is a simplified guide to common permitted development
+                  limits. Final confirmation depends on your house type,
+                  location and any Article 4 directions.
                 </p>
 
-                <div className="grid md:grid-cols-3 gap-8 text-[13px] text-slate-700">
+                <div className="grid gap-8 text-[13px] text-slate-700 md:grid-cols-3">
                   <div>
-                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">Rear extensions</h3>
-                    <ul className="list-disc pl-4 space-y-1">
+                    <h3 className="mb-2 font-semibold uppercase tracking-[0.14em] text-slate-900">
+                      Rear extensions
+                    </h3>
+                    <ul className="list-disc space-y-1 pl-4">
                       <li>Up to 3 m deep on terrace houses</li>
                       <li>Up to 4 m on semi detached houses</li>
                       <li>Up to 6 to 8 m with Prior Approval</li>
@@ -492,8 +534,10 @@ export default function CroydonAreaPage() {
                     </ul>
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">Loft conversions</h3>
-                    <ul className="list-disc pl-4 space-y-1">
+                    <h3 className="mb-2 font-semibold uppercase tracking-[0.14em] text-slate-900">
+                      Loft conversions
+                    </h3>
+                    <ul className="list-disc space-y-1 pl-4">
                       <li>Up to 40 to 50 cubic metres volume</li>
                       <li>No extensions on the front roof slope</li>
                       <li>Side windows obscure glazed and fixed</li>
@@ -501,8 +545,10 @@ export default function CroydonAreaPage() {
                     </ul>
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">Outbuildings</h3>
-                    <ul className="list-disc pl-4 space-y-1">
+                    <h3 className="mb-2 font-semibold uppercase tracking-[0.14em] text-slate-900">
+                      Outbuildings
+                    </h3>
+                    <ul className="list-disc space-y-1 pl-4">
                       <li>Maximum 2.5 m high near boundaries</li>
                       <li>Cannot be used as a separate dwelling</li>
                       <li>Use must be incidental to the house</li>
@@ -512,12 +558,12 @@ export default function CroydonAreaPage() {
                 </div>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-10">
-                <div className="rounded-2xl bg-white shadow-sm p-6 border border-slate-100 space-y-4">
+              <div className="grid gap-10 md:grid-cols-2">
+                <div className="space-y-4 rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
                   <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
                     Planning drawings for Croydon
                   </h3>
-                  <ul className="list-disc pl-4 space-y-1 text-[13px] text-slate-700">
+                  <ul className="list-disc space-y-1 pl-4 text-[13px] text-slate-700">
                     <li>Existing and proposed floor plans</li>
                     <li>Existing and proposed elevations</li>
                     <li>Roof plans and key sections</li>
@@ -527,11 +573,11 @@ export default function CroydonAreaPage() {
                   </ul>
                 </div>
 
-                <div className="rounded-2xl bg-white shadow-sm p-6 border border-slate-100 space-y-4">
+                <div className="space-y-4 rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
                   <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
                     Building regulation drawings for Croydon
                   </h3>
-                  <ul className="list-disc pl-4 space-y-1 text-[13px] text-slate-700">
+                  <ul className="list-disc space-y-1 pl-4 text-[13px] text-slate-700">
                     <li>Structural layouts and coordination with engineer</li>
                     <li>Foundation, beam and bearing information</li>
                     <li>Fire safety and escape routes</li>
@@ -542,13 +588,16 @@ export default function CroydonAreaPage() {
                 </div>
               </div>
 
-              <div className="rounded-2xl bg-emerald-50 border border-emerald-100 p-6 space-y-3">
+              <div className="space-y-3 rounded-2xl border border-emerald-100 bg-emerald-50 p-6">
                 <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-emerald-900">
                   Local planning knowledge for Croydon projects
                 </h2>
                 <p className="text-[13px] text-emerald-900">
-                  Croydon includes conservation areas, mixed housing stock and many family homes with scope for larger extensions and loft conversions.
-                  We shape each scheme to suit local character and neighbour amenity so approval chances are as strong as possible.
+                  Croydon includes conservation areas, mixed housing stock and
+                  many family homes with scope for larger extensions and loft
+                  conversions. We shape each scheme to suit local character and
+                  neighbour amenity so approval chances are as strong as
+                  possible.
                 </p>
               </div>
 
@@ -556,42 +605,69 @@ export default function CroydonAreaPage() {
                 <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
                   Frequently asked questions
                 </h2>
-                <div className="grid md:grid-cols-2 gap-6 text-[13px] text-slate-700">
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">Do I need planning permission in Croydon</h3>
+                <div className="grid gap-6 text-[13px] text-slate-700 md:grid-cols-2">
+                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
+                    <h3 className="font-semibold text-slate-900">
+                      Do I need planning permission in Croydon
+                    </h3>
                     <p>
-                      Many extensions and lofts can proceed under permitted development. We check your address and advise the best route at the start.
+                      Many extensions and lofts can proceed under permitted
+                      development. We check your address and advise the best
+                      route at the start.
                     </p>
                   </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">How fast can you survey</h3>
-                    <p>In most cases we can arrange the initial measured survey within forty eight hours of instruction.</p>
+                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
+                    <h3 className="font-semibold text-slate-900">
+                      How fast can you survey
+                    </h3>
+                    <p>
+                      In most cases we can arrange the initial measured survey
+                      within forty eight hours of instruction.
+                    </p>
                   </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">Do you submit to Croydon Council</h3>
-                    <p>Yes. We handle the submission, monitor progress and respond to planning officer queries.</p>
+                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
+                    <h3 className="font-semibold text-slate-900">
+                      Do you submit to Croydon Council
+                    </h3>
+                    <p>
+                      Yes. We handle the submission, monitor progress and
+                      respond to planning officer queries.
+                    </p>
                   </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">Can you coordinate structural design</h3>
-                    <p>Yes. We coordinate with structural engineers so beams and load paths are designed and shown correctly on the drawings.</p>
+                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
+                    <h3 className="font-semibold text-slate-900">
+                      Can you coordinate structural design
+                    </h3>
+                    <p>
+                      Yes. We coordinate with structural engineers so beams and
+                      load paths are designed and shown correctly on the
+                      drawings.
+                    </p>
                   </div>
                 </div>
               </div>
 
-              <div className="rounded-2xl bg-slate-900 text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div className="flex flex-col justify-between gap-4 rounded-2xl bg-slate-900 p-6 text-white md:flex-row md:items-center md:p-8">
                 <div>
                   <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
                     Ready to start your project
                   </h2>
-                  <p className="text-[13px] text-slate-300 mt-2">
-                    Send your postcode and a short description. We review and reply with a fixed fee and recommended next steps.
+                  <p className="mt-2 text-[13px] text-slate-300">
+                    Send your postcode and a short description. We review and
+                    reply with a fixed fee and recommended next steps.
                   </p>
                 </div>
                 <div className="flex flex-col space-y-2 text-[13px]">
-                  <a href={PHONE_LINK} className="font-semibold text-emerald-300 underline">
+                  <a
+                    href={PHONE_LINK}
+                    className="font-semibold text-emerald-300 underline"
+                  >
                     {PHONE_DISPLAY}
                   </a>
-                  <a href="mailto:info@wedrawplans.com" className="font-semibold text-emerald-300 underline">
+                  <a
+                    href="mailto:info@wedrawplans.com"
+                    className="font-semibold text-emerald-300 underline"
+                  >
                     info@wedrawplans.com
                   </a>
                   <button
@@ -604,7 +680,7 @@ export default function CroydonAreaPage() {
                 </div>
               </div>
 
-              <div className="text-[12px] text-slate-600 pt-2">
+              <div className="pt-2 text-[12px] text-slate-600">
                 See also{" "}
                 <a href="/extension-plans" className="underline">
                   extension plans
@@ -626,4 +702,3 @@ export default function CroydonAreaPage() {
     </>
   );
 }
-```
