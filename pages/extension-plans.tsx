@@ -197,7 +197,8 @@ export default function ExtensionPlansPage() {
 
                 <a
                   href={PHONE_LINK}
-                  className="text-sm font-semibold underline underline-offset-4"
+                  className="text-sm font-semibold text-blue-600 underline underline-offset-4 hover:text-blue-700"
+
                 >
                   Or call {PHONE_DISPLAY}
                 </a>
