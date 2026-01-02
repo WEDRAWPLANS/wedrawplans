@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 type BoroughHeaderProps = {
   boroughName: string;
@@ -22,7 +23,11 @@ export default function BoroughHeader({
       <div className="mx-auto max-w-5xl px-4 py-3 lg:px-6">
         <div className="flex items-center justify-between gap-3">
           {/* LEFT: LOGO + TEXT */}
-          <a href="/" className="flex items-center gap-3">
+          <Link
+            href="/"
+            aria-label="Go to homepage"
+            className="flex items-center gap-3 cursor-pointer"
+          >
             <div className="relative h-10 w-44 sm:h-11 sm:w-52">
               <Image
                 src="/images/wedrawplans-logo.png"
@@ -31,6 +36,8 @@ export default function BoroughHeader({
                 className="object-contain"
                 priority
               />
+              {/* makes the whole logo area reliably clickable */}
+              <span className="absolute inset-0 z-10" aria-hidden="true" />
             </div>
 
             <div className="hidden sm:block leading-tight">
@@ -41,7 +48,7 @@ export default function BoroughHeader({
                 {boroughName}
               </div>
             </div>
-          </a>
+          </Link>
 
           {/* RIGHT: CONTACT BUTTONS */}
           <div className="flex items-center gap-2">
@@ -68,17 +75,17 @@ export default function BoroughHeader({
 
         {/* SMALL LINKS ROW */}
         <div className="mt-2 flex items-center justify-between text-[12px] text-slate-600">
-          <a href="/areas" className="underline hover:text-slate-900">
+          <Link href="/areas" className="underline hover:text-slate-900">
             View all boroughs
-          </a>
+          </Link>
 
           <div className="hidden sm:flex items-center gap-3">
-            <a href="/#quote" className="underline hover:text-slate-900">
+            <Link href="/#quote" className="underline hover:text-slate-900">
               Get a quote
-            </a>
-            <a href="/#contact" className="underline hover:text-slate-900">
+            </Link>
+            <Link href="/#contact" className="underline hover:text-slate-900">
               Contact
-            </a>
+            </Link>
           </div>
         </div>
       </div>
