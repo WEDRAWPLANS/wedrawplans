@@ -2,6 +2,7 @@ import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
+import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
@@ -315,6 +316,9 @@ export default function BarnetAreaPage() {
             </div>
           </section>
 
+          {/* INTERNAL LINKS BLOCK (ONE INSERT, HUGE SEO VALUE) */}
+          <ServiceInternalLinks boroughName="Barnet" />
+
           {/* MERGED RICH CONTENT */}
           <section className="bg-white border-b border-slate-200 py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
@@ -588,15 +592,24 @@ export default function BarnetAreaPage() {
 
               <div className="text-[12px] text-slate-600 pt-2">
                 See also{" "}
-                <a href="/extension-plans" className="underline">
+                <a
+                  href="/extension-plans"
+                  className="text-blue-600 underline underline-offset-4 hover:text-blue-700"
+                >
                   extension plans
                 </a>
                 ,{" "}
-                <a href="/loft-plans" className="underline">
-                  loft plans
+                <a
+                  href="/loft-conversion-plans"
+                  className="text-blue-600 underline underline-offset-4 hover:text-blue-700"
+                >
+                  loft conversion plans
                 </a>{" "}
                 and{" "}
-                <a href="/new-build-plans" className="underline">
+                <a
+                  href="/new-build-plans"
+                  className="text-blue-600 underline underline-offset-4 hover:text-blue-700"
+                >
                   new build plans
                 </a>
                 .
