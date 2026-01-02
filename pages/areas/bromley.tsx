@@ -2,6 +2,8 @@ import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
+import AreaTopHeader from "../../components/AreaTopHeader";
+import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
@@ -32,7 +34,7 @@ export default function BromleyAreaPage() {
       streetAddress: "201 Borough High Street",
       addressLocality: "London",
       postalCode: "SE1 1JA",
-      addressCountry: "UK"
+      addressCountry: "UK",
     },
     areaServed: [
       "Bromley",
@@ -43,10 +45,10 @@ export default function BromleyAreaPage() {
       "Shortlands",
       "West Wickham",
       "Hayes",
-      "Biggin Hill"
+      "Biggin Hill",
     ],
     description:
-      "Architectural drawing services in Bromley for extensions, loft conversions, garage conversions, outbuildings and building regulation plans."
+      "Architectural drawing services in Bromley for extensions, loft conversions, garage conversions, outbuildings and building regulation plans.",
   };
 
   const faqJson = {
@@ -59,8 +61,8 @@ export default function BromleyAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Not always. Many rear extensions in Bromley can be carried out under permitted development. We confirm the correct route once we review your address and house type."
-        }
+            "Not always. Many rear extensions in Bromley can be carried out under permitted development. We confirm the correct route once we review your address and house type.",
+        },
       },
       {
         "@type": "Question",
@@ -68,8 +70,8 @@ export default function BromleyAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Bromley has detailed guidance for depth, height and roof design. Conservation areas and corner plots can be more sensitive. Clear drawings and a good planning case are important."
-        }
+            "Bromley has detailed guidance for depth, height and roof design. Conservation areas and corner plots can be more sensitive. Clear drawings and a good planning case are important.",
+        },
       },
       {
         "@type": "Question",
@@ -77,8 +79,8 @@ export default function BromleyAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Householder planning applications usually take around six to eight weeks after validation. Lawful Development Certificates are often decided in four to six weeks."
-        }
+            "Householder planning applications usually take around six to eight weeks after validation. Lawful Development Certificates are often decided in four to six weeks.",
+        },
       },
       {
         "@type": "Question",
@@ -86,10 +88,10 @@ export default function BromleyAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Yes. We prepare drawings, complete forms, upload documents, submit to Bromley Council and respond to planning officer queries."
-        }
-      }
-    ]
+            "Yes. We prepare drawings, complete forms, upload documents, submit to Bromley Council and respond to planning officer queries.",
+        },
+      },
+    ],
   };
 
   return (
@@ -112,57 +114,10 @@ export default function BromleyAreaPage() {
         />
       </Head>
 
+      {/* CLICKABLE TOP HEADER (Barnet style header component) */}
+      <AreaTopHeader />
+
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
-        {/* HEADER MATCH HOMEPAGE STYLE - identical to Barnet */}
-        <header className="bg-[#fdf8f3]/95 backdrop-blur border-b border-slate-200">
-          <div className="mx-auto max-w-6xl px-4 pt-6 pb-3 lg:px-6">
-            <div className="flex flex-col items-center text-center">
-              <Image
-                src="/images/wedrawplans-logo.png"
-                alt="WEDRAWPLANS"
-                width={420}
-                height={140}
-                priority
-                className="h-24 w-auto object-contain"
-              />
-
-              <div className="mt-3 text-[11px] tracking-[0.18em] text-slate-600 uppercase">
-                Architectural Drawing Consultants
-              </div>
-
-              <div className="mt-2 max-w-3xl text-[13px] font-medium text-slate-800">
-                Architectural Drawings for Extensions, Lofts + New Builds at an Affordable Fixed Cost
-              </div>
-            </div>
-
-            <hr className="mt-5 border-t border-slate-600" />
-
-            <div className="mt-2 flex w-full items-center justify-between gap-3">
-              <div className="text-[12px] text-slate-700">
-                <span className="font-semibold text-slate-900">Bromley</span> borough page
-              </div>
-
-              <div className="flex items-center gap-2">
-                <a
-                  href={PHONE_LINK}
-                  className="hidden items-center gap-1 rounded-full border border-slate-300 px-3 py-1.5 text-[12px] font-medium text-slate-900 shadow-sm hover:bg-slate-900 hover:text-white sm:inline-flex"
-                >
-                  📞 {PHONE_DISPLAY}
-                </a>
-
-                <a
-                  href={WHATSAPP_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 bg-[#25D366] text-white px-3 py-1.5 rounded-full text-[12px] font-medium shadow-sm hover:bg-[#1ebe57]"
-                >
-                  💬 <span className="hidden sm:inline">WhatsApp us</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </header>
-
         <main>
           {/* HERO + FORM - identical to Barnet layout but Bromley content */}
           <section className="border-b border-slate-200 bg-[#fdf8f3]">
@@ -178,9 +133,9 @@ export default function BromleyAreaPage() {
                 </h1>
 
                 <p className="mt-3 text-[13px] text-slate-700">
-                  WEDRAWPLANS prepare planning and technical drawings for house extensions,
-                  loft conversions, garage conversions, outbuildings, new builds and conversions
-                  across the London Borough of Bromley. Fixed fees with clear scope and fast communication.
+                  WEDRAWPLANS prepare planning and technical drawings for house extensions, loft conversions, garage
+                  conversions, outbuildings, new builds and conversions across the London Borough of Bromley. Fixed fees
+                  with clear scope and fast communication.
                 </p>
 
                 <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
@@ -215,7 +170,8 @@ export default function BromleyAreaPage() {
                   </h2>
 
                   <p className="mt-1 text-[12px] text-slate-600">
-                    Tell us a little about your property and what you plan to build. We will reply with a clear fixed fee for your drawings.
+                    Tell us a little about your property and what you plan to build. We will reply with a clear fixed
+                    fee for your drawings.
                   </p>
 
                   <form onSubmit={handleSubmit} className="mt-3 space-y-3 text-[13px]">
@@ -286,9 +242,7 @@ export default function BromleyAreaPage() {
                     </div>
 
                     <div className="space-y-1">
-                      <label className="text-[11px] font-medium">
-                        Brief description of your project
-                      </label>
+                      <label className="text-[11px] font-medium">Brief description of your project</label>
                       <textarea
                         name="projectDetails"
                         rows={4}
@@ -313,6 +267,9 @@ export default function BromleyAreaPage() {
             </div>
           </section>
 
+          {/* INTERNAL LINKS (SERVICE PAGES) */}
+          <ServiceInternalLinks boroughName="Bromley" />
+
           {/* MERGED RICH CONTENT - use Bromley rich content but keep Barnet section structure */}
           <section className="bg-white border-b border-slate-200 py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
@@ -322,12 +279,12 @@ export default function BromleyAreaPage() {
                     Architectural drawing services in Bromley
                   </h2>
                   <p className="text-[13px] text-slate-700">
-                    WEDRAWPLANS prepares full drawing packages for rear and side extensions, wrap extensions,
-                    loft conversions, garage conversions and outbuildings across the London Borough of Bromley.
+                    WEDRAWPLANS prepare full drawing packages for rear and side extensions, wrap extensions, loft
+                    conversions, garage conversions and outbuildings across the London Borough of Bromley.
                   </p>
                   <p className="text-[13px] text-slate-700">
-                    We work across Bromley, Beckenham, Orpington, Chislehurst, Petts Wood, Hayes,
-                    West Wickham and surrounding areas, with drawings designed for semis, detached homes and bungalows.
+                    We work across Bromley, Beckenham, Orpington, Chislehurst, Petts Wood, Hayes, West Wickham and
+                    surrounding areas, with drawings designed for semis, detached homes and bungalows.
                   </p>
 
                   <div className="flex flex-wrap gap-3 items-center">
@@ -380,9 +337,7 @@ export default function BromleyAreaPage() {
                     height={500}
                     className="rounded-xl object-cover mb-3"
                   />
-                  <p className="text-[13px] text-slate-700">
-                    Drawings for the whole borough of Bromley, including:
-                  </p>
+                  <p className="text-[13px] text-slate-700">Drawings for the whole borough of Bromley, including:</p>
                   <div className="grid grid-cols-2 gap-2 text-[13px] text-slate-700">
                     <ul className="list-disc pl-4 space-y-1">
                       <li>Bromley</li>
@@ -424,7 +379,6 @@ export default function BromleyAreaPage() {
                     </ul>
                   </div>
 
-                  {/* Keep same place for the second image like Barnet */}
                   <Image
                     src="/images/drawings.jpg"
                     alt="Completed extension and loft style inspiration"
@@ -440,15 +394,12 @@ export default function BromleyAreaPage() {
                   Permitted development limits in Bromley
                 </h2>
                 <p className="text-[13px] text-slate-700">
-                  This is a simplified guide to common permitted development limits. Final confirmation depends on your house type,
-                  location, conservation areas and any Article 4 directions.
+                  This is a simplified guide to common permitted development limits. Final confirmation depends on your house type, location, conservation areas and any Article 4 directions.
                 </p>
 
                 <div className="grid md:grid-cols-3 gap-8 text-[13px] text-slate-700">
                   <div>
-                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">
-                      Rear extensions
-                    </h3>
+                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">Rear extensions</h3>
                     <ul className="list-disc pl-4 space-y-1">
                       <li>Typical depths around 3 to 4 metres under PD</li>
                       <li>Larger schemes via Prior Approval for deeper extensions</li>
@@ -457,9 +408,7 @@ export default function BromleyAreaPage() {
                     </ul>
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">
-                      Loft conversions
-                    </h3>
+                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">Loft conversions</h3>
                     <ul className="list-disc pl-4 space-y-1">
                       <li>Volume limits around 40 to 50 cubic metres</li>
                       <li>Front roof changes tightly controlled</li>
@@ -468,9 +417,7 @@ export default function BromleyAreaPage() {
                     </ul>
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">
-                      Outbuildings
-                    </h3>
+                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">Outbuildings</h3>
                     <ul className="list-disc pl-4 space-y-1">
                       <li>Garden rooms and studios often possible under PD</li>
                       <li>Maximum heights and distances to boundaries apply</li>
@@ -516,60 +463,41 @@ export default function BromleyAreaPage() {
                   Local planning knowledge for Bromley projects
                 </h2>
                 <p className="text-[13px] text-emerald-900">
-                  Bromley includes wide suburban roads, cul de sacs and rural edge locations. Some areas include conservation constraints,
-                  green belt considerations and sensitive street scenes. We shape each scheme to fit local character and strengthen approval chances.
+                  Bromley includes wide suburban roads, cul de sacs and rural edge locations. Some areas include conservation constraints, green belt considerations and sensitive street scenes. We shape each scheme to fit local character and strengthen approval chances.
                 </p>
               </div>
 
               <div className="space-y-4">
-                <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
-                  Frequently asked questions
-                </h2>
+                <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">Frequently asked questions</h2>
 
                 <div className="grid md:grid-cols-2 gap-6 text-[13px] text-slate-700">
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Do I need planning permission in Bromley
-                    </h3>
+                    <h3 className="font-semibold text-slate-900">Do I need planning permission in Bromley</h3>
                     <p>
                       Many extensions and lofts can proceed under permitted development. We check your address and advise the best route at the start.
                     </p>
                   </div>
 
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      How fast can you survey
-                    </h3>
-                    <p>
-                      In most cases we can arrange the initial measured survey within forty eight hours of instruction.
-                    </p>
+                    <h3 className="font-semibold text-slate-900">How fast can you survey</h3>
+                    <p>In most cases we can arrange the initial measured survey within forty eight hours of instruction.</p>
                   </div>
 
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Do you submit to Bromley Council
-                    </h3>
-                    <p>
-                      Yes. We handle the submission, monitor progress and respond to planning officer queries.
-                    </p>
+                    <h3 className="font-semibold text-slate-900">Do you submit to Bromley Council</h3>
+                    <p>Yes. We handle the submission, monitor progress and respond to planning officer queries.</p>
                   </div>
 
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Can you coordinate structural design
-                    </h3>
-                    <p>
-                      Yes. We coordinate with structural engineers so beams and load paths are designed and shown correctly on the drawings.
-                    </p>
+                    <h3 className="font-semibold text-slate-900">Can you coordinate structural design</h3>
+                    <p>Yes. We coordinate with structural engineers so beams and load paths are designed and shown correctly on the drawings.</p>
                   </div>
                 </div>
               </div>
 
               <div className="rounded-2xl bg-slate-900 text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
-                  <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
-                    Ready to start your project
-                  </h2>
+                  <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">Ready to start your project</h2>
                   <p className="text-[13px] text-slate-300 mt-2">
                     Send your postcode and a short description. We review and reply with a fixed fee and recommended next steps.
                   </p>
