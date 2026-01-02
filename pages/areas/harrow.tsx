@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import Image from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
 import AreaTopHeader from "../../components/AreaTopHeader";
 
