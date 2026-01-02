@@ -116,7 +116,8 @@ export default function HarrowAreaPage() {
       </Head>
 
       {/* CLICKABLE TOP HEADER (this should be the one with the clickable logo) */}
-      <AreaTopHeader boroughName="Harrow" />
+     <AreaTopHeader />
+
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
         <main>
