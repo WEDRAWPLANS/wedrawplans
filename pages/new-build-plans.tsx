@@ -1,20 +1,15 @@
 import React from "react";
 import Head from "next/head";
+import { submitBoroughLead } from "../lib/submitBoroughLead";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const WHATSAPP_LINK =
-  "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20new%20build%20or%20small%20development%20drawings";
+  "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20need%20new%20build%20planning%20drawings%2C%20structural%20engineering%20and%20town%20planning%20support";
 
 export default function NewBuildPlansPage() {
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    console.log(Object.fromEntries(data.entries()));
-    alert(
-      "Thank you. In the live site this form will email WEDRAWPLANS with your new build or development enquiry and trigger a same day call back."
-    );
-    e.currentTarget.reset();
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    await submitBoroughLead(e, { boroughName: "New Build Plans" });
   }
 
   function scrollToForm() {
@@ -22,316 +17,321 @@ export default function NewBuildPlansPage() {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
+  const pageTitle =
+    "New Build Planning Drawings, Structural Engineering & Town Planning – WEDRAWPLANS";
+  const pageDescription =
+    "New build planning drawings and full design service including structural engineering and town planning support. Single dwellings and small developments across London, Outer London and M25. Fixed fees and coordinated approvals.";
+
+  const localBusinessJson = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "WEDRAWPLANS",
+    url: "https://www.wedrawplans.co.uk/new-build-plans",
+    telephone: "+44 20 3654 8508",
+    email: "info@wedrawplans.com",
+    image: "https://www.wedrawplans.co.uk/images/drawings.jpg",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "201 Borough High Street",
+      addressLocality: "London",
+      postalCode: "SE1 1JA",
+      addressCountry: "UK"
+    },
+    areaServed: "London, Outer London and M25",
+    description:
+      "New build planning drawings with structural engineering and town planning services. Full design packages for residential new builds and small developments."
+  };
+
+  const faqJson = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "What drawings are required for a new build planning application",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "New build planning applications typically require existing and proposed plans, elevations, sections, site layout, design and access statement, and sometimes supporting technical information. We prepare a complete planning-ready pack."
+        }
+      },
+      {
+        "@type": "Question",
+        name: "Is a structural engineer required for a new build",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "Yes. New build developments require structural calculations and coordinated structural design. We include structural engineering services so the drawings and calculations align for Building Control."
+        }
+      },
+      {
+        "@type": "Question",
+        name: "Do you provide town planning services",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "Yes. We provide town planning support including strategy advice, policy assessment, submission coordination and responses to planning officer queries."
+        }
+      },
+      {
+        "@type": "Question",
+        name: "Do you work outside London",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "Yes. We cover Inner London, Outer London and areas around the M25, including commuter towns and surrounding boroughs."
+        }
+      },
+      {
+        "@type": "Question",
+        name: "Can you design single houses and small developments",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "Yes. We work on single dwelling houses, replacement dwellings, backland developments and small residential schemes."
+        }
+      }
+    ]
+  };
+
   return (
     <>
       <Head>
-        <title>
-          New Build and Small Development Plans – WEDRAWPLANS
-        </title>
-        <meta
-          name="description"
-          content="Architectural drawings for new build houses, small residential developments, infill plots, backland schemes and flat conversions across London and the M25."
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <link
+          rel="canonical"
+          href="https://www.wedrawplans.co.uk/new-build-plans"
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }}
         />
       </Head>
 
-      <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
-        <header className="border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur">
-          <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 lg:px-6">
-            <div className="flex items-center gap-2">
-              <div className="grid h-10 w-10 place-items-center rounded-full border border-slate-500 text-xs font-semibold tracking-[0.18em] text-red-700">
-                WD
+      <main className="min-h-screen bg-white text-slate-900">
+        {/* HERO */}
+        <section className="bg-slate-50">
+          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-4 py-12 lg:grid-cols-2">
+            <div>
+              <div className="text-xs font-semibold tracking-[0.3em] text-rose-600">
+                NEW BUILD DESIGN AND PLANNING
               </div>
-              <div className="leading-tight">
-                <div className="text-lg font-semibold tracking-[0.2em] uppercase">
-                  WEDRAWPLANS
+
+              <h1 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">
+                New Build Planning Drawings with Structural Engineering and Town Planning
+              </h1>
+
+              <p className="mt-4 max-w-xl text-base leading-relaxed text-slate-700">
+                WEDRAWPLANS provides a complete new build design service including
+                planning drawings, structural engineering and town planning support.
+                We work on single new build houses and small residential developments
+                across London, Outer London and areas around the M25.
+              </p>
+
+              <ul className="mt-6 space-y-2 text-slate-800">
+                <li>Full planning drawing packages</li>
+                <li>Structural engineering and calculations included</li>
+                <li>Town planning strategy and submission support</li>
+                <li>Single dwellings and small developments</li>
+                <li>London, Outer London and M25 coverage</li>
+                <li>Clear fixed fees and professional coordination</li>
+              </ul>
+
+              <div className="mt-7 flex flex-wrap items-center gap-3">
+                <button
+                  onClick={scrollToForm}
+                  className="rounded-full bg-sky-600 px-6 py-3 text-sm font-bold text-white hover:bg-sky-700"
+                >
+                  Get my new build quote
+                </button>
+
+                <a
+                  href={PHONE_LINK}
+                  className="text-sm font-semibold text-blue-600 underline underline-offset-4 hover:text-blue-700"
+                >
+                  Or call {PHONE_DISPLAY}
+                </a>
+              </div>
+
+              <div className="mt-6 rounded-2xl border bg-white p-5">
+                <div className="text-sm font-semibold">
+                  Planning strategy matters on new builds
                 </div>
-                <div className="text-[11px] uppercase tracking-[0.2em] text-slate-500">
-                  Architectural drawing consultants
+                <div className="mt-1 text-sm text-slate-700">
+                  New builds are heavily assessed by councils. Massing, layout,
+                  scale, amenity, highways, and policy compliance must be presented
+                  clearly. Our drawings and planning approach are designed to reduce
+                  refusal risk.
                 </div>
               </div>
             </div>
-            <div className="flex items-center gap-2">
+
+            {/* FORM */}
+            <div
+              id="newbuild-quote"
+              className="rounded-3xl border bg-white p-6 shadow-sm"
+            >
+              <h2 className="text-lg font-extrabold">
+                Free fixed new build quote
+              </h2>
+              <p className="mt-2 text-sm text-slate-700">
+                Request a fixed quote for new build planning drawings, structural
+                engineering and town planning support.
+              </p>
+
+              <form onSubmit={handleSubmit} className="mt-5 space-y-3">
+                <input
+                  name="name"
+                  placeholder="Name"
+                  required
+                  className="w-full rounded-xl border px-4 py-3 text-sm"
+                />
+
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  <input
+                    name="phone"
+                    placeholder="Telephone"
+                    required
+                    className="w-full rounded-xl border px-4 py-3 text-sm"
+                  />
+                  <input
+                    name="email"
+                    placeholder="Email"
+                    required
+                    className="w-full rounded-xl border px-4 py-3 text-sm"
+                  />
+                </div>
+
+                <input
+                  name="postcode"
+                  placeholder="Site postcode"
+                  required
+                  className="w-full rounded-xl border px-4 py-3 text-sm"
+                />
+
+                <select
+                  name="projectType"
+                  required
+                  className="w-full rounded-xl border px-4 py-3 text-sm"
+                  defaultValue=""
+                >
+                  <option value="" disabled>
+                    Select new build type
+                  </option>
+                  <option>Single dwelling house</option>
+                  <option>Replacement dwelling</option>
+                  <option>Backland development</option>
+                  <option>Small residential scheme</option>
+                  <option>Other / not sure</option>
+                </select>
+
+                <textarea
+                  name="message"
+                  placeholder="Briefly describe your new build proposal"
+                  rows={5}
+                  className="w-full rounded-xl border px-4 py-3 text-sm"
+                />
+
+                <button
+                  type="submit"
+                  className="w-full rounded-full bg-sky-600 px-6 py-3 text-sm font-extrabold text-white"
+                >
+                  Get my quote
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        {/* CONTENT BLOCKS */}
+        <section className="bg-white">
+          <div className="mx-auto max-w-6xl px-4 py-12">
+            <h2 className="text-2xl font-extrabold">
+              Complete new build design service under one roof
+            </h2>
+            <p className="mt-3 max-w-4xl text-slate-700">
+              New build projects require coordination across multiple disciplines.
+              We provide a joined-up service so planning drawings, structural
+              engineering and planning strategy work together. This reduces delays,
+              contradictions and costly redesigns.
+            </p>
+
+            <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
+              <div className="rounded-2xl border p-6">
+                <strong>Planning drawings</strong>
+                <p className="mt-2 text-sm text-slate-700">
+                  Existing context drawings, proposed plans, elevations, sections,
+                  site layout and presentation drawings designed for council review.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border p-6">
+                <strong>Structural engineering included</strong>
+                <p className="mt-2 text-sm text-slate-700">
+                  Structural design and calculations coordinated with the drawings,
+                  suitable for Building Control and construction.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border p-6">
+                <strong>Town planning support</strong>
+                <p className="mt-2 text-sm text-slate-700">
+                  Policy assessment, planning strategy advice, submission support
+                  and responses to planning officer comments.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border p-6">
+                <strong>London and Outer London coverage</strong>
+                <p className="mt-2 text-sm text-slate-700">
+                  Experience working with London boroughs and surrounding councils
+                  across the M25.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FINAL CTA */}
+        <section className="bg-slate-900">
+          <div className="mx-auto max-w-6xl px-4 py-12 text-white">
+            <h2 className="text-2xl font-extrabold">
+              Start your new build project with confidence
+            </h2>
+            <p className="mt-3 max-w-3xl text-slate-200">
+              Get a complete new build design package including planning drawings,
+              structural engineering and town planning support. Serving London,
+              Outer London and the M25.
+            </p>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              <button
+                onClick={scrollToForm}
+                className="rounded-full bg-white px-6 py-3 text-sm font-extrabold text-slate-900"
+              >
+                Get my quote
+              </button>
               <a
                 href={PHONE_LINK}
-                className="hidden items-center gap-1 rounded-full border border-slate-300 px-3 py-1.5 text-[12px] font-medium text-slate-900 shadow-sm hover:bg-slate-900 hover:text-white sm:inline-flex"
+                className="rounded-full border border-white px-6 py-3 text-sm font-extrabold text-white"
               >
-                <span>📞</span>
-                <span>{PHONE_DISPLAY}</span>
+                Call {PHONE_DISPLAY}
               </a>
               <a
                 href={WHATSAPP_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 rounded-full bg-[#25D366] px-3 py-1.5 text-[12px] font-medium text-white shadow-sm hover:bg-[#1ebe57]"
+                className="rounded-full bg-emerald-500 px-6 py-3 text-sm font-extrabold text-white"
               >
-                <span>💬</span>
-                <span className="hidden sm:inline">WhatsApp us</span>
-                <span className="sm:hidden">Chat</span>
+                WhatsApp us
               </a>
             </div>
           </div>
-        </header>
-
-        <main>
-          <section className="border-b border-slate-200 bg-[#fdf8f3]">
-            <div className="mx-auto flex max-w-5xl flex-col gap-6 px-4 py-8 lg:flex-row lg:items-start lg:px-6 lg:py-10">
-              <div className="lg:w-1/2">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-red-700">
-                  New build and small residential developments
-                </p>
-                <h1 className="mt-2 text-[22px] font-semibold uppercase leading-snug tracking-[0.14em] text-slate-900 sm:text-[26px]">
-                  Architectural drawings for new builds and small developments
-                </h1>
-                <p className="mt-3 text-[13px] text-slate-700">
-                  Drawings for new build houses, backland and infill plots,
-                  conversions to flats and small residential developments across
-                  London and the M25.
-                </p>
-                <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
-                  <li>• New build house layouts and elevations</li>
-                  <li>• Small blocks of flats and conversions</li>
-                  <li>• Infill and backland schemes</li>
-                  <li>• HMO and co living layouts</li>
-                  <li>• Planning and building regulation packs</li>
-                  <li>• Coordination with structural engineers</li>
-                </ul>
-                <div className="mt-5 flex flex-wrap items-center gap-3">
-                  <button
-                    type="button"
-                    onClick={scrollToForm}
-                    className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-[13px] font-semibold uppercase tracking-[0.18em] text-white shadow-sm hover:bg-[#4da4b4] focus:outline-none focus:ring-2 focus:ring-[#64b7c4]"
-                  >
-                    Get my development quote
-                  </button>
-                  <a
-                    href={PHONE_LINK}
-                    className="text-[13px] font-medium text-slate-800 underline"
-                  >
-                    Or call {PHONE_DISPLAY}
-                  </a>
-                </div>
-              </div>
-
-              <div id="newbuild-quote" className="lg:w-1/2">
-                <div className="rounded-2xl bg-white p-5 shadow-md">
-                  <h2 className="text-[14px] font-semibold uppercase tracking-[0.16em] text-slate-900">
-                    New build and development enquiry
-                  </h2>
-                  <p className="mt-1 text-[12px] text-slate-600">
-                    Send a brief outline of your site or scheme and WEDRAWPLANS
-                    will prepare a clear fee proposal for drawings.
-                  </p>
-
-                  <form
-                    onSubmit={handleSubmit}
-                    className="mt-3 space-y-3 text-[13px]"
-                  >
-                    <div className="space-y-1">
-                      <label className="text-[11px] font-medium text-slate-700">
-                        Name
-                      </label>
-                      <input
-                        name="name"
-                        required
-                        className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
-                      />
-                    </div>
-
-                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                      <div className="space-y-1">
-                        <label className="text-[11px] font-medium text-slate-700">
-                          Telephone
-                        </label>
-                        <input
-                          name="phone"
-                          type="tel"
-                          required
-                          className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
-                        />
-                      </div>
-                      <div className="space-y-1">
-                        <label className="text-[11px] font-medium text-slate-700">
-                          Email
-                        </label>
-                        <input
-                          name="email"
-                          type="email"
-                          required
-                          className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="space-y-1">
-                      <label className="text-[11px] font-medium text-slate-700">
-                        Site postcode
-                      </label>
-                      <input
-                        name="postcode"
-                        required
-                        placeholder="SE15 4LR"
-                        onFocus={(e) => {
-                          e.target.placeholder = "";
-                        }}
-                        onBlur={(e) => {
-                          if (!e.target.value) {
-                            e.target.placeholder = "SE15 4LR";
-                          }
-                        }}
-                        className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] text-slate-500/70 focus:text-slate-900 focus:border-[#64b7c4] focus:outline-none"
-                      />
-                    </div>
-
-                    <div className="space-y-1">
-                      <label className="text-[11px] font-medium text-slate-700">
-                        Project type
-                      </label>
-                      <select
-                        name="projectType"
-                        required
-                        defaultValue=""
-                        className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
-                      >
-                        <option value="" disabled>
-                          Select project type
-                        </option>
-                        <option value="New build house">Single new build house</option>
-                        <option value="Multiple new build units">
-                          Small new build development
-                        </option>
-                        <option value="Conversion to flats">
-                          Conversion to self contained flats
-                        </option>
-                        <option value="HMO layout">HMO or co living layout</option>
-                        <option value="Backland or infill">
-                          Backland or infill development
-                        </option>
-                        <option value="Other development type">
-                          Other small development
-                        </option>
-                      </select>
-                    </div>
-
-                    <div className="space-y-1">
-                      <label className="text-[11px] font-medium text-slate-700">
-                        Outline the site or scheme
-                      </label>
-                      <textarea
-                        name="projectDetails"
-                        rows={4}
-                        placeholder="For example: backland site behind existing house, potential for 3 new build units over two storeys."
-                        className="w-full rounded border border-slate-300 bg-white px-2 py-2 text-[13px] focus:border-[#64b7c4] focus:outline-none"
-                      />
-                    </div>
-
-                    <button
-                      type="submit"
-                      className="mt-2 w-full rounded-full bg-[#64b7c4] px-4 py-2.5 text-[13px] font-semibold uppercase tracking-[0.2em] text-white shadow-sm hover:bg-[#4da4b4] focus:outline-none focus:ring-2 focus:ring-[#64b7c4]"
-                    >
-                      Get my development quote
-                    </button>
-
-                    <p className="mt-2 text-[11px] text-slate-500">
-                      Typical projects: new build houses, small blocks of flats,
-                      backland and infill schemes, conversions of houses to flats
-                      and HMO layouts.
-                    </p>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* CONTENT */}
-          <section className="border-b border-slate-200 bg-white py-10">
-            <div className="mx-auto max-w-5xl px-4 lg:px-6">
-              <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
-                Drawings for new builds and small developments
-              </h2>
-              <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-                WEDRAWPLANS work with small developers, investors and homeowners
-                who are building one off houses or small multi unit schemes.
-              </p>
-              <div className="mt-4 grid gap-4 text-[13px] md:grid-cols-2">
-                <ul className="space-y-1 text-slate-800">
-                  <li>• Site appraisals and feasibility sketches</li>
-                  <li>• Ground, first and upper floor plans</li>
-                  <li>• Elevations and street scenes</li>
-                  <li>• Roof plans and typical sections</li>
-                  <li>• Access, parking and refuse layouts</li>
-                </ul>
-                <ul className="space-y-1 text-slate-800">
-                  <li>• Unit schedules and basic area checks</li>
-                  <li>• Simple daylight and outlook considerations</li>
-                  <li>• Conversion layouts for flats and HMOs</li>
-                  <li>• Coordination with structural engineer designs</li>
-                  <li>• Information suitable for planning submissions</li>
-                </ul>
-              </div>
-            </div>
-          </section>
-
-          {/* PRICING */}
-          <section className="border-b border-slate-200 bg-[#f8f4f0] py-10">
-            <div className="mx-auto max-w-5xl px-4 lg:px-6">
-              <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
-                Fee approach for new build and development drawings
-              </h2>
-              <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-                Because each development site is unique, fees are set project by
-                project. As a guide, single new build houses often start from around
-                the same level as complex extensions, with multi unit schemes
-                priced to scope.
-              </p>
-              <p className="mt-2 text-[13px] text-slate-700">
-                After a short call or review of your information, a clear fixed fee
-                is issued for drawings so that you can plan finance and timescales
-                with certainty.
-              </p>
-              <div className="mt-5">
-                <button
-                  type="button"
-                  onClick={scrollToForm}
-                  className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-[13px] font-semibold uppercase tracking-[0.18em] text-white shadow-sm hover:bg-[#4da4b4] focus:outline-none focus:ring-2 focus:ring-[#64b7c4]"
-                >
-                  Request my development fee
-                </button>
-              </div>
-            </div>
-          </section>
-
-          {/* FINAL CTA */}
-          <section className="bg-[#f8f4f0] py-10">
-            <div className="mx-auto max-w-5xl px-4 text-center lg:px-6">
-              <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
-                Ready to move your site forward
-              </h2>
-              <p className="mt-3 text-[13px] text-slate-700">
-                Share basic details of your site and ambitions. WEDRAWPLANS will
-                come back with a structured proposal for drawings and next steps.
-              </p>
-              <div className="mt-5 flex flex-wrap justify-center gap-3">
-                <button
-                  type="button"
-                  onClick={scrollToForm}
-                  className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-[13px] font-semibold uppercase tracking-[0.18em] text-white shadow-sm hover:bg-[#4da4b4] focus:outline-none focus:ring-2 focus:ring-[#64b7c4]"
-                >
-                  Get my development quote
-                </button>
-                <a
-                  href={WHATSAPP_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-[13px] text-slate-800 shadow-sm hover:bg-slate-900 hover:text-white"
-                >
-                  <span>💬</span>
-                  <span>Chat on WhatsApp</span>
-                </a>
-              </div>
-            </div>
-          </section>
-        </main>
-      </div>
+        </section>
+      </main>
     </>
   );
 }
