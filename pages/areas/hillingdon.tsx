@@ -1,12 +1,16 @@
-```tsx
 import Head from "next/head";
 import React from "react";
+import Image from "next/image";
 import { submitBoroughLead } from "../lib/submitBoroughLead";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20need%20a%20quote%20for%20plans%20in%20Hillingdon";
+
+const HERO_IMAGE = "/images/areas/hillingdon/hero.jpg";
+const PROJECT_IMAGE_1 = "/images/areas/hillingdon/project-1.jpg";
+const PROJECT_IMAGE_2 = "/images/areas/hillingdon/project-2.jpg";
 
 export default function HillingdonPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -72,7 +76,7 @@ export default function HillingdonPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Yes. We produce clear planning drawings for rear and side extensions, wrap around extensions, and loft conversions including dormers. We also prepare sections and notes where needed to support smoother approvals.",
+            "Yes. We produce clear planning drawings for rear and side extensions, wrap around extensions and loft conversions including dormers. We also prepare sections and notes where needed to support smoother approvals.",
         },
       },
       {
@@ -99,7 +103,7 @@ export default function HillingdonPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "We cover the full borough including Uxbridge, Hayes, Ruislip, Ickenham, West Drayton, Yiewsley and surrounding areas.",
+            "We cover the full borough including Uxbridge, Hayes, Ruislip, Ickenham, West Drayton and surrounding areas.",
         },
       },
     ],
@@ -127,7 +131,7 @@ export default function HillingdonPage() {
       </Head>
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
-        {/* HEADER */}
+        {/* HEADER (Barnet style) */}
         <header className="border-b border-slate-200 bg-[#fdf8f3]/90 backdrop-blur">
           <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 lg:px-6">
             <div className="flex items-center gap-2">
@@ -163,7 +167,7 @@ export default function HillingdonPage() {
           </div>
         </header>
 
-        {/* HERO + FORM */}
+        {/* HERO + FORM (Barnet style) */}
         <section className="border-b border-slate-200 bg-[#fdf8f3]">
           <div className="mx-auto flex max-w-5xl flex-col gap-6 px-4 py-8 lg:flex-row lg:items-start lg:px-6 lg:py-10">
             {/* TEXT SIDE */}
@@ -204,15 +208,27 @@ export default function HillingdonPage() {
                 </a>
               </div>
 
-              <div className="mt-5 rounded-xl border border-slate-200 bg-white p-4">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-900">
-                  Hillingdon tip
-                </p>
-                <p className="mt-2 text-[13px] text-slate-700">
-                  Many streets suit tidy rear extensions and simple dormer layouts. Accurate
-                  measured drawings and clear massing normally reduce planning questions and speed
-                  up decisions.
-                </p>
+              {/* BARNET STYLE IMAGE SLOT */}
+              <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                <div className="relative h-[190px] w-full">
+                  <Image
+                    src={HERO_IMAGE}
+                    alt="Hillingdon architectural drawings and home extension plans"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 520px"
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+                <div className="p-4">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-900">
+                    Local focus
+                  </p>
+                  <p className="mt-2 text-[13px] text-slate-700">
+                    We work across Hillingdon suburbs where clean layouts, sensible roof forms and
+                    accurate measured surveys help unlock smooth approvals.
+                  </p>
+                </div>
               </div>
             </div>
 
@@ -265,7 +281,7 @@ export default function HillingdonPage() {
                     <input
                       name="postcode"
                       required
-                      placeholder="UB10 8XX"
+                      placeholder="UB3, UB4, UB7, UB8, UB10, HA4 and nearby"
                       className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 focus:border-[#64b7c4] focus:outline-none"
                     />
                   </div>
@@ -283,10 +299,13 @@ export default function HillingdonPage() {
                       </option>
                       <option>Extension</option>
                       <option>Loft conversion</option>
+                      <option>Garage conversion</option>
                       <option>Internal remodelling</option>
                       <option>New build</option>
                       <option>Flat conversion</option>
                       <option>Building regulation pack</option>
+                      <option>Planning + building regs package</option>
+                      <option>Lawful development certificate</option>
                     </select>
                   </div>
 
@@ -295,8 +314,8 @@ export default function HillingdonPage() {
                     <textarea
                       name="projectDetails"
                       rows={4}
-                      className="w-full rounded border border-slate-300 bg-white px-2 py-2 text-[13px] focus:border-[#64b7c4] focus:outline-none"
                       placeholder="Tell us about your Hillingdon project…"
+                      className="w-full rounded border border-slate-300 bg-white px-2 py-2 text-[13px] focus:border-[#64b7c4] focus:outline-none"
                     />
                   </div>
 
@@ -312,6 +331,101 @@ export default function HillingdonPage() {
                   </p>
                 </form>
               </div>
+
+              {/* QUICK CONTACT (Barnet style) */}
+              <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-4">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-900">
+                  Fast contact
+                </p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  <a
+                    href={PHONE_LINK}
+                    className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-[13px] text-slate-800 shadow-sm hover:bg-slate-900 hover:text-white"
+                  >
+                    📞 Call {PHONE_DISPLAY}
+                  </a>
+                  <a
+                    href={WHATSAPP_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-2 text-[13px] font-medium text-white hover:bg-[#1ebe57]"
+                  >
+                    💬 WhatsApp
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* PROJECT IMAGES (Barnet style) */}
+        <section className="border-b border-slate-200 bg-white py-10">
+          <div className="mx-auto max-w-5xl px-4 lg:px-6">
+            <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+              Example drawing packages
+            </h2>
+            <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
+              Below are example visuals used to show typical extension and loft drawing outputs. Use
+              local Hillingdon project imagery in these slots to keep the borough pages consistent.
+            </p>
+
+            <div className="mt-6 grid gap-5 md:grid-cols-2">
+              <div className="overflow-hidden rounded-2xl border border-slate-200 bg-[#fdf8f3]">
+                <div className="relative h-[220px] w-full">
+                  <Image
+                    src={PROJECT_IMAGE_1}
+                    alt="Hillingdon extension drawings example"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 520px"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-4">
+                  <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-slate-900">
+                    Extensions
+                  </p>
+                  <p className="mt-2 text-[13px] text-slate-700">
+                    Plans, elevations and sections for rear and side extensions with clear notes for
+                    planning and building control.
+                  </p>
+                </div>
+              </div>
+
+              <div className="overflow-hidden rounded-2xl border border-slate-200 bg-[#fdf8f3]">
+                <div className="relative h-[220px] w-full">
+                  <Image
+                    src={PROJECT_IMAGE_2}
+                    alt="Hillingdon loft conversion drawings example"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 520px"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-4">
+                  <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-slate-900">
+                    Lofts
+                  </p>
+                  <p className="mt-2 text-[13px] text-slate-700">
+                    Loft conversion drawing sets including dormers, stair layouts and compliance
+                    notes.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6 rounded-xl border border-amber-200 bg-amber-50 p-4">
+              <p className="text-[12px] font-semibold text-slate-900">
+                Important (fixing your error fast)
+              </p>
+              <p className="mt-2 text-[13px] text-slate-700">
+                If your page is throwing an image error, it is almost always because the image path
+                does not exist. Create these files (or change the paths to match your repo):
+                <span className="font-semibold"> {HERO_IMAGE}</span>,{" "}
+                <span className="font-semibold">{PROJECT_IMAGE_1}</span>,{" "}
+                <span className="font-semibold">{PROJECT_IMAGE_2}</span>.
+                Put them in <span className="font-semibold">/public</span> so Next Image can serve
+                them instantly.
+              </p>
             </div>
           </div>
         </section>
@@ -325,7 +439,7 @@ export default function HillingdonPage() {
 
             <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
               Hillingdon includes a wide mix of 1930s houses, suburban estates, post war homes and
-              large detached properties. Many households extend or remodel instead of moving.
+              larger detached properties. Many households extend or remodel instead of moving.
             </p>
 
             <div className="mt-5 grid gap-5 text-[13px] md:grid-cols-2">
@@ -364,8 +478,8 @@ export default function HillingdonPage() {
                   New build and infill
                 </h3>
                 <p className="mt-2 text-[13px] text-slate-700">
-                  Some plots in Hillingdon can support a new dwelling. We prepare feasibility layouts
-                  and full planning drawings.
+                  Some plots can support a new dwelling. We prepare feasibility layouts and full
+                  planning drawings.
                 </p>
               </div>
             </div>
@@ -380,9 +494,8 @@ export default function HillingdonPage() {
             </h2>
 
             <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-              Hillingdon follows London Plan policies and its Local Plan. Certain locations have
-              stricter controls, including some conservation areas around Uxbridge, Ruislip and
-              Ickenham.
+              Hillingdon follows London Plan policies and its Local Plan. Some locations have
+              additional controls including conservation areas around Uxbridge, Ruislip and Ickenham.
             </p>
 
             <div className="mt-4 grid gap-4 md:grid-cols-2">
@@ -412,8 +525,8 @@ export default function HillingdonPage() {
             </div>
 
             <p className="mt-4 max-w-3xl text-[13px] text-slate-700">
-              Many extensions in Hillingdon are approved when drawings are clear, accurate and in
-              line with local policy. We tailor each submission to your address.
+              Many extensions are approved when drawings are clear, accurate and in line with local
+              policy. We tailor each submission to your address.
             </p>
           </div>
         </section>
@@ -557,4 +670,3 @@ export default function HillingdonPage() {
     </>
   );
 }
-```
