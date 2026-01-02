@@ -19,7 +19,7 @@ export default function BoroughHeader({
   whatsappLink,
 }: BoroughHeaderProps) {
   return (
-    <header className="border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur">
+    <header className="relative z-[9999] border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur">
       <div className="mx-auto max-w-5xl px-4 py-3 lg:px-6">
         <div className="flex items-center justify-between gap-3">
           {/* LEFT: LOGO + TEXT */}
@@ -36,8 +36,6 @@ export default function BoroughHeader({
                 className="object-contain"
                 priority
               />
-              {/* makes the whole logo area reliably clickable */}
-              <span className="absolute inset-0 z-10" aria-hidden="true" />
             </div>
 
             <div className="hidden sm:block leading-tight">
