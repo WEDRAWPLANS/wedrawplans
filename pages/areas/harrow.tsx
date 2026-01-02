@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
-import Image from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
+import AreaTopHeader from "../../components/AreaTopHeader";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
@@ -31,7 +31,7 @@ export default function HarrowAreaPage() {
       streetAddress: "201 Borough High Street",
       addressLocality: "London",
       postalCode: "SE1 1JA",
-      addressCountry: "UK"
+      addressCountry: "UK",
     },
     areaServed: [
       "Harrow",
@@ -46,8 +46,9 @@ export default function HarrowAreaPage() {
       "Pinner borders",
       "Stanmore borders",
       "Queensbury side",
-      "Edgware borders"
+      "Edgware borders",
     ],
+
     description:
       "Architectural drawing services in Harrow for extensions, loft conversions, outbuildings, refurbishments and building regulations."
   };
