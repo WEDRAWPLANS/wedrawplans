@@ -41,7 +41,7 @@ export default function NewBuildPlansPage() {
     },
     areaServed: ["London", "Outer London", "M25"],
     description:
-      "New build planning drawings, Building Regulations packages, structural engineering coordination and town planning support for single houses and small developments."
+      "New build planning drawings, Building Regulations packages, structural engineering coordination and town planning support for New developments."
   };
 
   const serviceJson = {
