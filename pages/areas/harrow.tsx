@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import Image from "next/image";
+import NextImage from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
 import AreaTopHeader from "../../components/AreaTopHeader";
 
@@ -49,9 +49,8 @@ export default function HarrowAreaPage() {
       "Queensbury side",
       "Edgware borders",
     ],
-
     description:
-      "Architectural drawing services in Harrow for extensions, loft conversions, outbuildings, refurbishments and building regulations."
+      "Architectural drawing services in Harrow for extensions, loft conversions, outbuildings, refurbishments and building regulations.",
   };
 
   const faqJson = {
@@ -64,8 +63,8 @@ export default function HarrowAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Not always. Many rear extensions in Harrow can be carried out under permitted development. We confirm the correct route once we review your address and house type."
-        }
+            "Not always. Many rear extensions in Harrow can be carried out under permitted development. We confirm the correct route once we review your address and house type.",
+        },
       },
       {
         "@type": "Question",
@@ -73,8 +72,8 @@ export default function HarrowAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Harrow follows national permitted development rules but can be stricter in conservation areas, near Harrow on the Hill and in streets with strong character."
-        }
+            "Harrow follows national permitted development rules but can be stricter in conservation areas, near Harrow on the Hill and in streets with strong character.",
+        },
       },
       {
         "@type": "Question",
@@ -82,8 +81,8 @@ export default function HarrowAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Householder planning applications normally take six to eight weeks after validation. Lawful Development Certificates usually take around four to six weeks."
-        }
+            "Householder planning applications normally take six to eight weeks after validation. Lawful Development Certificates usually take around four to six weeks.",
+        },
       },
       {
         "@type": "Question",
@@ -91,13 +90,39 @@ export default function HarrowAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Yes. We prepare drawings, complete forms, upload documents, submit to Harrow Council and respond to planning officer queries."
-        }
-      }
-    ]
+            "Yes. We prepare drawings, complete forms, upload documents, submit to Harrow Council and respond to planning officer queries.",
+        },
+      },
+    ],
   };
 
   return (
+    <>
+      <Head>
+        <title>Architectural Drawings in Harrow</title>
+        <meta
+          name="description"
+          content="Architectural drawings in Harrow for extensions, loft conversions and new builds."
+        />
+        <link
+          rel="canonical"
+          href="https://www.wedrawplans.co.uk/areas/harrow"
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }}
+        />
+      </Head>
+
+      {/* ✅ THIS IS THE CLICKABLE TOP HEADER */}
+      <AreaTopHeader boroughName="Harrow" />
+
+      {/* PAGE CONTENT CONTINUES BELOW */}
+
     <>
       <Head>
         <title>Architectural Drawings in Harrow | Extensions, Lofts, New Builds</title>
