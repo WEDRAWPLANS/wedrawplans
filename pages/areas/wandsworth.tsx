@@ -5,7 +5,7 @@ import { submitBoroughLead } from "../../lib/submitBoroughLead";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
-const EMAIL = "info@wedrawplans.com";
+const EMAIL_DISPLAY = "info@wedrawplans.com";
 const EMAIL_LINK = "mailto:info@wedrawplans.com";
 const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Wandsworth";
@@ -26,7 +26,7 @@ export default function WandsworthAreaPage() {
     name: "WEDRAWPLANS",
     url: "https://www.wedrawplans.co.uk/areas/wandsworth",
     telephone: "+44 20 3654 8508",
-    email: EMAIL,
+    email: "info@wedrawplans.com",
     image: "https://www.wedrawplans.co.uk/images/drawings.jpg",
     address: {
       "@type": "PostalAddress",
@@ -40,13 +40,13 @@ export default function WandsworthAreaPage() {
       "Wandsworth Town",
       "Earlsfield",
       "Southfields",
-      "Putney borders",
       "Balham",
       "Tooting",
       "Furzedown",
       "Clapham Junction",
-      "Battersea (Wandsworth side)",
-      "Nine Elms borders",
+      "Battersea",
+      "Nine Elms",
+      "Putney",
     ],
     description:
       "Architectural drawing services in Wandsworth for extensions, loft conversions, refurbishments, outbuildings and building regulation plans. Fixed fees, clear communication, and initial survey within 48 hours.",
@@ -62,7 +62,7 @@ export default function WandsworthAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Not always. Many rear extensions can be completed under permitted development, depending on your house type, constraints and any Article 4 directions. We confirm the correct route after a quick review of your address.",
+            "Not always. Many rear extensions can be carried out under permitted development. We confirm the correct route after we review your address and house type, plus any constraints such as conservation areas or Article 4 directions.",
         },
       },
       {
@@ -71,7 +71,7 @@ export default function WandsworthAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Wandsworth can be strict in conservation areas and streets with consistent rear building lines. Design quality, neighbour impact and detailing are closely reviewed, particularly around Balham, Earlsfield, Wandsworth Town and Putney borders.",
+            "Wandsworth can be detailed in conservation areas and streets with consistent character. Good drawings, careful massing, and a clear planning case usually lead to a smoother decision.",
         },
       },
       {
@@ -80,7 +80,7 @@ export default function WandsworthAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Householder planning applications are typically decided within 8 weeks from validation. Lawful Development Certificates are often faster, commonly around 6 to 8 weeks, depending on validation and workload.",
+            "Householder planning applications typically take around 8 weeks after validation. Lawful Development Certificates often take around 6 to 8 weeks depending on workload and validation speed.",
         },
       },
       {
@@ -89,7 +89,7 @@ export default function WandsworthAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Yes. We prepare drawings, complete forms, upload documents, submit to Wandsworth Council and respond to planning officer queries through to decision.",
+            "Yes. We prepare the drawings, complete the forms, upload documents, submit the application, and respond to planning officer queries through to decision.",
         },
       },
     ],
@@ -99,13 +99,17 @@ export default function WandsworthAreaPage() {
     <>
       <Head>
         <title>
-          Architectural Drawings in Wandsworth – Extensions, Lofts & Planning Applications
+          Architectural Drawings in Wandsworth | Extensions, Lofts, Planning
+          Applications | WEDRAWPLANS
         </title>
         <meta
           name="description"
-          content="Architectural drawing services in Wandsworth for extensions, loft conversions, refurbishments, outbuildings and building regulation plans. Measured survey within 48 hours, clear drawings and full planning support with Wandsworth Council."
+          content="Architectural drawing services in Wandsworth for extensions, loft conversions, refurbishments, outbuildings and building regulation plans. Measured survey within 48 hours, clear drawings and full planning support."
         />
-        <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/wandsworth" />
+        <link
+          rel="canonical"
+          href="https://www.wedrawplans.co.uk/areas/wandsworth"
+        />
 
         <meta property="og:type" content="website" />
         <meta
@@ -114,7 +118,7 @@ export default function WandsworthAreaPage() {
         />
         <meta
           property="og:description"
-          content="Extensions, loft conversions, refurbishments and building regulation drawings in Wandsworth. Initial survey within 48 hours and full planning submission support."
+          content="Extensions, loft conversions, refurbishments and building regulation drawings in Wandsworth. Measured survey within 48 hours and full planning submission support."
         />
         <meta
           property="og:url"
@@ -132,7 +136,7 @@ export default function WandsworthAreaPage() {
         />
         <meta
           name="twitter:description"
-          content="Extensions, lofts, refurbishments and building regs drawings in Wandsworth. Initial survey within 48 hours."
+          content="Extensions, lofts, refurbishments and building regs drawings in Wandsworth. Survey within 48 hours."
         />
         <meta
           name="twitter:image"
@@ -172,10 +176,10 @@ export default function WandsworthAreaPage() {
             </h1>
 
             <p className="max-w-3xl text-sm md:text-base text-emerald-50">
-              Architectural drawing services in Wandsworth for rear and side
-              extensions, loft conversions, refurbishments, outbuildings and
-              building regulation plans. Drawings are prepared to Wandsworth
-              Council guidance and current Building Regulations.
+              Architectural drawing services in Wandsworth for house extensions,
+              loft conversions, refurbishments, outbuildings and small new build
+              homes. All drawings are prepared to local guidance and current
+              Building Regulations.
             </p>
 
             <div className="grid md:grid-cols-[2fr,1.2fr] gap-8 items-start">
@@ -184,7 +188,7 @@ export default function WandsworthAreaPage() {
                   <ul className="space-y-1 list-disc pl-4">
                     <li>Measured survey within 48 hours</li>
                     <li>Planning and permitted development advice</li>
-                    <li>Householder and Lawful Development applications</li>
+                    <li>Full planning and lawful development submissions</li>
                   </ul>
                   <ul className="space-y-1 list-disc pl-4">
                     <li>Drawings tailored to Wandsworth policies</li>
@@ -194,36 +198,53 @@ export default function WandsworthAreaPage() {
                 </div>
 
                 <p className="mt-2 text-xs text-emerald-100">
-                  Typical projects include side return extensions and wrap around
-                  extensions in Earlsfield and Balham, loft conversions in Tooting
-                  and Furzedown, and refurbishments around Wandsworth Town and
-                  Clapham Junction.
+                  Typical projects include rear and wrap extensions in Earlsfield
+                  and Balham, loft conversions in Tooting and Furzedown, and
+                  refurbishments near Wandsworth Town and Clapham Junction.
                 </p>
+
+                <div className="flex flex-wrap gap-2 pt-2">
+                  <a
+                    href={PHONE_LINK}
+                    className="inline-flex items-center justify-center rounded-full bg-white/10 px-4 py-2 text-xs font-semibold text-white hover:bg-white/15 transition"
+                  >
+                    Call {PHONE_DISPLAY}
+                  </a>
+                  <a
+                    href={WHATSAPP_LINK}
+                    className="inline-flex items-center justify-center rounded-full bg-white/10 px-4 py-2 text-xs font-semibold text-white hover:bg-white/15 transition"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    WhatsApp
+                  </a>
+                  <a
+                    href={EMAIL_LINK}
+                    className="inline-flex items-center justify-center rounded-full bg-white/10 px-4 py-2 text-xs font-semibold text-white hover:bg-white/15 transition"
+                  >
+                    Email
+                  </a>
+                </div>
               </div>
 
               <div className="space-y-2 text-sm text-right md:text-left">
                 <p className="text-xs text-emerald-100">Talk to us</p>
                 <p className="text-sm text-white">
                   Phone{" "}
-                  <a href={PHONE_LINK} className="font-semibold text-white underline">
+                  <a
+                    href={PHONE_LINK}
+                    className="font-semibold text-white underline"
+                  >
                     {PHONE_DISPLAY}
                   </a>
                 </p>
                 <p className="text-sm text-white">
                   Email{" "}
-                  <a href={EMAIL_LINK} className="font-semibold text-white underline">
-                    {EMAIL}
-                  </a>
-                </p>
-                <p className="text-sm text-white">
-                  WhatsApp{" "}
                   <a
-                    href={WHATSAPP_LINK}
+                    href={EMAIL_LINK}
                     className="font-semibold text-white underline"
-                    target="_blank"
-                    rel="noreferrer"
                   >
-                    message us
+                    {EMAIL_DISPLAY}
                   </a>
                 </p>
               </div>
@@ -258,14 +279,13 @@ export default function WandsworthAreaPage() {
               <p className="text-sm md:text-base text-slate-700">
                 WEDRAWPLANS prepares full drawing packages for rear and side
                 extensions, loft conversions, refurbishments, internal
-                reconfiguration, outbuildings and small developments across the
-                borough of Wandsworth.
+                reconfiguration and outbuildings across the borough of
+                Wandsworth.
               </p>
               <p className="text-sm md:text-base text-slate-700">
                 We work throughout Wandsworth Town, Earlsfield, Southfields,
-                Balham, Tooting, Furzedown, Clapham Junction and nearby streets,
-                with drawings designed to match local character and planning
-                expectations.
+                Balham, Tooting, Furzedown, Clapham Junction, Battersea and the
+                Nine Elms fringe, plus Putney borders.
               </p>
             </div>
 
@@ -279,12 +299,12 @@ export default function WandsworthAreaPage() {
               />
               <div className="p-5 space-y-2">
                 <h3 className="text-lg font-semibold">
-                  Clear drawings for South West London homes
+                  Clear drawings focused on planning and Building Control
                 </h3>
                 <p className="text-sm text-slate-700">
-                  Detailed plans, elevations and sections coordinated with
-                  structural design so Wandsworth Council and Building Control
-                  can assess the proposal quickly.
+                  Detailed floor plans, elevations, sections and notes coordinated
+                  with structural design so that the council and your builder can
+                  work from a single, accurate set of plans.
                 </p>
               </div>
             </div>
@@ -296,7 +316,7 @@ export default function WandsworthAreaPage() {
               <h3 className="text-lg font-semibold">Wandsworth areas we cover</h3>
               <Image
                 src="/images/wandsworth-area.jpg"
-                alt="Wandsworth local area"
+                alt="Wandsworth local high street and residential area"
                 width={800}
                 height={500}
                 className="rounded-xl object-cover mb-3"
@@ -316,7 +336,7 @@ export default function WandsworthAreaPage() {
                 </ul>
                 <ul className="list-disc pl-4 space-y-1">
                   <li>Clapham Junction</li>
-                  <li>Battersea (Wandsworth side)</li>
+                  <li>Battersea</li>
                   <li>Nine Elms fringe</li>
                   <li>Putney borders</li>
                   <li>Riverside streets</li>
@@ -329,17 +349,17 @@ export default function WandsworthAreaPage() {
               <h3 className="text-lg font-semibold">Popular projects in Wandsworth</h3>
               <div className="grid grid-cols-2 gap-3 text-sm text-slate-700">
                 <ul className="list-disc pl-4 space-y-1">
-                  <li>Large rear and wrap extensions</li>
-                  <li>Side return and side extensions</li>
+                  <li>Rear and wrap extensions</li>
+                  <li>Side return extensions</li>
                   <li>Loft conversions and dormers</li>
                   <li>Hip to gable loft conversions</li>
                   <li>Internal reconfiguration</li>
                 </ul>
                 <ul className="list-disc pl-4 space-y-1">
-                  <li>Basement and lower ground alterations</li>
+                  <li>Basement and lower ground works</li>
                   <li>Garden rooms and studios</li>
                   <li>Garage conversions</li>
-                  <li>High spec refurbishments</li>
+                  <li>High specification refurbishments</li>
                   <li>Small infill and mews schemes</li>
                 </ul>
               </div>
@@ -354,8 +374,8 @@ export default function WandsworthAreaPage() {
             <p className="text-sm text-slate-700">
               Many houses in Wandsworth benefit from permitted development rights,
               but conservation areas and local design guidance can influence what
-              is acceptable. Flats and maisonettes require full planning permission.
-              We confirm the correct route for your property at the start.
+              is acceptable. We confirm the correct route for your property at the
+              start.
             </p>
 
             <div className="grid md:grid-cols-3 gap-8 text-sm text-slate-700">
@@ -364,16 +384,16 @@ export default function WandsworthAreaPage() {
                 <ul className="list-disc pl-4 space-y-1">
                   <li>Depth and height assessed against neighbours</li>
                   <li>Daylight and overshadowing reviewed early</li>
-                  <li>We check street context and local precedents</li>
-                  <li>Party wall considerations included</li>
+                  <li>Street context and local precedents checked</li>
+                  <li>Party wall considerations discussed</li>
                 </ul>
               </div>
               <div>
                 <h3 className="font-semibold mb-2">Loft conversions</h3>
                 <ul className="list-disc pl-4 space-y-1">
                   <li>Dormer size guided by roof form and style</li>
-                  <li>Front roof changes tightly controlled</li>
-                  <li>Roof terraces need strong justification</li>
+                  <li>Front roof changes are tightly controlled</li>
+                  <li>Roof terraces often need a strong case</li>
                   <li>Stair headroom and fire escape designed properly</li>
                 </ul>
               </div>
@@ -389,7 +409,7 @@ export default function WandsworthAreaPage() {
             </div>
           </div>
 
-          {/* PLANNING & BUILDING REGS PACKS */}
+          {/* PACKS */}
           <div className="grid md:grid-cols-2 gap-10">
             <div className="rounded-2xl bg-white shadow-sm p-6 border border-slate-100 space-y-4">
               <h3 className="text-lg font-semibold">Planning drawings for Wandsworth</h3>
@@ -397,9 +417,9 @@ export default function WandsworthAreaPage() {
                 <li>Existing and proposed floor plans</li>
                 <li>Existing and proposed elevations</li>
                 <li>Sections through key areas</li>
-                <li>Roof plans and dormer layouts</li>
+                <li>Roof layouts and key details</li>
                 <li>Block plan and location plan</li>
-                <li>Design statement where required</li>
+                <li>Design statements where required</li>
               </ul>
             </div>
 
@@ -412,7 +432,7 @@ export default function WandsworthAreaPage() {
                 <li>Fire safety notes and escape routes</li>
                 <li>Thermal build ups and insulation specifications</li>
                 <li>Acoustic performance and separating elements</li>
-                <li>Ventilation and extracts</li>
+                <li>Ventilation and extract positions</li>
                 <li>Drainage layouts and contractor notes</li>
               </ul>
             </div>
@@ -424,14 +444,14 @@ export default function WandsworthAreaPage() {
               Local planning knowledge for Wandsworth projects
             </h2>
             <p className="text-sm text-emerald-900">
-              Wandsworth includes high value terraces, conservation areas and
-              streets with strong character where design quality and neighbour
-              impact are closely reviewed. We design schemes that respect local
-              context while delivering extra space and light.
+              Wandsworth includes high value terraces and family homes where
+              design quality, neighbour impact and detailing are reviewed closely.
+              We design schemes that respect local character while delivering
+              extra space, light and usability.
             </p>
           </div>
 
-          {/* BOROUGH QUOTE FORM */}
+          {/* LOCAL QUOTE FORM */}
           <div
             id="wandsworth-quote"
             className="rounded-2xl bg-white border border-slate-100 shadow-sm p-6 md:p-8"
@@ -440,10 +460,11 @@ export default function WandsworthAreaPage() {
               <div className="space-y-1">
                 <h2 className="text-2xl font-semibold">Request a free quote</h2>
                 <p className="text-sm text-slate-600">
-                  Tell us the address and what you want to build. We reply fast with a
-                  clear fixed quote.
+                  Tell us the address and what you want to build. We reply fast
+                  with a clear fixed quote.
                 </p>
               </div>
+
               <div className="flex flex-wrap gap-2">
                 <a
                   href={PHONE_LINK}
@@ -557,8 +578,8 @@ export default function WandsworthAreaPage() {
               </button>
 
               <p className="text-xs text-slate-500">
-                By submitting, you agree we can contact you about your project. We do
-                not share your details with third parties.
+                By submitting, you agree we can contact you about your project.
+                We do not share your details with third parties.
               </p>
             </form>
           </div>
@@ -572,16 +593,15 @@ export default function WandsworthAreaPage() {
                   Can you help with high specification refurbishments?
                 </h3>
                 <p>
-                  Yes. We prepare detailed plans and technical information for high
-                  specification refurbishments in Wandsworth, Balham and Clapham
-                  Junction.
+                  Yes. We prepare detailed plans and technical information for
+                  high specification refurbishments across Wandsworth.
                 </p>
               </div>
 
               <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
                 <h3 className="font-semibold">How fast can you survey in Wandsworth?</h3>
                 <p>
-                  In most cases we can arrange the initial measured survey within 48
+                  In many cases we can arrange the measured survey within 48
                   hours of instruction, subject to access.
                 </p>
               </div>
@@ -591,8 +611,8 @@ export default function WandsworthAreaPage() {
                   Do you manage planning submission to Wandsworth Council?
                 </h3>
                 <p>
-                  Yes. We manage the full application, upload drawings and respond to
-                  planning officer queries through to decision.
+                  Yes. We manage the full application, upload documents and
+                  respond to planning officer comments through to decision.
                 </p>
               </div>
 
@@ -601,8 +621,9 @@ export default function WandsworthAreaPage() {
                   Can you coordinate structural calculations?
                 </h3>
                 <p>
-                  Yes. We coordinate with structural engineers so beams, posts and
-                  load bearing elements are clearly designed and shown on the plans.
+                  Yes. We coordinate with structural engineers so beams, posts
+                  and load bearing elements are designed and shown clearly on
+                  the plans.
                 </p>
               </div>
             </div>
@@ -613,8 +634,8 @@ export default function WandsworthAreaPage() {
             <div>
               <h2 className="text-xl font-semibold">Ready to start your project</h2>
               <p className="text-sm text-slate-300">
-                Send your address and a short description of the extension, loft or
-                refurbishment you have in mind. We will review it and provide a fixed
+                Send your address and a short description of the extension, loft,
+                refurbishment or new layout. We review it and provide a fixed
                 quote the same day.
               </p>
             </div>
@@ -624,7 +645,7 @@ export default function WandsworthAreaPage() {
                 {PHONE_DISPLAY}
               </a>
               <a href={EMAIL_LINK} className="font-semibold text-emerald-300 underline">
-                {EMAIL}
+                {EMAIL_DISPLAY}
               </a>
               <a
                 href={WHATSAPP_LINK}
