@@ -1,24 +1,33 @@
 import React from "react";
 import Head from "next/head";
 import Image from "next/image";
-import { submitBoroughLead } from "../lib/submitBoroughLead";
+import { submitBoroughLead } from "../../lib/submitBoroughLead";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const EMAIL = "info@wedrawplans.com";
 const EMAIL_LINK = "mailto:info@wedrawplans.com";
 const WHATSAPP_LINK =
-  "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20need%20a%20quote%20for%20plans%20in%20Wandsworth";
+  "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Wandsworth";
 
-export default function Wandsworth() {
+export default function WandsworthAreaPage() {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    await submitBoroughLead(e, { boroughName: "Wandsworth" });
+  }
+
+  function scrollToForm() {
+    const el = document.getElementById("wandsworth-quote");
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
   const localBusinessJson = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: "WEDRAWPLANS",
-    url: "https://www.wedrawplans.co.uk/wandsworth",
+    url: "https://www.wedrawplans.co.uk/areas/wandsworth",
     telephone: "+44 20 3654 8508",
     email: EMAIL,
-    image: "https://www.wedrawplans.co.uk/images/drawings.jpg",
+    image: "https://www.wedrawplans.co.uk/images/hero.jpg",
     address: {
       "@type": "PostalAddress",
       streetAddress: "201 Borough High Street",
@@ -40,7 +49,7 @@ export default function Wandsworth() {
       "Nine Elms borders",
     ],
     description:
-      "Architectural drawing services in Wandsworth for extensions, loft conversions, refurbishments, outbuildings and building regulation plans.",
+      "Architectural drawing services in Wandsworth for extensions, loft conversions, refurbishments, outbuildings and building regulation plans. Fixed fees, clear communication, and initial survey within 48 hours.",
   };
 
   const faqJson = {
@@ -53,7 +62,7 @@ export default function Wandsworth() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Not always. Many rear extensions in Wandsworth can be completed under permitted development, depending on the house type, constraints and any Article 4 directions. We confirm the correct route after a quick review of your address.",
+            "Not always. Many rear extensions can be completed under permitted development, depending on the house type, constraints and any Article 4 directions. We confirm the correct route after a quick review of your address.",
         },
       },
       {
@@ -71,7 +80,7 @@ export default function Wandsworth() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Householder planning applications are typically decided within 8 weeks from validation. Lawful Development Certificates are often faster, commonly around 6 to 8 weeks, depending on workload and validation.",
+            "Householder planning applications are typically decided within 8 weeks from validation. Lawful Development Certificates are commonly around 6 to 8 weeks, depending on validation and workload.",
         },
       },
       {
@@ -86,26 +95,21 @@ export default function Wandsworth() {
     ],
   };
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    await submitBoroughLead(e, { boroughName: "Wandsworth" });
-  }
-
-  function scrollToForm() {
-    const el = document.getElementById("wandsworth-quote");
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-
   return (
     <>
       <Head>
         <title>
-          Architectural Drawings Wandsworth | Extensions, Lofts, Conversions | WEDRAWPLANS
+          Architectural Drawings in Wandsworth – Extensions, Lofts & Planning Applications
         </title>
         <meta
           name="description"
-          content="Architectural drawing services in Wandsworth for extensions, loft conversions, refurbishments, outbuildings and building regulation plans. Measured survey within 48 hours, clear drawings and full planning support with Wandsworth Council."
+          content="Architectural drawing services in Wandsworth for extensions, loft conversions, refurbishments, outbuildings and building regulation plans. Fixed fees, initial survey within 48 hours, and full planning support."
         />
-        <link rel="canonical" href="https://www.wedrawplans.co.uk/wandsworth" />
+        <link
+          rel="canonical"
+          href="https://www.wedrawplans.co.uk/areas/wandsworth"
+        />
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
@@ -116,528 +120,388 @@ export default function Wandsworth() {
         />
       </Head>
 
-      <main className="bg-slate-50">
-        {/* HERO */}
-        <section className="relative bg-emerald-900 text-white">
-          <div className="absolute inset-0 opacity-15 mix-blend-soft-light">
-            <Image
-              src="/images/drawings.jpg"
-              alt="Architectural drawings for Wandsworth extensions and lofts"
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
-
-          <div className="relative mx-auto max-w-5xl px-6 py-16 space-y-8">
-            <p className="text-xs font-semibold tracking-[0.2em] text-emerald-100">
-              WEDRAWPLANS • WANDSWORTH
-            </p>
-
-            <h1 className="text-4xl md:text-5xl font-bold leading-tight">
-              Architectural Drawings in Wandsworth
-            </h1>
-
-            <p className="max-w-3xl text-sm md:text-base text-emerald-50">
-              Architectural drawing services in Wandsworth for house extensions, loft
-              conversions, refurbishments, outbuildings and small new build homes. All
-              drawings are prepared to Wandsworth Council guidance and current Building
-              Regulations.
-            </p>
-
-            <div className="grid md:grid-cols-[2fr,1.2fr] gap-8 items-start">
-              <div className="space-y-3 text-sm">
-                <div className="grid sm:grid-cols-2 gap-3">
-                  <ul className="space-y-1 list-disc pl-4">
-                    <li>Measured survey within 48 hours</li>
-                    <li>Planning and permitted development advice</li>
-                    <li>Support with extensions and lofts</li>
-                  </ul>
-                  <ul className="space-y-1 list-disc pl-4">
-                    <li>Drawings tailored to Wandsworth policies</li>
-                    <li>Building regulation packages for 2025 standards</li>
-                    <li>Fixed quotes with clear scope of work</li>
-                  </ul>
-                </div>
-
-                <p className="mt-2 text-xs text-emerald-100">
-                  Typical Wandsworth projects include rear and wrap extensions in
-                  Earlsfield and Balham, loft conversions in Tooting and Furzedown, and
-                  refurbishments and internal alterations around Wandsworth Town and
-                  Clapham Junction.
-                </p>
-
-                <div className="flex flex-wrap gap-2 pt-2">
-                  <a
-                    href={PHONE_LINK}
-                    className="inline-flex items-center justify-center rounded-full bg-white/10 px-4 py-2 text-xs font-semibold text-white hover:bg-white/15 transition"
-                  >
-                    Call {PHONE_DISPLAY}
-                  </a>
-                  <a
-                    href={WHATSAPP_LINK}
-                    className="inline-flex items-center justify-center rounded-full bg-white/10 px-4 py-2 text-xs font-semibold text-white hover:bg-white/15 transition"
-                    rel="noreferrer"
-                    target="_blank"
-                  >
-                    WhatsApp
-                  </a>
-                  <a
-                    href={EMAIL_LINK}
-                    className="inline-flex items-center justify-center rounded-full bg-white/10 px-4 py-2 text-xs font-semibold text-white hover:bg-white/15 transition"
-                  >
-                    Email
-                  </a>
-                </div>
-              </div>
-
-              <div className="space-y-2 text-sm text-right md:text-left">
-                <p className="text-xs text-emerald-100">Talk to us</p>
-                <p className="text-sm text-white">
-                  Phone{" "}
-                  <a href={PHONE_LINK} className="font-semibold text-white underline">
-                    {PHONE_DISPLAY}
-                  </a>
-                </p>
-                <p className="text-sm text-white">
-                  Email{" "}
-                  <a href={EMAIL_LINK} className="font-semibold text-white underline">
-                    {EMAIL}
-                  </a>
-                </p>
-              </div>
-            </div>
-
-            <div className="pt-2 flex flex-col sm:flex-row gap-3">
-              <button
-                type="button"
-                onClick={scrollToForm}
-                className="inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-semibold text-emerald-900 shadow-lg shadow-emerald-900/30 hover:bg-emerald-50 transition"
-              >
-                Get your free quote
-              </button>
-              <a
-                href="/#quote"
-                className="inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-white/10 px-8 py-3 text-sm font-semibold text-white hover:bg-white/15 transition"
-              >
-                Go to main quote form
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* MAIN CONTENT */}
-        <section className="mx-auto max-w-5xl px-6 py-14 space-y-14">
-          {/* INTRO + DRAWINGS CARD */}
-          <div className="grid md:grid-cols-[1.7fr,1.3fr] gap-10 items-start">
-            <div className="space-y-4">
-              <h2 className="text-2xl font-semibold">
-                Architectural drawing services in Wandsworth
-              </h2>
-              <p className="text-sm md:text-base text-slate-700">
-                WEDRAWPLANS prepares full drawing packages for rear and side extensions,
-                loft conversions, refurbishments, internal reconfiguration and
-                outbuildings across the borough of Wandsworth.
-              </p>
-              <p className="text-sm md:text-base text-slate-700">
-                We work throughout Wandsworth Town, Earlsfield, Southfields, Balham,
-                Tooting, Furzedown, Clapham Junction, Battersea (Wandsworth side) and
-                Putney borders.
-              </p>
-            </div>
-
-            <div className="rounded-2xl bg-white shadow-md border border-slate-100 overflow-hidden">
+      <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
+        {/* HEADER (Barnet template) */}
+        <header className="bg-[#fdf8f3]/95 backdrop-blur border-b border-slate-200">
+          <div className="mx-auto max-w-6xl px-4 pt-6 pb-3 lg:px-6">
+            <div className="flex flex-col items-center text-center">
               <Image
-                src="/images/drawings.jpg"
-                alt="Example of architectural drawings for a Wandsworth project"
-                width={800}
-                height={500}
-                className="object-cover w-full h-48 md:h-56"
+                src="/images/wedrawplans-logo.png"
+                alt="WEDRAWPLANS"
+                width={420}
+                height={140}
+                priority
+                className="h-24 w-auto object-contain"
               />
-              <div className="p-5 space-y-2">
-                <h3 className="text-lg font-semibold">
-                  Clear drawings for high value South West London homes
-                </h3>
-                <p className="text-sm text-slate-700">
-                  Detailed plans, elevations and sections coordinated with structural
-                  design, tailored to Victorian and Edwardian terraces, semis and
-                  larger detached homes common in Wandsworth.
-                </p>
-              </div>
-            </div>
-          </div>
 
-          {/* AREAS COVERED + PROJECT TYPES */}
-          <div className="grid md:grid-cols-2 gap-10">
-            <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
-              <h3 className="text-lg font-semibold">Wandsworth areas we cover</h3>
-              <Image
-                src="/images/wandsworth-area.jpg"
-                alt="Wandsworth local high street and residential area"
-                width={800}
-                height={500}
-                className="rounded-xl object-cover mb-3"
-              />
-              <p className="text-sm text-slate-700">
-                Architectural drawings for the whole borough of Wandsworth, including:
-              </p>
-              <div className="grid grid-cols-2 gap-2 text-sm text-slate-700">
-                <ul className="list-disc pl-4 space-y-1">
-                  <li>Wandsworth Town</li>
-                  <li>Earlsfield</li>
-                  <li>Southfields</li>
-                  <li>Balham</li>
-                  <li>Tooting</li>
-                  <li>Furzedown</li>
-                </ul>
-                <ul className="list-disc pl-4 space-y-1">
-                  <li>Clapham Junction</li>
-                  <li>Battersea (Wandsworth side)</li>
-                  <li>Nine Elms fringe</li>
-                  <li>Putney borders</li>
-                  <li>Riverside streets</li>
-                  <li>Park side streets</li>
-                </ul>
+              <div className="mt-3 text-[11px] tracking-[0.18em] text-slate-600 uppercase">
+                Architectural Drawing Consultants
+              </div>
+
+              <div className="mt-2 max-w-3xl text-[13px] font-medium text-slate-800">
+                Architectural Drawings for Extensions, Lofts + New Builds at an
+                Affordable Fixed Cost
               </div>
             </div>
 
-            <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
-              <h3 className="text-lg font-semibold">Popular projects in Wandsworth</h3>
-              <div className="grid grid-cols-2 gap-3 text-sm text-slate-700">
-                <ul className="list-disc pl-4 space-y-1">
-                  <li>Large rear and wrap extensions</li>
-                  <li>Side return and side extensions</li>
-                  <li>Loft conversions and dormers</li>
-                  <li>Hip to gable loft conversions</li>
-                  <li>Internal reconfiguration</li>
-                </ul>
-                <ul className="list-disc pl-4 space-y-1">
-                  <li>Basement and lower ground alterations</li>
-                  <li>Garden rooms and studios</li>
-                  <li>Garage conversions</li>
-                  <li>High spec refurbishments</li>
-                  <li>Small infill and mews schemes</li>
-                </ul>
+            <hr className="mt-5 border-t border-slate-600" />
+
+            <div className="mt-2 flex w-full items-center justify-between gap-3">
+              <div className="text-[12px] text-slate-700">
+                <span className="font-semibold text-slate-900">Wandsworth</span> area
+                page
               </div>
-            </div>
-          </div>
 
-          {/* PLANNING / PD */}
-          <div className="space-y-5">
-            <h2 className="text-2xl font-semibold">
-              Planning and permitted development in Wandsworth
-            </h2>
-            <p className="text-sm text-slate-700">
-              Many houses in Wandsworth benefit from permitted development rights, but
-              conservation areas and local design guidance can influence what is
-              acceptable. We confirm the correct route for your property at the start.
-            </p>
-
-            <div className="grid md:grid-cols-3 gap-8 text-sm text-slate-700">
-              <div>
-                <h3 className="font-semibold mb-2">Rear extensions</h3>
-                <ul className="list-disc pl-4 space-y-1">
-                  <li>Depth and height assessed against neighbours</li>
-                  <li>Daylight and overshadowing reviewed early</li>
-                  <li>We check street context and local precedents</li>
-                  <li>Neighbours and party wall considerations</li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="font-semibold mb-2">Loft conversions</h3>
-                <ul className="list-disc pl-4 space-y-1">
-                  <li>Dormer size guided by roof form and style</li>
-                  <li>Front roof changes are tightly controlled</li>
-                  <li>Roof terraces often need strong justification</li>
-                  <li>Stair headroom and fire escape designed properly</li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="font-semibold mb-2">Refurbishment and upgrades</h3>
-                <ul className="list-disc pl-4 space-y-1">
-                  <li>Improved layouts for family living</li>
-                  <li>Better light, storage and circulation</li>
-                  <li>Energy and insulation upgrades</li>
-                  <li>Structural knock throughs coordinated</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* PLANNING & BUILDING REGS PACKS */}
-          <div className="grid md:grid-cols-2 gap-10">
-            <div className="rounded-2xl bg-white shadow-sm p-6 border border-slate-100 space-y-4">
-              <h3 className="text-lg font-semibold">Planning drawings for Wandsworth</h3>
-              <ul className="list-disc pl-4 space-y-1 text-sm text-slate-700">
-                <li>Existing and proposed floor plans</li>
-                <li>Existing and proposed elevations</li>
-                <li>Sections through key areas</li>
-                <li>Roof and terrace layouts</li>
-                <li>Block plan and location plan</li>
-                <li>Design statement where required</li>
-              </ul>
-            </div>
-
-            <div className="rounded-2xl bg-white shadow-sm p-6 border border-slate-100 space-y-4">
-              <h3 className="text-lg font-semibold">
-                Building regulation drawings for Wandsworth
-              </h3>
-              <ul className="list-disc pl-4 space-y-1 text-sm text-slate-700">
-                <li>Structural layouts and engineer coordination</li>
-                <li>Fire safety notes and escape routes</li>
-                <li>Thermal build ups and insulation specifications</li>
-                <li>Acoustic performance and separating elements</li>
-                <li>Ventilation and extracts</li>
-                <li>Drainage layouts and contractor notes</li>
-              </ul>
-            </div>
-          </div>
-
-          {/* LOCAL KNOWLEDGE */}
-          <div className="rounded-2xl bg-emerald-50 border border-emerald-100 p-6 space-y-3">
-            <h2 className="text-2xl font-semibold text-emerald-900">
-              Local planning knowledge for Wandsworth projects
-            </h2>
-            <p className="text-sm text-emerald-900">
-              Wandsworth contains many high value terraces and semis where quality of
-              design, neighbour impact and detailing are closely reviewed. We design
-              schemes that respect local character while delivering the extra space and
-              light clients want.
-            </p>
-          </div>
-
-          {/* LOCAL QUOTE FORM (BOROUGH SPECIFIC) */}
-          <div
-            id="wandsworth-quote"
-            className="rounded-2xl bg-white border border-slate-100 shadow-sm p-6 md:p-8"
-          >
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3">
-              <div className="space-y-1">
-                <h2 className="text-2xl font-semibold">Request a free quote</h2>
-                <p className="text-sm text-slate-600">
-                  Tell us the address and what you want to build. We reply fast with a
-                  clear fixed quote.
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex items-center gap-2">
                 <a
                   href={PHONE_LINK}
-                  className="inline-flex items-center justify-center rounded-full bg-slate-900 px-4 py-2 text-xs font-semibold text-white hover:bg-slate-800 transition"
+                  className="hidden sm:inline-flex items-center gap-1 rounded-full border border-slate-300 px-3 py-1.5 text-[12px] font-medium text-slate-900 shadow-sm hover:bg-slate-900 hover:text-white"
                 >
-                  Call {PHONE_DISPLAY}
+                  📞 {PHONE_DISPLAY}
                 </a>
+
                 <a
                   href={WHATSAPP_LINK}
-                  className="inline-flex items-center justify-center rounded-full bg-slate-100 px-4 py-2 text-xs font-semibold text-slate-900 hover:bg-slate-200 transition"
-                  rel="noreferrer"
                   target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 bg-[#25D366] text-white px-3 py-1.5 rounded-full text-[12px] font-medium shadow-sm hover:bg-[#1ebe57]"
                 >
-                  WhatsApp
-                </a>
-                <a
-                  href={EMAIL_LINK}
-                  className="inline-flex items-center justify-center rounded-full bg-slate-100 px-4 py-2 text-xs font-semibold text-slate-900 hover:bg-slate-200 transition"
-                >
-                  Email
+                  💬 <span className="hidden sm:inline">WhatsApp us</span>
                 </a>
               </div>
             </div>
+          </div>
+        </header>
 
-            <form onSubmit={handleSubmit} className="mt-6 grid gap-4">
-              <input type="hidden" name="borough" value="Wandsworth" />
-
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="grid gap-1">
-                  <label className="text-xs font-semibold text-slate-700">
-                    Full name
-                  </label>
-                  <input
-                    name="name"
-                    required
-                    className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-emerald-200"
-                    placeholder="Your name"
-                  />
-                </div>
-
-                <div className="grid gap-1">
-                  <label className="text-xs font-semibold text-slate-700">
-                    Email
-                  </label>
-                  <input
-                    name="email"
-                    type="email"
-                    required
-                    className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-emerald-200"
-                    placeholder="you@email.com"
-                  />
-                </div>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="grid gap-1">
-                  <label className="text-xs font-semibold text-slate-700">
-                    Phone
-                  </label>
-                  <input
-                    name="phone"
-                    required
-                    className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-emerald-200"
-                    placeholder="07..."
-                  />
-                </div>
-
-                <div className="grid gap-1">
-                  <label className="text-xs font-semibold text-slate-700">
-                    Property postcode
-                  </label>
-                  <input
-                    name="postcode"
-                    required
-                    className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-emerald-200"
-                    placeholder="SW..."
-                  />
-                </div>
-              </div>
-
-              <div className="grid gap-1">
-                <label className="text-xs font-semibold text-slate-700">
-                  Project address
-                </label>
-                <input
-                  name="address"
-                  required
-                  className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-emerald-200"
-                  placeholder="House number, street, Wandsworth"
-                />
-              </div>
-
-              <div className="grid gap-1">
-                <label className="text-xs font-semibold text-slate-700">
-                  What do you want to build
-                </label>
-                <textarea
-                  name="message"
-                  required
-                  rows={5}
-                  className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-emerald-200"
-                  placeholder="Rear extension, side return, loft conversion, refurbishment, outbuilding, new layout, etc."
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="mt-2 inline-flex items-center justify-center rounded-full bg-emerald-900 px-8 py-3 text-sm font-semibold text-white hover:bg-emerald-800 transition"
-              >
-                Send request
-              </button>
-
-              <p className="text-xs text-slate-500">
-                By submitting, you agree we can contact you about your project. We do
-                not share your details with third parties.
+        {/* HERO + FORM */}
+        <section className="border-b border-slate-200 bg-[#fdf8f3]">
+          <div className="mx-auto flex max-w-5xl flex-col gap-6 px-4 py-8 lg:flex-row lg:items-start lg:px-6 lg:py-10">
+            {/* TEXT */}
+            <div className="lg:w-1/2">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-red-700">
+                Wandsworth architectural drawings
               </p>
-            </form>
-          </div>
 
-          {/* FAQ */}
-          <div className="space-y-4">
-            <h2 className="text-2xl font-semibold">Frequently asked questions</h2>
-            <div className="grid md:grid-cols-2 gap-6 text-sm text-slate-700">
-              <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                <h3 className="font-semibold">
-                  Can you help with high specification refurbishments?
-                </h3>
-                <p>
-                  Yes. We prepare detailed plans and technical information for high end
-                  refurbishments in Wandsworth, Balham and Clapham Junction.
-                </p>
+              <h1 className="mt-2 text-[22px] font-semibold uppercase leading-snug tracking-[0.14em] sm:text-[26px] text-slate-900">
+                Planning drawings for extensions, lofts and refurbishments
+              </h1>
+
+              <p className="mt-3 text-[13px] text-slate-700">
+                WEDRAWPLANS prepare planning and technical drawings for homes across
+                Wandsworth, Earlsfield, Balham, Tooting and Clapham Junction. Fixed
+                fees, clear drawings and responsive communication.
+              </p>
+
+              <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
+                <li>• Rear, side and wrap-around extensions</li>
+                <li>• Loft conversions and dormers</li>
+                <li>• Basement and internal reconfiguration</li>
+                <li>• Outbuildings and garden rooms</li>
+                <li>• Building regulation packages</li>
+                <li>• Initial survey within 48 hours where required</li>
+              </ul>
+
+              <div className="mt-5 flex items-center gap-3">
+                <button
+                  onClick={scrollToForm}
+                  type="button"
+                  className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-[13px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-[#4da4b4]"
+                >
+                  Get your quick quote
+                </button>
+
+                <a href={PHONE_LINK} className="text-[13px] underline text-slate-800">
+                  Or call {PHONE_DISPLAY}
+                </a>
               </div>
 
-              <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                <h3 className="font-semibold">How fast can you survey in Wandsworth?</h3>
-                <p>
-                  In most cases we can arrange the measured survey within forty eight
-                  hours of instruction, subject to access.
-                </p>
-              </div>
-
-              <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                <h3 className="font-semibold">
-                  Do you manage planning submission to Wandsworth Council?
-                </h3>
-                <p>
-                  Yes. We manage the full application, upload documents and respond to
-                  planner comments through to decision.
-                </p>
-              </div>
-
-              <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                <h3 className="font-semibold">
-                  Can you coordinate structural calculations?
-                </h3>
-                <p>
-                  Yes. We coordinate with structural engineers so beams, posts and load
-                  bearing elements are clearly designed and shown on the plans.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* FINAL CTA */}
-          <div className="rounded-2xl bg-slate-900 text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div>
-              <h2 className="text-xl font-semibold">Ready to start your project</h2>
-              <p className="text-sm text-slate-300">
-                Send your address and a short description of the extension, loft,
-                refurbishment or new layout. We review it and provide a fixed quote the
-                same day.
+              <p className="mt-3 text-[12px] text-slate-600">
+                Initial survey within 48 hours (where required), then we confirm drawings, fees and next steps.
               </p>
             </div>
 
-            <div className="flex flex-col space-y-1 text-sm">
-              <a href={PHONE_LINK} className="font-semibold text-emerald-300 underline">
-                {PHONE_DISPLAY}
-              </a>
-              <a href={EMAIL_LINK} className="font-semibold text-emerald-300 underline">
-                {EMAIL}
-              </a>
-              <a
-                href={WHATSAPP_LINK}
-                className="font-semibold text-emerald-300 underline"
-                rel="noreferrer"
-                target="_blank"
-              >
-                WhatsApp us
-              </a>
-              <button
-                type="button"
-                onClick={scrollToForm}
-                className="mt-2 inline-flex items-center justify-center rounded-full bg-white px-5 py-2 text-sm font-semibold text-emerald-900 shadow hover:bg-emerald-100"
-              >
-                Get your free quote
-              </button>
+            {/* FORM */}
+            <div id="wandsworth-quote" className="lg:w-1/2">
+              <div className="rounded-2xl bg-white p-5 shadow-md">
+                <h2 className="text-[14px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+                  Free fixed quote for Wandsworth projects
+                </h2>
+
+                <form onSubmit={handleSubmit} className="mt-3 space-y-3 text-[13px]">
+                  <div>
+                    <label className="text-[11px] font-medium text-slate-700">Name</label>
+                    <input
+                      name="name"
+                      required
+                      className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 focus:border-[#64b7c4] outline-none"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                    <div>
+                      <label className="text-[11px] font-medium text-slate-700">Telephone</label>
+                      <input
+                        name="phone"
+                        required
+                        className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 focus:border-[#64b7c4] outline-none"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="text-[11px] font-medium text-slate-700">Email</label>
+                      <input
+                        name="email"
+                        required
+                        type="email"
+                        className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 focus:border-[#64b7c4] outline-none"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="text-[11px] font-medium text-slate-700">Wandsworth Postcode</label>
+                    <input
+                      name="postcode"
+                      required
+                      placeholder="SW18 2XX"
+                      className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 focus:border-[#64b7c4] outline-none"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="text-[11px] font-medium text-slate-700">Project type</label>
+                    <select
+                      name="projectType"
+                      required
+                      defaultValue=""
+                      className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 focus:border-[#64b7c4] outline-none"
+                    >
+                      <option value="" disabled>
+                        Select one
+                      </option>
+                      <option value="Extension">Extension</option>
+                      <option value="Loft conversion">Loft conversion</option>
+                      <option value="Internal remodelling">Internal remodelling</option>
+                      <option value="Outbuilding">Outbuilding / garden room</option>
+                      <option value="New build">New build house</option>
+                      <option value="Building regulations">Building regulation pack</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="text-[11px] font-medium text-slate-700">Project details</label>
+                    <textarea
+                      name="projectDetails"
+                      rows={4}
+                      className="w-full rounded border border-slate-300 px-2 py-2 focus:border-[#64b7c4] outline-none"
+                      placeholder="Tell us about your Wandsworth project…"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full rounded-full bg-[#64b7c4] px-4 py-2.5 text-[13px] font-semibold tracking-[0.2em] text-white hover:bg-[#4da4b4]"
+                  >
+                    Get my quote
+                  </button>
+
+                  <p className="text-[11px] text-slate-500">
+                    Prefer WhatsApp. Send your postcode plus a short description.
+                  </p>
+                </form>
+              </div>
             </div>
           </div>
+        </section>
 
-          {/* INTERNAL LINKS */}
-          <div className="text-xs text-slate-500 pt-4">
-            <p>
-              See also:{" "}
-              <a href="/extension-plans" className="underline text-emerald-700">
-                House extension drawings
-              </a>
-              ,{" "}
-              <a href="/loft-conversion-plans" className="underline text-emerald-700">
-                Loft conversion drawings
-              </a>{" "}
-              and{" "}
-              <a href="/" className="underline text-emerald-700">
-                WEDRAWPLANS home page
-              </a>
-              .
+        {/* COMMON PROJECT TYPES */}
+        <section className="border-b border-slate-200 bg-white py-10">
+          <div className="mx-auto max-w-5xl px-4 lg:px-6">
+            <h2 className="text-[18px] font-semibold uppercase text-slate-900 tracking-[0.16em]">
+              Common projects in Wandsworth
+            </h2>
+
+            <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
+              Wandsworth has a strong mix of Victorian and Edwardian terraces, mansion blocks,
+              and family housing with many conservation areas. Many households extend or remodel
+              to gain space rather than move.
+            </p>
+
+            <div className="mt-5 grid gap-5 text-[13px] md:grid-cols-2">
+              <div>
+                <h3 className="text-[14px] font-semibold uppercase text-slate-900">
+                  Side return and wrap-around extensions
+                </h3>
+                <p className="mt-2">
+                  Popular across Earlsfield, Balham and Tooting where terraces benefit from
+                  wider kitchen and dining spaces with good daylight.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-[14px] font-semibold uppercase text-slate-900">
+                  Loft conversions and dormers
+                </h3>
+                <p className="mt-2">
+                  Rear dormers, L shaped dormers and hip to gable conversions are common.
+                  We design stairs, layouts and fire safety routes in line with regulations.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-[14px] font-semibold uppercase text-slate-900">
+                  Refurbishments and internal changes
+                </h3>
+                <p className="mt-2">
+                  Replanning layouts, structural openings and improving light are common.
+                  We coordinate with structural engineers for clear buildable drawings.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-[14px] font-semibold uppercase text-slate-900">
+                  Outbuildings and garden rooms
+                </h3>
+                <p className="mt-2">
+                  Garden studios and home offices can often be done quickly with the right
+                  drawings and guidance on planning routes.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* PLANNING GUIDANCE */}
+        <section className="border-b border-slate-200 bg-[#f8f4f0] py-10">
+          <div className="mx-auto max-w-5xl px-4 lg:px-6">
+            <h2 className="text-[18px] font-semibold uppercase text-slate-900 tracking-[0.16em]">
+              Planning guidance for Wandsworth
+            </h2>
+
+            <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
+              Wandsworth contains many conservation areas and design sensitive streets.
+              Loft shapes, rear massing and window positions are often assessed carefully.
+            </p>
+
+            <ul className="mt-4 space-y-2 text-[13px] text-slate-800">
+              <li>• We check whether your home is in a conservation area</li>
+              <li>• We review Article 4 Directions where relevant</li>
+              <li>• We prepare householder planning applications and LDCs</li>
+              <li>• We design with daylight and neighbour impact in mind</li>
+              <li>• We coordinate structural input for accurate proposals</li>
+            </ul>
+
+            <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
+              Strong drawings and a clear design rationale often lead to smooth approvals.
+              We tailor every submission to the local context.
             </p>
           </div>
         </section>
-      </main>
+
+        {/* FEES */}
+        <section className="border-b border-slate-200 bg-white py-10">
+          <div className="mx-auto max-w-5xl px-4 lg:px-6">
+            <h2 className="text-[18px] font-semibold uppercase text-slate-900 tracking-[0.16em]">
+              Fixed fees for Wandsworth projects
+            </h2>
+
+            <div className="mt-5 grid gap-4 text-[13px] md:grid-cols-3">
+              <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
+                <h3 className="text-[13px] font-semibold">Planning drawings</h3>
+                <p className="mt-1 text-[13px] font-semibold">from £750 + VAT</p>
+                <p className="mt-2 text-[12px] text-slate-600">
+                  Existing and proposed plans and elevations for extensions, lofts and remodels.
+                </p>
+              </div>
+
+              <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
+                <h3 className="text-[13px] font-semibold">Measured surveys</h3>
+                <p className="mt-1 text-[13px] font-semibold">from £150 + VAT</p>
+                <p className="mt-2 text-[12px] text-slate-600">
+                  On site surveys for accurate existing plans (initial survey within 48 hours where required).
+                </p>
+              </div>
+
+              <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
+                <h3 className="text-[13px] font-semibold">Building regulation packs</h3>
+                <p className="mt-1 text-[13px] font-semibold">from £950 + VAT</p>
+                <p className="mt-2 text-[12px] text-slate-600">
+                  Technical drawings coordinated with structural engineers.
+                </p>
+              </div>
+            </div>
+
+            <button
+              onClick={scrollToForm}
+              type="button"
+              className="mt-5 rounded-full bg-[#64b7c4] px-5 py-2.5 text-[13px] font-semibold text-white hover:bg-[#4da4b4]"
+            >
+              Request a fixed fee
+            </button>
+          </div>
+        </section>
+
+        {/* AREA IMAGE + FIX NOTE */}
+        <section className="border-b border-slate-200 bg-white py-10">
+          <div className="mx-auto max-w-5xl px-4 lg:px-6">
+            <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+              Wandsworth areas we cover
+            </h2>
+
+            <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
+              Wandsworth, Wandsworth Town, Earlsfield, Southfields, Balham, Tooting, Furzedown,
+              Clapham Junction and nearby streets.
+            </p>
+
+            <div className="mt-5 rounded-2xl border border-slate-200 bg-[#fdf8f3] p-4">
+              <div className="relative overflow-hidden rounded-xl">
+                <Image
+                  src="/images/wandsworth-area.jpg"
+                  alt="Wandsworth area"
+                  width={1200}
+                  height={720}
+                  className="h-auto w-full object-cover"
+                />
+              </div>
+              <p className="mt-3 text-[12px] text-slate-600">
+                Image file must exist at <span className="font-semibold">/public/images/wandsworth-area.jpg</span>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* FINAL CTA */}
+        <section className="bg-[#f8f4f0] py-10">
+          <div className="mx-auto max-w-5xl px-4 text-center lg:px-6">
+            <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+              Ready to move your Wandsworth project forward
+            </h2>
+
+            <p className="mt-3 text-[13px] text-slate-700">
+              Share a few details using the form above and we will provide a clear fixed fee and suggested next steps.
+            </p>
+
+            <div className="mt-5 flex justify-center gap-3">
+              <button
+                onClick={scrollToForm}
+                type="button"
+                className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-[13px] font-semibold text-white hover:bg-[#4da4b4]"
+              >
+                Get your quick quote
+              </button>
+
+              <a
+                href={WHATSAPP_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-slate-300 px-4 py-2 text-[13px] text-slate-800 hover:bg-slate-900 hover:text-white"
+              >
+                💬 WhatsApp
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
     </>
   );
 }
