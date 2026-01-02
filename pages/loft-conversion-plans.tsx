@@ -20,7 +20,7 @@ export default function LoftConversionPlansPage() {
   const pageTitle =
     "Loft Conversion Plans London | Dormer, Mansard, Hip to Gable – WEDRAWPLANS";
   const pageDescription =
-    "Loft conversion plans and drawings in London with fixed fees. Dormer, mansard, hip to gable and rooflight lofts. Planning and Building Regulations packs. Structural engineer included through coordinated structural design and calculations.";
+    "Loft conversion plans and drawings in London and the M25 area with fixed fees. Dormer, mansard, hip to gable and rooflight lofts. Planning and Building Regulations packs. Structural engineer included through coordinated structural design and calculations.";
 
   const localBusinessJson = {
     "@context": "https://schema.org",
@@ -39,7 +39,7 @@ export default function LoftConversionPlansPage() {
     },
     areaServed: "Greater London and M25",
     description:
-      "Loft conversion plans and structural design coordination in London. Planning drawings and Building Regulations packs for dormer, mansard, hip to gable and rooflight loft conversions."
+      "Loft conversion plans and structural design service in London and the M25 area. Planning drawings and Building Regulations packs for dormer, mansard, hip to gable and rooflight loft conversions."
   };
 
   const faqJson = {
