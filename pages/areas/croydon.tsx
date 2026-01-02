@@ -1,7 +1,10 @@
+```tsx
 import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
+import AreaTopHeader from "../../components/AreaTopHeader";
+import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
@@ -33,7 +36,7 @@ export default function CroydonAreaPage() {
       streetAddress: "201 Borough High Street",
       addressLocality: "London",
       postalCode: "SE1 1JA",
-      addressCountry: "UK"
+      addressCountry: "UK",
     },
     areaServed: [
       "Croydon",
@@ -48,10 +51,10 @@ export default function CroydonAreaPage() {
       "Thornton Heath",
       "Norbury",
       "Shirley",
-      "New Addington"
+      "New Addington",
     ],
     description:
-      "Architectural drawing services in Croydon for extensions, loft conversions, refurbishments, outbuildings and building regulation plans. Survey within 48 hours and full planning submission support."
+      "Architectural drawing services in Croydon for extensions, loft conversions, refurbishments, outbuildings and building regulation plans. Survey within 48 hours and full planning submission support.",
   };
 
   const breadcrumbJson = {
@@ -62,15 +65,15 @@ export default function CroydonAreaPage() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://www.wedrawplans.co.uk/"
+        item: "https://www.wedrawplans.co.uk/",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Croydon",
-        item: "https://www.wedrawplans.co.uk/areas/croydon"
-      }
-    ]
+        item: "https://www.wedrawplans.co.uk/areas/croydon",
+      },
+    ],
   };
 
   const serviceJson = {
@@ -80,7 +83,7 @@ export default function CroydonAreaPage() {
     name: "Architectural drawings in Croydon",
     provider: {
       "@type": "LocalBusiness",
-      "@id": "https://www.wedrawplans.co.uk/areas/croydon#business"
+      "@id": "https://www.wedrawplans.co.uk/areas/croydon#business",
     },
     areaServed: "London Borough of Croydon",
     serviceType: [
@@ -88,10 +91,10 @@ export default function CroydonAreaPage() {
       "Permitted development drawings",
       "Lawful Development Certificate drawings",
       "Building regulation drawings",
-      "Measured survey"
+      "Measured survey",
     ],
     description:
-      "Planning and building regulation drawing packages for Croydon homes, including extensions, loft conversions, refurbishments and outbuildings."
+      "Planning and building regulation drawing packages for Croydon homes, including extensions, loft conversions, refurbishments and outbuildings.",
   };
 
   const faqJson = {
@@ -104,8 +107,8 @@ export default function CroydonAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Not always. Many rear extensions can be permitted development, but it depends on your house type, site constraints, and whether any restrictions apply. We confirm the best route after a quick review of your address and goals."
-        }
+            "Not always. Many rear extensions can be permitted development, but it depends on your house type, site constraints, and whether any restrictions apply. We confirm the best route after a quick review of your address and goals.",
+        },
       },
       {
         "@type": "Question",
@@ -113,8 +116,8 @@ export default function CroydonAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Timescales vary, but householder applications are commonly decided within several weeks after validation. If you need certainty for a permitted development style scheme, a Lawful Development Certificate can be a safer option."
-        }
+            "Timescales vary, but householder applications are commonly decided within several weeks after validation. If you need certainty for a permitted development style scheme, a Lawful Development Certificate can be a safer option.",
+        },
       },
       {
         "@type": "Question",
@@ -122,8 +125,8 @@ export default function CroydonAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Yes. We prepare drawings, complete forms, upload documents, submit to the council portal, and respond to planning officer queries through to decision."
-        }
+            "Yes. We prepare drawings, complete forms, upload documents, submit to the council portal, and respond to planning officer queries through to decision.",
+        },
       },
       {
         "@type": "Question",
@@ -131,8 +134,8 @@ export default function CroydonAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "A coordinated package typically includes plans, elevations, sections, key construction details, notes for compliance, and coordination points for structure, ventilation, insulation, and drainage so builders can price and build correctly."
-        }
+            "A coordinated package typically includes plans, elevations, sections, key construction details, notes for compliance, and coordination points for structure, ventilation, insulation, and drainage so builders can price and build correctly.",
+        },
       },
       {
         "@type": "Question",
@@ -140,8 +143,8 @@ export default function CroydonAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "In most cases we can arrange a measured survey within 48 hours, subject to access and location."
-        }
+            "In most cases we can arrange a measured survey within 48 hours, subject to access and location.",
+        },
       },
       {
         "@type": "Question",
@@ -149,10 +152,10 @@ export default function CroydonAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Yes. We design and draw side extensions, wrap around rear extensions, dormer loft conversions, and internal reconfiguration so the layout works and the planning submission is clear."
-        }
-      }
-    ]
+            "Yes. We design and draw side extensions, wrap around rear extensions, dormer loft conversions, and internal reconfiguration so the layout works and the planning submission is clear.",
+        },
+      },
+    ],
   };
 
   return (
@@ -172,7 +175,10 @@ export default function CroydonAreaPage() {
         />
         <meta property="og:url" content="https://www.wedrawplans.co.uk/areas/croydon" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://www.wedrawplans.co.uk/images/drawings.jpg" />
+        <meta
+          property="og:image"
+          content="https://www.wedrawplans.co.uk/images/drawings.jpg"
+        />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Architectural Drawings Croydon | WEDRAWPLANS" />
@@ -180,7 +186,10 @@ export default function CroydonAreaPage() {
           name="twitter:description"
           content="Planning and building regulation drawing packages in Croydon. Survey within 48 hours, fixed quote, and full submission support."
         />
-        <meta name="twitter:image" content="https://www.wedrawplans.co.uk/images/drawings.jpg" />
+        <meta
+          name="twitter:image"
+          content="https://www.wedrawplans.co.uk/images/drawings.jpg"
+        />
 
         <script
           type="application/ld+json"
@@ -200,59 +209,12 @@ export default function CroydonAreaPage() {
         />
       </Head>
 
+      {/* CLICKABLE TOP HEADER (Barnet style header component) */}
+      <AreaTopHeader />
+
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
-        {/* HEADER MATCH HOMEPAGE STYLE (SAME AS BARNET AND CAMDEN) */}
-        <header className="bg-[#fdf8f3]/95 backdrop-blur border-b border-slate-200">
-          <div className="mx-auto max-w-6xl px-4 pt-6 pb-3 lg:px-6">
-            <div className="flex flex-col items-center text-center">
-              <Image
-                src="/images/wedrawplans-logo.png"
-                alt="WEDRAWPLANS"
-                width={420}
-                height={140}
-                priority
-                className="h-24 w-auto object-contain"
-              />
-
-              <div className="mt-3 text-[11px] tracking-[0.18em] text-slate-600 uppercase">
-                Architectural Drawing Consultants
-              </div>
-
-              <div className="mt-2 max-w-3xl text-[13px] font-medium text-slate-800">
-                Architectural Drawings for Extensions, Lofts + New Builds at an Affordable Fixed Cost
-              </div>
-            </div>
-
-            <hr className="mt-5 border-t border-slate-600" />
-
-            <div className="mt-2 flex w-full items-center justify-between gap-3">
-              <div className="text-[12px] text-slate-700">
-                <span className="font-semibold text-slate-900">Croydon</span> borough page
-              </div>
-
-              <div className="flex items-center gap-2">
-                <a
-                  href={PHONE_LINK}
-                  className="hidden items-center gap-1 rounded-full border border-slate-300 px-3 py-1.5 text-[12px] font-medium text-slate-900 shadow-sm hover:bg-slate-900 hover:text-white sm:inline-flex"
-                >
-                  📞 {PHONE_DISPLAY}
-                </a>
-
-                <a
-                  href={WHATSAPP_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 bg-[#25D366] text-white px-3 py-1.5 rounded-full text-[12px] font-medium shadow-sm hover:bg-[#1ebe57]"
-                >
-                  💬 <span className="hidden sm:inline">WhatsApp us</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </header>
-
         <main>
-          {/* HERO + FORM (SAME AS BARNET AND CAMDEN) */}
+          {/* HERO + FORM (Barnet structure) */}
           <section className="border-b border-slate-200 bg-[#fdf8f3]">
             <div className="mx-auto max-w-5xl flex flex-col lg:flex-row gap-6 px-4 py-8 lg:px-6 lg:py-10">
               {/* LEFT TEXT */}
@@ -262,13 +224,13 @@ export default function CroydonAreaPage() {
                 </p>
 
                 <h1 className="mt-2 text-[22px] sm:text-[26px] font-semibold uppercase leading-snug tracking-[0.14em]">
-                  Plans for extensions, lofts and refurbishments in Croydon
+                  Plans for extensions, lofts and building regs in Croydon
                 </h1>
 
                 <p className="mt-3 text-[13px] text-slate-700">
                   WEDRAWPLANS prepare planning and technical drawings for Croydon homes,
-                  including rear extensions, wrap around extensions, loft dormers,
-                  refurbishments and outbuildings. Fixed fees with clear scope and fast communication.
+                  including extensions, loft conversions, refurbishments and outbuildings.
+                  Fixed fees with clear scope and fast communication.
                 </p>
 
                 <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
@@ -372,9 +334,7 @@ export default function CroydonAreaPage() {
                     </div>
 
                     <div className="space-y-1">
-                      <label className="text-[11px] font-medium">
-                        Brief description of your project
-                      </label>
+                      <label className="text-[11px] font-medium">Brief description of your project</label>
                       <textarea
                         name="projectDetails"
                         rows={4}
@@ -399,35 +359,25 @@ export default function CroydonAreaPage() {
             </div>
           </section>
 
-          {/* MERGED RICH CONTENT (YOUR CROYDON CONTENT, IN BARNET STYLE) */}
+          {/* INTERNAL LINKS (SERVICE PAGES) */}
+          <ServiceInternalLinks boroughName="Croydon" />
+
+          {/* MERGED RICH CONTENT */}
           <section className="bg-white border-b border-slate-200 py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
               <div className="grid md:grid-cols-[1.7fr,1.3fr] gap-10 items-start">
                 <div className="space-y-4">
                   <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
-                    Planning and building regulation drawings for Croydon homes
+                    Architectural drawing services in Croydon
                   </h2>
                   <p className="text-[13px] text-slate-700">
-                    WEDRAWPLANS prepares full drawing packages for rear and side extensions, loft conversions,
-                    refurbishments, internal reconfiguration and outbuildings across the London Borough of Croydon.
+                    WEDRAWPLANS prepare full drawing packages for rear and side extensions, loft conversions,
+                    refurbishments, internal alterations, outbuildings and small residential development projects across Croydon.
                   </p>
                   <p className="text-[13px] text-slate-700">
-                    We cover Croydon, South Croydon, Purley, Coulsdon, Kenley, Sanderstead, Shirley, New Addington,
-                    Thornton Heath, Norbury, Selhurst and surrounding areas.
+                    We cover Croydon, South Croydon, Purley, Coulsdon, Kenley, Sanderstead, Selhurst, Thornton Heath,
+                    Norbury, Shirley, New Addington and nearby streets.
                   </p>
-
-                  <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-3">
-                    <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                      How it works
-                    </h3>
-                    <ol className="list-decimal pl-5 space-y-1 text-[13px] text-slate-700">
-                      <li>Send your address and a short description of what you want to build</li>
-                      <li>We confirm the best route: permitted development, prior approval, LDC or planning</li>
-                      <li>Measured survey, then existing and proposed drawings</li>
-                      <li>Submission support and revisions where needed</li>
-                      <li>Upgrade to building regs pack when you are ready to build</li>
-                    </ol>
-                  </div>
 
                   <div className="flex flex-wrap gap-3 items-center">
                     <button
@@ -451,18 +401,17 @@ export default function CroydonAreaPage() {
                 <div className="rounded-2xl bg-white shadow-md border border-slate-100 overflow-hidden">
                   <Image
                     src="/images/drawings.jpg"
-                    alt="Example architectural drawings for a Croydon project"
+                    alt="Example of architectural drawings for a Croydon extension"
                     width={800}
                     height={500}
                     className="object-cover w-full h-48 md:h-56"
                   />
                   <div className="p-5 space-y-2">
                     <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                      Clear drawings that builders can price
+                      Technical drawings builders can price from
                     </h3>
                     <p className="text-[13px] text-slate-700">
-                      Plans, elevations and sections set out clearly, with coordination points for structure and building regs
-                      so your quote stage is smoother and you avoid surprises on site.
+                      Clear floor plans, elevations, sections and notes, coordinated with structural design so builders and inspectors have what they need.
                     </p>
                   </div>
                 </div>
@@ -475,30 +424,28 @@ export default function CroydonAreaPage() {
                   </h3>
                   <Image
                     src="/images/croydon-area.jpg"
-                    alt="Croydon residential area"
+                    alt="Croydon local area"
                     width={800}
                     height={500}
                     className="rounded-xl object-cover mb-3"
                   />
-                  <p className="text-[13px] text-slate-700">
-                    Architectural drawings across the whole borough, including:
-                  </p>
+                  <p className="text-[13px] text-slate-700">Drawings for the whole borough of Croydon, including:</p>
                   <div className="grid grid-cols-2 gap-2 text-[13px] text-slate-700">
                     <ul className="list-disc pl-4 space-y-1">
-                      <li>Croydon and South Croydon</li>
-                      <li>East Croydon and West Croydon</li>
+                      <li>Croydon</li>
+                      <li>South Croydon</li>
                       <li>Purley</li>
                       <li>Coulsdon</li>
-                      <li>Kenley and Sanderstead</li>
-                      <li>Shirley</li>
+                      <li>Kenley</li>
+                      <li>Sanderstead</li>
                     </ul>
                     <ul className="list-disc pl-4 space-y-1">
-                      <li>New Addington</li>
-                      <li>Norbury</li>
                       <li>Thornton Heath</li>
+                      <li>Norbury</li>
+                      <li>Shirley</li>
+                      <li>New Addington</li>
                       <li>Selhurst</li>
-                      <li>Corner plots and side access homes</li>
-                      <li>Sloping and stepped gardens</li>
+                      <li>Surrounding streets and estates</li>
                     </ul>
                   </div>
                 </div>
@@ -509,28 +456,18 @@ export default function CroydonAreaPage() {
                   </h3>
                   <div className="grid grid-cols-2 gap-3 text-[13px] text-slate-700">
                     <ul className="list-disc pl-4 space-y-1">
-                      <li>Large rear extensions</li>
-                      <li>Wrap around extensions</li>
-                      <li>Side extensions</li>
-                      <li>Loft dormers</li>
+                      <li>3 m and larger rear extensions</li>
+                      <li>Wrap around and L shaped extensions</li>
+                      <li>Side extensions and infill extensions</li>
                       <li>Hip to gable loft conversions</li>
+                      <li>Rear dormers with ensuite</li>
                     </ul>
                     <ul className="list-disc pl-4 space-y-1">
-                      <li>Internal knock through layouts</li>
                       <li>Garage conversions</li>
-                      <li>Garden rooms and studios</li>
-                      <li>High specification refurbishments</li>
-                      <li>Light and storage upgrades</li>
-                    </ul>
-                  </div>
-
-                  <div className="rounded-xl bg-slate-50 border border-slate-100 p-4 text-[13px] text-slate-700">
-                    <p className="font-semibold mb-1 text-slate-900">Common Croydon design priorities</p>
-                    <ul className="list-disc pl-4 space-y-1">
-                      <li>Privacy and overlooking checks</li>
-                      <li>Daylight improvements to kitchens and family spaces</li>
-                      <li>Neighbour impact and massing clarity</li>
-                      <li>Good access to garden and side paths</li>
+                      <li>Internal reconfiguration</li>
+                      <li>Outbuildings and studios</li>
+                      <li>Flats, HMOs and change of use</li>
+                      <li>Small new build schemes</li>
                     </ul>
                   </div>
                 </div>
@@ -538,45 +475,38 @@ export default function CroydonAreaPage() {
 
               <div className="space-y-5">
                 <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
-                  Planning and permitted development in Croydon
+                  Permitted development limits in Croydon
                 </h2>
                 <p className="text-[13px] text-slate-700">
-                  Many homes can use permitted development, but constraints can apply depending on your street, plot and previous extensions.
-                  We confirm the safest route early so you can proceed with confidence and avoid redesign later.
+                  This is a simplified guide to common permitted development limits. Final confirmation depends on your house type, location and any Article 4 directions.
                 </p>
 
                 <div className="grid md:grid-cols-3 gap-8 text-[13px] text-slate-700">
                   <div>
-                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">
-                      Rear extensions
-                    </h3>
+                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">Rear extensions</h3>
                     <ul className="list-disc pl-4 space-y-1">
-                      <li>We check depth, height and neighbour impact</li>
-                      <li>We advise on PD vs prior approval vs planning</li>
-                      <li>Clear plans and elevations reduce objections</li>
-                      <li>We can review similar approvals nearby</li>
+                      <li>Up to 3 m deep on terrace houses</li>
+                      <li>Up to 4 m on semi detached houses</li>
+                      <li>Up to 6 to 8 m with Prior Approval</li>
+                      <li>Maximum 4 m high for single storey</li>
                     </ul>
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">
-                      Loft conversions
-                    </h3>
+                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">Loft conversions</h3>
                     <ul className="list-disc pl-4 space-y-1">
-                      <li>Dormer scale and roof form kept proportionate</li>
-                      <li>Front changes are usually more sensitive</li>
-                      <li>Windows positioned for privacy</li>
-                      <li>Stair design planned early for space</li>
+                      <li>Up to 40 to 50 cubic metres volume</li>
+                      <li>No extensions on the front roof slope</li>
+                      <li>Side windows obscure glazed and fixed</li>
+                      <li>External materials to be similar</li>
                     </ul>
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">
-                      Refurbishment and upgrades
-                    </h3>
+                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">Outbuildings</h3>
                     <ul className="list-disc pl-4 space-y-1">
-                      <li>Better circulation, light and storage</li>
-                      <li>Kitchen and open plan improvements</li>
-                      <li>Energy upgrades and insulation strategy</li>
-                      <li>Structure and builder notes where helpful</li>
+                      <li>Maximum 2.5 m high near boundaries</li>
+                      <li>Cannot be used as a separate dwelling</li>
+                      <li>Use must be incidental to the house</li>
+                      <li>Not more than 50 percent of garden area</li>
                     </ul>
                   </div>
                 </div>
@@ -585,41 +515,40 @@ export default function CroydonAreaPage() {
               <div className="grid md:grid-cols-2 gap-10">
                 <div className="rounded-2xl bg-white shadow-sm p-6 border border-slate-100 space-y-4">
                   <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                    Planning drawings package
+                    Planning drawings for Croydon
                   </h3>
                   <ul className="list-disc pl-4 space-y-1 text-[13px] text-slate-700">
                     <li>Existing and proposed floor plans</li>
                     <li>Existing and proposed elevations</li>
-                    <li>Sections where needed for clarity</li>
-                    <li>Roof plan where relevant</li>
-                    <li>Location plan and block plan</li>
-                    <li>Submission ready PDF set</li>
+                    <li>Roof plans and key sections</li>
+                    <li>Block plans and location plans</li>
+                    <li>Drainage and construction notes</li>
+                    <li>Design statements where required</li>
                   </ul>
                 </div>
 
                 <div className="rounded-2xl bg-white shadow-sm p-6 border border-slate-100 space-y-4">
                   <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                    Building regulations package
+                    Building regulation drawings for Croydon
                   </h3>
                   <ul className="list-disc pl-4 space-y-1 text-[13px] text-slate-700">
-                    <li>Key construction details</li>
-                    <li>Thermal build ups and insulation notes</li>
-                    <li>Ventilation and extraction coordination</li>
-                    <li>Fire safety layout notes and escape awareness</li>
-                    <li>Drainage layout notes where needed</li>
-                    <li>Coordination points for structural design</li>
+                    <li>Structural layouts and coordination with engineer</li>
+                    <li>Foundation, beam and bearing information</li>
+                    <li>Fire safety and escape routes</li>
+                    <li>Thermal build ups and insulation specs</li>
+                    <li>Ventilation and extract positions</li>
+                    <li>Drainage runs and manhole information</li>
                   </ul>
                 </div>
               </div>
 
               <div className="rounded-2xl bg-emerald-50 border border-emerald-100 p-6 space-y-3">
                 <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-emerald-900">
-                  Local knowledge for Croydon projects
+                  Local planning knowledge for Croydon projects
                 </h2>
                 <p className="text-[13px] text-emerald-900">
-                  Croydon has a wide mix of semis, detached homes and larger corner plots.
-                  Strong outcomes usually come from clear massing, neighbour sensitive window placement,
-                  and layouts that improve everyday living.
+                  Croydon includes conservation areas, mixed housing stock and many family homes with scope for larger extensions and loft conversions.
+                  We shape each scheme to suit local character and neighbour amenity so approval chances are as strong as possible.
                 </p>
               </div>
 
@@ -629,37 +558,22 @@ export default function CroydonAreaPage() {
                 </h2>
                 <div className="grid md:grid-cols-2 gap-6 text-[13px] text-slate-700">
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Can you help with large family extensions
-                    </h3>
+                    <h3 className="font-semibold text-slate-900">Do I need planning permission in Croydon</h3>
                     <p>
-                      Yes. We regularly prepare drawings for larger rear, side and wrap extensions designed around kitchens,
-                      family space, utility rooms and better connection to the garden.
+                      Many extensions and lofts can proceed under permitted development. We check your address and advise the best route at the start.
                     </p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Can you prepare drawings for builders to quote
-                    </h3>
-                    <p>
-                      Yes. Clear drawings reduce guesswork, improve quote accuracy, and help you compare builder pricing like for like.
-                    </p>
+                    <h3 className="font-semibold text-slate-900">How fast can you survey</h3>
+                    <p>In most cases we can arrange the initial measured survey within forty eight hours of instruction.</p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Do you manage the full submission
-                    </h3>
-                    <p>
-                      Yes. We submit, track and respond to planning queries through to decision, and we can advise on next steps after approval.
-                    </p>
+                    <h3 className="font-semibold text-slate-900">Do you submit to Croydon Council</h3>
+                    <p>Yes. We handle the submission, monitor progress and respond to planning officer queries.</p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Can you coordinate structural calculations
-                    </h3>
-                    <p>
-                      We work with structural engineers so key beams and supports are properly designed and shown clearly for building control and construction.
-                    </p>
+                    <h3 className="font-semibold text-slate-900">Can you coordinate structural design</h3>
+                    <p>Yes. We coordinate with structural engineers so beams and load paths are designed and shown correctly on the drawings.</p>
                   </div>
                 </div>
               </div>
@@ -712,3 +626,4 @@ export default function CroydonAreaPage() {
     </>
   );
 }
+```
