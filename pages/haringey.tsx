@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import Image from "next/image";
-import { submitBoroughLead } from "../../lib/submitBoroughLead";
+import { submitBoroughLead } from "../lib/submitBoroughLead";
 import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 
 const PHONE_DISPLAY = "020 3654 8508";
