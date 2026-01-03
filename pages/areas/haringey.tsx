@@ -7,7 +7,6 @@ import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const WHATSAPP_LINK = "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Hammersmith%20and%20Fulham";
-
 export default function HaringeyAreaPage() {
 async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 await submitBoroughLead(e, { boroughName: "Haringey" });
@@ -17,6 +16,7 @@ function scrollToForm() {
 const el = document.getElementById("haringey-quote");
 if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
 }
+
 const localBusinessJson = {
 "@context": "https://schema.org
 ",
@@ -53,6 +53,7 @@ areaServed: [
 description:
 "Architectural drawing services in Haringey for extensions, loft conversions, outbuildings, refurbishments and building regulations."
 };
+
 const faqJson = {
 "@context": "https://schema.org
 ",
@@ -103,8 +104,7 @@ return (
 <title>Architectural Drawings in Haringey | Extensions, Lofts, New Builds</title>
 <meta name="description" content="Architectural drawings in Haringey for house extensions, loft conversions, new builds and building regulation packs. Fixed fees with clear scope and fast turnaround." />
 <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/haringey" />
-
-    <script
+        <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
     />
@@ -180,9 +180,9 @@ return (
             </h1>
 
             <p className="mt-3 text-[13px] text-slate-700">
-              WEDRAWPLANS prepare planning and technical drawings for house extensions,
-              loft conversions, new builds and conversions across the London Borough of Haringey.
-              Fixed fees with clear scope and fast communication.
+              WEDRAWPLANS prepare planning and technical drawings for house extensions, loft conversions,
+              new builds and conversions across the London Borough of Haringey. Fixed fees with clear scope
+              and fast communication.
             </p>
 
             <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
@@ -322,13 +322,12 @@ return (
                 Architectural drawing services in Haringey
               </h2>
               <p className="text-[13px] text-slate-700">
-                WEDRAWPLANS provide full drawing packages for single and double storey extensions,
-                loft conversions, internal alterations, outbuildings, flat conversions and small new developments
-                across the borough of Haringey.
+                WEDRAWPLANS provide full drawing packages for single and double storey extensions, loft conversions,
+                internal alterations, outbuildings, flat conversions and small new developments across the borough of Haringey.
               </p>
               <p className="text-[13px] text-slate-700">
-                We work throughout Crouch End, Muswell Hill, Harringay Ladder, Green Lanes, Wood Green,
-                Hornsey, Tottenham, Seven Sisters, Bounds Green, Highgate borders and Finsbury Park.
+                We work throughout Crouch End, Muswell Hill, Harringay Ladder, Green Lanes, Wood Green, Hornsey,
+                Tottenham, Seven Sisters, Bounds Green, Highgate borders and Finsbury Park.
               </p>
 
               <div className="flex flex-wrap gap-3 items-center">
@@ -514,7 +513,9 @@ return (
               Local planning knowledge for Haringey projects
             </h2>
             <p className="text-[13px] text-emerald-900">
-              Haringey includes conservation areas in Crouch End, Muswell Hill and Highgate borders, together with character streets and dense terraces in Harringay Ladder and Tottenham. We shape each scheme to fit local context so approval chances are as strong as possible.
+              Haringey includes conservation areas in Crouch End, Muswell Hill and Highgate borders, together with
+              character streets and dense terraces in Harringay Ladder and Tottenham. We shape each scheme to fit local context
+              so approval chances are as strong as possible.
             </p>
           </div>
 
@@ -571,10 +572,7 @@ return (
               <a href={PHONE_LINK} className="font-semibold text-emerald-300 underline">
                 {PHONE_DISPLAY}
               </a>
-              <a
-                href="mailto:info@wedrawplans.com"
-                className="font-semibold text-emerald-300 underline"
-              >
+              <a href="mailto:info@wedrawplans.com" className="font-semibold text-emerald-300 underline">
                 info@wedrawplans.com
               </a>
               <button
