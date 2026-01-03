@@ -17,7 +17,6 @@ function scrollToForm() {
 const el = document.getElementById("haringey-quote");
 if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
 }
-
 const localBusinessJson = {
 "@context": "https://schema.org
 ",
@@ -54,7 +53,6 @@ areaServed: [
 description:
 "Architectural drawing services in Haringey for extensions, loft conversions, outbuildings, refurbishments and building regulations."
 };
-
 const faqJson = {
 "@context": "https://schema.org
 ",
