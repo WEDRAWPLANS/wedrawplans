@@ -1,125 +1,45 @@
-
 import React from "react";
 import Head from "next/head";
-import Image from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
-import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Hammersmith%20and%20Fulham";
 
-export default function HammersmithAndFulhamAreaPage() {
+export default function HammersmithFulhamAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    await submitBoroughLead(e, {
-      boroughName: "Hammersmith and Fulham",
-    });
-  }
+  await submitBoroughLead(e, {
+    boroughName: "Hammersmith and Fulham",
+  });
+}
 
   function scrollToForm() {
     const el = document.getElementById("hf-quote");
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  const canonicalUrl = "https://www.wedrawplans.co.uk/areas/hammersmith-and-fulham";
-
-  const localBusinessJson = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: "WEDRAWPLANS",
-    url: canonicalUrl,
-    telephone: "+44 20 3654 8508",
-    email: "info@wedrawplans.com",
-    image: "https://www.wedrawplans.co.uk/images/drawings.jpg",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "201 Borough High Street",
-      addressLocality: "London",
-      postalCode: "SE1 1JA",
-      addressCountry: "UK",
-    },
-    areaServed: [
-      "Hammersmith and Fulham",
-      "Hammersmith",
-      "Fulham",
-      "Parsons Green",
-      "West Kensington",
-      "Barons Court",
-      "Shepherds Bush",
-    ],
-    description:
-      "Architectural drawing services in Hammersmith and Fulham for extensions, loft conversions, flat conversions, basements, and building regulation packs. Fixed fees with clear scope and fast communication.",
-  };
-
-  const faqJson = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Do you provide planning drawings for extensions in Hammersmith and Fulham?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Yes. We prepare existing and proposed drawings for house extensions and can advise on the typical submission route for your project in Hammersmith and Fulham.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Can you produce building regulation drawings for my Hammersmith and Fulham project?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Yes. We can produce a full building regulation pack including plans, sections, key details, and coordinated information for structural design where required.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Do you offer measured surveys in Hammersmith and Fulham?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Yes. We can arrange an on site measured survey in Hammersmith and Fulham when accurate existing drawings are needed to start the design.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "How quickly can I get a fixed quote for Hammersmith and Fulham drawings?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Send your details through the form and we usually respond the same day with a clear fixed fee and next steps.",
-        },
-      },
-    ],
-  };
-
   return (
     <>
       <Head>
         <title>
-          Architectural Drawings in Hammersmith and Fulham – Extensions, Lofts and Conversions
+          Architectural Drawings in Hammersmith & Fulham – Extensions, Lofts & Conversions
         </title>
         <meta
           name="description"
-          content="Architectural drawings in Hammersmith and Fulham for extensions, loft conversions, flat conversions and building regulation packs. Fixed fees from £750 with fast turnaround."
+          content="Architectural drawings in Hammersmith & Fulham for extensions, loft conversions, flat conversions and building regulation packs. Fixed fees from £750 with fast turnaround."
         />
-        <link rel="canonical" href={canonicalUrl} />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }}
-        />
+        <link rel="canonical" href="https://wedrawplans.co.uk/hammersmith-and-fulham" />
+<meta name="robots" content="noindex,follow" />
+
       </Head>
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
+
         {/* HEADER */}
         <header className="border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur">
           <div className="mx-auto max-w-5xl flex items-center justify-between px-4 py-3 lg:px-6">
+
             {/* LOGO */}
             <div className="flex items-center gap-2">
               <div className="grid h-10 w-10 place-items-center rounded-full border border-slate-500 text-xs tracking-[0.18em] font-semibold text-red-700">
@@ -148,44 +68,43 @@ export default function HammersmithAndFulhamAreaPage() {
                 href={WHATSAPP_LINK}
                 target="_blank"
                 className="inline-flex items-center gap-1 bg-[#25D366] px-3 py-1.5 rounded-full text-[12px] text-white shadow-sm hover:bg-[#1ebe57]"
-                rel="noreferrer"
               >
                 💬 <span className="hidden sm:inline">WhatsApp us</span>
               </a>
             </div>
+
           </div>
         </header>
 
         <main>
+
           {/* HERO */}
           <section className="bg-[#fdf8f3] border-b border-slate-200">
             <div className="mx-auto max-w-5xl flex flex-col lg:flex-row gap-6 px-4 py-8 lg:px-6 lg:py-10">
+
               {/* LEFT TEXT */}
               <div className="lg:w-1/2">
                 <p className="text-[11px] uppercase tracking-[0.26em] font-semibold text-red-700">
-                  Hammersmith and Fulham architectural drawings
+                  Hammersmith & Fulham architectural drawings
                 </p>
 
                 <h1 className="mt-2 text-[22px] sm:text-[26px] uppercase tracking-[0.14em] font-semibold leading-snug">
-                  Plans for extensions, lofts and conversions in Hammersmith and Fulham
+                  Plans for extensions, lofts & conversions in Hammersmith & Fulham
                 </h1>
 
                 <p className="mt-3 text-[13px] text-slate-700">
                   WEDRAWPLANS prepare planning and technical drawings for extensions,
                   loft conversions, flat conversions, internal remodelling and new builds
-                  across Hammersmith and Fulham. Fixed fees with fast communication and
-                  clear scope.
+                  across the London Borough of Hammersmith & Fulham. Fixed fees with
+                  fast communication and clear scope.
                 </p>
 
                 <ul className="mt-4 text-[13px] text-slate-800 space-y-1">
-                  <li>• Extensions, loft conversions and internal remodelling</li>
-                  <li>• Flat conversions and HMOs</li>
+                  <li>• Extensions, loft conversions & internal remodelling</li>
+                  <li>• Flat conversions & HMOs</li>
                   <li>• Basement and lower ground alterations</li>
-                  <li>• New builds and infill schemes</li>
-                  <li>
-                    • Covering Fulham, Parsons Green, West Kensington, Barons Court and
-                    Shepherds Bush
-                  </li>
+                  <li>• New builds & infill schemes</li>
+                  <li>• Covering Fulham, Parsons Green, West Kensington, Shepherd’s Bush & more</li>
                   <li>• Same day response on most enquiries</li>
                 </ul>
 
@@ -194,7 +113,7 @@ export default function HammersmithAndFulhamAreaPage() {
                     onClick={scrollToForm}
                     className="px-5 py-2.5 bg-[#64b7c4] text-white text-[13px] uppercase rounded-full tracking-[0.18em] font-semibold hover:bg-[#4da4b4]"
                   >
-                    Get my quote
+                    Get my H&F quote
                   </button>
 
                   <a href={PHONE_LINK} className="text-[13px] underline text-slate-800">
@@ -206,15 +125,18 @@ export default function HammersmithAndFulhamAreaPage() {
               {/* RIGHT FORM */}
               <div id="hf-quote" className="lg:w-1/2">
                 <div className="bg-white p-5 rounded-2xl shadow-md">
+
                   <h2 className="text-[14px] uppercase tracking-[0.16em] font-semibold">
-                    Free fixed quote for Hammersmith and Fulham projects
+                    Free fixed quote for H&F projects
                   </h2>
 
                   <p className="text-[12px] text-slate-600 mt-1">
-                    Tell us about your project and we will reply with a clear fixed fee.
+                    Tell us about your Hammersmith & Fulham project and we will reply
+                    with a clear fixed fee.
                   </p>
 
                   <form onSubmit={handleSubmit} className="mt-3 space-y-3 text-[13px]">
+
                     {/* Name */}
                     <div className="space-y-1">
                       <label className="text-[11px] font-medium">Name</label>
@@ -250,7 +172,7 @@ export default function HammersmithAndFulhamAreaPage() {
 
                     {/* Postcode */}
                     <div className="space-y-1">
-                      <label className="text-[11px] font-medium">Postcode</label>
+                      <label className="text-[11px] font-medium">H&F postcode</label>
                       <input
                         name="postcode"
                         required
@@ -270,9 +192,7 @@ export default function HammersmithAndFulhamAreaPage() {
                         defaultValue=""
                         className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 focus:border-[#64b7c4]"
                       >
-                        <option value="" disabled>
-                          Select project type
-                        </option>
+                        <option value="" disabled>Select project type</option>
                         <option>House extension</option>
                         <option>Loft conversion</option>
                         <option>Internal remodelling</option>
@@ -287,7 +207,7 @@ export default function HammersmithAndFulhamAreaPage() {
                     {/* Description */}
                     <div className="space-y-1">
                       <label className="text-[11px] font-medium">
-                        Brief description of your project
+                        Brief description of your H&F project
                       </label>
                       <textarea
                         name="projectDetails"
@@ -302,42 +222,43 @@ export default function HammersmithAndFulhamAreaPage() {
                       type="submit"
                       className="w-full py-2.5 bg-[#64b7c4] text-white rounded-full uppercase text-[13px] tracking-[0.2em] hover:bg-[#4da4b4]"
                     >
-                      Get my quote
+                      Get my H&F quote
                     </button>
 
                     <p className="mt-2 text-[11px] text-slate-500">
-                      Typical projects: extensions, lofts, basements and flat conversions across
-                      Hammersmith and Fulham.
+                      Typical projects: extensions, lofts, basements and flat conversions in Fulham,
+                      Parsons Green, Hammersmith & Shepherd’s Bush.
                     </p>
+
                   </form>
                 </div>
               </div>
+
             </div>
           </section>
-
-          <ServiceInternalLinks boroughName="Hammersmith and Fulham" />
 
           {/* COMMON PROJECT TYPES */}
           <section className="bg-white border-b border-slate-200 py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6">
+
               <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
-                Common project types in Hammersmith and Fulham
+                Common project types in Hammersmith & Fulham
               </h2>
 
               <p className="mt-3 text-[13px] text-slate-700 max-w-3xl">
-                The borough has a mix of Victorian terraces, mansion flats and modern
-                apartments. Many homeowners extend or convert to add space and improve
-                layouts for modern living.
+                H&F has a diverse mix of Victorian terraces, mansion flats and modern apartments.
+                Many homeowners extend or convert their spaces to maximise urban living potential.
               </p>
 
               <div className="grid md:grid-cols-2 gap-5 mt-5 text-[13px]">
+
                 <div>
                   <h3 className="uppercase text-[14px] font-semibold tracking-[0.14em]">
-                    Rear and side extensions
+                    Rear & side extensions
                   </h3>
                   <p className="mt-2">
                     Common across Fulham and West Kensington. We set out efficient layouts,
-                    glazing strategy and coordinated structure for buildability.
+                    glazing and structural coordination.
                   </p>
                 </div>
 
@@ -346,39 +267,39 @@ export default function HammersmithAndFulhamAreaPage() {
                     Loft conversions
                   </h3>
                   <p className="mt-2">
-                    Rear dormer and mansard style lofts are popular where roof space allows,
-                    with careful stair and headroom design.
+                    Rear dormer and mansard lofts popular across Parsons Green and Barons Court.
                   </p>
                 </div>
 
                 <div>
                   <h3 className="uppercase text-[14px] font-semibold tracking-[0.14em]">
-                    Basements and lower ground alterations
+                    Basements & lower ground alterations
                   </h3>
                   <p className="mt-2">
-                    Lower ground reconfigurations can add valuable living space, utility rooms
-                    or improved layouts, supported by technical detailing.
+                    Many properties benefit from additional lower-ground living or utility space.
                   </p>
                 </div>
 
                 <div>
                   <h3 className="uppercase text-[14px] font-semibold tracking-[0.14em]">
-                    Flat conversions and HMOs
+                    Flat conversions & HMOs
                   </h3>
                   <p className="mt-2">
-                    We prepare compliant layouts, access notes and amenity space information
-                    to support planning submissions.
+                    We prepare layouts, access notes and amenity space diagrams for planning compliance.
                   </p>
                 </div>
+
               </div>
+
             </div>
           </section>
 
           {/* AREAS */}
           <section className="bg-[#f8f4f0] border-b border-slate-200 py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6">
+
               <h2 className="text-[18px] uppercase tracking-[0.16em] font-semibold">
-                Areas of Hammersmith and Fulham covered
+                Areas of Hammersmith & Fulham covered
               </h2>
 
               <p className="mt-3 text-[13px] text-slate-700 max-w-3xl">
@@ -391,100 +312,43 @@ export default function HammersmithAndFulhamAreaPage() {
                 <li>• Parsons Green</li>
                 <li>• West Kensington</li>
                 <li>• Barons Court</li>
-                <li>• Shepherds Bush</li>
+                <li>• Shepherd’s Bush</li>
               </ul>
 
-              <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
-                  <div className="relative h-44 w-full">
-                    <Image
-                      src="/images/drawings.jpg"
-                      alt="Architectural drawings and planning documents"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="p-4">
-                    <div className="text-[12px] uppercase tracking-[0.18em] font-semibold text-slate-900">
-                      Planning drawings
-                    </div>
-                    <p className="mt-2 text-[12px] text-slate-600">
-                      Clear existing and proposed drawings for planning submissions and lawful development.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
-                  <div className="relative h-44 w-full">
-                    <Image
-                      src="/images/hero.jpg"
-                      alt="Home extension and refurbishment design work"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="p-4">
-                    <div className="text-[12px] uppercase tracking-[0.18em] font-semibold text-slate-900">
-                      Extensions and conversions
-                    </div>
-                    <p className="mt-2 text-[12px] text-slate-600">
-                      Practical layouts, elevations and sections designed for approvals and construction.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
-                  <div className="relative h-44 w-full">
-                    <Image
-                      src="/images/drawings.jpg"
-                      alt="Building regulation drawings and detailing"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="p-4">
-                    <div className="text-[12px] uppercase tracking-[0.18em] font-semibold text-slate-900">
-                      Building regulation packs
-                    </div>
-                    <p className="mt-2 text-[12px] text-slate-600">
-                      Technical packs with key details coordinated for building control and contractors.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <p className="mt-5 text-[13px] max-w-3xl text-slate-700">
-                We offer remote design or full on site measured surveys where needed.
+              <p className="mt-3 text-[13px] max-w-3xl text-slate-700">
+                We offer remote design or full on-site measured surveys where needed.
               </p>
+
             </div>
           </section>
 
           {/* PRICING */}
           <section className="bg-white border-b border-slate-200 py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6">
+
               <h2 className="text-[18px] uppercase tracking-[0.16em] font-semibold">
-                Clear fixed fees for Hammersmith and Fulham projects
+                Clear fixed fees for H&F projects
               </h2>
 
               <p className="mt-3 text-[13px] text-slate-700 max-w-3xl">
-                Fees follow the same London wide structure, adjusted for basements and flat conversions
-                where required.
+                Fees follow the same London-wide structure, adjusted for basements and flat conversions.
               </p>
 
               <div className="grid md:grid-cols-3 gap-4 mt-5 text-[13px]">
+
                 <div className="p-4 bg-[#fdf8f3] border border-slate-200 rounded-md">
                   <h3 className="font-semibold text-slate-900">Planning drawings</h3>
                   <div className="mt-1 font-semibold">from £750 + VAT</div>
                   <p className="mt-2 text-[12px] text-slate-600">
-                    Full existing and proposed drawings for planning or lawful development.
+                    Full existing & proposed drawings for planning or lawful development.
                   </p>
                 </div>
 
                 <div className="p-4 bg-[#fdf8f3] border border-slate-200 rounded-md">
-                  <h3 className="font-semibold text-slate-900">Measured survey</h3>
+                  <h3 className="font-semibold text-slate-900">Measured survey in H&F</h3>
                   <div className="mt-1 font-semibold">from £150 + VAT</div>
                   <p className="mt-2 text-[12px] text-slate-600">
-                    On site survey for accurate existing drawings where needed.
+                    On-site survey for accurate existing drawings.
                   </p>
                 </div>
 
@@ -492,9 +356,10 @@ export default function HammersmithAndFulhamAreaPage() {
                   <h3 className="font-semibold text-slate-900">Building regulation pack</h3>
                   <div className="mt-1 font-semibold">from £950 + VAT</div>
                   <p className="mt-2 text-[12px] text-slate-600">
-                    Sections, details and specifications coordinated with structural engineers.
+                    Sections, details & specifications coordinated with structural engineers.
                   </p>
                 </div>
+
               </div>
 
               <div className="mt-5">
@@ -502,73 +367,24 @@ export default function HammersmithAndFulhamAreaPage() {
                   onClick={scrollToForm}
                   className="px-5 py-2.5 bg-[#64b7c4] rounded-full text-white text-[13px] uppercase tracking-[0.18em] hover:bg-[#4da4b4]"
                 >
-                  Request my fee
+                  Request my H&F fee
                 </button>
               </div>
-            </div>
-          </section>
 
-          {/* FAQ */}
-          <section className="bg-[#f8f4f0] border-b border-slate-200 py-10">
-            <div className="mx-auto max-w-5xl px-4 lg:px-6">
-              <h2 className="text-[18px] uppercase tracking-[0.16em] font-semibold">
-                Hammersmith and Fulham FAQs
-              </h2>
-
-              <div className="mt-6 grid md:grid-cols-2 gap-4 text-[13px]">
-                <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
-                  <h3 className="uppercase text-[13px] font-semibold tracking-[0.14em]">
-                    What drawings do I need for planning?
-                  </h3>
-                  <p className="mt-2 text-slate-700">
-                    Most planning submissions need existing and proposed plans, elevations and a site
-                    location plan. We will confirm what applies to your Hammersmith and Fulham project.
-                  </p>
-                </div>
-
-                <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
-                  <h3 className="uppercase text-[13px] font-semibold tracking-[0.14em]">
-                    Do you handle building regulations too?
-                  </h3>
-                  <p className="mt-2 text-slate-700">
-                    Yes. We can produce building regulation drawings and key details for building control,
-                    coordinated with structural design where required.
-                  </p>
-                </div>
-
-                <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
-                  <h3 className="uppercase text-[13px] font-semibold tracking-[0.14em]">
-                    Can you survey my property in the borough?
-                  </h3>
-                  <p className="mt-2 text-slate-700">
-                    Yes. We can arrange an on site measured survey in Hammersmith and Fulham when
-                    accurate existing drawings are needed.
-                  </p>
-                </div>
-
-                <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
-                  <h3 className="uppercase text-[13px] font-semibold tracking-[0.14em]">
-                    How do I get a fixed quote?
-                  </h3>
-                  <p className="mt-2 text-slate-700">
-                    Fill in the form with your postcode, project type and a short description. We reply
-                    with a clear fixed fee and next steps.
-                  </p>
-                </div>
-              </div>
             </div>
           </section>
 
           {/* FINAL CTA */}
           <section className="bg-[#f8f4f0] py-10 text-center">
             <div className="mx-auto max-w-5xl px-4 lg:px-6">
+
               <h2 className="text-[18px] uppercase font-semibold tracking-[0.16em]">
-                Ready to move your Hammersmith and Fulham project forward?
+                Ready to move your Hammersmith & Fulham project forward?
               </h2>
 
               <p className="mt-3 text-[13px] text-slate-700">
-                Share a few details and WEDRAWPLANS will reply with a clear fixed fee and suggested
-                next steps.
+                Share a few details and WEDRAWPLANS will reply with a clear fixed fee
+                and suggested next steps.
               </p>
 
               <div className="mt-5 flex flex-wrap justify-center gap-3">
@@ -576,20 +392,20 @@ export default function HammersmithAndFulhamAreaPage() {
                   onClick={scrollToForm}
                   className="px-5 py-2.5 bg-[#64b7c4] text-white rounded-full text-[13px] uppercase tracking-[0.18em] hover:bg-[#4da4b4]"
                 >
-                  Get my quote
+                  Get my H&F quote
                 </button>
 
                 <a
                   href={WHATSAPP_LINK}
                   className="inline-flex items-center gap-2 px-4 py-2 border border-slate-300 bg-white rounded-full text-[13px] text-slate-800 hover:bg-slate-900 hover:text-white"
-                  target="_blank"
-                  rel="noreferrer"
                 >
                   💬 Chat on WhatsApp
                 </a>
               </div>
+
             </div>
           </section>
+
         </main>
       </div>
     </>
