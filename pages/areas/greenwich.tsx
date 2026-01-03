@@ -1,7 +1,9 @@
+```tsx
 import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
+import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
@@ -31,7 +33,7 @@ export default function GreenwichAreaPage() {
       streetAddress: "201 Borough High Street",
       addressLocality: "London",
       postalCode: "SE1 1JA",
-      addressCountry: "UK"
+      addressCountry: "UK",
     },
     areaServed: [
       "Greenwich",
@@ -44,10 +46,10 @@ export default function GreenwichAreaPage() {
       "Woolwich",
       "Plumstead",
       "Abbey Wood",
-      "Thamesmead"
+      "Thamesmead",
     ],
     description:
-      "Architectural drawing services in Greenwich for extensions, loft conversions, refurbishments, outbuildings and building regulation plans. Survey within 48 hours and full planning submission support."
+      "Architectural drawing services in Greenwich for extensions, loft conversions, refurbishments, outbuildings and building regulation plans. Survey within 48 hours and full planning submission support.",
   };
 
   const faqJson = {
@@ -60,8 +62,8 @@ export default function GreenwichAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Not always. Many rear extensions in Greenwich can be carried out under permitted development. We confirm the correct route once we review your address and house type."
-        }
+            "Not always. Many rear extensions in Greenwich can be carried out under permitted development. We confirm the correct route once we review your address and house type.",
+        },
       },
       {
         "@type": "Question",
@@ -69,8 +71,8 @@ export default function GreenwichAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Greenwich can be strict in conservation areas and on streets with strong character, especially around central Greenwich and Blackheath borders. Careful design and clear drawings are important."
-        }
+            "Greenwich can be strict in conservation areas and on streets with strong character, especially around central Greenwich and Blackheath borders. Careful design and clear drawings are important.",
+        },
       },
       {
         "@type": "Question",
@@ -78,8 +80,8 @@ export default function GreenwichAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Householder planning applications normally take six to eight weeks after validation. Lawful Development Certificates usually take around four to six weeks."
-        }
+            "Householder planning applications normally take six to eight weeks after validation. Lawful Development Certificates usually take around four to six weeks.",
+        },
       },
       {
         "@type": "Question",
@@ -87,10 +89,10 @@ export default function GreenwichAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Yes. We prepare drawings, complete forms, upload documents, submit to Greenwich Council and respond to planning officer queries."
-        }
-      }
-    ]
+            "Yes. We prepare drawings, complete forms, upload documents, submit to Greenwich Council and respond to planning officer queries.",
+        },
+      },
+    ],
   };
 
   return (
@@ -180,8 +182,8 @@ export default function GreenwichAreaPage() {
 
                 <p className="mt-3 text-[13px] text-slate-700">
                   WEDRAWPLANS prepare planning and building regulation drawing packages across the Royal Borough of Greenwich,
-                  including Greenwich, Eltham, Woolwich, Plumstead, Abbey Wood and Thamesmead.
-                  Fixed fees with a clear scope and fast communication.
+                  including Greenwich, Eltham, Woolwich, Plumstead, Abbey Wood and Thamesmead. Fixed fees with a clear scope
+                  and fast communication.
                 </p>
 
                 <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
@@ -208,8 +210,8 @@ export default function GreenwichAreaPage() {
                 </div>
 
                 <p className="mt-3 text-[12px] text-slate-600">
-                  Typical Greenwich projects include family kitchen extensions in Eltham, loft conversions across Charlton and Plumstead,
-                  and refurbishment layouts near Woolwich and Abbey Wood.
+                  Typical Greenwich projects include family kitchen extensions in Eltham, loft conversions across Charlton and
+                  Plumstead, and refurbishment layouts near Woolwich and Abbey Wood.
                 </p>
               </div>
 
@@ -313,6 +315,8 @@ export default function GreenwichAreaPage() {
                 </div>
               </div>
             </div>
+
+            <ServiceInternalLinks boroughName="Greenwich" />
           </section>
 
           {/* RICH CONTENT SECTION (REWRITTEN + STRUCTURED) */}
@@ -324,10 +328,12 @@ export default function GreenwichAreaPage() {
                   <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
                     Architectural drawing services in Greenwich
                   </h2>
+
                   <p className="text-[13px] text-slate-700">
-                    WEDRAWPLANS prepares planning and building regulation drawings for rear and side extensions, loft conversions,
-                    refurbishments, internal reconfiguration and outbuildings across the Royal Borough of Greenwich.
-                    We help homeowners and small developers get clear drawings that support smooth approvals and accurate builder pricing.
+                    WEDRAWPLANS prepares planning and building regulation drawings for rear and side extensions, loft
+                    conversions, refurbishments, internal reconfiguration and outbuildings across the Royal Borough of
+                    Greenwich. We help homeowners and small developers get clear drawings that support smooth approvals
+                    and accurate builder pricing.
                   </p>
 
                   <div className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
@@ -364,8 +370,8 @@ export default function GreenwichAreaPage() {
 
                 <div className="rounded-2xl bg-white shadow-md border border-slate-100 overflow-hidden">
                   <Image
-                    src="/images/drawings.jpg"
-                    alt="Example of architectural drawings for a Greenwich project"
+                    src="/images/hero.jpg"
+                    alt="Architectural drawings and planning support for Greenwich projects"
                     width={800}
                     height={500}
                     className="object-cover w-full h-48 md:h-56"
@@ -375,8 +381,65 @@ export default function GreenwichAreaPage() {
                       Clear drawings that reduce builder guesswork
                     </h3>
                     <p className="text-[13px] text-slate-700">
-                      Plans, elevations and sections presented clearly, with coordination notes for structure and building regulations
-                      so the quote stage is smoother and the build stage has fewer surprises.
+                      Plans, elevations and sections presented clearly, with coordination notes for structure and building
+                      regulations so the quote stage is smoother and the build stage has fewer surprises.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* IMAGE STRIP (BARNET STYLE) */}
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+                <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm">
+                  <Image
+                    src="/images/hero.jpg"
+                    alt="Home extension planning drawings for Greenwich"
+                    width={900}
+                    height={650}
+                    className="h-52 w-full object-cover"
+                  />
+                  <div className="p-4">
+                    <div className="text-[12px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+                      Extensions and remodelling
+                    </div>
+                    <p className="mt-2 text-[13px] text-slate-700">
+                      Rear and side return extensions with layouts designed for light, flow and practical everyday living.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm">
+                  <Image
+                    src="/images/drawings.jpg"
+                    alt="Building regulation drawings pack for Greenwich projects"
+                    width={900}
+                    height={650}
+                    className="h-52 w-full object-cover"
+                  />
+                  <div className="p-4">
+                    <div className="text-[12px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+                      Planning and building regulations
+                    </div>
+                    <p className="mt-2 text-[13px] text-slate-700">
+                      Clear submission sets and upgrade options for Building Control with key construction notes and details.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm">
+                  <Image
+                    src="/images/greenwich-area.jpg"
+                    alt="Greenwich area coverage for architectural drawings"
+                    width={900}
+                    height={650}
+                    className="h-52 w-full object-cover"
+                  />
+                  <div className="p-4">
+                    <div className="text-[12px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+                      Greenwich coverage
+                    </div>
+                    <p className="mt-2 text-[13px] text-slate-700">
+                      From Greenwich and Blackheath borders to Eltham, Woolwich, Plumstead and Thamesmead.
                     </p>
                   </div>
                 </div>
@@ -440,9 +503,7 @@ export default function GreenwichAreaPage() {
                   </div>
 
                   <div className="rounded-xl bg-slate-50 border border-slate-100 p-4 text-[13px] text-slate-700">
-                    <p className="font-semibold mb-1 text-slate-900">
-                      Common Greenwich design priorities
-                    </p>
+                    <p className="font-semibold mb-1 text-slate-900">Common Greenwich design priorities</p>
                     <ul className="list-disc pl-4 space-y-1">
                       <li>Neighbour impact and privacy</li>
                       <li>Daylight and rooflight strategy</li>
@@ -459,9 +520,10 @@ export default function GreenwichAreaPage() {
                   Planning and permitted development in Greenwich
                 </h2>
                 <p className="text-[13px] text-slate-700">
-                  Many houses have permitted development rights, but conservation areas and character streets can make alterations more sensitive,
-                  especially in and around central Greenwich and Blackheath borders. Flats and maisonettes generally require planning permission.
-                  We confirm the correct route early so you can proceed with confidence.
+                  Many houses have permitted development rights, but conservation areas and character streets can make
+                  alterations more sensitive, especially in and around central Greenwich and Blackheath borders. Flats and
+                  maisonettes generally require planning permission. We confirm the correct route early so you can proceed
+                  with confidence.
                 </p>
 
                 <div className="grid md:grid-cols-3 gap-8 text-[13px] text-slate-700">
@@ -471,9 +533,9 @@ export default function GreenwichAreaPage() {
                     </h3>
                     <ul className="list-disc pl-4 space-y-1">
                       <li>We check depth, height and neighbour impact</li>
-                      <li>We advise on PD vs Prior Approval vs planning</li>
+                      <li>We advise on permitted development, Prior Approval or planning</li>
                       <li>Clear elevations reduce objections</li>
-                      <li>We can review similar approvals nearby</li>
+                      <li>We can review nearby approvals to support the design approach</li>
                     </ul>
                   </div>
                   <div>
@@ -484,7 +546,7 @@ export default function GreenwichAreaPage() {
                       <li>Dormer scale set by roof form and street setting</li>
                       <li>Front roof changes are typically more sensitive</li>
                       <li>Windows positioned for privacy</li>
-                      <li>Stair layout planned early for space</li>
+                      <li>Stair layout planned early for space and headroom</li>
                     </ul>
                   </div>
                   <div>
@@ -538,8 +600,8 @@ export default function GreenwichAreaPage() {
                   Local planning knowledge for Greenwich projects
                 </h2>
                 <p className="text-[13px] text-emerald-900">
-                  Greenwich includes historic streets, conservation areas and varied housing types.
-                  Strong outcomes usually come from clear massing, neighbour sensitive window placement and layouts that improve everyday living.
+                  Greenwich includes historic streets, conservation areas and varied housing types. Strong outcomes usually
+                  come from clear massing, neighbour sensitive window placement and layouts that improve everyday living.
                   We design to fit the house and the street, not just the floor area target.
                 </p>
               </div>
@@ -555,24 +617,22 @@ export default function GreenwichAreaPage() {
                       Can you help with conservation area applications
                     </h3>
                     <p>
-                      Yes. We prepare drawings and supporting statements for extensions and alterations in conservation areas and character streets,
-                      especially around central Greenwich and Blackheath borders.
+                      Yes. We prepare drawings and supporting information for extensions and alterations in conservation
+                      areas and character streets, especially around central Greenwich and Blackheath borders.
                     </p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      How fast can you survey
-                    </h3>
+                    <h3 className="font-semibold text-slate-900">How fast can you survey</h3>
                     <p>
-                      In most cases we can arrange a measured survey within forty eight hours, subject to access and location.
+                      In most cases we can arrange a measured survey within forty eight hours, subject to access and
+                      location.
                     </p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Do you manage the full submission
-                    </h3>
+                    <h3 className="font-semibold text-slate-900">Do you manage the full submission</h3>
                     <p>
-                      Yes. We submit, track and respond to planning queries through to decision, and advise on next steps after approval.
+                      Yes. We submit, track and respond to planning queries through to decision, and advise on next steps
+                      after approval.
                     </p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
@@ -580,7 +640,8 @@ export default function GreenwichAreaPage() {
                       Can you coordinate structural calculations
                     </h3>
                     <p>
-                      Yes. We coordinate with structural engineers so key beams and supports are designed properly and shown clearly for Building Control.
+                      Yes. We coordinate with structural engineers so key beams and supports are designed properly and
+                      shown clearly for Building Control.
                     </p>
                   </div>
                 </div>
@@ -593,7 +654,8 @@ export default function GreenwichAreaPage() {
                     Ready to start your Greenwich project
                   </h2>
                   <p className="text-[13px] text-slate-300 mt-2">
-                    Send your postcode and a short brief. We will review it and reply with a fixed fee and recommended route.
+                    Send your postcode and a short brief. We will review it and reply with a fixed fee and recommended
+                    route.
                   </p>
                 </div>
                 <div className="flex flex-col space-y-2 text-[13px]">
@@ -636,3 +698,4 @@ export default function GreenwichAreaPage() {
     </>
   );
 }
+```
