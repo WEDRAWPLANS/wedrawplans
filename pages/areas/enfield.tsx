@@ -408,6 +408,79 @@ export default function EnfieldAreaPage() {
                 </div>
               </div>
 
+              {/* ✅ ADDED IMAGES LIKE BARNET (ONLY ADDITIONS BELOW) */}
+              <div className="grid md:grid-cols-2 gap-10">
+                <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
+                  <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
+                    Enfield areas we cover
+                  </h3>
+
+                  <Image
+                    src="/images/enfield-area.jpg"
+                    alt="Enfield area coverage"
+                    width={800}
+                    height={500}
+                    className="rounded-xl object-cover mb-3"
+                    priority
+                  />
+
+                  <p className="text-[13px] text-slate-700">
+                    Drawings for the whole London Borough of Enfield, including:
+                  </p>
+
+                  <div className="grid grid-cols-2 gap-2 text-[13px] text-slate-700">
+                    <ul className="list-disc pl-4 space-y-1">
+                      <li>Enfield Town EN1</li>
+                      <li>Bush Hill Park EN1</li>
+                      <li>Southgate N14</li>
+                      <li>Palmers Green N13</li>
+                      <li>Winchmore Hill N21</li>
+                      <li>Grange Park N21</li>
+                    </ul>
+                    <ul className="list-disc pl-4 space-y-1">
+                      <li>Oakwood N14</li>
+                      <li>Edmonton N9</li>
+                      <li>Ponders End EN3</li>
+                      <li>Enfield Highway EN3</li>
+                      <li>Enfield Lock EN3</li>
+                      <li>Cockfosters EN4</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
+                  <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
+                    Popular projects in Enfield
+                  </h3>
+
+                  <div className="grid grid-cols-2 gap-3 text-[13px] text-slate-700">
+                    <ul className="list-disc pl-4 space-y-1">
+                      <li>Rear and side extensions</li>
+                      <li>Wrap around and L shaped extensions</li>
+                      <li>Double storey side additions</li>
+                      <li>Hip to gable loft conversions</li>
+                      <li>Dormers and roof extensions</li>
+                    </ul>
+                    <ul className="list-disc pl-4 space-y-1">
+                      <li>Garage conversions</li>
+                      <li>Internal reconfiguration</li>
+                      <li>Outbuildings and studios</li>
+                      <li>Flats and HMO layouts</li>
+                      <li>Building regulation packs</li>
+                    </ul>
+                  </div>
+
+                  <Image
+                    src="/images/hero.jpg"
+                    alt="Completed extension and loft style project"
+                    width={800}
+                    height={500}
+                    className="rounded-xl object-cover mt-2"
+                  />
+                </div>
+              </div>
+              {/* ✅ END ADDED IMAGES LIKE BARNET */}
+
               <div className="rounded-2xl bg-slate-900 text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
                   <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
