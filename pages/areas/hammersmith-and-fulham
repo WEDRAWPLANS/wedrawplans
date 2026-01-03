@@ -44,6 +44,9 @@ export default function HammersmithAndFulhamAreaPage() {
       "West Kensington",
       "Barons Court",
       "Shepherds Bush",
+      "White City",
+      "Sands End",
+      "Brook Green",
     ],
     description:
       "Architectural drawing services in Hammersmith and Fulham for extensions, loft conversions, flat conversions, basements, and building regulation packs. Fixed fees with clear scope and fast communication.",
@@ -168,9 +171,9 @@ export default function HammersmithAndFulhamAreaPage() {
                 </h1>
 
                 <p className="mt-3 text-[13px] text-slate-700">
-                  WEDRAWPLANS prepare planning and technical drawings for extensions, loft
-                  conversions, flat conversions, internal remodelling and new builds across
-                  Hammersmith and Fulham. Fixed fees with fast communication and clear scope.
+                  WEDRAWPLANS prepare planning and technical drawings for extensions, loft conversions,
+                  flat conversions, internal remodelling and new builds across Hammersmith and Fulham.
+                  Fixed fees with fast communication and clear scope.
                 </p>
 
                 <ul className="mt-4 text-[13px] text-slate-800 space-y-1">
@@ -301,61 +304,7 @@ export default function HammersmithAndFulhamAreaPage() {
 
           <ServiceInternalLinks boroughName="Hammersmith and Fulham" />
 
-          {/* COMMON PROJECT TYPES */}
-          <section className="bg-white border-b border-slate-200 py-10">
-            <div className="mx-auto max-w-5xl px-4 lg:px-6">
-              <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
-                Common project types in Hammersmith and Fulham
-              </h2>
-
-              <p className="mt-3 text-[13px] text-slate-700 max-w-3xl">
-                The borough has a mix of Victorian terraces, mansion flats and modern apartments. Many homeowners extend
-                or convert to maximise urban living space.
-              </p>
-
-              <div className="grid md:grid-cols-2 gap-5 mt-5 text-[13px]">
-                <div>
-                  <h3 className="uppercase text-[14px] font-semibold tracking-[0.14em]">
-                    Rear and side extensions
-                  </h3>
-                  <p className="mt-2">
-                    Common across Fulham and West Kensington. We set out efficient layouts, glazing and structural
-                    coordination.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="uppercase text-[14px] font-semibold tracking-[0.14em]">
-                    Loft conversions
-                  </h3>
-                  <p className="mt-2">
-                    Rear dormer and mansard lofts are popular where roof form and planning policy allow.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="uppercase text-[14px] font-semibold tracking-[0.14em]">
-                    Basements and lower ground alterations
-                  </h3>
-                  <p className="mt-2">
-                    Many properties benefit from additional lower ground living or utility space with careful technical
-                    detailing.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="uppercase text-[14px] font-semibold tracking-[0.14em]">
-                    Flat conversions and HMOs
-                  </h3>
-                  <p className="mt-2">
-                    We prepare layouts, access notes and amenity space information to support planning compliance.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* AREAS */}
+          {/* AREAS WE COVER */}
           <section className="bg-[#f8f4f0] border-b border-slate-200 py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6">
               <h2 className="text-[18px] uppercase tracking-[0.16em] font-semibold">
@@ -373,6 +322,8 @@ export default function HammersmithAndFulhamAreaPage() {
                 <li>• West Kensington</li>
                 <li>• Barons Court</li>
                 <li>• Shepherds Bush</li>
+                <li>• White City</li>
+                <li>• Brook Green</li>
               </ul>
 
               <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -398,18 +349,18 @@ export default function HammersmithAndFulhamAreaPage() {
                 <div className="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
                   <div className="relative h-44 w-full">
                     <Image
-                      src="/images/hero.jpg"
-                      alt="Home extension and refurbishment design work"
+                      src="/images/hammersmith-and-fulham-area.jpg"
+                      alt="Hammersmith and Fulham area coverage"
                       fill
                       className="object-cover"
                     />
                   </div>
                   <div className="p-4">
                     <div className="text-[12px] uppercase tracking-[0.18em] font-semibold text-slate-900">
-                      Extensions and conversions
+                      Local coverage
                     </div>
                     <p className="mt-2 text-[12px] text-slate-600">
-                      Practical layouts, elevations and sections designed for approvals and construction.
+                      Fulham, Hammersmith, Parsons Green, West Kensington and nearby streets supported.
                     </p>
                   </div>
                 </div>
@@ -417,18 +368,18 @@ export default function HammersmithAndFulhamAreaPage() {
                 <div className="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
                   <div className="relative h-44 w-full">
                     <Image
-                      src="/images/drawings.jpg"
-                      alt="Building regulation drawings and detailing"
+                      src="/images/hero.jpg"
+                      alt="Extensions and conversions design support"
                       fill
                       className="object-cover"
                     />
                   </div>
                   <div className="p-4">
                     <div className="text-[12px] uppercase tracking-[0.18em] font-semibold text-slate-900">
-                      Building regulation packs
+                      Technical packs
                     </div>
                     <p className="mt-2 text-[12px] text-slate-600">
-                      Technical packs with key details coordinated for building control and contractors.
+                      Building regulation packs with sections, details and coordination for build stage.
                     </p>
                   </div>
                 </div>
