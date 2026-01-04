@@ -533,20 +533,22 @@ export default function IndexPage() {
                   </select>
                 </div>
 
-                <button
-                  type="submit"
-                  className="mt-2 w-full rounded-full bg-[#64b7c4] px-4 py-2.5 text-[13px] font-semibold uppercase tracking-[0.2em] text-white shadow-sm hover:bg-[#4da4b4] focus:outline-none focus:ring-2 focus:ring-[#64b7c4]"
-                >
-                  Get my quote
-                </button>
+             <button
+  type="submit"
+  className="mt-2 w-full rounded-full bg-[#64b7c4] px-4 py-2.5 text-[13px] font-semibold uppercase tracking-[0.2em] text-white shadow-sm hover:bg-[#4da4b4] focus:outline-none focus:ring-2 focus:ring-[#64b7c4]"
+>
+  Get my fixed fee quote
+</button>
 
-                <p className="mt-2 text-[11px] text-slate-500">
-                  Popular: rear extensions, side return extensions, wrap around
-                  extensions, loft dormers, hip to gable conversions, new build
-                  plots and flat conversions.
-                </p>
-              </form>
-            </div>
+<p className="mt-2 text-[11px] text-slate-500 text-center">
+  No obligation. Same-day response on most enquiries.
+</p>
+
+<p className="mt-2 text-[11px] text-slate-500">
+  Popular: rear extensions, side return extensions, wrap around
+  extensions, loft dormers, hip to gable conversions, new build
+  plots and flat conversions.
+</p>
 
             <div className="mt-4 text-[13px] leading-relaxed text-slate-700">
               <p>
