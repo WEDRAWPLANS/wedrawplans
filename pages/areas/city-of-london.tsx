@@ -1,428 +1,504 @@
 import React from "react";
 import Head from "next/head";
+import Image from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
-
+import ServiceInternalLinks from "../../components/ServiceInternalLinks";
+import AreaTopHeader from "../../components/AreaTopHeader";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const WHATSAPP_LINK =
-  "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20the%20City%20of%20London";
+  "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20City%20of%20London";
 
 export default function CityOfLondonAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-  await submitBoroughLead(e, { boroughName: "City of London" });
-}
+    await submitBoroughLead(e, { boroughName: "City of London" });
+  }
 
   function scrollToForm() {
-    const el = document.getElementById("cityoflondon-quote");
+    const el = document.getElementById("city-of-london-quote");
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
+
+  const localBusinessJson = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "WEDRAWPLANS",
+    url: "https://www.wedrawplans.co.uk/areas/city-of-london",
+    telephone: "+44 20 3654 8508",
+    email: "info@wedrawplans.com",
+    image: "https://www.wedrawplans.co.uk/images/hero.jpg",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "201 Borough High Street",
+      addressLocality: "London",
+      postalCode: "SE1 1JA",
+      addressCountry: "UK"
+    },
+    areaServed: [
+      "City of London",
+      "Bank",
+      "Barbican",
+      "St Paul's",
+      "Moorgate",
+      "Liverpool Street",
+      "Farringdon borders",
+      "Aldgate borders",
+      "Cannon Street",
+      "Mansion House",
+      "Monument"
+    ],
+    description:
+      "Architectural drawing services in the City of London for extensions, loft conversions, flat conversions, refurbishments and building regulations."
+  };
+
+  const faqJson = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "Do I need planning permission for works in the City of London?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "Often yes. The City has many listed buildings, conservation areas and tighter controls. We confirm the correct route once we review your address, building status and the scope of works."
+        }
+      },
+      {
+        "@type": "Question",
+        name: "Is the City of London strict with alterations and conversions?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "It can be strict, particularly for heritage assets, roofline changes and visible external alterations. A clear strategy and well coordinated drawings help the application process run smoother."
+        }
+      },
+      {
+        "@type": "Question",
+        name: "How long does the City of London take to decide?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "Planning timescales vary by proposal type, but many applications follow the standard determination period after validation. We guide you on realistic timings once we confirm the submission route."
+        }
+      },
+      {
+        "@type": "Question",
+        name: "Do you manage the full application to the City of London?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "Yes. We prepare drawings, complete the forms, upload documents, submit to the relevant portal and respond to planning officer queries."
+        }
+      }
+    ]
+  };
+
+  const visibleFaq = [
+    {
+      q: "Do I need planning permission for works in the City of London?",
+      a: "Often yes. The City has many listed buildings, conservation areas and tighter controls. We confirm the correct route once we review your address, building status and the scope of works."
+    },
+    {
+      q: "Is the City of London strict with alterations and conversions?",
+      a: "It can be strict, particularly for heritage assets, roofline changes and visible external alterations. A clear strategy and well coordinated drawings help the application process run smoother."
+    },
+    {
+      q: "How long does the City of London take to decide?",
+      a: "Planning timescales vary by proposal type, but many applications follow the standard determination period after validation. We guide you on realistic timings once we confirm the submission route."
+    },
+    {
+      q: "Do you manage the full application to the City of London?",
+      a: "Yes. We prepare drawings, complete the forms, upload documents, submit to the relevant portal and respond to planning officer queries."
+    }
+  ];
 
   return (
     <>
       <Head>
         <title>
-          Architectural Drawings in the City of London – Extensions, Conversions & Commercial Works
+          Architectural Drawings in City of London | Alterations, Conversions, Refurbishments
         </title>
         <meta
           name="description"
-          content="Architectural drawings in the City of London for extensions, internal alterations, commercial upgrades, residential conversions and building regulation packs. Fixed fees from £750."
+          content="Architectural drawings in the City of London for refurbishments, alterations, conversions and building regulation packs. Fixed fees with clear scope and fast communication."
         />
-        <link rel="canonical" href="https://wedrawplans.co.uk/city-of-london" />
-<meta name="robots" content="noindex,follow" />
-
+        <link
+          rel="canonical"
+          href="https://www.wedrawplans.co.uk/areas/city-of-london"
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }}
+        />
       </Head>
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
-
-        {/* HEADER */}
-        <header className="border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur">
-          <div className="mx-auto max-w-5xl flex items-center justify-between px-4 py-3 lg:px-6">
-
-            {/* LOGO + TEXT */}
-            <div className="flex items-center gap-2">
-              <div className="grid h-10 w-10 place-items-center rounded-full border border-slate-500 text-xs tracking-[0.18em] font-semibold text-red-700">
-                WD
-              </div>
-              <div className="leading-tight">
-                <div className="uppercase tracking-[0.2em] text-lg font-semibold">
-                  WEDRAWPLANS
-                </div>
-                <div className="text-[11px] uppercase tracking-[0.2em] text-slate-500">
-                  Architectural drawing consultants
-                </div>
-              </div>
-            </div>
-
-            {/* CONTACT BUTTONS */}
-            <div className="flex items-center gap-2">
-              <a
-                href={PHONE_LINK}
-                className="hidden sm:inline-flex gap-1 px-3 py-1.5 rounded-full border border-slate-300 text-[12px] shadow-sm hover:bg-slate-900 hover:text-white"
-              >
-                📞 {PHONE_DISPLAY}
-              </a>
-
-              <a
-                href={WHATSAPP_LINK}
-                target="_blank"
-                className="inline-flex gap-1 px-3 py-1.5 rounded-full bg-[#25D366] text-white shadow-sm text-[12px] hover:bg-[#1ebe57]"
-              >
-                💬 <span className="hidden sm:inline">WhatsApp us</span>
-              </a>
-            </div>
-
-          </div>
-        </header>
+        <AreaTopHeader />
 
         <main>
-
-          {/* HERO + FORM */}
-          <section className="bg-[#fdf8f3] border-b border-slate-200">
-            <div className="max-w-5xl mx-auto flex flex-col lg:flex-row gap-6 px-4 py-8 lg:px-6 lg:py-10">
-
-              {/* LEFT SIDE TEXT */}
+          <section className="border-b border-slate-200 bg-[#fdf8f3]">
+            <div className="mx-auto max-w-5xl flex flex-col lg:flex-row gap-6 px-4 py-8 lg:px-6 lg:py-10">
               <div className="lg:w-1/2">
-
-                <p className="text-[11px] text-red-700 font-semibold uppercase tracking-[0.26em]">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-red-700">
                   City of London architectural drawings
                 </p>
 
-                <h1 className="mt-2 text-[22px] sm:text-[26px] uppercase tracking-[0.14em] font-semibold leading-snug">
-                  Plans for extensions, conversions & internal works in the City of London
+                <h1 className="mt-2 text-[22px] sm:text-[26px] font-semibold uppercase leading-snug tracking-[0.14em]">
+                  Plans for refurbishments, alterations and conversions in the City of London
                 </h1>
 
+                <p className="mt-2 text-[12px] font-semibold text-slate-800">
+                  Local London designers • Fixed fee guaranteed • Council-ready drawings
+                </p>
+
                 <p className="mt-3 text-[13px] text-slate-700">
-                  WEDRAWPLANS prepare planning and technical drawings for residential and 
-                  commercial properties within the City of London. This includes internal 
-                  alterations, listed building upgrades, office-to-residential conversion 
-                  feasibility, and compliance-led building regulation packs.
+                  WEDRAWPLANS prepare planning and technical drawings for refurbishments, internal alterations,
+                  conversions and compliance packs across the City of London. Fixed fees with clear scope and fast
+                  communication. Close to Bank, Liverpool Street and Moorgate stations, with projects also covering
+                  St Pauls and Barbican streets.
                 </p>
 
                 <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
-                  <li>• Residential alterations, extensions and conversions</li>
-                  <li>• Commercial layout changes, shopfront alterations & signage</li>
-                  <li>• Listed building drawing packages</li>
-                  <li>• Planning, lawful development and building regulation packs</li>
-                  <li>• Covering the Square Mile and immediate surrounding areas</li>
+                  <li>• Internal alterations, reconfiguration and fit out drawings</li>
+                  <li>• Change of use layouts and conversion feasibility</li>
+                  <li>• Shopfront and frontage proposals where applicable</li>
+                  <li>• Planning drawings and building regulation packs</li>
+                  <li>• Covering Bank, Barbican, St Pauls, Moorgate and more</li>
+                  <li>• Same day response on most enquiries</li>
                 </ul>
+
+                <p className="mt-4 text-[13px] text-slate-700">
+                  Recent projects in City of London include rear extensions, side returns and loft conversions across EC1, EC2, EC3 and EC4.
+                </p>
 
                 <div className="mt-5 flex flex-wrap gap-3 items-center">
                   <button
                     onClick={scrollToForm}
-                    className="px-5 py-2.5 bg-[#64b7c4] rounded-full text-white text-[13px] font-semibold uppercase tracking-[0.18em] hover:bg-[#4da4b4]"
+                    type="button"
+                    className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-white text-[13px] font-semibold uppercase tracking-[0.18em] hover:bg-[#4da4b4]"
                   >
-                    Get my City of London quote
+                    Get a quick quote
                   </button>
 
                   <a href={PHONE_LINK} className="text-[13px] underline text-slate-800">
                     Or call {PHONE_DISPLAY}
                   </a>
                 </div>
-
               </div>
 
-              {/* RIGHT FORM */}
-              <div id="cityoflondon-quote" className="lg:w-1/2">
-
+              <div id="city-of-london-quote" className="lg:w-1/2">
                 <div className="bg-white p-5 rounded-2xl shadow-md">
-
-                  <h2 className="uppercase text-[14px] font-semibold tracking-[0.16em] text-slate-900">
-                    Free fixed quote for City of London projects
+                  <h2 className="text-[14px] uppercase font-semibold tracking-[0.16em] text-slate-900">
+                    Free fixed fee quote
                   </h2>
 
                   <p className="mt-1 text-[12px] text-slate-600">
-                    Provide a few details about your property and project. 
-                    We will confirm a clear, fixed fee.
+                    Tell us a little about your property and what you plan to build. We will reply with a clear fixed fee for your drawings.
                   </p>
 
                   <form onSubmit={handleSubmit} className="mt-3 space-y-3 text-[13px]">
-
-                    {/* NAME */}
                     <div className="space-y-1">
                       <label className="text-[11px] font-medium">Name</label>
                       <input
-                        required
                         name="name"
-                        className="w-full bg-transparent border-b border-slate-300 py-1.5 px-1 focus:border-[#64b7c4]"
+                        required
+                        className="w-full bg-transparent border-b border-slate-300 py-1.5 px-1 focus:border-[#64b7c4] outline-none"
                       />
                     </div>
 
-                    {/* PHONE & EMAIL */}
                     <div className="grid sm:grid-cols-2 gap-3">
-
                       <div className="space-y-1">
                         <label className="text-[11px] font-medium">Telephone</label>
                         <input
-                          required
                           name="phone"
+                          required
                           type="tel"
-                          className="w-full bg-transparent border-b border-slate-300 py-1.5 px-1 focus:border-[#64b7c4]"
+                          className="w-full bg-transparent border-b border-slate-300 py-1.5 px-1 focus:border-[#64b7c4] outline-none"
                         />
                       </div>
 
                       <div className="space-y-1">
                         <label className="text-[11px] font-medium">Email</label>
                         <input
-                          required
                           name="email"
+                          required
                           type="email"
-                          className="w-full bg-transparent border-b border-slate-300 py-1.5 px-1 focus:border-[#64b7c4]"
+                          className="w-full bg-transparent border-b border-slate-300 py-1.5 px-1 focus:border-[#64b7c4] outline-none"
                         />
                       </div>
-
                     </div>
 
-                    {/* POSTCODE */}
                     <div className="space-y-1">
-                      <label className="text-[11px] font-medium">City postcode</label>
+                      <label className="text-[11px] font-medium">City of London postcode</label>
                       <input
-                        required
                         name="postcode"
-                        placeholder="EC1A 4JQ"
+                        required
+                        placeholder="EC2V 7HH"
                         onFocus={(e) => (e.target.placeholder = "")}
-                        onBlur={(e) =>
-                          !e.target.value && (e.target.placeholder = "EC1A 4JQ")
-                        }
-                        className="w-full bg-transparent border-b border-slate-300 py-1.5 px-1 text-slate-500/70 focus:text-slate-900 focus:border-[#64b7c4]"
+                        onBlur={(e) => !e.target.value && (e.target.placeholder = "EC2V 7HH")}
+                        className="w-full border-b border-slate-300 bg-transparent py-1.5 px-1 text-slate-500/70 focus:text-slate-900 focus:border-[#64b7c4] outline-none"
                       />
                     </div>
 
-                    {/* PROJECT TYPE */}
                     <div className="space-y-1">
                       <label className="text-[11px] font-medium">Project type</label>
                       <select
                         name="projectType"
                         required
                         defaultValue=""
-                        className="w-full bg-transparent border-b border-slate-300 py-1.5 px-1 focus:border-[#64b7c4]"
+                        className="w-full border-b border-slate-300 bg-transparent py-1.5 px-1 focus:border-[#64b7c4] outline-none"
                       >
-                        <option value="" disabled>Select project type</option>
-                        <option>Internal alteration</option>
-                        <option>Commercial layout change</option>
-                        <option>Shopfront alteration</option>
-                        <option>Extension</option>
+                        <option value="" disabled>
+                          Select project type
+                        </option>
+                        <option>House extension</option>
+                        <option>Loft conversion</option>
+                        <option>Internal remodelling</option>
+                        <option>New build house</option>
                         <option>Conversion to flats</option>
-                        <option>Listed building works</option>
                         <option>Building regulation pack only</option>
-                        <option>Other project</option>
+                        <option>Other domestic project</option>
                       </select>
                     </div>
 
-                    {/* DESCRIPTION */}
                     <div className="space-y-1">
-                      <label className="text-[11px] font-medium">Brief description of your City project</label>
+                      <label className="text-[11px] font-medium">
+                        Brief description of your project
+                      </label>
                       <textarea
                         name="projectDetails"
                         rows={4}
-                        placeholder="Example: internal alteration to a commercial unit near Bank station. New layout & regulation drawings required."
-                        className="w-full bg-white border border-slate-300 rounded px-2 py-2 focus:border-[#64b7c4]"
+                        placeholder="For example: internal refurbishment with layout changes, or a conversion with new partitions and compliance upgrades."
+                        className="w-full border border-slate-300 rounded bg-white px-2 py-2 focus:border-[#64b7c4] outline-none"
                       />
                     </div>
 
-                    {/* SUBMIT */}
                     <button
                       type="submit"
-                      className="w-full py-2.5 bg-[#64b7c4] text-white rounded-full uppercase text-[13px] tracking-[0.2em] hover:bg-[#4da4b4]"
+                      className="w-full rounded-full bg-[#64b7c4] py-2.5 text-white text-[13px] font-semibold uppercase tracking-[0.2em] hover:bg-[#4da4b4]"
                     >
-                      Get my City of London quote
+                      Get a fixed fee quote
                     </button>
 
-                    <p className="text-[11px] text-slate-500 mt-2">
-                      We regularly support City projects including internal alterations,
-                      office-to-residential feasibility, signage drawings and listed building work.
+                    <p className="text-[11px] text-slate-600 mt-2">
+                      No obligation. Same-day response on most enquiries.
                     </p>
 
+                    <p className="text-[11px] text-slate-500 mt-2">
+                      Typical City of London projects include refurbishments, internal alterations, conversions and compliance packs.
+                    </p>
                   </form>
-
                 </div>
               </div>
-
             </div>
           </section>
 
-          {/* COMMON PROJECT TYPES */}
+          <ServiceInternalLinks boroughName="City of London" />
+
           <section className="bg-white border-b border-slate-200 py-10">
-            <div className="max-w-5xl mx-auto px-4 lg:px-6">
-
-              <h2 className="text-[18px] uppercase tracking-[0.16em] font-semibold text-slate-900">
-                Common project types in the City of London
-              </h2>
-
-              <p className="mt-3 text-[13px] text-slate-700 max-w-3xl">
-                The City of London contains a mix of historic buildings, converted 
-                warehouses, commercial offices and high density mixed-use properties. 
-                Many projects involve sensitive internal alterations, commercial upgrades 
-                or changes of use.
-              </p>
-
-              <div className="grid md:grid-cols-2 gap-5 mt-5 text-[13px]">
-
-                <div>
-                  <h3 className="uppercase text-[14px] font-semibold tracking-[0.14em]">
-                    Internal commercial alterations
-                  </h3>
-                  <p className="mt-2 text-slate-700">
-                    Office reconfigurations, layout changes and compliance-led upgrades 
-                    for small commercial units and professional premises.
+            <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
+              <div className="grid md:grid-cols-[1.7fr,1.3fr] gap-10 items-start">
+                <div className="space-y-4">
+                  <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
+                    Architectural drawing services in the City of London
+                  </h2>
+                  <p className="text-[13px] text-slate-700">
+                    WEDRAWPLANS provide full drawing packages for refurbishments, internal alterations,
+                    conversions and compliance upgrades across the City of London.
                   </p>
+                  <p className="text-[13px] text-slate-700">
+                    We work throughout Bank, Barbican, St Pauls, Moorgate, Liverpool Street and surrounding streets
+                    across EC1, EC2, EC3 and EC4.
+                  </p>
+
+                  <div className="flex flex-wrap gap-3 items-center">
+                    <button
+                      type="button"
+                      onClick={scrollToForm}
+                      className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-white text-[13px] font-semibold uppercase tracking-[0.18em] hover:bg-[#4da4b4]"
+                    >
+                      Get a quick quote
+                    </button>
+                    <a
+                      href={WHATSAPP_LINK}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-300 bg-white text-[13px] text-slate-800 hover:bg-slate-900 hover:text-white"
+                    >
+                      💬 Chat on WhatsApp
+                    </a>
+                  </div>
                 </div>
 
-                <div>
-                  <h3 className="uppercase text-[14px] font-semibold tracking-[0.14em]">
-                    Shopfront alterations & signage
-                  </h3>
-                  <p className="mt-2 text-slate-700">
-                    Drawings for shopfront changes, signage consent and minor façade 
-                    upgrades across the Square Mile.
-                  </p>
+                <div className="rounded-2xl bg-white shadow-md border border-slate-100 overflow-hidden">
+                  <Image
+                    src="/images/drawings.jpg"
+                    alt="Example of architectural drawings for a City of London project"
+                    width={800}
+                    height={500}
+                    className="object-cover w-full h-48 md:h-56"
+                  />
+                  <div className="p-5 space-y-2">
+                    <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
+                      Clear drawings for complex City sites
+                    </h3>
+                    <p className="text-[13px] text-slate-700">
+                      Detailed plans, elevations, sections and notes coordinated with compliance requirements so planning
+                      and Building Control can understand the scheme quickly.
+                    </p>
+                  </div>
                 </div>
-
-                <div>
-                  <h3 className="uppercase text-[14px] font-semibold tracking-[0.14em]">
-                    Residential internal works
-                  </h3>
-                  <p className="mt-2 text-slate-700">
-                    Internal layout changes, small extensions and refurbishment works 
-                    for apartments and townhouses in historic areas of the City.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="uppercase text-[14px] font-semibold tracking-[0.14em]">
-                    Listed building alterations
-                  </h3>
-                  <p className="mt-2 text-slate-700">
-                    Sensitive improvement works requiring detailed drawings coordinated 
-                    with heritage requirements.
-                  </p>
-                </div>
-
               </div>
 
-            </div>
-          </section>
-
-          {/* AREAS COVERED */}
-          <section className="bg-[#f8f4f0] border-b border-slate-200 py-10">
-            <div className="max-w-5xl mx-auto px-4 lg:px-6">
-
-              <h2 className="text-[18px] uppercase tracking-[0.16em] font-semibold">
-                Areas of the City of London covered
-              </h2>
-
-              <p className="mt-3 text-[13px] text-slate-700 max-w-3xl">
-                WEDRAWPLANS support projects across the entire Square Mile, including:
-              </p>
-
-              <ul className="grid md:grid-cols-2 gap-2 text-[13px] text-slate-800 mt-4">
-                <li>• Bank & Mansion House</li>
-                <li>• Moorgate & Liverpool Street</li>
-                <li>• Barbican & St Paul’s</li>
-                <li>• Aldgate & Fenchurch Street</li>
-                <li>• Monument & Cannon Street</li>
-                <li>• All areas within the Square Mile boundary</li>
-              </ul>
-
-              <p className="mt-3 text-[13px] text-slate-700 max-w-3xl">
-                We assist with both residential and commercial schemes, preparing 
-                drawings that meet City of London planning and regulation standards.
-              </p>
-
-            </div>
-          </section>
-
-          {/* PRICING */}
-          <section className="bg-white border-b border-slate-200 py-10">
-            <div className="max-w-5xl mx-auto px-4 lg:px-6">
-
-              <h2 className="text-[18px] uppercase tracking-[0.16em] font-semibold">
-                Clear fixed fees for City of London projects
-              </h2>
-
-              <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-                Fees follow our standard London pricing structure, with adjustments for 
-                complexity, listed buildings or commercial requirements.
-              </p>
-
-              <div className="grid md:grid-cols-3 gap-4 mt-5 text-[13px]">
-
-                <div className="p-4 rounded-md border border-slate-200 bg-[#fdf8f3]">
-                  <h3 className="font-semibold text-slate-900">Planning drawings</h3>
-                  <div className="font-semibold text-slate-900 mt-1">from £750 + VAT</div>
-                  <p className="mt-2 text-[12px] text-slate-600">
-                    Full existing & proposed drawings for small extensions, internal works
-                    or layout changes.
+              <div className="grid md:grid-cols-2 gap-10">
+                <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
+                  <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
+                    City of London areas we cover
+                  </h3>
+                  <Image
+                    src="/images/hero.jpg"
+                    alt="City of London local area"
+                    width={800}
+                    height={500}
+                    className="rounded-xl object-cover mb-3"
+                  />
+                  <p className="text-[13px] text-slate-700">
+                    Drawings for the whole City of London, including:
                   </p>
+                  <div className="grid grid-cols-2 gap-2 text-[13px] text-slate-700">
+                    <ul className="list-disc pl-4 space-y-1">
+                      <li>Bank EC2</li>
+                      <li>Moorgate EC2</li>
+                      <li>Liverpool Street EC2</li>
+                      <li>Barbican EC1</li>
+                      <li>St Pauls EC4</li>
+                      <li>Farringdon borders EC1</li>
+                    </ul>
+                    <ul className="list-disc pl-4 space-y-1">
+                      <li>Mansion House EC4</li>
+                      <li>Cannon Street EC4</li>
+                      <li>Monument EC3</li>
+                      <li>Aldgate borders EC3</li>
+                      <li>St Pancras borders</li>
+                      <li>Surrounding streets and estates</li>
+                    </ul>
+                  </div>
                 </div>
 
-                <div className="p-4 rounded-md border border-slate-200 bg-[#fdf8f3]">
-                  <h3 className="font-semibold text-slate-900">Measured survey</h3>
-                  <div className="font-semibold text-slate-900 mt-1">from £150 + VAT</div>
-                  <p className="mt-2 text-[12px] text-slate-600">
-                    Accurate internal laser survey for existing condition drawings.
-                  </p>
+                <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
+                  <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
+                    Popular projects in the City
+                  </h3>
+                  <div className="grid grid-cols-2 gap-3 text-[13px] text-slate-700">
+                    <ul className="list-disc pl-4 space-y-1">
+                      <li>Internal alterations and reconfiguration</li>
+                      <li>Refurbishment and compliance upgrades</li>
+                      <li>Change of use layouts and feasibility</li>
+                      <li>Small extensions where applicable</li>
+                      <li>Building regulation packs</li>
+                    </ul>
+                    <ul className="list-disc pl-4 space-y-1">
+                      <li>Shopfront and frontage drawings</li>
+                      <li>Fire and access coordination</li>
+                      <li>Survey and measured drawings</li>
+                      <li>Planning submissions support</li>
+                      <li>Technical coordination drawings</li>
+                    </ul>
+                  </div>
+                  <Image
+                    src="/images/hero.jpg"
+                    alt="Completed refurbishment project"
+                    width={800}
+                    height={500}
+                    className="rounded-xl object-cover mt-2"
+                  />
                 </div>
-
-                <div className="p-4 rounded-md border border-slate-200 bg-[#fdf8f3]">
-                  <h3 className="font-semibold text-slate-900">Building regulation pack</h3>
-                  <div className="font-semibold text-slate-900 mt-1">from £950 + VAT</div>
-                  <p className="mt-2 text-[12px] text-slate-600">
-                    Technical notes, sections and construction drawings coordinated 
-                    with structural engineers.
-                  </p>
-                </div>
-
               </div>
 
-              <div className="mt-5">
-                <button
-                  onClick={scrollToForm}
-                  className="px-5 py-2.5 bg-[#64b7c4] rounded-full text-white text-[13px] uppercase tracking-[0.18em] hover:bg-[#4da4b4]"
-                >
-                  Request my City of London fee
-                </button>
+              <section className="rounded-2xl bg-white border border-slate-200 p-6 md:p-8">
+                <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
+                  Frequently asked questions in City of London
+                </h2>
+
+                <div className="mt-6 space-y-5">
+                  {visibleFaq.map((item) => (
+                    <div
+                      key={item.q}
+                      className="border-b border-slate-200 pb-5 last:border-b-0 last:pb-0"
+                    >
+                      <h3 className="text-[13px] font-semibold text-slate-900">
+                        {item.q}
+                      </h3>
+                      <p className="mt-2 text-[13px] text-slate-700">
+                        {item.a}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              <div className="rounded-2xl bg-slate-900 text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                  <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
+                    Ready to start your project
+                  </h2>
+                  <p className="text-[13px] text-slate-300 mt-2">
+                    Send your postcode and a short description. We review and reply with a fixed fee and recommended next steps.
+                  </p>
+                  <p className="text-[13px] text-slate-300 mt-2">
+                    Prefer to speak. Call 020 3654 8508
+                  </p>
+                </div>
+                <div className="flex flex-col space-y-2 text-[13px]">
+                  <a href={PHONE_LINK} className="font-semibold text-emerald-300 underline">
+                    {PHONE_DISPLAY}
+                  </a>
+                  <a href="mailto:info@wedrawplans.com" className="font-semibold text-emerald-300 underline">
+                    info@wedrawplans.com
+                  </a>
+                  <button
+                    type="button"
+                    onClick={scrollToForm}
+                    className="mt-2 inline-flex items-center justify-center rounded-full bg-white px-5 py-2 text-[13px] font-semibold text-slate-900 shadow hover:bg-emerald-100"
+                  >
+                    Get a quick quote
+                  </button>
+                </div>
               </div>
 
-            </div>
-          </section>
-
-          {/* FINAL CTA */}
-          <section className="bg-[#f8f4f0] py-10">
-            <div className="max-w-5xl mx-auto px-4 lg:px-6 text-center">
-
-              <h2 className="uppercase text-[18px] font-semibold tracking-[0.16em]">
-                Ready to move your City of London project forward?
-              </h2>
-
-              <p className="mt-3 text-[13px] text-slate-700">
-                Share a few details and we will reply with a clear fixed fee 
-                and next steps for your City project.
-              </p>
-
-              <div className="mt-5 flex justify-center gap-3 flex-wrap">
-                
-                <button
-                  onClick={scrollToForm}
-                  className="px-5 py-2.5 bg-[#64b7c4] rounded-full text-[13px] uppercase tracking-[0.18em] text-white hover:bg-[#4da4b4]"
-                >
-                  Get my City of London quote
-                </button>
-
+              <div className="text-[12px] text-slate-600 pt-2">
+                See also{" "}
                 <a
-                  href={WHATSAPP_LINK}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-300 bg-white text-slate-800 text-[13px] hover:bg-slate-900 hover:text-white"
+                  href="/extension-plans"
+                  className="text-blue-600 underline underline-offset-4 hover:text-blue-700"
                 >
-                  💬 Chat on WhatsApp
+                  extension plans
                 </a>
-
+                ,{" "}
+                <a
+                  href="/loft-conversion-plans"
+                  className="text-blue-600 underline underline-offset-4 hover:text-blue-700"
+                >
+                  loft conversion plans
+                </a>{" "}
+                and{" "}
+                <a
+                  href="/new-build-plans"
+                  className="text-blue-600 underline underline-offset-4 hover:text-blue-700"
+                >
+                  new build plans
+                </a>
+                .
               </div>
-
             </div>
           </section>
-
         </main>
-
       </div>
     </>
   );
