@@ -1,7 +1,9 @@
+// pages/areas/richmond.tsx
 import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
+import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
@@ -101,13 +103,14 @@ export default function RichmondAreaPage() {
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Richmond | Extensions, Lofts, New Builds</title>
+        <title>
+          Architectural Drawings in Richmond upon Thames | Extensions, Lofts, New Builds | WEDRAWPLANS
+        </title>
         <meta
           name="description"
-          content="Architectural drawings in Richmond upon Thames for house extensions, loft conversions, new builds and building regulation packs. Fixed fees with clear scope and fast communication."
+          content="Architectural drawings in Richmond upon Thames for house extensions, loft conversions, refurbishments, conversions and building regulation packs. Fixed fees with clear scope and fast communication."
         />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/richmond" />
-
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
@@ -119,7 +122,6 @@ export default function RichmondAreaPage() {
       </Head>
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
-        {/* HEADER MATCH HOMEPAGE STYLE */}
         <header className="bg-[#fdf8f3]/95 backdrop-blur border-b border-slate-200">
           <div className="mx-auto max-w-6xl px-4 pt-6 pb-3 lg:px-6">
             <div className="flex flex-col items-center text-center">
@@ -170,10 +172,8 @@ export default function RichmondAreaPage() {
         </header>
 
         <main>
-          {/* HERO + FORM */}
           <section className="border-b border-slate-200 bg-[#fdf8f3]">
             <div className="mx-auto max-w-5xl flex flex-col lg:flex-row gap-6 px-4 py-8 lg:px-6 lg:py-10">
-              {/* LEFT TEXT */}
               <div className="lg:w-1/2">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-red-700">
                   Richmond architectural drawings
@@ -185,8 +185,8 @@ export default function RichmondAreaPage() {
 
                 <p className="mt-3 text-[13px] text-slate-700">
                   WEDRAWPLANS prepare planning and technical drawings for house extensions, loft conversions,
-                  refurbishments and small residential schemes across Richmond upon Thames.
-                  Fixed fees with clear scope and fast communication.
+                  refurbishments and small residential schemes across Richmond upon Thames. Fixed fees with clear
+                  scope and fast communication.
                 </p>
 
                 <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
@@ -213,7 +213,6 @@ export default function RichmondAreaPage() {
                 </div>
               </div>
 
-              {/* RIGHT FORM */}
               <div id="richmond-quote" className="lg:w-1/2">
                 <div className="bg-white p-5 rounded-2xl shadow-md">
                   <h2 className="text-[14px] uppercase font-semibold tracking-[0.16em] text-slate-900">
@@ -221,7 +220,8 @@ export default function RichmondAreaPage() {
                   </h2>
 
                   <p className="mt-1 text-[12px] text-slate-600">
-                    Tell us a little about your property and what you plan to build. We will reply with a clear fixed fee for your drawings.
+                    Tell us a little about your property and what you plan to build. We will reply with a clear
+                    fixed fee for your drawings.
                   </p>
 
                   <form onSubmit={handleSubmit} className="mt-3 space-y-3 text-[13px]">
@@ -290,9 +290,7 @@ export default function RichmondAreaPage() {
                     </div>
 
                     <div className="space-y-1">
-                      <label className="text-[11px] font-medium">
-                        Brief description of your project
-                      </label>
+                      <label className="text-[11px] font-medium">Brief description of your project</label>
                       <textarea
                         name="projectDetails"
                         rows={4}
@@ -309,7 +307,8 @@ export default function RichmondAreaPage() {
                     </button>
 
                     <p className="text-[11px] text-slate-500 mt-2">
-                      Typical Richmond projects include rear extensions, loft conversions, refurbishments and internal remodelling.
+                      Typical Richmond projects include rear extensions, loft conversions, refurbishments and
+                      internal remodelling.
                     </p>
                   </form>
                 </div>
@@ -317,7 +316,8 @@ export default function RichmondAreaPage() {
             </div>
           </section>
 
-          {/* MERGED RICH CONTENT */}
+          <ServiceInternalLinks boroughName="Richmond upon Thames" />
+
           <section className="bg-white border-b border-slate-200 py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
               <div className="grid md:grid-cols-[1.7fr,1.3fr] gap-10 items-start">
@@ -326,8 +326,8 @@ export default function RichmondAreaPage() {
                     Architectural drawing services in Richmond upon Thames
                   </h2>
                   <p className="text-[13px] text-slate-700">
-                    WEDRAWPLANS provide full drawing packages for single and double storey extensions,
-                    loft conversions, internal alterations, outbuildings, flat conversions and small new developments
+                    WEDRAWPLANS provide full drawing packages for single and double storey extensions, loft
+                    conversions, internal alterations, outbuildings, flat conversions and small new developments
                     across Richmond upon Thames.
                   </p>
                   <p className="text-[13px] text-slate-700">
@@ -367,7 +367,8 @@ export default function RichmondAreaPage() {
                       Technical drawings builders can price from
                     </h3>
                     <p className="text-[13px] text-slate-700">
-                      Clear floor plans, elevations, sections and notes, coordinated with structural design so builders and inspectors have what they need.
+                      Clear floor plans, elevations, sections and notes, coordinated with structural design so
+                      builders and inspectors have what they need.
                     </p>
                   </div>
                 </div>
@@ -378,16 +379,19 @@ export default function RichmondAreaPage() {
                   <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
                     Richmond areas we cover
                   </h3>
+
                   <Image
                     src="/images/richmond-area.jpg"
-                    alt="Richmond upon Thames local high street"
+                    alt="Richmond upon Thames area map and coverage"
                     width={800}
                     height={500}
                     className="rounded-xl object-cover mb-3"
                   />
+
                   <p className="text-[13px] text-slate-700">
                     Drawings for the whole borough of Richmond upon Thames, including:
                   </p>
+
                   <div className="grid grid-cols-2 gap-2 text-[13px] text-slate-700">
                     <ul className="list-disc pl-4 space-y-1">
                       <li>Richmond and North Sheen</li>
@@ -401,8 +405,8 @@ export default function RichmondAreaPage() {
                       <li>Hampton and Hampton Wick</li>
                       <li>Ham and Petersham</li>
                       <li>Whitton</li>
-                      <li>Local estates and streets</li>
                       <li>Corner plots and side access</li>
+                      <li>River-facing streets</li>
                       <li>Conservation area streets</li>
                     </ul>
                   </div>
@@ -412,6 +416,7 @@ export default function RichmondAreaPage() {
                   <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
                     Popular projects in Richmond
                   </h3>
+
                   <div className="grid grid-cols-2 gap-3 text-[13px] text-slate-700">
                     <ul className="list-disc pl-4 space-y-1">
                       <li>Rear and side extensions</li>
@@ -421,7 +426,7 @@ export default function RichmondAreaPage() {
                       <li>Kitchen and open plan layouts</li>
                     </ul>
                     <ul className="list-disc pl-4 space-y-1">
-                      <li>Garden rooms and studios</li>
+                      <li>Garden studios and outbuildings</li>
                       <li>Garage conversions</li>
                       <li>Internal reconfiguration</li>
                       <li>Flats and conversions where suitable</li>
@@ -444,7 +449,8 @@ export default function RichmondAreaPage() {
                   Permitted development limits in Richmond upon Thames
                 </h2>
                 <p className="text-[13px] text-slate-700">
-                  This is a simplified guide to common permitted development limits. Final confirmation depends on your house type, location and any Article 4 directions or conservation area constraints.
+                  This is a simplified guide to common permitted development limits. Final confirmation depends on
+                  your house type, location and any Article 4 directions or conservation area constraints.
                 </p>
 
                 <div className="grid md:grid-cols-3 gap-8 text-[13px] text-slate-700">
@@ -519,7 +525,9 @@ export default function RichmondAreaPage() {
                   Local planning knowledge for Richmond upon Thames projects
                 </h2>
                 <p className="text-[13px] text-emerald-900">
-                  Richmond upon Thames includes conservation areas and heritage streets, plus tighter design expectations for roof alterations and visible extensions. We shape each scheme to fit the local context so approval chances are as strong as possible.
+                  Richmond upon Thames includes conservation areas and heritage streets, plus tighter design
+                  expectations for roof alterations and visible extensions. We shape each scheme to fit the local
+                  context so approval chances are as strong as possible.
                 </p>
               </div>
 
@@ -533,31 +541,24 @@ export default function RichmondAreaPage() {
                       Do I need planning permission in Richmond upon Thames
                     </h3>
                     <p>
-                      Many extensions and lofts can proceed under permitted development, but conservation areas and Article 4 Directions can change what is allowed. We check your address and advise the best route at the start.
+                      Many extensions and lofts can proceed under permitted development, but conservation areas
+                      and Article 4 Directions can change what is allowed. We check your address and advise the
+                      best route at the start.
                     </p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      How fast can you survey
-                    </h3>
-                    <p>
-                      In most cases we can arrange the initial measured survey within forty eight hours of instruction.
-                    </p>
+                    <h3 className="font-semibold text-slate-900">How fast can you survey</h3>
+                    <p>In most cases we can arrange the initial measured survey within forty eight hours of instruction.</p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Do you submit to Richmond Council
-                    </h3>
-                    <p>
-                      Yes. We handle the submission, monitor progress and respond to planning officer queries.
-                    </p>
+                    <h3 className="font-semibold text-slate-900">Do you submit to Richmond Council</h3>
+                    <p>Yes. We handle the submission, monitor progress and respond to planning officer queries.</p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Can you coordinate structural design
-                    </h3>
+                    <h3 className="font-semibold text-slate-900">Can you coordinate structural design</h3>
                     <p>
-                      Yes. We coordinate with structural engineers so beams and load paths are designed and shown correctly on the drawings.
+                      Yes. We coordinate with structural engineers so beams and load paths are designed and shown
+                      correctly on the drawings.
                     </p>
                   </div>
                 </div>
@@ -565,9 +566,7 @@ export default function RichmondAreaPage() {
 
               <div className="rounded-2xl bg-slate-900 text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
-                  <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
-                    Ready to start your project
-                  </h2>
+                  <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">Ready to start your project</h2>
                   <p className="text-[13px] text-slate-300 mt-2">
                     Send your postcode and a short description. We review and reply with a fixed fee and recommended next steps.
                   </p>
