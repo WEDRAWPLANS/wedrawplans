@@ -153,6 +153,16 @@ export default function EalingAreaPage() {
                 <a href={PHONE_LINK} className="text-[13px] underline text-slate-800">
                   Or call {PHONE_DISPLAY}
                 </a>
+
+                <a
+                  href={WHATSAPP_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-[13px] text-slate-800 shadow-sm hover:bg-slate-900 hover:text-white"
+                >
+                  <span>💬</span>
+                  <span>Chat on WhatsApp</span>
+                </a>
               </div>
 
               <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
@@ -211,25 +221,6 @@ export default function EalingAreaPage() {
                   No obligation. Same-day response on most enquiries.
                 </p>
               </form>
-
-              <div className="mt-4 flex flex-wrap items-center gap-3">
-                <a
-                  href={WHATSAPP_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-[13px] text-slate-800 shadow-sm hover:bg-slate-900 hover:text-white"
-                >
-                  <span>💬</span>
-                  <span>Chat on WhatsApp</span>
-                </a>
-                <button
-                  type="button"
-                  onClick={scrollToForm}
-                  className="inline-flex items-center justify-center rounded-full bg-slate-900 px-4 py-2 text-[13px] font-semibold text-white shadow-sm hover:bg-slate-800"
-                >
-                  Review my details
-                </button>
-              </div>
             </div>
           </div>
         </section>
@@ -238,51 +229,139 @@ export default function EalingAreaPage() {
 
         <section className="bg-white border-b border-slate-200 py-10">
           <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
-            <div className="grid md:grid-cols-2 gap-10 items-start">
-              <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
-                <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                  Areas we cover in Ealing
-                </h3>
+            <div className="grid md:grid-cols-[1.7fr,1.3fr] gap-10 items-start">
+              <div className="space-y-4">
+                <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
+                  Architectural drawing services in Ealing
+                </h2>
                 <p className="text-[13px] text-slate-700">
-                  We work across Ealing Broadway, West Ealing, Northfields, Hanwell, Acton, Southall, Greenford, Perivale and Northolt.
+                  WEDRAWPLANS prepare full drawing packages for rear and side extensions, wrap arounds, loft conversions,
+                  internal alterations and building regulation drawings across Ealing.
                 </p>
-                <div className="relative h-44 w-full overflow-hidden rounded-xl">
-                  <Image
-                    src="/images/hero.jpg"
-                    alt="Home extension style project"
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 520px"
-                    className="object-cover"
-                  />
+                <p className="text-[13px] text-slate-700">
+                  We work throughout Ealing Broadway, West Ealing, Northfields, Hanwell, Acton, Southall, Greenford, Perivale and Northolt.
+                </p>
+
+                <div className="flex flex-wrap gap-3 items-center">
+                  <button
+                    type="button"
+                    onClick={scrollToForm}
+                    className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-white text-[13px] font-semibold uppercase tracking-[0.18em] hover:bg-[#4da4b4]"
+                  >
+                    Get a quick quote
+                  </button>
+                  <a
+                    href={WHATSAPP_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-300 bg-white text-[13px] text-slate-800 hover:bg-slate-900 hover:text-white"
+                  >
+                    💬 Chat on WhatsApp
+                  </a>
                 </div>
               </div>
 
-              <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
-                <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                  Drawings builders can price from
-                </h3>
-                <p className="text-[13px] text-slate-700">
-                  Clear plans, elevations, sections and notes, coordinated with structural design so builders and inspectors have what they need.
-                </p>
-                <div className="relative h-44 w-full overflow-hidden rounded-xl">
-                  <Image
-                    src="/images/drawings.jpg"
-                    alt="Example of architectural drawings"
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 520px"
-                    className="object-cover"
-                  />
+              <div className="rounded-2xl bg-white shadow-md border border-slate-100 overflow-hidden">
+                <Image
+                  src="/images/drawings.jpg"
+                  alt="Example of architectural drawings for an Ealing project"
+                  width={800}
+                  height={500}
+                  className="object-cover w-full h-48 md:h-56"
+                />
+                <div className="p-5 space-y-2">
+                  <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
+                    Technical drawings builders can price from
+                  </h3>
+                  <p className="text-[13px] text-slate-700">
+                    Clear plans, elevations, sections and notes, coordinated with structural design so builders and inspectors have what they need.
+                  </p>
                 </div>
               </div>
             </div>
 
+            <div className="grid md:grid-cols-2 gap-10">
+              <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
+                <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
+                  Ealing areas we cover
+                </h3>
+
+                <Image
+                  src="/images/hero.jpg"
+                  alt="Ealing homes and typical extension projects"
+                  width={800}
+                  height={500}
+                  className="rounded-xl object-cover mb-3"
+                />
+
+                <p className="text-[13px] text-slate-700">Drawings for the whole borough of Ealing, including:</p>
+                <div className="grid grid-cols-2 gap-2 text-[13px] text-slate-700">
+                  <ul className="list-disc pl-4 space-y-1">
+                    <li>Ealing Broadway</li>
+                    <li>West Ealing</li>
+                    <li>Northfields</li>
+                    <li>Hanwell</li>
+                    <li>Acton</li>
+                  </ul>
+                  <ul className="list-disc pl-4 space-y-1">
+                    <li>Southall</li>
+                    <li>Greenford</li>
+                    <li>Perivale</li>
+                    <li>Northolt</li>
+                    <li>Surrounding streets</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
+                <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
+                  Popular projects in Ealing
+                </h3>
+
+                <div className="grid grid-cols-2 gap-3 text-[13px] text-slate-700">
+                  <ul className="list-disc pl-4 space-y-1">
+                    <li>Rear extensions</li>
+                    <li>Side returns</li>
+                    <li>Wrap around extensions</li>
+                    <li>Loft dormers</li>
+                    <li>Hip to gable lofts</li>
+                  </ul>
+                  <ul className="list-disc pl-4 space-y-1">
+                    <li>Internal reconfiguration</li>
+                    <li>Kitchen and living layouts</li>
+                    <li>Garden rooms</li>
+                    <li>Refurbishments</li>
+                    <li>Building regulation packs</li>
+                  </ul>
+                </div>
+
+                <Image
+                  src="/images/drawings.jpg"
+                  alt="Drawing set example"
+                  width={800}
+                  height={500}
+                  className="rounded-xl object-cover mt-2"
+                />
+              </div>
+            </div>
+
+            <div className="rounded-2xl bg-emerald-50 border border-emerald-100 p-6 space-y-3">
+              <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-emerald-900">
+                Local planning knowledge for Ealing projects
+              </h2>
+              <p className="text-[13px] text-emerald-900">
+                Ealing includes conservation areas and varied street character, especially around Ealing Broadway, Acton and parts of Hanwell.
+                We shape each scheme to suit local context and neighbour amenity so approval chances are as strong as possible.
+              </p>
+            </div>
+
             <div className="space-y-4">
-              <h2 className="text-[18px] font-semibold uppercase">
-                Frequently asked questions in Ealing
+              <h2 className="text-[18px] font-semibold uppercase tracking-[0.32em]">
+                Frequently asked questions
               </h2>
 
               <div className="grid md:grid-cols-2 gap-6 text-[13px] text-slate-700">
-                <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-5">
                   <h3 className="font-semibold text-slate-900">
                     Do I need planning permission for a rear extension in Ealing?
                   </h3>
@@ -291,7 +370,7 @@ export default function EalingAreaPage() {
                   </p>
                 </div>
 
-                <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-5">
                   <h3 className="font-semibold text-slate-900">
                     Is Ealing strict with loft conversions and extensions?
                   </h3>
@@ -300,31 +379,70 @@ export default function EalingAreaPage() {
                   </p>
                 </div>
 
-                <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-5">
                   <h3 className="font-semibold text-slate-900">
                     How long does Ealing Council take to decide?
                   </h3>
-                  <p>
-                    Householder planning applications normally take six to eight weeks after validation.
-                  </p>
+                  <p>Householder planning applications normally take six to eight weeks after validation.</p>
                 </div>
 
-                <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-5">
                   <h3 className="font-semibold text-slate-900">
                     Do you manage the full application to Ealing Council?
                   </h3>
-                  <p>
-                    Yes. We prepare drawings, submit applications and respond to planning officer queries.
-                  </p>
+                  <p>Yes. We prepare drawings, submit applications and respond to planning officer queries.</p>
                 </div>
               </div>
 
-              <p className="pt-4 text-[13px] font-semibold text-slate-800">
+              <p className="text-[13px] font-semibold text-slate-800 pt-2">
                 Prefer to speak. Call{" "}
                 <a href={PHONE_LINK} className="underline">
                   {PHONE_DISPLAY}
                 </a>
               </p>
+            </div>
+
+            <div className="rounded-2xl bg-slate-900 text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div>
+                <h2 className="text-[18px] font-semibold uppercase tracking-[0.32em]">
+                  Ready to start your project
+                </h2>
+                <p className="text-[13px] text-slate-300 mt-2">
+                  Send your email and a short description. We review and reply with a fixed fee and recommended next steps.
+                </p>
+              </div>
+
+              <div className="flex flex-col items-start md:items-end space-y-2 text-[13px]">
+                <a href={PHONE_LINK} className="font-semibold text-emerald-300 underline">
+                  {PHONE_DISPLAY}
+                </a>
+                <a href="mailto:info@wedrawplans.com" className="font-semibold text-emerald-300 underline">
+                  info@wedrawplans.com
+                </a>
+                <button
+                  type="button"
+                  onClick={scrollToForm}
+                  className="mt-2 inline-flex items-center justify-center rounded-full bg-white px-5 py-2 text-[13px] font-semibold text-slate-900 shadow hover:bg-emerald-100"
+                >
+                  Get a quick quote
+                </button>
+              </div>
+            </div>
+
+            <div className="text-[12px] text-slate-600 pt-2">
+              See also{" "}
+              <a href="/extension-plans" className="underline">
+                extension plans
+              </a>
+              ,{" "}
+              <a href="/loft-plans" className="underline">
+                loft plans
+              </a>{" "}
+              and{" "}
+              <a href="/new-build-plans" className="underline">
+                new build plans
+              </a>
+              .
             </div>
           </div>
         </section>
