@@ -2,6 +2,7 @@ import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
+import AreaTopHeader from "../../components/AreaTopHeader";
 import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 
 const PHONE_DISPLAY = "020 3654 8508";
@@ -116,24 +117,13 @@ export default function BarkingAndDagenhamAreaPage() {
       </Head>
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
-        <header className="bg-[#fdf8f3] border-b border-slate-200">
-          <div className="mx-auto max-w-6xl px-4 py-6 lg:px-6">
-            <div className="flex justify-center">
-              <Image
-                src="/images/wedrawplans-logo.png"
-                alt="WEDRAWPLANS"
-                width={280}
-                height={90}
-                priority
-                className="h-20 w-auto object-contain"
-              />
-            </div>
-          </div>
-        </header>
+        <AreaTopHeader />
 
         <main>
+          {/* HERO + FORM */}
           <section className="border-b border-slate-200 bg-[#fdf8f3]">
             <div className="mx-auto flex max-w-5xl flex-col gap-6 px-4 py-8 lg:flex-row lg:items-start lg:px-6 lg:py-10">
+              {/* TEXT SIDE */}
               <div className="lg:w-1/2">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-red-700">
                   Barking and Dagenham architectural drawings
@@ -143,7 +133,7 @@ export default function BarkingAndDagenhamAreaPage() {
                   Planning drawings for extensions, lofts and home upgrades
                 </h1>
 
-                <p className="mt-2 text-[12px] font-medium text-slate-700">
+                <p className="mt-2 text-[12px] font-semibold text-slate-700">
                   Local London designers • Fixed fee guaranteed • Council-ready
                   drawings
                 </p>
@@ -155,7 +145,7 @@ export default function BarkingAndDagenhamAreaPage() {
                   neighbourhoods.
                 </p>
 
-                <p className="mt-2 text-[13px] text-slate-700">
+                <p className="mt-3 text-[13px] text-slate-700">
                   We regularly work near Barking Station, Upney Station,
                   Becontree Station, Dagenham Heathway Station and nearby
                   residential streets across RM8, RM9 and IG11.
@@ -186,6 +176,12 @@ export default function BarkingAndDagenhamAreaPage() {
                   <li>• Building regulation and construction packs</li>
                 </ul>
 
+                <p className="mt-3 text-[13px] text-slate-700">
+                  Recent projects in Barking and Dagenham include rear
+                  extensions, side returns and loft conversions across RM8, RM9
+                  and IG11.
+                </p>
+
                 <div className="mt-5 flex flex-wrap items-center gap-3">
                   <button
                     type="button"
@@ -200,17 +196,10 @@ export default function BarkingAndDagenhamAreaPage() {
                   >
                     Or call {PHONE_DISPLAY}
                   </a>
-                  <a
-                    href={WHATSAPP_LINK}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-2 text-[13px] font-semibold text-white hover:bg-[#1ebe57]"
-                  >
-                    WhatsApp
-                  </a>
                 </div>
               </div>
 
+              {/* FORM SIDE */}
               <div id="barking-dagenham-quote" className="lg:w-1/2">
                 <div className="rounded-2xl bg-white p-5 shadow-md">
                   <h2 className="text-[14px] font-semibold uppercase tracking-[0.16em] text-slate-900">
@@ -318,8 +307,8 @@ export default function BarkingAndDagenhamAreaPage() {
                     </p>
 
                     <p className="pt-1 text-[11px] text-slate-500">
-                      Prefer WhatsApp. Use the green button at the top of this
-                      page.
+                      Prefer WhatsApp. Use the WhatsApp button at the top of
+                      this page.
                     </p>
                   </form>
                 </div>
@@ -329,6 +318,7 @@ export default function BarkingAndDagenhamAreaPage() {
 
           <ServiceInternalLinks boroughName="Barking and Dagenham" />
 
+          {/* COMMON PROJECT TYPES */}
           <section className="border-b border-slate-200 bg-white py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6">
               <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
@@ -381,6 +371,7 @@ export default function BarkingAndDagenhamAreaPage() {
             </div>
           </section>
 
+          {/* PLANNING GUIDANCE */}
           <section className="border-b border-slate-200 bg-[#f8f4f0] py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6">
               <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
@@ -416,69 +407,7 @@ export default function BarkingAndDagenhamAreaPage() {
             </div>
           </section>
 
-          <section className="border-b border-slate-200 bg-white py-10">
-            <div className="mx-auto max-w-5xl px-4 lg:px-6">
-              <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
-                Frequently asked questions in Barking and Dagenham
-              </h2>
-
-              <div className="mt-5 grid gap-5 text-[13px] md:grid-cols-2">
-                <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
-                  <h3 className="text-[13px] font-semibold text-slate-900">
-                    Do you cover all of Barking and Dagenham
-                  </h3>
-                  <p className="mt-2 text-[12px] text-slate-600">
-                    Yes. We cover Barking, Dagenham, Becontree, Chadwell Heath
-                    and nearby areas. Use the form and we will confirm survey
-                    and delivery dates.
-                  </p>
-                </div>
-
-                <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
-                  <h3 className="text-[13px] font-semibold text-slate-900">
-                    Can you help with permitted development and lawful
-                    development certificates
-                  </h3>
-                  <p className="mt-2 text-[12px] text-slate-600">
-                    Yes. We can check whether permitted development rights apply
-                    and prepare drawings for a lawful development certificate
-                    when suitable.
-                  </p>
-                </div>
-
-                <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
-                  <h3 className="text-[13px] font-semibold text-slate-900">
-                    What do I need to get a fixed quote
-                  </h3>
-                  <p className="mt-2 text-[12px] text-slate-600">
-                    Send your postcode, project type and a short description. If
-                    you have photos or a Rightmove link you can mention it in
-                    the details box.
-                  </p>
-                </div>
-
-                <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
-                  <h3 className="text-[13px] font-semibold text-slate-900">
-                    Do you provide building regulation drawings as well as
-                    planning drawings
-                  </h3>
-                  <p className="mt-2 text-[12px] text-slate-600">
-                    Yes. We provide building regulation packs including
-                    sections, details and notes, coordinated with structural
-                    design where required.
-                  </p>
-                </div>
-              </div>
-
-              <p className="mt-6 text-[13px] font-semibold text-slate-800">
-                Prefer to speak? Call{" "}
-                <a href={PHONE_LINK} className="underline">
-                  {PHONE_DISPLAY}
-                </a>
-              </p>
-            </div>
-          </section>
-
+          {/* FEES */}
           <section className="border-b border-slate-200 bg-white py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6">
               <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
@@ -536,6 +465,7 @@ export default function BarkingAndDagenhamAreaPage() {
             </div>
           </section>
 
+          {/* FINAL CTA */}
           <section className="bg-[#f8f4f0] py-10">
             <div className="mx-auto max-w-5xl px-4 text-center lg:px-6">
               <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
@@ -545,6 +475,10 @@ export default function BarkingAndDagenhamAreaPage() {
                 Use the form above to send a few details and we will respond
                 with a clear fixed fee and next steps for your extension, loft
                 or home upgrade in Barking and Dagenham.
+              </p>
+
+              <p className="mt-4 text-[13px] font-semibold text-slate-900">
+                Prefer to speak. Call {PHONE_DISPLAY}
               </p>
 
               <div className="mt-5 flex flex-wrap justify-center gap-3">
@@ -561,22 +495,15 @@ export default function BarkingAndDagenhamAreaPage() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-[13px] text-slate-800 shadow-sm hover:bg-slate-900 hover:text-white"
                 >
-                  WhatsApp
+                  💬 WhatsApp
                 </a>
                 <a
                   href={PHONE_LINK}
                   className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-[13px] text-slate-800 shadow-sm hover:bg-slate-900 hover:text-white"
                 >
-                  Call {PHONE_DISPLAY}
+                  📞 {PHONE_DISPLAY}
                 </a>
               </div>
-
-              <p className="mt-6 text-[13px] font-semibold text-slate-800">
-                Prefer to speak? Call{" "}
-                <a href={PHONE_LINK} className="underline">
-                  {PHONE_DISPLAY}
-                </a>
-              </p>
             </div>
           </section>
         </main>
