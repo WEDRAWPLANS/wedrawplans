@@ -3,6 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
 import ServiceInternalLinks from "../../components/ServiceInternalLinks";
+import AreaTopHeader from "../../components/AreaTopHeader";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
@@ -95,6 +96,25 @@ export default function CamdenAreaPage() {
     ]
   };
 
+  const visibleFaq = [
+    {
+      q: "Do I need planning permission for a rear extension in Camden?",
+      a: "Not always. Many rear extensions in Camden can be carried out under permitted development. We confirm the correct route once we review your address and building type."
+    },
+    {
+      q: "Is Camden strict with loft conversions and extensions?",
+      a: "Camden can be strict, especially in conservation areas, near Hampstead and Belsize Park, and on terraces with strong character. Good drawings and planning strategy are important."
+    },
+    {
+      q: "How long does Camden Council take to decide?",
+      a: "Householder planning applications normally take six to eight weeks after validation. Lawful Development Certificates usually take around four to six weeks."
+    },
+    {
+      q: "Do you manage the full application to Camden Council?",
+      a: "Yes. We prepare drawings, complete the forms, upload documents, submit to Camden Council and respond to planning officer queries."
+    }
+  ];
+
   return (
     <>
       <Head>
@@ -104,7 +124,6 @@ export default function CamdenAreaPage() {
           content="Architectural drawings in Camden for extensions, loft conversions, flat conversions and building regulation packs. Fixed fees with clear scope and fast communication."
         />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/camden" />
-
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
@@ -116,61 +135,11 @@ export default function CamdenAreaPage() {
       </Head>
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
-        {/* HEADER MATCH HOMEPAGE STYLE (IDENTICAL TO BARNET) */}
-        <header className="bg-[#fdf8f3]/95 backdrop-blur border-b border-slate-200">
-          <div className="mx-auto max-w-6xl px-4 pt-6 pb-3 lg:px-6">
-            <div className="flex flex-col items-center text-center">
-              <Image
-                src="/images/wedrawplans-logo.png"
-                alt="WEDRAWPLANS"
-                width={420}
-                height={140}
-                priority
-                className="h-24 w-auto object-contain"
-              />
-
-              <div className="mt-3 text-[11px] tracking-[0.18em] text-slate-600 uppercase">
-                Architectural Drawing Consultants
-              </div>
-
-              <div className="mt-2 max-w-3xl text-[13px] font-medium text-slate-800">
-                Architectural Drawings for Extensions, Lofts + New Builds at an Affordable Fixed Cost
-              </div>
-            </div>
-
-            <hr className="mt-5 border-t border-slate-600" />
-
-            <div className="mt-2 flex w-full items-center justify-between gap-3">
-              <div className="text-[12px] text-slate-700">
-                <span className="font-semibold text-slate-900">Camden</span> borough page
-              </div>
-
-              <div className="flex items-center gap-2">
-                <a
-                  href={PHONE_LINK}
-                  className="hidden items-center gap-1 rounded-full border border-slate-300 px-3 py-1.5 text-[12px] font-medium text-slate-900 shadow-sm hover:bg-slate-900 hover:text-white sm:inline-flex"
-                >
-                  📞 {PHONE_DISPLAY}
-                </a>
-
-                <a
-                  href={WHATSAPP_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 bg-[#25D366] text-white px-3 py-1.5 rounded-full text-[12px] font-medium shadow-sm hover:bg-[#1ebe57]"
-                >
-                  💬 <span className="hidden sm:inline">WhatsApp us</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </header>
+        <AreaTopHeader />
 
         <main>
-          {/* HERO + FORM (MATCH BARNET STRUCTURE) */}
           <section className="border-b border-slate-200 bg-[#fdf8f3]">
             <div className="mx-auto max-w-5xl flex flex-col lg:flex-row gap-6 px-4 py-8 lg:px-6 lg:py-10">
-              {/* LEFT TEXT */}
               <div className="lg:w-1/2">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-red-700">
                   Camden architectural drawings
@@ -180,10 +149,15 @@ export default function CamdenAreaPage() {
                   Plans for extensions, lofts and conversions in Camden
                 </h1>
 
+                <p className="mt-2 text-[12px] font-semibold text-slate-800">
+                  Local London designers • Fixed fee guaranteed • Council-ready drawings
+                </p>
+
                 <p className="mt-3 text-[13px] text-slate-700">
-                  WEDRAWPLANS prepare planning and technical drawings for house extensions,
-                  loft conversions, flat conversions and refurbishments across the London Borough of Camden.
-                  Fixed fees with clear scope and fast communication.
+                  WEDRAWPLANS prepare planning and technical drawings for house extensions, loft conversions,
+                  flat conversions and refurbishments across the London Borough of Camden. Fixed fees with clear
+                  scope and fast communication. Close to Camden Town, Kentish Town and Kings Cross St Pancras
+                  stations, with projects also covering Hampstead and Belsize Park streets.
                 </p>
 
                 <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
@@ -194,6 +168,10 @@ export default function CamdenAreaPage() {
                   <li>• Covering Camden Town, Kentish Town, Gospel Oak, Bloomsbury and more</li>
                   <li>• Same day response on most enquiries</li>
                 </ul>
+
+                <p className="mt-4 text-[13px] text-slate-700">
+                  Recent projects in Camden include rear extensions, side returns and loft conversions across NW1, NW3, NW5 and WC1.
+                </p>
 
                 <div className="mt-5 flex flex-wrap gap-3 items-center">
                   <button
@@ -210,7 +188,6 @@ export default function CamdenAreaPage() {
                 </div>
               </div>
 
-              {/* RIGHT FORM */}
               <div id="camden-quote" className="lg:w-1/2">
                 <div className="bg-white p-5 rounded-2xl shadow-md">
                   <h2 className="text-[14px] uppercase font-semibold tracking-[0.16em] text-slate-900">
@@ -305,6 +282,10 @@ export default function CamdenAreaPage() {
                       Get a fixed fee quote
                     </button>
 
+                    <p className="text-[11px] text-slate-600 mt-2">
+                      No obligation. Same-day response on most enquiries.
+                    </p>
+
                     <p className="text-[11px] text-slate-500 mt-2">
                       Typical Camden projects include rear extensions, loft conversions, lower ground alterations and flat conversions.
                     </p>
@@ -314,10 +295,8 @@ export default function CamdenAreaPage() {
             </div>
           </section>
 
-          {/* INTERNAL LINKS BLOCK (ONE INSERT, HUGE SEO VALUE) */}
           <ServiceInternalLinks boroughName="Camden" />
 
-          {/* MERGED RICH CONTENT (YOUR CAMDEN CONTENT, BARNET STYLING) */}
           <section className="bg-white border-b border-slate-200 py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
               <div className="grid md:grid-cols-[1.7fr,1.3fr] gap-10 items-start">
@@ -439,6 +418,25 @@ export default function CamdenAreaPage() {
                 </div>
               </div>
 
+              <section className="rounded-2xl bg-white border border-slate-200 p-6 md:p-8">
+                <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
+                  Frequently asked questions in Camden
+                </h2>
+
+                <div className="mt-6 space-y-5">
+                  {visibleFaq.map((item) => (
+                    <div key={item.q} className="border-b border-slate-200 pb-5 last:border-b-0 last:pb-0">
+                      <h3 className="text-[13px] font-semibold text-slate-900">
+                        {item.q}
+                      </h3>
+                      <p className="mt-2 text-[13px] text-slate-700">
+                        {item.a}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
               <div className="rounded-2xl bg-slate-900 text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
                   <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
@@ -446,6 +444,9 @@ export default function CamdenAreaPage() {
                   </h2>
                   <p className="text-[13px] text-slate-300 mt-2">
                     Send your postcode and a short description. We review and reply with a fixed fee and recommended next steps.
+                  </p>
+                  <p className="text-[13px] text-slate-300 mt-2">
+                    Prefer to speak. Call 020 3654 8508
                   </p>
                 </div>
                 <div className="flex flex-col space-y-2 text-[13px]">
