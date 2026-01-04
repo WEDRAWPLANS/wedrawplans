@@ -117,14 +117,17 @@ export default function BarkingAndDagenhamAreaPage() {
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
         <header className="bg-[#fdf8f3] border-b border-slate-200">
-          <div className="mx-auto max-w-6xl px-4 py-6 text-center">
-            <Image
-              src="/images/wedrawplans-logo.png"
-              alt="WEDRAWPLANS"
-              width={420}
-              height={140}
-              className="mx-auto"
-            />
+          <div className="mx-auto max-w-6xl px-4 py-6 lg:px-6">
+            <div className="flex justify-center">
+              <Image
+                src="/images/wedrawplans-logo.png"
+                alt="WEDRAWPLANS"
+                width={280}
+                height={90}
+                priority
+                className="h-20 w-auto object-contain"
+              />
+            </div>
           </div>
         </header>
 
