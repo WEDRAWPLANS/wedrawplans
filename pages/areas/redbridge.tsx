@@ -2,6 +2,8 @@ import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
+import AreaTopHeader from "../../components/AreaTopHeader";
+import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
@@ -105,7 +107,6 @@ export default function RedbridgeAreaPage() {
           content="Architectural drawings in Redbridge for extensions, loft conversions, refurbishments and building regulation packs. Fixed fees with clear scope and fast turnaround."
         />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/redbridge" />
-
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
@@ -116,62 +117,12 @@ export default function RedbridgeAreaPage() {
         />
       </Head>
 
+      <AreaTopHeader />
+
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
-        {/* HEADER MATCH HOMEPAGE STYLE */}
-        <header className="bg-[#fdf8f3]/95 backdrop-blur border-b border-slate-200">
-          <div className="mx-auto max-w-6xl px-4 pt-6 pb-3 lg:px-6">
-            <div className="flex flex-col items-center text-center">
-              <Image
-                src="/images/wedrawplans-logo.png"
-                alt="WEDRAWPLANS"
-                width={420}
-                height={140}
-                priority
-                className="h-24 w-auto object-contain"
-              />
-
-              <div className="mt-3 text-[11px] tracking-[0.18em] text-slate-600 uppercase">
-                Architectural Drawing Consultants
-              </div>
-
-              <div className="mt-2 max-w-3xl text-[13px] font-medium text-slate-800">
-                Architectural Drawings for Extensions, Lofts + New Builds at an Affordable Fixed Cost
-              </div>
-            </div>
-
-            <hr className="mt-5 border-t border-slate-600" />
-
-            <div className="mt-2 flex w-full items-center justify-between gap-3">
-              <div className="text-[12px] text-slate-700">
-                <span className="font-semibold text-slate-900">Redbridge</span> borough page
-              </div>
-
-              <div className="flex items-center gap-2">
-                <a
-                  href={PHONE_LINK}
-                  className="hidden items-center gap-1 rounded-full border border-slate-300 px-3 py-1.5 text-[12px] font-medium text-slate-900 shadow-sm hover:bg-slate-900 hover:text-white sm:inline-flex"
-                >
-                  📞 {PHONE_DISPLAY}
-                </a>
-
-                <a
-                  href={WHATSAPP_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 bg-[#25D366] text-white px-3 py-1.5 rounded-full text-[12px] font-medium shadow-sm hover:bg-[#1ebe57]"
-                >
-                  💬 <span className="hidden sm:inline">WhatsApp us</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </header>
-
         <main>
-          {/* HERO + FORM */}
           <section className="border-b border-slate-200 bg-[#fdf8f3]">
             <div className="mx-auto max-w-5xl flex flex-col lg:flex-row gap-6 px-4 py-8 lg:px-6 lg:py-10">
-              {/* LEFT TEXT */}
               <div className="lg:w-1/2">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-red-700">
                   Redbridge architectural drawings
@@ -181,10 +132,18 @@ export default function RedbridgeAreaPage() {
                   Plans for extensions, lofts and refurbishments in Redbridge
                 </h1>
 
+                <p className="mt-2 text-[12px] font-medium text-slate-700">
+                  Local London designers • Fixed fee guaranteed • Council-ready drawings
+                </p>
+
                 <p className="mt-3 text-[13px] text-slate-700">
-                  WEDRAWPLANS prepare planning and technical drawings for house extensions,
-                  loft conversions, internal alterations, conversions and small residential schemes
-                  across the London Borough of Redbridge. Fixed fees with clear scope and fast communication.
+                  We regularly work near Ilford Station, Gants Hill Station, Wanstead and South Woodford, covering
+                  surrounding residential streets across the borough.
+                </p>
+
+                <p className="mt-3 text-[13px] text-slate-700">
+                  Recent projects in Redbridge include rear extensions, side returns and loft conversions across Ilford,
+                  Gants Hill, Wanstead and Woodford.
                 </p>
 
                 <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
@@ -209,10 +168,35 @@ export default function RedbridgeAreaPage() {
                   <a href={PHONE_LINK} className="text-[13px] underline text-slate-800">
                     Or call {PHONE_DISPLAY}
                   </a>
+
+                  <a
+                    href={WHATSAPP_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-[13px] text-slate-800 shadow-sm hover:bg-slate-900 hover:text-white"
+                  >
+                    <span>💬</span>
+                    <span>Chat on WhatsApp</span>
+                  </a>
+                </div>
+
+                <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                  <div className="relative h-[170px] w-full">
+                    <Image
+                      src="/images/drawings.jpg"
+                      alt="Architectural drawings and planning packs in Redbridge"
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 520px"
+                      className="object-cover"
+                      priority
+                    />
+                  </div>
+                  <div className="p-4 text-[12px] text-slate-600">
+                    Planning drawings, elevations and building regulation packs for homes across Redbridge.
+                  </div>
                 </div>
               </div>
 
-              {/* RIGHT FORM */}
               <div id="redbridge-quote" className="lg:w-1/2">
                 <div className="bg-white p-5 rounded-2xl shadow-md">
                   <h2 className="text-[14px] uppercase font-semibold tracking-[0.16em] text-slate-900">
@@ -292,9 +276,7 @@ export default function RedbridgeAreaPage() {
                     </div>
 
                     <div className="space-y-1">
-                      <label className="text-[11px] font-medium">
-                        Brief description of your project
-                      </label>
+                      <label className="text-[11px] font-medium">Brief description of your project</label>
                       <textarea
                         name="projectDetails"
                         rows={4}
@@ -310,6 +292,10 @@ export default function RedbridgeAreaPage() {
                       Get a fixed fee quote
                     </button>
 
+                    <p className="mt-2 text-[11px] text-slate-500 text-center">
+                      No obligation. Same-day response on most enquiries.
+                    </p>
+
                     <p className="text-[11px] text-slate-500 mt-2">
                       Typical Redbridge projects include rear extensions, dormer lofts, refurbishments and conversions.
                     </p>
@@ -319,7 +305,8 @@ export default function RedbridgeAreaPage() {
             </div>
           </section>
 
-          {/* MERGED RICH CONTENT */}
+          <ServiceInternalLinks boroughName="Redbridge" />
+
           <section className="bg-white border-b border-slate-200 py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
               <div className="grid md:grid-cols-[1.7fr,1.3fr] gap-10 items-start">
@@ -328,13 +315,12 @@ export default function RedbridgeAreaPage() {
                     Architectural drawing services in Redbridge
                   </h2>
                   <p className="text-[13px] text-slate-700">
-                    WEDRAWPLANS provide full drawing packages for single and double storey extensions,
-                    loft conversions, internal alterations, refurbishments, flat conversions and small new developments
-                    across the borough of Redbridge.
+                    WEDRAWPLANS provide full drawing packages for single and double storey extensions, loft conversions,
+                    internal alterations, refurbishments, flat conversions and small new developments across the borough of Redbridge.
                   </p>
                   <p className="text-[13px] text-slate-700">
-                    We work throughout Ilford, Gants Hill, Clayhall, Barkingside, Seven Kings, Goodmayes,
-                    Chadwell Heath, Wanstead, Newbury Park, Hainault, South Woodford and Woodford Bridge.
+                    We work throughout Ilford, Gants Hill, Clayhall, Barkingside, Seven Kings, Goodmayes, Chadwell Heath,
+                    Wanstead, Newbury Park, Hainault, South Woodford and Woodford Bridge.
                   </p>
 
                   <div className="flex flex-wrap gap-3 items-center">
@@ -382,14 +368,12 @@ export default function RedbridgeAreaPage() {
                   </h3>
                   <Image
                     src="/images/redbridge-area.jpg"
-                    alt="Redbridge local high street"
+                    alt="Redbridge local area coverage"
                     width={800}
                     height={500}
                     className="rounded-xl object-cover mb-3"
                   />
-                  <p className="text-[13px] text-slate-700">
-                    Drawings for the whole borough of Redbridge, including:
-                  </p>
+                  <p className="text-[13px] text-slate-700">Drawings for the whole borough of Redbridge, including:</p>
                   <div className="grid grid-cols-2 gap-2 text-[13px] text-slate-700">
                     <ul className="list-disc pl-4 space-y-1">
                       <li>Ilford IG1 IG2</li>
@@ -450,9 +434,7 @@ export default function RedbridgeAreaPage() {
 
                 <div className="grid md:grid-cols-3 gap-8 text-[13px] text-slate-700">
                   <div>
-                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">
-                      Rear extensions
-                    </h3>
+                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">Rear extensions</h3>
                     <ul className="list-disc pl-4 space-y-1">
                       <li>Up to 3 m deep on many terrace houses</li>
                       <li>Up to 4 m on semi detached houses</li>
@@ -461,9 +443,7 @@ export default function RedbridgeAreaPage() {
                     </ul>
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">
-                      Loft conversions
-                    </h3>
+                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">Loft conversions</h3>
                     <ul className="list-disc pl-4 space-y-1">
                       <li>Up to 40 to 50 cubic metres volume</li>
                       <li>No extensions on the front roof slope</li>
@@ -472,9 +452,7 @@ export default function RedbridgeAreaPage() {
                     </ul>
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">
-                      Outbuildings
-                    </h3>
+                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">Outbuildings</h3>
                     <ul className="list-disc pl-4 space-y-1">
                       <li>Maximum 2.5 m high near boundaries</li>
                       <li>Cannot be used as a separate dwelling</li>
@@ -530,39 +508,32 @@ export default function RedbridgeAreaPage() {
                 </h2>
                 <div className="grid md:grid-cols-2 gap-6 text-[13px] text-slate-700">
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Do I need planning permission in Redbridge
-                    </h3>
+                    <h3 className="font-semibold text-slate-900">Do I need planning permission in Redbridge</h3>
                     <p>
                       Many extensions and lofts can proceed under permitted development. We check your address and advise the best route at the start.
                     </p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      How fast can you survey
-                    </h3>
-                    <p>
-                      In most cases we can arrange the initial measured survey within forty eight hours of instruction.
-                    </p>
+                    <h3 className="font-semibold text-slate-900">How fast can you survey</h3>
+                    <p>In most cases we can arrange the initial measured survey within forty eight hours of instruction.</p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Do you submit to Redbridge Council
-                    </h3>
-                    <p>
-                      Yes. We handle the submission, monitor progress and respond to planning officer queries.
-                    </p>
+                    <h3 className="font-semibold text-slate-900">Do you submit to Redbridge Council</h3>
+                    <p>Yes. We handle the submission, monitor progress and respond to planning officer queries.</p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Can you coordinate structural design
-                    </h3>
-                    <p>
-                      Yes. We coordinate with structural engineers so beams and load paths are designed and shown correctly on the drawings.
-                    </p>
+                    <h3 className="font-semibold text-slate-900">Can you coordinate structural design</h3>
+                    <p>Yes. We coordinate with structural engineers so beams and load paths are designed and shown correctly on the drawings.</p>
                   </div>
                 </div>
               </div>
+
+              <p className="text-[13px] font-semibold text-slate-800">
+                Prefer to speak. Call{" "}
+                <a href={PHONE_LINK} className="underline">
+                  {PHONE_DISPLAY}
+                </a>
+              </p>
 
               <div className="rounded-2xl bg-slate-900 text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
@@ -577,10 +548,7 @@ export default function RedbridgeAreaPage() {
                   <a href={PHONE_LINK} className="font-semibold text-emerald-300 underline">
                     {PHONE_DISPLAY}
                   </a>
-                  <a
-                    href="mailto:info@wedrawplans.com"
-                    className="font-semibold text-emerald-300 underline"
-                  >
+                  <a href="mailto:info@wedrawplans.com" className="font-semibold text-emerald-300 underline">
                     info@wedrawplans.com
                   </a>
                   <button
