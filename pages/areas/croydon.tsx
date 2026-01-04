@@ -157,6 +157,25 @@ export default function CroydonAreaPage() {
     ],
   };
 
+  const visibleFaq = [
+    {
+      q: "Do I need planning permission for a rear extension in Croydon",
+      a: "Not always. Many rear extensions can be permitted development, but it depends on your house type, site constraints, and whether any restrictions apply. We confirm the best route after a quick review of your address and goals.",
+    },
+    {
+      q: "How long does Croydon Council take to decide",
+      a: "Timescales vary, but householder applications are commonly decided within several weeks after validation. If you need certainty for a permitted development style scheme, a Lawful Development Certificate can be a safer option.",
+    },
+    {
+      q: "Do you manage the full application to Croydon Council",
+      a: "Yes. We prepare drawings, complete forms, upload documents, submit to the council portal, and respond to planning officer queries through to decision.",
+    },
+    {
+      q: "What drawings do I get for building regulations",
+      a: "A coordinated package typically includes plans, elevations, sections, key construction details, notes for compliance, and coordination points for structure, ventilation, insulation, and drainage so builders can price and build correctly.",
+    },
+  ];
+
   return (
     <>
       <Head>
@@ -168,7 +187,6 @@ export default function CroydonAreaPage() {
           content="Architectural drawings in Croydon for extensions, loft conversions, refurbishments and building regulation plans. Measured survey within 48 hours, clear drawings, fixed quotes, and full planning submission support."
         />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/croydon" />
-
         <meta
           property="og:title"
           content="Architectural Drawings Croydon | WEDRAWPLANS"
@@ -186,7 +204,6 @@ export default function CroydonAreaPage() {
           property="og:image"
           content="https://www.wedrawplans.co.uk/images/drawings.jpg"
         />
-
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
@@ -200,7 +217,6 @@ export default function CroydonAreaPage() {
           name="twitter:image"
           content="https://www.wedrawplans.co.uk/images/drawings.jpg"
         />
-
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
@@ -219,15 +235,12 @@ export default function CroydonAreaPage() {
         />
       </Head>
 
-      {/* CLICKABLE TOP HEADER (Barnet style header component) */}
       <AreaTopHeader />
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
         <main>
-          {/* HERO + FORM (Barnet structure) */}
           <section className="border-b border-slate-200 bg-[#fdf8f3]">
             <div className="mx-auto max-w-5xl flex flex-col gap-6 px-4 py-8 lg:flex-row lg:px-6 lg:py-10">
-              {/* LEFT TEXT */}
               <div className="lg:w-1/2">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-red-700">
                   Croydon architectural drawings
@@ -237,11 +250,15 @@ export default function CroydonAreaPage() {
                   Plans for extensions, lofts and building regs in Croydon
                 </h1>
 
+                <p className="mt-2 text-[12px] font-semibold text-slate-800">
+                  Local London designers • Fixed fee guaranteed • Council-ready drawings
+                </p>
+
                 <p className="mt-3 text-[13px] text-slate-700">
-                  WEDRAWPLANS prepare planning and technical drawings for Croydon
-                  homes, including extensions, loft conversions, refurbishments
-                  and outbuildings. Fixed fees with clear scope and fast
-                  communication.
+                  WEDRAWPLANS prepare planning and technical drawings for Croydon homes, including extensions, loft
+                  conversions, refurbishments and outbuildings. Fixed fees with clear scope and fast communication.
+                  Close to East Croydon and West Croydon stations, with projects also covering Purley and Coulsdon
+                  streets.
                 </p>
 
                 <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
@@ -252,6 +269,10 @@ export default function CroydonAreaPage() {
                   <li>• Building regulation packs for 2025 standards</li>
                   <li>• Same day response on most enquiries</li>
                 </ul>
+
+                <p className="mt-4 text-[13px] text-slate-700">
+                  Recent projects in Croydon include rear extensions, side returns and loft conversions across CR0, CR2, CR5 and CR7.
+                </p>
 
                 <div className="mt-5 flex flex-wrap items-center gap-3">
                   <button
@@ -271,7 +292,6 @@ export default function CroydonAreaPage() {
                 </div>
               </div>
 
-              {/* RIGHT FORM */}
               <div id="croydon-quote" className="lg:w-1/2">
                 <div className="rounded-2xl bg-white p-5 shadow-md">
                   <h2 className="text-[14px] font-semibold uppercase tracking-[0.16em] text-slate-900">
@@ -279,9 +299,7 @@ export default function CroydonAreaPage() {
                   </h2>
 
                   <p className="mt-1 text-[12px] text-slate-600">
-                    Tell us a little about your property and what you plan to
-                    build. We will reply with a clear fixed fee for your
-                    drawings.
+                    Tell us a little about your property and what you plan to build. We will reply with a clear fixed fee for your drawings.
                   </p>
 
                   <form
@@ -331,8 +349,7 @@ export default function CroydonAreaPage() {
                         placeholder="CR0 1AA"
                         onFocus={(e) => (e.target.placeholder = "")}
                         onBlur={(e) =>
-                          !e.target.value &&
-                          (e.target.placeholder = "CR0 1AA")
+                          !e.target.value && (e.target.placeholder = "CR0 1AA")
                         }
                         className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 text-slate-500/70 outline-none focus:border-[#64b7c4] focus:text-slate-900"
                       />
@@ -380,9 +397,12 @@ export default function CroydonAreaPage() {
                       Get a fixed fee quote
                     </button>
 
+                    <p className="text-[11px] text-slate-600 mt-2">
+                      No obligation. Same-day response on most enquiries.
+                    </p>
+
                     <p className="mt-2 text-[11px] text-slate-500">
-                      Typical Croydon projects include wrap around extensions,
-                      loft dormers, garage conversions and full refurbishments.
+                      Typical Croydon projects include wrap around extensions, loft dormers, garage conversions and full refurbishments.
                     </p>
                   </form>
                 </div>
@@ -390,10 +410,8 @@ export default function CroydonAreaPage() {
             </div>
           </section>
 
-          {/* INTERNAL LINKS (SERVICE PAGES) */}
           <ServiceInternalLinks boroughName="Croydon" />
 
-          {/* MERGED RICH CONTENT */}
           <section className="border-b border-slate-200 bg-white py-10">
             <div className="mx-auto max-w-5xl space-y-10 px-4 lg:px-6">
               <div className="grid items-start gap-10 md:grid-cols-[1.7fr,1.3fr]">
@@ -402,15 +420,12 @@ export default function CroydonAreaPage() {
                     Architectural drawing services in Croydon
                   </h2>
                   <p className="text-[13px] text-slate-700">
-                    WEDRAWPLANS prepare full drawing packages for rear and side
-                    extensions, loft conversions, refurbishments, internal
-                    alterations, outbuildings and small residential development
-                    projects across Croydon.
+                    WEDRAWPLANS prepare full drawing packages for rear and side extensions, loft conversions, refurbishments,
+                    internal alterations, outbuildings and small residential development projects across Croydon.
                   </p>
                   <p className="text-[13px] text-slate-700">
-                    We cover Croydon, South Croydon, Purley, Coulsdon, Kenley,
-                    Sanderstead, Selhurst, Thornton Heath, Norbury, Shirley, New
-                    Addington and nearby streets.
+                    We cover Croydon, South Croydon, Purley, Coulsdon, Kenley, Sanderstead, Selhurst, Thornton Heath, Norbury,
+                    Shirley, New Addington and nearby streets.
                   </p>
 
                   <div className="flex flex-wrap items-center gap-3">
@@ -445,9 +460,7 @@ export default function CroydonAreaPage() {
                       Technical drawings builders can price from
                     </h3>
                     <p className="text-[13px] text-slate-700">
-                      Clear floor plans, elevations, sections and notes,
-                      coordinated with structural design so builders and
-                      inspectors have what they need.
+                      Clear floor plans, elevations, sections and notes, coordinated with structural design so builders and inspectors have what they need.
                     </p>
                   </div>
                 </div>
@@ -516,9 +529,7 @@ export default function CroydonAreaPage() {
                   Permitted development limits in Croydon
                 </h2>
                 <p className="text-[13px] text-slate-700">
-                  This is a simplified guide to common permitted development
-                  limits. Final confirmation depends on your house type,
-                  location and any Article 4 directions.
+                  This is a simplified guide to common permitted development limits. Final confirmation depends on your house type, location and any Article 4 directions.
                 </p>
 
                 <div className="grid gap-8 text-[13px] text-slate-700 md:grid-cols-3">
@@ -588,63 +599,35 @@ export default function CroydonAreaPage() {
                 </div>
               </div>
 
+              <section className="rounded-2xl bg-white border border-slate-200 p-6 md:p-8">
+                <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
+                  Frequently asked questions in Croydon
+                </h2>
+
+                <div className="mt-6 space-y-5">
+                  {visibleFaq.map((item) => (
+                    <div
+                      key={item.q}
+                      className="border-b border-slate-200 pb-5 last:border-b-0 last:pb-0"
+                    >
+                      <h3 className="text-[13px] font-semibold text-slate-900">
+                        {item.q}
+                      </h3>
+                      <p className="mt-2 text-[13px] text-slate-700">
+                        {item.a}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
               <div className="space-y-3 rounded-2xl border border-emerald-100 bg-emerald-50 p-6">
                 <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-emerald-900">
                   Local planning knowledge for Croydon projects
                 </h2>
                 <p className="text-[13px] text-emerald-900">
-                  Croydon includes conservation areas, mixed housing stock and
-                  many family homes with scope for larger extensions and loft
-                  conversions. We shape each scheme to suit local character and
-                  neighbour amenity so approval chances are as strong as
-                  possible.
+                  Croydon includes conservation areas, mixed housing stock and many family homes with scope for larger extensions and loft conversions. We shape each scheme to suit local character and neighbour amenity so approval chances are as strong as possible.
                 </p>
-              </div>
-
-              <div className="space-y-4">
-                <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
-                  Frequently asked questions
-                </h2>
-                <div className="grid gap-6 text-[13px] text-slate-700 md:grid-cols-2">
-                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Do I need planning permission in Croydon
-                    </h3>
-                    <p>
-                      Many extensions and lofts can proceed under permitted
-                      development. We check your address and advise the best
-                      route at the start.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      How fast can you survey
-                    </h3>
-                    <p>
-                      In most cases we can arrange the initial measured survey
-                      within forty eight hours of instruction.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Do you submit to Croydon Council
-                    </h3>
-                    <p>
-                      Yes. We handle the submission, monitor progress and
-                      respond to planning officer queries.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Can you coordinate structural design
-                    </h3>
-                    <p>
-                      Yes. We coordinate with structural engineers so beams and
-                      load paths are designed and shown correctly on the
-                      drawings.
-                    </p>
-                  </div>
-                </div>
               </div>
 
               <div className="flex flex-col justify-between gap-4 rounded-2xl bg-slate-900 p-6 text-white md:flex-row md:items-center md:p-8">
@@ -653,8 +636,10 @@ export default function CroydonAreaPage() {
                     Ready to start your project
                   </h2>
                   <p className="mt-2 text-[13px] text-slate-300">
-                    Send your postcode and a short description. We review and
-                    reply with a fixed fee and recommended next steps.
+                    Send your postcode and a short description. We review and reply with a fixed fee and recommended next steps.
+                  </p>
+                  <p className="mt-2 text-[13px] text-slate-300">
+                    Prefer to speak. Call 020 3654 8508
                   </p>
                 </div>
                 <div className="flex flex-col space-y-2 text-[13px]">
