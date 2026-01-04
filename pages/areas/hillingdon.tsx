@@ -9,9 +9,9 @@ const PHONE_LINK = "tel:+442036548508";
 const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20need%20a%20quote%20for%20plans%20in%20Hillingdon";
 
-const HERO_IMAGE = "/images/areas/hillingdon-hero.jpg";
-const PROJECT_IMAGE_1 = "/images/areas/hillingdon/project-1.jpg";
-const PROJECT_IMAGE_2 = "/images/areas/hillingdon/project-2.jpg";
+const HERO_IMAGE = "/images/hillingdon-hero.jpg";
+const PROJECT_IMAGE_1 = "/images/hillingdon-project-1.jpg";
+const PROJECT_IMAGE_2 = "/images/hillingdon-project-2.jpg";
 
 export default function HillingdonPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
