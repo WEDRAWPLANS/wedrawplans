@@ -3,6 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
 import ServiceInternalLinks from "../../components/ServiceInternalLinks";
+import AreaTopHeader from "../../components/AreaTopHeader";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
@@ -112,17 +113,7 @@ export default function EalingAreaPage() {
         />
       </Head>
 
-      <header className="bg-[#fdf8f3] border-b border-slate-200">
-        <div className="mx-auto max-w-6xl px-4 py-6 text-center">
-          <Image
-            src="/images/wedrawplans-logo.png"
-            alt="WEDRAWPLANS"
-            width={420}
-            height={140}
-            className="mx-auto"
-          />
-        </div>
-      </header>
+      <AreaTopHeader />
 
       <main>
         <section className="bg-[#fdf8f3] border-b border-slate-200">
@@ -141,9 +132,15 @@ export default function EalingAreaPage() {
                 residential streets.
               </p>
 
+              <p className="mt-3 text-[13px] text-slate-700">
+                Recent projects in Ealing include rear extensions, side returns and loft conversions across Ealing Broadway,
+                Acton, Hanwell, Southall and nearby streets.
+              </p>
+
               <button
                 onClick={scrollToForm}
                 className="mt-4 rounded-full bg-[#64b7c4] px-6 py-2.5 text-white text-[13px] font-semibold uppercase"
+                type="button"
               >
                 Get a quick quote
               </button>
@@ -213,10 +210,15 @@ export default function EalingAreaPage() {
                 <strong>How long does Ealing Council take to decide?</strong>
                 <p>Householder planning applications normally take six to eight weeks after validation.</p>
               </div>
+
+              <div>
+                <strong>Do you manage the full application to Ealing Council?</strong>
+                <p>Yes. We prepare drawings, submit applications and respond to planning officer queries.</p>
+              </div>
             </div>
 
             <p className="mt-6 text-[13px] font-semibold text-slate-800">
-              Prefer to speak? Call{" "}
+              Prefer to speak. Call{" "}
               <a href={PHONE_LINK} className="underline">
                 {PHONE_DISPLAY}
               </a>
