@@ -2,6 +2,8 @@ import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
+import AreaTopHeader from "../../components/AreaTopHeader";
+import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
@@ -104,7 +106,6 @@ export default function SouthwarkAreaPage() {
           content="Architectural drawings in Southwark for house extensions, loft conversions, flat conversions, new builds and building regulation packs. Fixed fees with clear scope and fast communication."
         />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/southwark" />
-
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
@@ -115,62 +116,12 @@ export default function SouthwarkAreaPage() {
         />
       </Head>
 
+      <AreaTopHeader />
+
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
-        {/* HEADER MATCH HOMEPAGE STYLE */}
-        <header className="bg-[#fdf8f3]/95 backdrop-blur border-b border-slate-200">
-          <div className="mx-auto max-w-6xl px-4 pt-6 pb-3 lg:px-6">
-            <div className="flex flex-col items-center text-center">
-              <Image
-                src="/images/wedrawplans-logo.png"
-                alt="WEDRAWPLANS"
-                width={420}
-                height={140}
-                priority
-                className="h-24 w-auto object-contain"
-              />
-
-              <div className="mt-3 text-[11px] tracking-[0.18em] text-slate-600 uppercase">
-                Architectural Drawing Consultants
-              </div>
-
-              <div className="mt-2 max-w-3xl text-[13px] font-medium text-slate-800">
-                Architectural Drawings for Extensions, Lofts + New Builds at an Affordable Fixed Cost
-              </div>
-            </div>
-
-            <hr className="mt-5 border-t border-slate-600" />
-
-            <div className="mt-2 flex w-full items-center justify-between gap-3">
-              <div className="text-[12px] text-slate-700">
-                <span className="font-semibold text-slate-900">Southwark</span> borough page
-              </div>
-
-              <div className="flex items-center gap-2">
-                <a
-                  href={PHONE_LINK}
-                  className="hidden items-center gap-1 rounded-full border border-slate-300 px-3 py-1.5 text-[12px] font-medium text-slate-900 shadow-sm hover:bg-slate-900 hover:text-white sm:inline-flex"
-                >
-                  📞 {PHONE_DISPLAY}
-                </a>
-
-                <a
-                  href={WHATSAPP_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 bg-[#25D366] text-white px-3 py-1.5 rounded-full text-[12px] font-medium shadow-sm hover:bg-[#1ebe57]"
-                >
-                  💬 <span className="hidden sm:inline">WhatsApp us</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </header>
-
         <main>
-          {/* HERO + FORM */}
           <section className="border-b border-slate-200 bg-[#fdf8f3]">
             <div className="mx-auto max-w-5xl flex flex-col lg:flex-row gap-6 px-4 py-8 lg:px-6 lg:py-10">
-              {/* LEFT TEXT */}
               <div className="lg:w-1/2">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-red-700">
                   Southwark architectural drawings
@@ -180,10 +131,18 @@ export default function SouthwarkAreaPage() {
                   Plans for extensions, lofts and new builds in Southwark
                 </h1>
 
+                <p className="mt-2 text-[12px] font-medium text-slate-700">
+                  Local London designers • Fixed fee guaranteed • Council-ready drawings
+                </p>
+
                 <p className="mt-3 text-[13px] text-slate-700">
-                  WEDRAWPLANS prepare planning and technical drawings for house extensions, loft conversions,
-                  flat conversions and small residential schemes across the London Borough of Southwark.
-                  Fixed fees with clear scope and fast communication.
+                  We regularly work near London Bridge, Borough, Elephant and Castle and Peckham Rye, covering surrounding
+                  residential streets across the borough.
+                </p>
+
+                <p className="mt-3 text-[13px] text-slate-700">
+                  Recent projects in Southwark include rear extensions, side returns and loft conversions across Peckham,
+                  Camberwell, East Dulwich and Bermondsey.
                 </p>
 
                 <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
@@ -207,10 +166,35 @@ export default function SouthwarkAreaPage() {
                   <a href={PHONE_LINK} className="text-[13px] underline text-slate-800">
                     Or call {PHONE_DISPLAY}
                   </a>
+
+                  <a
+                    href={WHATSAPP_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-[13px] text-slate-800 shadow-sm hover:bg-slate-900 hover:text-white"
+                  >
+                    <span>💬</span>
+                    <span>Chat on WhatsApp</span>
+                  </a>
+                </div>
+
+                <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                  <div className="relative h-[170px] w-full">
+                    <Image
+                      src="/images/drawings.jpg"
+                      alt="Planning and building regulation drawings in Southwark"
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 520px"
+                      className="object-cover"
+                      priority
+                    />
+                  </div>
+                  <div className="p-4 text-[12px] text-slate-600">
+                    Planning drawings, loft dormers and building regulation packs across Southwark.
+                  </div>
                 </div>
               </div>
 
-              {/* RIGHT FORM */}
               <div id="southwark-quote" className="lg:w-1/2">
                 <div className="bg-white p-5 rounded-2xl shadow-md">
                   <h2 className="text-[14px] uppercase font-semibold tracking-[0.16em] text-slate-900">
@@ -287,9 +271,7 @@ export default function SouthwarkAreaPage() {
                     </div>
 
                     <div className="space-y-1">
-                      <label className="text-[11px] font-medium">
-                        Brief description of your project
-                      </label>
+                      <label className="text-[11px] font-medium">Brief description of your project</label>
                       <textarea
                         name="projectDetails"
                         rows={4}
@@ -305,6 +287,10 @@ export default function SouthwarkAreaPage() {
                       Get a fixed fee quote
                     </button>
 
+                    <p className="mt-2 text-[11px] text-slate-500 text-center">
+                      No obligation. Same day response on most enquiries.
+                    </p>
+
                     <p className="text-[11px] text-slate-500 mt-2">
                       Typical Southwark projects include rear extensions, loft conversions, flat layouts and refurbishments.
                     </p>
@@ -314,7 +300,8 @@ export default function SouthwarkAreaPage() {
             </div>
           </section>
 
-          {/* MERGED RICH CONTENT */}
+          <ServiceInternalLinks boroughName="Southwark" />
+
           <section className="bg-white border-b border-slate-200 py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
               <div className="grid md:grid-cols-[1.7fr,1.3fr] gap-10 items-start">
@@ -323,13 +310,12 @@ export default function SouthwarkAreaPage() {
                     Architectural drawing services in Southwark
                   </h2>
                   <p className="text-[13px] text-slate-700">
-                    WEDRAWPLANS provide full drawing packages for single and double storey extensions,
-                    loft conversions, internal alterations, outbuildings, flat conversions and small new developments
-                    across the borough of Southwark.
+                    WEDRAWPLANS provide full drawing packages for single and double storey extensions, loft conversions,
+                    internal alterations, outbuildings, flat conversions and small new developments across the borough of Southwark.
                   </p>
                   <p className="text-[13px] text-slate-700">
-                    We work throughout Camberwell, Peckham, Nunhead, East Dulwich, Dulwich, Borough,
-                    Elephant and Castle, Walworth, Bermondsey, Surrey Quays and Rotherhithe.
+                    We work throughout Camberwell, Peckham, Nunhead, East Dulwich, Dulwich, Borough, Elephant and Castle,
+                    Walworth, Bermondsey, Surrey Quays and Rotherhithe.
                   </p>
 
                   <div className="flex flex-wrap gap-3 items-center">
@@ -377,14 +363,12 @@ export default function SouthwarkAreaPage() {
                   </h3>
                   <Image
                     src="/images/southwark-area.jpg"
-                    alt="Southwark local high street"
+                    alt="Southwark area coverage"
                     width={800}
                     height={500}
                     className="rounded-xl object-cover mb-3"
                   />
-                  <p className="text-[13px] text-slate-700">
-                    Drawings for the whole borough of Southwark, including:
-                  </p>
+                  <p className="text-[13px] text-slate-700">Drawings for the whole borough of Southwark, including:</p>
                   <div className="grid grid-cols-2 gap-2 text-[13px] text-slate-700">
                     <ul className="list-disc pl-4 space-y-1">
                       <li>Camberwell and Denmark Hill</li>
@@ -446,9 +430,7 @@ export default function SouthwarkAreaPage() {
 
                 <div className="grid md:grid-cols-3 gap-8 text-[13px] text-slate-700">
                   <div>
-                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">
-                      Rear extensions
-                    </h3>
+                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">Rear extensions</h3>
                     <ul className="list-disc pl-4 space-y-1">
                       <li>Up to 3 m deep on terrace houses</li>
                       <li>Up to 4 m on semi detached houses</li>
@@ -457,9 +439,7 @@ export default function SouthwarkAreaPage() {
                     </ul>
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">
-                      Loft conversions
-                    </h3>
+                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">Loft conversions</h3>
                     <ul className="list-disc pl-4 space-y-1">
                       <li>Up to 40 to 50 cubic metres volume</li>
                       <li>No extensions on the front roof slope</li>
@@ -468,9 +448,7 @@ export default function SouthwarkAreaPage() {
                     </ul>
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">
-                      Outbuildings
-                    </h3>
+                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">Outbuildings</h3>
                     <ul className="list-disc pl-4 space-y-1">
                       <li>Maximum 2.5 m high near boundaries</li>
                       <li>Cannot be used as a separate dwelling</li>
@@ -516,7 +494,7 @@ export default function SouthwarkAreaPage() {
                   Local planning knowledge for Southwark projects
                 </h2>
                 <p className="text-[13px] text-emerald-900">
-                  Southwark includes conservation areas, dense terraces, mixed use streets and large estates. We shape each scheme to fit local context and neighbour constraints so approval chances are as strong as possible.
+                  Southwark includes conservation areas, dense terraces, mixed use streets and large estates. We shape each scheme to fit local context so approval chances are as strong as possible.
                 </p>
               </div>
 
@@ -527,37 +505,44 @@ export default function SouthwarkAreaPage() {
                 <div className="grid md:grid-cols-2 gap-6 text-[13px] text-slate-700">
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
                     <h3 className="font-semibold text-slate-900">
-                      Do I need planning permission in Southwark
+                      Do I need planning permission for a rear extension in Southwark
                     </h3>
                     <p>
-                      Many extensions and lofts can proceed under permitted development, but conservation areas and Article 4 Directions can change what is allowed. We check your address and advise the best route at the start.
+                      Not always. Many householder rear extensions can be permitted development, but conservation areas and Article 4 Directions can change what is allowed. We confirm the correct route once we review your address and house type.
                     </p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
                     <h3 className="font-semibold text-slate-900">
-                      How fast can you survey
+                      Is Southwark strict with loft conversions and dormers
                     </h3>
                     <p>
-                      In most cases we can arrange the initial measured survey within forty eight hours of instruction.
+                      Southwark can be stricter in conservation areas and on streets with strong character, especially where roof alterations affect the street scene. Strong drawings and a clear design approach usually help the process.
                     </p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
                     <h3 className="font-semibold text-slate-900">
-                      Do you submit to Southwark Council
+                      How long does Southwark Council take to decide
                     </h3>
                     <p>
-                      Yes. We handle the submission, monitor progress and respond to planning officer queries.
+                      Householder planning applications usually take six to eight weeks after validation. Lawful Development Certificates are often around four to six weeks, depending on workload and the completeness of the submission.
                     </p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
                     <h3 className="font-semibold text-slate-900">
-                      Can you coordinate structural design
+                      Do you manage the full application to Southwark Council
                     </h3>
                     <p>
-                      Yes. We coordinate with structural engineers so beams and load paths are designed and shown correctly on the drawings.
+                      Yes. We prepare drawings, complete forms, upload documents, submit to Southwark Council and respond to planning officer queries until a decision is issued.
                     </p>
                   </div>
                 </div>
+
+                <p className="mt-6 text-[13px] font-semibold text-slate-800">
+                  Prefer to speak. Call{" "}
+                  <a href={PHONE_LINK} className="underline">
+                    {PHONE_DISPLAY}
+                  </a>
+                </p>
               </div>
 
               <div className="rounded-2xl bg-slate-900 text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
