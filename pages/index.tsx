@@ -548,6 +548,8 @@ export default function IndexPage() {
   extensions, loft dormers, hip to gable conversions, new build
   plots and flat conversions.
 </p>
+</form>
+</div>
 
             <div className="mt-4 text-[13px] leading-relaxed text-slate-700">
               <p>
