@@ -2,19 +2,21 @@ import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
+import AreaTopHeader from "../../components/AreaTopHeader";
+import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const WHATSAPP_LINK =
-  "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Tower%20Hamlets";
+  "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Lambeth";
 
-export default function TowerHamletsAreaPage() {
+export default function LambethAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    await submitBoroughLead(e, { boroughName: "Tower Hamlets" });
+    await submitBoroughLead(e, { boroughName: "Lambeth" });
   }
 
   function scrollToForm() {
-    const el = document.getElementById("tower-hamlets-quote");
+    const el = document.getElementById("lambeth-quote");
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
@@ -22,7 +24,7 @@ export default function TowerHamletsAreaPage() {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: "WEDRAWPLANS",
-    url: "https://www.wedrawplans.co.uk/areas/tower-hamlets",
+    url: "https://www.wedrawplans.co.uk/areas/lambeth",
     telephone: "+44 20 3654 8508",
     email: "info@wedrawplans.com",
     image: "https://www.wedrawplans.co.uk/images/hero.jpg",
@@ -34,20 +36,21 @@ export default function TowerHamletsAreaPage() {
       addressCountry: "UK",
     },
     areaServed: [
-      "Tower Hamlets",
-      "Bow",
-      "Mile End",
-      "Stepney",
-      "Whitechapel",
-      "Bethnal Green",
-      "Limehouse",
-      "Poplar",
-      "Isle of Dogs",
-      "Canary Wharf",
-      "Wapping",
+      "Lambeth",
+      "Clapham",
+      "Brixton",
+      "Streatham",
+      "Norwood",
+      "Vauxhall",
+      "Waterloo",
+      "Kennington borders",
+      "Herne Hill",
+      "Stockwell",
+      "Tulse Hill",
+      "West Norwood",
     ],
     description:
-      "Architectural drawing services in Tower Hamlets for extensions, loft conversions, HMOs, flat conversions, outbuildings, refurbishments and building regulations.",
+      "Architectural drawing services in Lambeth for extensions, loft conversions, flat conversions, outbuildings and building regulation packs.",
   };
 
   const faqJson = {
@@ -56,47 +59,38 @@ export default function TowerHamletsAreaPage() {
     mainEntity: [
       {
         "@type": "Question",
-        name: "Do I need planning permission for a rear extension in Tower Hamlets?",
+        name: "Do I need planning permission for a rear extension in Lambeth?",
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Not always. Many rear extensions in Tower Hamlets can be carried out under permitted development, but conservation areas, flats and Article 4 Directions can change what is allowed. We confirm the correct route once we review your address and house type.",
+            "Not always. Many rear extensions in Lambeth can be carried out under permitted development. We confirm the correct route once we review your address and house type.",
         },
       },
       {
         "@type": "Question",
-        name: "Is Tower Hamlets strict with loft conversions, HMOs and extensions?",
+        name: "Is Lambeth strict with loft conversions and extensions?",
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Tower Hamlets is careful with HMOs, flat conversions and larger extensions, especially where daylight, outlook, amenity space and neighbour impact are affected. Clear drawings and strong planning reasoning are important.",
+            "Lambeth can be stricter in conservation areas and on character streets, including parts of Clapham, Brixton and riverside locations. Clear drawings and a strong planning case help.",
         },
       },
       {
         "@type": "Question",
-        name: "How long does Tower Hamlets Council take to decide?",
+        name: "How long does Lambeth Council take to decide?",
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Householder planning applications usually take six to eight weeks after validation. Lawful Development Certificates often take around four to six weeks, depending on workload and the completeness of the submission.",
+            "Householder planning applications usually take around eight weeks after validation. Lawful Development Certificates are often around six to eight weeks, subject to workload and validation.",
         },
       },
       {
         "@type": "Question",
-        name: "Do you manage the full application to Tower Hamlets Council?",
+        name: "Do you manage the full application to Lambeth Council?",
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Yes. We prepare drawings, complete forms, upload documents, submit to Tower Hamlets Council and respond to planning officer queries until a decision is issued.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Do you help with conservation areas and listed buildings in Tower Hamlets?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Yes. We check constraints like conservation areas and listed buildings, then tailor the design and drawings with the right heritage information where required.",
+            "Yes. We prepare drawings, complete forms, upload documents, submit to Lambeth Council and respond to planning officer queries.",
         },
       },
     ],
@@ -105,18 +99,12 @@ export default function TowerHamletsAreaPage() {
   return (
     <>
       <Head>
-        <title>
-          Architectural Drawings in Tower Hamlets | Extensions, Lofts, HMOs
-        </title>
+        <title>Architectural Drawings in Lambeth | Extensions, Lofts, New Builds</title>
         <meta
           name="description"
-          content="Architectural drawings in Tower Hamlets for extensions, loft conversions, HMOs, flat conversions, new layouts and building regulation packs. Fixed fees, clear scope and fast communication."
+          content="Architectural drawings in Lambeth for house extensions, loft conversions, flat conversions, refurbishments and building regulation packs. Fixed fees with clear scope and fast communication."
         />
-        <link
-          rel="canonical"
-          href="https://www.wedrawplans.co.uk/areas/tower-hamlets"
-        />
-
+        <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/lambeth" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
@@ -127,88 +115,41 @@ export default function TowerHamletsAreaPage() {
         />
       </Head>
 
+      <AreaTopHeader />
+
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
-        {/* HEADER MATCH HOMEPAGE STYLE */}
-        <header className="bg-[#fdf8f3]/95 backdrop-blur border-b border-slate-200">
-          <div className="mx-auto max-w-6xl px-4 pt-6 pb-3 lg:px-6">
-            <div className="flex flex-col items-center text-center">
-              <Image
-                src="/images/wedrawplans-logo.png"
-                alt="WEDRAWPLANS"
-                width={420}
-                height={140}
-                priority
-                className="h-24 w-auto object-contain"
-              />
-
-              <div className="mt-3 text-[11px] tracking-[0.18em] text-slate-600 uppercase">
-                Architectural Drawing Consultants
-              </div>
-
-              <div className="mt-2 max-w-3xl text-[13px] font-medium text-slate-800">
-                Architectural Drawings for Extensions, Lofts + New Builds at an
-                Affordable Fixed Cost
-              </div>
-            </div>
-
-            <hr className="mt-5 border-t border-slate-600" />
-
-            <div className="mt-2 flex w-full items-center justify-between gap-3">
-              <div className="text-[12px] text-slate-700">
-                <span className="font-semibold text-slate-900">
-                  Tower Hamlets
-                </span>{" "}
-                borough page
-              </div>
-
-              <div className="flex items-center gap-2">
-                <a
-                  href={PHONE_LINK}
-                  className="hidden items-center gap-1 rounded-full border border-slate-300 px-3 py-1.5 text-[12px] font-medium text-slate-900 shadow-sm hover:bg-slate-900 hover:text-white sm:inline-flex"
-                >
-                  📞 {PHONE_DISPLAY}
-                </a>
-
-                <a
-                  href={WHATSAPP_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 bg-[#25D366] text-white px-3 py-1.5 rounded-full text-[12px] font-medium shadow-sm hover:bg-[#1ebe57]"
-                >
-                  💬 <span className="hidden sm:inline">WhatsApp us</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </header>
-
         <main>
-          {/* HERO + FORM */}
           <section className="border-b border-slate-200 bg-[#fdf8f3]">
             <div className="mx-auto max-w-5xl flex flex-col lg:flex-row gap-6 px-4 py-8 lg:px-6 lg:py-10">
-              {/* LEFT TEXT */}
               <div className="lg:w-1/2">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-red-700">
-                  Tower Hamlets architectural drawings
+                  Lambeth architectural drawings
                 </p>
 
                 <h1 className="mt-2 text-[22px] sm:text-[26px] font-semibold uppercase leading-snug tracking-[0.14em]">
-                  Plans for extensions, lofts and conversions in Tower Hamlets
+                  Plans for extensions, lofts and conversions in Lambeth
                 </h1>
 
+                <p className="mt-2 text-[12px] font-medium text-slate-700">
+                  Local London designers • Fixed fee guaranteed • Council-ready drawings
+                </p>
+
                 <p className="mt-3 text-[13px] text-slate-700">
-                  WEDRAWPLANS prepare planning and technical drawings for house
-                  extensions, loft conversions, HMOs, flat conversions and
-                  refurbishments across Tower Hamlets. Fixed fees with clear
-                  scope and fast communication.
+                  We regularly work across Lambeth including Clapham, Brixton, Stockwell, Streatham and West Norwood, helping homeowners
+                  extend, convert lofts and upgrade layouts with clear planning and technical drawings.
+                </p>
+
+                <p className="mt-3 text-[13px] text-slate-700">
+                  Typical Lambeth homes include Victorian terraces where side return and wrap around extensions are popular, plus loft dormers
+                  where the street character and conservation constraints allow.
                 </p>
 
                 <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
-                  <li>• Rear, side and wrap around extensions</li>
-                  <li>• Loft conversions and dormers</li>
-                  <li>• HMOs, flat conversions and layout optimisation</li>
+                  <li>• Side return extensions and wrap around layouts for Victorian terraces</li>
+                  <li>• Loft conversions including dormers and hip to gable where suitable</li>
+                  <li>• Flat conversions, layout upgrades and internal remodelling</li>
                   <li>• Planning drawings and building regulation packs</li>
-                  <li>• Covering Bow, Mile End, Stepney, Whitechapel and more</li>
+                  <li>• Covering Clapham, Brixton, Streatham, Norwood and more</li>
                   <li>• Same day response on most enquiries</li>
                 </ul>
 
@@ -224,20 +165,43 @@ export default function TowerHamletsAreaPage() {
                   <a href={PHONE_LINK} className="text-[13px] underline text-slate-800">
                     Or call {PHONE_DISPLAY}
                   </a>
+
+                  <a
+                    href={WHATSAPP_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-[13px] text-slate-800 shadow-sm hover:bg-slate-900 hover:text-white"
+                  >
+                    <span>💬</span>
+                    <span>Chat on WhatsApp</span>
+                  </a>
+                </div>
+
+                <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                  <div className="relative h-[170px] w-full">
+                    <Image
+                      src="/images/drawings.jpg"
+                      alt="Planning and building regulation drawings in Lambeth"
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 520px"
+                      className="object-cover"
+                      priority
+                    />
+                  </div>
+                  <div className="p-4 text-[12px] text-slate-600">
+                    Planning drawings, loft dormers and building regulation packs across Lambeth.
+                  </div>
                 </div>
               </div>
 
-              {/* RIGHT FORM */}
-              <div id="tower-hamlets-quote" className="lg:w-1/2">
+              <div id="lambeth-quote" className="lg:w-1/2">
                 <div className="bg-white p-5 rounded-2xl shadow-md">
                   <h2 className="text-[14px] uppercase font-semibold tracking-[0.16em] text-slate-900">
                     Free fixed fee quote
                   </h2>
 
                   <p className="mt-1 text-[12px] text-slate-600">
-                    Tell us a little about your property and what you plan to
-                    build. We will reply with a clear fixed fee for your
-                    drawings.
+                    Tell us a little about your property and what you plan to build. We will reply with a clear fixed fee for your drawings.
                   </p>
 
                   <form onSubmit={handleSubmit} className="mt-3 space-y-3 text-[13px]">
@@ -273,15 +237,13 @@ export default function TowerHamletsAreaPage() {
                     </div>
 
                     <div className="space-y-1">
-                      <label className="text-[11px] font-medium">
-                        Tower Hamlets postcode
-                      </label>
+                      <label className="text-[11px] font-medium">Lambeth postcode</label>
                       <input
                         name="postcode"
                         required
-                        placeholder="E1 4UN"
+                        placeholder="SW2 1AA"
                         onFocus={(e) => (e.target.placeholder = "")}
-                        onBlur={(e) => !e.target.value && (e.target.placeholder = "E1 4UN")}
+                        onBlur={(e) => !e.target.value && (e.target.placeholder = "SW2 1AA")}
                         className="w-full border-b border-slate-300 bg-transparent py-1.5 px-1 text-slate-500/70 focus:text-slate-900 focus:border-[#64b7c4] outline-none"
                       />
                     </div>
@@ -300,22 +262,19 @@ export default function TowerHamletsAreaPage() {
                         <option>House extension</option>
                         <option>Loft conversion</option>
                         <option>Internal remodelling</option>
-                        <option>New build house</option>
                         <option>Conversion to flats</option>
-                        <option>HMO layout</option>
                         <option>Building regulation pack only</option>
+                        <option>Outbuilding or garden room</option>
                         <option>Other domestic project</option>
                       </select>
                     </div>
 
                     <div className="space-y-1">
-                      <label className="text-[11px] font-medium">
-                        Brief description of your project
-                      </label>
+                      <label className="text-[11px] font-medium">Brief description of your project</label>
                       <textarea
                         name="projectDetails"
                         rows={4}
-                        placeholder="For example: rear extension to a terrace in Bow, plus loft dormer and internal reconfiguration."
+                        placeholder="For example: side return and rear extension to a Victorian terrace plus a dormer loft room."
                         className="w-full border border-slate-300 rounded bg-white px-2 py-2 focus:border-[#64b7c4] outline-none"
                       />
                     </div>
@@ -327,8 +286,12 @@ export default function TowerHamletsAreaPage() {
                       Get a fixed fee quote
                     </button>
 
+                    <p className="mt-2 text-[11px] text-slate-500 text-center">
+                      No obligation. Same day response on most enquiries.
+                    </p>
+
                     <p className="text-[11px] text-slate-500 mt-2">
-                      Typical Tower Hamlets projects include extensions to terraces, loft conversions, flats over shops and conversion layouts.
+                      Typical Lambeth projects include side return extensions, loft conversions and flat layout upgrades.
                     </p>
                   </form>
                 </div>
@@ -336,22 +299,21 @@ export default function TowerHamletsAreaPage() {
             </div>
           </section>
 
-          {/* MERGED RICH CONTENT */}
+          <ServiceInternalLinks boroughName="Lambeth" />
+
           <section className="bg-white border-b border-slate-200 py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
               <div className="grid md:grid-cols-[1.7fr,1.3fr] gap-10 items-start">
                 <div className="space-y-4">
                   <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
-                    Architectural drawing services in Tower Hamlets
+                    Architectural drawing services in Lambeth
                   </h2>
                   <p className="text-[13px] text-slate-700">
-                    WEDRAWPLANS provide full drawing packages for single and double storey extensions,
-                    loft conversions, internal alterations, outbuildings, HMOs, flat conversions and
-                    small new developments across Tower Hamlets.
+                    WEDRAWPLANS provide full drawing packages for extensions, loft conversions, internal alterations, outbuildings and flat conversion
+                    projects across Lambeth.
                   </p>
                   <p className="text-[13px] text-slate-700">
-                    We work throughout Bow, Mile End, Stepney, Whitechapel, Bethnal Green, Limehouse,
-                    Poplar, Wapping, Isle of Dogs and the Canary Wharf fringe.
+                    We work throughout Clapham, Brixton, Streatham, Stockwell, Tulse Hill, West Norwood, Vauxhall, Waterloo and nearby streets.
                   </p>
 
                   <div className="flex flex-wrap gap-3 items-center">
@@ -376,7 +338,7 @@ export default function TowerHamletsAreaPage() {
                 <div className="rounded-2xl bg-white shadow-md border border-slate-100 overflow-hidden">
                   <Image
                     src="/images/drawings.jpg"
-                    alt="Example of architectural drawings for a Tower Hamlets project"
+                    alt="Example of architectural drawings for a Lambeth extension"
                     width={800}
                     height={500}
                     className="object-cover w-full h-48 md:h-56"
@@ -395,59 +357,56 @@ export default function TowerHamletsAreaPage() {
               <div className="grid md:grid-cols-2 gap-10">
                 <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
                   <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                    Tower Hamlets areas we cover
+                    Lambeth areas we cover
                   </h3>
                   <Image
-                    src="/images/towerhamlets-area.jpg"
-                    alt="Tower Hamlets local high street"
+                    src="/images/lambeth-area.jpg"
+                    alt="Lambeth area coverage"
                     width={800}
                     height={500}
                     className="rounded-xl object-cover mb-3"
                   />
-                  <p className="text-[13px] text-slate-700">
-                    Drawings for the whole borough of Tower Hamlets, including:
-                  </p>
+                  <p className="text-[13px] text-slate-700">Drawings for the whole borough of Lambeth, including:</p>
                   <div className="grid grid-cols-2 gap-2 text-[13px] text-slate-700">
                     <ul className="list-disc pl-4 space-y-1">
-                      <li>Bow and Mile End</li>
-                      <li>Stepney and Whitechapel</li>
-                      <li>Bethnal Green</li>
-                      <li>Limehouse</li>
-                      <li>Poplar</li>
-                      <li>Wapping</li>
+                      <li>Clapham</li>
+                      <li>Brixton</li>
+                      <li>Stockwell</li>
+                      <li>Herne Hill</li>
+                      <li>Tulse Hill</li>
+                      <li>Streatham</li>
                     </ul>
                     <ul className="list-disc pl-4 space-y-1">
-                      <li>Isle of Dogs and Millwall</li>
-                      <li>Canary Wharf fringe</li>
-                      <li>Flats over shops</li>
-                      <li>Backland and corner plots</li>
-                      <li>Mixed use streets</li>
-                      <li>Local estates and streets</li>
+                      <li>West Norwood</li>
+                      <li>Norwood</li>
+                      <li>Vauxhall</li>
+                      <li>Waterloo</li>
+                      <li>Kennington borders</li>
+                      <li>Riverside locations</li>
                     </ul>
                   </div>
                 </div>
 
                 <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
                   <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                    Popular projects in Tower Hamlets
+                    Popular projects in Lambeth
                   </h3>
                   <div className="grid grid-cols-2 gap-3 text-[13px] text-slate-700">
                     <ul className="list-disc pl-4 space-y-1">
-                      <li>Rear and side extensions</li>
+                      <li>Rear and side return extensions</li>
                       <li>Wrap around and L shaped extensions</li>
                       <li>Loft conversions and dormers</li>
-                      <li>Roof extensions subject to policy</li>
-                      <li>Internal reconfiguration</li>
+                      <li>Mansards in sensitive streets</li>
+                      <li>Internal remodelling and knock throughs</li>
                     </ul>
                     <ul className="list-disc pl-4 space-y-1">
-                      <li>HMOs and flat conversions</li>
-                      <li>Shop to residential layouts</li>
-                      <li>Garden rooms and studios</li>
-                      <li>Change of use where suitable</li>
-                      <li>Small infill developments</li>
+                      <li>Flat and maisonette conversions</li>
+                      <li>Garden studios and outbuildings</li>
+                      <li>Basement layouts and refurbishments</li>
+                      <li>Change of use layouts</li>
+                      <li>Small infill schemes</li>
                     </ul>
                   </div>
-
                   <Image
                     src="/images/hero.jpg"
                     alt="Completed extension and loft project"
@@ -460,17 +419,15 @@ export default function TowerHamletsAreaPage() {
 
               <div className="space-y-5">
                 <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
-                  Permitted development limits in Tower Hamlets
+                  Permitted development limits in Lambeth
                 </h2>
                 <p className="text-[13px] text-slate-700">
-                  This is a simplified guide to common permitted development limits. Final confirmation depends on your house type, location and any Article 4 directions or conservation area constraints.
+                  This is a simplified guide to common permitted development limits. Final confirmation depends on your house type, location, conservation constraints and any Article 4 directions.
                 </p>
 
                 <div className="grid md:grid-cols-3 gap-8 text-[13px] text-slate-700">
                   <div>
-                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">
-                      Rear extensions
-                    </h3>
+                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">Rear extensions</h3>
                     <ul className="list-disc pl-4 space-y-1">
                       <li>Up to 3 m deep on terrace houses</li>
                       <li>Up to 4 m on semi detached houses</li>
@@ -479,9 +436,7 @@ export default function TowerHamletsAreaPage() {
                     </ul>
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">
-                      Loft conversions
-                    </h3>
+                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">Loft conversions</h3>
                     <ul className="list-disc pl-4 space-y-1">
                       <li>Up to 40 to 50 cubic metres volume</li>
                       <li>No extensions on the front roof slope</li>
@@ -490,14 +445,12 @@ export default function TowerHamletsAreaPage() {
                     </ul>
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">
-                      HMOs and flats
-                    </h3>
+                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">Outbuildings</h3>
                     <ul className="list-disc pl-4 space-y-1">
-                      <li>Flats do not have permitted development rights</li>
-                      <li>Full planning permission usually required</li>
-                      <li>Daylight, outlook and amenity space important</li>
-                      <li>Waste and cycle storage often required</li>
+                      <li>Maximum 2.5 m high near boundaries</li>
+                      <li>Cannot be used as a separate dwelling</li>
+                      <li>Use must be incidental to the house</li>
+                      <li>Not more than 50 percent of garden area</li>
                     </ul>
                   </div>
                 </div>
@@ -506,7 +459,7 @@ export default function TowerHamletsAreaPage() {
               <div className="grid md:grid-cols-2 gap-10">
                 <div className="rounded-2xl bg-white shadow-sm p-6 border border-slate-100 space-y-4">
                   <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                    Planning drawings for Tower Hamlets
+                    Planning drawings for Lambeth
                   </h3>
                   <ul className="list-disc pl-4 space-y-1 text-[13px] text-slate-700">
                     <li>Existing and proposed floor plans</li>
@@ -514,13 +467,13 @@ export default function TowerHamletsAreaPage() {
                     <li>Roof plans and key sections</li>
                     <li>Block plans and location plans</li>
                     <li>Drainage and construction notes</li>
-                    <li>Design and heritage statements where needed</li>
+                    <li>Design and access or heritage statements where needed</li>
                   </ul>
                 </div>
 
                 <div className="rounded-2xl bg-white shadow-sm p-6 border border-slate-100 space-y-4">
                   <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                    Building regulation drawings for Tower Hamlets
+                    Building regulation drawings for Lambeth
                   </h3>
                   <ul className="list-disc pl-4 space-y-1 text-[13px] text-slate-700">
                     <li>Structural layouts and coordination</li>
@@ -535,10 +488,10 @@ export default function TowerHamletsAreaPage() {
 
               <div className="rounded-2xl bg-emerald-50 border border-emerald-100 p-6 space-y-3">
                 <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-emerald-900">
-                  Local planning knowledge for Tower Hamlets projects
+                  Local planning knowledge for Lambeth projects
                 </h2>
                 <p className="text-[13px] text-emerald-900">
-                  Tower Hamlets includes conservation areas, listed buildings, flats over shops and tight rear access. We shape each scheme to fit local context and policy so approval chances are as strong as possible.
+                  Lambeth includes conservation areas, character terraces, busy high streets and sensitive streetscapes. We shape each scheme to fit local context so approval chances are as strong as possible.
                 </p>
               </div>
 
@@ -548,38 +501,37 @@ export default function TowerHamletsAreaPage() {
                 </h2>
                 <div className="grid md:grid-cols-2 gap-6 text-[13px] text-slate-700">
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Do I need planning permission in Tower Hamlets
-                    </h3>
+                    <h3 className="font-semibold text-slate-900">Do I need planning permission for a rear extension in Lambeth</h3>
                     <p>
-                      Many extensions and lofts can proceed under permitted development on houses, but flats and many conversions need full planning. We check your address and advise the best route at the start.
+                      Not always. Many rear extensions in Lambeth can be carried out under permitted development. We confirm the correct route once we review your address and house type.
                     </p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      How fast can you survey
-                    </h3>
+                    <h3 className="font-semibold text-slate-900">Is Lambeth strict with loft conversions and extensions</h3>
                     <p>
-                      In most cases we can arrange the initial measured survey within forty eight hours of instruction.
+                      Lambeth can be stricter in conservation areas and on character streets, including parts of Clapham, Brixton and riverside locations. Clear drawings and a strong planning case help.
                     </p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Do you submit to Tower Hamlets Council
-                    </h3>
+                    <h3 className="font-semibold text-slate-900">How long does Lambeth Council take to decide</h3>
                     <p>
-                      Yes. We handle the submission, monitor progress and respond to planning officer queries.
+                      Householder planning applications usually take around eight weeks after validation. Lawful Development Certificates are often around six to eight weeks, subject to workload and validation.
                     </p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Can you help with listed buildings
-                    </h3>
+                    <h3 className="font-semibold text-slate-900">Do you manage the full application to Lambeth Council</h3>
                     <p>
-                      Yes. We check listed status and conservation areas, then prepare the correct heritage information where needed.
+                      Yes. We prepare drawings, complete forms, upload documents, submit to Lambeth Council and respond to planning officer queries.
                     </p>
                   </div>
                 </div>
+
+                <p className="mt-6 text-[13px] font-semibold text-slate-800">
+                  Prefer to speak. Call{" "}
+                  <a href={PHONE_LINK} className="underline">
+                    {PHONE_DISPLAY}
+                  </a>
+                </p>
               </div>
 
               <div className="rounded-2xl bg-slate-900 text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -595,10 +547,7 @@ export default function TowerHamletsAreaPage() {
                   <a href={PHONE_LINK} className="font-semibold text-emerald-300 underline">
                     {PHONE_DISPLAY}
                   </a>
-                  <a
-                    href="mailto:info@wedrawplans.com"
-                    className="font-semibold text-emerald-300 underline"
-                  >
+                  <a href="mailto:info@wedrawplans.com" className="font-semibold text-emerald-300 underline">
                     info@wedrawplans.com
                   </a>
                   <button
