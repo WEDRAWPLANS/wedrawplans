@@ -1,8 +1,9 @@
-// pages/areas/bexley.tsx
 import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
+import AreaTopHeader from "../../components/AreaTopHeader";
+import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
@@ -63,51 +64,11 @@ export default function BexleyAreaPage() {
       </Head>
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
-        {/* HEADER (Barnet style) */}
-        <header className="border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur">
-          <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 lg:px-6">
-            <div className="flex items-center gap-2">
-              <div className="grid h-10 w-10 place-items-center rounded-full border border-slate-500 text-xs font-semibold tracking-[0.18em] text-red-700">
-                WD
-              </div>
-              <div className="leading-tight">
-                <div className="text-lg font-semibold tracking-[0.2em] uppercase">
-                  WEDRAWPLANS
-                </div>
-                <div className="text-[11px] uppercase tracking-[0.2em] text-slate-500">
-                  Architectural drawing consultants
-                </div>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <a
-                href={PHONE_LINK}
-                className="hidden items-center gap-1 rounded-full border border-slate-300 px-3 py-1.5 text-[12px] font-medium text-slate-900 shadow-sm hover:bg-slate-900 hover:text-white sm:inline-flex"
-              >
-                <span>📞</span>
-                <span>{PHONE_DISPLAY}</span>
-              </a>
-
-              <a
-                href={WHATSAPP_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 rounded-full bg-[#25D366] px-3 py-1.5 text-[12px] font-medium text-white shadow-sm hover:bg-[#1ebe57]"
-              >
-                <span>💬</span>
-                <span className="hidden sm:inline">WhatsApp us</span>
-                <span className="sm:hidden">Chat</span>
-              </a>
-            </div>
-          </div>
-        </header>
+        <AreaTopHeader />
 
         <main>
-          {/* HERO + FORM */}
           <section className="border-b border-slate-200 bg-[#fdf8f3]">
             <div className="mx-auto flex max-w-5xl flex-col gap-6 px-4 py-8 lg:flex-row lg:items-start lg:px-6 lg:py-10">
-              {/* Text */}
               <div className="lg:w-1/2">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-red-700">
                   Bexley architectural drawings
@@ -117,12 +78,26 @@ export default function BexleyAreaPage() {
                   Plans for extensions, lofts and new builds in Bexley
                 </h1>
 
+                <p className="mt-2 text-[12px] font-semibold tracking-[0.08em] text-slate-800">
+                  Local London designers • Fixed fee guaranteed • Council-ready drawings
+                </p>
+
                 <p className="mt-3 text-[13px] text-slate-700">
                   WEDRAWPLANS prepare planning and technical drawings for house
                   extensions, loft conversions, refurbishments and new build
                   homes across the London Borough of Bexley. We focus on clear
                   drawings, fast responses and fixed fees so you can move from
                   idea to permission and construction with confidence.
+                </p>
+
+                <p className="mt-3 text-[13px] text-slate-700">
+                  We regularly work near Sidcup Station, Bexleyheath Station, Welling Station and Abbey Wood,
+                  covering surrounding residential streets across the borough.
+                </p>
+
+                <p className="mt-3 text-[13px] text-slate-700">
+                  Recent projects in Bexley include rear extensions, side returns and loft conversions across
+                  DA5, DA6, DA7, DA8, DA14, DA15 and DA16.
                 </p>
 
                 <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
@@ -152,7 +127,6 @@ export default function BexleyAreaPage() {
                   </a>
                 </div>
 
-                {/* Small image block (keeps Barnet style if you use images) */}
                 <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                   <div className="relative h-[160px] w-full">
                     <Image
@@ -170,7 +144,6 @@ export default function BexleyAreaPage() {
                 </div>
               </div>
 
-              {/* Form */}
               <div id="bexley-quote" className="lg:w-1/2">
                 <div className="rounded-2xl bg-white p-5 shadow-md">
                   <h2 className="text-[14px] font-semibold uppercase tracking-[0.16em] text-slate-900">
@@ -269,6 +242,8 @@ export default function BexleyAreaPage() {
                       Get my Bexley quote
                     </button>
 
+                    <p className="mt-2 text-[11px] text-slate-500">No obligation. Same-day response on most enquiries.</p>
+
                     <p className="mt-2 text-[11px] text-slate-500">
                       Typical Bexley projects include extensions, loft conversions, garage
                       conversions and internal layout changes to family houses and bungalows.
@@ -279,7 +254,8 @@ export default function BexleyAreaPage() {
             </div>
           </section>
 
-          {/* WHY HOMEOWNERS IN BEXLEY USE WEDRAWPLANS */}
+          <ServiceInternalLinks boroughName="Bexley" />
+
           <section className="border-b border-slate-200 bg-white py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6">
               <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
@@ -329,7 +305,6 @@ export default function BexleyAreaPage() {
             </div>
           </section>
 
-          {/* COMMON PROJECT TYPES IN BEXLEY */}
           <section className="border-b border-slate-200 bg-[#f8f4f0] py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6">
               <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
@@ -388,7 +363,6 @@ export default function BexleyAreaPage() {
             </div>
           </section>
 
-          {/* PLANNING AND PERMITTED DEVELOPMENT IN BEXLEY */}
           <section className="border-b border-slate-200 bg-white py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6">
               <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
@@ -416,7 +390,6 @@ export default function BexleyAreaPage() {
             </div>
           </section>
 
-          {/* THREE STEP PROCESS */}
           <section className="border-b border-slate-200 bg-[#f8f4f0] py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6">
               <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
@@ -451,7 +424,6 @@ export default function BexleyAreaPage() {
             </div>
           </section>
 
-          {/* FEES AND AREAS COVERED */}
           <section className="border-b border-slate-200 bg-white py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6">
               <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
@@ -511,7 +483,6 @@ export default function BexleyAreaPage() {
             </div>
           </section>
 
-          {/* FINAL CTA */}
           <section className="bg-[#f8f4f0] py-10">
             <div className="mx-auto max-w-5xl px-4 text-center lg:px-6">
               <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
@@ -542,6 +513,8 @@ export default function BexleyAreaPage() {
                   <span>Chat on WhatsApp</span>
                 </a>
               </div>
+
+              <p className="mt-5 text-[13px] font-medium text-slate-800">Prefer to speak. Call 020 3654 8508</p>
             </div>
           </section>
         </main>
