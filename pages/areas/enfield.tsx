@@ -201,15 +201,12 @@ export default function EnfieldAreaPage() {
         />
       </Head>
 
-      {/* BARNET STYLE HEADER COMPONENT */}
       <AreaTopHeader />
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
         <main>
-          {/* HERO + FORM */}
           <section className="border-b border-slate-200 bg-[#fdf8f3]">
             <div className="mx-auto max-w-5xl flex flex-col lg:flex-row gap-6 px-4 py-8 lg:px-6 lg:py-10">
-              {/* LEFT TEXT */}
               <div className="lg:w-1/2">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-red-700">
                   Enfield architectural drawings
@@ -219,9 +216,21 @@ export default function EnfieldAreaPage() {
                   Plans for extensions, lofts and building regs in Enfield
                 </h1>
 
+                <p className="mt-2 text-[12px] font-semibold tracking-[0.08em] text-slate-800">
+                  Local London designers • Fixed fee guaranteed • Council-ready drawings
+                </p>
+
                 <p className="mt-3 text-[13px] text-slate-700">
                   WEDRAWPLANS prepare planning and technical drawings for Enfield homes, including extensions,
                   loft conversions, refurbishments and outbuildings. Fixed fees with clear scope and fast communication.
+                </p>
+
+                <p className="mt-3 text-[13px] text-slate-700">
+                  We regularly work near Enfield Town, Southgate, Palmers Green and Edmonton, covering surrounding residential streets across the borough.
+                </p>
+
+                <p className="mt-3 text-[13px] text-slate-700">
+                  Recent projects in Enfield include rear extensions, side returns and loft conversions across EN1, EN2, EN3, N9, N13, N14 and N21.
                 </p>
 
                 <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
@@ -248,7 +257,6 @@ export default function EnfieldAreaPage() {
                 </div>
               </div>
 
-              {/* RIGHT FORM */}
               <div id="enfield-quote" className="lg:w-1/2">
                 <div className="bg-white p-5 rounded-2xl shadow-md">
                   <h2 className="text-[14px] uppercase font-semibold tracking-[0.16em] text-slate-900">
@@ -341,6 +349,8 @@ export default function EnfieldAreaPage() {
                       Get a fixed fee quote
                     </button>
 
+                    <p className="mt-2 text-[11px] text-slate-500">No obligation. Same-day response on most enquiries.</p>
+
                     <p className="text-[11px] text-slate-500 mt-2">
                       Typical Enfield projects include 3 m and 6 m rear extensions, wrap arounds, hip to gable lofts and garden rooms.
                     </p>
@@ -350,10 +360,8 @@ export default function EnfieldAreaPage() {
             </div>
           </section>
 
-          {/* INTERNAL LINKS (BARNET STYLE) */}
           <ServiceInternalLinks boroughName="Enfield" />
 
-          {/* RICH CONTENT */}
           <section className="bg-white border-b border-slate-200 py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
               <div className="grid md:grid-cols-[1.7fr,1.3fr] gap-10 items-start">
@@ -408,7 +416,6 @@ export default function EnfieldAreaPage() {
                 </div>
               </div>
 
-              {/* ✅ ADDED IMAGES LIKE BARNET (ONLY ADDITIONS BELOW) */}
               <div className="grid md:grid-cols-2 gap-10">
                 <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
                   <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
@@ -479,7 +486,36 @@ export default function EnfieldAreaPage() {
                   />
                 </div>
               </div>
-              {/* ✅ END ADDED IMAGES LIKE BARNET */}
+
+              <section className="space-y-4">
+                <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">Frequently asked questions in Enfield</h2>
+                <div className="grid md:grid-cols-2 gap-6 text-[13px] text-slate-700">
+                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                    <h3 className="font-semibold text-slate-900">Do I need planning permission for a rear extension in Enfield</h3>
+                    <p>
+                      Not always. Many rear extensions in Enfield can be permitted development, but it depends on your house type, site constraints, and whether restrictions apply. We confirm the best route after a quick review of your address and goals.
+                    </p>
+                  </div>
+                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                    <h3 className="font-semibold text-slate-900">Is Enfield strict with loft conversions</h3>
+                    <p>
+                      Enfield follows national rules but can be stricter in conservation areas and on streets where roof alterations face the road or affect neighbour amenity. We design the scheme to suit local character and guidance.
+                    </p>
+                  </div>
+                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                    <h3 className="font-semibold text-slate-900">Do you manage the full application to Enfield Council</h3>
+                    <p>
+                      Yes. We prepare drawings, complete forms, upload documents, submit to the council portal, and respond to planning officer queries through to decision.
+                    </p>
+                  </div>
+                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                    <h3 className="font-semibold text-slate-900">How fast can you survey a property in Enfield</h3>
+                    <p>
+                      In most cases we can arrange a measured survey within 48 hours, subject to access and location.
+                    </p>
+                  </div>
+                </div>
+              </section>
 
               <div className="rounded-2xl bg-slate-900 text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
@@ -489,6 +525,7 @@ export default function EnfieldAreaPage() {
                   <p className="text-[13px] text-slate-300 mt-2">
                     Send your postcode and a short description. We review and reply with a fixed fee and recommended next steps.
                   </p>
+                  <p className="mt-3 text-[13px] font-medium text-white">Prefer to speak. Call 020 3654 8508</p>
                 </div>
                 <div className="flex flex-col space-y-2 text-[13px]">
                   <a href={PHONE_LINK} className="font-semibold text-emerald-300 underline">
