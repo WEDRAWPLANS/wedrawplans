@@ -1,8 +1,8 @@
-// pages/areas/lewisham.tsx
 import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
+import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
@@ -117,7 +117,6 @@ export default function LewishamAreaPage() {
       </Head>
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
-        {/* HEADER MATCH HOMEPAGE STYLE */}
         <header className="bg-[#fdf8f3]/95 backdrop-blur border-b border-slate-200">
           <div className="mx-auto max-w-6xl px-4 pt-6 pb-3 lg:px-6">
             <div className="flex flex-col items-center text-center">
@@ -168,10 +167,8 @@ export default function LewishamAreaPage() {
         </header>
 
         <main>
-          {/* HERO + FORM */}
           <section className="border-b border-slate-200 bg-[#fdf8f3]">
             <div className="mx-auto max-w-5xl flex flex-col lg:flex-row gap-6 px-4 py-8 lg:px-6 lg:py-10">
-              {/* LEFT TEXT */}
               <div className="lg:w-1/2">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-red-700">
                   Lewisham architectural drawings
@@ -181,9 +178,13 @@ export default function LewishamAreaPage() {
                   Plans for extensions, lofts and conversions in Lewisham
                 </h1>
 
+                <p className="mt-2 text-[12px] font-medium text-slate-700">
+                  Local London designers • Fixed fee guaranteed • Council-ready drawings
+                </p>
+
                 <p className="mt-3 text-[13px] text-slate-700">
-                  WEDRAWPLANS prepare planning and technical drawings for house extensions,
-                  loft conversions, internal remodelling and flat conversion projects across the London Borough of Lewisham.
+                  WEDRAWPLANS prepare planning and technical drawings for house extensions, loft conversions,
+                  internal remodelling and flat conversion projects across the London Borough of Lewisham.
                   Fixed fees with clear scope and fast communication.
                 </p>
 
@@ -211,7 +212,6 @@ export default function LewishamAreaPage() {
                 </div>
               </div>
 
-              {/* RIGHT FORM */}
               <div id="lewisham-quote" className="lg:w-1/2">
                 <div className="bg-white p-5 rounded-2xl shadow-md">
                   <h2 className="text-[14px] uppercase font-semibold tracking-[0.16em] text-slate-900">
@@ -261,9 +261,7 @@ export default function LewishamAreaPage() {
                         required
                         placeholder="SE4 2AA"
                         onFocus={(e) => (e.target.placeholder = "")}
-                        onBlur={(e) =>
-                          !e.target.value && (e.target.placeholder = "SE4 2AA")
-                        }
+                        onBlur={(e) => !e.target.value && (e.target.placeholder = "SE4 2AA")}
                         className="w-full border-b border-slate-300 bg-transparent py-1.5 px-1 text-slate-500/70 focus:text-slate-900 focus:border-[#64b7c4] outline-none"
                       />
                     </div>
@@ -290,9 +288,7 @@ export default function LewishamAreaPage() {
                     </div>
 
                     <div className="space-y-1">
-                      <label className="text-[11px] font-medium">
-                        Brief description of your project
-                      </label>
+                      <label className="text-[11px] font-medium">Brief description of your project</label>
                       <textarea
                         name="projectDetails"
                         rows={4}
@@ -317,7 +313,8 @@ export default function LewishamAreaPage() {
             </div>
           </section>
 
-          {/* MERGED RICH CONTENT */}
+          <ServiceInternalLinks boroughName="Lewisham" />
+
           <section className="bg-white border-b border-slate-200 py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
               <div className="grid md:grid-cols-[1.7fr,1.3fr] gap-10 items-start">
@@ -326,12 +323,12 @@ export default function LewishamAreaPage() {
                     Architectural drawing services in Lewisham
                   </h2>
                   <p className="text-[13px] text-slate-700">
-                    WEDRAWPLANS provide full drawing packages for extensions, loft conversions,
-                    internal alterations, outbuildings and flat conversion projects across Lewisham.
+                    WEDRAWPLANS provide full drawing packages for extensions, loft conversions, internal alterations,
+                    outbuildings and flat conversion projects across Lewisham.
                   </p>
                   <p className="text-[13px] text-slate-700">
-                    We work throughout Lewisham, Brockley, Crofton Park, New Cross, Deptford, Forest Hill,
-                    Honor Oak, Sydenham, Catford, Hither Green, Lee and Telegraph Hill.
+                    We work throughout Lewisham, Brockley, Crofton Park, New Cross, Deptford, Forest Hill, Honor Oak,
+                    Sydenham, Catford, Hither Green, Lee and Telegraph Hill.
                   </p>
 
                   <div className="flex flex-wrap gap-3 items-center">
@@ -377,22 +374,16 @@ export default function LewishamAreaPage() {
                   <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
                     Lewisham areas we cover
                   </h3>
-
-                  {/* Put the file here exactly:
-                      /public/images/lewisham-area.jpg
-                  */}
                   <Image
                     src="/images/lewisham-area.jpg"
-                    alt="Lewisham area map and coverage"
+                    alt="Lewisham area coverage"
                     width={800}
                     height={500}
                     className="rounded-xl object-cover mb-3"
                   />
-
                   <p className="text-[13px] text-slate-700">
                     Drawings for the whole borough of Lewisham, including:
                   </p>
-
                   <div className="grid grid-cols-2 gap-2 text-[13px] text-slate-700">
                     <ul className="list-disc pl-4 space-y-1">
                       <li>Brockley SE4</li>
@@ -534,33 +525,21 @@ export default function LewishamAreaPage() {
                 </h2>
                 <div className="grid md:grid-cols-2 gap-6 text-[13px] text-slate-700">
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Do I need planning permission in Lewisham
-                    </h3>
+                    <h3 className="font-semibold text-slate-900">Do I need planning permission in Lewisham</h3>
                     <p>
                       Many extensions and lofts can proceed under permitted development. Flats and some conservation areas usually need planning permission. We check your address and advise the best route at the start.
                     </p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      How fast can you survey
-                    </h3>
-                    <p>
-                      In most cases we can arrange the initial measured survey within forty eight hours of instruction.
-                    </p>
+                    <h3 className="font-semibold text-slate-900">How fast can you survey</h3>
+                    <p>In most cases we can arrange the initial measured survey within forty eight hours of instruction.</p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Do you submit to Lewisham Council
-                    </h3>
-                    <p>
-                      Yes. We handle the submission, monitor progress and respond to planning officer queries.
-                    </p>
+                    <h3 className="font-semibold text-slate-900">Do you submit to Lewisham Council</h3>
+                    <p>Yes. We handle the submission, monitor progress and respond to planning officer queries.</p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Can you coordinate structural design
-                    </h3>
+                    <h3 className="font-semibold text-slate-900">Can you coordinate structural design</h3>
                     <p>
                       Yes. We coordinate with structural engineers so beams and load paths are designed and shown correctly on the drawings.
                     </p>
@@ -570,9 +549,7 @@ export default function LewishamAreaPage() {
 
               <div className="rounded-2xl bg-slate-900 text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
-                  <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
-                    Ready to start your project
-                  </h2>
+                  <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">Ready to start your project</h2>
                   <p className="text-[13px] text-slate-300 mt-2">
                     Send your postcode and a short description. We review and reply with a fixed fee and recommended next steps.
                   </p>
