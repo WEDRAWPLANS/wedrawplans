@@ -115,7 +115,6 @@ export default function BarkingAndDagenhamAreaPage() {
       </Head>
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
-        {/* HEADER */}
         <header className="border-b border-slate-200 bg-[#fdf8f3]/90 backdrop-blur">
           <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 lg:px-6">
             <div className="flex items-center gap-2">
@@ -151,10 +150,8 @@ export default function BarkingAndDagenhamAreaPage() {
           </div>
         </header>
 
-        {/* HERO + FORM */}
         <section className="border-b border-slate-200 bg-[#fdf8f3]">
           <div className="mx-auto flex max-w-5xl flex-col gap-6 px-4 py-8 lg:flex-row lg:items-start lg:px-6 lg:py-10">
-            {/* TEXT SIDE */}
             <div className="lg:w-1/2">
               <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-red-700">
                 Barking and Dagenham architectural drawings
@@ -164,11 +161,22 @@ export default function BarkingAndDagenhamAreaPage() {
                 Planning drawings for extensions, lofts and home upgrades
               </h1>
 
+              <p className="mt-2 text-[12px] font-medium text-slate-700">
+                Local London designers • Fixed fee guaranteed • Council-ready
+                drawings
+              </p>
+
               <p className="mt-3 text-[13px] text-slate-700">
                 WEDRAWPLANS prepares planning and building regulation drawings
                 for homes across Barking and Dagenham, including Barking,
                 Dagenham, Becontree, Chadwell Heath and surrounding
                 neighbourhoods.
+              </p>
+
+              <p className="mt-2 text-[13px] text-slate-700">
+                We regularly work near Barking Station, Upney Station, Becontree
+                Station, Dagenham Heathway Station and nearby residential
+                streets across RM8, RM9 and IG11.
               </p>
 
               <div className="mt-4 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
@@ -213,7 +221,6 @@ export default function BarkingAndDagenhamAreaPage() {
               </div>
             </div>
 
-            {/* FORM SIDE */}
             <div id="barking-dagenham-quote" className="lg:w-1/2">
               <div className="rounded-2xl bg-white p-5 shadow-md">
                 <h2 className="text-[14px] font-semibold uppercase tracking-[0.16em] text-slate-900">
@@ -224,7 +231,10 @@ export default function BarkingAndDagenhamAreaPage() {
                   will send a clear fixed fee for the drawings.
                 </p>
 
-                <form onSubmit={handleSubmit} className="mt-3 space-y-3 text-[13px]">
+                <form
+                  onSubmit={handleSubmit}
+                  className="mt-3 space-y-3 text-[13px]"
+                >
                   <div>
                     <label className="text-[11px] font-medium text-slate-700">
                       Name
@@ -313,6 +323,10 @@ export default function BarkingAndDagenhamAreaPage() {
                     Get my quote
                   </button>
 
+                  <p className="mt-2 text-[11px] text-slate-500 text-center">
+                    No obligation. Same-day response on most enquiries.
+                  </p>
+
                   <p className="pt-1 text-[11px] text-slate-500">
                     Prefer WhatsApp. Use the green button at the top of this
                     page.
@@ -323,7 +337,6 @@ export default function BarkingAndDagenhamAreaPage() {
           </div>
         </section>
 
-        {/* COMMON PROJECT TYPES */}
         <section className="border-b border-slate-200 bg-white py-10">
           <div className="mx-auto max-w-5xl px-4 lg:px-6">
             <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
@@ -376,7 +389,6 @@ export default function BarkingAndDagenhamAreaPage() {
           </div>
         </section>
 
-        {/* PLANNING GUIDANCE */}
         <section className="border-b border-slate-200 bg-[#f8f4f0] py-10">
           <div className="mx-auto max-w-5xl px-4 lg:px-6">
             <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
@@ -389,9 +401,18 @@ export default function BarkingAndDagenhamAreaPage() {
             </p>
 
             <ul className="mt-4 space-y-2 text-[13px] text-slate-800">
-              <li>• We review local guidance for extensions and lofts for your street</li>
-              <li>• We check whether permitted development rights apply at your address</li>
-              <li>• We prepare householder and full applications with clear drawings</li>
+              <li>
+                • We review local guidance for extensions and lofts for your
+                street
+              </li>
+              <li>
+                • We check whether permitted development rights apply at your
+                address
+              </li>
+              <li>
+                • We prepare householder and full applications with clear
+                drawings
+              </li>
               <li>• We coordinate with structural engineers where needed</li>
             </ul>
 
@@ -403,7 +424,69 @@ export default function BarkingAndDagenhamAreaPage() {
           </div>
         </section>
 
-        {/* FEES */}
+        <section className="border-b border-slate-200 bg-white py-10">
+          <div className="mx-auto max-w-5xl px-4 lg:px-6">
+            <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+              Frequently asked questions in Barking and Dagenham
+            </h2>
+
+            <div className="mt-5 grid gap-5 text-[13px] md:grid-cols-2">
+              <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
+                <h3 className="text-[13px] font-semibold text-slate-900">
+                  Do you cover all of Barking and Dagenham
+                </h3>
+                <p className="mt-2 text-[12px] text-slate-600">
+                  Yes. We cover Barking, Dagenham, Becontree, Chadwell Heath and
+                  nearby areas. Use the form and we will confirm survey and
+                  delivery dates.
+                </p>
+              </div>
+
+              <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
+                <h3 className="text-[13px] font-semibold text-slate-900">
+                  Can you help with permitted development and lawful development
+                  certificates
+                </h3>
+                <p className="mt-2 text-[12px] text-slate-600">
+                  Yes. We can check whether permitted development rights apply
+                  and prepare drawings for a lawful development certificate when
+                  suitable.
+                </p>
+              </div>
+
+              <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
+                <h3 className="text-[13px] font-semibold text-slate-900">
+                  What do I need to get a fixed quote
+                </h3>
+                <p className="mt-2 text-[12px] text-slate-600">
+                  Send your postcode, project type and a short description. If
+                  you have photos or a Rightmove link you can mention it in the
+                  details box.
+                </p>
+              </div>
+
+              <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
+                <h3 className="text-[13px] font-semibold text-slate-900">
+                  Do you provide building regulation drawings as well as
+                  planning drawings
+                </h3>
+                <p className="mt-2 text-[12px] text-slate-600">
+                  Yes. We provide building regulation packs including sections,
+                  details and notes, coordinated with structural design where
+                  required.
+                </p>
+              </div>
+            </div>
+
+            <p className="mt-6 text-[13px] font-semibold text-slate-800">
+              Prefer to speak? Call{" "}
+              <a href={PHONE_LINK} className="underline">
+                {PHONE_DISPLAY}
+              </a>
+            </p>
+          </div>
+        </section>
+
         <section className="border-b border-slate-200 bg-white py-10">
           <div className="mx-auto max-w-5xl px-4 lg:px-6">
             <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
@@ -461,7 +544,6 @@ export default function BarkingAndDagenhamAreaPage() {
           </div>
         </section>
 
-        {/* FINAL CTA */}
         <section className="bg-[#f8f4f0] py-10">
           <div className="mx-auto max-w-5xl px-4 text-center lg:px-6">
             <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
@@ -496,6 +578,13 @@ export default function BarkingAndDagenhamAreaPage() {
                 📞 {PHONE_DISPLAY}
               </a>
             </div>
+
+            <p className="mt-6 text-[13px] font-semibold text-slate-800">
+              Prefer to speak? Call{" "}
+              <a href={PHONE_LINK} className="underline">
+                {PHONE_DISPLAY}
+              </a>
+            </p>
           </div>
         </section>
       </div>
