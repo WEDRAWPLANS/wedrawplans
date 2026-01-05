@@ -44,11 +44,11 @@ function getFallbackCandidates(src: string) {
 function FillImage({
   src,
   alt,
-  priority,
+  eager,
 }: {
   src: string;
   alt: string;
-  priority?: boolean;
+  eager?: boolean;
 }) {
   const candidates = useMemo(() => getFallbackCandidates(src), [src]);
   const [idx, setIdx] = useState(0);
@@ -57,8 +57,8 @@ function FillImage({
     <img
       src={candidates[idx]}
       alt={alt}
-      loading={priority ? "eager" : "lazy"}
-      fetchPriority={priority ? "high" : "auto"}
+      loading={eager ? "eager" : "lazy"}
+      fetchPriority={eager ? "high" : "auto"}
       className="absolute inset-0 h-full w-full object-cover"
       onError={() => {
         if (idx < candidates.length - 1) setIdx((v) => v + 1);
@@ -169,6 +169,7 @@ export default function HertfordshireAreaPage() {
       { src: HERO_IMAGE, alt: "Architectural drawings and planning support in Hertfordshire" },
       { src: IMAGE_1, alt: "Hertfordshire extension example" },
       { src: IMAGE_2, alt: "Hertfordshire loft conversion example" },
+      { src: IMAGE_5, alt: "Residential design support in Hertfordshire" },
     ],
     []
   );
@@ -214,15 +215,15 @@ export default function HertfordshireAreaPage() {
         <AreaTopHeader />
 
         <main>
-          <section className="relative border-t border-gray-200">
-            <div className="relative h-[420px] w-full overflow-hidden sm:h-[520px] lg:h-[600px]">
+          <section className="relative">
+            <div className="relative h-[420px] w-full overflow-hidden sm:h-[520px] lg:h-[620px]">
               <div className="absolute inset-0">
                 {heroSlides.map((s, i) => (
                   <div
                     key={s.src + i}
                     className={`absolute inset-0 transition-opacity duration-700 ${i === slide ? "opacity-100" : "opacity-0"}`}
                   >
-                    <FillImage src={s.src} alt={s.alt} priority={i === 0} />
+                    <FillImage src={s.src} alt={s.alt} eager={i === 0} />
                   </div>
                 ))}
                 <div className="absolute inset-0 bg-black/45" />
@@ -234,7 +235,7 @@ export default function HertfordshireAreaPage() {
                     <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-white/90">
                       Planning and Building Regulation Drawings for Hertfordshire and nearby areas
                     </p>
-                    <h1 className="mt-3 text-[26px] font-semibold uppercase leading-tight tracking-[0.04em] text-white sm:text-[36px] lg:text-[42px]">
+                    <h1 className="mt-3 text-[26px] font-semibold uppercase leading-tight tracking-[0.04em] text-white sm:text-[36px] lg:text-[44px]">
                       Architectural Drawings in Hertfordshire
                     </h1>
                     <p className="mt-3 max-w-2xl text-[14px] leading-relaxed text-white/90 sm:text-[15px]">
@@ -314,9 +315,7 @@ export default function HertfordshireAreaPage() {
                             type="button"
                             aria-label={`Go to image ${i + 1}`}
                             onClick={() => setSlide(i)}
-                            className={`h-2.5 w-2.5 rounded-full transition ${
-                              i === slide ? "bg-white" : "bg-white/40 hover:bg-white/70"
-                            }`}
+                            className={`h-2.5 w-2.5 rounded-full transition ${i === slide ? "bg-white" : "bg-white/40 hover:bg-white/70"}`}
                           />
                         ))}
                       </div>
