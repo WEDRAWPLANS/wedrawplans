@@ -5,6 +5,9 @@ const nextConfig = {
       // Service page redirects
       { source: "/loft-plans", destination: "/loft-conversion-plans", permanent: true },
 
+      // Fix wrong /areas link (dropdown safety net)
+      { source: "/areas/barking-dagenham", destination: "/areas/barking-and-dagenham", permanent: true },
+
       // Borough redirects to /areas/<borough>
       { source: "/barking-and-dagenham", destination: "/areas/barking-and-dagenham", permanent: true },
       { source: "/barnet", destination: "/areas/barnet", permanent: true },
