@@ -2,11 +2,17 @@ import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
+import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Waltham%20Cross";
+
+const HERO_IMAGE = "/images/hero.jpg";
+const PROJECT_IMAGE_1 = "/images/drawings.jpg";
+const PROJECT_IMAGE_2 = "/images/hero.jpg";
+const AREA_IMAGE = "/images/drawings.jpg";
 
 export default function WalthamCrossAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -25,7 +31,7 @@ export default function WalthamCrossAreaPage() {
     url: "https://www.wedrawplans.co.uk/areas/waltham-cross",
     telephone: "+44 20 3654 8508",
     email: "info@wedrawplans.com",
-    image: "https://www.wedrawplans.co.uk/images/hero.jpg",
+    image: "https://www.wedrawplans.co.uk/images/drawings.jpg",
     address: {
       "@type": "PostalAddress",
       streetAddress: "201 Borough High Street",
@@ -98,11 +104,7 @@ export default function WalthamCrossAreaPage() {
           name="description"
           content="Architectural drawings in Waltham Cross for extensions, loft conversions, refurbishments and building regulation packs. Fixed fees, clear scope and fast communication."
         />
-        <link
-          rel="canonical"
-          href="https://www.wedrawplans.co.uk/areas/waltham-cross"
-        />
-
+        <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/waltham-cross" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
@@ -114,7 +116,6 @@ export default function WalthamCrossAreaPage() {
       </Head>
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
-        {/* HEADER MATCH BARNET STRUCTURE */}
         <header className="bg-[#fdf8f3]/95 backdrop-blur border-b border-slate-200">
           <div className="mx-auto max-w-6xl px-4 pt-6 pb-3 lg:px-6">
             <div className="flex flex-col items-center text-center">
@@ -132,8 +133,7 @@ export default function WalthamCrossAreaPage() {
               </div>
 
               <div className="mt-2 max-w-3xl text-[13px] font-medium text-slate-800">
-                Architectural Drawings for Extensions, Lofts + New Builds at an
-                Affordable Fixed Cost
+                Architectural Drawings for Extensions, Lofts + New Builds at an Affordable Fixed Cost
               </div>
             </div>
 
@@ -141,8 +141,7 @@ export default function WalthamCrossAreaPage() {
 
             <div className="mt-2 flex w-full items-center justify-between gap-3">
               <div className="text-[12px] text-slate-700">
-                <span className="font-semibold text-slate-900">Waltham Cross</span>{" "}
-                area page
+                <span className="font-semibold text-slate-900">Waltham Cross</span> area page
               </div>
 
               <div className="flex items-center gap-2">
@@ -167,10 +166,8 @@ export default function WalthamCrossAreaPage() {
         </header>
 
         <main>
-          {/* HERO + FORM */}
           <section className="border-b border-slate-200 bg-[#fdf8f3]">
             <div className="mx-auto max-w-5xl flex flex-col lg:flex-row gap-6 px-4 py-8 lg:px-6 lg:py-10">
-              {/* LEFT TEXT */}
               <div className="lg:w-1/2">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-red-700">
                   Waltham Cross architectural drawings
@@ -180,10 +177,13 @@ export default function WalthamCrossAreaPage() {
                   Plans for extensions, lofts and refurbishments in Waltham Cross
                 </h1>
 
+                <p className="mt-2 text-[12px] text-slate-700">
+                  Get a fixed fee quote today and book an initial survey within 48 hours
+                </p>
+
                 <p className="mt-3 text-[13px] text-slate-700">
-                  WEDRAWPLANS prepare planning and technical drawings for homes in
-                  Waltham Cross, Cheshunt and nearby areas. Fixed fees with clear
-                  scope and fast communication.
+                  WEDRAWPLANS prepare planning and technical drawings for homes in Waltham Cross, Cheshunt and
+                  nearby areas. Fixed fees with clear scope and fast communication.
                 </p>
 
                 <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
@@ -209,12 +209,33 @@ export default function WalthamCrossAreaPage() {
                   </a>
                 </div>
 
+                <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                  <div className="relative h-[190px] w-full">
+                    <Image
+                      src={HERO_IMAGE}
+                      alt="Waltham Cross architectural drawings and home extension plans"
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 520px"
+                      className="object-cover"
+                      priority
+                    />
+                  </div>
+                  <div className="p-4">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-900">
+                      Local focus
+                    </p>
+                    <p className="mt-2 text-[13px] text-slate-700">
+                      We create clean drawing packs that help approvals move smoothly and give builders clear information
+                      to price and build.
+                    </p>
+                  </div>
+                </div>
+
                 <p className="mt-3 text-[12px] text-slate-600">
                   Share your postcode and a short description. We reply with a fixed fee and clear next steps.
                 </p>
               </div>
 
-              {/* RIGHT FORM */}
               <div id="waltham-cross-quote" className="lg:w-1/2">
                 <div className="bg-white p-5 rounded-2xl shadow-md">
                   <h2 className="text-[14px] uppercase font-semibold tracking-[0.16em] text-slate-900">
@@ -258,9 +279,7 @@ export default function WalthamCrossAreaPage() {
                     </div>
 
                     <div className="space-y-1">
-                      <label className="text-[11px] font-medium">
-                        Waltham Cross postcode
-                      </label>
+                      <label className="text-[11px] font-medium">Waltham Cross postcode</label>
                       <input
                         name="postcode"
                         required
@@ -293,9 +312,7 @@ export default function WalthamCrossAreaPage() {
                     </div>
 
                     <div className="space-y-1">
-                      <label className="text-[11px] font-medium">
-                        Brief project details
-                      </label>
+                      <label className="text-[11px] font-medium">Brief project details</label>
                       <textarea
                         name="projectDetails"
                         rows={4}
@@ -316,11 +333,34 @@ export default function WalthamCrossAreaPage() {
                     </p>
                   </form>
                 </div>
+
+                <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-4">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-900">
+                    Fast contact
+                  </p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    <a
+                      href={PHONE_LINK}
+                      className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-[13px] text-slate-800 shadow-sm hover:bg-slate-900 hover:text-white"
+                    >
+                      📞 Call {PHONE_DISPLAY}
+                    </a>
+                    <a
+                      href={WHATSAPP_LINK}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-2 text-[13px] font-medium text-white hover:bg-[#1ebe57]"
+                    >
+                      💬 WhatsApp
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
 
-          {/* CONTENT SECTION */}
+          <ServiceInternalLinks boroughName="Waltham Cross" />
+
           <section className="bg-white border-b border-slate-200 py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
               <div className="grid md:grid-cols-[1.7fr,1.3fr] gap-10 items-start">
@@ -329,8 +369,8 @@ export default function WalthamCrossAreaPage() {
                     Architectural drawing services in Waltham Cross
                   </h2>
                   <p className="text-[13px] text-slate-700">
-                    We produce planning and technical drawing packages for extensions, loft conversions,
-                    internal reconfiguration, refurbishments and conversion layouts across Waltham Cross and nearby areas.
+                    We produce planning and technical drawing packages for extensions, loft conversions, internal
+                    reconfiguration, refurbishments and conversion layouts across Waltham Cross and nearby areas.
                   </p>
                   <p className="text-[13px] text-slate-700">
                     Common work includes open plan kitchen extensions, dormer lofts, side extensions, structural openings,
@@ -369,11 +409,67 @@ export default function WalthamCrossAreaPage() {
                       Clear drawings builders can price from
                     </h3>
                     <p className="text-[13px] text-slate-700">
-                      Floor plans, elevations and sections set out clearly, with notes that help Building Control and contractors understand the scope fast.
+                      Floor plans, elevations and sections set out clearly, with notes that help Building Control and
+                      contractors understand the scope fast.
                     </p>
                   </div>
                 </div>
               </div>
+
+              <section className="border-b border-slate-200 bg-white py-10">
+                <div className="mx-auto max-w-5xl px-0 lg:px-0">
+                  <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+                    Example drawing packages
+                  </h2>
+                  <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
+                    Example visuals to show typical extension and loft drawing outputs. Replace with local Waltham Cross
+                    project imagery when ready.
+                  </p>
+
+                  <div className="mt-6 grid gap-5 md:grid-cols-2">
+                    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-[#fdf8f3]">
+                      <div className="relative h-[220px] w-full">
+                        <Image
+                          src={PROJECT_IMAGE_1}
+                          alt="Waltham Cross extension drawings example"
+                          fill
+                          sizes="(max-width: 1024px) 100vw, 520px"
+                          className="object-cover"
+                        />
+                      </div>
+                      <div className="p-4">
+                        <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-slate-900">
+                          Extensions
+                        </p>
+                        <p className="mt-2 text-[13px] text-slate-700">
+                          Plans, elevations and sections for rear and side extensions with clear notes for planning and
+                          building control.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-[#fdf8f3]">
+                      <div className="relative h-[220px] w-full">
+                        <Image
+                          src={PROJECT_IMAGE_2}
+                          alt="Waltham Cross loft conversion drawings example"
+                          fill
+                          sizes="(max-width: 1024px) 100vw, 520px"
+                          className="object-cover"
+                        />
+                      </div>
+                      <div className="p-4">
+                        <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-slate-900">
+                          Lofts
+                        </p>
+                        <p className="mt-2 text-[13px] text-slate-700">
+                          Loft conversion drawing sets including dormers, stair layouts and compliance notes.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
 
               <div className="grid md:grid-cols-2 gap-10">
                 <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
@@ -382,7 +478,7 @@ export default function WalthamCrossAreaPage() {
                   </h3>
 
                   <Image
-                    src="/images/walthamforest-area.jpg"
+                    src={AREA_IMAGE}
                     alt="Waltham Cross local area"
                     width={800}
                     height={500}
@@ -454,10 +550,7 @@ export default function WalthamCrossAreaPage() {
                   <a href={PHONE_LINK} className="font-semibold text-emerald-300 underline">
                     {PHONE_DISPLAY}
                   </a>
-                  <a
-                    href="mailto:info@wedrawplans.com"
-                    className="font-semibold text-emerald-300 underline"
-                  >
+                  <a href="mailto:info@wedrawplans.com" className="font-semibold text-emerald-300 underline">
                     info@wedrawplans.com
                   </a>
                   <button
