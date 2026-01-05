@@ -1,71 +1,13 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React from "react";
 import Head from "next/head";
+import Image from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
-import AreaTopHeader from "../../components/AreaTopHeader";
 import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const WHATSAPP_LINK =
-  "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20architectural%20drawings%20in%20Hertfordshire";
-
-const HERO_IMAGE = "/image/hertfordshire-hero.jpg";
-const IMAGE_1 = "/image/hertfordshire-project-1.jpg";
-const IMAGE_2 = "/image/hertfordshire-project-2.jpg";
-const IMAGE_3 = "/image/hertfordshire-project-3.jpg";
-const IMAGE_4 = "/image/hertfordshire-project-4.jpg";
-const IMAGE_5 = "/image/hertfordshire-project-5.jpg";
-
-function getFallbackCandidates(src: string) {
-  const lower = src.toLowerCase();
-  const candidates = [src];
-  if (lower.endsWith(".jpg")) {
-    candidates.push(src.slice(0, -4) + ".jpeg");
-    candidates.push(src.slice(0, -4) + ".png");
-    candidates.push(src.slice(0, -4) + ".webp");
-  } else if (lower.endsWith(".jpeg")) {
-    candidates.push(src.slice(0, -5) + ".jpg");
-    candidates.push(src.slice(0, -5) + ".png");
-    candidates.push(src.slice(0, -5) + ".webp");
-  } else if (lower.endsWith(".png")) {
-    candidates.push(src.slice(0, -4) + ".jpg");
-    candidates.push(src.slice(0, -4) + ".jpeg");
-    candidates.push(src.slice(0, -4) + ".webp");
-  } else if (lower.endsWith(".webp")) {
-    candidates.push(src.slice(0, -5) + ".jpg");
-    candidates.push(src.slice(0, -5) + ".jpeg");
-    candidates.push(src.slice(0, -5) + ".png");
-  } else {
-    candidates.push(src + ".jpg", src + ".png", src + ".webp");
-  }
-  return Array.from(new Set(candidates));
-}
-
-function FillImage({
-  src,
-  alt,
-  eager,
-}: {
-  src: string;
-  alt: string;
-  eager?: boolean;
-}) {
-  const candidates = useMemo(() => getFallbackCandidates(src), [src]);
-  const [idx, setIdx] = useState(0);
-
-  return (
-    <img
-      src={candidates[idx]}
-      alt={alt}
-      loading={eager ? "eager" : "lazy"}
-      fetchPriority={eager ? "high" : "auto"}
-      className="absolute inset-0 h-full w-full object-cover"
-      onError={() => {
-        if (idx < candidates.length - 1) setIdx((v) => v + 1);
-      }}
-    />
-  );
-}
+  "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Hertfordshire";
 
 export default function HertfordshireAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -77,16 +19,14 @@ export default function HertfordshireAreaPage() {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  const canonicalUrl = "https://www.wedrawplans.co.uk/areas/hertfordshire";
-
   const localBusinessJson = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: "WEDRAWPLANS",
-    url: canonicalUrl,
+    url: "https://www.wedrawplans.co.uk/areas/hertfordshire",
     telephone: "+44 20 3654 8508",
     email: "info@wedrawplans.com",
-    image: "https://www.wedrawplans.co.uk/image/hertfordshire-hero.jpg",
+    image: "https://www.wedrawplans.co.uk/images/hero.jpg",
     address: {
       "@type": "PostalAddress",
       streetAddress: "201 Borough High Street",
@@ -99,594 +39,261 @@ export default function HertfordshireAreaPage() {
       "Broxbourne",
       "Cheshunt",
       "Waltham Cross",
+      "Hoddesdon",
+      "Ware",
+      "Hertford",
       "Potters Bar",
       "Borehamwood",
-      "Bushey",
-      "Watford",
+      "Radlett",
       "St Albans",
       "Harpenden",
-      "Hemel Hempstead",
-      "Welwyn Garden City",
-      "Hatfield",
-      "Hoddesdon",
-      "Bishops Stortford",
-      "Hertford",
-      "Ware",
+      "Watford",
+      "Bushey",
       "Rickmansworth",
       "Chorleywood",
-      "Radlett",
+      "Hemel Hempstead",
       "Berkhamsted",
       "Tring",
+      "Welwyn Garden City",
+      "Hatfield",
+      "Bishops Stortford",
     ],
-    priceRange: "££",
+    description:
+      "Architectural drawing services in Hertfordshire for extensions, loft conversions, refurbishments, residential schemes and building regulation drawing packages.",
   };
 
-  const faqItems = [
-    {
-      question: "What drawings do I need for a house extension in Hertfordshire",
-      answer:
-        "Most homeowners start with existing and proposed plans, elevations, and a site location plan. If your project needs Building Regulations approval, you will also need a detailed Building Regulations drawing set and supporting details. We guide you through what is needed based on your property and scope.",
-    },
-    {
-      question: "Can you handle planning drawings and Building Regulations drawings",
-      answer:
-        "Yes. We can produce planning drawing packages and Building Regulations drawing packages. Many clients start with planning and then upgrade to Building Regulations once the scheme is agreed.",
-    },
-    {
-      question: "Do you work across all Hertfordshire towns",
-      answer:
-        "Yes. We cover Hertfordshire widely, including Broxbourne, Cheshunt, Waltham Cross, Potters Bar, Borehamwood, St Albans, Watford, Hemel Hempstead, Welwyn Hatfield, and nearby areas.",
-    },
-    {
-      question: "How do you get the measurements for my property",
-      answer:
-        "We can work from a survey, existing drawings, or we can arrange an initial survey where needed. The aim is accurate, council ready drawings that match the property and the proposed scope.",
-    },
-    {
-      question: "Can you advise if my project is likely to need planning permission",
-      answer:
-        "We can provide guidance based on the scope, constraints, and local planning context. Final decisions rest with the Local Planning Authority, but we help you choose a clear route and a robust drawing package.",
-    },
-    {
-      question: "How quickly can I get a quote",
-      answer:
-        "Send your postcode and a short description of the works. We will review and respond quickly with clear next steps and a quote for the drawing package that fits your project.",
-    },
-  ];
-
-  const faqPageJson = {
+  const faqJson = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: faqItems.map((f) => ({
-      "@type": "Question",
-      name: f.question,
-      acceptedAnswer: { "@type": "Answer", text: f.answer },
-    })),
-  };
-
-  const heroSlides = useMemo(
-    () => [
-      { src: HERO_IMAGE, alt: "Architectural drawings and planning support in Hertfordshire" },
-      { src: IMAGE_1, alt: "Hertfordshire extension example" },
-      { src: IMAGE_2, alt: "Hertfordshire loft conversion example" },
-      { src: IMAGE_5, alt: "Residential design support in Hertfordshire" },
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "What drawings do I need for a house extension in Hertfordshire",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "Most homeowners start with existing and proposed plans, elevations, and a site location plan. If your project needs Building Regulations approval, you will also need a detailed Building Regulations drawing set and supporting details. We guide you through what is needed based on your property and scope.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can you handle planning drawings and Building Regulations drawings",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "Yes. We can produce planning drawing packages and Building Regulations drawing packages. Many clients start with planning and then upgrade to Building Regulations once the scheme is agreed.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Do you work across all Hertfordshire towns",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "Yes. We cover Hertfordshire widely, including Broxbourne, Cheshunt, Waltham Cross, Potters Bar, Borehamwood, St Albans, Watford, Hemel Hempstead, Welwyn Hatfield, and nearby areas.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How do you get the measurements for my property",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "We can work from a survey, existing drawings, or we can arrange an initial survey where needed. The aim is accurate, council ready drawings that match the property and the proposed scope.",
+        },
+      },
     ],
-    []
-  );
-
-  const [slide, setSlide] = useState(0);
-
-  useEffect(() => {
-    const t = window.setInterval(() => {
-      setSlide((s) => (s + 1) % heroSlides.length);
-    }, 6500);
-    return () => window.clearInterval(t);
-  }, [heroSlides.length]);
-
-  function prevSlide() {
-    setSlide((s) => (s - 1 + heroSlides.length) % heroSlides.length);
-  }
-
-  function nextSlide() {
-    setSlide((s) => (s + 1) % heroSlides.length);
-  }
+  };
 
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Hertfordshire – Planning and Building Regulations Packages</title>
+        <title>
+          Architectural Drawings in Hertfordshire | Extensions, Lofts, New Builds
+        </title>
         <meta
           name="description"
-          content="WEDRAWPLANS provides architectural drawings in Hertfordshire for house extensions, loft conversions, refurbishments, and residential projects. Planning drawings and Building Regulations drawing packages with clear guidance and fast quotes."
+          content="Architectural drawings in Hertfordshire for house extensions, loft conversions, refurbishments and building regulation packs. Fixed fees with clear scope and fast turnaround."
         />
-        <link rel="canonical" href={canonicalUrl} />
-        <meta property="og:title" content="Architectural Drawings in Hertfordshire | WEDRAWPLANS" />
-        <meta
-          property="og:description"
-          content="Planning drawings and Building Regulations drawing packages across Hertfordshire. Extensions, loft conversions, refurbishments, and residential projects with a clear process and fast quotes."
+        <link
+          rel="canonical"
+          href="https://www.wedrawplans.co.uk/areas/hertfordshire"
         />
-        <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:type" content="website" />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageJson) }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }}
+        />
       </Head>
 
-      <div className="min-h-screen bg-white">
-        <AreaTopHeader />
+      <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
+        <header className="bg-[#fdf8f3]/95 backdrop-blur border-b border-slate-200">
+          <div className="mx-auto max-w-6xl px-4 pt-6 pb-3 lg:px-6">
+            <div className="flex flex-col items-center text-center">
+              <Image
+                src="/images/wedrawplans-logo.png"
+                alt="WEDRAWPLANS"
+                width={420}
+                height={140}
+                priority
+                className="h-24 w-auto object-contain"
+              />
+
+              <div className="mt-3 text-[11px] tracking-[0.18em] text-slate-600 uppercase">
+                Architectural Drawing Consultants
+              </div>
+
+              <div className="mt-2 max-w-3xl text-[13px] font-medium text-slate-800">
+                Architectural Drawings for Extensions, Lofts + New Builds at an
+                Affordable Fixed Cost
+              </div>
+            </div>
+
+            <hr className="mt-5 border-t border-slate-600" />
+
+            <div className="mt-2 flex w-full items-center justify-between gap-3">
+              <div className="text-[12px] text-slate-700">
+                <span className="font-semibold text-slate-900">
+                  Hertfordshire
+                </span>{" "}
+                area page
+              </div>
+
+              <div className="flex items-center gap-2">
+                <a
+                  href={PHONE_LINK}
+                  className="hidden items-center gap-1 rounded-full border border-slate-300 px-3 py-1.5 text-[12px] font-medium text-slate-900 shadow-sm hover:bg-slate-900 hover:text-white sm:inline-flex"
+                >
+                  📞 {PHONE_DISPLAY}
+                </a>
+
+                <a
+                  href={WHATSAPP_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 bg-[#25D366] text-white px-3 py-1.5 rounded-full text-[12px] font-medium shadow-sm hover:bg-[#1ebe57]"
+                >
+                  💬 <span className="hidden sm:inline">WhatsApp us</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </header>
 
         <main>
-          <section className="relative">
-            <div className="relative h-[420px] w-full overflow-hidden sm:h-[520px] lg:h-[620px]">
-              <div className="absolute inset-0">
-                {heroSlides.map((s, i) => (
-                  <div
-                    key={s.src + i}
-                    className={`absolute inset-0 transition-opacity duration-700 ${i === slide ? "opacity-100" : "opacity-0"}`}
+          <section className="border-b border-slate-200 bg-[#fdf8f3]">
+            <div className="mx-auto max-w-5xl flex flex-col lg:flex-row gap-6 px-4 py-8 lg:px-6 lg:py-10">
+              <div className="lg:w-1/2">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-red-700">
+                  Hertfordshire architectural drawings
+                </p>
+
+                <h1 className="mt-2 text-[22px] sm:text-[26px] font-semibold uppercase leading-snug tracking-[0.14em]">
+                  Plans for extensions, lofts and new builds in Hertfordshire
+                </h1>
+
+                <p className="mt-3 text-[13px] text-slate-700">
+                  WEDRAWPLANS prepare planning and technical drawings for house
+                  extensions, loft conversions, refurbishments, conversions and
+                  residential projects across Hertfordshire and nearby areas.
+                  Fixed fees with clear scope and fast communication.
+                </p>
+
+                <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
+                  <li>• House extensions, wrap around extensions and internal remodelling</li>
+                  <li>• Loft conversions including dormers and hip to gable designs</li>
+                  <li>• Refurbishments and internal layout reconfiguration</li>
+                  <li>• Planning drawings and building regulation packs</li>
+                  <li>• Covering St Albans, Watford, Hemel Hempstead, Welwyn Hatfield and more</li>
+                  <li>• Same day response on most enquiries</li>
+                </ul>
+
+                <div className="mt-5 flex flex-wrap gap-3 items-center">
+                  <button
+                    onClick={scrollToForm}
+                    type="button"
+                    className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-white text-[13px] font-semibold uppercase tracking-[0.18em] hover:bg-[#4da4b4]"
                   >
-                    <FillImage src={s.src} alt={s.alt} eager={i === 0} />
-                  </div>
-                ))}
-                <div className="absolute inset-0 bg-black/45" />
-              </div>
+                    Get a quick quote
+                  </button>
 
-              <div className="relative z-10 flex h-full items-center">
-                <div className="mx-auto w-full max-w-6xl px-4 lg:px-6">
-                  <div className="max-w-3xl">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-white/90">
-                      Planning and Building Regulation Drawings for Hertfordshire and nearby areas
-                    </p>
-                    <h1 className="mt-3 text-[26px] font-semibold uppercase leading-tight tracking-[0.04em] text-white sm:text-[36px] lg:text-[44px]">
-                      Architectural Drawings in Hertfordshire
-                    </h1>
-                    <p className="mt-3 max-w-2xl text-[14px] leading-relaxed text-white/90 sm:text-[15px]">
-                      Clear, council ready drawing packages for extensions, loft conversions, refurbishments, and residential
-                      projects. If you want a fast quote, send your postcode and a short description of the works and we will
-                      guide you to the right package.
-                    </p>
-
-                    <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
-                      <button
-                        type="button"
-                        onClick={scrollToForm}
-                        className="inline-flex items-center justify-center rounded-2xl bg-red-700 px-6 py-3 text-[13px] font-semibold text-white shadow-sm transition hover:bg-red-800"
-                      >
-                        Get a fast quote
-                      </button>
-                      <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
-                        <a
-                          href={PHONE_LINK}
-                          className="inline-flex items-center justify-center rounded-2xl border border-white/30 bg-white/10 px-6 py-3 text-[13px] font-semibold text-white backdrop-blur transition hover:bg-white/15"
-                        >
-                          Call {PHONE_DISPLAY}
-                        </a>
-                        <a
-                          href={WHATSAPP_LINK}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex items-center justify-center rounded-2xl border border-white/30 bg-white/10 px-6 py-3 text-[13px] font-semibold text-white backdrop-blur transition hover:bg-white/15"
-                        >
-                          WhatsApp us
-                        </a>
-                      </div>
-                    </div>
-
-                    <div className="mt-6 grid gap-3 sm:grid-cols-3">
-                      <div className="rounded-2xl bg-white/10 p-4 backdrop-blur">
-                        <p className="text-[12px] font-semibold text-white">Planning drawings</p>
-                        <p className="mt-1 text-[12px] text-white/80">
-                          Existing and proposed plans, elevations, and site plans prepared for submission.
-                        </p>
-                      </div>
-                      <div className="rounded-2xl bg-white/10 p-4 backdrop-blur">
-                        <p className="text-[12px] font-semibold text-white">Building Regulations</p>
-                        <p className="mt-1 text-[12px] text-white/80">
-                          Detailed drawing sets suitable for Building Control review and construction.
-                        </p>
-                      </div>
-                      <div className="rounded-2xl bg-white/10 p-4 backdrop-blur">
-                        <p className="text-[12px] font-semibold text-white">Clear process</p>
-                        <p className="mt-1 text-[12px] text-white/80">
-                          Step by step support from first outline to final drawings and coordination.
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="mt-6 flex items-center gap-3">
-                      <button
-                        type="button"
-                        onClick={prevSlide}
-                        aria-label="Previous image"
-                        className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-white/10 text-white backdrop-blur transition hover:bg-white/15"
-                      >
-                        ‹
-                      </button>
-                      <button
-                        type="button"
-                        onClick={nextSlide}
-                        aria-label="Next image"
-                        className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-white/10 text-white backdrop-blur transition hover:bg-white/15"
-                      >
-                        ›
-                      </button>
-                      <div className="flex items-center gap-2">
-                        {heroSlides.map((_, i) => (
-                          <button
-                            key={i}
-                            type="button"
-                            aria-label={`Go to image ${i + 1}`}
-                            onClick={() => setSlide(i)}
-                            className={`h-2.5 w-2.5 rounded-full transition ${i === slide ? "bg-white" : "bg-white/40 hover:bg-white/70"}`}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <ServiceInternalLinks boroughName="Hertfordshire" />
-
-          <section className="mx-auto max-w-6xl px-4 py-10 lg:px-6 lg:py-14">
-            <div className="grid gap-8 lg:grid-cols-2 lg:items-start">
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-red-700">
-                  Built for homeowners and residential projects
-                </p>
-                <h2 className="mt-2 text-[20px] font-semibold uppercase leading-snug tracking-[0.04em] text-gray-900 sm:text-[22px]">
-                  A Hertfordshire focused drawing service that keeps things simple
-                </h2>
-                <p className="mt-4 text-[14px] leading-relaxed text-gray-700">
-                  If you are planning an extension, loft conversion, refurbishment, or a residential scheme in Hertfordshire,
-                  the fastest route to progress is a strong set of drawings that are clear, accurate, and ready for review. We
-                  produce planning drawing packages and Building Regulations drawing packages, and we help you understand what
-                  is needed at each stage so you can move forward without delays.
-                </p>
-                <p className="mt-4 text-[14px] leading-relaxed text-gray-700">
-                  Our approach is practical. We focus on the drawing detail that planning teams and Building Control teams
-                  expect to see, and we present it in a clean layout that is easy to review. That means fewer back and forth
-                  questions, clearer decisions, and a smoother next step into quotations and construction.
-                </p>
-
-                <div className="mt-6 rounded-2xl border border-gray-200 bg-gray-50 p-6">
-                  <h3 className="text-[13px] font-semibold uppercase tracking-[0.06em] text-gray-900">Quick quote checklist</h3>
-                  <ul className="mt-3 space-y-2 text-[13px] leading-relaxed text-gray-700">
-                    <li>• Your postcode and the town</li>
-                    <li>• A short description of the works you want to do</li>
-                    <li>• Any constraints you know about, such as conservation areas</li>
-                    <li>• Photos or existing drawings if you have them</li>
-                  </ul>
-                  <div className="mt-5 flex flex-col gap-2 sm:flex-row">
-                    <a
-                      href={PHONE_LINK}
-                      className="inline-flex items-center justify-center rounded-2xl bg-gray-900 px-5 py-3 text-[13px] font-semibold text-white transition hover:bg-black"
-                    >
-                      Call {PHONE_DISPLAY}
-                    </a>
-                    <a
-                      href={WHATSAPP_LINK}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center justify-center rounded-2xl border border-gray-300 bg-white px-5 py-3 text-[13px] font-semibold text-gray-900 transition hover:bg-gray-50"
-                    >
-                      WhatsApp message
-                    </a>
-                    <button
-                      type="button"
-                      onClick={scrollToForm}
-                      className="inline-flex items-center justify-center rounded-2xl border border-gray-300 bg-white px-5 py-3 text-[13px] font-semibold text-gray-900 transition hover:bg-gray-50"
-                    >
-                      Request a quote
-                    </button>
-                  </div>
+                  <a href={PHONE_LINK} className="text-[13px] underline text-slate-800">
+                    Or call {PHONE_DISPLAY}
+                  </a>
                 </div>
               </div>
 
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div className="relative h-[190px] overflow-hidden rounded-2xl border border-gray-200 bg-gray-100 sm:h-[220px]">
-                  <FillImage src={IMAGE_1} alt="Hertfordshire extension drawing example" />
-                </div>
-                <div className="relative h-[190px] overflow-hidden rounded-2xl border border-gray-200 bg-gray-100 sm:h-[220px]">
-                  <FillImage src={IMAGE_2} alt="Hertfordshire loft conversion drawing example" />
-                </div>
-                <div className="relative h-[190px] overflow-hidden rounded-2xl border border-gray-200 bg-gray-100 sm:h-[220px]">
-                  <FillImage src={IMAGE_3} alt="Hertfordshire planning drawing set example" />
-                </div>
-                <div className="relative h-[190px] overflow-hidden rounded-2xl border border-gray-200 bg-gray-100 sm:h-[220px]">
-                  <FillImage src={IMAGE_4} alt="Hertfordshire building regulations drawing example" />
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-10 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-              <div className="grid gap-6 lg:grid-cols-3">
-                <div>
-                  <h3 className="text-[13px] font-semibold uppercase tracking-[0.06em] text-gray-900">Planning drawings</h3>
-                  <p className="mt-2 text-[13px] leading-relaxed text-gray-700">
-                    Existing and proposed plans, elevations, and supporting drawings prepared to a clean presentation standard.
-                    We help you pick the right level of detail based on your project.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-[13px] font-semibold uppercase tracking-[0.06em] text-gray-900">
-                    Building Regulations packages
-                  </h3>
-                  <p className="mt-2 text-[13px] leading-relaxed text-gray-700">
-                    Detailed drawings and key notes that are suitable for Building Control review. This is the set that
-                    contractors and consultants rely on for pricing and delivery.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-[13px] font-semibold uppercase tracking-[0.06em] text-gray-900">
-                    Residential project support
-                  </h3>
-                  <p className="mt-2 text-[13px] leading-relaxed text-gray-700">
-                    From early outline options through to a coordinated set, we keep decisions clear and we focus on drawing
-                    clarity so the next step is simple.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-10 grid gap-8 lg:grid-cols-2 lg:items-start">
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-red-700">Coverage across the county</p>
-                <h2 className="mt-2 text-[20px] font-semibold uppercase leading-snug tracking-[0.04em] text-gray-900 sm:text-[22px]">
-                  Areas we support across Hertfordshire
-                </h2>
-                <p className="mt-4 text-[14px] leading-relaxed text-gray-700">
-                  Hertfordshire has a wide mix of property styles and neighbourhoods, from family homes that need more space to
-                  period properties that need careful detailing. We can support projects across the county and we also cover
-                  nearby London border areas where many homeowners need a clear planning and Building Regulations route.
-                </p>
-
-                <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                  <div className="rounded-2xl border border-gray-200 bg-gray-50 p-5">
-                    <p className="text-[12px] font-semibold text-gray-900">South and South East Hertfordshire</p>
-                    <p className="mt-2 text-[13px] leading-relaxed text-gray-700">
-                      Broxbourne, Cheshunt, Waltham Cross, Hoddesdon, Ware, Hertford, Potters Bar.
-                    </p>
-                  </div>
-                  <div className="rounded-2xl border border-gray-200 bg-gray-50 p-5">
-                    <p className="text-[12px] font-semibold text-gray-900">West Hertfordshire</p>
-                    <p className="mt-2 text-[13px] leading-relaxed text-gray-700">
-                      Watford, Bushey, Rickmansworth, Chorleywood, Hemel Hempstead, Berkhamsted, Tring.
-                    </p>
-                  </div>
-                  <div className="rounded-2xl border border-gray-200 bg-gray-50 p-5">
-                    <p className="text-[12px] font-semibold text-gray-900">St Albans and surrounding</p>
-                    <p className="mt-2 text-[13px] leading-relaxed text-gray-700">
-                      St Albans, Harpenden, Radlett, London Colney, Wheathampstead, Redbourn.
-                    </p>
-                  </div>
-                  <div className="rounded-2xl border border-gray-200 bg-gray-50 p-5">
-                    <p className="text-[12px] font-semibold text-gray-900">Welwyn Hatfield and North</p>
-                    <p className="mt-2 text-[13px] leading-relaxed text-gray-700">
-                      Welwyn Garden City, Hatfield, Stevenage, Hitchin, Letchworth, Bishops Stortford.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="mt-6 rounded-2xl border border-gray-200 bg-white p-6">
-                  <h3 className="text-[13px] font-semibold uppercase tracking-[0.06em] text-gray-900">
-                    Border areas and nearby London links
-                  </h3>
-                  <p className="mt-2 text-[13px] leading-relaxed text-gray-700">
-                    If your home sits near the Hertfordshire and London boundary, you may find similar design needs and similar
-                    pressure on space. Many homeowners compare options across nearby areas, so we keep guidance clear and we help
-                    you choose a drawing package that supports planning and Building Regulations effectively.
-                  </p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    <a
-                      href="/areas/enfield"
-                      className="rounded-2xl border border-gray-200 bg-gray-50 px-4 py-2 text-[12px] font-semibold text-gray-900 transition hover:bg-gray-100"
-                    >
-                      Enfield
-                    </a>
-                    <a
-                      href="/areas/barnet"
-                      className="rounded-2xl border border-gray-200 bg-gray-50 px-4 py-2 text-[12px] font-semibold text-gray-900 transition hover:bg-gray-100"
-                    >
-                      Barnet
-                    </a>
-                    <a
-                      href="/areas/haringey"
-                      className="rounded-2xl border border-gray-200 bg-gray-50 px-4 py-2 text-[12px] font-semibold text-gray-900 transition hover:bg-gray-100"
-                    >
-                      Haringey
-                    </a>
-                    <a
-                      href="/areas/camden"
-                      className="rounded-2xl border border-gray-200 bg-gray-50 px-4 py-2 text-[12px] font-semibold text-gray-900 transition hover:bg-gray-100"
-                    >
-                      Camden
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <div className="relative h-[240px] overflow-hidden rounded-2xl border border-gray-200 bg-gray-100 sm:h-[320px] lg:h-[380px]">
-                  <FillImage src={IMAGE_5} alt="Residential design support in Hertfordshire" />
-                </div>
-
-                <div className="mt-6 rounded-2xl border border-gray-200 bg-gray-50 p-6">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-red-700">Popular project types</p>
-                  <h3 className="mt-2 text-[16px] font-semibold uppercase tracking-[0.04em] text-gray-900">
-                    What we often draw in Hertfordshire
-                  </h3>
-                  <ul className="mt-4 space-y-2 text-[13px] leading-relaxed text-gray-700">
-                    <li>• Rear extensions and kitchen family space upgrades</li>
-                    <li>• Side extensions and wrap around extensions</li>
-                    <li>• Loft conversions, dormers, and roof alterations</li>
-                    <li>• Internal reconfiguration and refurbishment layouts</li>
-                    <li>• Garage conversions and home office spaces</li>
-                    <li>• Residential conversions and small development schemes</li>
-                  </ul>
-                </div>
-
-                <div className="mt-6 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-                  <h3 className="text-[13px] font-semibold uppercase tracking-[0.06em] text-gray-900">
-                    A clear process from first idea to ready drawings
-                  </h3>
-                  <div className="mt-4 grid gap-4 sm:grid-cols-2">
-                    <div className="rounded-2xl border border-gray-200 bg-gray-50 p-5">
-                      <p className="text-[12px] font-semibold text-gray-900">1. Outline and scope</p>
-                      <p className="mt-2 text-[13px] leading-relaxed text-gray-700">
-                        You share your postcode and goals. We advise the best drawing package and next steps.
-                      </p>
-                    </div>
-                    <div className="rounded-2xl border border-gray-200 bg-gray-50 p-5">
-                      <p className="text-[12px] font-semibold text-gray-900">2. Existing plans</p>
-                      <p className="mt-2 text-[13px] leading-relaxed text-gray-700">
-                        We build accurate existing drawings from survey data or available information.
-                      </p>
-                    </div>
-                    <div className="rounded-2xl border border-gray-200 bg-gray-50 p-5">
-                      <p className="text-[12px] font-semibold text-gray-900">3. Proposed design</p>
-                      <p className="mt-2 text-[13px] leading-relaxed text-gray-700">
-                        We develop a clear proposed scheme and produce the drawings in a clean layout.
-                      </p>
-                    </div>
-                    <div className="rounded-2xl border border-gray-200 bg-gray-50 p-5">
-                      <p className="text-[12px] font-semibold text-gray-900">4. Submission ready</p>
-                      <p className="mt-2 text-[13px] leading-relaxed text-gray-700">
-                        We finalise and provide the files for submission, then support the next step to Build Regs if needed.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="mt-5 flex flex-col gap-2 sm:flex-row">
-                    <button
-                      type="button"
-                      onClick={scrollToForm}
-                      className="inline-flex items-center justify-center rounded-2xl bg-red-700 px-6 py-3 text-[13px] font-semibold text-white transition hover:bg-red-800"
-                    >
-                      Request a quote
-                    </button>
-                    <a
-                      href={PHONE_LINK}
-                      className="inline-flex items-center justify-center rounded-2xl border border-gray-300 bg-white px-6 py-3 text-[13px] font-semibold text-gray-900 transition hover:bg-gray-50"
-                    >
-                      Call {PHONE_DISPLAY}
-                    </a>
-                    <a
-                      href={WHATSAPP_LINK}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center justify-center rounded-2xl border border-gray-300 bg-white px-6 py-3 text-[13px] font-semibold text-gray-900 transition hover:bg-gray-50"
-                    >
-                      WhatsApp us
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section className="border-t border-gray-200 bg-gray-50">
-            <div className="mx-auto max-w-6xl px-4 py-10 lg:px-6 lg:py-14">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-red-700">FAQs</p>
-              <h2 className="mt-2 text-[20px] font-semibold uppercase leading-snug tracking-[0.04em] text-gray-900 sm:text-[22px]">
-                Questions homeowners ask before starting
-              </h2>
-
-              <div className="mt-6 grid gap-4 lg:grid-cols-2">
-                {faqItems.map((f) => (
-                  <div key={f.question} className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-                    <h3 className="text-[13px] font-semibold uppercase tracking-[0.04em] text-gray-900">{f.question}</h3>
-                    <p className="mt-3 text-[13px] leading-relaxed text-gray-700">{f.answer}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          <section id="hertfordshire-quote" className="bg-white scroll-mt-24">
-            <div className="mx-auto max-w-6xl px-4 py-10 lg:px-6 lg:py-14">
-              <div className="grid gap-8 lg:grid-cols-2 lg:items-start">
-                <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-red-700">Get a fast quote</p>
-                  <h2 className="mt-2 text-[20px] font-semibold uppercase leading-snug tracking-[0.04em] text-gray-900 sm:text-[22px]">
-                    Tell us your postcode and what you want to build
+              <div id="hertfordshire-quote" className="lg:w-1/2">
+                <div className="bg-white p-5 rounded-2xl shadow-md">
+                  <h2 className="text-[14px] uppercase font-semibold tracking-[0.16em] text-slate-900">
+                    Free fixed fee quote
                   </h2>
-                  <p className="mt-4 text-[14px] leading-relaxed text-gray-700">
-                    Share your Hertfordshire postcode and a short description of the works. If you have photos or existing
-                    drawings, include them. We will guide you to the right drawing package and confirm a quote with clear next
-                    steps.
+
+                  <p className="mt-1 text-[12px] text-slate-600">
+                    Tell us a little about your property and what you plan to
+                    build. We will reply with a clear fixed fee for your
+                    drawings.
                   </p>
 
-                  <div className="mt-6 rounded-2xl border border-gray-200 bg-gray-50 p-6">
-                    <p className="text-[12px] font-semibold text-gray-900">Prefer to speak first</p>
-                    <div className="mt-3 flex flex-col gap-2 sm:flex-row">
-                      <a
-                        href={PHONE_LINK}
-                        className="inline-flex items-center justify-center rounded-2xl bg-gray-900 px-6 py-3 text-[13px] font-semibold text-white transition hover:bg-black"
-                      >
-                        Call {PHONE_DISPLAY}
-                      </a>
-                      <a
-                        href={WHATSAPP_LINK}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center justify-center rounded-2xl border border-gray-300 bg-white px-6 py-3 text-[13px] font-semibold text-gray-900 transition hover:bg-gray-100"
-                      >
-                        WhatsApp message
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <div>
-                      <label className="text-[12px] font-semibold text-gray-900">Full name</label>
+                  <form onSubmit={handleSubmit} className="mt-3 space-y-3 text-[13px]">
+                    <div className="space-y-1">
+                      <label className="text-[11px] font-medium">Name</label>
                       <input
                         name="name"
                         required
-                        className="mt-2 w-full rounded-2xl border border-gray-300 px-4 py-3 text-[14px] outline-none transition focus:border-gray-900"
-                        placeholder="Your name"
+                        className="w-full bg-transparent border-b border-slate-300 py-1.5 px-1 focus:border-[#64b7c4] outline-none"
                       />
                     </div>
 
-                    <div>
-                      <label className="text-[12px] font-semibold text-gray-900">Email</label>
-                      <input
-                        name="email"
-                        type="email"
-                        required
-                        className="mt-2 w-full rounded-2xl border border-gray-300 px-4 py-3 text-[14px] outline-none transition focus:border-gray-900"
-                        placeholder="you@example.com"
-                      />
+                    <div className="grid sm:grid-cols-2 gap-3">
+                      <div className="space-y-1">
+                        <label className="text-[11px] font-medium">Telephone</label>
+                        <input
+                          name="phone"
+                          required
+                          type="tel"
+                          className="w-full bg-transparent border-b border-slate-300 py-1.5 px-1 focus:border-[#64b7c4] outline-none"
+                        />
+                      </div>
+
+                      <div className="space-y-1">
+                        <label className="text-[11px] font-medium">Email</label>
+                        <input
+                          name="email"
+                          required
+                          type="email"
+                          className="w-full bg-transparent border-b border-slate-300 py-1.5 px-1 focus:border-[#64b7c4] outline-none"
+                        />
+                      </div>
                     </div>
 
-                    <div>
-                      <label className="text-[12px] font-semibold text-gray-900">Phone</label>
-                      <input
-                        name="phone"
-                        required
-                        className="mt-2 w-full rounded-2xl border border-gray-300 px-4 py-3 text-[14px] outline-none transition focus:border-gray-900"
-                        placeholder="Your phone number"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="text-[12px] font-semibold text-gray-900">Postcode</label>
+                    <div className="space-y-1">
+                      <label className="text-[11px] font-medium">
+                        Hertfordshire postcode
+                      </label>
                       <input
                         name="postcode"
                         required
-                        className="mt-2 w-full rounded-2xl border border-gray-300 px-4 py-3 text-[14px] outline-none transition focus:border-gray-900"
-                        placeholder="Your postcode"
+                        placeholder="AL1 3AA"
+                        onFocus={(e) => (e.currentTarget.placeholder = "")}
+                        onBlur={(e) =>
+                          !e.currentTarget.value &&
+                          (e.currentTarget.placeholder = "AL1 3AA")
+                        }
+                        className="w-full border-b border-slate-300 bg-transparent py-1.5 px-1 text-slate-500/70 focus:text-slate-900 focus:border-[#64b7c4] outline-none"
                       />
                     </div>
 
-                    <div>
-                      <label className="text-[12px] font-semibold text-gray-900">Service</label>
+                    <div className="space-y-1">
+                      <label className="text-[11px] font-medium">Service</label>
                       <select
                         name="service"
                         required
-                        className="mt-2 w-full rounded-2xl border border-gray-300 px-4 py-3 text-[14px] outline-none transition focus:border-gray-900"
                         defaultValue=""
+                        className="w-full border-b border-slate-300 bg-transparent py-1.5 px-1 focus:border-[#64b7c4] outline-none"
                       >
                         <option value="" disabled>
                           Select a service
@@ -694,33 +301,40 @@ export default function HertfordshireAreaPage() {
                         <option value="House extension plans">House extension plans</option>
                         <option value="Loft conversion plans">Loft conversion plans</option>
                         <option value="Planning drawings">Planning drawings</option>
-                        <option value="Building regulations drawings">Building regulations drawings</option>
-                        <option value="Refurbishment and internal alterations">Refurbishment and internal alterations</option>
-                        <option value="Conversion or development">Conversion or development</option>
+                        <option value="Building regulations drawings">
+                          Building regulations drawings
+                        </option>
+                        <option value="Refurbishment and internal alterations">
+                          Refurbishment and internal alterations
+                        </option>
+                        <option value="Conversion or development">
+                          Conversion or development
+                        </option>
                       </select>
                     </div>
 
-                    <div>
-                      <label className="text-[12px] font-semibold text-gray-900">Message</label>
+                    <div className="space-y-1">
+                      <label className="text-[11px] font-medium">
+                        Brief description of your project
+                      </label>
                       <textarea
                         name="message"
                         required
-                        rows={5}
-                        className="mt-2 w-full rounded-2xl border border-gray-300 px-4 py-3 text-[14px] outline-none transition focus:border-gray-900"
-                        placeholder="Tell us what you want to do. Include key sizes or goals if you know them."
+                        rows={4}
+                        placeholder="For example: rear extension to a family home with open plan kitchen and a loft conversion."
+                        className="w-full border border-slate-300 rounded bg-white px-2 py-2 focus:border-[#64b7c4] outline-none"
                       />
                     </div>
 
                     <button
                       type="submit"
-                      className="w-full rounded-2xl bg-red-700 px-6 py-3 text-[13px] font-semibold text-white shadow-sm transition hover:bg-red-800"
+                      className="w-full rounded-full bg-[#64b7c4] py-2.5 text-white text-[13px] font-semibold uppercase tracking-[0.2em] hover:bg-[#4da4b4]"
                     >
-                      Send request
+                      Get a fixed fee quote
                     </button>
 
-                    <p className="text-[12px] leading-relaxed text-gray-600">
-                      By submitting this form, you agree that we can contact you about your drawing request. We only use your
-                      details for this enquiry.
+                    <p className="text-[11px] text-slate-500 mt-2">
+                      Typical Hertfordshire projects include rear extensions, loft conversions, refurbishments and internal remodelling.
                     </p>
                   </form>
                 </div>
@@ -728,43 +342,304 @@ export default function HertfordshireAreaPage() {
             </div>
           </section>
 
-          <section className="border-t border-gray-200 bg-white">
-            <div className="mx-auto max-w-6xl px-4 py-10 lg:px-6 lg:py-14">
-              <div className="rounded-2xl border border-gray-200 bg-gray-50 p-8">
-                <div className="grid gap-6 lg:grid-cols-3 lg:items-center">
-                  <div className="lg:col-span-2">
-                    <h2 className="text-[18px] font-semibold uppercase tracking-[0.04em] text-gray-900">
-                      Architectural drawings for Hertfordshire projects
-                    </h2>
-                    <p className="mt-3 text-[14px] leading-relaxed text-gray-700">
-                      If you are ready to start, send your postcode and a short description of the works. We will advise the
-                      best package and provide a clear quote with next steps.
-                    </p>
-                  </div>
-                  <div className="flex flex-col gap-2">
+          <ServiceInternalLinks boroughName="Hertfordshire" />
+
+          <section className="bg-white border-b border-slate-200 py-10">
+            <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
+              <div className="grid md:grid-cols-[1.7fr,1.3fr] gap-10 items-start">
+                <div className="space-y-4">
+                  <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
+                    Architectural drawing services in Hertfordshire
+                  </h2>
+                  <p className="text-[13px] text-slate-700">
+                    WEDRAWPLANS provide drawing packages for extensions, loft conversions,
+                    refurbishments, internal alterations, residential conversions and small development schemes
+                    across Hertfordshire and nearby areas.
+                  </p>
+                  <p className="text-[13px] text-slate-700">
+                    We regularly support projects around St Albans, Watford, Hemel Hempstead,
+                    Welwyn Garden City, Hatfield, Borehamwood, Potters Bar and surrounding towns.
+                  </p>
+
+                  <div className="flex flex-wrap gap-3 items-center">
                     <button
                       type="button"
                       onClick={scrollToForm}
-                      className="inline-flex items-center justify-center rounded-2xl bg-gray-900 px-6 py-3 text-[13px] font-semibold text-white transition hover:bg-black"
+                      className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-white text-[13px] font-semibold uppercase tracking-[0.18em] hover:bg-[#4da4b4]"
                     >
-                      Get a quote
+                      Get a quick quote
                     </button>
-                    <a
-                      href={PHONE_LINK}
-                      className="inline-flex items-center justify-center rounded-2xl border border-gray-300 bg-white px-6 py-3 text-[13px] font-semibold text-gray-900 transition hover:bg-gray-100"
-                    >
-                      Call {PHONE_DISPLAY}
-                    </a>
                     <a
                       href={WHATSAPP_LINK}
                       target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center justify-center rounded-2xl border border-gray-300 bg-white px-6 py-3 text-[13px] font-semibold text-gray-900 transition hover:bg-gray-100"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-300 bg-white text-[13px] text-slate-800 hover:bg-slate-900 hover:text-white"
                     >
-                      WhatsApp
+                      💬 Chat on WhatsApp
                     </a>
                   </div>
                 </div>
+
+                <div className="rounded-2xl bg-white shadow-md border border-slate-100 overflow-hidden">
+                  <Image
+                    src="/images/drawings.jpg"
+                    alt="Example of architectural drawings for a Hertfordshire project"
+                    width={800}
+                    height={500}
+                    className="object-cover w-full h-48 md:h-56"
+                  />
+                  <div className="p-5 space-y-2">
+                    <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
+                      Technical drawings builders can price from
+                    </h3>
+                    <p className="text-[13px] text-slate-700">
+                      Clear plans, elevations, sections and notes, coordinated with structural design so builders and inspectors have what they need.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-10">
+                <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
+                  <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
+                    Hertfordshire areas we cover
+                  </h3>
+                  <Image
+                    src="/images/area.jpg"
+                    alt="Hertfordshire local area"
+                    width={800}
+                    height={500}
+                    className="rounded-xl object-cover mb-3"
+                  />
+                  <p className="text-[13px] text-slate-700">
+                    Drawings across Hertfordshire, including:
+                  </p>
+                  <div className="grid grid-cols-2 gap-2 text-[13px] text-slate-700">
+                    <ul className="list-disc pl-4 space-y-1">
+                      <li>St Albans AL1</li>
+                      <li>Harpenden AL5</li>
+                      <li>Watford WD17</li>
+                      <li>Bushey WD23</li>
+                      <li>Hemel Hempstead HP1</li>
+                      <li>Berkhamsted HP4</li>
+                    </ul>
+                    <ul className="list-disc pl-4 space-y-1">
+                      <li>Welwyn Garden City AL7</li>
+                      <li>Hatfield AL10</li>
+                      <li>Borehamwood WD6</li>
+                      <li>Potters Bar EN6</li>
+                      <li>Cheshunt EN8</li>
+                      <li>Hoddesdon EN11</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
+                  <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
+                    Popular projects in Hertfordshire
+                  </h3>
+                  <div className="grid grid-cols-2 gap-3 text-[13px] text-slate-700">
+                    <ul className="list-disc pl-4 space-y-1">
+                      <li>Rear and side extensions</li>
+                      <li>Wrap around extensions</li>
+                      <li>Dormers and loft conversions</li>
+                      <li>Kitchen and open plan layouts</li>
+                      <li>Internal remodelling</li>
+                    </ul>
+                    <ul className="list-disc pl-4 space-y-1">
+                      <li>Garage conversions</li>
+                      <li>Garden rooms and studios</li>
+                      <li>Refurbishments</li>
+                      <li>Residential conversions</li>
+                      <li>Small new build schemes</li>
+                    </ul>
+                  </div>
+                  <Image
+                    src="/images/hero.jpg"
+                    alt="Residential project example"
+                    width={800}
+                    height={500}
+                    className="rounded-xl object-cover mt-2"
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-5">
+                <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
+                  Permitted development guidance in Hertfordshire
+                </h2>
+                <p className="text-[13px] text-slate-700">
+                  This is a simplified guide to common permitted development limits. Final confirmation depends on your house type, location and any local constraints such as conservation areas.
+                </p>
+
+                <div className="grid md:grid-cols-3 gap-8 text-[13px] text-slate-700">
+                  <div>
+                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">
+                      Rear extensions
+                    </h3>
+                    <ul className="list-disc pl-4 space-y-1">
+                      <li>Up to 3 m deep on terrace houses</li>
+                      <li>Up to 4 m on semi detached houses</li>
+                      <li>Up to 6 to 8 m with Prior Approval</li>
+                      <li>Maximum 4 m high for single storey</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">
+                      Loft conversions
+                    </h3>
+                    <ul className="list-disc pl-4 space-y-1">
+                      <li>Up to 40 to 50 cubic metres volume</li>
+                      <li>No extensions on the front roof slope</li>
+                      <li>Side windows obscure glazed and fixed</li>
+                      <li>External materials to be similar</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">
+                      Outbuildings
+                    </h3>
+                    <ul className="list-disc pl-4 space-y-1">
+                      <li>Maximum 2.5 m high near boundaries</li>
+                      <li>Cannot be used as a separate dwelling</li>
+                      <li>Use must be incidental to the house</li>
+                      <li>Not more than 50 percent of garden area</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-10">
+                <div className="rounded-2xl bg-white shadow-sm p-6 border border-slate-100 space-y-4">
+                  <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
+                    Planning drawings for Hertfordshire
+                  </h3>
+                  <ul className="list-disc pl-4 space-y-1 text-[13px] text-slate-700">
+                    <li>Existing and proposed floor plans</li>
+                    <li>Existing and proposed elevations</li>
+                    <li>Roof plans and key sections</li>
+                    <li>Block plans and location plans</li>
+                    <li>Drainage and construction notes where needed</li>
+                    <li>Supporting information where required</li>
+                  </ul>
+                </div>
+
+                <div className="rounded-2xl bg-white shadow-sm p-6 border border-slate-100 space-y-4">
+                  <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
+                    Building regulation drawings for Hertfordshire
+                  </h3>
+                  <ul className="list-disc pl-4 space-y-1 text-[13px] text-slate-700">
+                    <li>Structural layouts and coordination</li>
+                    <li>Foundation and beam information</li>
+                    <li>Fire safety and escape routes</li>
+                    <li>Thermal build ups and insulation specs</li>
+                    <li>Ventilation and extract positions</li>
+                    <li>Drainage runs and manhole information</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="rounded-2xl bg-emerald-50 border border-emerald-100 p-6 space-y-3">
+                <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-emerald-900">
+                  Local planning awareness for Hertfordshire projects
+                </h2>
+                <p className="text-[13px] text-emerald-900">
+                  Many Hertfordshire areas include conservation zones, design guides and street scene expectations, especially around period homes and prominent road frontages. We shape each scheme to fit context and produce a clear drawing package that supports a smooth decision.
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
+                  Frequently asked questions
+                </h2>
+                <div className="grid md:grid-cols-2 gap-6 text-[13px] text-slate-700">
+                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                    <h3 className="font-semibold text-slate-900">
+                      What drawings do I need for an extension
+                    </h3>
+                    <p>
+                      Most projects start with existing and proposed plans and elevations. We confirm the right set once we review your address and scope.
+                    </p>
+                  </div>
+                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                    <h3 className="font-semibold text-slate-900">
+                      How fast can you survey
+                    </h3>
+                    <p>
+                      In most cases we can arrange the initial measured survey within forty eight hours of instruction.
+                    </p>
+                  </div>
+                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                    <h3 className="font-semibold text-slate-900">
+                      Do you help with planning submissions
+                    </h3>
+                    <p>
+                      Yes. We can prepare drawings and support the submission route, including responding to questions during review.
+                    </p>
+                  </div>
+                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                    <h3 className="font-semibold text-slate-900">
+                      Can you coordinate structural design
+                    </h3>
+                    <p>
+                      Yes. We coordinate with structural engineers so beams and load paths are designed and shown clearly on the drawings.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="rounded-2xl bg-slate-900 text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                  <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
+                    Ready to start your project
+                  </h2>
+                  <p className="text-[13px] text-slate-300 mt-2">
+                    Send your postcode and a short description. We review and reply with a fixed fee and recommended next steps.
+                  </p>
+                </div>
+                <div className="flex flex-col space-y-2 text-[13px]">
+                  <a href={PHONE_LINK} className="font-semibold text-emerald-300 underline">
+                    {PHONE_DISPLAY}
+                  </a>
+                  <a
+                    href="mailto:info@wedrawplans.com"
+                    className="font-semibold text-emerald-300 underline"
+                  >
+                    info@wedrawplans.com
+                  </a>
+                  <button
+                    type="button"
+                    onClick={scrollToForm}
+                    className="mt-2 inline-flex items-center justify-center rounded-full bg-white px-5 py-2 text-[13px] font-semibold text-slate-900 shadow hover:bg-emerald-100"
+                  >
+                    Get a quick quote
+                  </button>
+                </div>
+              </div>
+
+              <div className="text-[12px] text-slate-600 pt-2">
+                See also{" "}
+                <a
+                  href="/extension-plans"
+                  className="text-blue-600 underline underline-offset-4 hover:text-blue-700"
+                >
+                  extension plans
+                </a>
+                ,{" "}
+                <a
+                  href="/loft-conversion-plans"
+                  className="text-blue-600 underline underline-offset-4 hover:text-blue-700"
+                >
+                  loft conversion plans
+                </a>{" "}
+                and{" "}
+                <a
+                  href="/new-build-plans"
+                  className="text-blue-600 underline underline-offset-4 hover:text-blue-700"
+                >
+                  new build plans
+                </a>
+                .
               </div>
             </div>
           </section>
