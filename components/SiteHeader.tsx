@@ -26,6 +26,7 @@ const LOCAL_DESIGNERS_ITEMS = [
   { label: "Hammersmith and Fulham", href: "/areas/hammersmith-and-fulham" },
   { label: "Haringey", href: "/areas/haringey" },
   { label: "Havering", href: "/areas/havering" },
+  { label: "Hertfordshire", href: "/areas/hertfordshire" },
   { label: "Hounslow", href: "/areas/hounslow" },
   { label: "Islington", href: "/areas/islington" },
   { label: "Kensington and Chelsea", href: "/areas/kensington-and-chelsea" },
