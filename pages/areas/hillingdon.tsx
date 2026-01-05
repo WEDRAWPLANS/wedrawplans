@@ -10,6 +10,7 @@ const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20need%20a%20quote%20for%20plans%20in%20Hillingdon";
 
 const HERO_IMAGE = "/images/hillingdon-hero.jpg";
+const HILLINGDON_LOCAL_IMAGE = "/images/hillingdon-local.jpg";
 const PROJECT_IMAGE_1 = "/images/hillingdon-project-1.jpg";
 const PROJECT_IMAGE_2 = "/images/hillingdon-project-2.jpg";
 
@@ -227,8 +228,8 @@ export default function HillingdonPage() {
                 <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                   <div className="relative h-[190px] w-full">
                     <Image
-                      src={HERO_IMAGE}
-                      alt="Hillingdon home extension and loft conversion drawings"
+                      src={HILLINGDON_LOCAL_IMAGE}
+                      alt="Hillingdon local street and home improvement area"
                       fill
                       sizes="(max-width: 1024px) 100vw, 520px"
                       className="object-cover"
