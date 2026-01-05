@@ -405,7 +405,7 @@ export default function HertfordshireAreaPage() {
                     Hertfordshire areas we cover
                   </h3>
                   <Image
-                    src="/images/area.jpg"
+                    src="/images/hertfordshire-area.jpg"
                     alt="Hertfordshire local area"
                     width={800}
                     height={500}
