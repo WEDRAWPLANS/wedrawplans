@@ -382,7 +382,7 @@ export default function HertfordshireAreaPage() {
 
                 <div className="rounded-2xl bg-white shadow-md border border-slate-100 overflow-hidden">
                   <Image
-                    src="/images/drawings.jpg"
+                    src="/images/hertfordshire-project-4.jpg"
                     alt="Example of architectural drawings for a Hertfordshire project"
                     width={800}
                     height={500}
