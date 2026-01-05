@@ -36,7 +36,7 @@ export default function HertfordshireAreaPage() {
     url: canonicalUrl,
     telephone: "+44 20 3654 8508",
     email: "info@wedrawplans.com",
-    image: "https://www.wedrawplans.co.uk/images/drawings.jpg",
+    image: "https://www.wedrawplans.co.uk/image/hertfordshire-hero.jpg",
     address: {
       "@type": "PostalAddress",
       streetAddress: "201 Borough High Street",
@@ -59,7 +59,7 @@ export default function HertfordshireAreaPage() {
       "Welwyn Garden City",
       "Hatfield",
       "Hoddesdon",
-      "Bishop's Stortford",
+      "Bishops Stortford",
       "Hertford",
       "Ware",
       "Rickmansworth",
@@ -128,7 +128,10 @@ export default function HertfordshireAreaPage() {
           content="WEDRAWPLANS provides architectural drawings in Hertfordshire for house extensions, loft conversions, refurbishments, and residential projects. Planning drawings and Building Regulations drawing packages with clear guidance and fast quotes."
         />
         <link rel="canonical" href={canonicalUrl} />
-        <meta property="og:title" content="Architectural Drawings in Hertfordshire | WEDRAWPLANS" />
+        <meta
+          property="og:title"
+          content="Architectural Drawings in Hertfordshire | WEDRAWPLANS"
+        />
         <meta
           property="og:description"
           content="Planning drawings and Building Regulations drawing packages across Hertfordshire. Extensions, loft conversions, refurbishments, and residential projects with a clear process and fast quotes."
@@ -148,7 +151,7 @@ export default function HertfordshireAreaPage() {
       <div className="min-h-screen bg-white">
         <AreaTopHeader />
 
-        <main>
+        <main className="pt-[72px]">
           <section className="relative">
             <div className="relative h-[380px] w-full sm:h-[460px] lg:h-[520px]">
               <Image
@@ -156,6 +159,8 @@ export default function HertfordshireAreaPage() {
                 alt="Architectural drawings and planning support in Hertfordshire"
                 fill
                 priority
+                unoptimized
+                sizes="100vw"
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-black/45" />
@@ -169,9 +174,10 @@ export default function HertfordshireAreaPage() {
                       Architectural Drawings in Hertfordshire
                     </h1>
                     <p className="mt-3 max-w-2xl text-[14px] leading-relaxed text-white/90 sm:text-[15px]">
-                      Clear, council ready drawing packages for extensions, loft conversions, refurbishments,
-                      and residential projects. If you want a fast quote, send your postcode and a short
-                      description of the works and we will guide you to the right package.
+                      Clear, council ready drawing packages for extensions, loft conversions,
+                      refurbishments, and residential projects. If you want a fast quote,
+                      send your postcode and a short description of the works and we will
+                      guide you to the right package.
                     </p>
 
                     <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -289,16 +295,44 @@ export default function HertfordshireAreaPage() {
 
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="relative h-[190px] overflow-hidden rounded-2xl border border-gray-200 sm:h-[220px]">
-                  <Image src={IMAGE_1} alt="Hertfordshire extension drawing example" fill className="object-cover" />
+                  <Image
+                    src={IMAGE_1}
+                    alt="Hertfordshire extension drawing example"
+                    fill
+                    unoptimized
+                    sizes="(min-width: 640px) 50vw, 100vw"
+                    className="object-cover"
+                  />
                 </div>
                 <div className="relative h-[190px] overflow-hidden rounded-2xl border border-gray-200 sm:h-[220px]">
-                  <Image src={IMAGE_2} alt="Hertfordshire loft conversion drawing example" fill className="object-cover" />
+                  <Image
+                    src={IMAGE_2}
+                    alt="Hertfordshire loft conversion drawing example"
+                    fill
+                    unoptimized
+                    sizes="(min-width: 640px) 50vw, 100vw"
+                    className="object-cover"
+                  />
                 </div>
                 <div className="relative h-[190px] overflow-hidden rounded-2xl border border-gray-200 sm:h-[220px]">
-                  <Image src={IMAGE_3} alt="Hertfordshire planning drawing set example" fill className="object-cover" />
+                  <Image
+                    src={IMAGE_3}
+                    alt="Hertfordshire planning drawing set example"
+                    fill
+                    unoptimized
+                    sizes="(min-width: 640px) 50vw, 100vw"
+                    className="object-cover"
+                  />
                 </div>
                 <div className="relative h-[190px] overflow-hidden rounded-2xl border border-gray-200 sm:h-[220px]">
-                  <Image src={IMAGE_4} alt="Hertfordshire building regulations drawing example" fill className="object-cover" />
+                  <Image
+                    src={IMAGE_4}
+                    alt="Hertfordshire building regulations drawing example"
+                    fill
+                    unoptimized
+                    sizes="(min-width: 640px) 50vw, 100vw"
+                    className="object-cover"
+                  />
                 </div>
               </div>
             </div>
@@ -352,7 +386,9 @@ export default function HertfordshireAreaPage() {
 
                 <div className="mt-6 grid gap-3 sm:grid-cols-2">
                   <div className="rounded-2xl border border-gray-200 bg-gray-50 p-5">
-                    <p className="text-[12px] font-semibold text-gray-900">South and South East Hertfordshire</p>
+                    <p className="text-[12px] font-semibold text-gray-900">
+                      South and South East Hertfordshire
+                    </p>
                     <p className="mt-2 text-[13px] leading-relaxed text-gray-700">
                       Broxbourne, Cheshunt, Waltham Cross, Hoddesdon, Ware, Hertford, Potters Bar.
                     </p>
@@ -372,7 +408,7 @@ export default function HertfordshireAreaPage() {
                   <div className="rounded-2xl border border-gray-200 bg-gray-50 p-5">
                     <p className="text-[12px] font-semibold text-gray-900">Welwyn Hatfield and North</p>
                     <p className="mt-2 text-[13px] leading-relaxed text-gray-700">
-                      Welwyn Garden City, Hatfield, Stevenage, Hitchin, Letchworth, Bishop&#39;s Stortford.
+                      Welwyn Garden City, Hatfield, Stevenage, Hitchin, Letchworth, Bishops Stortford.
                     </p>
                   </div>
                 </div>
@@ -418,7 +454,14 @@ export default function HertfordshireAreaPage() {
 
               <div>
                 <div className="relative h-[240px] overflow-hidden rounded-2xl border border-gray-200 sm:h-[320px] lg:h-[380px]">
-                  <Image src={IMAGE_5} alt="Residential design support in Hertfordshire" fill className="object-cover" />
+                  <Image
+                    src={IMAGE_5}
+                    alt="Residential design support in Hertfordshire"
+                    fill
+                    unoptimized
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    className="object-cover"
+                  />
                 </div>
 
                 <div className="mt-6 rounded-2xl border border-gray-200 bg-gray-50 p-6">
@@ -507,11 +550,16 @@ export default function HertfordshireAreaPage() {
 
               <div className="mt-6 grid gap-4 lg:grid-cols-2">
                 {faqItems.map((f) => (
-                  <div key={f.question} className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+                  <div
+                    key={f.question}
+                    className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm"
+                  >
                     <h3 className="text-[13px] font-semibold uppercase tracking-[0.04em] text-gray-900">
                       {f.question}
                     </h3>
-                    <p className="mt-3 text-[13px] leading-relaxed text-gray-700">{f.answer}</p>
+                    <p className="mt-3 text-[13px] leading-relaxed text-gray-700">
+                      {f.answer}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -613,7 +661,9 @@ export default function HertfordshireAreaPage() {
                         <option value="Loft conversion plans">Loft conversion plans</option>
                         <option value="Planning drawings">Planning drawings</option>
                         <option value="Building regulations drawings">Building regulations drawings</option>
-                        <option value="Refurbishment and internal alterations">Refurbishment and internal alterations</option>
+                        <option value="Refurbishment and internal alterations">
+                          Refurbishment and internal alterations
+                        </option>
                         <option value="Conversion or development">Conversion or development</option>
                       </select>
                     </div>
