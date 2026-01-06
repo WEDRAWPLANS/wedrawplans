@@ -1,29 +1,172 @@
 import React from "react";
 import Head from "next/head";
 import Image from "next/image";
+import AreaTopHeader from "../../components/AreaTopHeader";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
 import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const WHATSAPP_LINK =
-  "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Barnet";
+  "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20London";
 
-export default function BarnetAreaPage() {
+type LinkItem = { name: string; href: string };
+
+function toAreaHref(name: string) {
+  return `/areas/${name
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/,/g, "")
+    .replace(/\./g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .trim()}`;
+}
+
+export default function AreasIndexPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    await submitBoroughLead(e, { boroughName: "Barnet" });
+    await submitBoroughLead(e, { boroughName: "London and M25" });
   }
 
   function scrollToForm() {
-    const el = document.getElementById("barnet-quote");
+    const el = document.getElementById("areas-quote");
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
+
+  const boroughNames = [
+    "Barking and Dagenham",
+    "Barnet",
+    "Bexley",
+    "Brent",
+    "Bromley",
+    "Camden",
+    "City of London",
+    "Croydon",
+    "Ealing",
+    "Enfield",
+    "Greenwich",
+    "Hackney",
+    "Hammersmith and Fulham",
+    "Haringey",
+    "Harrow",
+    "Havering",
+    "Hillingdon",
+    "Hounslow",
+    "Islington",
+    "Kensington and Chelsea",
+    "Kingston upon Thames",
+    "Lambeth",
+    "Lewisham",
+    "Merton",
+    "Newham",
+    "Redbridge",
+    "Richmond upon Thames",
+    "Southwark",
+    "Sutton",
+    "Tower Hamlets",
+    "Waltham Forest",
+    "Wandsworth",
+    "Westminster",
+  ];
+
+  const boroughLinks: LinkItem[] = boroughNames.map((n) => ({
+    name: n,
+    href: toAreaHref(n),
+  }));
+
+  const popularServices = [
+    {
+      title: "Extension Plans",
+      text:
+        "Planning drawings and Building Regulations packages for single storey, double storey and wrap around extensions.",
+      href: "/extension-plans",
+      cta: "View Extension Plans",
+    },
+    {
+      title: "Loft Conversion Plans",
+      text:
+        "Dormer, mansard and hip to gable loft designs with drawings suitable for planning and Building Control.",
+      href: "/loft-conversion-plans",
+      cta: "View Loft Plans",
+    },
+    {
+      title: "New Build Plans",
+      text:
+        "New build planning drawings with coordinated technical information for tendering and compliance.",
+      href: "/new-build-plans",
+      cta: "View New Build Plans",
+    },
+  ];
+
+  const featuredBoroughs: LinkItem[] = [
+    { name: "Barnet", href: "/areas/barnet" },
+    { name: "Harrow", href: "/areas/harrow" },
+    { name: "Croydon", href: "/areas/croydon" },
+    { name: "Ealing", href: "/areas/ealing" },
+    { name: "Bromley", href: "/areas/bromley" },
+    { name: "Enfield", href: "/areas/enfield" },
+    { name: "Redbridge", href: "/areas/redbridge" },
+    { name: "Havering", href: "/areas/havering" },
+  ];
+
+  const clusters: { title: string; items: string[] }[] = [
+    {
+      title: "North London boroughs",
+      items: ["Barnet", "Enfield", "Haringey", "Camden", "Islington"],
+    },
+    {
+      title: "West London boroughs",
+      items: [
+        "Harrow",
+        "Brent",
+        "Ealing",
+        "Hillingdon",
+        "Hounslow",
+        "Hammersmith and Fulham",
+        "Kensington and Chelsea",
+        "Westminster",
+      ],
+    },
+    {
+      title: "East London boroughs",
+      items: [
+        "Redbridge",
+        "Havering",
+        "Newham",
+        "Barking and Dagenham",
+        "Tower Hamlets",
+        "Waltham Forest",
+        "Hackney",
+      ],
+    },
+    {
+      title: "South London boroughs",
+      items: [
+        "Croydon",
+        "Bromley",
+        "Lewisham",
+        "Greenwich",
+        "Southwark",
+        "Lambeth",
+        "Wandsworth",
+        "Merton",
+        "Kingston upon Thames",
+        "Sutton",
+        "Bexley",
+        "Richmond upon Thames",
+      ],
+    },
+    {
+      title: "Central London",
+      items: ["City of London", "Westminster", "Camden", "Islington", "Kensington and Chelsea"],
+    },
+  ];
 
   const localBusinessJson = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: "WEDRAWPLANS",
-    url: "https://www.wedrawplans.co.uk/areas/barnet",
+    url: "https://www.wedrawplans.co.uk/areas",
     telephone: "+44 20 3654 8508",
     email: "info@wedrawplans.com",
     image: "https://www.wedrawplans.co.uk/images/hero.jpg",
@@ -32,26 +175,11 @@ export default function BarnetAreaPage() {
       streetAddress: "201 Borough High Street",
       addressLocality: "London",
       postalCode: "SE1 1JA",
-      addressCountry: "UK"
+      addressCountry: "UK",
     },
-    areaServed: [
-      "Barnet",
-      "Finchley",
-      "Hendon",
-      "Edgware",
-      "Totteridge",
-      "Whetstone",
-      "Mill Hill",
-      "Colindale",
-      "Golders Green",
-      "Burnt Oak",
-      "High Barnet",
-      "Friern Barnet",
-      "East Finchley",
-      "West Finchley"
-    ],
+    areaServed: ["London", "Greater London", "M25 area", ...boroughNames],
     description:
-      "Architectural drawing services in Barnet for extensions, loft conversions, outbuildings, refurbishments and building regulations."
+      "Architectural drawings across London and the M25 for extensions, loft conversions, new builds, refurbishments and building regulation packages.",
   };
 
   const faqJson = {
@@ -60,53 +188,52 @@ export default function BarnetAreaPage() {
     mainEntity: [
       {
         "@type": "Question",
-        name: "Do I need planning permission for a rear extension in Barnet?",
+        name: "Do I need planning permission for an extension in London",
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Not always. Many extensions fall under permitted development. We confirm the correct route once we review your address and house type."
-        }
+            "Not always. Many extensions and lofts can proceed under permitted development. We confirm the correct route once we review your address, house type and any local constraints.",
+        },
       },
       {
         "@type": "Question",
-        name: "Is Barnet strict with loft conversions?",
+        name: "How fast can you arrange an initial measured survey",
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Barnet follows national permitted development rules but can be stricter in conservation areas and where roof changes affect the street scene."
-        }
+            "In most cases we can arrange the initial measured survey within 48 hours of instruction, subject to access and location.",
+        },
       },
       {
         "@type": "Question",
-        name: "How long does Barnet Council take to decide?",
+        name: "Do you submit to the local council",
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Householder planning applications usually take six to eight weeks after validation. Lawful Development Certificates normally take four to six weeks."
-        }
+            "Yes. We can prepare drawings, complete forms, upload documents and submit through the Planning Portal, then support planning officer queries until a decision is issued.",
+        },
       },
       {
         "@type": "Question",
-        name: "Do you manage the full application to Barnet Council?",
+        name: "Can you coordinate structural engineering",
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Yes. We prepare drawings, complete forms, upload documents, submit to Barnet Council and respond to planning officer queries."
-        }
-      }
-    ]
+            "Yes. We coordinate with structural engineers so beams, load paths and supporting details are correctly designed and reflected within the drawing package.",
+        },
+      },
+    ],
   };
 
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Barnet | Extensions, Lofts, New Builds</title>
+        <title>Architectural Drawings Across London and the M25 | WEDRAWPLANS</title>
         <meta
           name="description"
-          content="Architectural drawings in Barnet for house extensions, loft conversions, new builds and building regulation packs. Fixed fees with clear scope and fast turnaround."
+          content="Architectural drawings across every London borough and the surrounding M25 area. Explore borough pages, popular services, planning guidance and request a fixed fee quote."
         />
-        <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/barnet" />
-
+        <link rel="canonical" href="https://www.wedrawplans.co.uk/areas" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
@@ -118,224 +245,392 @@ export default function BarnetAreaPage() {
       </Head>
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
-        {/* HEADER MATCH HOMEPAGE STYLE */}
-        <header className="bg-[#fdf8f3]/95 backdrop-blur border-b border-slate-200">
-          <div className="mx-auto max-w-6xl px-4 pt-6 pb-3 lg:px-6">
-            <div className="flex flex-col items-center text-center">
-              <Image
-                src="/images/wedrawplans-logo.png"
-                alt="WEDRAWPLANS"
-                width={420}
-                height={140}
-                priority
-                className="h-24 w-auto object-contain"
-              />
-
-              <div className="mt-3 text-[11px] tracking-[0.18em] text-slate-600 uppercase">
-                Architectural Drawing Consultants
-              </div>
-
-              <div className="mt-2 max-w-3xl text-[13px] font-medium text-slate-800">
-                Architectural Drawings for Extensions, Lofts + New Builds at an Affordable Fixed Cost
-              </div>
-            </div>
-
-            <hr className="mt-5 border-t border-slate-600" />
-
-            <div className="mt-2 flex w-full items-center justify-between gap-3">
-              <div className="text-[12px] text-slate-700">
-                <span className="font-semibold text-slate-900">Barnet</span> borough page
-              </div>
-
-              <div className="flex items-center gap-2">
-                <a
-                  href={PHONE_LINK}
-                  className="hidden items-center gap-1 rounded-full border border-slate-300 px-3 py-1.5 text-[12px] font-medium text-slate-900 shadow-sm hover:bg-slate-900 hover:text-white sm:inline-flex"
-                >
-                  📞 {PHONE_DISPLAY}
-                </a>
-
-                <a
-                  href={WHATSAPP_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 bg-[#25D366] text-white px-3 py-1.5 rounded-full text-[12px] font-medium shadow-sm hover:bg-[#1ebe57]"
-                >
-                  💬 <span className="hidden sm:inline">WhatsApp us</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </header>
+        <AreaTopHeader />
 
         <main>
-          {/* HERO + FORM */}
           <section className="border-b border-slate-200 bg-[#fdf8f3]">
-            <div className="mx-auto max-w-5xl flex flex-col lg:flex-row gap-6 px-4 py-8 lg:px-6 lg:py-10">
-              {/* LEFT TEXT */}
-              <div className="lg:w-1/2">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-red-700">
-                  Barnet architectural drawings
-                </p>
-
-                <h1 className="mt-2 text-[22px] sm:text-[26px] font-semibold uppercase leading-snug tracking-[0.14em]">
-                  Plans for extensions, lofts and new builds in Barnet
-                </h1>
-
-                <p className="mt-3 text-[13px] text-slate-700">
-                  WEDRAWPLANS prepare planning and technical drawings for house extensions,
-                  loft conversions, new builds and conversions across the London Borough of Barnet.
-                  Fixed fees with clear scope and fast communication.
-                </p>
-
-                <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
-                  <li>• House extensions, wrap around extensions and internal remodelling</li>
-                  <li>• Loft conversions including hip to gable and L shaped dormers</li>
-                  <li>• New build houses and small residential schemes</li>
-                  <li>• Planning drawings and building regulation packs</li>
-                  <li>• Covering Barnet, Finchley, Hendon, Edgware, Mill Hill and more</li>
-                  <li>• Same day response on most enquiries</li>
-                </ul>
-
-                <div className="mt-5 flex flex-wrap gap-3 items-center">
-                  <button
-                    onClick={scrollToForm}
-                    type="button"
-                    className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-white text-[13px] font-semibold uppercase tracking-[0.18em] hover:bg-[#4da4b4]"
-                  >
-                    Get a quick quote
-                  </button>
-
-                  <a href={PHONE_LINK} className="text-[13px] underline text-slate-800">
-                    Or call {PHONE_DISPLAY}
-                  </a>
-                </div>
-              </div>
-
-              {/* RIGHT FORM */}
-              <div id="barnet-quote" className="lg:w-1/2">
-                <div className="bg-white p-5 rounded-2xl shadow-md">
-                  <h2 className="text-[14px] uppercase font-semibold tracking-[0.16em] text-slate-900">
-                    Free fixed fee quote
-                  </h2>
-
-                  <p className="mt-1 text-[12px] text-slate-600">
-                    Tell us a little about your property and what you plan to build. We will reply with a clear fixed fee for your drawings.
+            <div className="mx-auto max-w-6xl px-4 py-8 lg:px-6 lg:py-10">
+              <div className="grid gap-6 lg:grid-cols-2 lg:gap-10">
+                <div>
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-red-700">
+                    London coverage hub
                   </p>
 
-                  <form onSubmit={handleSubmit} className="mt-3 space-y-3 text-[13px]">
-                    <div className="space-y-1">
-                      <label className="text-[11px] font-medium">Name</label>
-                      <input
-                        name="name"
-                        required
-                        className="w-full bg-transparent border-b border-slate-300 py-1.5 px-1 focus:border-[#64b7c4] outline-none"
-                      />
-                    </div>
+                  <h1 className="mt-2 text-[22px] sm:text-[26px] font-semibold uppercase leading-snug tracking-[0.14em]">
+                    Architectural drawings across London and the M25
+                  </h1>
 
-                    <div className="grid sm:grid-cols-2 gap-3">
-                      <div className="space-y-1">
-                        <label className="text-[11px] font-medium">Telephone</label>
-                        <input
-                          name="phone"
-                          required
-                          type="tel"
-                          className="w-full bg-transparent border-b border-slate-300 py-1.5 px-1 focus:border-[#64b7c4] outline-none"
-                        />
-                      </div>
+                  <p className="mt-3 text-[13px] text-slate-700">
+                    WEDRAWPLANS prepare planning drawings and Building Regulations drawing packages across every London
+                    borough and key surrounding locations. Use this page to find your borough, explore our services and
+                    request a fixed fee quote for your drawings.
+                  </p>
 
-                      <div className="space-y-1">
-                        <label className="text-[11px] font-medium">Email</label>
-                        <input
-                          name="email"
-                          required
-                          type="email"
-                          className="w-full bg-transparent border-b border-slate-300 py-1.5 px-1 focus:border-[#64b7c4] outline-none"
-                        />
-                      </div>
-                    </div>
+                  <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
+                    <li>• House extensions, loft conversions and internal remodelling</li>
+                    <li>• New build houses and small residential schemes</li>
+                    <li>• Flat conversions and refurbishment drawing packages</li>
+                    <li>• Planning drawings plus Building Regulations packs</li>
+                    <li>• Clear scope, fast communication and fixed fees</li>
+                    <li>• Initial survey within 48 hours in most cases</li>
+                  </ul>
 
-                    <div className="space-y-1">
-                      <label className="text-[11px] font-medium">Barnet postcode</label>
-                      <input
-                        name="postcode"
-                        required
-                        placeholder="EN5 2XY"
-                        onFocus={(e) => (e.target.placeholder = "")}
-                        onBlur={(e) => !e.target.value && (e.target.placeholder = "EN5 2XY")}
-                        className="w-full border-b border-slate-300 bg-transparent py-1.5 px-1 text-slate-500/70 focus:text-slate-900 focus:border-[#64b7c4] outline-none"
-                      />
-                    </div>
-
-                    <div className="space-y-1">
-                      <label className="text-[11px] font-medium">Project type</label>
-                      <select
-                        name="projectType"
-                        required
-                        defaultValue=""
-                        className="w-full border-b border-slate-300 bg-transparent py-1.5 px-1 focus:border-[#64b7c4] outline-none"
-                      >
-                        <option value="" disabled>
-                          Select project type
-                        </option>
-                        <option>House extension</option>
-                        <option>Loft conversion</option>
-                        <option>Internal remodelling</option>
-                        <option>New build house</option>
-                        <option>Conversion to flats</option>
-                        <option>Building regulation pack only</option>
-                        <option>Other domestic project</option>
-                      </select>
-                    </div>
-
-                    <div className="space-y-1">
-                      <label className="text-[11px] font-medium">
-                        Brief description of your project
-                      </label>
-                      <textarea
-                        name="projectDetails"
-                        rows={4}
-                        placeholder="For example: rear and side extension to a 1930s semi with open plan kitchen and a new loft room."
-                        className="w-full border border-slate-300 rounded bg-white px-2 py-2 focus:border-[#64b7c4] outline-none"
-                      />
-                    </div>
-
+                  <div className="mt-5 flex flex-wrap gap-3 items-center">
                     <button
-                      type="submit"
-                      className="w-full rounded-full bg-[#64b7c4] py-2.5 text-white text-[13px] font-semibold uppercase tracking-[0.2em] hover:bg-[#4da4b4]"
+                      onClick={scrollToForm}
+                      type="button"
+                      className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-white text-[13px] font-semibold uppercase tracking-[0.18em] hover:bg-[#4da4b4]"
                     >
-                      Get a fixed fee quote
+                      Get a quick quote
                     </button>
 
-                    <p className="text-[11px] text-slate-500 mt-2">
-                      Typical Barnet projects include rear extensions, wrap around extensions, loft conversions and garden rooms.
+                    <a href={PHONE_LINK} className="text-[13px] underline text-slate-800">
+                      Or call {PHONE_DISPLAY}
+                    </a>
+
+                    <a
+                      href={WHATSAPP_LINK}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-300 bg-white text-[13px] text-slate-800 hover:bg-slate-900 hover:text-white"
+                    >
+                      💬 Chat on WhatsApp
+                    </a>
+                  </div>
+
+                  <div className="mt-6 rounded-2xl border border-slate-200 bg-white px-4 py-4 shadow-sm">
+                    <div className="flex items-start gap-3">
+                      <div className="mt-0.5 grid h-9 w-9 place-items-center rounded-full border border-slate-200 bg-[#f8f4f0] text-[12px] font-semibold text-slate-900">
+                        LD
+                      </div>
+                      <div>
+                        <div className="text-[12px] font-semibold uppercase tracking-[0.22em] text-slate-600">
+                          London borough coverage map
+                        </div>
+                        <div className="mt-2 text-[13px] text-slate-700">
+                          This hub links to every borough page. Each borough page includes tailored guidance and a
+                          direct enquiry route for that location.
+                        </div>
+
+                        <div className="mt-3 rounded-xl border border-slate-200 bg-[#fdf8f3] p-3">
+                          <svg
+                            viewBox="0 0 900 320"
+                            className="h-36 w-full"
+                            role="img"
+                            aria-label="Stylised London coverage map"
+                          >
+                            <defs>
+                              <linearGradient id="g" x1="0" x2="1">
+                                <stop offset="0" stopColor="#64b7c4" />
+                                <stop offset="1" stopColor="#c4b464" />
+                              </linearGradient>
+                            </defs>
+                            <rect x="20" y="25" width="860" height="270" rx="28" fill="#ffffff" stroke="#e2e8f0" />
+                            <path
+                              d="M140 190 C210 70, 340 60, 420 120 C520 200, 640 60, 760 150 C710 250, 540 270, 420 250 C290 225, 210 260, 140 190 Z"
+                              fill="url(#g)"
+                              opacity="0.22"
+                            />
+                            <path
+                              d="M160 190 C230 85, 340 80, 420 130 C520 210, 630 85, 740 150"
+                              fill="none"
+                              stroke="#0f172a"
+                              strokeOpacity="0.35"
+                              strokeWidth="6"
+                              strokeLinecap="round"
+                            />
+                            {[
+                              { x: 210, y: 160 },
+                              { x: 290, y: 140 },
+                              { x: 365, y: 175 },
+                              { x: 445, y: 155 },
+                              { x: 520, y: 200 },
+                              { x: 610, y: 150 },
+                              { x: 690, y: 180 },
+                            ].map((p, i) => (
+                              <g key={i}>
+                                <circle cx={p.x} cy={p.y} r="10" fill="#64b7c4" opacity="0.95" />
+                                <circle cx={p.x} cy={p.y} r="18" fill="#64b7c4" opacity="0.14" />
+                              </g>
+                            ))}
+                            <text x="56" y="82" fontSize="20" fill="#0f172a" opacity="0.7">
+                              Greater London
+                            </text>
+                            <text x="56" y="110" fontSize="14" fill="#334155" opacity="0.7">
+                              Borough pages linked below
+                            </text>
+                          </svg>
+
+                          <div className="mt-2 text-[11px] uppercase tracking-[0.22em] text-slate-500">
+                            Map is stylised for display
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div id="areas-quote" className="lg:pl-2">
+                  <div className="bg-white p-5 rounded-2xl shadow-md border border-slate-100">
+                    <h2 className="text-[14px] uppercase font-semibold tracking-[0.16em] text-slate-900">
+                      Free fixed fee quote
+                    </h2>
+
+                    <p className="mt-1 text-[12px] text-slate-600">
+                      Tell us your postcode and a short description. We reply with a clear fixed fee and next steps.
                     </p>
-                  </form>
+
+                    <form onSubmit={handleSubmit} className="mt-3 space-y-3 text-[13px]">
+                      <div className="space-y-1">
+                        <label className="text-[11px] font-medium">Name</label>
+                        <input
+                          name="name"
+                          required
+                          className="w-full bg-transparent border-b border-slate-300 py-1.5 px-1 focus:border-[#64b7c4] outline-none"
+                        />
+                      </div>
+
+                      <div className="grid sm:grid-cols-2 gap-3">
+                        <div className="space-y-1">
+                          <label className="text-[11px] font-medium">Telephone</label>
+                          <input
+                            name="phone"
+                            required
+                            type="tel"
+                            className="w-full bg-transparent border-b border-slate-300 py-1.5 px-1 focus:border-[#64b7c4] outline-none"
+                          />
+                        </div>
+
+                        <div className="space-y-1">
+                          <label className="text-[11px] font-medium">Email</label>
+                          <input
+                            name="email"
+                            required
+                            type="email"
+                            className="w-full bg-transparent border-b border-slate-300 py-1.5 px-1 focus:border-[#64b7c4] outline-none"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="space-y-1">
+                        <label className="text-[11px] font-medium">Postcode</label>
+                        <input
+                          name="postcode"
+                          required
+                          placeholder="SW1A 1AA"
+                          onFocus={(e) => (e.target.placeholder = "")}
+                          onBlur={(e) => !e.target.value && (e.target.placeholder = "SW1A 1AA")}
+                          className="w-full border-b border-slate-300 bg-transparent py-1.5 px-1 text-slate-500/70 focus:text-slate-900 focus:border-[#64b7c4] outline-none"
+                        />
+                      </div>
+
+                      <div className="space-y-1">
+                        <label className="text-[11px] font-medium">Project type</label>
+                        <select
+                          name="projectType"
+                          required
+                          defaultValue=""
+                          className="w-full border-b border-slate-300 bg-transparent py-1.5 px-1 focus:border-[#64b7c4] outline-none"
+                        >
+                          <option value="" disabled>
+                            Select project type
+                          </option>
+                          <option>House extension</option>
+                          <option>Loft conversion</option>
+                          <option>Internal remodelling</option>
+                          <option>New build house</option>
+                          <option>Conversion to flats</option>
+                          <option>Building regulation pack only</option>
+                          <option>Other domestic project</option>
+                        </select>
+                      </div>
+
+                      <div className="space-y-1">
+                        <label className="text-[11px] font-medium">Brief description of your project</label>
+                        <textarea
+                          name="projectDetails"
+                          rows={4}
+                          placeholder="For example: rear extension and loft conversion with open plan kitchen"
+                          className="w-full border border-slate-300 rounded bg-white px-2 py-2 focus:border-[#64b7c4] outline-none"
+                        />
+                      </div>
+
+                      <button
+                        type="submit"
+                        className="w-full rounded-full bg-[#64b7c4] py-2.5 text-white text-[13px] font-semibold uppercase tracking-[0.2em] hover:bg-[#4da4b4]"
+                      >
+                        Get a fixed fee quote
+                      </button>
+
+                      <p className="text-[11px] text-slate-500 mt-2">
+                        We cover all London boroughs and key M25 locations. Include your borough name if helpful.
+                      </p>
+                    </form>
+                  </div>
+
+                  <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                    <div className="text-[12px] font-semibold uppercase tracking-[0.22em] text-slate-600">
+                      Fast start checklist
+                    </div>
+                    <ul className="mt-2 space-y-1 text-[13px] text-slate-700">
+                      <li>• Share postcode and a short description</li>
+                      <li>• Add photos if available</li>
+                      <li>• Confirm if you want planning only or Building Regulations as well</li>
+                      <li>• We reply with fixed fee and clear next steps</li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* INTERNAL LINKS BLOCK (ONE INSERT, HUGE SEO VALUE) */}
-          <ServiceInternalLinks boroughName="Barnet" />
+          <ServiceInternalLinks boroughName="London" />
 
-          {/* MERGED RICH CONTENT */}
           <section className="bg-white border-b border-slate-200 py-10">
-            <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
-              <div className="grid md:grid-cols-[1.7fr,1.3fr] gap-10 items-start">
+            <div className="mx-auto max-w-6xl px-4 lg:px-6">
+              <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+                Popular services across London
+              </h2>
+              <p className="mt-3 max-w-4xl text-[13px] text-slate-700">
+                We provide full design and planning support for extensions, loft conversions and new build developments.
+                Each service page explains scope, typical approvals and how to get a fixed fee quote.
+              </p>
+
+              <div className="mt-6 grid gap-4 md:grid-cols-3">
+                {popularServices.map((s) => (
+                  <div
+                    key={s.title}
+                    className="rounded-2xl border border-slate-200 bg-[#f8f4f0] p-5 shadow-sm"
+                  >
+                    <div className="text-[14px] font-semibold text-slate-900">{s.title}</div>
+                    <div className="mt-2 text-[13px] text-slate-700">{s.text}</div>
+                    <a
+                      href={s.href}
+                      className="mt-4 inline-block text-[13px] font-medium text-blue-700 underline underline-offset-4 hover:text-blue-800"
+                    >
+                      {s.cta}
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="bg-[#f8f4f0] border-b border-slate-200 py-10">
+            <div className="mx-auto max-w-6xl px-4 lg:px-6">
+              <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+                Featured borough pages
+              </h2>
+              <p className="mt-3 max-w-4xl text-[13px] text-slate-700">
+                Start with a featured borough page below or scroll down for the full borough directory. Each borough
+                page includes local guidance, typical project types and the same fixed fee quote form.
+              </p>
+
+              <div className="mt-6 grid gap-3 sm:grid-cols-2 md:grid-cols-4">
+                <div className="rounded-2xl bg-slate-900 text-white p-5 shadow-sm">
+                  <div className="text-[11px] uppercase tracking-[0.22em] text-slate-300">Current</div>
+                  <div className="mt-2 text-[16px] font-semibold">London</div>
+                  <div className="mt-2 text-[13px] text-slate-300">You are here</div>
+                </div>
+
+                {featuredBoroughs.map((b) => (
+                  <div key={b.name} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                    <div className="text-[14px] font-semibold text-slate-900">{b.name}</div>
+                    <a
+                      href={b.href}
+                      className="mt-3 inline-block text-[13px] font-medium text-blue-700 underline underline-offset-4 hover:text-blue-800"
+                    >
+                      View {b.name} page
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="bg-white border-b border-slate-200 py-10">
+            <div className="mx-auto max-w-6xl px-4 lg:px-6">
+              <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+                Full London borough directory
+              </h2>
+              <p className="mt-3 max-w-4xl text-[13px] text-slate-700">
+                Every borough below is clickable. Select your borough to view the dedicated local page for drawings,
+                planning support and Building Regulations packages.
+              </p>
+
+              <div className="mt-6 grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                {boroughLinks.map((b) => (
+                  <a
+                    key={b.name}
+                    href={b.href}
+                    className="rounded-xl border border-slate-200 bg-[#fdf8f3] px-4 py-3 text-[13px] font-medium text-slate-900 shadow-sm hover:border-[#64b7c4] hover:bg-white"
+                  >
+                    {b.name}
+                  </a>
+                ))}
+              </div>
+
+              <div className="mt-8 grid gap-6 md:grid-cols-2">
+                {clusters.map((c) => (
+                  <div key={c.title} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                    <div className="text-[12px] font-semibold uppercase tracking-[0.22em] text-slate-600">
+                      {c.title}
+                    </div>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {c.items.map((n) => (
+                        <a
+                          key={n}
+                          href={toAreaHref(n)}
+                          className="rounded-full border border-slate-200 bg-[#f8f4f0] px-3 py-1.5 text-[12px] font-medium text-slate-900 hover:border-[#64b7c4] hover:bg-white"
+                        >
+                          {n}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="bg-white border-b border-slate-200 py-10">
+            <div className="mx-auto max-w-6xl px-4 lg:px-6">
+              <div className="grid md:grid-cols-[1.55fr,1.45fr] gap-10 items-start">
                 <div className="space-y-4">
-                  <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
-                    Architectural drawing services in Barnet
+                  <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+                    What a London ready drawing package includes
                   </h2>
                   <p className="text-[13px] text-slate-700">
-                    WEDRAWPLANS provide full drawing packages for single and double storey extensions,
-                    loft conversions, internal alterations, outbuildings, flat conversions and small new developments
-                    across the borough of Barnet.
+                    Our drawing packages are designed to support smooth submissions and clear pricing. We structure
+                    drawings so homeowners, builders and Building Control have what they need for the next step.
                   </p>
-                  <p className="text-[13px] text-slate-700">
-                    We work throughout Finchley, Hendon, Whetstone, Totteridge, Mill Hill, Edgware, Colindale,
-                    Golders Green, Burnt Oak, High Barnet, Friern Barnet, East Finchley and West Finchley.
-                  </p>
+
+                  <div className="grid sm:grid-cols-2 gap-4 text-[13px] text-slate-700">
+                    <div className="rounded-2xl border border-slate-200 bg-[#f8f4f0] p-5">
+                      <div className="text-[12px] font-semibold uppercase tracking-[0.22em] text-slate-600">
+                        Planning drawings
+                      </div>
+                      <ul className="mt-2 list-disc pl-4 space-y-1">
+                        <li>Existing and proposed plans</li>
+                        <li>Existing and proposed elevations</li>
+                        <li>Key sections and roof plans</li>
+                        <li>Location plan and block plan</li>
+                        <li>Submission ready document set</li>
+                      </ul>
+                    </div>
+                    <div className="rounded-2xl border border-slate-200 bg-[#f8f4f0] p-5">
+                      <div className="text-[12px] font-semibold uppercase tracking-[0.22em] text-slate-600">
+                        Building Regulations pack
+                      </div>
+                      <ul className="mt-2 list-disc pl-4 space-y-1">
+                        <li>Construction build ups and notes</li>
+                        <li>Fire safety and escape strategy</li>
+                        <li>Thermal and ventilation coordination</li>
+                        <li>Structural coordination with engineer</li>
+                        <li>Tender friendly technical drawings</li>
+                      </ul>
+                    </div>
+                  </div>
 
                   <div className="flex flex-wrap gap-3 items-center">
                     <button
@@ -359,220 +654,111 @@ export default function BarnetAreaPage() {
                 <div className="rounded-2xl bg-white shadow-md border border-slate-100 overflow-hidden">
                   <Image
                     src="/images/drawings.jpg"
-                    alt="Example of architectural drawings for a Barnet extension"
-                    width={800}
-                    height={500}
+                    alt="Example of architectural drawings suitable for London planning and Building Regulations"
+                    width={900}
+                    height={560}
                     className="object-cover w-full h-48 md:h-56"
                   />
                   <div className="p-5 space-y-2">
                     <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                      Technical drawings builders can price from
+                      Clear drawings builders can price from
                     </h3>
                     <p className="text-[13px] text-slate-700">
-                      Clear floor plans, elevations, sections and notes, coordinated with structural design so builders and inspectors have what they need.
+                      Plans, elevations, sections and notes structured for practical use, with a scope that stays clear
+                      from day one.
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-10">
-                <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
-                  <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                    Barnet areas we cover
-                  </h3>
-                  <Image
-                    src="/images/area.jpg"
-                    alt="Barnet local high street"
-                    width={800}
-                    height={500}
-                    className="rounded-xl object-cover mb-3"
-                  />
-                  <p className="text-[13px] text-slate-700">
-                    Drawings for the whole borough of Barnet, including:
-                  </p>
-                  <div className="grid grid-cols-2 gap-2 text-[13px] text-slate-700">
-                    <ul className="list-disc pl-4 space-y-1">
-                      <li>Finchley Central N3</li>
-                      <li>North Finchley N12</li>
-                      <li>East Finchley N2</li>
-                      <li>Hendon NW4</li>
-                      <li>Mill Hill NW7</li>
-                      <li>Colindale</li>
-                    </ul>
-                    <ul className="list-disc pl-4 space-y-1">
-                      <li>Totteridge and Whetstone N20</li>
-                      <li>High Barnet EN5</li>
-                      <li>Friern Barnet</li>
-                      <li>Golders Green NW11</li>
-                      <li>Burnt Oak</li>
-                      <li>Edgware</li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
-                  <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                    Popular projects in Barnet
-                  </h3>
-                  <div className="grid grid-cols-2 gap-3 text-[13px] text-slate-700">
-                    <ul className="list-disc pl-4 space-y-1">
-                      <li>Rear and side extensions</li>
-                      <li>Wrap around and L shaped extensions</li>
-                      <li>Hip to gable loft conversions</li>
-                      <li>L shaped dormers</li>
-                      <li>Kitchen and open plan layouts</li>
-                    </ul>
-                    <ul className="list-disc pl-4 space-y-1">
-                      <li>Garden rooms and studios</li>
-                      <li>Garage conversions</li>
-                      <li>Internal reconfiguration</li>
-                      <li>Flats, HMOs and change of use</li>
-                      <li>Small new build schemes</li>
-                    </ul>
-                  </div>
-                  <Image
-                    src="/images/hero.jpg"
-                    alt="Completed extension and loft project"
-                    width={800}
-                    height={500}
-                    className="rounded-xl object-cover mt-2"
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-5">
-                <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
-                  Permitted development limits in Barnet
-                </h2>
-                <p className="text-[13px] text-slate-700">
-                  This is a simplified guide to common permitted development limits. Final confirmation depends on your house type, location and any Article 4 directions.
-                </p>
-
-                <div className="grid md:grid-cols-3 gap-8 text-[13px] text-slate-700">
-                  <div>
-                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">
-                      Rear extensions
-                    </h3>
-                    <ul className="list-disc pl-4 space-y-1">
-                      <li>Up to 3 m deep on terrace houses</li>
-                      <li>Up to 4 m on semi detached houses</li>
-                      <li>Up to 6 to 8 m with Prior Approval</li>
-                      <li>Maximum 4 m high for single storey</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">
-                      Loft conversions
-                    </h3>
-                    <ul className="list-disc pl-4 space-y-1">
-                      <li>Up to 40 to 50 cubic metres volume</li>
-                      <li>No extensions on the front roof slope</li>
-                      <li>Side windows obscure glazed and fixed</li>
-                      <li>External materials to be similar</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">
-                      Outbuildings
-                    </h3>
-                    <ul className="list-disc pl-4 space-y-1">
-                      <li>Maximum 2.5 m high near boundaries</li>
-                      <li>Cannot be used as a separate dwelling</li>
-                      <li>Use must be incidental to the house</li>
-                      <li>Not more than 50 percent of garden area</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-10">
-                <div className="rounded-2xl bg-white shadow-sm p-6 border border-slate-100 space-y-4">
-                  <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                    Planning drawings for Barnet
-                  </h3>
-                  <ul className="list-disc pl-4 space-y-1 text-[13px] text-slate-700">
-                    <li>Existing and proposed floor plans</li>
-                    <li>Existing and proposed elevations</li>
-                    <li>Roof plans and key sections</li>
-                    <li>Block plans and location plans</li>
-                    <li>Drainage and construction notes</li>
-                    <li>Design and access statements where needed</li>
-                  </ul>
-                </div>
-
-                <div className="rounded-2xl bg-white shadow-sm p-6 border border-slate-100 space-y-4">
-                  <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                    Building regulation drawings for Barnet
-                  </h3>
-                  <ul className="list-disc pl-4 space-y-1 text-[13px] text-slate-700">
-                    <li>Structural layouts and coordination</li>
-                    <li>Foundation and beam information</li>
-                    <li>Fire safety and escape routes</li>
-                    <li>Thermal build ups and insulation specs</li>
-                    <li>Ventilation and extract positions</li>
-                    <li>Drainage runs and manhole information</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className="rounded-2xl bg-emerald-50 border border-emerald-100 p-6 space-y-3">
+              <div className="mt-10 rounded-2xl bg-emerald-50 border border-emerald-100 p-6 space-y-3">
                 <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-emerald-900">
-                  Local planning knowledge for Barnet projects
+                  Local planning knowledge for London projects
                 </h2>
                 <p className="text-[13px] text-emerald-900">
-                  Barnet includes conservation areas, Article 4 zones, deep garden plots, backland policies and detailed guidance on roof extensions. We shape each scheme to fit local context so approval chances are as strong as possible.
+                  London includes conservation areas, listed buildings, Article 4 zones and strict design guidance in
+                  many locations. We shape each scheme to suit local policy, street context and neighbour impact so
+                  approval chances are as strong as possible.
+                </p>
+                <p className="text-[13px] text-emerald-900">
+                  Borough pages below provide tailored guidance for that council area, including common constraints,
+                  typical drawings needed and a direct enquiry route.
                 </p>
               </div>
+            </div>
+          </section>
 
-              <div className="space-y-4">
-                <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
-                  Frequently asked questions
-                </h2>
-                <div className="grid md:grid-cols-2 gap-6 text-[13px] text-slate-700">
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Do I need planning permission in Barnet
-                    </h3>
-                    <p>
-                      Many extensions and lofts can proceed under permitted development. We check your address and advise the best route at the start.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      How fast can you survey
-                    </h3>
-                    <p>
-                      In most cases we can arrange the initial measured survey within forty eight hours of instruction.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Do you submit to Barnet Council
-                    </h3>
-                    <p>
-                      Yes. We handle the submission, monitor progress and respond to planning officer queries.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Can you coordinate structural design
-                    </h3>
-                    <p>
-                      Yes. We coordinate with structural engineers so beams and load paths are designed and shown correctly on the drawings.
-                    </p>
-                  </div>
+          <section className="bg-white border-b border-slate-200 py-10">
+            <div className="mx-auto max-w-6xl px-4 lg:px-6">
+              <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+                Frequently asked questions
+              </h2>
+
+              <div className="mt-5 grid md:grid-cols-2 gap-6 text-[13px] text-slate-700">
+                <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                  <h3 className="font-semibold text-slate-900">Do I need planning permission in London</h3>
+                  <p>
+                    Many extensions and lofts can proceed under permitted development, but constraints vary by borough.
+                    We review your address and confirm the correct route at the start.
+                  </p>
+                </div>
+
+                <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                  <h3 className="font-semibold text-slate-900">How fast can you survey</h3>
+                  <p>
+                    In most cases we can arrange the initial measured survey within 48 hours of instruction, subject to
+                    access and location.
+                  </p>
+                </div>
+
+                <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                  <h3 className="font-semibold text-slate-900">Do you submit to the local council</h3>
+                  <p>
+                    Yes. We handle submission through the Planning Portal and respond to planning officer queries, with
+                    clear updates through the process.
+                  </p>
+                </div>
+
+                <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                  <h3 className="font-semibold text-slate-900">Can you coordinate structural design</h3>
+                  <p>
+                    Yes. We coordinate with structural engineers so beams, load paths and supporting details are shown
+                    correctly on the drawings.
+                  </p>
+                </div>
+
+                <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                  <h3 className="font-semibold text-slate-900">What do you need from me to start</h3>
+                  <p>
+                    A postcode, a short description and any photos help us start quickly. If you have old drawings or an
+                    agent brochure, that can help as well.
+                  </p>
+                </div>
+
+                <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                  <h3 className="font-semibold text-slate-900">Do you cover my location</h3>
+                  <p>
+                    If your property is in any London borough or within easy reach of the M25, we can usually assist.
+                    Send your postcode and we confirm coverage.
+                  </p>
                 </div>
               </div>
+            </div>
+          </section>
 
+          <section className="bg-white py-10">
+            <div className="mx-auto max-w-6xl px-4 lg:px-6">
               <div className="rounded-2xl bg-slate-900 text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
                   <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
                     Ready to start your project
                   </h2>
                   <p className="text-[13px] text-slate-300 mt-2">
-                    Send your postcode and a short description. We review and reply with a fixed fee and recommended next steps.
+                    Send your postcode and a short description. We review and reply with a fixed fee and recommended
+                    next steps.
                   </p>
                 </div>
+
                 <div className="flex flex-col space-y-2 text-[13px]">
                   <a href={PHONE_LINK} className="font-semibold text-emerald-300 underline">
                     {PHONE_DISPLAY}
@@ -590,7 +776,7 @@ export default function BarnetAreaPage() {
                 </div>
               </div>
 
-              <div className="text-[12px] text-slate-600 pt-2">
+              <div className="text-[12px] text-slate-600 pt-6">
                 See also{" "}
                 <a
                   href="/extension-plans"
