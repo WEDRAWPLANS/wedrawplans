@@ -18,6 +18,7 @@ const nextConfig = {
       { source: "/croydon", destination: "/areas/croydon", permanent: true },
       { source: "/ealing", destination: "/areas/ealing", permanent: true },
       { source: "/enfield", destination: "/areas/enfield", permanent: true },
+      { source: "/essex", destination: "/areas/essex", permanent: true },
       { source: "/greenwich", destination: "/areas/greenwich", permanent: true },
       { source: "/hackney", destination: "/areas/hackney", permanent: true },
       { source: "/hertfordshire", destination: "/areas/hertfordshire", permanent: true },
