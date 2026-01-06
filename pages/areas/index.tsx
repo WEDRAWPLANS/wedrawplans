@@ -87,13 +87,14 @@ export default function AreasIndexPage() {
     href: toAreaHref(n),
   }));
 
-  const popularServices = [
+  const mainServiceCards = [
     {
       title: "Extension Plans",
       text:
         "Planning drawings and Building Regulations packages for single storey, double storey and wrap around extensions across London.",
       href: "/extension-plans",
       cta: "View Extension Plans",
+      tag: "House extensions",
     },
     {
       title: "Loft Conversion Plans",
@@ -101,25 +102,16 @@ export default function AreasIndexPage() {
         "Dormer, mansard and hip to gable loft designs with drawings suitable for planning and Building Control.",
       href: "/loft-conversion-plans",
       cta: "View Loft Plans",
+      tag: "Loft conversions",
     },
     {
       title: "New Build Plans",
       text:
-        "New build planning drawings with coordinated technical information for tendering and compliance.",
+        "New build planning drawings with coordinated technical information for tendering, compliance and construction.",
       href: "/new-build-plans",
       cta: "View New Build Plans",
+      tag: "New builds",
     },
-  ];
-
-  const featuredBoroughs: LinkItem[] = [
-    { name: "Barnet", href: "/areas/barnet" },
-    { name: "Harrow", href: "/areas/harrow" },
-    { name: "Croydon", href: "/areas/croydon" },
-    { name: "Ealing", href: "/areas/ealing" },
-    { name: "Bromley", href: "/areas/bromley" },
-    { name: "Enfield", href: "/areas/enfield" },
-    { name: "Redbridge", href: "/areas/redbridge" },
-    { name: "Havering", href: "/areas/havering" },
   ];
 
   const clusters: { title: string; items: string[] }[] = [
@@ -173,6 +165,14 @@ export default function AreasIndexPage() {
       title: "Central London",
       items: ["City of London", "Westminster", "Camden", "Islington", "Kensington and Chelsea"],
     },
+  ];
+
+  const countyLinks: LinkItem[] = [
+    { name: "Hertfordshire", href: "/areas/hertfordshire" },
+    { name: "Essex", href: "/areas/essex" },
+    { name: "Surrey", href: "/areas/surrey" },
+    { name: "Kent", href: "/areas/kent" },
+    { name: "Buckinghamshire", href: "/areas/buckinghamshire" },
   ];
 
   const localBusinessJson = {
@@ -244,7 +244,7 @@ export default function AreasIndexPage() {
         <title>Architectural Drawings Across London and the M25 | WEDRAWPLANS</title>
         <meta
           name="description"
-          content="Architectural drawings across every London borough and the surrounding M25 area. Explore borough pages, popular services, London planning guidance and request a fixed fee quote."
+          content="Architectural drawings across every London borough and the surrounding M25 area. Explore borough pages, core services and request a fixed fee quote."
         />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas" />
         <script
@@ -467,69 +467,30 @@ export default function AreasIndexPage() {
 
           <section className="bg-white border-b border-slate-200 py-10">
             <div className="mx-auto max-w-6xl px-4 lg:px-6">
-              <h2 className="text-[20px] font-semibold text-slate-900">
-                Popular services across London
-              </h2>
+              <h2 className="text-[20px] font-semibold text-slate-900">Start with the right drawing package</h2>
               <p className="mt-2 max-w-4xl text-[14px] text-slate-700">
-                The service pages below explain scope, approvals and typical drawing outputs. Use these links to explore
-                what is included before you request a fixed fee quote.
+                Use the main service pages below to understand scope, typical drawings and what is included, then select
+                your borough further down for local guidance and the enquiry form.
               </p>
 
               <div className="mt-6 grid gap-4 md:grid-cols-3">
-                {popularServices.map((s) => (
-                  <div
+                {mainServiceCards.map((s) => (
+                  <a
                     key={s.title}
-                    className="rounded-2xl border border-slate-200 bg-[#f8f4f0] p-6 shadow-sm"
+                    href={s.href}
+                    className="group rounded-2xl border border-slate-200 bg-[#f8f4f0] p-6 shadow-sm hover:border-[#64b7c4] hover:bg-white"
                   >
-                    <div className="text-[16px] font-semibold text-slate-900">{s.title}</div>
-                    <div className="mt-3 text-[14px] text-slate-700">{s.text}</div>
-                    <a
-                      href={s.href}
-                      className="mt-5 inline-block text-[14px] font-medium text-blue-700 underline underline-offset-4 hover:text-blue-800"
-                    >
-                      {s.cta}
-                    </a>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          <section className="bg-[#f8f4f0] border-b border-slate-200 py-10">
-            <div className="mx-auto max-w-6xl px-4 lg:px-6">
-              <h2 className="text-[20px] font-semibold text-slate-900">Featured borough pages</h2>
-              <p className="mt-2 max-w-4xl text-[14px] text-slate-700">
-                Start with a featured borough page below or jump to the full directory. Every borough page is built to
-                the same layout standard and includes the quote form.
-              </p>
-
-              <div className="mt-6 grid gap-4 md:grid-cols-4">
-                <div className="rounded-2xl bg-slate-900 text-white p-6 shadow-sm">
-                  <div className="text-[12px] uppercase tracking-[0.22em] text-slate-300">Current</div>
-                  <div className="mt-2 text-[18px] font-semibold">London</div>
-                  <div className="mt-2 text-[13px] text-slate-300">You are here</div>
-                  <button
-                    type="button"
-                    onClick={scrollToForm}
-                    className="mt-5 inline-flex items-center justify-center rounded-full bg-white px-5 py-2 text-[13px] font-semibold text-slate-900 shadow hover:bg-emerald-100"
-                  >
-                    Get a quick quote
-                  </button>
-                </div>
-
-                {featuredBoroughs.map((b) => (
-                  <div key={b.name} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-                    <div className="text-[16px] font-semibold text-slate-900">{b.name}</div>
-                    <div className="mt-3 text-[13px] text-slate-700">
-                      Local page with guidance, typical projects and direct enquiry route.
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="text-[16px] font-semibold text-slate-900">{s.title}</div>
+                      <div className="rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-700 group-hover:border-[#64b7c4]">
+                        {s.tag}
+                      </div>
                     </div>
-                    <a
-                      href={b.href}
-                      className="mt-4 inline-block text-[14px] font-medium text-blue-700 underline underline-offset-4 hover:text-blue-800"
-                    >
-                      View {b.name} page
-                    </a>
-                  </div>
+                    <div className="mt-3 text-[14px] text-slate-700">{s.text}</div>
+                    <div className="mt-5 text-[14px] font-medium text-blue-700 underline underline-offset-4 group-hover:text-blue-800">
+                      {s.cta}
+                    </div>
+                  </a>
                 ))}
               </div>
             </div>
@@ -599,6 +560,26 @@ export default function AreasIndexPage() {
                   <div className="text-[14px] text-slate-700">
                     If you are close to the boundary, choose the borough page that matches your council. If unsure, send your postcode and we confirm.
                   </div>
+                </div>
+              </div>
+
+              <div className="mt-10">
+                <h2 className="text-[20px] font-semibold text-slate-900">Surrounding M25 locations</h2>
+                <p className="mt-2 max-w-4xl text-[14px] text-slate-700">
+                  We also support projects just outside London where planning demand is high. Select a county page below
+                  if your property is outside Greater London.
+                </p>
+
+                <div className="mt-5 grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+                  {countyLinks.map((c) => (
+                    <a
+                      key={c.name}
+                      href={c.href}
+                      className="rounded-xl border border-slate-200 bg-[#fdf8f3] px-4 py-3 text-[13px] font-medium text-slate-900 shadow-sm hover:border-[#64b7c4] hover:bg-white"
+                    >
+                      {c.name}
+                    </a>
+                  ))}
                 </div>
               </div>
             </div>
