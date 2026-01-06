@@ -8,7 +8,7 @@ import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const WHATSAPP_LINK =
-  "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20London";
+  "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20fixed%20fee%20quote%20for%20architectural%20drawings%20in%20London";
 
 type LinkItem = { name: string; href: string };
 
@@ -21,6 +21,19 @@ function toAreaHref(name: string) {
     .replace(/\s+/g, "-")
     .replace(/-+/g, "-")
     .trim()}`;
+}
+
+function initialsForBadge(name: string) {
+  const cleaned = name
+    .replace("City of London", "City")
+    .replace("Kensington and Chelsea", "Kensington")
+    .replace("Hammersmith and Fulham", "Hammersmith")
+    .replace("Barking and Dagenham", "Barking")
+    .trim();
+  const parts = cleaned.split(" ").filter(Boolean);
+  const first = parts[0]?.[0] || "L";
+  const second = parts[1]?.[0] || parts[0]?.[1] || "D";
+  return `${first}${second}`.toUpperCase();
 }
 
 export default function AreasIndexPage() {
@@ -78,7 +91,7 @@ export default function AreasIndexPage() {
     {
       title: "Extension Plans",
       text:
-        "Planning drawings and Building Regulations packages for single storey, double storey and wrap around extensions.",
+        "Planning drawings and Building Regulations packages for single storey, double storey and wrap around extensions across London.",
       href: "/extension-plans",
       cta: "View Extension Plans",
     },
@@ -137,6 +150,7 @@ export default function AreasIndexPage() {
         "Tower Hamlets",
         "Waltham Forest",
         "Hackney",
+        "Greenwich",
       ],
     },
     {
@@ -145,7 +159,6 @@ export default function AreasIndexPage() {
         "Croydon",
         "Bromley",
         "Lewisham",
-        "Greenwich",
         "Southwark",
         "Lambeth",
         "Wandsworth",
@@ -179,7 +192,7 @@ export default function AreasIndexPage() {
     },
     areaServed: ["London", "Greater London", "M25 area", ...boroughNames],
     description:
-      "Architectural drawings across London and the M25 for extensions, loft conversions, new builds, refurbishments and building regulation packages.",
+      "Architectural drawings across London and the M25 for extensions, loft conversions, refurbishments, flat conversions and building regulation drawing packages.",
   };
 
   const faqJson = {
@@ -188,7 +201,7 @@ export default function AreasIndexPage() {
     mainEntity: [
       {
         "@type": "Question",
-        name: "Do I need planning permission for an extension in London",
+        name: "Do I need planning permission in London",
         acceptedAnswer: {
           "@type": "Answer",
           text:
@@ -215,11 +228,11 @@ export default function AreasIndexPage() {
       },
       {
         "@type": "Question",
-        name: "Can you coordinate structural engineering",
+        name: "Can you coordinate structural design",
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Yes. We coordinate with structural engineers so beams, load paths and supporting details are correctly designed and reflected within the drawing package.",
+            "Yes. We coordinate with structural engineers so beams, load paths and supporting details are designed and shown correctly on the drawings.",
         },
       },
     ],
@@ -231,7 +244,7 @@ export default function AreasIndexPage() {
         <title>Architectural Drawings Across London and the M25 | WEDRAWPLANS</title>
         <meta
           name="description"
-          content="Architectural drawings across every London borough and the surrounding M25 area. Explore borough pages, popular services, planning guidance and request a fixed fee quote."
+          content="Architectural drawings across every London borough and the surrounding M25 area. Explore borough pages, popular services, London planning guidance and request a fixed fee quote."
         />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas" />
         <script
@@ -261,17 +274,18 @@ export default function AreasIndexPage() {
                   </h1>
 
                   <p className="mt-3 text-[13px] text-slate-700">
-                    WEDRAWPLANS prepare planning drawings and Building Regulations drawing packages across every London
-                    borough and key surrounding locations. Use this page to find your borough, explore our services and
-                    request a fixed fee quote for your drawings.
+                    WEDRAWPLANS prepare planning drawings and Building Regulations drawing packages for extensions, loft
+                    conversions, refurbishments, flat conversions and small new builds across every London borough and
+                    surrounding M25 locations. Use this page to select your borough, explore services and request a fixed
+                    fee quote.
                   </p>
 
                   <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
-                    <li>• House extensions, loft conversions and internal remodelling</li>
-                    <li>• New build houses and small residential schemes</li>
-                    <li>• Flat conversions and refurbishment drawing packages</li>
-                    <li>• Planning drawings plus Building Regulations packs</li>
-                    <li>• Clear scope, fast communication and fixed fees</li>
+                    <li>• House extensions including wrap around layouts</li>
+                    <li>• Loft conversions including dormers and mansards</li>
+                    <li>• Flat conversions, refurbishments and layout redesign</li>
+                    <li>• Planning drawings and Building Regulations packs</li>
+                    <li>• Coordination with structural engineers where required</li>
                     <li>• Initial survey within 48 hours in most cases</li>
                   </ul>
 
@@ -298,73 +312,20 @@ export default function AreasIndexPage() {
                     </a>
                   </div>
 
-                  <div className="mt-6 rounded-2xl border border-slate-200 bg-white px-4 py-4 shadow-sm">
-                    <div className="flex items-start gap-3">
-                      <div className="mt-0.5 grid h-9 w-9 place-items-center rounded-full border border-slate-200 bg-[#f8f4f0] text-[12px] font-semibold text-slate-900">
-                        LD
+                  <div className="mt-7 rounded-2xl bg-white shadow-md border border-slate-100 overflow-hidden">
+                    <Image
+                      src="/images/hero.jpg"
+                      alt="Architectural drawings and design support across London"
+                      width={1200}
+                      height={700}
+                      className="object-cover w-full h-44 sm:h-52"
+                    />
+                    <div className="p-5 space-y-2">
+                      <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-600">
+                        London wide drawing packages
                       </div>
-                      <div>
-                        <div className="text-[12px] font-semibold uppercase tracking-[0.22em] text-slate-600">
-                          London borough coverage map
-                        </div>
-                        <div className="mt-2 text-[13px] text-slate-700">
-                          This hub links to every borough page. Each borough page includes tailored guidance and a
-                          direct enquiry route for that location.
-                        </div>
-
-                        <div className="mt-3 rounded-xl border border-slate-200 bg-[#fdf8f3] p-3">
-                          <svg
-                            viewBox="0 0 900 320"
-                            className="h-36 w-full"
-                            role="img"
-                            aria-label="Stylised London coverage map"
-                          >
-                            <defs>
-                              <linearGradient id="g" x1="0" x2="1">
-                                <stop offset="0" stopColor="#64b7c4" />
-                                <stop offset="1" stopColor="#c4b464" />
-                              </linearGradient>
-                            </defs>
-                            <rect x="20" y="25" width="860" height="270" rx="28" fill="#ffffff" stroke="#e2e8f0" />
-                            <path
-                              d="M140 190 C210 70, 340 60, 420 120 C520 200, 640 60, 760 150 C710 250, 540 270, 420 250 C290 225, 210 260, 140 190 Z"
-                              fill="url(#g)"
-                              opacity="0.22"
-                            />
-                            <path
-                              d="M160 190 C230 85, 340 80, 420 130 C520 210, 630 85, 740 150"
-                              fill="none"
-                              stroke="#0f172a"
-                              strokeOpacity="0.35"
-                              strokeWidth="6"
-                              strokeLinecap="round"
-                            />
-                            {[
-                              { x: 210, y: 160 },
-                              { x: 290, y: 140 },
-                              { x: 365, y: 175 },
-                              { x: 445, y: 155 },
-                              { x: 520, y: 200 },
-                              { x: 610, y: 150 },
-                              { x: 690, y: 180 },
-                            ].map((p, i) => (
-                              <g key={i}>
-                                <circle cx={p.x} cy={p.y} r="10" fill="#64b7c4" opacity="0.95" />
-                                <circle cx={p.x} cy={p.y} r="18" fill="#64b7c4" opacity="0.14" />
-                              </g>
-                            ))}
-                            <text x="56" y="82" fontSize="20" fill="#0f172a" opacity="0.7">
-                              Greater London
-                            </text>
-                            <text x="56" y="110" fontSize="14" fill="#334155" opacity="0.7">
-                              Borough pages linked below
-                            </text>
-                          </svg>
-
-                          <div className="mt-2 text-[11px] uppercase tracking-[0.22em] text-slate-500">
-                            Map is stylised for display
-                          </div>
-                        </div>
+                      <div className="text-[13px] text-slate-700">
+                        Clear drawings that support smooth submissions, stronger decisions and builder pricing without confusion.
                       </div>
                     </div>
                   </div>
@@ -463,21 +424,39 @@ export default function AreasIndexPage() {
                       </button>
 
                       <p className="text-[11px] text-slate-500 mt-2">
-                        We cover all London boroughs and key M25 locations. Include your borough name if helpful.
+                        Add borough name if helpful. We cover all London boroughs plus key M25 locations.
                       </p>
                     </form>
                   </div>
 
-                  <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
                     <div className="text-[12px] font-semibold uppercase tracking-[0.22em] text-slate-600">
-                      Fast start checklist
+                      What happens next
                     </div>
                     <ul className="mt-2 space-y-1 text-[13px] text-slate-700">
-                      <li>• Share postcode and a short description</li>
-                      <li>• Add photos if available</li>
-                      <li>• Confirm if you want planning only or Building Regulations as well</li>
-                      <li>• We reply with fixed fee and clear next steps</li>
+                      <li>• We review your postcode and project notes</li>
+                      <li>• We reply with fixed fee and clear scope</li>
+                      <li>• We arrange survey and start drawings</li>
+                      <li>• We support submission and next steps</li>
                     </ul>
+                  </div>
+
+                  <div className="mt-4 rounded-2xl bg-white shadow-md border border-slate-100 overflow-hidden">
+                    <Image
+                      src="/images/drawings.jpg"
+                      alt="Example of architectural drawings"
+                      width={1200}
+                      height={700}
+                      className="object-cover w-full h-40 sm:h-44"
+                    />
+                    <div className="p-5 space-y-2">
+                      <div className="text-[12px] font-semibold uppercase tracking-[0.22em] text-slate-600">
+                        Practical drawings builders can price from
+                      </div>
+                      <div className="text-[13px] text-slate-700">
+                        Clear plans, elevations and notes structured for tendering and Building Control checks.
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -488,25 +467,25 @@ export default function AreasIndexPage() {
 
           <section className="bg-white border-b border-slate-200 py-10">
             <div className="mx-auto max-w-6xl px-4 lg:px-6">
-              <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+              <h2 className="text-[20px] font-semibold text-slate-900">
                 Popular services across London
               </h2>
-              <p className="mt-3 max-w-4xl text-[13px] text-slate-700">
-                We provide full design and planning support for extensions, loft conversions and new build developments.
-                Each service page explains scope, typical approvals and how to get a fixed fee quote.
+              <p className="mt-2 max-w-4xl text-[14px] text-slate-700">
+                The service pages below explain scope, approvals and typical drawing outputs. Use these links to explore
+                what is included before you request a fixed fee quote.
               </p>
 
               <div className="mt-6 grid gap-4 md:grid-cols-3">
                 {popularServices.map((s) => (
                   <div
                     key={s.title}
-                    className="rounded-2xl border border-slate-200 bg-[#f8f4f0] p-5 shadow-sm"
+                    className="rounded-2xl border border-slate-200 bg-[#f8f4f0] p-6 shadow-sm"
                   >
-                    <div className="text-[14px] font-semibold text-slate-900">{s.title}</div>
-                    <div className="mt-2 text-[13px] text-slate-700">{s.text}</div>
+                    <div className="text-[16px] font-semibold text-slate-900">{s.title}</div>
+                    <div className="mt-3 text-[14px] text-slate-700">{s.text}</div>
                     <a
                       href={s.href}
-                      className="mt-4 inline-block text-[13px] font-medium text-blue-700 underline underline-offset-4 hover:text-blue-800"
+                      className="mt-5 inline-block text-[14px] font-medium text-blue-700 underline underline-offset-4 hover:text-blue-800"
                     >
                       {s.cta}
                     </a>
@@ -518,27 +497,35 @@ export default function AreasIndexPage() {
 
           <section className="bg-[#f8f4f0] border-b border-slate-200 py-10">
             <div className="mx-auto max-w-6xl px-4 lg:px-6">
-              <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
-                Featured borough pages
-              </h2>
-              <p className="mt-3 max-w-4xl text-[13px] text-slate-700">
-                Start with a featured borough page below or scroll down for the full borough directory. Each borough
-                page includes local guidance, typical project types and the same fixed fee quote form.
+              <h2 className="text-[20px] font-semibold text-slate-900">Featured borough pages</h2>
+              <p className="mt-2 max-w-4xl text-[14px] text-slate-700">
+                Start with a featured borough page below or jump to the full directory. Every borough page is built to
+                the same layout standard and includes the quote form.
               </p>
 
-              <div className="mt-6 grid gap-3 sm:grid-cols-2 md:grid-cols-4">
-                <div className="rounded-2xl bg-slate-900 text-white p-5 shadow-sm">
-                  <div className="text-[11px] uppercase tracking-[0.22em] text-slate-300">Current</div>
-                  <div className="mt-2 text-[16px] font-semibold">London</div>
+              <div className="mt-6 grid gap-4 md:grid-cols-4">
+                <div className="rounded-2xl bg-slate-900 text-white p-6 shadow-sm">
+                  <div className="text-[12px] uppercase tracking-[0.22em] text-slate-300">Current</div>
+                  <div className="mt-2 text-[18px] font-semibold">London</div>
                   <div className="mt-2 text-[13px] text-slate-300">You are here</div>
+                  <button
+                    type="button"
+                    onClick={scrollToForm}
+                    className="mt-5 inline-flex items-center justify-center rounded-full bg-white px-5 py-2 text-[13px] font-semibold text-slate-900 shadow hover:bg-emerald-100"
+                  >
+                    Get a quick quote
+                  </button>
                 </div>
 
                 {featuredBoroughs.map((b) => (
-                  <div key={b.name} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-                    <div className="text-[14px] font-semibold text-slate-900">{b.name}</div>
+                  <div key={b.name} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                    <div className="text-[16px] font-semibold text-slate-900">{b.name}</div>
+                    <div className="mt-3 text-[13px] text-slate-700">
+                      Local page with guidance, typical projects and direct enquiry route.
+                    </div>
                     <a
                       href={b.href}
-                      className="mt-3 inline-block text-[13px] font-medium text-blue-700 underline underline-offset-4 hover:text-blue-800"
+                      className="mt-4 inline-block text-[14px] font-medium text-blue-700 underline underline-offset-4 hover:text-blue-800"
                     >
                       View {b.name} page
                     </a>
@@ -550,29 +537,35 @@ export default function AreasIndexPage() {
 
           <section className="bg-white border-b border-slate-200 py-10">
             <div className="mx-auto max-w-6xl px-4 lg:px-6">
-              <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
-                Full London borough directory
-              </h2>
-              <p className="mt-3 max-w-4xl text-[13px] text-slate-700">
+              <h2 className="text-[20px] font-semibold text-slate-900">Full London borough directory</h2>
+              <p className="mt-2 max-w-4xl text-[14px] text-slate-700">
                 Every borough below is clickable. Select your borough to view the dedicated local page for drawings,
-                planning support and Building Regulations packages.
+                planning support and Building Regulations packs.
               </p>
 
-              <div className="mt-6 grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              <div className="mt-7 grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 {boroughLinks.map((b) => (
                   <a
                     key={b.name}
                     href={b.href}
-                    className="rounded-xl border border-slate-200 bg-[#fdf8f3] px-4 py-3 text-[13px] font-medium text-slate-900 shadow-sm hover:border-[#64b7c4] hover:bg-white"
+                    className="group rounded-2xl border border-slate-200 bg-[#fdf8f3] p-4 shadow-sm hover:border-[#64b7c4] hover:bg-white"
                   >
-                    {b.name}
+                    <div className="flex items-center gap-3">
+                      <div className="grid h-10 w-10 place-items-center rounded-full border border-slate-200 bg-white text-[12px] font-semibold text-slate-900 group-hover:border-[#64b7c4]">
+                        {initialsForBadge(b.name)}
+                      </div>
+                      <div className="text-[14px] font-semibold text-slate-900">{b.name}</div>
+                    </div>
+                    <div className="mt-3 text-[13px] text-slate-700">
+                      View borough page and request a fixed fee quote.
+                    </div>
                   </a>
                 ))}
               </div>
 
-              <div className="mt-8 grid gap-6 md:grid-cols-2">
+              <div className="mt-10 grid gap-6 md:grid-cols-2">
                 {clusters.map((c) => (
-                  <div key={c.title} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                  <div key={c.title} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
                     <div className="text-[12px] font-semibold uppercase tracking-[0.22em] text-slate-600">
                       {c.title}
                     </div>
@@ -590,157 +583,73 @@ export default function AreasIndexPage() {
                   </div>
                 ))}
               </div>
+
+              <div className="mt-10 rounded-2xl bg-white shadow-md border border-slate-100 overflow-hidden">
+                <Image
+                  src="/images/area.jpg"
+                  alt="London and M25 coverage"
+                  width={1200}
+                  height={700}
+                  className="object-cover w-full h-44 sm:h-52"
+                />
+                <div className="p-6 space-y-2">
+                  <div className="text-[12px] font-semibold uppercase tracking-[0.22em] text-slate-600">
+                    London plus surrounding M25 locations
+                  </div>
+                  <div className="text-[14px] text-slate-700">
+                    If you are close to the boundary, choose the borough page that matches your council. If unsure, send your postcode and we confirm.
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
 
           <section className="bg-white border-b border-slate-200 py-10">
             <div className="mx-auto max-w-6xl px-4 lg:px-6">
-              <div className="grid md:grid-cols-[1.55fr,1.45fr] gap-10 items-start">
-                <div className="space-y-4">
-                  <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
-                    What a London ready drawing package includes
-                  </h2>
-                  <p className="text-[13px] text-slate-700">
-                    Our drawing packages are designed to support smooth submissions and clear pricing. We structure
-                    drawings so homeowners, builders and Building Control have what they need for the next step.
-                  </p>
-
-                  <div className="grid sm:grid-cols-2 gap-4 text-[13px] text-slate-700">
-                    <div className="rounded-2xl border border-slate-200 bg-[#f8f4f0] p-5">
-                      <div className="text-[12px] font-semibold uppercase tracking-[0.22em] text-slate-600">
-                        Planning drawings
-                      </div>
-                      <ul className="mt-2 list-disc pl-4 space-y-1">
-                        <li>Existing and proposed plans</li>
-                        <li>Existing and proposed elevations</li>
-                        <li>Key sections and roof plans</li>
-                        <li>Location plan and block plan</li>
-                        <li>Submission ready document set</li>
-                      </ul>
-                    </div>
-                    <div className="rounded-2xl border border-slate-200 bg-[#f8f4f0] p-5">
-                      <div className="text-[12px] font-semibold uppercase tracking-[0.22em] text-slate-600">
-                        Building Regulations pack
-                      </div>
-                      <ul className="mt-2 list-disc pl-4 space-y-1">
-                        <li>Construction build ups and notes</li>
-                        <li>Fire safety and escape strategy</li>
-                        <li>Thermal and ventilation coordination</li>
-                        <li>Structural coordination with engineer</li>
-                        <li>Tender friendly technical drawings</li>
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-wrap gap-3 items-center">
-                    <button
-                      type="button"
-                      onClick={scrollToForm}
-                      className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-white text-[13px] font-semibold uppercase tracking-[0.18em] hover:bg-[#4da4b4]"
-                    >
-                      Get a quick quote
-                    </button>
-                    <a
-                      href={WHATSAPP_LINK}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-300 bg-white text-[13px] text-slate-800 hover:bg-slate-900 hover:text-white"
-                    >
-                      💬 Chat on WhatsApp
-                    </a>
-                  </div>
-                </div>
-
-                <div className="rounded-2xl bg-white shadow-md border border-slate-100 overflow-hidden">
-                  <Image
-                    src="/images/drawings.jpg"
-                    alt="Example of architectural drawings suitable for London planning and Building Regulations"
-                    width={900}
-                    height={560}
-                    className="object-cover w-full h-48 md:h-56"
-                  />
-                  <div className="p-5 space-y-2">
-                    <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                      Clear drawings builders can price from
-                    </h3>
-                    <p className="text-[13px] text-slate-700">
-                      Plans, elevations, sections and notes structured for practical use, with a scope that stays clear
-                      from day one.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-10 rounded-2xl bg-emerald-50 border border-emerald-100 p-6 space-y-3">
-                <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-emerald-900">
+              <div className="rounded-2xl bg-emerald-50 border border-emerald-100 p-7 space-y-3">
+                <h2 className="text-[20px] font-semibold text-emerald-900">
                   Local planning knowledge for London projects
                 </h2>
-                <p className="text-[13px] text-emerald-900">
-                  London includes conservation areas, listed buildings, Article 4 zones and strict design guidance in
-                  many locations. We shape each scheme to suit local policy, street context and neighbour impact so
-                  approval chances are as strong as possible.
+                <p className="text-[14px] text-emerald-900">
+                  London includes conservation areas, listed buildings, Article 4 directions and strict design guidance in many locations.
+                  We shape each scheme to suit policy, street context and neighbour impact so approval chances are as strong as possible.
                 </p>
-                <p className="text-[13px] text-emerald-900">
-                  Borough pages below provide tailored guidance for that council area, including common constraints,
-                  typical drawings needed and a direct enquiry route.
+                <p className="text-[14px] text-emerald-900">
+                  Borough pages provide location specific guidance so your project starts with the right route and the right drawing set.
                 </p>
               </div>
-            </div>
-          </section>
 
-          <section className="bg-white border-b border-slate-200 py-10">
-            <div className="mx-auto max-w-6xl px-4 lg:px-6">
-              <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
-                Frequently asked questions
-              </h2>
+              <div className="mt-10">
+                <h2 className="text-[20px] font-semibold text-slate-900">Frequently asked questions</h2>
 
-              <div className="mt-5 grid md:grid-cols-2 gap-6 text-[13px] text-slate-700">
-                <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                  <h3 className="font-semibold text-slate-900">Do I need planning permission in London</h3>
-                  <p>
-                    Many extensions and lofts can proceed under permitted development, but constraints vary by borough.
-                    We review your address and confirm the correct route at the start.
-                  </p>
-                </div>
+                <div className="mt-6 grid md:grid-cols-2 gap-6 text-[14px] text-slate-700">
+                  <div className="space-y-2 rounded-2xl bg-white border border-slate-100 p-5 shadow-sm">
+                    <h3 className="font-semibold text-slate-900">Do I need planning permission in London</h3>
+                    <p>
+                      Many extensions and lofts can proceed under permitted development, but constraints vary by borough. We review your address and confirm the correct route at the start.
+                    </p>
+                  </div>
 
-                <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                  <h3 className="font-semibold text-slate-900">How fast can you survey</h3>
-                  <p>
-                    In most cases we can arrange the initial measured survey within 48 hours of instruction, subject to
-                    access and location.
-                  </p>
-                </div>
+                  <div className="space-y-2 rounded-2xl bg-white border border-slate-100 p-5 shadow-sm">
+                    <h3 className="font-semibold text-slate-900">How fast can you survey</h3>
+                    <p>
+                      In most cases we can arrange the initial measured survey within 48 hours of instruction, subject to access and location.
+                    </p>
+                  </div>
 
-                <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                  <h3 className="font-semibold text-slate-900">Do you submit to the local council</h3>
-                  <p>
-                    Yes. We handle submission through the Planning Portal and respond to planning officer queries, with
-                    clear updates through the process.
-                  </p>
-                </div>
+                  <div className="space-y-2 rounded-2xl bg-white border border-slate-100 p-5 shadow-sm">
+                    <h3 className="font-semibold text-slate-900">Do you submit to the local council</h3>
+                    <p>
+                      Yes. We handle submission through the Planning Portal and respond to planning officer queries, with clear updates through the process.
+                    </p>
+                  </div>
 
-                <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                  <h3 className="font-semibold text-slate-900">Can you coordinate structural design</h3>
-                  <p>
-                    Yes. We coordinate with structural engineers so beams, load paths and supporting details are shown
-                    correctly on the drawings.
-                  </p>
-                </div>
-
-                <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                  <h3 className="font-semibold text-slate-900">What do you need from me to start</h3>
-                  <p>
-                    A postcode, a short description and any photos help us start quickly. If you have old drawings or an
-                    agent brochure, that can help as well.
-                  </p>
-                </div>
-
-                <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                  <h3 className="font-semibold text-slate-900">Do you cover my location</h3>
-                  <p>
-                    If your property is in any London borough or within easy reach of the M25, we can usually assist.
-                    Send your postcode and we confirm coverage.
-                  </p>
+                  <div className="space-y-2 rounded-2xl bg-white border border-slate-100 p-5 shadow-sm">
+                    <h3 className="font-semibold text-slate-900">Can you coordinate structural design</h3>
+                    <p>
+                      Yes. We coordinate with structural engineers so beams, load paths and supporting details are shown correctly on the drawings.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -750,16 +659,15 @@ export default function AreasIndexPage() {
             <div className="mx-auto max-w-6xl px-4 lg:px-6">
               <div className="rounded-2xl bg-slate-900 text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
-                  <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
+                  <h2 className="text-[20px] font-semibold tracking-[0.06em] uppercase">
                     Ready to start your project
                   </h2>
-                  <p className="text-[13px] text-slate-300 mt-2">
-                    Send your postcode and a short description. We review and reply with a fixed fee and recommended
-                    next steps.
+                  <p className="text-[14px] text-slate-300 mt-2">
+                    Send your postcode and a short description. We review and reply with a fixed fee and recommended next steps.
                   </p>
                 </div>
 
-                <div className="flex flex-col space-y-2 text-[13px]">
+                <div className="flex flex-col space-y-2 text-[14px]">
                   <a href={PHONE_LINK} className="font-semibold text-emerald-300 underline">
                     {PHONE_DISPLAY}
                   </a>
