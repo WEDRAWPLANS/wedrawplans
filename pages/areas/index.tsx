@@ -87,86 +87,6 @@ export default function AreasIndexPage() {
     href: toAreaHref(n),
   }));
 
-  const mainServiceCards = [
-    {
-      title: "Extension Plans",
-      text:
-        "Planning drawings and Building Regulations packages for single storey, double storey and wrap around extensions across London.",
-      href: "/extension-plans",
-      cta: "View Extension Plans",
-      tag: "House extensions",
-    },
-    {
-      title: "Loft Conversion Plans",
-      text:
-        "Dormer, mansard and hip to gable loft designs with drawings suitable for planning and Building Control.",
-      href: "/loft-conversion-plans",
-      cta: "View Loft Plans",
-      tag: "Loft conversions",
-    },
-    {
-      title: "New Build Plans",
-      text:
-        "New build planning drawings with coordinated technical information for tendering, compliance and construction.",
-      href: "/new-build-plans",
-      cta: "View New Build Plans",
-      tag: "New builds",
-    },
-  ];
-
-  const clusters: { title: string; items: string[] }[] = [
-    {
-      title: "North London boroughs",
-      items: ["Barnet", "Enfield", "Haringey", "Camden", "Islington"],
-    },
-    {
-      title: "West London boroughs",
-      items: [
-        "Harrow",
-        "Brent",
-        "Ealing",
-        "Hillingdon",
-        "Hounslow",
-        "Hammersmith and Fulham",
-        "Kensington and Chelsea",
-        "Westminster",
-      ],
-    },
-    {
-      title: "East London boroughs",
-      items: [
-        "Redbridge",
-        "Havering",
-        "Newham",
-        "Barking and Dagenham",
-        "Tower Hamlets",
-        "Waltham Forest",
-        "Hackney",
-        "Greenwich",
-      ],
-    },
-    {
-      title: "South London boroughs",
-      items: [
-        "Croydon",
-        "Bromley",
-        "Lewisham",
-        "Southwark",
-        "Lambeth",
-        "Wandsworth",
-        "Merton",
-        "Kingston upon Thames",
-        "Sutton",
-        "Bexley",
-        "Richmond upon Thames",
-      ],
-    },
-    {
-      title: "Central London",
-      items: ["City of London", "Westminster", "Camden", "Islington", "Kensington and Chelsea"],
-    },
-  ];
-
   const countyLinks: LinkItem[] = [
     { name: "Hertfordshire", href: "/areas/hertfordshire" },
     { name: "Essex", href: "/areas/essex" },
@@ -232,7 +152,7 @@ export default function AreasIndexPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Yes. We coordinate with structural engineers so beams, load paths and supporting details are designed and shown correctly on the drawings.",
+            "Yes. We coordinate with structural engineers so beams, load paths and supporting details are shown correctly on the drawings.",
         },
       },
     ],
@@ -469,29 +389,64 @@ export default function AreasIndexPage() {
             <div className="mx-auto max-w-6xl px-4 lg:px-6">
               <h2 className="text-[20px] font-semibold text-slate-900">Start with the right drawing package</h2>
               <p className="mt-2 max-w-4xl text-[14px] text-slate-700">
-                Use the main service pages below to understand scope, typical drawings and what is included, then select
-                your borough further down for local guidance and the enquiry form.
+                Browse the main service pages below to understand scope, typical drawings and what is included, then select
+                your borough further down for local guidance and your direct enquiry route.
               </p>
 
               <div className="mt-6 grid gap-4 md:grid-cols-3">
-                {mainServiceCards.map((s) => (
-                  <a
-                    key={s.title}
-                    href={s.href}
-                    className="group rounded-2xl border border-slate-200 bg-[#f8f4f0] p-6 shadow-sm hover:border-[#64b7c4] hover:bg-white"
-                  >
-                    <div className="flex items-center justify-between gap-3">
-                      <div className="text-[16px] font-semibold text-slate-900">{s.title}</div>
-                      <div className="rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-700 group-hover:border-[#64b7c4]">
-                        {s.tag}
-                      </div>
+                <a
+                  href="/extension-plans"
+                  className="group rounded-2xl border border-slate-200 bg-[#f8f4f0] p-6 shadow-sm hover:border-[#64b7c4] hover:bg-white"
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="text-[16px] font-semibold text-slate-900">Extension Plans</div>
+                    <div className="rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-700 group-hover:border-[#64b7c4]">
+                      Extensions
                     </div>
-                    <div className="mt-3 text-[14px] text-slate-700">{s.text}</div>
-                    <div className="mt-5 text-[14px] font-medium text-blue-700 underline underline-offset-4 group-hover:text-blue-800">
-                      {s.cta}
+                  </div>
+                  <div className="mt-3 text-[14px] text-slate-700">
+                    Planning drawings and Building Regulations packages for single storey, double storey and wrap around extensions.
+                  </div>
+                  <div className="mt-5 text-[14px] font-medium text-blue-700 underline underline-offset-4 group-hover:text-blue-800">
+                    View Extension Plans
+                  </div>
+                </a>
+
+                <a
+                  href="/loft-conversion-plans"
+                  className="group rounded-2xl border border-slate-200 bg-[#f8f4f0] p-6 shadow-sm hover:border-[#64b7c4] hover:bg-white"
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="text-[16px] font-semibold text-slate-900">Loft Conversion Plans</div>
+                    <div className="rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-700 group-hover:border-[#64b7c4]">
+                      Lofts
                     </div>
-                  </a>
-                ))}
+                  </div>
+                  <div className="mt-3 text-[14px] text-slate-700">
+                    Dormer, mansard and hip to gable loft designs with drawings suitable for planning and Building Control.
+                  </div>
+                  <div className="mt-5 text-[14px] font-medium text-blue-700 underline underline-offset-4 group-hover:text-blue-800">
+                    View Loft Plans
+                  </div>
+                </a>
+
+                <a
+                  href="/new-build-plans"
+                  className="group rounded-2xl border border-slate-200 bg-[#f8f4f0] p-6 shadow-sm hover:border-[#64b7c4] hover:bg-white"
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="text-[16px] font-semibold text-slate-900">New Build Plans</div>
+                    <div className="rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-700 group-hover:border-[#64b7c4]">
+                      New builds
+                    </div>
+                  </div>
+                  <div className="mt-3 text-[14px] text-slate-700">
+                    New build planning drawings with coordinated technical information for tendering, compliance and construction.
+                  </div>
+                  <div className="mt-5 text-[14px] font-medium text-blue-700 underline underline-offset-4 group-hover:text-blue-800">
+                    View New Build Plans
+                  </div>
+                </a>
               </div>
             </div>
           </section>
@@ -500,8 +455,7 @@ export default function AreasIndexPage() {
             <div className="mx-auto max-w-6xl px-4 lg:px-6">
               <h2 className="text-[20px] font-semibold text-slate-900">Full London borough directory</h2>
               <p className="mt-2 max-w-4xl text-[14px] text-slate-700">
-                Every borough below is clickable. Select your borough to view the dedicated local page for drawings,
-                planning support and Building Regulations packs.
+                Every borough below is clickable. Select your borough to view the dedicated local page and request a fixed fee quote.
               </p>
 
               <div className="mt-7 grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -521,27 +475,6 @@ export default function AreasIndexPage() {
                       View borough page and request a fixed fee quote.
                     </div>
                   </a>
-                ))}
-              </div>
-
-              <div className="mt-10 grid gap-6 md:grid-cols-2">
-                {clusters.map((c) => (
-                  <div key={c.title} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-                    <div className="text-[12px] font-semibold uppercase tracking-[0.22em] text-slate-600">
-                      {c.title}
-                    </div>
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {c.items.map((n) => (
-                        <a
-                          key={n}
-                          href={toAreaHref(n)}
-                          className="rounded-full border border-slate-200 bg-[#f8f4f0] px-3 py-1.5 text-[12px] font-medium text-slate-900 hover:border-[#64b7c4] hover:bg-white"
-                        >
-                          {n}
-                        </a>
-                      ))}
-                    </div>
-                  </div>
                 ))}
               </div>
 
@@ -566,8 +499,7 @@ export default function AreasIndexPage() {
               <div className="mt-10">
                 <h2 className="text-[20px] font-semibold text-slate-900">Surrounding M25 locations</h2>
                 <p className="mt-2 max-w-4xl text-[14px] text-slate-700">
-                  We also support projects just outside London where planning demand is high. Select a county page below
-                  if your property is outside Greater London.
+                  We also support projects just outside London where planning demand is high. Select a county page below if your property is outside Greater London.
                 </p>
 
                 <div className="mt-5 grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
@@ -588,15 +520,10 @@ export default function AreasIndexPage() {
           <section className="bg-white border-b border-slate-200 py-10">
             <div className="mx-auto max-w-6xl px-4 lg:px-6">
               <div className="rounded-2xl bg-emerald-50 border border-emerald-100 p-7 space-y-3">
-                <h2 className="text-[20px] font-semibold text-emerald-900">
-                  Local planning knowledge for London projects
-                </h2>
+                <h2 className="text-[20px] font-semibold text-emerald-900">Local planning knowledge for London projects</h2>
                 <p className="text-[14px] text-emerald-900">
-                  London includes conservation areas, listed buildings, Article 4 directions and strict design guidance in many locations.
+                  London includes conservation areas, listed buildings, Article 4 directions and detailed design guidance in many locations.
                   We shape each scheme to suit policy, street context and neighbour impact so approval chances are as strong as possible.
-                </p>
-                <p className="text-[14px] text-emerald-900">
-                  Borough pages provide location specific guidance so your project starts with the right route and the right drawing set.
                 </p>
               </div>
 
@@ -640,9 +567,7 @@ export default function AreasIndexPage() {
             <div className="mx-auto max-w-6xl px-4 lg:px-6">
               <div className="rounded-2xl bg-slate-900 text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
-                  <h2 className="text-[20px] font-semibold tracking-[0.06em] uppercase">
-                    Ready to start your project
-                  </h2>
+                  <h2 className="text-[20px] font-semibold tracking-[0.06em] uppercase">Ready to start your project</h2>
                   <p className="text-[14px] text-slate-300 mt-2">
                     Send your postcode and a short description. We review and reply with a fixed fee and recommended next steps.
                   </p>
@@ -667,24 +592,15 @@ export default function AreasIndexPage() {
 
               <div className="text-[12px] text-slate-600 pt-6">
                 See also{" "}
-                <a
-                  href="/extension-plans"
-                  className="text-blue-600 underline underline-offset-4 hover:text-blue-700"
-                >
+                <a href="/extension-plans" className="text-blue-600 underline underline-offset-4 hover:text-blue-700">
                   extension plans
                 </a>
                 ,{" "}
-                <a
-                  href="/loft-conversion-plans"
-                  className="text-blue-600 underline underline-offset-4 hover:text-blue-700"
-                >
+                <a href="/loft-conversion-plans" className="text-blue-600 underline underline-offset-4 hover:text-blue-700">
                   loft conversion plans
                 </a>{" "}
                 and{" "}
-                <a
-                  href="/new-build-plans"
-                  className="text-blue-600 underline underline-offset-4 hover:text-blue-700"
-                >
+                <a href="/new-build-plans" className="text-blue-600 underline underline-offset-4 hover:text-blue-700">
                   new build plans
                 </a>
                 .
