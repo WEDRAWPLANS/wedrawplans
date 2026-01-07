@@ -1,579 +1,530 @@
-import React from "react";
-import Head from "next/head";
+import React, { useMemo, useState } from "react";
 import Image from "next/image";
-import AreaTopHeader from "../../components/AreaTopHeader";
-import ServiceInternalLinks from "../../components/ServiceInternalLinks";
-import ProjectEnquiryForm from "../../components/ProjectEnquiryForm";
+import { submitBoroughLead } from "../lib/submitBoroughLead";
 
-type LinkItem = { name: string; href: string };
+type StepKey = "type" | "postcode" | "stage" | "details" | "contact";
 
-function toAreaHref(name: string) {
-  return `/areas/${name
-    .toLowerCase()
-    .replace(/&/g, "and")
-    .replace(/,/g, "")
-    .replace(/\./g, "")
-    .replace(/\s+/g, "-")
-    .replace(/-+/g, "-")
-    .trim()}`;
+type Props = {
+  borough?: string;
+  sourcePath?: string;
+  defaultProjectType?: string;
+  logoSrc?: string;
+  logoAlt?: string;
+  accentText?: string;
+  onSuccess?: () => void;
+};
+
+const PHONE_DISPLAY = "020 3654 8508";
+const PHONE_LINK = "tel:+442036548508";
+const EMAIL_DISPLAY = "info@wedrawplans.com";
+const EMAIL_LINK = "mailto:info@wedrawplans.com";
+
+function clampStr(v: string, max: number) {
+  const s = (v || "").toString().trim();
+  return s.length > max ? s.slice(0, max) : s;
 }
 
-export default function AreasIndexPage() {
-  function scrollToForm() {
-    const el = document.getElementById("areas-quote");
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+function isEmail(v: string) {
+  const s = (v || "").trim();
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
+}
+
+function normalizePhone(v: string) {
+  const s = (v || "").toString().trim();
+  return s.replace(/[^\d+]/g, "");
+}
+
+function isLikelyPhone(v: string) {
+  const s = normalizePhone(v);
+  const digits = s.replace(/\D/g, "");
+  return digits.length >= 10 && digits.length <= 15;
+}
+
+const PROJECT_TYPES: { label: string; value: string; sub?: string }[] = [
+  { label: "House extension", value: "House extension", sub: "Rear, side return, wraparound, double storey" },
+  { label: "Loft conversion", value: "Loft conversion", sub: "Dormer, mansard, hip to gable" },
+  { label: "Planning drawings only", value: "Planning drawings", sub: "Drawings for council submission" },
+  { label: "Lawful development certificate", value: "Lawful development certificate", sub: "LDC for permitted development works" },
+  { label: "Flats or change of use", value: "Flats or change of use", sub: "Conversion, HMO, new units" },
+  { label: "Other", value: "Other", sub: "Tell us what you are planning" },
+];
+
+const STAGES: { label: string; value: string; sub?: string }[] = [
+  { label: "Just exploring ideas", value: "Exploring ideas", sub: "Not sure yet, need guidance" },
+  { label: "Need planning drawings", value: "Need planning drawings", sub: "Ready to start drawings soon" },
+  { label: "Need planning plus building regs", value: "Planning and building regs", sub: "Full technical package" },
+  { label: "Already spoken to the council", value: "Spoken to council", sub: "Need help with next steps" },
+  { label: "Urgent", value: "Urgent", sub: "Fast turnaround needed" },
+];
+
+export default function ProjectEnquiryForm(props: Props) {
+  const borough = clampStr(props.borough || "", 80);
+  const sourcePath = clampStr(props.sourcePath || "", 200);
+
+  const [step, setStep] = useState<StepKey>("type");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const [projectType, setProjectType] = useState(clampStr(props.defaultProjectType || "", 120));
+  const [postcode, setPostcode] = useState("");
+  const [stage, setStage] = useState("");
+  const [details, setDetails] = useState("");
+
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+
+  const [err, setErr] = useState<string>("");
+
+  const steps: StepKey[] = useMemo(() => ["type", "postcode", "stage", "details", "contact"], []);
+  const stepIndex = steps.indexOf(step);
+  const progressPct = Math.round(((stepIndex + 1) / steps.length) * 100);
+
+  const whatsappLink = useMemo(() => {
+    const msg = `Hello WEDRAWPLANS, I would like a quote for plans${borough ? " in " + borough : ""}.`;
+    return `https://wa.me/442036548508?text=${encodeURIComponent(msg)}`;
+  }, [borough]);
+
+  function validateCurrentStep() {
+    if (step === "type") {
+      if (!projectType.trim()) {
+        setErr("Please choose what you are planning.");
+        return false;
+      }
+      return true;
+    }
+
+    if (step === "postcode") {
+      const pc = postcode.trim();
+      if (!pc) {
+        setErr("Please enter the property postcode.");
+        return false;
+      }
+      if (pc.length < 5) {
+        setErr("Please enter a valid postcode.");
+        return false;
+      }
+      return true;
+    }
+
+    if (step === "stage") {
+      if (!stage.trim()) {
+        setErr("Please choose the stage you are at.");
+        return false;
+      }
+      return true;
+    }
+
+    if (step === "details") {
+      const d = details.trim();
+      if (!d) {
+        setErr("Please tell us a little about the project.");
+        return false;
+      }
+      if (d.length < 12) {
+        setErr("Please add a little more detail so we can price accurately.");
+        return false;
+      }
+      return true;
+    }
+
+    if (step === "contact") {
+      const n = name.trim();
+      const p = phone.trim();
+      const e = email.trim();
+
+      if (!n) {
+        setErr("Please enter your name.");
+        return false;
+      }
+      if (!p) {
+        setErr("Please enter your phone number.");
+        return false;
+      }
+      if (!isLikelyPhone(p)) {
+        setErr("Please enter a valid phone number.");
+        return false;
+      }
+      if (!e) {
+        setErr("Please enter your email address.");
+        return false;
+      }
+      if (!isEmail(e)) {
+        setErr("Please enter a valid email address.");
+        return false;
+      }
+      return true;
+    }
+
+    return true;
   }
 
-  const boroughNames = [
-    "Barking and Dagenham",
-    "Barnet",
-    "Bexley",
-    "Brent",
-    "Bromley",
-    "Camden",
-    "City of London",
-    "Croydon",
-    "Ealing",
-    "Enfield",
-    "Greenwich",
-    "Hackney",
-    "Hammersmith and Fulham",
-    "Haringey",
-    "Harrow",
-    "Havering",
-    "Hillingdon",
-    "Hounslow",
-    "Islington",
-    "Kensington and Chelsea",
-    "Kingston upon Thames",
-    "Lambeth",
-    "Lewisham",
-    "Merton",
-    "Newham",
-    "Redbridge",
-    "Richmond upon Thames",
-    "Southwark",
-    "Sutton",
-    "Tower Hamlets",
-    "Waltham Forest",
-    "Wandsworth",
-    "Westminster",
-  ];
+  function goNext() {
+    setErr("");
+    if (!validateCurrentStep()) return;
+    setStep(steps[Math.min(stepIndex + 1, steps.length - 1)]);
+  }
 
-  const boroughLinks: LinkItem[] = boroughNames.map((n) => ({
-    name: n,
-    href: toAreaHref(n),
-  }));
+  function goBack() {
+    setErr("");
+    setStep(steps[Math.max(stepIndex - 1, 0)]);
+  }
 
-  const popularServices = [
-    {
-      title: "Extension Plans",
-      text:
-        "Planning drawings and Building Regulations packages for single storey, double storey and wrap around extensions.",
-      href: "/extension-plans",
-      cta: "View Extension Plans",
-      img: "/images/services/extension.jpg",
-    },
-    {
-      title: "Loft Conversion Plans",
-      text:
-        "Dormer, mansard and hip to gable loft designs with drawings suitable for planning and Building Control.",
-      href: "/loft-conversion-plans",
-      cta: "View Loft Plans",
-      img: "/images/services/loft.jpg",
-    },
-    {
-      title: "New Build Plans",
-      text:
-        "New build planning drawings with coordinated technical information for tendering and compliance.",
-      href: "/new-build-plans",
-      cta: "View New Build Plans",
-      img: "/images/services/newbuild.jpg",
-    },
-  ];
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setErr("");
 
-  const featuredBoroughs: LinkItem[] = [
-    { name: "Barnet", href: "/areas/barnet" },
-    { name: "Harrow", href: "/areas/harrow" },
-    { name: "Croydon", href: "/areas/croydon" },
-    { name: "Ealing", href: "/areas/ealing" },
-    { name: "Bromley", href: "/areas/bromley" },
-    { name: "Enfield", href: "/areas/enfield" },
-    { name: "Redbridge", href: "/areas/redbridge" },
-    { name: "Havering", href: "/areas/havering" },
-  ];
+    if (!validateCurrentStep()) return;
 
-  const clusters: { title: string; items: string[] }[] = [
-    {
-      title: "North London boroughs",
-      items: ["Barnet", "Enfield", "Haringey", "Camden", "Islington"],
-    },
-    {
-      title: "West London boroughs",
-      items: [
-        "Harrow",
-        "Brent",
-        "Ealing",
-        "Hillingdon",
-        "Hounslow",
-        "Hammersmith and Fulham",
-        "Kensington and Chelsea",
-        "Westminster",
-      ],
-    },
-    {
-      title: "East London boroughs",
-      items: [
-        "Redbridge",
-        "Havering",
-        "Newham",
-        "Barking and Dagenham",
-        "Tower Hamlets",
-        "Waltham Forest",
-        "Hackney",
-      ],
-    },
-    {
-      title: "South London boroughs",
-      items: [
-        "Croydon",
-        "Bromley",
-        "Lewisham",
-        "Greenwich",
-        "Southwark",
-        "Lambeth",
-        "Wandsworth",
-        "Merton",
-        "Kingston upon Thames",
-        "Sutton",
-        "Bexley",
-        "Richmond upon Thames",
-      ],
-    },
-    {
-      title: "Central London",
-      items: ["City of London", "Westminster", "Camden", "Islington", "Kensington and Chelsea"],
-    },
-  ];
+    setIsSubmitting(true);
+    try {
+      await submitBoroughLead(e, {
+        boroughName: borough || "London",
+        sourcePath: sourcePath || "",
+      });
 
-  const localBusinessJson = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: "WEDRAWPLANS",
-    url: "https://www.wedrawplans.co.uk/areas",
-    telephone: "+44 20 3654 8508",
-    email: "info@wedrawplans.com",
-    image: "https://www.wedrawplans.co.uk/images/hero.jpg",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "201 Borough High Street",
-      addressLocality: "London",
-      postalCode: "SE1 1JA",
-      addressCountry: "UK",
-    },
-    areaServed: ["London", "Greater London", "M25 area", ...boroughNames],
-    description:
-      "Architectural drawings across London and the M25 for extensions, loft conversions, new builds, refurbishments and building regulation packages.",
-  };
+      setSubmitted(true);
+      setIsSubmitting(false);
+      if (props.onSuccess) props.onSuccess();
+    } catch (error) {
+      setIsSubmitting(false);
+      setErr("Something went wrong sending your enquiry. Please try again or call us.");
+    }
+  }
 
-  const faqJson = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Do I need planning permission for an extension in London",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Not always. Many extensions and lofts can proceed under permitted development. We confirm the correct route once we review your address, house type and any local constraints.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "How fast can you arrange an initial measured survey",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "In most cases we can arrange the initial measured survey within 48 hours of instruction, subject to access and location.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Do you submit to the local council",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Yes. We can prepare drawings, complete forms, upload documents and submit through the Planning Portal, then support planning officer queries until a decision is issued.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Can you coordinate structural engineering",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Yes. We coordinate with structural engineers so beams, load paths and supporting details are correctly designed and reflected within the drawing package.",
-        },
-      },
-    ],
-  };
+  const headline =
+    props.accentText ||
+    (borough ? `Get a fast quote for planning drawings in ${borough}` : "Get a fast quote for planning drawings");
+
+  if (submitted) {
+    return (
+      <section className="wdpWrap" aria-label="WEDRAWPLANS enquiry form">
+        <div className="wdpCard wdpCardSuccess">
+          <div className="wdpTop">
+            <div className="wdpBrand">
+              {props.logoSrc ? (
+                <div className="wdpLogo">
+                  <Image src={props.logoSrc} alt={props.logoAlt || "WEDRAWPLANS"} width={180} height={48} />
+                </div>
+              ) : (
+                <div className="wdpWordmark">WEDRAWPLANS</div>
+              )}
+              <div className="wdpTag">Architecture drawings. Planning ready.</div>
+            </div>
+            <div className="wdpMiniActions" aria-label="Quick contact">
+              <a className="wdpMiniBtn" href={PHONE_LINK}>
+                Call
+              </a>
+              <a className="wdpMiniBtn" href={whatsappLink} target="_blank" rel="noreferrer">
+                WhatsApp
+              </a>
+              <a className="wdpMiniBtn" href={EMAIL_LINK}>
+                Email
+              </a>
+            </div>
+          </div>
+
+          <div className="wdpSuccessBody">
+            <div className="wdpSuccessTitle">Thank you. We received your enquiry.</div>
+            <div className="wdpSuccessText">
+              We will contact you shortly. If you need a quicker response, call us on{" "}
+              <a href={PHONE_LINK} className="wdpInlineLink">
+                {PHONE_DISPLAY}
+              </a>{" "}
+              or message us on WhatsApp.
+            </div>
+
+            <div className="wdpSuccessActions">
+              <a className="wdpPrimary" href={whatsappLink} target="_blank" rel="noreferrer">
+                Message on WhatsApp
+              </a>
+              <a className="wdpGhost" href={PHONE_LINK}>
+                Call {PHONE_DISPLAY}
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <style jsx>{styles}</style>
+      </section>
+    );
+  }
 
   return (
-    <>
-      <Head>
-        <title>Architectural Drawings Across London and the M25 | WEDRAWPLANS</title>
-        <meta
-          name="description"
-          content="Architectural drawings across every London borough and the surrounding M25 area. Explore borough pages, popular services, planning guidance and request a fixed fee quote."
-        />
-        <link rel="canonical" href="https://www.wedrawplans.co.uk/areas" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }}
-        />
-      </Head>
+    <section className="wdpWrap" aria-label="WEDRAWPLANS enquiry form">
+      <div className="wdpCard">
+        <div className="wdpTop">
+          <div className="wdpBrand">
+            {props.logoSrc ? (
+              <div className="wdpLogo">
+                <Image src={props.logoSrc} alt={props.logoAlt || "WEDRAWPLANS"} width={180} height={48} />
+              </div>
+            ) : (
+              <div className="wdpWordmark">WEDRAWPLANS</div>
+            )}
+            <div className="wdpTag">Planning drawings. Building regs. Clear fees. Fast turnaround.</div>
+          </div>
 
-      <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
-        <AreaTopHeader />
+          <div className="wdpMiniActions" aria-label="Quick contact">
+            <a className="wdpMiniBtn" href={PHONE_LINK}>
+              Call
+            </a>
+            <a className="wdpMiniBtn" href={whatsappLink} target="_blank" rel="noreferrer">
+              WhatsApp
+            </a>
+            <a className="wdpMiniBtn" href={EMAIL_LINK}>
+              Email
+            </a>
+          </div>
+        </div>
 
-        <main>
-          <section className="border-b border-slate-200 bg-[#fdf8f3]">
-            <div className="mx-auto max-w-6xl px-4 py-8 lg:px-6 lg:py-10">
-              <div className="grid gap-6 lg:grid-cols-2 lg:gap-10">
-                <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-red-700">
-                    London coverage hub
-                  </p>
+        <div className="wdpHero">
+          <div className="wdpHeroLeft">
+            <h2 className="wdpH">{headline}</h2>
+            <div className="wdpSub">
+              Answer a few quick questions and we will come back with a clear quote and next steps.
+              {borough ? (
+                <span className="wdpLocal">
+                  <span className="wdpDot" aria-hidden="true" />
+                  Local experience in {borough}
+                </span>
+              ) : null}
+            </div>
 
-                  <h1 className="mt-2 text-[22px] sm:text-[26px] font-semibold uppercase leading-snug tracking-[0.14em]">
-                    Architectural drawings across London and the M25
-                  </h1>
-
-                  <p className="mt-3 text-[13px] text-slate-700">
-                    WEDRAWPLANS prepare planning drawings and Building Regulations drawing packages across every London
-                    borough and key surrounding locations. Use this page to find your borough, explore our services and
-                    request a fixed fee quote for your drawings.
-                  </p>
-
-                  <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
-                    <li>• House extensions, loft conversions and internal remodelling</li>
-                    <li>• New build houses and small residential schemes</li>
-                    <li>• Flat conversions and refurbishment drawing packages</li>
-                    <li>• Planning drawings plus Building Regulations packs</li>
-                    <li>• Clear scope, fast communication and fixed fees</li>
-                    <li>• Initial survey within 48 hours in most cases</li>
-                  </ul>
-
-                  <div className="mt-5 flex flex-wrap gap-3 items-center">
-                    <button
-                      onClick={scrollToForm}
-                      type="button"
-                      className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-white text-[13px] font-semibold uppercase tracking-[0.18em] hover:bg-[#4da4b4]"
-                    >
-                      Get a quick quote
-                    </button>
-
-                    <a href="tel:+442036548508" className="text-[13px] underline text-slate-800">
-                      Or call 020 3654 8508
-                    </a>
-
-                    <a
-                      href="https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20London"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-300 bg-white text-[13px] text-slate-800 hover:bg-slate-900 hover:text-white"
-                    >
-                      💬 Chat on WhatsApp
-                    </a>
-                  </div>
-
-                  <div className="mt-6 rounded-2xl border border-slate-200 bg-white px-4 py-4 shadow-sm">
-                    <div className="flex items-start gap-3">
-                      <div className="mt-0.5 grid h-9 w-9 place-items-center rounded-full border border-slate-200 bg-[#f8f4f0] text-[12px] font-semibold text-slate-900">
-                        LD
-                      </div>
-                      <div>
-                        <div className="text-[12px] font-semibold uppercase tracking-[0.22em] text-slate-600">
-                          London borough coverage map
-                        </div>
-                        <div className="mt-2 text-[13px] text-slate-700">
-                          This hub links to every borough page. Each borough page includes tailored guidance and a
-                          direct enquiry route for that location.
-                        </div>
-
-                        <div className="mt-3 rounded-xl border border-slate-200 bg-[#fdf8f3] p-3">
-                          <svg
-                            viewBox="0 0 900 320"
-                            className="h-36 w-full"
-                            role="img"
-                            aria-label="Stylised London coverage map"
-                          >
-                            <defs>
-                              <linearGradient id="g" x1="0" x2="1">
-                                <stop offset="0" stopColor="#64b7c4" />
-                                <stop offset="1" stopColor="#c4b464" />
-                              </linearGradient>
-                            </defs>
-                            <rect x="20" y="25" width="860" height="270" rx="28" fill="#ffffff" stroke="#e2e8f0" />
-                            <path
-                              d="M140 190 C210 70, 340 60, 420 120 C520 200, 640 60, 760 150 C710 250, 540 270, 420 250 C290 225, 210 260, 140 190 Z"
-                              fill="url(#g)"
-                              opacity="0.22"
-                            />
-                            <path
-                              d="M160 190 C230 85, 340 80, 420 130 C520 210, 630 85, 740 150"
-                              fill="none"
-                              stroke="#0f172a"
-                              strokeOpacity="0.35"
-                              strokeWidth="6"
-                              strokeLinecap="round"
-                            />
-                            {[
-                              { x: 210, y: 160 },
-                              { x: 290, y: 140 },
-                              { x: 365, y: 175 },
-                              { x: 445, y: 155 },
-                              { x: 520, y: 200 },
-                              { x: 610, y: 150 },
-                              { x: 690, y: 180 },
-                            ].map((p, i) => (
-                              <g key={i}>
-                                <circle cx={p.x} cy={p.y} r="10" fill="#64b7c4" opacity="0.95" />
-                                <circle cx={p.x} cy={p.y} r="18" fill="#64b7c4" opacity="0.14" />
-                              </g>
-                            ))}
-                            <text x="56" y="82" fontSize="20" fill="#0f172a" opacity="0.7">
-                              Greater London
-                            </text>
-                            <text x="56" y="110" fontSize="14" fill="#334155" opacity="0.7">
-                              Borough pages linked below
-                            </text>
-                          </svg>
-
-                          <div className="mt-2 text-[11px] uppercase tracking-[0.22em] text-slate-500">
-                            Map is stylised for display
-                          </div>
-                        </div>
-
-                        <div className="mt-4 flex flex-wrap gap-2">
-                          {featuredBoroughs.map((b) => (
-                            <a
-                              key={b.href}
-                              href={b.href}
-                              className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-[12px] font-semibold text-slate-800 hover:bg-slate-900 hover:text-white"
-                            >
-                              {b.name}
-                            </a>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div id="areas-quote" className="lg:pl-2">
-                  <ProjectEnquiryForm borough="London and M25" sourcePath="/areas" />
-                  <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-                    <div className="text-[12px] font-semibold uppercase tracking-[0.22em] text-slate-600">
-                      Fast start checklist
-                    </div>
-                    <ul className="mt-2 space-y-1 text-[13px] text-slate-700">
-                      <li>• Share postcode and a short description</li>
-                      <li>• Add photos if available</li>
-                      <li>• Confirm if you want planning only or Building Regulations as well</li>
-                      <li>• We reply with fixed fee and clear next steps</li>
-                    </ul>
-                  </div>
-                </div>
+            <div className="wdpProof">
+              <div className="wdpProofItem">
+                <div className="wdpProofNum">48h</div>
+                <div className="wdpProofLbl">Initial survey within 48 hours</div>
+              </div>
+              <div className="wdpProofItem">
+                <div className="wdpProofNum">5.0</div>
+                <div className="wdpProofLbl">Client focused service</div>
+              </div>
+              <div className="wdpProofItem">
+                <div className="wdpProofNum">100%</div>
+                <div className="wdpProofLbl">Planning ready drawings</div>
               </div>
             </div>
-          </section>
+          </div>
 
-          <ServiceInternalLinks boroughName="London" />
-
-          <section className="bg-white border-b border-slate-200 py-10">
-            <div className="mx-auto max-w-6xl px-4 lg:px-6">
-              <div className="flex items-end justify-between gap-4 flex-wrap">
-                <div>
-                  <h2 className="text-[18px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                    Popular drawing services
-                  </h2>
-                  <p className="mt-2 text-[13px] text-slate-700 max-w-2xl">
-                    Choose a service to see full scope, deliverables and how we handle planning and Building Control.
-                  </p>
-                </div>
-                <a
-                  href="/"
-                  className="rounded-full border border-slate-200 bg-[#f8f4f0] px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.18em] text-slate-900 hover:bg-slate-900 hover:text-white"
-                >
-                  Back to homepage
-                </a>
+          <div className="wdpHeroRight" aria-label="Progress">
+            <div className="wdpProgressTop">
+              <div className="wdpProgressLabel">
+                Step {stepIndex + 1} of {steps.length}
               </div>
-
-              <div className="mt-6 grid gap-4 md:grid-cols-3">
-                {popularServices.map((s) => (
-                  <a
-                    key={s.href}
-                    href={s.href}
-                    className="group rounded-2xl border border-slate-200 bg-[#fdf8f3] p-4 shadow-sm hover:bg-white transition"
-                  >
-                    <div className="relative h-28 w-full overflow-hidden rounded-xl border border-slate-200 bg-white">
-                      <Image
-                        src={s.img}
-                        alt={s.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                        style={{ objectFit: "cover" }}
-                      />
-                    </div>
-                    <div className="mt-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                      {s.title}
-                    </div>
-                    <div className="mt-2 text-[13px] text-slate-700">{s.text}</div>
-                    <div className="mt-3 inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.18em] text-red-700 group-hover:text-slate-900">
-                      {s.cta} <span aria-hidden="true">→</span>
-                    </div>
-                  </a>
-                ))}
-              </div>
+              <div className="wdpProgressPct">{progressPct}%</div>
             </div>
-          </section>
+            <div className="wdpBar" role="progressbar" aria-valuenow={progressPct} aria-valuemin={0} aria-valuemax={100}>
+              <div className="wdpBarFill" style={{ width: `${progressPct}%` }} />
+            </div>
 
-          <section className="bg-[#fdf8f3] border-b border-slate-200 py-10">
-            <div className="mx-auto max-w-6xl px-4 lg:px-6">
-              <h2 className="text-[18px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                Find your borough
-              </h2>
-              <p className="mt-2 text-[13px] text-slate-700 max-w-3xl">
-                Select your borough for tailored guidance, typical constraints and a direct enquiry route for that area.
-              </p>
+            <div className="wdpSteps">
+              {steps.map((k, i) => {
+                const isActive = i === stepIndex;
+                const isDone = i < stepIndex;
+                const label =
+                  k === "type"
+                    ? "Project"
+                    : k === "postcode"
+                    ? "Location"
+                    : k === "stage"
+                    ? "Stage"
+                    : k === "details"
+                    ? "Details"
+                    : "Contact";
+                return (
+                  <div key={k} className={`wdpStepPill ${isActive ? "active" : ""} ${isDone ? "done" : ""}`}>
+                    <span className="wdpStepDot" aria-hidden="true" />
+                    {label}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
 
-              <div className="mt-6 grid gap-4 lg:grid-cols-2">
-                <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-                  <div className="text-[12px] font-semibold uppercase tracking-[0.22em] text-slate-600">
-                    Borough clusters
-                  </div>
-                  <div className="mt-4 space-y-4">
-                    {clusters.map((c) => (
-                      <div key={c.title} className="rounded-xl border border-slate-200 bg-[#f8f4f0] p-3">
-                        <div className="text-[12px] font-semibold uppercase tracking-[0.18em] text-slate-900">
-                          {c.title}
-                        </div>
-                        <div className="mt-2 flex flex-wrap gap-2">
-                          {c.items.map((n) => (
-                            <a
-                              key={n}
-                              href={toAreaHref(n)}
-                              className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-[12px] font-semibold text-slate-800 hover:bg-slate-900 hover:text-white"
-                            >
-                              {n}
-                            </a>
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+        <form className="wdpForm" onSubmit={handleSubmit} noValidate>
+          <input type="hidden" name="borough" value={borough} />
+          <input type="hidden" name="service" value={projectType || "Planning drawings"} />
+          <input type="hidden" name="projectType" value={projectType} />
+          <input type="hidden" name="postcode" value={postcode} />
+          <input type="hidden" name="projectStage" value={stage} />
+          <input type="hidden" name="projectDetails" value={details} />
+          <input type="hidden" name="sourcePath" value={sourcePath} />
 
-                <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-                  <div className="text-[12px] font-semibold uppercase tracking-[0.22em] text-slate-600">
-                    All London borough pages
-                  </div>
-                  <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3">
-                    {boroughLinks.map((b) => (
-                      <a
-                        key={b.href}
-                        href={b.href}
-                        className="rounded-xl border border-slate-200 bg-[#fdf8f3] px-3 py-2 text-[12px] font-semibold text-slate-900 hover:bg-slate-900 hover:text-white"
-                      >
-                        {b.name}
-                      </a>
-                    ))}
-                  </div>
+          <input type="hidden" name="name" value={name} />
+          <input type="hidden" name="phone" value={phone} />
+          <input type="hidden" name="email" value={email} />
 
-                  <div className="mt-4 rounded-xl border border-slate-200 bg-[#f8f4f0] p-3">
-                    <div className="text-[12px] font-semibold uppercase tracking-[0.18em] text-slate-900">
-                      Need the fastest route to a quote
-                    </div>
-                    <div className="mt-2 text-[13px] text-slate-700">
-                      Use the enquiry form above. We respond with a clear fixed fee and next steps once we see the
-                      postcode and a short description.
-                    </div>
+          <div className="wdpPanel">
+            {step === "type" ? (
+              <>
+                <div className="wdpPanelTitle">What are you planning?</div>
+                <div className="wdpPanelHint">Choose the closest option. You can add detail later.</div>
+
+                <div className="wdpGrid">
+                  {PROJECT_TYPES.map((t) => (
                     <button
                       type="button"
-                      onClick={scrollToForm}
-                      className="mt-3 rounded-full bg-[#64b7c4] px-5 py-2.5 text-white text-[12px] font-semibold uppercase tracking-[0.2em] hover:bg-[#4da4b4]"
+                      key={t.value}
+                      className={`wdpChoice ${projectType === t.value ? "selected" : ""}`}
+                      onClick={() => setProjectType(t.value)}
                     >
-                      Go to the quote form
+                      <div className="wdpChoiceTop">
+                        <span className="wdpChoiceLabel">{t.label}</span>
+                        <span className="wdpChoiceTick" aria-hidden="true">
+                          ✓
+                        </span>
+                      </div>
+                      {t.sub ? <div className="wdpChoiceSub">{t.sub}</div> : null}
                     </button>
+                  ))}
+                </div>
+              </>
+            ) : null}
+
+            {step === "postcode" ? (
+              <>
+                <div className="wdpPanelTitle">Where is the property?</div>
+                <div className="wdpPanelHint">Enter the postcode so we can confirm the local planning context.</div>
+
+                <div className="wdpFieldRow">
+                  <label className="wdpLabel" htmlFor="wdp_postcode">
+                    Postcode
+                  </label>
+                  <input
+                    id="wdp_postcode"
+                    className="wdpInput"
+                    inputMode="text"
+                    placeholder="eg N20 0JZ"
+                    value={postcode}
+                    onChange={(e) => setPostcode(clampStr(e.target.value.toUpperCase(), 16))}
+                    autoComplete="postal-code"
+                  />
+                  <div className="wdpSmallNote">No spam. We only use your details to respond to this enquiry.</div>
+                </div>
+
+                <div className="wdpLocalStrip">
+                  <div className="wdpLocalStripTitle">Want a faster response?</div>
+                  <div className="wdpLocalStripActions">
+                    <a className="wdpInlineBtn" href={PHONE_LINK}>
+                      Call {PHONE_DISPLAY}
+                    </a>
+                    <a className="wdpInlineBtn" href={whatsappLink} target="_blank" rel="noreferrer">
+                      WhatsApp us
+                    </a>
                   </div>
                 </div>
-              </div>
-            </div>
-          </section>
+              </>
+            ) : null}
 
-          <section className="bg-white py-10">
-            <div className="mx-auto max-w-6xl px-4 lg:px-6">
-              <div className="rounded-3xl border border-slate-200 bg-[#fdf8f3] p-6 shadow-sm">
-                <div className="grid gap-6 lg:grid-cols-2 lg:gap-10 items-center">
-                  <div>
-                    <div className="text-[12px] font-semibold uppercase tracking-[0.22em] text-slate-600">
-                      Ready to start
-                    </div>
-                    <h2 className="mt-2 text-[20px] sm:text-[22px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                      Get a fixed fee quote today
-                    </h2>
-                    <p className="mt-2 text-[13px] text-slate-700">
-                      We provide a clear scope, transparent pricing and a direct route to drawings that are ready for
-                      planning submission and Building Control.
-                    </p>
-                    <div className="mt-4 flex flex-wrap gap-3">
-                      <a
-                        href="tel:+442036548508"
-                        className="rounded-full bg-slate-900 px-5 py-2.5 text-white text-[12px] font-semibold uppercase tracking-[0.2em] hover:bg-slate-800"
-                      >
-                        Call 020 3654 8508
-                      </a>
-                      <a
-                        href="mailto:info@wedrawplans.com"
-                        className="rounded-full border border-slate-300 bg-white px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.2em] text-slate-900 hover:bg-slate-900 hover:text-white"
-                      >
-                        Email us
-                      </a>
-                      <a
-                        href="https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20London"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="rounded-full border border-slate-300 bg-white px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.2em] text-slate-900 hover:bg-slate-900 hover:text-white"
-                      >
-                        WhatsApp
-                      </a>
-                    </div>
-                  </div>
+            {step === "stage" ? (
+              <>
+                <div className="wdpPanelTitle">What stage are you at?</div>
+                <div className="wdpPanelHint">This helps us price accurately and advise the right next step.</div>
 
-                  <div className="rounded-2xl border border-slate-200 bg-white p-4">
-                    <div className="text-[12px] font-semibold uppercase tracking-[0.22em] text-slate-600">
-                      Typical next steps
-                    </div>
-                    <ul className="mt-3 space-y-2 text-[13px] text-slate-700">
-                      <li>• Confirm scope and planning route</li>
-                      <li>• Arrange initial survey within 48 hours in most cases</li>
-                      <li>• Produce existing and proposed drawings</li>
-                      <li>• Submit through Planning Portal and support queries</li>
-                      <li>• Upgrade to Building Regulations pack when required</li>
-                    </ul>
+                <div className="wdpGrid">
+                  {STAGES.map((s) => (
+                    <button
+                      type="button"
+                      key={s.value}
+                      className={`wdpChoice ${stage === s.value ? "selected" : ""}`}
+                      onClick={() => setStage(s.value)}
+                    >
+                      <div className="wdpChoiceTop">
+                        <span className="wdpChoiceLabel">{s.label}</span>
+                        <span className="wdpChoiceTick" aria-hidden="true">
+                          ✓
+                        </span>
+                      </div>
+                      {s.sub ? <div className="wdpChoiceSub">{s.sub}</div> : null}
+                    </button>
+                  ))}
+                </div>
+              </>
+            ) : null}
+
+            {step === "details" ? (
+              <>
+                <div className="wdpPanelTitle">Tell us about the project</div>
+                <div className="wdpPanelHint">Write it in your own words. Mention size, storeys, or anything you already know.</div>
+
+                <div className="wdpFieldRow">
+                  <label className="wdpLabel" htmlFor="wdp_details">
+                    Project details
+                  </label>
+                  <textarea
+                    id="wdp_details"
+                    className="wdpTextarea"
+                    placeholder="eg Single storey rear extension, about 3m projection, bi-fold doors, plus planning drawings and advice on permitted development."
+                    value={details}
+                    onChange={(e) => setDetails(clampStr(e.target.value, 1200))}
+                    rows={6}
+                  />
+                  <div className="wdpCharRow">
+                    <span className="wdpCharHint">Aim for 2 to 4 sentences.</span>
+                    <span className="wdpCharCount">{details.length}/1200</span>
                   </div>
                 </div>
-              </div>
-            </div>
-          </section>
-        </main>
-      </div>
-    </>
-  );
-}
+              </>
+            ) : null}
+
+            {step === "contact" ? (
+              <>
+                <div className="wdpPanelTitle">Where should we send your quote?</div>
+                <div className="wdpPanelHint">We respond personally. Phone is best for quick clarification and faster turnaround.</div>
+
+                <div className="wdpTwoCol">
+                  <div className="wdpFieldRow">
+                    <label className="wdpLabel" htmlFor="wdp_name">
+                      Name
+                    </label>
+                    <input
+                      id="wdp_name"
+                      className="wdpInput"
+                      placeholder="Your name"
+                      value={name}
+                      onChange={(e) => setName(clampStr(e.target.value, 80))}
+                      autoComplete="name"
+                    />
+                  </div>
+
+                  <div className="wdpFieldRow">
+                    <label className="wdpLabel" htmlFor="wdp_phone">
+                      Phone
+                    </label>
+                    <input
+                      id="wdp_phone"
+                      className="wdpInput"
+                      inputMode="tel"
+                      placeholder="eg 07900 000 000"
+                      value={phone}
+                      onChange={(e) => setPhone(clampStr(e.target.value, 30))}
+                      autoComplete="tel"
+                    />
+                  </div>
+
+                  <div className="wdpFieldRow wdpFull">
+                    <label className="wdpLabel" htmlFor="wdp_email">
+                      Email
+                    </label>
+                    <input
+                      id="wdp_email"
+                      className="wdpInput"
+                      inputMode="email"
+                      placeholder="eg name@email.com"
+                      value={email}
+                      onChange={(e) => setEmail(clampStr(e.target.value, 120))}
+                      autoComplete="email"
+                    />
+                    <div className="wdpSmallNote">By submitting, you agree we may contact you about this enquiry only. No spam.</div>
+                  </div>
+                </div>
+
+                <div className="wdpSummary">
+                  <div className="wdpSummaryTitle">Your enquiry summary</div>
+                  <div className="wdpSummaryGrid">
+                    <div className="wdpSummaryItem">
+                      <div className="wdpSummaryK">Project</div>
+                      <div className="wdpSummaryV">{projectType || "Not set"}</div>
+         
