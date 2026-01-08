@@ -185,14 +185,14 @@ export default function ProjectEnquiryForm(props: Props) {
     if (!validateCurrentStep()) return;
 
     setIsSubmitting(true);
-    try {
-      // Keep all values inside the actual form fields via hidden inputs.
-      await submitBoroughLead(e);
+        try {
+      await submitBoroughLead(e, { boroughName: borough || "London" });
 
       setSubmitted(true);
       setIsSubmitting(false);
       if (props.onSuccess) props.onSuccess();
     } catch (error) {
+
       setIsSubmitting(false);
       setErr("Something went wrong sending your enquiry. Please try again or call us.");
     }
