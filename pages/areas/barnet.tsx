@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import Image from "next/image";
-import { submitBoroughLead } from "../lib/submitBoroughLead";
+import { submitBoroughLead } from "../../lib/submitBoroughLead";
 
 type StepKey = "type" | "postcode" | "stage" | "details" | "contact";
 
