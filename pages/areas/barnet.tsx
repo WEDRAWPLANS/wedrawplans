@@ -165,7 +165,8 @@ export default function BarnetAreaPage() {
         </section>
 
         <section className="linksWrap">
-          <ServiceInternalLinks />
+    <ServiceInternalLinks boroughName="Barnet" />
+
         </section>
 
         <section className="gridWrap" aria-label="Barnet projects and services">
