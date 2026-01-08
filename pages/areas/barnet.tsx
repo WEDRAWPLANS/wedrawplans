@@ -242,7 +242,6 @@ await submitBoroughLead(e, { boroughName: borough || "London" });
           </div>
         </div>
 
-        <style jsx>{styles}</style>
       </section>
     );
   }
