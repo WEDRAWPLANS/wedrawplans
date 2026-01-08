@@ -178,10 +178,7 @@ export default function ProjectEnquiryForm(props: Props) {
 
     setIsSubmitting(true);
     try {
-      await submitBoroughLead(e, {
-        boroughName: borough || "London",
-        sourcePath: sourcePath || "",
-      });
+await submitBoroughLead(e, { boroughName: borough || "London" });
 
       setSubmitted(true);
       setIsSubmitting(false);
