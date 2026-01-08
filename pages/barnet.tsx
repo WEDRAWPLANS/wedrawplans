@@ -1,4 +1,4 @@
-import { GetServerSideProps } from "next";
+import type { GetServerSideProps } from "next";
 
 export const getServerSideProps: GetServerSideProps = async () => {
   return {
@@ -9,6 +9,5 @@ export const getServerSideProps: GetServerSideProps = async () => {
   };
 };
 
-export default function Redirect() {
-  return null;
-}
+const BarnetRedirectPage = () => null;
+export default BarnetRedirectPage;
