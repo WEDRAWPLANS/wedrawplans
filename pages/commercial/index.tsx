@@ -9,47 +9,6 @@ const EMAIL_LINK = "mailto:info@wedrawplans.com";
 const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20fixed%20fee%20quote%20for%20shopfront%20and%20signage%20drawings%20in%20London";
 
-function TopHeader() {
-  return (
-    <div className="sticky top-0 z-50 border-b border-gray-200 bg-white/90 backdrop-blur">
-      <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-3 px-4 py-3">
-        <div className="flex items-center gap-3">
-          <Link
-            href="/commercial"
-            className="rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-50"
-          >
-            Back to commercial
-          </Link>
-          <span className="hidden sm:inline text-sm font-semibold text-gray-700">
-            Shopfronts and Signage
-          </span>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <a
-            href={PHONE_LINK}
-            className="hidden sm:inline-flex items-center justify-center rounded-full bg-gray-900 px-4 py-2 text-sm font-semibold text-white hover:bg-black"
-          >
-            Call {PHONE_DISPLAY}
-          </a>
-          <a
-            href={WHATSAPP_LINK}
-            className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-700"
-          >
-            WhatsApp
-          </a>
-          <a
-            href={EMAIL_LINK}
-            className="hidden md:inline-flex items-center justify-center rounded-full border border-gray-300 bg-white px-4 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-50"
-          >
-            Email
-          </a>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export default function ShopfrontsAndSignagePage() {
   return (
     <>
@@ -66,11 +25,23 @@ export default function ShopfrontsAndSignagePage() {
       </Head>
 
       <main className="min-h-screen bg-white">
-        <TopHeader />
-
         <section className="px-4 pt-10 pb-8 md:pt-14 md:pb-10">
           <div className="mx-auto w-full max-w-6xl">
-            <div className="rounded-3xl border border-gray-200 bg-gray-50 px-6 py-10 md:px-10 md:py-14">
+            <div className="flex items-center justify-between gap-4">
+              <Link href="/commercial" className="text-sm font-semibold text-emerald-700 hover:text-emerald-800">
+                Back to commercial services
+              </Link>
+              <div className="hidden sm:flex gap-3">
+                <a href={PHONE_LINK} className="text-sm font-semibold text-gray-900 hover:text-black">
+                  Call {PHONE_DISPLAY}
+                </a>
+                <a href={WHATSAPP_LINK} className="text-sm font-semibold text-emerald-700 hover:text-emerald-800">
+                  WhatsApp
+                </a>
+              </div>
+            </div>
+
+            <div className="mt-5 rounded-3xl border border-gray-200 bg-gray-50 px-6 py-10 md:px-10 md:py-14">
               <p className="text-sm font-semibold tracking-widest text-gray-700">
                 SHOPFRONTS AND SIGNAGE DRAWINGS
               </p>
@@ -146,7 +117,7 @@ export default function ShopfrontsAndSignagePage() {
                   <div className="rounded-2xl border border-gray-200 bg-gray-50 p-5">
                     <p className="text-sm font-bold text-gray-900">Building Regulations support</p>
                     <p className="mt-2 text-sm text-gray-700">
-                      Where access, thresholds and glazing safety requirements need to be demonstrated.
+                      Where door widths, access, thresholds and glazing safety requirements need to be demonstrated.
                     </p>
                   </div>
                 </div>
@@ -170,7 +141,7 @@ export default function ShopfrontsAndSignagePage() {
                 <ul className="mt-4 space-y-2 text-sm leading-relaxed text-gray-700 list-disc pl-5">
                   <li>Address and postcode</li>
                   <li>Photos of the frontage and the street context</li>
-                  <li>Any landlord or estate guidance if the unit is in a managed parade</li>
+                  <li>Any landlord or centre management guidance if the unit is inside a parade or estate</li>
                   <li>Any sketch of your preferred look and any brand signage dimensions</li>
                 </ul>
               </div>
@@ -180,7 +151,7 @@ export default function ShopfrontsAndSignagePage() {
               <div className="rounded-3xl border border-gray-200 bg-gray-50 p-8">
                 <h3 className="text-lg font-extrabold text-gray-900">Request a fixed fee quote</h3>
                 <p className="mt-3 text-sm leading-relaxed text-gray-700">
-                  Send your address, photos, and a short description of works. We will confirm the likely approval route and provide a fixed fee.
+                  Send your address, photos, and a short description of what you want to change. We will confirm the likely approval route and provide a fixed fee.
                 </p>
                 <div className="mt-6 grid gap-3">
                   <a
@@ -205,90 +176,30 @@ export default function ShopfrontsAndSignagePage() {
               </div>
 
               <div className="rounded-3xl border border-gray-200 bg-white p-8">
-                <h3 className="text-lg font-extrabold text-gray-900">Quick links</h3>
-                <div className="mt-4 grid gap-3">
-                  <Link
-                    href="/commercial"
-                    className="inline-flex items-center justify-center rounded-full border border-gray-300 bg-white px-6 py-3 text-sm font-semibold text-gray-900 hover:bg-gray-50"
-                  >
-                    Back to commercial services
-                  </Link>
-                  <Link
-                    href="/commercial/building-regulations-packs"
-                    className="inline-flex items-center justify-center rounded-full bg-gray-900 px-6 py-3 text-sm font-semibold text-white hover:bg-black"
-                  >
-                    Building Regulations packs
-                  </Link>
-                  <Link
-                    href="/commercial/change-of-use-class-e"
-                    className="inline-flex items-center justify-center rounded-full border border-gray-300 bg-white px-6 py-3 text-sm font-semibold text-gray-900 hover:bg-gray-50"
-                  >
-                    Change of use guidance
-                  </Link>
+                <h3 className="text-lg font-extrabold text-gray-900">Common questions</h3>
+                <div className="mt-4 space-y-4">
+                  <div>
+                    <p className="text-sm font-bold text-gray-900">Do I need planning for a shopfront upgrade</p>
+                    <p className="mt-1 text-sm text-gray-700">
+                      Often yes, especially if you change the appearance, glazing layout, signage, illumination or add shutters.
+                      We confirm the best route after a quick review.
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-gray-900">What if the building is listed</p>
+                    <p className="mt-1 text-sm text-gray-700">
+                      Listed Building Consent may be required. We focus on heritage appropriate detailing and clear drawings.
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-gray-900">Can you help with landlord packs</p>
+                    <p className="mt-1 text-sm text-gray-700">
+                      Yes. Many landlords want a clear drawing set to approve the frontage design before works begin.
+                    </p>
+                  </div>
                 </div>
               </div>
             </aside>
-          </div>
-        </section>
-
-        <section className="px-4 pb-14">
-          <div className="mx-auto w-full max-w-6xl">
-            <div className="rounded-3xl border border-gray-200 bg-gray-50 p-8 md:p-10">
-              <h3 className="text-xl font-extrabold text-gray-900">
-                Ready to move forward
-              </h3>
-              <p className="mt-2 max-w-3xl text-sm leading-relaxed text-gray-700">
-                We can confirm your approval route, prepare a clean drawing pack, and support your submission. Send your address and frontage photos to get a fixed fee quote.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <a
-                  href={WHATSAPP_LINK}
-                  className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white hover:bg-emerald-700"
-                >
-                  WhatsApp for a quote
-                </a>
-                <a
-                  href={PHONE_LINK}
-                  className="inline-flex items-center justify-center rounded-full border border-gray-300 bg-white px-6 py-3 text-sm font-semibold text-gray-900 hover:bg-gray-100"
-                >
-                  Call {PHONE_DISPLAY}
-                </a>
-                <a
-                  href={EMAIL_LINK}
-                  className="inline-flex items-center justify-center rounded-full border border-gray-300 bg-white px-6 py-3 text-sm font-semibold text-gray-900 hover:bg-gray-100"
-                >
-                  Email {EMAIL_DISPLAY}
-                </a>
-              </div>
-
-              <div className="mt-8 flex flex-wrap items-center gap-3">
-                <Link
-                  href="/commercial"
-                  className="inline-flex items-center justify-center rounded-full border border-gray-300 bg-white px-6 py-3 text-sm font-semibold text-gray-900 hover:bg-gray-100"
-                >
-                  Back to commercial services
-                </Link>
-                <span className="text-sm text-gray-500">or</span>
-                <Link
-                  href="/commercial/commercial-drawings-overview"
-                  className="inline-flex items-center justify-center rounded-full bg-gray-900 px-6 py-3 text-sm font-semibold text-white hover:bg-black"
-                >
-                  Commercial drawings overview
-                </Link>
-              </div>
-            </div>
-
-            <div className="mt-10 flex items-center justify-between gap-4 rounded-2xl border border-gray-200 bg-white px-6 py-5">
-              <p className="text-sm text-gray-700">
-                You will never get trapped. Use the top bar to go back to Commercial, or contact us any time.
-              </p>
-              <Link
-                href="/commercial"
-                className="hidden sm:inline-flex rounded-full border border-gray-300 bg-white px-5 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-50"
-              >
-                Back to commercial
-              </Link>
-            </div>
           </div>
         </section>
       </main>
