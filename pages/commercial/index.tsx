@@ -7,96 +7,94 @@ const PHONE_LINK = "tel:+442036548508";
 const EMAIL_DISPLAY = "info@wedrawplans.com";
 const EMAIL_LINK = "mailto:info@wedrawplans.com";
 const WHATSAPP_LINK =
-  "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20commercial%20and%20mixed%20use%20drawings%20in%20London";
+  "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20fixed%20fee%20quote%20for%20shopfront%20and%20signage%20drawings%20in%20London";
 
-const services = [
-  {
-    title: "Shopfronts and signage drawings",
-    desc: "Planning and listed building drawing packs for new shopfronts, doors, glazing, fascias, signs and lighting.",
-    href: "/commercial/shopfronts-and-signage",
-  },
-  {
-    title: "Restaurant and cafe layouts",
-    desc: "Layouts, seating plans, back of house, extraction coordination and compliance focused drawing sets.",
-    href: "/commercial/restaurant-and-cafe-layouts",
-  },
-  {
-    title: "Office fit out plans",
-    desc: "Cat A and Cat B layouts, partitioning, reflected ceiling plans, schedules and compliance notes.",
-    href: "/commercial/office-fit-out-plans",
-  },
-  {
-    title: "Change of use applications (Class E, Sui Generis)",
-    desc: "Change of use planning packs with supporting drawings and a clear submission strategy.",
-    href: "/commercial/change-of-use-class-e",
-  },
-  {
-    title: "Mixed use schemes above shops",
-    desc: "Residential units above commercial with planning drawings, coordination and practical layouts.",
-    href: "/commercial/mixed-use-above-shops",
-  },
-  {
-    title: "Basements and plant rooms",
-    desc: "Basement layouts, risers, plant rooms, ventilation strategy and compliance focused coordination.",
-    href: "/commercial/basements-and-plant-rooms",
-  },
-  {
-    title: "Fire strategy and means of escape",
-    desc: "Practical fire and escape layout coordination to support Building Control and design development.",
-    href: "/commercial/fire-strategy-means-of-escape",
-  },
-  {
-    title: "Building Regulations packs",
-    desc: "Building Regulations drawings and specifications tailored for commercial and mixed use projects.",
-    href: "/commercial/building-regulations-packs",
-  },
-  {
-    title: "Commercial drawings overview",
-    desc: "A complete overview of how we support commercial projects across London from survey to submission.",
-    href: "/commercial/commercial-drawings-overview",
-  },
-];
+function TopHeader() {
+  return (
+    <div className="sticky top-0 z-50 border-b border-gray-200 bg-white/90 backdrop-blur">
+      <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-3 px-4 py-3">
+        <div className="flex items-center gap-3">
+          <Link
+            href="/commercial"
+            className="rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-50"
+          >
+            Back to commercial
+          </Link>
+          <span className="hidden sm:inline text-sm font-semibold text-gray-700">
+            Shopfronts and Signage
+          </span>
+        </div>
 
-export default function CommercialIndexPage() {
+        <div className="flex items-center gap-2">
+          <a
+            href={PHONE_LINK}
+            className="hidden sm:inline-flex items-center justify-center rounded-full bg-gray-900 px-4 py-2 text-sm font-semibold text-white hover:bg-black"
+          >
+            Call {PHONE_DISPLAY}
+          </a>
+          <a
+            href={WHATSAPP_LINK}
+            className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-700"
+          >
+            WhatsApp
+          </a>
+          <a
+            href={EMAIL_LINK}
+            className="hidden md:inline-flex items-center justify-center rounded-full border border-gray-300 bg-white px-4 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-50"
+          >
+            Email
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function ShopfrontsAndSignagePage() {
   return (
     <>
       <Head>
-        <title>Commercial and Mixed Use Drawings London | WEDRAWPLANS</title>
+        <title>Shopfront and Signage Drawings London | WEDRAWPLANS</title>
         <meta
           name="description"
-          content="Commercial and mixed use drawings across London. Shopfront upgrades, restaurant layouts, office fit outs, change of use applications and Building Regulations packs."
+          content="Shopfront and signage drawings across London. Planning and listed building packs for shopfront upgrades, new doors, glazing, fascias, signs and lighting."
         />
-        <link rel="canonical" href="https://www.wedrawplans.co.uk/commercial" />
+        <link
+          rel="canonical"
+          href="https://www.wedrawplans.co.uk/commercial/shopfronts-and-signage"
+        />
       </Head>
 
       <main className="min-h-screen bg-white">
+        <TopHeader />
+
         <section className="px-4 pt-10 pb-8 md:pt-14 md:pb-10">
           <div className="mx-auto w-full max-w-6xl">
             <div className="rounded-3xl border border-gray-200 bg-gray-50 px-6 py-10 md:px-10 md:py-14">
               <p className="text-sm font-semibold tracking-widest text-gray-700">
-                COMMERCIAL AND MIXED USE DRAWINGS
+                SHOPFRONTS AND SIGNAGE DRAWINGS
               </p>
               <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-gray-900 md:text-5xl">
-                Planning and Building Regulations drawing packs for commercial projects across London
+                Planning ready shopfront packs for councils, landlords and building control
               </h1>
               <p className="mt-4 max-w-3xl text-base leading-relaxed text-gray-700 md:text-lg">
-                WEDRAWPLANS prepare clear, council ready drawing packs for shopfront upgrades, restaurants and cafes,
-                office fit outs, change of use applications, mixed use schemes and compliance focused Building Regulations
-                submissions. Fixed fee quotes, fast turnaround, and a practical approach to approvals.
+                We prepare shopfront upgrade drawings for retail units, cafes, takeaways and mixed use buildings across London.
+                This includes new doors, glazing, framing, fascias, signage, lighting and external finishes. If the building is listed
+                or in a conservation area we align the proposal with heritage expectations and prepare a clear submission pack.
               </p>
 
               <div className="mt-7 flex flex-wrap gap-3">
+                <a
+                  href={WHATSAPP_LINK}
+                  className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white hover:bg-emerald-700"
+                >
+                  Request a fixed fee quote
+                </a>
                 <a
                   href={PHONE_LINK}
                   className="inline-flex items-center justify-center rounded-full bg-gray-900 px-6 py-3 text-sm font-semibold text-white hover:bg-black"
                 >
                   Call {PHONE_DISPLAY}
-                </a>
-                <a
-                  href={WHATSAPP_LINK}
-                  className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white hover:bg-emerald-700"
-                >
-                  WhatsApp
                 </a>
                 <a
                   href={EMAIL_LINK}
@@ -110,34 +108,137 @@ export default function CommercialIndexPage() {
         </section>
 
         <section className="px-4 pb-14">
-          <div className="mx-auto w-full max-w-6xl">
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {services.map((s) => (
-                <Link
-                  key={s.href}
-                  href={s.href}
-                  className="group rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:border-gray-300 hover:shadow-md"
-                >
-                  <h2 className="text-lg font-bold text-gray-900 group-hover:text-gray-950">
-                    {s.title}
-                  </h2>
-                  <p className="mt-2 text-sm leading-relaxed text-gray-700">
-                    {s.desc}
-                  </p>
-                  <p className="mt-4 text-sm font-semibold text-emerald-700">
-                    View guidance and request a fixed fee quote
-                  </p>
-                </Link>
-              ))}
+          <div className="mx-auto w-full max-w-6xl grid gap-6 lg:grid-cols-3">
+            <div className="lg:col-span-2 space-y-6">
+              <div className="rounded-3xl border border-gray-200 bg-white p-8">
+                <h2 className="text-xl font-extrabold text-gray-900">What we produce</h2>
+                <ul className="mt-4 space-y-2 text-sm leading-relaxed text-gray-700 list-disc pl-5">
+                  <li>Existing and proposed elevations showing full shopfront design</li>
+                  <li>Plan layout where required to show relationship to the building frontage</li>
+                  <li>Typical sections through glazing, framing, thresholds and signage zone</li>
+                  <li>Materials and finishes schedule, colour references, and lighting notes</li>
+                  <li>Door and glazing specification notes aligned with approvals</li>
+                  <li>Submission ready PDFs with a clear drawing index</li>
+                </ul>
+              </div>
+
+              <div className="rounded-3xl border border-gray-200 bg-white p-8">
+                <h2 className="text-xl font-extrabold text-gray-900">Approvals we support</h2>
+                <div className="mt-4 grid gap-4 md:grid-cols-2">
+                  <div className="rounded-2xl border border-gray-200 bg-gray-50 p-5">
+                    <p className="text-sm font-bold text-gray-900">Planning permission</p>
+                    <p className="mt-2 text-sm text-gray-700">
+                      Used where the council controls design, appearance, signage zones, lighting, shutters and external alterations.
+                    </p>
+                  </div>
+                  <div className="rounded-2xl border border-gray-200 bg-gray-50 p-5">
+                    <p className="text-sm font-bold text-gray-900">Listed Building Consent</p>
+                    <p className="mt-2 text-sm text-gray-700">
+                      For listed properties. We focus on heritage sensitive details and a clear justification for changes.
+                    </p>
+                  </div>
+                  <div className="rounded-2xl border border-gray-200 bg-gray-50 p-5">
+                    <p className="text-sm font-bold text-gray-900">Advertisement consent</p>
+                    <p className="mt-2 text-sm text-gray-700">
+                      For fascia signs, projecting signs, illuminated signage and other advertisement elements.
+                    </p>
+                  </div>
+                  <div className="rounded-2xl border border-gray-200 bg-gray-50 p-5">
+                    <p className="text-sm font-bold text-gray-900">Building Regulations support</p>
+                    <p className="mt-2 text-sm text-gray-700">
+                      Where access, thresholds and glazing safety requirements need to be demonstrated.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="rounded-3xl border border-gray-200 bg-white p-8">
+                <h2 className="text-xl font-extrabold text-gray-900">Process and timeframes</h2>
+                <ol className="mt-4 space-y-3 text-sm leading-relaxed text-gray-700 list-decimal pl-5">
+                  <li>Quick intake call and document review including lease and landlord requirements if relevant</li>
+                  <li>Site survey or photo measurement method depending on complexity and access</li>
+                  <li>Draft drawings issued for review, then final submission set prepared</li>
+                  <li>Submission support and follow up for council queries where required</li>
+                </ol>
+                <p className="mt-4 text-sm text-gray-700">
+                  Typical turnaround for first drafts is fast once survey is complete. Fixed fee is confirmed after we review the scope and approval route.
+                </p>
+              </div>
+
+              <div className="rounded-3xl border border-gray-200 bg-white p-8">
+                <h2 className="text-xl font-extrabold text-gray-900">What we need from you</h2>
+                <ul className="mt-4 space-y-2 text-sm leading-relaxed text-gray-700 list-disc pl-5">
+                  <li>Address and postcode</li>
+                  <li>Photos of the frontage and the street context</li>
+                  <li>Any landlord or estate guidance if the unit is in a managed parade</li>
+                  <li>Any sketch of your preferred look and any brand signage dimensions</li>
+                </ul>
+              </div>
             </div>
 
-            <div className="mt-10 rounded-3xl border border-gray-200 bg-gray-50 p-8 md:p-10">
+            <aside className="space-y-6">
+              <div className="rounded-3xl border border-gray-200 bg-gray-50 p-8">
+                <h3 className="text-lg font-extrabold text-gray-900">Request a fixed fee quote</h3>
+                <p className="mt-3 text-sm leading-relaxed text-gray-700">
+                  Send your address, photos, and a short description of works. We will confirm the likely approval route and provide a fixed fee.
+                </p>
+                <div className="mt-6 grid gap-3">
+                  <a
+                    href={WHATSAPP_LINK}
+                    className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white hover:bg-emerald-700"
+                  >
+                    WhatsApp now
+                  </a>
+                  <a
+                    href={PHONE_LINK}
+                    className="inline-flex items-center justify-center rounded-full border border-gray-300 bg-white px-6 py-3 text-sm font-semibold text-gray-900 hover:bg-gray-100"
+                  >
+                    Call {PHONE_DISPLAY}
+                  </a>
+                  <a
+                    href={EMAIL_LINK}
+                    className="inline-flex items-center justify-center rounded-full border border-gray-300 bg-white px-6 py-3 text-sm font-semibold text-gray-900 hover:bg-gray-100"
+                  >
+                    Email {EMAIL_DISPLAY}
+                  </a>
+                </div>
+              </div>
+
+              <div className="rounded-3xl border border-gray-200 bg-white p-8">
+                <h3 className="text-lg font-extrabold text-gray-900">Quick links</h3>
+                <div className="mt-4 grid gap-3">
+                  <Link
+                    href="/commercial"
+                    className="inline-flex items-center justify-center rounded-full border border-gray-300 bg-white px-6 py-3 text-sm font-semibold text-gray-900 hover:bg-gray-50"
+                  >
+                    Back to commercial services
+                  </Link>
+                  <Link
+                    href="/commercial/building-regulations-packs"
+                    className="inline-flex items-center justify-center rounded-full bg-gray-900 px-6 py-3 text-sm font-semibold text-white hover:bg-black"
+                  >
+                    Building Regulations packs
+                  </Link>
+                  <Link
+                    href="/commercial/change-of-use-class-e"
+                    className="inline-flex items-center justify-center rounded-full border border-gray-300 bg-white px-6 py-3 text-sm font-semibold text-gray-900 hover:bg-gray-50"
+                  >
+                    Change of use guidance
+                  </Link>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <section className="px-4 pb-14">
+          <div className="mx-auto w-full max-w-6xl">
+            <div className="rounded-3xl border border-gray-200 bg-gray-50 p-8 md:p-10">
               <h3 className="text-xl font-extrabold text-gray-900">
-                Want a fixed fee quote today
+                Ready to move forward
               </h3>
               <p className="mt-2 max-w-3xl text-sm leading-relaxed text-gray-700">
-                Send your address, a short description of what you want to do, and any photos or sketches you already have.
-                We will confirm the correct approval route and send a fixed fee quote.
+                We can confirm your approval route, prepare a clean drawing pack, and support your submission. Send your address and frontage photos to get a fixed fee quote.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <a
@@ -159,6 +260,34 @@ export default function CommercialIndexPage() {
                   Email {EMAIL_DISPLAY}
                 </a>
               </div>
+
+              <div className="mt-8 flex flex-wrap items-center gap-3">
+                <Link
+                  href="/commercial"
+                  className="inline-flex items-center justify-center rounded-full border border-gray-300 bg-white px-6 py-3 text-sm font-semibold text-gray-900 hover:bg-gray-100"
+                >
+                  Back to commercial services
+                </Link>
+                <span className="text-sm text-gray-500">or</span>
+                <Link
+                  href="/commercial/commercial-drawings-overview"
+                  className="inline-flex items-center justify-center rounded-full bg-gray-900 px-6 py-3 text-sm font-semibold text-white hover:bg-black"
+                >
+                  Commercial drawings overview
+                </Link>
+              </div>
+            </div>
+
+            <div className="mt-10 flex items-center justify-between gap-4 rounded-2xl border border-gray-200 bg-white px-6 py-5">
+              <p className="text-sm text-gray-700">
+                You will never get trapped. Use the top bar to go back to Commercial, or contact us any time.
+              </p>
+              <Link
+                href="/commercial"
+                className="hidden sm:inline-flex rounded-full border border-gray-300 bg-white px-5 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-50"
+              >
+                Back to commercial
+              </Link>
             </div>
           </div>
         </section>
