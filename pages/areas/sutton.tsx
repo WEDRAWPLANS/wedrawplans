@@ -3,6 +3,8 @@ import Head from "next/head";
 import Image from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
 import ServiceInternalLinks from "../../components/ServiceInternalLinks";
+import AreaTopHeader from "../../components/AreaTopHeader";
+
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
@@ -113,7 +115,7 @@ export default function SuttonAreaPage() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }}
         />
       </Head>
-
+<AreaTopHeader />
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
         <main>
           <section className="border-b border-slate-200 bg-[#fdf8f3]">
