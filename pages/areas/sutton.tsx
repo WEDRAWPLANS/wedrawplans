@@ -2,7 +2,6 @@ import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
-import AreaTopHeader from "../../components/AreaTopHeader";
 import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 
 const PHONE_DISPLAY = "020 3654 8508";
@@ -46,11 +45,11 @@ export default function SuttonAreaPage() {
       "Beddington",
       "Rosehill",
       "St Helier",
-      "South Sutton",
       "Sutton Common",
+      "South Sutton",
     ],
     description:
-      "Architectural drawing services in Sutton for extensions, loft conversions, refurbishments, outbuildings and building regulations.",
+      "Architectural drawing services in Sutton for extensions, loft conversions, outbuildings, refurbishments and building regulations.",
   };
 
   const faqJson = {
@@ -63,16 +62,16 @@ export default function SuttonAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Not always. Many rear extensions in Sutton can be carried out under permitted development. We confirm the best route once we review your address, house type and any local restrictions.",
+            "Not always. Many rear extensions in Sutton can be carried out under permitted development. We confirm the correct route once we review your address and house type.",
         },
       },
       {
         "@type": "Question",
-        name: "Are loft conversions straightforward in Sutton?",
+        name: "Is Sutton strict with loft conversions and extensions?",
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Often yes, especially on suburban semis and terraces, but the right approach depends on roof shape, volume limits, dormer position and any character constraints. We design the layout and planning package to maximise approval chances.",
+            "Sutton follows national permitted development rules but can be stricter in conservation areas and character streets. We shape each design to match local expectations.",
         },
       },
       {
@@ -81,7 +80,7 @@ export default function SuttonAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Householder planning applications typically take around six to eight weeks after validation. Lawful Development Certificates often take around four to six weeks depending on workload.",
+            "Householder planning applications normally take six to eight weeks after validation. Lawful Development Certificates often take around four to six weeks.",
         },
       },
       {
@@ -90,7 +89,7 @@ export default function SuttonAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Yes. We prepare drawings, complete forms, upload documents, submit and respond to planning officer queries through to decision.",
+            "Yes. We prepare drawings, complete forms, upload documents, submit to Sutton Council and respond to planning officer queries.",
         },
       },
     ],
@@ -115,9 +114,44 @@ export default function SuttonAreaPage() {
         />
       </Head>
 
-      <AreaTopHeader />
-
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
+        <header className="border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur">
+          <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 lg:px-6">
+            <a href="/" className="flex items-center gap-2">
+              <div className="grid h-10 w-10 place-items-center rounded-full border border-slate-500 text-xs font-semibold tracking-[0.18em] text-red-700">
+                WD
+              </div>
+              <div className="leading-tight">
+                <div className="text-lg font-semibold tracking-[0.2em] uppercase">WEDRAWPLANS</div>
+                <div className="text-[11px] uppercase tracking-[0.2em] text-slate-500">
+                  Architectural drawing consultants
+                </div>
+              </div>
+            </a>
+
+            <div className="flex items-center gap-2">
+              <a
+                href={PHONE_LINK}
+                className="hidden items-center gap-1 rounded-full border border-slate-300 px-3 py-1.5 text-[12px] font-medium text-slate-900 shadow-sm hover:bg-slate-900 hover:text-white sm:inline-flex"
+              >
+                <span>📞</span>
+                <span>{PHONE_DISPLAY}</span>
+              </a>
+
+              <a
+                href={WHATSAPP_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 rounded-full bg-[#25D366] px-3 py-1.5 text-[12px] font-medium text-white shadow-sm hover:bg-[#1ebe57]"
+              >
+                <span>💬</span>
+                <span className="hidden sm:inline">WhatsApp us</span>
+                <span className="sm:hidden">Chat</span>
+              </a>
+            </div>
+          </div>
+        </header>
+
         <main>
           <section className="border-b border-slate-200 bg-[#fdf8f3]">
             <div className="mx-auto max-w-5xl flex flex-col lg:flex-row gap-6 px-4 py-8 lg:px-6 lg:py-10">
@@ -131,14 +165,13 @@ export default function SuttonAreaPage() {
                 </h1>
 
                 <p className="mt-3 text-[13px] text-slate-700">
-                  WEDRAWPLANS prepare planning and technical drawings for house extensions, loft conversions,
-                  refurbishments, outbuildings and smaller residential schemes across the London Borough of Sutton.
-                  Fixed fees with clear scope and fast communication.
+                  WEDRAWPLANS prepare planning and technical drawings for house extensions, loft conversions, new builds
+                  and conversions across the London Borough of Sutton. Fixed fees with clear scope and fast communication.
                 </p>
 
                 <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
-                  <li>• House extensions, side returns and internal remodelling</li>
-                  <li>• Loft conversions including dormers and hip to gable where suitable</li>
+                  <li>• House extensions, wrap around extensions and internal remodelling</li>
+                  <li>• Loft conversions including hip to gable and rear dormers</li>
                   <li>• New build houses and small residential schemes</li>
                   <li>• Planning drawings and building regulation packs</li>
                   <li>• Covering Sutton, Cheam, Carshalton, Wallington and Worcester Park</li>
@@ -167,8 +200,8 @@ export default function SuttonAreaPage() {
                   </h2>
 
                   <p className="mt-1 text-[12px] text-slate-600">
-                    Tell us a little about your property in Sutton and what you plan to build. We will reply with a
-                    clear fixed fee for your drawings.
+                    Tell us a little about your property and what you plan to build. We will reply with a clear fixed fee
+                    for your drawings.
                   </p>
 
                   <form onSubmit={handleSubmit} className="mt-3 space-y-3 text-[13px]">
@@ -241,7 +274,7 @@ export default function SuttonAreaPage() {
                       <textarea
                         name="projectDetails"
                         rows={4}
-                        placeholder="For example: rear extension to a semi in Cheam with a new open plan kitchen diner and skylights."
+                        placeholder="For example: rear extension to a 1930s semi with a new open plan kitchen diner and a loft bedroom."
                         className="w-full border border-slate-300 rounded bg-white px-2 py-2 focus:border-[#64b7c4] outline-none"
                       />
                     </div>
@@ -254,8 +287,8 @@ export default function SuttonAreaPage() {
                     </button>
 
                     <p className="text-[11px] text-slate-500 mt-2">
-                      Typical Sutton projects include rear extensions, loft conversions, garage conversions and full
-                      internal reconfiguration for open plan living.
+                      Typical Sutton projects include rear extensions, loft conversions, garage conversions and reconfiguration
+                      for open plan living.
                     </p>
                   </form>
                 </div>
@@ -274,12 +307,12 @@ export default function SuttonAreaPage() {
                   </h2>
                   <p className="text-[13px] text-slate-700">
                     WEDRAWPLANS provide full drawing packages for single and double storey extensions, loft conversions,
-                    internal alterations, garage conversions, outbuildings, flat conversions and small new developments
-                    across the borough of Sutton.
+                    internal alterations, garage conversions, outbuildings, flat conversions and small new developments across
+                    the borough of Sutton.
                   </p>
                   <p className="text-[13px] text-slate-700">
-                    We work throughout Sutton, Cheam, Carshalton, Wallington, Worcester Park, Hackbridge, Beddington,
-                    Rosehill and surrounding neighbourhoods.
+                    We work throughout Sutton, Cheam, Carshalton, Wallington, Worcester Park, Hackbridge, Beddington and nearby
+                    streets.
                   </p>
 
                   <div className="flex flex-wrap gap-3 items-center">
@@ -328,7 +361,7 @@ export default function SuttonAreaPage() {
                   </h3>
                   <Image
                     src="/images/hero.jpg"
-                    alt="Residential street scene in Sutton"
+                    alt="Local area in Sutton"
                     width={800}
                     height={500}
                     className="rounded-xl object-cover mb-3"
@@ -348,8 +381,8 @@ export default function SuttonAreaPage() {
                       <li>Hackbridge</li>
                       <li>Beddington</li>
                       <li>St Helier</li>
-                      <li>South Sutton</li>
                       <li>Sutton Common</li>
+                      <li>South Sutton</li>
                     </ul>
                   </div>
                 </div>
@@ -360,11 +393,11 @@ export default function SuttonAreaPage() {
                   </h3>
                   <div className="grid grid-cols-2 gap-3 text-[13px] text-slate-700">
                     <ul className="list-disc pl-4 space-y-1">
-                      <li>Single storey rear extensions</li>
-                      <li>Two storey rear and side extensions</li>
-                      <li>Infill and side extensions</li>
-                      <li>Loft conversions with dormers</li>
-                      <li>Hip to gable where suitable</li>
+                      <li>Rear extensions and kitchen diners</li>
+                      <li>Two storey extensions where suitable</li>
+                      <li>Side extensions and infill extensions</li>
+                      <li>Hip to gable loft conversions</li>
+                      <li>Rear dormers with ensuite</li>
                     </ul>
                     <ul className="list-disc pl-4 space-y-1">
                       <li>Garage conversions</li>
@@ -376,7 +409,7 @@ export default function SuttonAreaPage() {
                   </div>
                   <Image
                     src="/images/hero.jpg"
-                    alt="Example home improvement project"
+                    alt="Completed home improvement project"
                     width={800}
                     height={500}
                     className="rounded-xl object-cover mt-2"
@@ -389,8 +422,8 @@ export default function SuttonAreaPage() {
                   Permitted development limits in Sutton
                 </h2>
                 <p className="text-[13px] text-slate-700">
-                  This is a simplified guide to common permitted development limits. Final confirmation depends on your
-                  house type, location and any Article 4 directions.
+                  This is a simplified guide to common permitted development limits. Final confirmation depends on your house
+                  type, location and any Article 4 directions.
                 </p>
 
                 <div className="grid md:grid-cols-3 gap-8 text-[13px] text-slate-700">
@@ -459,9 +492,8 @@ export default function SuttonAreaPage() {
                   Local planning knowledge for Sutton projects
                 </h2>
                 <p className="text-[13px] text-emerald-900">
-                  Sutton includes a mix of suburban semis, terraces and larger family homes, with pockets that have
-                  stronger character expectations. We shape each scheme to match local context so approval chances are
-                  as strong as possible.
+                  Sutton includes character pockets and conservation areas alongside suburban semis and terraces. We shape
+                  each scheme to match local context so approval chances are as strong as possible.
                 </p>
               </div>
 
@@ -471,13 +503,13 @@ export default function SuttonAreaPage() {
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
                     <h3 className="font-semibold text-slate-900">Do I need planning permission in Sutton</h3>
                     <p>
-                      Many extensions and lofts can proceed under permitted development. We check your address and
-                      advise the best route at the start.
+                      Many extensions and lofts can proceed under permitted development. We check your address and advise the
+                      best route at the start.
                     </p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
                     <h3 className="font-semibold text-slate-900">How fast can you survey</h3>
-                    <p>In most cases we can arrange the initial measured survey within forty eight hours of instruction.</p>
+                    <p>In most cases we can arrange the initial survey within forty eight hours of instruction.</p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
                     <h3 className="font-semibold text-slate-900">Do you submit to Sutton Council</h3>
@@ -486,8 +518,8 @@ export default function SuttonAreaPage() {
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
                     <h3 className="font-semibold text-slate-900">Can you coordinate structural design</h3>
                     <p>
-                      Yes. We coordinate with structural engineers so beams and load paths are designed and shown
-                      correctly on the drawings.
+                      Yes. We coordinate with structural engineers so beams and load paths are designed and shown correctly on
+                      the drawings.
                     </p>
                   </div>
                 </div>
@@ -497,8 +529,8 @@ export default function SuttonAreaPage() {
                 <div>
                   <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">Ready to start your project</h2>
                   <p className="text-[13px] text-slate-300 mt-2">
-                    Send your postcode and a short description. We review and reply with a fixed fee and recommended
-                    next steps.
+                    Send your postcode and a short description. We review and reply with a fixed fee and recommended next
+                    steps.
                   </p>
                 </div>
                 <div className="flex flex-col space-y-2 text-[13px]">
