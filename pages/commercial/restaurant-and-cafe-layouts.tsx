@@ -258,7 +258,8 @@ export default function RestaurantAndCafeLayoutsPage() {
             </div>
           </section>
 
-          <ServiceInternalLinks />
+          <ServiceInternalLinks boroughName="London" />
+
 
           <section className="bg-white border-b border-slate-200 py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
