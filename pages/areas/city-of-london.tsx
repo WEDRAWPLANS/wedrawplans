@@ -362,7 +362,7 @@ export default function CityOfLondonAreaPage() {
                     City of London areas we cover
                   </h3>
                   <Image
-                    src="/images/hero.jpg"
+                    src="/images/cityoflondon-area.jpg"
                     alt="City of London local area"
                     width={800}
                     height={500}
