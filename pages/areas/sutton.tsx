@@ -115,43 +115,6 @@ export default function SuttonAreaPage() {
       </Head>
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
-        <header className="border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur">
-          <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 lg:px-6">
-            <a href="/" className="flex items-center gap-2">
-              <div className="grid h-10 w-10 place-items-center rounded-full border border-slate-500 text-xs font-semibold tracking-[0.18em] text-red-700">
-                WD
-              </div>
-              <div className="leading-tight">
-                <div className="text-lg font-semibold tracking-[0.2em] uppercase">WEDRAWPLANS</div>
-                <div className="text-[11px] uppercase tracking-[0.2em] text-slate-500">
-                  Architectural drawing consultants
-                </div>
-              </div>
-            </a>
-
-            <div className="flex items-center gap-2">
-              <a
-                href={PHONE_LINK}
-                className="hidden items-center gap-1 rounded-full border border-slate-300 px-3 py-1.5 text-[12px] font-medium text-slate-900 shadow-sm hover:bg-slate-900 hover:text-white sm:inline-flex"
-              >
-                <span>📞</span>
-                <span>{PHONE_DISPLAY}</span>
-              </a>
-
-              <a
-                href={WHATSAPP_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 rounded-full bg-[#25D366] px-3 py-1.5 text-[12px] font-medium text-white shadow-sm hover:bg-[#1ebe57]"
-              >
-                <span>💬</span>
-                <span className="hidden sm:inline">WhatsApp us</span>
-                <span className="sm:hidden">Chat</span>
-              </a>
-            </div>
-          </div>
-        </header>
-
         <main>
           <section className="border-b border-slate-200 bg-[#fdf8f3]">
             <div className="mx-auto max-w-5xl flex flex-col lg:flex-row gap-6 px-4 py-8 lg:px-6 lg:py-10">
@@ -166,7 +129,8 @@ export default function SuttonAreaPage() {
 
                 <p className="mt-3 text-[13px] text-slate-700">
                   WEDRAWPLANS prepare planning and technical drawings for house extensions, loft conversions, new builds
-                  and conversions across the London Borough of Sutton. Fixed fees with clear scope and fast communication.
+                  and conversions across the London Borough of Sutton. Fixed fees with clear scope and fast
+                  communication.
                 </p>
 
                 <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
@@ -200,8 +164,8 @@ export default function SuttonAreaPage() {
                   </h2>
 
                   <p className="mt-1 text-[12px] text-slate-600">
-                    Tell us a little about your property and what you plan to build. We will reply with a clear fixed fee
-                    for your drawings.
+                    Tell us a little about your property and what you plan to build. We will reply with a clear fixed
+                    fee for your drawings.
                   </p>
 
                   <form onSubmit={handleSubmit} className="mt-3 space-y-3 text-[13px]">
@@ -287,8 +251,8 @@ export default function SuttonAreaPage() {
                     </button>
 
                     <p className="text-[11px] text-slate-500 mt-2">
-                      Typical Sutton projects include rear extensions, loft conversions, garage conversions and reconfiguration
-                      for open plan living.
+                      Typical Sutton projects include rear extensions, loft conversions, garage conversions and
+                      reconfiguration for open plan living.
                     </p>
                   </form>
                 </div>
@@ -307,12 +271,12 @@ export default function SuttonAreaPage() {
                   </h2>
                   <p className="text-[13px] text-slate-700">
                     WEDRAWPLANS provide full drawing packages for single and double storey extensions, loft conversions,
-                    internal alterations, garage conversions, outbuildings, flat conversions and small new developments across
-                    the borough of Sutton.
+                    internal alterations, garage conversions, outbuildings, flat conversions and small new developments
+                    across the borough of Sutton.
                   </p>
                   <p className="text-[13px] text-slate-700">
-                    We work throughout Sutton, Cheam, Carshalton, Wallington, Worcester Park, Hackbridge, Beddington and nearby
-                    streets.
+                    We work throughout Sutton, Cheam, Carshalton, Wallington, Worcester Park, Hackbridge, Beddington and
+                    nearby streets.
                   </p>
 
                   <div className="flex flex-wrap gap-3 items-center">
@@ -422,8 +386,8 @@ export default function SuttonAreaPage() {
                   Permitted development limits in Sutton
                 </h2>
                 <p className="text-[13px] text-slate-700">
-                  This is a simplified guide to common permitted development limits. Final confirmation depends on your house
-                  type, location and any Article 4 directions.
+                  This is a simplified guide to common permitted development limits. Final confirmation depends on your
+                  house type, location and any Article 4 directions.
                 </p>
 
                 <div className="grid md:grid-cols-3 gap-8 text-[13px] text-slate-700">
@@ -492,8 +456,8 @@ export default function SuttonAreaPage() {
                   Local planning knowledge for Sutton projects
                 </h2>
                 <p className="text-[13px] text-emerald-900">
-                  Sutton includes character pockets and conservation areas alongside suburban semis and terraces. We shape
-                  each scheme to match local context so approval chances are as strong as possible.
+                  Sutton includes character pockets and conservation areas alongside suburban semis and terraces. We
+                  shape each scheme to match local context so approval chances are as strong as possible.
                 </p>
               </div>
 
@@ -503,8 +467,8 @@ export default function SuttonAreaPage() {
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
                     <h3 className="font-semibold text-slate-900">Do I need planning permission in Sutton</h3>
                     <p>
-                      Many extensions and lofts can proceed under permitted development. We check your address and advise the
-                      best route at the start.
+                      Many extensions and lofts can proceed under permitted development. We check your address and
+                      advise the best route at the start.
                     </p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
@@ -518,8 +482,8 @@ export default function SuttonAreaPage() {
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
                     <h3 className="font-semibold text-slate-900">Can you coordinate structural design</h3>
                     <p>
-                      Yes. We coordinate with structural engineers so beams and load paths are designed and shown correctly on
-                      the drawings.
+                      Yes. We coordinate with structural engineers so beams and load paths are designed and shown
+                      correctly on the drawings.
                     </p>
                   </div>
                 </div>
