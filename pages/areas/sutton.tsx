@@ -1,14 +1,3 @@
-You are right. We are doing Sutton only. Harrow is already done and is the standard.
-
-Your Sutton page must use:
-
-* The same top header style (WD circle + phone + WhatsApp)
-* `ServiceInternalLinks boroughName="Sutton"` to fix the build error
-* Correct Sutton wording everywhere (no Southwark)
-
-Copy paste this as `pages/areas/sutton.tsx`.
-
-```tsx
 import React from "react";
 import Head from "next/head";
 import Image from "next/image";
