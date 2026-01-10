@@ -338,7 +338,7 @@ export default function KensingtonAndChelseaAreaPage() {
                     Areas we cover in Kensington and Chelsea
                   </h3>
                   <Image
-                    src="/images/hero.jpg"
+                    src="/images/kensingtonandchelsea-area.jpg"
                     alt="Local street scene in Kensington and Chelsea"
                     width={800}
                     height={500}
