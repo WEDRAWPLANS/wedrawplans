@@ -367,7 +367,7 @@ export default function HammersmithAndFulhamAreaPage() {
 
                 <div className="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
                   <div className="relative h-44 w-full">
-                    <Image src="/images/drawings.jpg" alt="Building regulation packs" fill className="object-cover" />
+                    <Image src="/images/Buildingregdrawings.jpg" alt="Building regulation packs" fill className="object-cover" />
                   </div>
                   <div className="p-4">
                     <div className="text-[12px] uppercase tracking-[0.18em] font-semibold text-slate-900">
