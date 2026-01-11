@@ -1,4 +1,3 @@
-// pages/areas/richmond.tsx
 import Head from "next/head";
 import React, { useMemo, useRef, useState } from "react";
 import Image from "next/image";
