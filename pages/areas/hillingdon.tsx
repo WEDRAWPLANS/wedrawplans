@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React from "react";
+import React, { useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
 import ServiceInternalLinks from "../../components/ServiceInternalLinks";
@@ -14,6 +14,301 @@ const HILLINGDON_LOCAL_IMAGE = "/images/hillingdon-local.jpg";
 const PROJECT_IMAGE_1 = "/images/hillingdon-project-1.jpg";
 const PROJECT_IMAGE_2 = "/images/hillingdon-project-2.jpg";
 
+type ChatRole = "assistant" | "user";
+type ChatMessage = { role: ChatRole; text: string };
+
+function sanitizeText(input: string) {
+  return input.replace(/\s+/g, " ").trim();
+}
+
+function includesAny(haystack: string, needles: string[]) {
+  const s = haystack.toLowerCase();
+  return needles.some((n) => s.includes(n));
+}
+
+function PlanningAssistant({
+  boroughName,
+  onGetQuote,
+}: {
+  boroughName: string;
+  onGetQuote: () => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const [input, setInput] = useState("");
+  const [postcode, setPostcode] = useState<string | null>(null);
+  const [projectType, setProjectType] = useState<string | null>(null);
+  const [messages, setMessages] = useState<ChatMessage[]>([
+    {
+      role: "assistant",
+      text:
+        "Hi, I am the WEDRAWPLANS planning assistant for Hillingdon. Tell me what you want to build and your postcode, and I will guide you to the fastest route for drawings and planning.",
+    },
+    {
+      role: "assistant",
+      text:
+        "Quick start: type something like rear extension UB3, loft conversion HA4, wraparound extension UB7, or building regs pack UB8.",
+    },
+  ]);
+
+  const listRef = useRef<HTMLDivElement | null>(null);
+
+  const quickReplies = useMemo(
+    () => [
+      "Do I need planning permission in Hillingdon",
+      "Permitted development for rear extension",
+      "Loft conversion rules in Hillingdon",
+      "How long does Hillingdon Council take",
+      "Can you do building regs drawings",
+      "Book a survey within 48 hours",
+    ],
+    []
+  );
+
+  function pushMessage(msg: ChatMessage) {
+    setMessages((prev) => [...prev, msg]);
+    setTimeout(() => {
+      if (listRef.current) listRef.current.scrollTop = listRef.current.scrollHeight;
+    }, 0);
+  }
+
+  function extractPostcode(text: string) {
+    const t = text.toUpperCase();
+    const match = t.match(/\b(UB|HA|TW|SL)\d{1,2}\s?\d?[A-Z]{0,2}\b/g);
+    if (!match) return null;
+    return match[0].replace(/\s+/g, " ").trim();
+  }
+
+  function generateAssistantReply(userTextRaw: string) {
+    const userText = sanitizeText(userTextRaw);
+    const userLower = userText.toLowerCase();
+
+    const foundPostcode = extractPostcode(userText);
+    if (foundPostcode && !postcode) setPostcode(foundPostcode);
+
+    const projectSignals: Array<{ label: string; terms: string[] }> = [
+      {
+        label: "House extension",
+        terms: [
+          "extension",
+          "rear",
+          "side",
+          "wrap",
+          "wraparound",
+          "wrap around",
+          "kitchen",
+          "dining",
+          "single storey",
+          "double storey",
+          "two storey",
+        ],
+      },
+      { label: "Loft conversion", terms: ["loft", "dormer", "hip", "gable", "mansard", "roof"] },
+      {
+        label: "Building regulation pack",
+        terms: ["building regs", "building regulation", "regulations", "building control", "technical", "structural notes"],
+      },
+      { label: "Garage conversion", terms: ["garage", "garage conversion"] },
+      { label: "Outbuilding or garden room", terms: ["outbuilding", "garden room", "studio", "annexe", "summerhouse"] },
+      { label: "New build house", terms: ["new build", "newbuild", "self build", "house build"] },
+      { label: "Conversion to flats", terms: ["flat", "flats", "conversion", "hmo", "studio flat", "change of use"] },
+      { label: "Internal remodelling", terms: ["internal", "knock through", "open plan", "layout", "reconfigure", "refurb"] },
+    ];
+
+    if (!projectType) {
+      const match = projectSignals.find((p) => includesAny(userLower, p.terms));
+      if (match) setProjectType(match.label);
+    }
+
+    const hasPlanningIntent = includesAny(userLower, [
+      "planning",
+      "permission",
+      "permitted",
+      "pd",
+      "lawful",
+      "ldc",
+      "certificate",
+      "prior approval",
+      "council",
+      "validation",
+      "conservation",
+      "article 4",
+      "listed",
+      "heritage",
+    ]);
+
+    const hasTimelineIntent = includesAny(userLower, ["how long", "timeline", "time", "weeks", "months", "decide", "decision"]);
+    const hasCostIntent = includesAny(userLower, ["cost", "price", "how much", "fee", "quote", "budget"]);
+    const hasSurveyIntent = includesAny(userLower, ["book", "survey", "visit", "measure", "measured", "come out"]);
+
+    const knownPostcode = foundPostcode || postcode;
+    const knownType = projectType || null;
+
+    if (hasSurveyIntent) {
+      return [
+        "We can usually arrange the initial measured survey within 48 hours in Hillingdon, subject to availability.",
+        "Tap Get a quick quote and enter your postcode and project type. We will confirm scope, survey timing and next steps.",
+      ];
+    }
+
+    if (hasTimelineIntent) {
+      return [
+        "Typical times: a householder planning application is often decided about 6 to 8 weeks after validation. A Lawful Development Certificate is often about 4 to 6 weeks after validation.",
+        "We focus on getting the submission correct first time so validation is not delayed.",
+        "Tell me your postcode and what you want to build and I will suggest the best route.",
+      ];
+    }
+
+    if (hasCostIntent) {
+      return [
+        "We price drawings as fixed fees with a clear scope so you know exactly what you get.",
+        "For the fastest accurate quote, share your postcode and project type, plus one line description like 4m rear extension or dormer loft with ensuite.",
+        "Or tap Get a quick quote and complete the form in 60 seconds.",
+      ];
+    }
+
+    if (hasPlanningIntent) {
+      return [
+        "In Hillingdon, many extensions and loft conversions can be permitted development, but it depends on house type, location, conservation constraints and any restrictions.",
+        "The safest approach is a quick address check, then we recommend permitted development, prior approval, lawful certificate, or full planning where needed.",
+        "Share your postcode and what you want to build and I will guide you to the correct route.",
+      ];
+    }
+
+    if (!knownPostcode || !knownType) {
+      const prompts: string[] = [];
+      if (!knownType)
+        prompts.push("What is your project type: extension, loft, garage conversion, outbuilding, new build, or building regs pack");
+      if (!knownPostcode) prompts.push("What is your postcode: for example UB3, UB7, UB8, HA4");
+      return [
+        "To give accurate guidance, I need two details.",
+        ...prompts,
+        "Once I have them, I can recommend the fastest route and you can request a fixed fee quote.",
+      ];
+    }
+
+    return [
+      `Thanks. I have ${knownType}${knownPostcode ? ` for ${knownPostcode}` : ""}.`,
+      "Next step: request a fixed fee quote so we can confirm scope, survey timing, and the correct planning route for your address in Hillingdon.",
+      "Tap Get a quick quote and we will reply with clear next steps.",
+    ];
+  }
+
+  function handleSend(text: string) {
+    const t = sanitizeText(text);
+    if (!t) return;
+
+    pushMessage({ role: "user", text: t });
+
+    const replies = generateAssistantReply(t);
+    replies.forEach((r, idx) => {
+      setTimeout(() => pushMessage({ role: "assistant", text: r }), 140 * (idx + 1));
+    });
+
+    setInput("");
+  }
+
+  return (
+    <div className="fixed bottom-4 right-4 z-50">
+      {open ? (
+        <div className="w-[320px] sm:w-[360px] rounded-2xl shadow-xl border border-slate-200 bg-white overflow-hidden">
+          <div className="flex items-center justify-between px-4 py-3 bg-slate-900 text-white">
+            <div className="text-[12px] font-semibold uppercase tracking-[0.16em]">
+              Planning Assistant • {boroughName}
+            </div>
+            <button
+              type="button"
+              onClick={() => setOpen(false)}
+              className="text-white/90 hover:text-white text-[14px]"
+              aria-label="Close assistant"
+            >
+              ✕
+            </button>
+          </div>
+
+          <div ref={listRef} className="max-h-[320px] overflow-y-auto px-4 py-3 space-y-3">
+            {messages.map((m, i) => (
+              <div
+                key={i}
+                className={
+                  m.role === "user"
+                    ? "ml-auto max-w-[85%] rounded-2xl bg-[#64b7c4] text-white px-3 py-2 text-[13px]"
+                    : "mr-auto max-w-[85%] rounded-2xl bg-slate-100 text-slate-900 px-3 py-2 text-[13px]"
+                }
+              >
+                {m.text}
+              </div>
+            ))}
+
+            <div className="pt-1">
+              <div className="text-[11px] text-slate-500 mb-2">Quick questions</div>
+              <div className="flex flex-wrap gap-2">
+                {quickReplies.map((q) => (
+                  <button
+                    key={q}
+                    type="button"
+                    onClick={() => handleSend(q)}
+                    className="text-[11px] px-3 py-1.5 rounded-full border border-slate-200 bg-white hover:bg-slate-900 hover:text-white"
+                  >
+                    {q}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t border-slate-200 p-3">
+            <div className="flex gap-2">
+              <input
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder="Type your question or postcode"
+                className="flex-1 rounded-full border border-slate-300 px-4 py-2 text-[13px] outline-none focus:border-[#64b7c4]"
+              />
+              <button
+                type="button"
+                onClick={() => handleSend(input)}
+                className="rounded-full bg-slate-900 text-white px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.14em] hover:bg-slate-800"
+              >
+                Send
+              </button>
+            </div>
+
+            <div className="mt-3 flex items-center justify-between gap-2">
+              <button
+                type="button"
+                onClick={onGetQuote}
+                className="flex-1 rounded-full bg-[#64b7c4] text-white px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.14em] hover:bg-[#4da4b4]"
+              >
+                Get a quick quote
+              </button>
+              <a
+                href={WHATSAPP_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 text-center rounded-full border border-slate-300 bg-white px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.14em] hover:bg-slate-900 hover:text-white"
+              >
+                WhatsApp
+              </a>
+            </div>
+
+            <div className="mt-2 text-[10px] text-slate-500">
+              This assistant gives general guidance only. We confirm the correct route after checking your address and proposal.
+            </div>
+          </div>
+        </div>
+      ) : (
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          className="rounded-full shadow-lg border border-slate-200 bg-slate-900 text-white px-4 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] hover:bg-slate-800"
+        >
+          Planning Assistant
+        </button>
+      )}
+    </div>
+  );
+}
+
 export default function HillingdonPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     await submitBoroughLead(e, { boroughName: "Hillingdon" });
@@ -24,92 +319,98 @@ export default function HillingdonPage() {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  const localBusinessJson = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: "WEDRAWPLANS",
-    url: "https://www.wedrawplans.co.uk/areas/hillingdon",
-    telephone: "+44 20 3654 8508",
-    email: "info@wedrawplans.com",
-    image: "https://www.wedrawplans.co.uk/images/drawings.jpg",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "201 Borough High Street",
-      addressLocality: "London",
-      postalCode: "SE1 1JA",
-      addressCountry: "UK",
-    },
-    areaServed: [
-      "Hillingdon",
-      "Uxbridge",
-      "Hayes",
-      "Ruislip",
-      "Ickenham",
-      "West Drayton",
-      "Yiewsley",
-      "Hillingdon Village",
-      "Ruislip Manor",
-      "Ruislip Gardens",
-      "Northwood borders",
-      "Heathrow borders",
-    ],
-    description:
-      "Planning drawings, loft conversion plans, extension layouts and building regulation packs for homes across Hillingdon including Uxbridge, Hayes, Ruislip, Ickenham and West Drayton. Fixed fees and fast turnaround.",
-    priceRange: "££",
-    sameAs: ["https://twitter.com/WEDRAWPLANS"],
-  };
+  const localBusinessJson = useMemo(
+    () => ({
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      name: "WEDRAWPLANS",
+      url: "https://www.wedrawplans.co.uk/areas/hillingdon",
+      telephone: "+44 20 3654 8508",
+      email: "info@wedrawplans.com",
+      image: "https://www.wedrawplans.co.uk/images/drawings.jpg",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "201 Borough High Street",
+        addressLocality: "London",
+        postalCode: "SE1 1JA",
+        addressCountry: "UK",
+      },
+      areaServed: [
+        "Hillingdon",
+        "Uxbridge",
+        "Hayes",
+        "Ruislip",
+        "Ickenham",
+        "West Drayton",
+        "Yiewsley",
+        "Hillingdon Village",
+        "Ruislip Manor",
+        "Ruislip Gardens",
+        "Northwood borders",
+        "Heathrow borders",
+      ],
+      description:
+        "Planning drawings, loft conversion plans, extension layouts and building regulation packs for homes across Hillingdon including Uxbridge, Hayes, Ruislip, Ickenham and West Drayton. Fixed fees and fast turnaround.",
+      priceRange: "££",
+      sameAs: ["https://twitter.com/WEDRAWPLANS"],
+    }),
+    []
+  );
 
-  const faqJson = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Do I need planning permission in Hillingdon",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "It depends on your property and proposal. Some works can be permitted development, but constraints like conservation areas or Article 4 directions can change what is allowed. We check your address and advise the best route for your project.",
+  const faqJson = useMemo(
+    () => ({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "Do I need planning permission in Hillingdon",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text:
+              "It depends on your property and proposal. Some works can be permitted development, but constraints like conservation areas or Article 4 directions can change what is allowed. We check your address and advise the best route for your project.",
+          },
         },
-      },
-      {
-        "@type": "Question",
-        name: "Can you help with extensions and loft conversions in Hillingdon",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Yes. We produce clear planning drawings for rear and side extensions, wrap around extensions and loft conversions including dormers. We also prepare sections and notes where needed to support smoother approvals.",
+        {
+          "@type": "Question",
+          name: "Can you help with extensions and loft conversions in Hillingdon",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text:
+              "Yes. We produce clear planning drawings for rear and side extensions, wraparound extensions and loft conversions including dormers. We also prepare sections and notes where needed to support smoother approvals.",
+          },
         },
-      },
-      {
-        "@type": "Question",
-        name: "Do you provide building regulation drawing packs",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Yes. We prepare building regulation packs with plans, sections and key details suitable for Building Control and construction. We also coordinate with structural engineers when openings or strengthening are required.",
+        {
+          "@type": "Question",
+          name: "Do you provide building regulation drawing packs",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text:
+              "Yes. We prepare building regulation packs with plans, sections and key details suitable for Building Control and construction. We also coordinate with structural engineers when openings or strengthening are required.",
+          },
         },
-      },
-      {
-        "@type": "Question",
-        name: "How quickly can you start",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "We can usually arrange the initial survey within 48 hours, then move into drawing production once scope is agreed.",
+        {
+          "@type": "Question",
+          name: "How quickly can you start",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text:
+              "We can usually arrange the initial survey within 48 hours, then move into drawing production once scope is agreed.",
+          },
         },
-      },
-      {
-        "@type": "Question",
-        name: "Which areas of Hillingdon do you cover",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "We cover the full borough including Uxbridge, Hayes, Ruislip, Ickenham, West Drayton and surrounding areas.",
+        {
+          "@type": "Question",
+          name: "Which areas of Hillingdon do you cover",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text:
+              "We cover the full borough including Uxbridge, Hayes, Ruislip, Ickenham, West Drayton and surrounding areas.",
+          },
         },
-      },
-    ],
-  };
+      ],
+    }),
+    []
+  );
 
   return (
     <>
@@ -197,13 +498,13 @@ export default function HillingdonPage() {
                 </p>
 
                 <p className="mt-3 text-[13px] text-slate-700">
-                  WEDRAWPLANS prepare planning and technical drawings for house extensions, loft conversions,
-                  internal remodelling, conversions and building regulation packs across Hillingdon.
-                  Clear scope, fast communication and a smooth process from start to submission.
+                  WEDRAWPLANS prepare planning and technical drawings for house extensions, loft conversions, internal
+                  remodelling, conversions and building regulation packs across Hillingdon. Clear scope, fast communication
+                  and a smooth process from start to submission.
                 </p>
 
                 <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
-                  <li>• Rear and side extensions including wrap around layouts</li>
+                  <li>• Rear and side extensions including wraparound layouts</li>
                   <li>• Loft conversions including dormers and hip to gable</li>
                   <li>• Internal remodelling and structural openings</li>
                   <li>• Planning drawings and building regulation packs</li>
@@ -242,6 +543,26 @@ export default function HillingdonPage() {
                     </p>
                     <p className="mt-2 text-[13px] text-slate-700">
                       We design schemes that suit Hillingdon streets, with accurate measured surveys, clean layouts and clear drawings to help approvals run smoothly.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                  <div className="relative h-[190px] w-full">
+                    <Image
+                      src={HERO_IMAGE}
+                      alt="Hillingdon extension and loft planning support"
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 520px"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="p-4">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-900">
+                      Built for a smooth process
+                    </p>
+                    <p className="mt-2 text-[13px] text-slate-700">
+                      We confirm the best route early, then produce clear drawings for planning and building control so you can move to construction with confidence.
                     </p>
                   </div>
                 </div>
@@ -315,6 +636,7 @@ export default function HillingdonPage() {
                         <option>House extension</option>
                         <option>Loft conversion</option>
                         <option>Garage conversion</option>
+                        <option>Outbuilding or garden room</option>
                         <option>Internal remodelling</option>
                         <option>New build house</option>
                         <option>Conversion to flats</option>
@@ -359,7 +681,8 @@ export default function HillingdonPage() {
                     Architectural drawing services in Hillingdon
                   </h2>
                   <p className="text-[13px] text-slate-700">
-                    WEDRAWPLANS provide full drawing packages for extensions, loft conversions, internal alterations, outbuildings, conversions and building regulation packs across Hillingdon.
+                    WEDRAWPLANS provide full drawing packages for extensions, loft conversions, internal alterations, outbuildings,
+                    conversions and building regulation packs across Hillingdon.
                   </p>
                   <p className="text-[13px] text-slate-700">
                     We work throughout Uxbridge, Hayes, Ruislip, Ickenham, West Drayton, Yiewsley and surrounding areas near Heathrow borders.
@@ -447,7 +770,7 @@ export default function HillingdonPage() {
                   </h3>
                   <div className="grid grid-cols-2 gap-3 text-[13px] text-slate-700">
                     <ul className="list-disc pl-4 space-y-1">
-                      <li>Rear and wrap around extensions</li>
+                      <li>Rear and wraparound extensions</li>
                       <li>Side extensions and kitchen reworks</li>
                       <li>Loft conversions and dormers</li>
                       <li>Hip to gable loft conversions</li>
@@ -509,7 +832,7 @@ export default function HillingdonPage() {
                       <ul className="list-disc pl-4 space-y-1">
                         <li>Up to 3 m deep on terraces</li>
                         <li>Up to 4 m on semi detached houses</li>
-                        <li>Up to 6 to 8 m with Prior Approval</li>
+                        <li>Up to 6 to 8 m with prior approval</li>
                         <li>Maximum 4 m high for single storey</li>
                       </ul>
                     </div>
@@ -649,6 +972,8 @@ export default function HillingdonPage() {
               </div>
             </div>
           </section>
+
+          <PlanningAssistant boroughName="Hillingdon" onGetQuote={scrollToForm} />
         </main>
       </div>
     </>
