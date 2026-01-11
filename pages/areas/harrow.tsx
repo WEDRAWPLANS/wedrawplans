@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo, useRef, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
@@ -10,6 +10,295 @@ const PHONE_LINK = "tel:+442036548508";
 const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Harrow";
 
+type ChatRole = "assistant" | "user";
+type ChatMessage = { role: ChatRole; text: string };
+
+function sanitizeText(input: string) {
+  return input.replace(/\s+/g, " ").trim();
+}
+
+function includesAny(haystack: string, needles: string[]) {
+  const s = haystack.toLowerCase();
+  return needles.some((n) => s.includes(n));
+}
+
+function PlanningAssistant({
+  boroughName,
+  onGetQuote,
+}: {
+  boroughName: string;
+  onGetQuote: () => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const [input, setInput] = useState("");
+  const [postcode, setPostcode] = useState<string | null>(null);
+  const [projectType, setProjectType] = useState<string | null>(null);
+  const [messages, setMessages] = useState<ChatMessage[]>([
+    {
+      role: "assistant",
+      text:
+        "Hi, I am the WEDRAWPLANS planning assistant for Harrow. Tell me what you want to build and your postcode, and I will guide you to the fastest route for drawings and planning.",
+    },
+    {
+      role: "assistant",
+      text:
+        "Quick start: type something like rear extension HA1, loft conversion HA3, or building regs pack HA2.",
+    },
+  ]);
+
+  const listRef = useRef<HTMLDivElement | null>(null);
+
+  const quickReplies = useMemo(
+    () => [
+      "Do I need planning permission in Harrow",
+      "Permitted development for rear extension",
+      "Loft conversion rules",
+      "How long does Harrow Council take",
+      "How much do drawings cost",
+      "Book a survey within 48 hours",
+    ],
+    []
+  );
+
+  function pushMessage(msg: ChatMessage) {
+    setMessages((prev) => [...prev, msg]);
+    setTimeout(() => {
+      if (listRef.current) listRef.current.scrollTop = listRef.current.scrollHeight;
+    }, 0);
+  }
+
+  function extractPostcode(text: string) {
+    const t = text.toUpperCase();
+    const match = t.match(/\bHA\d{1}\s?\d[A-Z]{2}\b|\bHA\d{1,2}\b/g);
+    if (!match) return null;
+    return match[0].replace(/\s+/g, " ").trim();
+  }
+
+  function generateAssistantReply(userTextRaw: string) {
+    const userText = sanitizeText(userTextRaw);
+    const userLower = userText.toLowerCase();
+
+    const foundPostcode = extractPostcode(userText);
+    if (foundPostcode && !postcode) setPostcode(foundPostcode);
+
+    const projectSignals: Array<{ key: string; label: string; terms: string[] }> = [
+      { key: "extension", label: "House extension", terms: ["extension", "rear", "side", "wrap", "wraparound", "kitchen", "dining"] },
+      { key: "loft", label: "Loft conversion", terms: ["loft", "dormer", "hip", "gable", "mansard", "roof"] },
+      { key: "regs", label: "Building regulation pack", terms: ["building regs", "building regulation", "regulations", "building control", "technical"] },
+      { key: "newbuild", label: "New build house", terms: ["new build", "newbuild", "self build", "house build"] },
+      { key: "conversion", label: "Conversion to flats", terms: ["flat", "flats", "conversion", "hmo", "studio", "change of use"] },
+      { key: "internal", label: "Internal remodelling", terms: ["internal", "knock through", "open plan", "layout", "reconfigure"] },
+      { key: "outbuilding", label: "Outbuilding or garden room", terms: ["outbuilding", "garden room", "studio", "annexe", "shed"] },
+    ];
+
+    if (!projectType) {
+      const match = projectSignals.find((p) => includesAny(userLower, p.terms));
+      if (match) setProjectType(match.label);
+    }
+
+    const hasPlanningIntent = includesAny(userLower, [
+      "planning",
+      "permission",
+      "permitted",
+      "pd",
+      "lawful",
+      "ldc",
+      "certificate",
+      "prior approval",
+      "council",
+      "validation",
+    ]);
+
+    const hasTimelineIntent = includesAny(userLower, ["how long", "timeline", "time", "weeks", "months", "decide", "decision"]);
+    const hasCostIntent = includesAny(userLower, ["cost", "price", "how much", "fee", "quote", "budget"]);
+    const hasLoftIntent = includesAny(userLower, ["loft", "dormer", "hip", "gable", "mansard", "roof"]);
+    const hasExtensionIntent = includesAny(userLower, ["rear extension", "side return", "wrap", "extension", "kitchen", "single storey", "double storey"]);
+
+    const knownPostcode = foundPostcode || postcode;
+    const knownType =
+      projectType ||
+      (hasLoftIntent ? "Loft conversion" : hasExtensionIntent ? "House extension" : null);
+
+    if (includesAny(userLower, ["book", "survey", "visit", "measure", "measured"])) {
+      return [
+        "We can usually arrange the initial measured survey within 48 hours in Harrow, subject to availability.",
+        "If you want, tap Get a quick quote and enter your postcode and project type. We will confirm the next available survey slot.",
+      ];
+    }
+
+    if (hasTimelineIntent) {
+      return [
+        "Typical times: a householder planning application is often 6 to 8 weeks after validation. A Lawful Development Certificate is often 4 to 6 weeks after validation.",
+        "We focus on getting the submission correct first time so validation is not delayed.",
+        "Tell me your postcode and what you want to build and I will suggest the best route for Harrow.",
+      ];
+    }
+
+    if (hasCostIntent) {
+      return [
+        "We price drawings as fixed fees with a clear scope so you know exactly what you get.",
+        "For the fastest accurate quote, share your postcode and project type. If you can, add a one line description like rear extension to a semi or dormer loft with ensuite.",
+        "You can also tap Get a quick quote and complete the form in 60 seconds.",
+      ];
+    }
+
+    if (hasPlanningIntent) {
+      return [
+        "In Harrow, many home extensions and loft conversions can be permitted development, but it depends on house type, location, and any local restrictions.",
+        "The safest approach is a quick check against your address and proposal, then we recommend either permitted development, prior approval, or full planning where needed.",
+        "Share your postcode and what you want to build and I will guide you to the correct route.",
+      ];
+    }
+
+    if (hasLoftIntent) {
+      return [
+        "Loft conversions in Harrow often work well as hip to gable and rear dormer layouts, depending on roof shape and permitted development limits.",
+        "Key checks include volume allowance, front roof restrictions, and side window rules.",
+        "Share your postcode and your roof idea and I will tell you the likely path, then you can request a fixed fee quote.",
+      ];
+    }
+
+    if (hasExtensionIntent) {
+      return [
+        "Rear and wraparound extensions are common in Harrow. The route can be permitted development, prior approval, or full planning depending on depth, height, and location.",
+        "Share your postcode and a simple description like 4m rear extension or wraparound kitchen extension, and I will guide you to the best route.",
+      ];
+    }
+
+    if (!knownPostcode || !knownType) {
+      const prompts: string[] = [];
+      if (!knownType) prompts.push("What is your project type: extension, loft, new build, internal, or building regs pack");
+      if (!knownPostcode) prompts.push("What is your postcode: for example HA1 or HA1 2AB");
+      return [
+        "To give accurate guidance, I need two details.",
+        ...prompts,
+        "Once I have them, I can recommend the fastest route and you can request a fixed fee quote.",
+      ];
+    }
+
+    return [
+      `Thanks. I have ${knownType}${knownPostcode ? ` for ${knownPostcode}` : ""}.`,
+      "Next step: request a fixed fee quote so we can confirm scope, survey timing, and the correct planning route for Harrow.",
+      "Tap Get a quick quote and we will reply with clear next steps.",
+    ];
+  }
+
+  function handleSend(text: string) {
+    const t = sanitizeText(text);
+    if (!t) return;
+
+    pushMessage({ role: "user", text: t });
+
+    const replies = generateAssistantReply(t);
+    replies.forEach((r, idx) => {
+      setTimeout(() => pushMessage({ role: "assistant", text: r }), 140 * (idx + 1));
+    });
+
+    setInput("");
+  }
+
+  return (
+    <div className="fixed bottom-4 right-4 z-50">
+      {open ? (
+        <div className="w-[320px] sm:w-[360px] rounded-2xl shadow-xl border border-slate-200 bg-white overflow-hidden">
+          <div className="flex items-center justify-between px-4 py-3 bg-slate-900 text-white">
+            <div className="text-[12px] font-semibold uppercase tracking-[0.16em]">
+              Planning Assistant • {boroughName}
+            </div>
+            <button
+              type="button"
+              onClick={() => setOpen(false)}
+              className="text-white/90 hover:text-white text-[14px]"
+              aria-label="Close assistant"
+            >
+              ✕
+            </button>
+          </div>
+
+          <div ref={listRef} className="max-h-[320px] overflow-y-auto px-4 py-3 space-y-3">
+            {messages.map((m, i) => (
+              <div
+                key={i}
+                className={
+                  m.role === "user"
+                    ? "ml-auto max-w-[85%] rounded-2xl bg-[#64b7c4] text-white px-3 py-2 text-[13px]"
+                    : "mr-auto max-w-[85%] rounded-2xl bg-slate-100 text-slate-900 px-3 py-2 text-[13px]"
+                }
+              >
+                {m.text}
+              </div>
+            ))}
+
+            <div className="pt-1">
+              <div className="text-[11px] text-slate-500 mb-2">Quick questions</div>
+              <div className="flex flex-wrap gap-2">
+                {quickReplies.map((q) => (
+                  <button
+                    key={q}
+                    type="button"
+                    onClick={() => handleSend(q)}
+                    className="text-[11px] px-3 py-1.5 rounded-full border border-slate-200 bg-white hover:bg-slate-900 hover:text-white"
+                  >
+                    {q}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t border-slate-200 p-3">
+            <div className="flex gap-2">
+              <input
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder="Type your question or postcode"
+                className="flex-1 rounded-full border border-slate-300 px-4 py-2 text-[13px] outline-none focus:border-[#64b7c4]"
+              />
+              <button
+                type="button"
+                onClick={() => handleSend(input)}
+                className="rounded-full bg-slate-900 text-white px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.14em] hover:bg-slate-800"
+              >
+                Send
+              </button>
+            </div>
+
+            <div className="mt-3 flex items-center justify-between gap-2">
+              <button
+                type="button"
+                onClick={onGetQuote}
+                className="flex-1 rounded-full bg-[#64b7c4] text-white px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.14em] hover:bg-[#4da4b4]"
+              >
+                Get a quick quote
+              </button>
+              <a
+                href={WHATSAPP_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 text-center rounded-full border border-slate-300 bg-white px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.14em] hover:bg-slate-900 hover:text-white"
+              >
+                WhatsApp
+              </a>
+            </div>
+
+            <div className="mt-2 text-[10px] text-slate-500">
+              This assistant gives general guidance only. We confirm the correct route after checking your address and proposal.
+            </div>
+          </div>
+        </div>
+      ) : (
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          className="rounded-full shadow-lg border border-slate-200 bg-slate-900 text-white px-4 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] hover:bg-slate-800"
+        >
+          Planning Assistant
+        </button>
+      )}
+    </div>
+  );
+}
+
 export default function HarrowAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     await submitBoroughLead(e, { boroughName: "Harrow" });
@@ -20,90 +309,133 @@ export default function HarrowAreaPage() {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  const localBusinessJson = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: "WEDRAWPLANS",
-    url: "https://www.wedrawplans.co.uk/areas/harrow",
-    telephone: "+44 20 3654 8508",
-    email: "info@wedrawplans.com",
-    image: "https://www.wedrawplans.co.uk/images/hero.jpg",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "201 Borough High Street",
-      addressLocality: "London",
-      postalCode: "SE1 1JA",
-      addressCountry: "UK",
-    },
-    areaServed: [
-      "Harrow",
-      "Harrow on the Hill",
-      "Harrow Weald",
-      "North Harrow",
-      "South Harrow",
-      "West Harrow",
-      "Wealdstone",
-      "Rayners Lane",
-      "Kenton",
-      "Pinner borders",
-      "Stanmore borders",
-      "Queensbury side",
-      "Edgware borders",
-    ],
-    description:
-      "Architectural drawing services in Harrow for extensions, loft conversions, outbuildings, refurbishments and building regulations.",
-  };
+  const localBusinessJson = useMemo(
+    () => ({
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      name: "WEDRAWPLANS",
+      url: "https://www.wedrawplans.co.uk/areas/harrow",
+      telephone: "+44 20 3654 8508",
+      email: "info@wedrawplans.com",
+      image: "https://www.wedrawplans.co.uk/images/hero.jpg",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "201 Borough High Street",
+        addressLocality: "London",
+        postalCode: "SE1 1JA",
+        addressCountry: "UK",
+      },
+      areaServed: [
+        "Harrow",
+        "Harrow on the Hill",
+        "Harrow Weald",
+        "North Harrow",
+        "South Harrow",
+        "West Harrow",
+        "Wealdstone",
+        "Rayners Lane",
+        "Kenton",
+        "Pinner borders",
+        "Stanmore borders",
+        "Queensbury side",
+        "Edgware borders",
+      ],
+      description:
+        "Architectural drawing services in Harrow for extensions, loft conversions, outbuildings, refurbishments, planning applications and building regulation packs.",
+      sameAs: ["https://twitter.com/WEDRAWPLANS"],
+    }),
+    []
+  );
 
-  const faqJson = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Do I need planning permission for a rear extension in Harrow?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Not always. Many rear extensions in Harrow can be carried out under permitted development. We confirm the correct route once we review your address and house type.",
+  const faqJson = useMemo(
+    () => ({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "Do I need planning permission for a rear extension in Harrow",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text:
+              "Not always. Many rear extensions in Harrow can be permitted development, but it depends on depth, height, house type, and local restrictions. We confirm the correct route after checking your address and proposal.",
+          },
         },
-      },
-      {
-        "@type": "Question",
-        name: "Is Harrow strict with loft conversions and extensions?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Harrow follows national permitted development rules but can be stricter in conservation areas, near Harrow on the Hill and in streets with strong character.",
+        {
+          "@type": "Question",
+          name: "Is Harrow strict with loft conversions and extensions",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text:
+              "Harrow follows national permitted development rules, but there can be stricter expectations in conservation areas and character streets. We shape proposals to match local context to strengthen approval chances.",
+          },
         },
-      },
-      {
-        "@type": "Question",
-        name: "How long does Harrow Council take to decide?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Householder planning applications normally take six to eight weeks after validation. Lawful Development Certificates usually take around four to six weeks.",
+        {
+          "@type": "Question",
+          name: "How long does Harrow Council take to decide",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text:
+              "Householder planning applications are often decided in 6 to 8 weeks after validation. Lawful Development Certificates are often decided in 4 to 6 weeks after validation.",
+          },
         },
-      },
-      {
-        "@type": "Question",
-        name: "Do you manage the full application to Harrow Council?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Yes. We prepare drawings, complete forms, upload documents, submit to Harrow Council and respond to planning officer queries.",
+        {
+          "@type": "Question",
+          name: "Do you manage the full application to Harrow Council",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text:
+              "Yes. We prepare drawings, complete forms, submit to Harrow Council, monitor progress, and respond to planning officer queries.",
+          },
         },
-      },
-    ],
-  };
+        {
+          "@type": "Question",
+          name: "Can you prepare building regulation drawings for Harrow projects",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text:
+              "Yes. We prepare technical drawings for Building Control, including sections, construction notes, insulation build ups, ventilation layouts, and coordination with structural design.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Can you coordinate structural engineer calculations",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text:
+              "Yes. We coordinate with structural engineers so steels, load paths, and critical details align with the drawings and the build.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "How quickly can you carry out a measured survey in Harrow",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text:
+              "In most cases we can arrange the initial measured survey within 48 hours of instruction, subject to availability and access.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "What drawings are usually required for a Harrow planning submission",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text:
+              "Typical requirements include existing and proposed floor plans, elevations, roof plans, sections, and a site location plan and block plan. We confirm the exact list based on your proposal.",
+          },
+        },
+      ],
+    }),
+    []
+  );
 
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Harrow | Extensions, Lofts, New Builds</title>
+        <title>Architectural Drawings in Harrow | Planning and Building Regs Plans</title>
         <meta
           name="description"
-          content="Architectural drawings in Harrow for house extensions, loft conversions, new builds and building regulation packs. Fixed fees with clear scope and fast turnaround."
+          content="Architectural drawings in Harrow for extensions, loft conversions, planning applications and building regulation packs. Fixed fees, clear scope, survey within 48 hours and fast communication."
         />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/harrow" />
         <script
@@ -116,15 +448,12 @@ export default function HarrowAreaPage() {
         />
       </Head>
 
-      {/* CLICKABLE TOP HEADER (this should be the one with the clickable logo) */}
       <AreaTopHeader />
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
         <main>
-          {/* HERO + FORM */}
           <section className="border-b border-slate-200 bg-[#fdf8f3]">
             <div className="mx-auto max-w-5xl flex flex-col lg:flex-row gap-6 px-4 py-8 lg:px-6 lg:py-10">
-              {/* LEFT TEXT */}
               <div className="lg:w-1/2">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-red-700">
                   Harrow architectural drawings
@@ -135,19 +464,17 @@ export default function HarrowAreaPage() {
                 </h1>
 
                 <p className="mt-3 text-[13px] text-slate-700">
-                  WEDRAWPLANS prepare planning and technical drawings for house extensions,
-                  loft conversions, new builds and conversions across the London Borough of Harrow.
-                  Fixed fees with clear scope and fast communication.
+                  WEDRAWPLANS prepare planning and technical drawings for house extensions, loft conversions, new builds
+                  and conversions across the London Borough of Harrow. Fixed fees with clear scope and fast
+                  communication, focused on approval ready submissions and buildable technical packs.
                 </p>
 
                 <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
-                  <li>• House extensions, wrap around extensions and internal remodelling</li>
+                  <li>• House extensions, wraparound extensions and internal remodelling</li>
                   <li>• Loft conversions including hip to gable and rear dormers</li>
                   <li>• New build houses and small residential schemes</li>
                   <li>• Planning drawings and building regulation packs</li>
-                  <li>
-                    • Covering Harrow on the Hill, Kenton, Rayners Lane, Wealdstone and Harrow Weald
-                  </li>
+                  <li>• Covering Harrow on the Hill, Kenton, Rayners Lane, Wealdstone and Harrow Weald</li>
                   <li>• Same day response on most enquiries</li>
                 </ul>
 
@@ -164,9 +491,28 @@ export default function HarrowAreaPage() {
                     Or call {PHONE_DISPLAY}
                   </a>
                 </div>
+
+                <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-4">
+                  <div className="text-[12px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+                    Fast route for Harrow homeowners
+                  </div>
+                  <div className="mt-2 grid grid-cols-1 sm:grid-cols-3 gap-3 text-[12px] text-slate-700">
+                    <div className="rounded-xl border border-slate-100 p-3">
+                      <div className="font-semibold text-slate-900">Step 1</div>
+                      <div>Send postcode and project type</div>
+                    </div>
+                    <div className="rounded-xl border border-slate-100 p-3">
+                      <div className="font-semibold text-slate-900">Step 2</div>
+                      <div>Survey within 48 hours</div>
+                    </div>
+                    <div className="rounded-xl border border-slate-100 p-3">
+                      <div className="font-semibold text-slate-900">Step 3</div>
+                      <div>Fixed fee drawings and submission support</div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              {/* RIGHT FORM */}
               <div id="harrow-quote" className="lg:w-1/2">
                 <div className="bg-white p-5 rounded-2xl shadow-md">
                   <h2 className="text-[14px] uppercase font-semibold tracking-[0.16em] text-slate-900">
@@ -174,8 +520,8 @@ export default function HarrowAreaPage() {
                   </h2>
 
                   <p className="mt-1 text-[12px] text-slate-600">
-                    Tell us a little about your property and what you plan to build. We will reply with a clear
-                    fixed fee for your drawings.
+                    Tell us a little about your property and what you plan to build. We will reply with a clear fixed
+                    fee for your drawings and the recommended next steps for Harrow.
                   </p>
 
                   <form onSubmit={handleSubmit} className="mt-3 space-y-3 text-[13px]">
@@ -260,20 +606,18 @@ export default function HarrowAreaPage() {
                       Get a fixed fee quote
                     </button>
 
-                    <p className="text-[11px] text-slate-500 mt-2">
-                      Typical Harrow projects include large rear extensions, loft conversions, garage conversions and
-                      reconfiguration for open plan living.
-                    </p>
+                    <div className="text-[11px] text-slate-500 mt-2 space-y-1">
+                      <div>Typical Harrow projects include large rear extensions, loft conversions, garage conversions and open plan remodelling.</div>
+                      <div>We reply with a clear scope, fixed fee, and the recommended planning route for your address.</div>
+                    </div>
                   </form>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* INTERNAL LINKS (SERVICE PAGES) */}
           <ServiceInternalLinks boroughName="Harrow" />
 
-          {/* MERGED RICH CONTENT */}
           <section className="bg-white border-b border-slate-200 py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
               <div className="grid md:grid-cols-[1.7fr,1.3fr] gap-10 items-start">
@@ -282,14 +626,16 @@ export default function HarrowAreaPage() {
                     Architectural drawing services in Harrow
                   </h2>
                   <p className="text-[13px] text-slate-700">
-                    WEDRAWPLANS provide full drawing packages for single and double storey extensions, loft conversions,
-                    internal alterations, garage conversions, outbuildings, flat conversions and small new developments
-                    across the borough of Harrow.
+                    WEDRAWPLANS deliver planning drawings and technical packs for Harrow homeowners and property
+                    developers. We design and draw single storey and double storey house extensions, side return and
+                    wraparound extensions, loft conversions, internal reconfiguration, outbuildings, and small new build
+                    schemes. Every package is structured to reduce delays, improve approval confidence, and give builders
+                    clear information to price and build accurately.
                   </p>
                   <p className="text-[13px] text-slate-700">
-                    We work throughout Harrow on the Hill, Harrow Weald, North Harrow, South Harrow, West Harrow,
-                    Wealdstone, Rayners Lane, Kenton, Queensbury side, Pinner borders, Stanmore borders and nearby
-                    streets.
+                    We cover Harrow on the Hill, Harrow Weald, North Harrow, South Harrow, West Harrow, Wealdstone,
+                    Rayners Lane, Kenton, Queensbury side, Pinner borders, Stanmore borders and nearby streets. If you
+                    are in HA1, HA2, HA3, or on the Harrow borders, we can advise quickly.
                   </p>
 
                   <div className="flex flex-wrap gap-3 items-center">
@@ -309,6 +655,35 @@ export default function HarrowAreaPage() {
                       💬 Chat on WhatsApp
                     </a>
                   </div>
+
+                  <div className="grid sm:grid-cols-2 gap-4 pt-2">
+                    <div className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
+                      <div className="text-[12px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+                        What you get
+                      </div>
+                      <ul className="mt-3 list-disc pl-5 space-y-1 text-[13px] text-slate-700">
+                        <li>Measured survey and existing drawings</li>
+                        <li>Proposed plans, elevations and sections</li>
+                        <li>Planning submission support if required</li>
+                        <li>Building regs drawings when needed</li>
+                        <li>Structural coordination and details</li>
+                        <li>Fast revisions and clear scope control</li>
+                      </ul>
+                    </div>
+                    <div className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
+                      <div className="text-[12px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+                        Built for lead certainty
+                      </div>
+                      <ul className="mt-3 list-disc pl-5 space-y-1 text-[13px] text-slate-700">
+                        <li>Fixed fee quote with deliverables listed</li>
+                        <li>Survey within 48 hours where possible</li>
+                        <li>Harrow specific planning route guidance</li>
+                        <li>WhatsApp updates if you prefer</li>
+                        <li>Clear next steps after every stage</li>
+                        <li>Support until submission is complete</li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="rounded-2xl bg-white shadow-md border border-slate-100 overflow-hidden">
@@ -324,9 +699,18 @@ export default function HarrowAreaPage() {
                       Technical drawings builders can price from
                     </h3>
                     <p className="text-[13px] text-slate-700">
-                      Clear floor plans, elevations, sections and notes, coordinated with structural design so
-                      builders, Building Control and inspectors have what they need.
+                      Clear floor plans, elevations, sections and notes, coordinated with structural design so builders,
+                      Building Control and inspectors have what they need for accurate pricing and site delivery.
                     </p>
+                    <div className="pt-2">
+                      <button
+                        type="button"
+                        onClick={scrollToForm}
+                        className="w-full rounded-full bg-slate-900 px-5 py-2.5 text-white text-[12px] font-semibold uppercase tracking-[0.16em] hover:bg-slate-800"
+                      >
+                        Get a fixed fee quote
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -343,25 +727,15 @@ export default function HarrowAreaPage() {
                     height={500}
                     className="rounded-xl object-cover mb-3"
                   />
-                  <p className="text-[13px] text-slate-700">Drawings for the whole borough of Harrow, including:</p>
-                  <div className="grid grid-cols-2 gap-2 text-[13px] text-slate-700">
-                    <ul className="list-disc pl-4 space-y-1">
-                      <li>Harrow on the Hill</li>
-                      <li>Wealdstone</li>
-                      <li>North Harrow</li>
-                      <li>South Harrow</li>
-                      <li>West Harrow</li>
-                      <li>Harrow Weald</li>
-                    </ul>
-                    <ul className="list-disc pl-4 space-y-1">
-                      <li>Rayners Lane</li>
-                      <li>Kenton</li>
-                      <li>Queensbury side</li>
-                      <li>Pinner borders</li>
-                      <li>Stanmore borders</li>
-                      <li>Edgware borders</li>
-                    </ul>
-                  </div>
+                  <p className="text-[13px] text-slate-700">
+                    Drawings for the whole borough of Harrow, including Harrow on the Hill, Wealdstone, North Harrow,
+                    South Harrow, West Harrow, Harrow Weald, Rayners Lane, Kenton, Queensbury side, Pinner borders,
+                    Stanmore borders and Edgware borders.
+                  </p>
+                  <p className="text-[13px] text-slate-700">
+                    If you are unsure which area you are in, send your postcode and we will confirm coverage and arrange
+                    the next steps.
+                  </p>
                 </div>
 
                 <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
@@ -370,8 +744,8 @@ export default function HarrowAreaPage() {
                   </h3>
                   <div className="grid grid-cols-2 gap-3 text-[13px] text-slate-700">
                     <ul className="list-disc pl-4 space-y-1">
-                      <li>3 m and larger rear extensions</li>
-                      <li>Wrap around and L shaped extensions</li>
+                      <li>3m and larger rear extensions</li>
+                      <li>Wraparound and L shaped extensions</li>
                       <li>Side extensions and infill extensions</li>
                       <li>Hip to gable loft conversions</li>
                       <li>Rear dormers with ensuite</li>
@@ -380,7 +754,7 @@ export default function HarrowAreaPage() {
                       <li>Garage conversions</li>
                       <li>Internal reconfiguration</li>
                       <li>Outbuildings and studios</li>
-                      <li>Flats, HMOs and change of use</li>
+                      <li>Flats and change of use layouts</li>
                       <li>Small new build schemes</li>
                     </ul>
                   </div>
@@ -399,36 +773,37 @@ export default function HarrowAreaPage() {
                   Permitted development limits in Harrow
                 </h2>
                 <p className="text-[13px] text-slate-700">
-                  This is a simplified guide to common permitted development limits. Final confirmation depends on
-                  your house type, location and any Article 4 directions.
+                  This is a simplified guide to common permitted development limits. Final confirmation depends on your
+                  house type, location and any Article 4 directions or prior permissions that affect permitted
+                  development rights.
                 </p>
 
                 <div className="grid md:grid-cols-3 gap-8 text-[13px] text-slate-700">
                   <div>
                     <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">Rear extensions</h3>
                     <ul className="list-disc pl-4 space-y-1">
-                      <li>Up to 3 m deep on terrace houses</li>
-                      <li>Up to 4 m on semi detached houses</li>
-                      <li>Up to 6 to 8 m with Prior Approval</li>
-                      <li>Maximum 4 m high for single storey</li>
+                      <li>Up to 3m deep on terrace houses</li>
+                      <li>Up to 4m on semi detached houses</li>
+                      <li>Up to 6m to 8m with prior approval where eligible</li>
+                      <li>Maximum 4m high for many single storey cases</li>
                     </ul>
                   </div>
                   <div>
                     <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">Loft conversions</h3>
                     <ul className="list-disc pl-4 space-y-1">
-                      <li>Up to 40 to 50 cubic metres volume</li>
-                      <li>No extensions on the front roof slope</li>
-                      <li>Side windows obscure glazed and fixed</li>
-                      <li>External materials to be similar</li>
+                      <li>Volume allowance typically 40 to 50 cubic metres depending on house type</li>
+                      <li>No extensions on the front roof slope in many cases</li>
+                      <li>Side windows often require obscure glazing and fixed opening</li>
+                      <li>External materials should be similar to existing</li>
                     </ul>
                   </div>
                   <div>
                     <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">Outbuildings</h3>
                     <ul className="list-disc pl-4 space-y-1">
-                      <li>Maximum 2.5 m high near boundaries</li>
+                      <li>Maximum 2.5m high near boundaries in many cases</li>
                       <li>Cannot be used as a separate dwelling</li>
-                      <li>Use must be incidental to the house</li>
-                      <li>Not more than 50 percent of garden area</li>
+                      <li>Use must be incidental to the main house</li>
+                      <li>Not more than 50 percent of garden area covered by buildings</li>
                     </ul>
                   </div>
                 </div>
@@ -439,13 +814,18 @@ export default function HarrowAreaPage() {
                   <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
                     Planning drawings for Harrow
                   </h3>
+                  <p className="text-[13px] text-slate-700">
+                    Our Harrow planning drawing packages are designed to validate smoothly and communicate the proposal
+                    clearly. We highlight the key dimensions and constraints that planning officers focus on, including
+                    height, depth, relationship to boundaries, and impact on neighbours where relevant.
+                  </p>
                   <ul className="list-disc pl-4 space-y-1 text-[13px] text-slate-700">
                     <li>Existing and proposed floor plans</li>
                     <li>Existing and proposed elevations</li>
                     <li>Roof plans and key sections</li>
-                    <li>Block plans and location plans</li>
-                    <li>Drainage and construction notes</li>
-                    <li>Design and access statements where needed</li>
+                    <li>Block plan and site location plan</li>
+                    <li>Key notes to support clarity and validation</li>
+                    <li>Design statement support where needed</li>
                   </ul>
                 </div>
 
@@ -453,13 +833,17 @@ export default function HarrowAreaPage() {
                   <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
                     Building regulation drawings for Harrow
                   </h3>
+                  <p className="text-[13px] text-slate-700">
+                    Our Harrow building regs packs focus on buildability and compliance. They reduce site questions, help
+                    builders price accurately, and give Building Control the technical information they need.
+                  </p>
                   <ul className="list-disc pl-4 space-y-1 text-[13px] text-slate-700">
-                    <li>Structural layouts and coordination</li>
-                    <li>Foundation and beam information</li>
-                    <li>Fire safety and escape routes</li>
-                    <li>Thermal build ups and insulation specs</li>
+                    <li>Structural layout coordination and key details</li>
+                    <li>Foundation strategy notes and critical junctions</li>
+                    <li>Fire safety approach and escape routes where required</li>
+                    <li>Thermal build ups and insulation specification</li>
                     <li>Ventilation and extract positions</li>
-                    <li>Drainage runs and manhole information</li>
+                    <li>Drainage strategy and basic layouts where required</li>
                   </ul>
                 </div>
               </div>
@@ -469,10 +853,23 @@ export default function HarrowAreaPage() {
                   Local planning knowledge for Harrow projects
                 </h2>
                 <p className="text-[13px] text-emerald-900">
-                  Harrow includes conservation areas near Harrow on the Hill, character streets with stricter design
-                  expectations and a mix of suburban semis and terraces. We shape each scheme to match local context so
-                  approval chances are as strong as possible.
+                  Harrow includes conservation areas near Harrow on the Hill, character streets with stronger design
+                  expectations, and a mix of suburban semis and terraces. We shape each scheme to match local context so
+                  approval confidence is as strong as possible, while keeping layouts practical for build cost and space
+                  gain.
                 </p>
+                <div className="flex flex-wrap gap-3 items-center pt-2">
+                  <button
+                    type="button"
+                    onClick={scrollToForm}
+                    className="rounded-full bg-emerald-900 px-5 py-2.5 text-white text-[12px] font-semibold uppercase tracking-[0.16em] hover:bg-emerald-800"
+                  >
+                    Request a fixed fee quote
+                  </button>
+                  <a href={PHONE_LINK} className="text-[12px] underline text-emerald-900 font-semibold">
+                    Call {PHONE_DISPLAY}
+                  </a>
+                </div>
               </div>
 
               <div className="space-y-4">
@@ -481,21 +878,38 @@ export default function HarrowAreaPage() {
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
                     <h3 className="font-semibold text-slate-900">Do I need planning permission in Harrow</h3>
                     <p>
-                      Many extensions and lofts can proceed under permitted development. We check your address and
-                      advise the best route at the start.
+                      Many extensions and lofts can be permitted development. We check your address and advise the best
+                      route from the start so you avoid delays.
                     </p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
                     <h3 className="font-semibold text-slate-900">How fast can you survey</h3>
-                    <p>In most cases we can arrange the initial measured survey within forty eight hours of instruction.</p>
+                    <p>In most cases we can arrange the initial measured survey within 48 hours of instruction.</p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
                     <h3 className="font-semibold text-slate-900">Do you submit to Harrow Council</h3>
-                    <p>Yes. We handle the submission, monitor progress and respond to planning officer queries.</p>
+                    <p>Yes. We handle submission, monitor progress, and respond to planning officer queries.</p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
                     <h3 className="font-semibold text-slate-900">Can you coordinate structural design</h3>
-                    <p>Yes. We coordinate with structural engineers so beams and load paths are designed and shown correctly on the drawings.</p>
+                    <p>
+                      Yes. We coordinate with structural engineers so beams and load paths are designed and shown
+                      correctly on the drawings.
+                    </p>
+                  </div>
+                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                    <h3 className="font-semibold text-slate-900">Can you help with building regs packs</h3>
+                    <p>
+                      Yes. We can prepare a full building regs pack for Building Control, including sections,
+                      construction notes, insulation build ups and compliance information.
+                    </p>
+                  </div>
+                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                    <h3 className="font-semibold text-slate-900">What do you need to price the quote</h3>
+                    <p>
+                      Postcode, project type, and a one line description is enough. If you have photos or an old plan,
+                      you can include it in your message after we reply.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -504,7 +918,8 @@ export default function HarrowAreaPage() {
                 <div>
                   <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">Ready to start your project</h2>
                   <p className="text-[13px] text-slate-300 mt-2">
-                    Send your postcode and a short description. We review and reply with a fixed fee and recommended next steps.
+                    Send your postcode and a short description. We review and reply with a fixed fee and recommended next
+                    steps.
                   </p>
                 </div>
                 <div className="flex flex-col space-y-2 text-[13px]">
@@ -541,6 +956,8 @@ export default function HarrowAreaPage() {
               </div>
             </div>
           </section>
+
+          <PlanningAssistant boroughName="Harrow" onGetQuote={scrollToForm} />
         </main>
       </div>
     </>
