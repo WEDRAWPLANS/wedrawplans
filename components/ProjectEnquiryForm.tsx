@@ -19,6 +19,22 @@ const PHONE_LINK = "tel:+442036548508";
 const EMAIL_DISPLAY = "info@wedrawplans.com";
 const EMAIL_LINK = "mailto:info@wedrawplans.com";
 
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+  }
+}
+
+function gaEvent(action: string, params: Record<string, any> = {}) {
+  try {
+    if (typeof window === "undefined") return;
+    if (!window.gtag) return;
+    window.gtag("event", action, params);
+  } catch {
+    // no op
+  }
+}
+
 function clampStr(v: string, max: number) {
   const s = (v || "").toString().trim();
   return s.length > max ? s.slice(0, max) : s;
@@ -88,10 +104,37 @@ export default function ProjectEnquiryForm(props: Props) {
     return `https://wa.me/442036548508?text=${enc}`;
   }, [borough]);
 
+  const gaBaseParams = useMemo(() => {
+    return {
+      page_path: typeof window !== "undefined" ? window.location.pathname : sourcePath || "",
+      borough: borough || "London",
+      source_path: sourcePath || "",
+    };
+  }, [borough, sourcePath]);
+
+  function trackQuickContact(kind: "call" | "whatsapp" | "email", extra: Record<string, any> = {}) {
+    gaEvent(`click_${kind}`, {
+      ...gaBaseParams,
+      project_type: projectType || "",
+      stage: stage || "",
+      postcode: postcode || "",
+      ...extra,
+    });
+  }
+
   function goNext() {
     setErr("");
     const ok = validateCurrentStep();
     if (!ok) return;
+
+    gaEvent("lead_step_continue", {
+      ...gaBaseParams,
+      step,
+      next_step: steps[Math.min(stepIndex + 1, steps.length - 1)],
+      project_type: projectType || "",
+      stage: stage || "",
+      postcode: postcode || "",
+    });
 
     const next = steps[Math.min(stepIndex + 1, steps.length - 1)];
     setStep(next);
@@ -99,6 +142,13 @@ export default function ProjectEnquiryForm(props: Props) {
 
   function goBack() {
     setErr("");
+
+    gaEvent("lead_step_back", {
+      ...gaBaseParams,
+      step,
+      prev_step: steps[Math.max(stepIndex - 1, 0)],
+    });
+
     const prev = steps[Math.max(stepIndex - 1, 0)];
     setStep(prev);
   }
@@ -181,28 +231,48 @@ export default function ProjectEnquiryForm(props: Props) {
     e.preventDefault();
     setErr("");
 
-    // Final validation
     if (!validateCurrentStep()) return;
 
     setIsSubmitting(true);
-        try {
+
+    gaEvent("lead_submit_attempt", {
+      ...gaBaseParams,
+      project_type: projectType || "",
+      stage: stage || "",
+      postcode: postcode || "",
+    });
+
+    try {
       await submitBoroughLead(e, { boroughName: borough || "London" });
 
+      gaEvent("lead_submit", {
+        ...gaBaseParams,
+        project_type: projectType || "",
+        stage: stage || "",
+        postcode: postcode || "",
+        has_phone: !!phone,
+        has_email: !!email,
+      });
+
       setSubmitted(true);
-      setIsSubmitting(false);
       if (props.onSuccess) props.onSuccess();
     } catch (error) {
+      gaEvent("lead_submit_error", {
+        ...gaBaseParams,
+        project_type: projectType || "",
+        stage: stage || "",
+        postcode: postcode || "",
+      });
 
-      setIsSubmitting(false);
       setErr("Something went wrong sending your enquiry. Please try again or call us.");
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
   const headline =
     props.accentText ||
-    (borough
-      ? `Get a fast quote for planning drawings in ${borough}`
-      : "Get a fast quote for planning drawings");
+    (borough ? `Get a fast quote for planning drawings in ${borough}` : "Get a fast quote for planning drawings");
 
   if (submitted) {
     return (
@@ -220,13 +290,19 @@ export default function ProjectEnquiryForm(props: Props) {
               <div className="wdpTag">Architecture drawings. Planning ready.</div>
             </div>
             <div className="wdpMiniActions" aria-label="Quick contact">
-              <a className="wdpMiniBtn" href={PHONE_LINK}>
+              <a className="wdpMiniBtn" href={PHONE_LINK} onClick={() => trackQuickContact("call", { location: "success_top" })}>
                 Call
               </a>
-              <a className="wdpMiniBtn" href={whatsappLink} target="_blank" rel="noreferrer">
+              <a
+                className="wdpMiniBtn"
+                href={whatsappLink}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => trackQuickContact("whatsapp", { location: "success_top" })}
+              >
                 WhatsApp
               </a>
-              <a className="wdpMiniBtn" href={EMAIL_LINK}>
+              <a className="wdpMiniBtn" href={EMAIL_LINK} onClick={() => trackQuickContact("email", { location: "success_top" })}>
                 Email
               </a>
             </div>
@@ -236,17 +312,27 @@ export default function ProjectEnquiryForm(props: Props) {
             <div className="wdpSuccessTitle">Thank you. We received your enquiry.</div>
             <div className="wdpSuccessText">
               We will contact you shortly. If you need a quicker response, call us on{" "}
-              <a href={PHONE_LINK} className="wdpInlineLink">
+              <a
+                href={PHONE_LINK}
+                className="wdpInlineLink"
+                onClick={() => trackQuickContact("call", { location: "success_text" })}
+              >
                 {PHONE_DISPLAY}
               </a>{" "}
               or message us on WhatsApp.
             </div>
 
             <div className="wdpSuccessActions">
-              <a className="wdpPrimary" href={whatsappLink} target="_blank" rel="noreferrer">
+              <a
+                className="wdpPrimary"
+                href={whatsappLink}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => trackQuickContact("whatsapp", { location: "success_actions" })}
+              >
                 Message on WhatsApp
               </a>
-              <a className="wdpGhost" href={PHONE_LINK}>
+              <a className="wdpGhost" href={PHONE_LINK} onClick={() => trackQuickContact("call", { location: "success_actions" })}>
                 Call {PHONE_DISPLAY}
               </a>
             </div>
@@ -274,13 +360,19 @@ export default function ProjectEnquiryForm(props: Props) {
           </div>
 
           <div className="wdpMiniActions" aria-label="Quick contact">
-            <a className="wdpMiniBtn" href={PHONE_LINK}>
+            <a className="wdpMiniBtn" href={PHONE_LINK} onClick={() => trackQuickContact("call", { location: "top" })}>
               Call
             </a>
-            <a className="wdpMiniBtn" href={whatsappLink} target="_blank" rel="noreferrer">
+            <a
+              className="wdpMiniBtn"
+              href={whatsappLink}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => trackQuickContact("whatsapp", { location: "top" })}
+            >
               WhatsApp
             </a>
-            <a className="wdpMiniBtn" href={EMAIL_LINK}>
+            <a className="wdpMiniBtn" href={EMAIL_LINK} onClick={() => trackQuickContact("email", { location: "top" })}>
               Email
             </a>
           </div>
@@ -331,15 +423,7 @@ export default function ProjectEnquiryForm(props: Props) {
                 const isActive = i === stepIndex;
                 const isDone = i < stepIndex;
                 const label =
-                  k === "type"
-                    ? "Project"
-                    : k === "postcode"
-                    ? "Location"
-                    : k === "stage"
-                    ? "Stage"
-                    : k === "details"
-                    ? "Details"
-                    : "Contact";
+                  k === "type" ? "Project" : k === "postcode" ? "Location" : k === "stage" ? "Stage" : k === "details" ? "Details" : "Contact";
                 return (
                   <div key={k} className={`wdpStepPill ${isActive ? "active" : ""} ${isDone ? "done" : ""}`}>
                     <span className="wdpStepDot" aria-hidden="true" />
@@ -352,7 +436,6 @@ export default function ProjectEnquiryForm(props: Props) {
         </div>
 
         <form className="wdpForm" onSubmit={handleSubmit} noValidate>
-          {/* Hidden fields for your existing lead pipeline */}
           <input type="hidden" name="borough" value={borough} />
           <input type="hidden" name="service" value={projectType || "Planning drawings"} />
           <input type="hidden" name="projectType" value={projectType} />
@@ -377,7 +460,10 @@ export default function ProjectEnquiryForm(props: Props) {
                       type="button"
                       key={t.value}
                       className={`wdpChoice ${projectType === t.value ? "selected" : ""}`}
-                      onClick={() => setProjectType(t.value)}
+                      onClick={() => {
+                        setProjectType(t.value);
+                        gaEvent("lead_select_project_type", { ...gaBaseParams, value: t.value });
+                      }}
                     >
                       <div className="wdpChoiceTop">
                         <span className="wdpChoiceLabel">{t.label}</span>
@@ -410,18 +496,22 @@ export default function ProjectEnquiryForm(props: Props) {
                     onChange={(e) => setPostcode(clampStr(e.target.value.toUpperCase(), 16))}
                     autoComplete="postal-code"
                   />
-                  <div className="wdpSmallNote">
-                    No spam. We only use your details to respond to this enquiry.
-                  </div>
+                  <div className="wdpSmallNote">No spam. We only use your details to respond to this enquiry.</div>
                 </div>
 
                 <div className="wdpLocalStrip">
                   <div className="wdpLocalStripTitle">Want a faster response?</div>
                   <div className="wdpLocalStripActions">
-                    <a className="wdpInlineBtn" href={PHONE_LINK}>
+                    <a className="wdpInlineBtn" href={PHONE_LINK} onClick={() => trackQuickContact("call", { location: "postcode_strip" })}>
                       Call {PHONE_DISPLAY}
                     </a>
-                    <a className="wdpInlineBtn" href={whatsappLink} target="_blank" rel="noreferrer">
+                    <a
+                      className="wdpInlineBtn"
+                      href={whatsappLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      onClick={() => trackQuickContact("whatsapp", { location: "postcode_strip" })}
+                    >
                       WhatsApp us
                     </a>
                   </div>
@@ -440,7 +530,10 @@ export default function ProjectEnquiryForm(props: Props) {
                       type="button"
                       key={s.value}
                       className={`wdpChoice ${stage === s.value ? "selected" : ""}`}
-                      onClick={() => setStage(s.value)}
+                      onClick={() => {
+                        setStage(s.value);
+                        gaEvent("lead_select_stage", { ...gaBaseParams, value: s.value });
+                      }}
                     >
                       <div className="wdpChoiceTop">
                         <span className="wdpChoiceLabel">{s.label}</span>
@@ -458,9 +551,7 @@ export default function ProjectEnquiryForm(props: Props) {
             {step === "details" ? (
               <>
                 <div className="wdpPanelTitle">Tell us about the project</div>
-                <div className="wdpPanelHint">
-                  Write it in your own words. Mention size, storeys, or anything you already know.
-                </div>
+                <div className="wdpPanelHint">Write it in your own words. Mention size, storeys, or anything you already know.</div>
 
                 <div className="wdpFieldRow">
                   <label className="wdpLabel" htmlFor="wdp_details">
@@ -485,9 +576,7 @@ export default function ProjectEnquiryForm(props: Props) {
             {step === "contact" ? (
               <>
                 <div className="wdpPanelTitle">Where should we send your quote?</div>
-                <div className="wdpPanelHint">
-                  We respond personally. Phone is best for quick clarification and faster turnaround.
-                </div>
+                <div className="wdpPanelHint">We respond personally. Phone is best for quick clarification and faster turnaround.</div>
 
                 <div className="wdpTwoCol">
                   <div className="wdpFieldRow">
@@ -532,9 +621,7 @@ export default function ProjectEnquiryForm(props: Props) {
                       onChange={(e) => setEmail(clampStr(e.target.value, 120))}
                       autoComplete="email"
                     />
-                    <div className="wdpSmallNote">
-                      By submitting, you agree we may contact you about this enquiry only. No spam.
-                    </div>
+                    <div className="wdpSmallNote">By submitting, you agree we may contact you about this enquiry only. No spam.</div>
                   </div>
                 </div>
 
@@ -564,10 +651,19 @@ export default function ProjectEnquiryForm(props: Props) {
               </>
             ) : null}
 
-            {err ? <div className="wdpError" role="alert">{err}</div> : null}
+            {err ? (
+              <div className="wdpError" role="alert">
+                {err}
+              </div>
+            ) : null}
 
             <div className="wdpNav">
-              <button type="button" className={`wdpBack ${stepIndex === 0 ? "disabled" : ""}`} onClick={goBack} disabled={stepIndex === 0 || isSubmitting}>
+              <button
+                type="button"
+                className={`wdpBack ${stepIndex === 0 ? "disabled" : ""}`}
+                onClick={goBack}
+                disabled={stepIndex === 0 || isSubmitting}
+              >
                 Back
               </button>
 
@@ -582,7 +678,13 @@ export default function ProjectEnquiryForm(props: Props) {
                   </button>
                 )}
 
-                <a className="wdpGhost" href={whatsappLink} target="_blank" rel="noreferrer">
+                <a
+                  className="wdpGhost"
+                  href={whatsappLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => trackQuickContact("whatsapp", { location: "nav" })}
+                >
                   Prefer WhatsApp
                 </a>
               </div>
@@ -590,11 +692,11 @@ export default function ProjectEnquiryForm(props: Props) {
 
             <div className="wdpFooterNote">
               If you prefer, call{" "}
-              <a href={PHONE_LINK} className="wdpInlineLink">
+              <a href={PHONE_LINK} className="wdpInlineLink" onClick={() => trackQuickContact("call", { location: "footer" })}>
                 {PHONE_DISPLAY}
               </a>{" "}
               or email{" "}
-              <a href={EMAIL_LINK} className="wdpInlineLink">
+              <a href={EMAIL_LINK} className="wdpInlineLink" onClick={() => trackQuickContact("email", { location: "footer" })}>
                 {EMAIL_DISPLAY}
               </a>
               .
