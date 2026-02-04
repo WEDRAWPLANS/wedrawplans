@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { submitBoroughLead } from "../lib/submitBoroughLead";
 
@@ -8,9 +8,9 @@ type Props = {
   borough?: string;
   sourcePath?: string;
   defaultProjectType?: string;
-  logoSrc?: string; // eg "/logo.png" or "/images/logo.png"
+  logoSrc?: string;
   logoAlt?: string;
-  accentText?: string; // optional headline override
+  accentText?: string;
   onSuccess?: () => void;
 };
 
@@ -22,14 +22,29 @@ const EMAIL_LINK = "mailto:info@wedrawplans.com";
 declare global {
   interface Window {
     gtag?: (...args: any[]) => void;
+    dataLayer?: any[];
   }
 }
 
 function gaEvent(action: string, params: Record<string, any> = {}) {
   try {
     if (typeof window === "undefined") return;
-    if (!window.gtag) return;
-    window.gtag("event", action, params);
+
+    const safeParams = {
+      ...params,
+      event_source: "wedrawplans_form",
+    };
+
+    if (window.gtag) {
+      window.gtag("event", action, safeParams);
+    }
+
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: action,
+        ...safeParams,
+      });
+    }
   } catch {
     // no op
   }
@@ -47,7 +62,6 @@ function isEmail(v: string) {
 
 function normalizePhone(v: string) {
   const s = (v || "").toString().trim();
-  // Keep digits and plus
   const cleaned = s.replace(/[^\d+]/g, "");
   return cleaned;
 }
@@ -94,6 +108,8 @@ export default function ProjectEnquiryForm(props: Props) {
 
   const [err, setErr] = useState<string>("");
 
+  const formStartedRef = useRef(false);
+
   const steps: StepKey[] = useMemo(() => ["type", "postcode", "stage", "details", "contact"], []);
   const stepIndex = steps.indexOf(step);
   const progressPct = Math.round(((stepIndex + 1) / steps.length) * 100);
@@ -112,7 +128,23 @@ export default function ProjectEnquiryForm(props: Props) {
     };
   }, [borough, sourcePath]);
 
+  function ensureFormStart(extra: Record<string, any> = {}) {
+    if (formStartedRef.current) return;
+    formStartedRef.current = true;
+
+    gaEvent("form_start", {
+      ...gaBaseParams,
+      project_type: projectType || "",
+      stage: stage || "",
+      postcode: postcode || "",
+      step,
+      ...extra,
+    });
+  }
+
   function trackQuickContact(kind: "call" | "whatsapp" | "email", extra: Record<string, any> = {}) {
+    ensureFormStart({ trigger: `click_${kind}` });
+
     gaEvent(`click_${kind}`, {
       ...gaBaseParams,
       project_type: projectType || "",
@@ -126,6 +158,8 @@ export default function ProjectEnquiryForm(props: Props) {
     setErr("");
     const ok = validateCurrentStep();
     if (!ok) return;
+
+    ensureFormStart({ trigger: "continue" });
 
     gaEvent("lead_step_continue", {
       ...gaBaseParams,
@@ -233,6 +267,8 @@ export default function ProjectEnquiryForm(props: Props) {
 
     if (!validateCurrentStep()) return;
 
+    ensureFormStart({ trigger: "submit_attempt" });
+
     setIsSubmitting(true);
 
     gaEvent("lead_submit_attempt", {
@@ -245,23 +281,29 @@ export default function ProjectEnquiryForm(props: Props) {
     try {
       await submitBoroughLead(e, { boroughName: borough || "London" });
 
-      gaEvent("lead_submit", {
+      const successParams = {
         ...gaBaseParams,
         project_type: projectType || "",
         stage: stage || "",
         postcode: postcode || "",
         has_phone: !!phone,
         has_email: !!email,
-      });
+        method: "form",
+      };
+
+      gaEvent("lead_submit", successParams);
+      gaEvent("form_submit", successParams);
+      gaEvent("generate_lead", successParams);
 
       setSubmitted(true);
       if (props.onSuccess) props.onSuccess();
-    } catch (error) {
+    } catch (error: any) {
       gaEvent("lead_submit_error", {
         ...gaBaseParams,
         project_type: projectType || "",
         stage: stage || "",
         postcode: postcode || "",
+        error_message: clampStr(String(error?.message || "unknown_error"), 180),
       });
 
       setErr("Something went wrong sending your enquiry. Please try again or call us.");
@@ -435,7 +477,13 @@ export default function ProjectEnquiryForm(props: Props) {
           </div>
         </div>
 
-        <form className="wdpForm" onSubmit={handleSubmit} noValidate>
+        <form
+          className="wdpForm"
+          onSubmit={handleSubmit}
+          onFocusCapture={() => ensureFormStart({ trigger: "focus" })}
+          onClickCapture={() => ensureFormStart({ trigger: "click" })}
+          noValidate
+        >
           <input type="hidden" name="borough" value={borough} />
           <input type="hidden" name="service" value={projectType || "Planning drawings"} />
           <input type="hidden" name="projectType" value={projectType} />
@@ -461,6 +509,7 @@ export default function ProjectEnquiryForm(props: Props) {
                       key={t.value}
                       className={`wdpChoice ${projectType === t.value ? "selected" : ""}`}
                       onClick={() => {
+                        ensureFormStart({ trigger: "select_project_type" });
                         setProjectType(t.value);
                         gaEvent("lead_select_project_type", { ...gaBaseParams, value: t.value });
                       }}
@@ -493,7 +542,10 @@ export default function ProjectEnquiryForm(props: Props) {
                     inputMode="text"
                     placeholder="eg N20 0JZ"
                     value={postcode}
-                    onChange={(e) => setPostcode(clampStr(e.target.value.toUpperCase(), 16))}
+                    onChange={(e) => {
+                      ensureFormStart({ trigger: "postcode_input" });
+                      setPostcode(clampStr(e.target.value.toUpperCase(), 16));
+                    }}
                     autoComplete="postal-code"
                   />
                   <div className="wdpSmallNote">No spam. We only use your details to respond to this enquiry.</div>
@@ -531,6 +583,7 @@ export default function ProjectEnquiryForm(props: Props) {
                       key={s.value}
                       className={`wdpChoice ${stage === s.value ? "selected" : ""}`}
                       onClick={() => {
+                        ensureFormStart({ trigger: "select_stage" });
                         setStage(s.value);
                         gaEvent("lead_select_stage", { ...gaBaseParams, value: s.value });
                       }}
@@ -562,7 +615,10 @@ export default function ProjectEnquiryForm(props: Props) {
                     className="wdpTextarea"
                     placeholder="eg Single storey rear extension, about 3m projection, bi-fold doors, plus planning drawings and advice on permitted development."
                     value={details}
-                    onChange={(e) => setDetails(clampStr(e.target.value, 1200))}
+                    onChange={(e) => {
+                      ensureFormStart({ trigger: "details_input" });
+                      setDetails(clampStr(e.target.value, 1200));
+                    }}
                     rows={6}
                   />
                   <div className="wdpCharRow">
@@ -588,7 +644,10 @@ export default function ProjectEnquiryForm(props: Props) {
                       className="wdpInput"
                       placeholder="Your name"
                       value={name}
-                      onChange={(e) => setName(clampStr(e.target.value, 80))}
+                      onChange={(e) => {
+                        ensureFormStart({ trigger: "name_input" });
+                        setName(clampStr(e.target.value, 80));
+                      }}
                       autoComplete="name"
                     />
                   </div>
@@ -603,7 +662,10 @@ export default function ProjectEnquiryForm(props: Props) {
                       inputMode="tel"
                       placeholder="eg 07900 000 000"
                       value={phone}
-                      onChange={(e) => setPhone(clampStr(e.target.value, 30))}
+                      onChange={(e) => {
+                        ensureFormStart({ trigger: "phone_input" });
+                        setPhone(clampStr(e.target.value, 30));
+                      }}
                       autoComplete="tel"
                     />
                   </div>
@@ -618,7 +680,10 @@ export default function ProjectEnquiryForm(props: Props) {
                       inputMode="email"
                       placeholder="eg name@email.com"
                       value={email}
-                      onChange={(e) => setEmail(clampStr(e.target.value, 120))}
+                      onChange={(e) => {
+                        ensureFormStart({ trigger: "email_input" });
+                        setEmail(clampStr(e.target.value, 120));
+                      }}
                       autoComplete="email"
                     />
                     <div className="wdpSmallNote">By submitting, you agree we may contact you about this enquiry only. No spam.</div>
