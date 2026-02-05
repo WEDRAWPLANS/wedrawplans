@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, { useMemo, useState } from "react";
 import Image from "next/image";
 import { submitBoroughLead } from "../lib/submitBoroughLead";
 
@@ -8,9 +8,9 @@ type Props = {
   borough?: string;
   sourcePath?: string;
   defaultProjectType?: string;
-  logoSrc?: string;
+  logoSrc?: string; // eg "/logo.png" or "/images/logo.png"
   logoAlt?: string;
-  accentText?: string;
+  accentText?: string; // optional headline override
   onSuccess?: () => void;
 };
 
@@ -23,30 +23,6 @@ declare global {
   interface Window {
     gtag?: (...args: any[]) => void;
     dataLayer?: any[];
-  }
-}
-
-function gaEvent(action: string, params: Record<string, any> = {}) {
-  try {
-    if (typeof window === "undefined") return;
-
-    const safeParams = {
-      ...params,
-      event_source: "wedrawplans_form",
-    };
-
-    if (window.gtag) {
-      window.gtag("event", action, safeParams);
-    }
-
-    if (window.dataLayer) {
-      window.dataLayer.push({
-        event: action,
-        ...safeParams,
-      });
-    }
-  } catch {
-    // no op
   }
 }
 
@@ -70,6 +46,44 @@ function isLikelyPhone(v: string) {
   const s = normalizePhone(v);
   const digits = s.replace(/\D/g, "");
   return digits.length >= 10 && digits.length <= 15;
+}
+
+function isDebugMode() {
+  try {
+    if (typeof window === "undefined") return false;
+    const url = new URL(window.location.href);
+    const q = url.searchParams;
+    if (q.get("ga_debug") === "1") return true;
+    if (q.get("debug") === "1") return true;
+    if (q.get("gtm_debug") === "x") return true;
+    if (window.localStorage && window.localStorage.getItem("GA_DEBUG") === "1") return true;
+    return false;
+  } catch {
+    return false;
+  }
+}
+
+function trackEvent(eventName: string, params: Record<string, any> = {}) {
+  try {
+    if (typeof window === "undefined") return;
+
+    const debug = isDebugMode();
+    const payload = debug ? { ...params, debug_mode: true } : params;
+
+    // Option A: gtag (gtag.js or GTM configured with gtag)
+    if (window.gtag) {
+      window.gtag("event", eventName, payload);
+      return;
+    }
+
+    // Option B: GTM dataLayer push
+    if (Array.isArray(window.dataLayer)) {
+      window.dataLayer.push({ event: eventName, ...payload });
+      return;
+    }
+  } catch {
+    // no op
+  }
 }
 
 const PROJECT_TYPES: { label: string; value: string; sub?: string }[] = [
@@ -108,8 +122,6 @@ export default function ProjectEnquiryForm(props: Props) {
 
   const [err, setErr] = useState<string>("");
 
-  const formStartedRef = useRef(false);
-
   const steps: StepKey[] = useMemo(() => ["type", "postcode", "stage", "details", "contact"], []);
   const stepIndex = steps.indexOf(step);
   const progressPct = Math.round(((stepIndex + 1) / steps.length) * 100);
@@ -121,31 +133,19 @@ export default function ProjectEnquiryForm(props: Props) {
   }, [borough]);
 
   const gaBaseParams = useMemo(() => {
+    const path = typeof window !== "undefined" ? window.location.pathname : sourcePath || "";
+    const fullUrl = typeof window !== "undefined" ? window.location.href : "";
     return {
-      page_path: typeof window !== "undefined" ? window.location.pathname : sourcePath || "",
+      page_path: path,
+      page_location: fullUrl,
       borough: borough || "London",
       source_path: sourcePath || "",
     };
   }, [borough, sourcePath]);
 
-  function ensureFormStart(extra: Record<string, any> = {}) {
-    if (formStartedRef.current) return;
-    formStartedRef.current = true;
-
-    gaEvent("form_start", {
-      ...gaBaseParams,
-      project_type: projectType || "",
-      stage: stage || "",
-      postcode: postcode || "",
-      step,
-      ...extra,
-    });
-  }
-
   function trackQuickContact(kind: "call" | "whatsapp" | "email", extra: Record<string, any> = {}) {
-    ensureFormStart({ trigger: `click_${kind}` });
-
-    gaEvent(`click_${kind}`, {
+    // Keep your existing naming pattern so it matches what you already see in GA4
+    trackEvent(`click_${kind}`, {
       ...gaBaseParams,
       project_type: projectType || "",
       stage: stage || "",
@@ -159,9 +159,7 @@ export default function ProjectEnquiryForm(props: Props) {
     const ok = validateCurrentStep();
     if (!ok) return;
 
-    ensureFormStart({ trigger: "continue" });
-
-    gaEvent("lead_step_continue", {
+    trackEvent("lead_step_continue", {
       ...gaBaseParams,
       step,
       next_step: steps[Math.min(stepIndex + 1, steps.length - 1)],
@@ -177,10 +175,13 @@ export default function ProjectEnquiryForm(props: Props) {
   function goBack() {
     setErr("");
 
-    gaEvent("lead_step_back", {
+    trackEvent("lead_step_back", {
       ...gaBaseParams,
       step,
       prev_step: steps[Math.max(stepIndex - 1, 0)],
+      project_type: projectType || "",
+      stage: stage || "",
+      postcode: postcode || "",
     });
 
     const prev = steps[Math.max(stepIndex - 1, 0)];
@@ -267,11 +268,9 @@ export default function ProjectEnquiryForm(props: Props) {
 
     if (!validateCurrentStep()) return;
 
-    ensureFormStart({ trigger: "submit_attempt" });
-
     setIsSubmitting(true);
 
-    gaEvent("lead_submit_attempt", {
+    trackEvent("lead_submit_attempt", {
       ...gaBaseParams,
       project_type: projectType || "",
       stage: stage || "",
@@ -281,29 +280,23 @@ export default function ProjectEnquiryForm(props: Props) {
     try {
       await submitBoroughLead(e, { boroughName: borough || "London" });
 
-      const successParams = {
+      trackEvent("lead_submit", {
         ...gaBaseParams,
         project_type: projectType || "",
         stage: stage || "",
         postcode: postcode || "",
         has_phone: !!phone,
         has_email: !!email,
-        method: "form",
-      };
-
-      gaEvent("lead_submit", successParams);
-      gaEvent("form_submit", successParams);
-      gaEvent("generate_lead", successParams);
+      });
 
       setSubmitted(true);
       if (props.onSuccess) props.onSuccess();
-    } catch (error: any) {
-      gaEvent("lead_submit_error", {
+    } catch (error) {
+      trackEvent("lead_submit_error", {
         ...gaBaseParams,
         project_type: projectType || "",
         stage: stage || "",
         postcode: postcode || "",
-        error_message: clampStr(String(error?.message || "unknown_error"), 180),
       });
 
       setErr("Something went wrong sending your enquiry. Please try again or call us.");
@@ -313,8 +306,7 @@ export default function ProjectEnquiryForm(props: Props) {
   }
 
   const headline =
-    props.accentText ||
-    (borough ? `Get a fast quote for planning drawings in ${borough}` : "Get a fast quote for planning drawings");
+    props.accentText || (borough ? `Get a fast quote for planning drawings in ${borough}` : "Get a fast quote for planning drawings");
 
   if (submitted) {
     return (
@@ -354,11 +346,7 @@ export default function ProjectEnquiryForm(props: Props) {
             <div className="wdpSuccessTitle">Thank you. We received your enquiry.</div>
             <div className="wdpSuccessText">
               We will contact you shortly. If you need a quicker response, call us on{" "}
-              <a
-                href={PHONE_LINK}
-                className="wdpInlineLink"
-                onClick={() => trackQuickContact("call", { location: "success_text" })}
-              >
+              <a href={PHONE_LINK} className="wdpInlineLink" onClick={() => trackQuickContact("call", { location: "success_text" })}>
                 {PHONE_DISPLAY}
               </a>{" "}
               or message us on WhatsApp.
@@ -405,13 +393,7 @@ export default function ProjectEnquiryForm(props: Props) {
             <a className="wdpMiniBtn" href={PHONE_LINK} onClick={() => trackQuickContact("call", { location: "top" })}>
               Call
             </a>
-            <a
-              className="wdpMiniBtn"
-              href={whatsappLink}
-              target="_blank"
-              rel="noreferrer"
-              onClick={() => trackQuickContact("whatsapp", { location: "top" })}
-            >
+            <a className="wdpMiniBtn" href={whatsappLink} target="_blank" rel="noreferrer" onClick={() => trackQuickContact("whatsapp", { location: "top" })}>
               WhatsApp
             </a>
             <a className="wdpMiniBtn" href={EMAIL_LINK} onClick={() => trackQuickContact("email", { location: "top" })}>
@@ -464,8 +446,7 @@ export default function ProjectEnquiryForm(props: Props) {
               {steps.map((k, i) => {
                 const isActive = i === stepIndex;
                 const isDone = i < stepIndex;
-                const label =
-                  k === "type" ? "Project" : k === "postcode" ? "Location" : k === "stage" ? "Stage" : k === "details" ? "Details" : "Contact";
+                const label = k === "type" ? "Project" : k === "postcode" ? "Location" : k === "stage" ? "Stage" : k === "details" ? "Details" : "Contact";
                 return (
                   <div key={k} className={`wdpStepPill ${isActive ? "active" : ""} ${isDone ? "done" : ""}`}>
                     <span className="wdpStepDot" aria-hidden="true" />
@@ -477,13 +458,7 @@ export default function ProjectEnquiryForm(props: Props) {
           </div>
         </div>
 
-        <form
-          className="wdpForm"
-          onSubmit={handleSubmit}
-          onFocusCapture={() => ensureFormStart({ trigger: "focus" })}
-          onClickCapture={() => ensureFormStart({ trigger: "click" })}
-          noValidate
-        >
+        <form className="wdpForm" onSubmit={handleSubmit} noValidate>
           <input type="hidden" name="borough" value={borough} />
           <input type="hidden" name="service" value={projectType || "Planning drawings"} />
           <input type="hidden" name="projectType" value={projectType} />
@@ -509,9 +484,8 @@ export default function ProjectEnquiryForm(props: Props) {
                       key={t.value}
                       className={`wdpChoice ${projectType === t.value ? "selected" : ""}`}
                       onClick={() => {
-                        ensureFormStart({ trigger: "select_project_type" });
                         setProjectType(t.value);
-                        gaEvent("lead_select_project_type", { ...gaBaseParams, value: t.value });
+                        trackEvent("lead_select_project_type", { ...gaBaseParams, value: t.value });
                       }}
                     >
                       <div className="wdpChoiceTop">
@@ -542,10 +516,7 @@ export default function ProjectEnquiryForm(props: Props) {
                     inputMode="text"
                     placeholder="eg N20 0JZ"
                     value={postcode}
-                    onChange={(e) => {
-                      ensureFormStart({ trigger: "postcode_input" });
-                      setPostcode(clampStr(e.target.value.toUpperCase(), 16));
-                    }}
+                    onChange={(e) => setPostcode(clampStr(e.target.value.toUpperCase(), 16))}
                     autoComplete="postal-code"
                   />
                   <div className="wdpSmallNote">No spam. We only use your details to respond to this enquiry.</div>
@@ -583,9 +554,8 @@ export default function ProjectEnquiryForm(props: Props) {
                       key={s.value}
                       className={`wdpChoice ${stage === s.value ? "selected" : ""}`}
                       onClick={() => {
-                        ensureFormStart({ trigger: "select_stage" });
                         setStage(s.value);
-                        gaEvent("lead_select_stage", { ...gaBaseParams, value: s.value });
+                        trackEvent("lead_select_stage", { ...gaBaseParams, value: s.value });
                       }}
                     >
                       <div className="wdpChoiceTop">
@@ -615,10 +585,7 @@ export default function ProjectEnquiryForm(props: Props) {
                     className="wdpTextarea"
                     placeholder="eg Single storey rear extension, about 3m projection, bi-fold doors, plus planning drawings and advice on permitted development."
                     value={details}
-                    onChange={(e) => {
-                      ensureFormStart({ trigger: "details_input" });
-                      setDetails(clampStr(e.target.value, 1200));
-                    }}
+                    onChange={(e) => setDetails(clampStr(e.target.value, 1200))}
                     rows={6}
                   />
                   <div className="wdpCharRow">
@@ -644,10 +611,7 @@ export default function ProjectEnquiryForm(props: Props) {
                       className="wdpInput"
                       placeholder="Your name"
                       value={name}
-                      onChange={(e) => {
-                        ensureFormStart({ trigger: "name_input" });
-                        setName(clampStr(e.target.value, 80));
-                      }}
+                      onChange={(e) => setName(clampStr(e.target.value, 80))}
                       autoComplete="name"
                     />
                   </div>
@@ -662,10 +626,7 @@ export default function ProjectEnquiryForm(props: Props) {
                       inputMode="tel"
                       placeholder="eg 07900 000 000"
                       value={phone}
-                      onChange={(e) => {
-                        ensureFormStart({ trigger: "phone_input" });
-                        setPhone(clampStr(e.target.value, 30));
-                      }}
+                      onChange={(e) => setPhone(clampStr(e.target.value, 30))}
                       autoComplete="tel"
                     />
                   </div>
@@ -680,10 +641,7 @@ export default function ProjectEnquiryForm(props: Props) {
                       inputMode="email"
                       placeholder="eg name@email.com"
                       value={email}
-                      onChange={(e) => {
-                        ensureFormStart({ trigger: "email_input" });
-                        setEmail(clampStr(e.target.value, 120));
-                      }}
+                      onChange={(e) => setEmail(clampStr(e.target.value, 120))}
                       autoComplete="email"
                     />
                     <div className="wdpSmallNote">By submitting, you agree we may contact you about this enquiry only. No spam.</div>
@@ -723,12 +681,7 @@ export default function ProjectEnquiryForm(props: Props) {
             ) : null}
 
             <div className="wdpNav">
-              <button
-                type="button"
-                className={`wdpBack ${stepIndex === 0 ? "disabled" : ""}`}
-                onClick={goBack}
-                disabled={stepIndex === 0 || isSubmitting}
-              >
+              <button type="button" className={`wdpBack ${stepIndex === 0 ? "disabled" : ""}`} onClick={goBack} disabled={stepIndex === 0 || isSubmitting}>
                 Back
               </button>
 
@@ -743,13 +696,7 @@ export default function ProjectEnquiryForm(props: Props) {
                   </button>
                 )}
 
-                <a
-                  className="wdpGhost"
-                  href={whatsappLink}
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={() => trackQuickContact("whatsapp", { location: "nav" })}
-                >
+                <a className="wdpGhost" href={whatsappLink} target="_blank" rel="noreferrer" onClick={() => trackQuickContact("whatsapp", { location: "nav" })}>
                   Prefer WhatsApp
                 </a>
               </div>
@@ -766,6 +713,12 @@ export default function ProjectEnquiryForm(props: Props) {
               </a>
               .
             </div>
+
+            {isDebugMode() ? (
+              <div className="wdpDebugNote">
+                GA Debug mode is ON (ga_debug=1). Events should appear in GA4 DebugView.
+              </div>
+            ) : null}
           </div>
         </form>
       </div>
@@ -1285,6 +1238,16 @@ const styles = `
   display:flex;
   gap:10px;
   flex-wrap:wrap;
+}
+.wdpDebugNote{
+  margin-top:12px;
+  padding:10px 12px;
+  border-radius:14px;
+  border:1px solid rgba(0,0,0,0.12);
+  background:rgba(0,0,0,0.03);
+  color:rgba(0,0,0,0.70);
+  font-size:12px;
+  font-weight:800;
 }
 @media (max-width: 920px){
   .wdpHero{
