@@ -8,9 +8,9 @@ type Props = {
   borough?: string;
   sourcePath?: string;
   defaultProjectType?: string;
-  logoSrc?: string; // eg "/logo.png" or "/images/logo.png"
+  logoSrc?: string;
   logoAlt?: string;
-  accentText?: string; // optional headline override
+  accentText?: string;
   onSuccess?: () => void;
 };
 
@@ -22,7 +22,6 @@ const EMAIL_LINK = "mailto:info@wedrawplans.com";
 declare global {
   interface Window {
     gtag?: (...args: any[]) => void;
-    dataLayer?: any[];
   }
 }
 
@@ -55,7 +54,6 @@ function isDebugMode() {
     const q = url.searchParams;
     if (q.get("ga_debug") === "1") return true;
     if (q.get("debug") === "1") return true;
-    if (q.get("gtm_debug") === "x") return true;
     if (window.localStorage && window.localStorage.getItem("GA_DEBUG") === "1") return true;
     return false;
   } catch {
@@ -63,27 +61,29 @@ function isDebugMode() {
   }
 }
 
-function trackEvent(eventName: string, params: Record<string, any> = {}) {
+function gaEvent(action: string, params: Record<string, any> = {}, preferBeacon = true) {
   try {
     if (typeof window === "undefined") return;
+    if (!window.gtag) return;
 
-    const debug = isDebugMode();
-    const payload = debug ? { ...params, debug_mode: true } : params;
+    const payload: Record<string, any> = { ...params };
 
-    // Option A: gtag (gtag.js or GTM configured with gtag)
-    if (window.gtag) {
-      window.gtag("event", eventName, payload);
-      return;
+    if (isDebugMode()) {
+      payload.debug_mode = true;
     }
 
-    // Option B: GTM dataLayer push
-    if (Array.isArray(window.dataLayer)) {
-      window.dataLayer.push({ event: eventName, ...payload });
-      return;
+    if (preferBeacon) {
+      payload.transport_type = "beacon";
     }
+
+    window.gtag("event", action, payload);
   } catch {
     // no op
   }
+}
+
+function sleep(ms: number) {
+  return new Promise((r) => setTimeout(r, ms));
 }
 
 const PROJECT_TYPES: { label: string; value: string; sub?: string }[] = [
@@ -133,19 +133,16 @@ export default function ProjectEnquiryForm(props: Props) {
   }, [borough]);
 
   const gaBaseParams = useMemo(() => {
-    const path = typeof window !== "undefined" ? window.location.pathname : sourcePath || "";
-    const fullUrl = typeof window !== "undefined" ? window.location.href : "";
     return {
-      page_path: path,
-      page_location: fullUrl,
+      page_path: typeof window !== "undefined" ? window.location.pathname : sourcePath || "",
+      page_location: typeof window !== "undefined" ? window.location.href : "",
       borough: borough || "London",
       source_path: sourcePath || "",
     };
   }, [borough, sourcePath]);
 
   function trackQuickContact(kind: "call" | "whatsapp" | "email", extra: Record<string, any> = {}) {
-    // Keep your existing naming pattern so it matches what you already see in GA4
-    trackEvent(`click_${kind}`, {
+    gaEvent(`click_${kind}`, {
       ...gaBaseParams,
       project_type: projectType || "",
       stage: stage || "",
@@ -159,7 +156,7 @@ export default function ProjectEnquiryForm(props: Props) {
     const ok = validateCurrentStep();
     if (!ok) return;
 
-    trackEvent("lead_step_continue", {
+    gaEvent("lead_step_continue", {
       ...gaBaseParams,
       step,
       next_step: steps[Math.min(stepIndex + 1, steps.length - 1)],
@@ -175,14 +172,11 @@ export default function ProjectEnquiryForm(props: Props) {
   function goBack() {
     setErr("");
 
-    trackEvent("lead_step_back", {
+    gaEvent("lead_step_back", {
       ...gaBaseParams,
       step,
       prev_step: steps[Math.max(stepIndex - 1, 0)],
-      project_type: projectType || "",
-      stage: stage || "",
-      postcode: postcode || "",
-    });
+    }, true);
 
     const prev = steps[Math.max(stepIndex - 1, 0)];
     setStep(prev);
@@ -270,34 +264,36 @@ export default function ProjectEnquiryForm(props: Props) {
 
     setIsSubmitting(true);
 
-    trackEvent("lead_submit_attempt", {
+    gaEvent("lead_submit_attempt", {
       ...gaBaseParams,
       project_type: projectType || "",
       stage: stage || "",
       postcode: postcode || "",
-    });
+    }, true);
 
     try {
       await submitBoroughLead(e, { boroughName: borough || "London" });
 
-      trackEvent("lead_submit", {
+      gaEvent("lead_submit", {
         ...gaBaseParams,
         project_type: projectType || "",
         stage: stage || "",
         postcode: postcode || "",
         has_phone: !!phone,
         has_email: !!email,
-      });
+      }, true);
+
+      await sleep(250);
 
       setSubmitted(true);
       if (props.onSuccess) props.onSuccess();
     } catch (error) {
-      trackEvent("lead_submit_error", {
+      gaEvent("lead_submit_error", {
         ...gaBaseParams,
         project_type: projectType || "",
         stage: stage || "",
         postcode: postcode || "",
-      });
+      }, true);
 
       setErr("Something went wrong sending your enquiry. Please try again or call us.");
     } finally {
@@ -306,7 +302,8 @@ export default function ProjectEnquiryForm(props: Props) {
   }
 
   const headline =
-    props.accentText || (borough ? `Get a fast quote for planning drawings in ${borough}` : "Get a fast quote for planning drawings");
+    props.accentText ||
+    (borough ? `Get a fast quote for planning drawings in ${borough}` : "Get a fast quote for planning drawings");
 
   if (submitted) {
     return (
@@ -393,7 +390,13 @@ export default function ProjectEnquiryForm(props: Props) {
             <a className="wdpMiniBtn" href={PHONE_LINK} onClick={() => trackQuickContact("call", { location: "top" })}>
               Call
             </a>
-            <a className="wdpMiniBtn" href={whatsappLink} target="_blank" rel="noreferrer" onClick={() => trackQuickContact("whatsapp", { location: "top" })}>
+            <a
+              className="wdpMiniBtn"
+              href={whatsappLink}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => trackQuickContact("whatsapp", { location: "top" })}
+            >
               WhatsApp
             </a>
             <a className="wdpMiniBtn" href={EMAIL_LINK} onClick={() => trackQuickContact("email", { location: "top" })}>
@@ -446,7 +449,8 @@ export default function ProjectEnquiryForm(props: Props) {
               {steps.map((k, i) => {
                 const isActive = i === stepIndex;
                 const isDone = i < stepIndex;
-                const label = k === "type" ? "Project" : k === "postcode" ? "Location" : k === "stage" ? "Stage" : k === "details" ? "Details" : "Contact";
+                const label =
+                  k === "type" ? "Project" : k === "postcode" ? "Location" : k === "stage" ? "Stage" : k === "details" ? "Details" : "Contact";
                 return (
                   <div key={k} className={`wdpStepPill ${isActive ? "active" : ""} ${isDone ? "done" : ""}`}>
                     <span className="wdpStepDot" aria-hidden="true" />
@@ -485,7 +489,7 @@ export default function ProjectEnquiryForm(props: Props) {
                       className={`wdpChoice ${projectType === t.value ? "selected" : ""}`}
                       onClick={() => {
                         setProjectType(t.value);
-                        trackEvent("lead_select_project_type", { ...gaBaseParams, value: t.value });
+                        gaEvent("lead_select_project_type", { ...gaBaseParams, value: t.value }, true);
                       }}
                     >
                       <div className="wdpChoiceTop">
@@ -555,7 +559,7 @@ export default function ProjectEnquiryForm(props: Props) {
                       className={`wdpChoice ${stage === s.value ? "selected" : ""}`}
                       onClick={() => {
                         setStage(s.value);
-                        trackEvent("lead_select_stage", { ...gaBaseParams, value: s.value });
+                        gaEvent("lead_select_stage", { ...gaBaseParams, value: s.value }, true);
                       }}
                     >
                       <div className="wdpChoiceTop">
@@ -713,12 +717,6 @@ export default function ProjectEnquiryForm(props: Props) {
               </a>
               .
             </div>
-
-            {isDebugMode() ? (
-              <div className="wdpDebugNote">
-                GA Debug mode is ON (ga_debug=1). Events should appear in GA4 DebugView.
-              </div>
-            ) : null}
           </div>
         </form>
       </div>
@@ -1238,16 +1236,6 @@ const styles = `
   display:flex;
   gap:10px;
   flex-wrap:wrap;
-}
-.wdpDebugNote{
-  margin-top:12px;
-  padding:10px 12px;
-  border-radius:14px;
-  border:1px solid rgba(0,0,0,0.12);
-  background:rgba(0,0,0,0.03);
-  color:rgba(0,0,0,0.70);
-  font-size:12px;
-  font-weight:800;
 }
 @media (max-width: 920px){
   .wdpHero{
