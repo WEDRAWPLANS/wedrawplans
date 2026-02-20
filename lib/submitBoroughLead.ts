@@ -1,10 +1,55 @@
-// lib/submitBoroughLead.ts
+import type React from "react";
 
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+  }
+}
+
+function safeSessionKey(key: string) {
+  return `wdp_${key}`;
+}
+
+function getOnceFlag(key: string) {
+  try {
+    if (typeof window === "undefined") return false;
+    return window.sessionStorage.getItem(safeSessionKey(key)) === "1";
+  } catch {
+    return false;
+  }
+}
+
+function setOnceFlag(key: string) {
+  try {
+    if (typeof window === "undefined") return;
+    window.sessionStorage.setItem(safeSessionKey(key), "1");
+  } catch {
+    // ignore
+  }
+}
+
+function fireGenerateLeadOnce(params: Record<string, any>) {
+  try {
+    if (typeof window === "undefined") return;
+    if (typeof window.gtag !== "function") return;
+
+    const onceKey = "lead_submit_fired";
+    if (getOnceFlag(onceKey)) return;
+    setOnceFlag(onceKey);
+
+    window.gtag("event", "generate_lead", { ...params, transport_type: "beacon" });
+  } catch {
+    // ignore
+  }
+}
+
+// lib/submitBoroughLead.ts
 export async function submitBoroughLead(
   e: React.FormEvent<HTMLFormElement>,
   options?: { boroughName?: string }
 ) {
   e.preventDefault();
+
   const form = e.currentTarget;
   const data = new FormData(form);
 
@@ -40,15 +85,24 @@ export async function submitBoroughLead(
     });
 
     if (res.ok) {
+      fireGenerateLeadOnce({
+        borough: boroughName || "London",
+        project_type: String(payload.service || ""),
+        postcode: String(payload.postcode || ""),
+        has_phone: !!payload.phone,
+        has_email: !!payload.email,
+      });
+
       const label = boroughName ? `${boroughName} ` : "";
-      alert(
-        `Thank you — your ${label}enquiry has been sent. WEDRAWPLANS will contact you shortly.`
-      );
+      alert(`Thank you — your ${label}enquiry has been sent. WEDRAWPLANS will contact you shortly.`);
       form.reset();
-    } else {
-      alert("Something went wrong. Please try again or call us directly.");
+      return true;
     }
-  } catch (err) {
+
+    alert("Something went wrong. Please try again or call us directly.");
+    return false;
+  } catch {
     alert("Network error — please try again.");
+    return false;
   }
 }
