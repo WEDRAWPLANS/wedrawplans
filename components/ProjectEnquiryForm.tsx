@@ -86,6 +86,37 @@ function sleep(ms: number) {
   return new Promise((r) => setTimeout(r, ms));
 }
 
+function safeSessionKey(key: string) {
+  return `wdp_${key}`;
+}
+
+function getOnceFlag(key: string) {
+  try {
+    if (typeof window === "undefined") return false;
+    return window.sessionStorage.getItem(safeSessionKey(key)) === "1";
+  } catch {
+    return false;
+  }
+}
+
+function setOnceFlag(key: string) {
+  try {
+    if (typeof window === "undefined") return;
+    window.sessionStorage.setItem(safeSessionKey(key), "1");
+  } catch {
+    // ignore
+  }
+}
+
+function clearOnceFlag(key: string) {
+  try {
+    if (typeof window === "undefined") return;
+    window.sessionStorage.removeItem(safeSessionKey(key));
+  } catch {
+    // ignore
+  }
+}
+
 const PROJECT_TYPES: { label: string; value: string; sub?: string }[] = [
   { label: "House extension", value: "House extension", sub: "Rear, side return, wraparound, double storey" },
   { label: "Loft conversion", value: "Loft conversion", sub: "Dormer, hip to gable, mansard" },
@@ -156,14 +187,18 @@ export default function ProjectEnquiryForm(props: Props) {
     const ok = validateCurrentStep();
     if (!ok) return;
 
-    gaEvent("lead_step_continue", {
-      ...gaBaseParams,
-      step,
-      next_step: steps[Math.min(stepIndex + 1, steps.length - 1)],
-      project_type: projectType || "",
-      stage: stage || "",
-      postcode: postcode || "",
-    });
+    gaEvent(
+      "lead_step_continue",
+      {
+        ...gaBaseParams,
+        step,
+        next_step: steps[Math.min(stepIndex + 1, steps.length - 1)],
+        project_type: projectType || "",
+        stage: stage || "",
+        postcode: postcode || "",
+      },
+      true
+    );
 
     const next = steps[Math.min(stepIndex + 1, steps.length - 1)];
     setStep(next);
@@ -172,11 +207,15 @@ export default function ProjectEnquiryForm(props: Props) {
   function goBack() {
     setErr("");
 
-    gaEvent("lead_step_back", {
-      ...gaBaseParams,
-      step,
-      prev_step: steps[Math.max(stepIndex - 1, 0)],
-    }, true);
+    gaEvent(
+      "lead_step_back",
+      {
+        ...gaBaseParams,
+        step,
+        prev_step: steps[Math.max(stepIndex - 1, 0)],
+      },
+      true
+    );
 
     const prev = steps[Math.max(stepIndex - 1, 0)];
     setStep(prev);
@@ -256,6 +295,24 @@ export default function ProjectEnquiryForm(props: Props) {
     return true;
   }
 
+  function fireLeadConversionEvent() {
+    const onceKey = "lead_submit_fired";
+    if (getOnceFlag(onceKey)) return;
+    setOnceFlag(onceKey);
+
+    const common = {
+      ...gaBaseParams,
+      project_type: projectType || "",
+      stage: stage || "",
+      postcode: postcode || "",
+      has_phone: !!phone,
+      has_email: !!email,
+    };
+
+    gaEvent("generate_lead", common, true);
+    gaEvent("lead_submit", common, true);
+  }
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setErr("");
@@ -264,36 +321,39 @@ export default function ProjectEnquiryForm(props: Props) {
 
     setIsSubmitting(true);
 
-    gaEvent("lead_submit_attempt", {
-      ...gaBaseParams,
-      project_type: projectType || "",
-      stage: stage || "",
-      postcode: postcode || "",
-    }, true);
-
-    try {
-      await submitBoroughLead(e, { boroughName: borough || "London" });
-
-      gaEvent("lead_submit", {
+    gaEvent(
+      "lead_submit_attempt",
+      {
         ...gaBaseParams,
         project_type: projectType || "",
         stage: stage || "",
         postcode: postcode || "",
-        has_phone: !!phone,
-        has_email: !!email,
-      }, true);
+      },
+      true
+    );
 
-      await sleep(250);
+    try {
+      clearOnceFlag("lead_submit_fired");
+
+      await submitBoroughLead(e, { boroughName: borough || "London" });
+
+      fireLeadConversionEvent();
+
+      await sleep(400);
 
       setSubmitted(true);
       if (props.onSuccess) props.onSuccess();
     } catch (error) {
-      gaEvent("lead_submit_error", {
-        ...gaBaseParams,
-        project_type: projectType || "",
-        stage: stage || "",
-        postcode: postcode || "",
-      }, true);
+      gaEvent(
+        "lead_submit_error",
+        {
+          ...gaBaseParams,
+          project_type: projectType || "",
+          stage: stage || "",
+          postcode: postcode || "",
+        },
+        true
+      );
 
       setErr("Something went wrong sending your enquiry. Please try again or call us.");
     } finally {
