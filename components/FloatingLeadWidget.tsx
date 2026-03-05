@@ -256,7 +256,7 @@ export default function FloatingLeadWidget({
     }
   }
 
-  const z = 9999;
+const z = 2147483647;
 
   if (!mounted) return null;
 
