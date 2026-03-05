@@ -774,7 +774,7 @@ export default function ProjectEnquiryForm(props: Props) {
   />
   <div
     className="cf-turnstile"
-    data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+    data-sitekey="0x4AAAAAACm63tU8pQ7TokAm"
   ></div>
 </div>
             <div className="wdpFooterNote">
