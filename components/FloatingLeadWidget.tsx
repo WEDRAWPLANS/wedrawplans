@@ -4,8 +4,7 @@ import { submitBoroughLead } from "../lib/submitBoroughLead";
 type FloatingLeadWidgetProps = {
   boroughName?: string;
   serviceLabel?: string;
-  buttonText?: string;
-  logoSrc?: string;
+  logoSrc?: string; // default: /images/wedrawplans-logo.png
 };
 
 function isValidUkPostcodeLoose(value: string) {
@@ -22,53 +21,13 @@ function normalisePhone(value: string) {
   return keepPlus ? `+${digits}` : digits;
 }
 
-function safeGetStorage(key: string) {
-  try {
-    if (typeof window === "undefined") return null;
-    return window.localStorage.getItem(key);
-  } catch {
-    return null;
-  }
-}
-
-function safeSetStorage(key: string, value: string) {
-  try {
-    if (typeof window === "undefined") return;
-    window.localStorage.setItem(key, value);
-  } catch {
-    // ignore
-  }
-}
-
-function safeRemoveStorage(key: string) {
-  try {
-    if (typeof window === "undefined") return;
-    window.localStorage.removeItem(key);
-  } catch {
-    // ignore
-  }
-}
-
-function nowMs() {
-  return Date.now();
-}
-
-function getExpiryMs(key: string) {
-  const v = safeGetStorage(key);
-  if (!v) return 0;
-  const n = Number(v);
-  return Number.isFinite(n) ? n : 0;
-}
-
 export default function FloatingLeadWidget({
   boroughName,
   serviceLabel,
-  buttonText,
   logoSrc,
 }: FloatingLeadWidgetProps) {
   const effectiveBorough = (boroughName && boroughName.trim()) || "London";
   const effectiveService = (serviceLabel && serviceLabel.trim()) || "Planning drawings";
-  const effectiveButtonText = (buttonText && buttonText.trim()) || "Need drawings?";
   const effectiveLogoSrc = (logoSrc && logoSrc.trim()) || "/images/wedrawplans-logo.png";
 
   const [open, setOpen] = useState(false);
@@ -76,9 +35,7 @@ export default function FloatingLeadWidget({
   const [submitting, setSubmitting] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [pulse, setPulse] = useState(false);
   const [logoFailed, setLogoFailed] = useState(false);
-  const [cooldown, setCooldown] = useState(false);
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -89,18 +46,10 @@ export default function FloatingLeadWidget({
   const firstFieldRef = useRef<HTMLInputElement | null>(null);
   const lastActiveElementRef = useRef<HTMLElement | null>(null);
 
-  const storageKeyDismissUntil = useMemo(() => `wdp_floating_lead_dismiss_until_v1`, []);
-  const storageKeySentUntil = useMemo(() => `wdp_floating_lead_sent_until_v1`, []);
-
   const pagePath = useMemo(() => {
     if (typeof window === "undefined") return "";
     return window.location?.pathname || "";
   }, []);
-
-  const forceShow = useMemo(() => {
-    if (typeof window === "undefined") return false;
-    return new URLSearchParams(window.location.search).get("showlead") === "1";
-  }, [mounted]);
 
   const isMobile = useMemo(() => {
     if (typeof window === "undefined") return true;
@@ -112,37 +61,6 @@ export default function FloatingLeadWidget({
   }, []);
 
   useEffect(() => {
-    if (!mounted) return;
-
-    if (forceShow) {
-      safeRemoveStorage(storageKeyDismissUntil);
-      safeRemoveStorage(storageKeySentUntil);
-      return;
-    }
-
-    const sentUntil = getExpiryMs(storageKeySentUntil);
-    if (sentUntil && sentUntil > nowMs()) return;
-
-    const dismissedUntil = getExpiryMs(storageKeyDismissUntil);
-    if (dismissedUntil && dismissedUntil > nowMs()) return;
-
-    let hasPulsed = false;
-
-    const onScroll = () => {
-      if (hasPulsed) return;
-      if (window.scrollY > 420) {
-        hasPulsed = true;
-        setPulse(true);
-        window.setTimeout(() => setPulse(false), 2400);
-        window.removeEventListener("scroll", onScroll);
-      }
-    };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [mounted, storageKeyDismissUntil, storageKeySentUntil, forceShow]);
-
-  useEffect(() => {
     if (!open) return;
 
     lastActiveElementRef.current = (document.activeElement as HTMLElement) || null;
@@ -150,7 +68,7 @@ export default function FloatingLeadWidget({
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         e.preventDefault();
-        closeModal(false);
+        closeModal();
         return;
       }
 
@@ -200,22 +118,15 @@ export default function FloatingLeadWidget({
     const e = email.trim().includes("@") && email.trim().includes(".");
     const pc = isValidUkPostcodeLoose(postcode);
     const pt = projectType.trim().length >= 2;
-    return n && p && e && pc && pt && !submitting && !cooldown;
-  }, [name, phone, email, postcode, projectType, submitting, cooldown]);
+    return n && p && e && pc && pt && !submitting;
+  }, [name, phone, email, postcode, projectType, submitting]);
 
   function openModal() {
-    if (cooldown) return;
     setOpen(true);
   }
 
-  function closeModal(setDismissTimer: boolean) {
+  function closeModal() {
     setOpen(false);
-
-    if (setDismissTimer && !forceShow) {
-      const thirtyMinutes = 30 * 60 * 1000;
-      safeSetStorage(storageKeyDismissUntil, String(nowMs() + thirtyMinutes));
-    }
-
     window.setTimeout(() => {
       const el = lastActiveElementRef.current;
       if (el && typeof el.focus === "function") el.focus();
@@ -274,22 +185,13 @@ export default function FloatingLeadWidget({
 
       setSent(true);
 
-      if (!forceShow) {
-        const oneDay = 24 * 60 * 60 * 1000;
-        safeSetStorage(storageKeySentUntil, String(nowMs() + oneDay));
-        safeRemoveStorage(storageKeyDismissUntil);
-      }
-
       setName("");
       setPhone("");
       setEmail("");
       setPostcode("");
       setProjectType("");
 
-      setCooldown(true);
-      window.setTimeout(() => setCooldown(false), 1500);
-
-      window.setTimeout(() => closeModal(false), 1100);
+      window.setTimeout(() => closeModal(), 1100);
     } catch {
       setError("Sorry, something went wrong. Please try again or use WhatsApp.");
     } finally {
@@ -301,88 +203,71 @@ export default function FloatingLeadWidget({
 
   if (!mounted) return null;
 
-  if (!forceShow) {
-    const sentUntil = getExpiryMs(storageKeySentUntil);
-    const dismissedUntil = getExpiryMs(storageKeyDismissUntil);
-    const isSuppressed =
-      (sentUntil && sentUntil > nowMs()) || (dismissedUntil && dismissedUntil > nowMs());
-    if (isSuppressed) return null;
-  }
+  // Round button same size feel as WhatsApp (typically ~56)
+  const size = 56;
 
-  const buttonBottom = 160;
-  const buttonRight = 16;
+  // Place above WhatsApp
+  // Most WhatsApp buttons sit around bottom: 22-28px, so we stack above it with a gap.
+  const right = 18;
+  const bottom = 28 + size + 12;
 
   return (
     <>
       <button
         type="button"
         onClick={openModal}
-        aria-label="Open quick drawings enquiry form"
+        aria-label="Open quick drawings enquiry"
         style={{
           position: "fixed",
-          right: buttonRight,
-          bottom: buttonBottom,
+          right,
+          bottom,
           zIndex: z,
-          display: "flex",
-          alignItems: "center",
-          gap: 10,
-          padding: "12px 14px",
+          width: size,
+          height: size,
           borderRadius: 999,
-          border: "1px solid rgba(0,0,0,0.08)",
+          border: "1px solid rgba(0,0,0,0.10)",
           background: "#E30613",
-          color: "#fff",
           boxShadow: "0 10px 24px rgba(0,0,0,0.18)",
-          cursor: cooldown ? "not-allowed" : "pointer",
-          maxWidth: 270,
-          transform: pulse ? "scale(1.04)" : "scale(1)",
-          transition: "transform 220ms ease",
-          opacity: cooldown ? 0.75 : 1,
+          cursor: "pointer",
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center",
+          overflow: "hidden",
+          transform: open ? "scale(1.06)" : "scale(1)",
+          transition: "transform 180ms ease",
         }}
       >
-        <span
-          aria-hidden="true"
-          style={{
-            width: 30,
-            height: 30,
-            borderRadius: 999,
-            background: "rgba(255,255,255,0.18)",
-            display: "inline-flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flex: "0 0 auto",
-            overflow: "hidden",
-          }}
-        >
-          {!logoFailed ? (
-            <img
-              src={effectiveLogoSrc}
-              alt=""
-              width={30}
-              height={30}
-              style={{ width: 30, height: 30, objectFit: "cover" }}
-              onError={() => setLogoFailed(true)}
+        {!logoFailed ? (
+          <img
+            src={effectiveLogoSrc}
+            alt="WEDRAWPLANS"
+            width={size}
+            height={size}
+            style={{
+              width: size,
+              height: size,
+              objectFit: "cover",
+            }}
+            onError={() => setLogoFailed(true)}
+          />
+        ) : (
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M3 17.25V21h3.75L19.81 7.94l-3.75-3.75L3 17.25z"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
-          ) : (
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path
-                d="M3 17.25V21h3.75L19.81 7.94l-3.75-3.75L3 17.25z"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M14.06 4.19l3.75 3.75"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          )}
-        </span>
-
-        <span style={{ fontWeight: 800, fontSize: 14, lineHeight: 1.1 }}>{effectiveButtonText}</span>
+            <path
+              d="M14.06 4.19l3.75 3.75"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        )}
       </button>
 
       {open && (
@@ -401,7 +286,7 @@ export default function FloatingLeadWidget({
             padding: 12,
           }}
           onMouseDown={(e) => {
-            if (e.target === e.currentTarget) closeModal(true);
+            if (e.target === e.currentTarget) closeModal();
           }}
         >
           <div
@@ -432,7 +317,7 @@ export default function FloatingLeadWidget({
 
               <button
                 type="button"
-                onClick={() => closeModal(true)}
+                onClick={closeModal}
                 aria-label="Close"
                 style={{
                   border: "1px solid rgba(0,0,0,0.10)",
