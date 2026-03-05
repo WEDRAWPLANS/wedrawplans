@@ -265,7 +265,7 @@ export default function FloatingLeadWidget({
 
   if (alreadySent) return null;
 
-  const buttonBottom = 92;
+  const buttonBottom = 160;
   const buttonRight = 16;
 
   return (
