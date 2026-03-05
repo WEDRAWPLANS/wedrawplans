@@ -5,7 +5,7 @@ type FloatingLeadWidgetProps = {
   boroughName?: string;
   serviceLabel?: string;
   buttonText?: string;
-  logoSrc?: string; // default: /images/wedrawplans-logo.png
+  logoSrc?: string;
 };
 
 function isValidUkPostcodeLoose(value: string) {
@@ -40,6 +40,26 @@ function safeSetStorage(key: string, value: string) {
   }
 }
 
+function safeRemoveStorage(key: string) {
+  try {
+    if (typeof window === "undefined") return;
+    window.localStorage.removeItem(key);
+  } catch {
+    // ignore
+  }
+}
+
+function nowMs() {
+  return Date.now();
+}
+
+function getExpiryMs(key: string) {
+  const v = safeGetStorage(key);
+  if (!v) return 0;
+  const n = Number(v);
+  return Number.isFinite(n) ? n : 0;
+}
+
 export default function FloatingLeadWidget({
   boroughName,
   serviceLabel,
@@ -69,13 +89,18 @@ export default function FloatingLeadWidget({
   const firstFieldRef = useRef<HTMLInputElement | null>(null);
   const lastActiveElementRef = useRef<HTMLElement | null>(null);
 
-  const storageKeyDismiss = useMemo(() => `wdp_floating_lead_dismissed_v1`, []);
-  const storageKeySent = useMemo(() => `wdp_floating_lead_sent_v1`, []);
+  const storageKeyDismissUntil = useMemo(() => `wdp_floating_lead_dismiss_until_v1`, []);
+  const storageKeySentUntil = useMemo(() => `wdp_floating_lead_sent_until_v1`, []);
 
   const pagePath = useMemo(() => {
     if (typeof window === "undefined") return "";
     return window.location?.pathname || "";
   }, []);
+
+  const forceShow = useMemo(() => {
+    if (typeof window === "undefined") return false;
+    return new URLSearchParams(window.location.search).get("showlead") === "1";
+  }, [mounted]);
 
   const isMobile = useMemo(() => {
     if (typeof window === "undefined") return true;
@@ -89,11 +114,17 @@ export default function FloatingLeadWidget({
   useEffect(() => {
     if (!mounted) return;
 
-    const alreadySent = safeGetStorage(storageKeySent) === "1";
-    if (alreadySent) return;
+    if (forceShow) {
+      safeRemoveStorage(storageKeyDismissUntil);
+      safeRemoveStorage(storageKeySentUntil);
+      return;
+    }
 
-    const dismissed = safeGetStorage(storageKeyDismiss) === "1";
-    if (dismissed) return;
+    const sentUntil = getExpiryMs(storageKeySentUntil);
+    if (sentUntil && sentUntil > nowMs()) return;
+
+    const dismissedUntil = getExpiryMs(storageKeyDismissUntil);
+    if (dismissedUntil && dismissedUntil > nowMs()) return;
 
     let hasPulsed = false;
 
@@ -109,7 +140,7 @@ export default function FloatingLeadWidget({
 
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, [mounted, storageKeyDismiss, storageKeySent]);
+  }, [mounted, storageKeyDismissUntil, storageKeySentUntil, forceShow]);
 
   useEffect(() => {
     if (!open) return;
@@ -119,7 +150,7 @@ export default function FloatingLeadWidget({
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         e.preventDefault();
-        closeModal(true);
+        closeModal(false);
         return;
       }
 
@@ -177,9 +208,14 @@ export default function FloatingLeadWidget({
     setOpen(true);
   }
 
-  function closeModal(rememberDismiss: boolean) {
+  function closeModal(setDismissTimer: boolean) {
     setOpen(false);
-    if (rememberDismiss) safeSetStorage(storageKeyDismiss, "1");
+
+    if (setDismissTimer && !forceShow) {
+      const thirtyMinutes = 30 * 60 * 1000;
+      safeSetStorage(storageKeyDismissUntil, String(nowMs() + thirtyMinutes));
+    }
+
     window.setTimeout(() => {
       const el = lastActiveElementRef.current;
       if (el && typeof el.focus === "function") el.focus();
@@ -237,7 +273,12 @@ export default function FloatingLeadWidget({
       });
 
       setSent(true);
-      safeSetStorage(storageKeySent, "1");
+
+      if (!forceShow) {
+        const oneDay = 24 * 60 * 60 * 1000;
+        safeSetStorage(storageKeySentUntil, String(nowMs() + oneDay));
+        safeRemoveStorage(storageKeyDismissUntil);
+      }
 
       setName("");
       setPhone("");
@@ -256,94 +297,93 @@ export default function FloatingLeadWidget({
     }
   }
 
-const z = 2147483647;
+  const z = 2147483647;
 
   if (!mounted) return null;
 
-  const dismissed = safeGetStorage(storageKeyDismiss) === "1";
-  const alreadySent = safeGetStorage(storageKeySent) === "1";
-
-  if (alreadySent) return null;
+  if (!forceShow) {
+    const sentUntil = getExpiryMs(storageKeySentUntil);
+    const dismissedUntil = getExpiryMs(storageKeyDismissUntil);
+    const isSuppressed =
+      (sentUntil && sentUntil > nowMs()) || (dismissedUntil && dismissedUntil > nowMs());
+    if (isSuppressed) return null;
+  }
 
   const buttonBottom = 160;
   const buttonRight = 16;
 
   return (
     <>
-      {!dismissed && (
-        <button
-          type="button"
-          onClick={openModal}
-          aria-label="Open quick drawings enquiry form"
+      <button
+        type="button"
+        onClick={openModal}
+        aria-label="Open quick drawings enquiry form"
+        style={{
+          position: "fixed",
+          right: buttonRight,
+          bottom: buttonBottom,
+          zIndex: z,
+          display: "flex",
+          alignItems: "center",
+          gap: 10,
+          padding: "12px 14px",
+          borderRadius: 999,
+          border: "1px solid rgba(0,0,0,0.08)",
+          background: "#E30613",
+          color: "#fff",
+          boxShadow: "0 10px 24px rgba(0,0,0,0.18)",
+          cursor: cooldown ? "not-allowed" : "pointer",
+          maxWidth: 270,
+          transform: pulse ? "scale(1.04)" : "scale(1)",
+          transition: "transform 220ms ease",
+          opacity: cooldown ? 0.75 : 1,
+        }}
+      >
+        <span
+          aria-hidden="true"
           style={{
-            position: "fixed",
-            right: buttonRight,
-            bottom: buttonBottom,
-            zIndex: z,
-            display: "flex",
-            alignItems: "center",
-            gap: 10,
-            padding: "12px 14px",
+            width: 30,
+            height: 30,
             borderRadius: 999,
-            border: "1px solid rgba(0,0,0,0.08)",
-            background: "#E30613",
-            color: "#fff",
-            boxShadow: "0 10px 24px rgba(0,0,0,0.18)",
-            cursor: cooldown ? "not-allowed" : "pointer",
-            maxWidth: 270,
-            transform: pulse ? "scale(1.04)" : "scale(1)",
-            transition: "transform 220ms ease",
-            opacity: cooldown ? 0.75 : 1,
+            background: "rgba(255,255,255,0.18)",
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flex: "0 0 auto",
+            overflow: "hidden",
           }}
         >
-          <span
-            aria-hidden="true"
-            style={{
-              width: 30,
-              height: 30,
-              borderRadius: 999,
-              background: "rgba(255,255,255,0.18)",
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-              flex: "0 0 auto",
-              overflow: "hidden",
-            }}
-          >
-            {!logoFailed ? (
-              <img
-                src={effectiveLogoSrc}
-                alt=""
-                width={30}
-                height={30}
-                style={{ width: 30, height: 30, objectFit: "cover" }}
-                onError={() => setLogoFailed(true)}
+          {!logoFailed ? (
+            <img
+              src={effectiveLogoSrc}
+              alt=""
+              width={30}
+              height={30}
+              style={{ width: 30, height: 30, objectFit: "cover" }}
+              onError={() => setLogoFailed(true)}
+            />
+          ) : (
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M3 17.25V21h3.75L19.81 7.94l-3.75-3.75L3 17.25z"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
-            ) : (
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path
-                  d="M3 17.25V21h3.75L19.81 7.94l-3.75-3.75L3 17.25z"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M14.06 4.19l3.75 3.75"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            )}
-          </span>
+              <path
+                d="M14.06 4.19l3.75 3.75"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          )}
+        </span>
 
-          <span style={{ fontWeight: 800, fontSize: 14, lineHeight: 1.1 }}>
-            {effectiveButtonText}
-          </span>
-        </button>
-      )}
+        <span style={{ fontWeight: 800, fontSize: 14, lineHeight: 1.1 }}>{effectiveButtonText}</span>
+      </button>
 
       {open && (
         <div
@@ -369,7 +409,7 @@ const z = 2147483647;
             style={{
               width: "100%",
               maxWidth: 520,
-              borderRadius: isMobile ? 18 : 18,
+              borderRadius: 18,
               background: "#fff",
               boxShadow: "0 16px 40px rgba(0,0,0,0.25)",
               overflow: "hidden",
@@ -485,9 +525,7 @@ const z = 2147483647;
 
               <div style={{ marginTop: 10 }}>
                 <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                  <span style={{ fontSize: 12.5, fontWeight: 800, color: "#222" }}>
-                    Project type
-                  </span>
+                  <span style={{ fontSize: 12.5, fontWeight: 800, color: "#222" }}>Project type</span>
                   <select
                     value={projectType}
                     onChange={(e) => setProjectType(e.target.value)}
