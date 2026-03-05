@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import Image from "next/image";
 import { submitBoroughLead } from "../lib/submitBoroughLead";
-
+import Script from "next/script";
 type StepKey = "type" | "postcode" | "stage" | "details" | "contact";
 
 type Props = {
@@ -765,7 +765,18 @@ export default function ProjectEnquiryForm(props: Props) {
                 </a>
               </div>
             </div>
-
+{/* Cloudflare Turnstile Anti-Spam */}
+<div style={{ marginTop: "14px" }}>
+  <Script
+    src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+    async
+    defer
+  />
+  <div
+    className="cf-turnstile"
+    data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+  ></div>
+</div>
             <div className="wdpFooterNote">
               If you prefer, call{" "}
               <a href={PHONE_LINK} className="wdpInlineLink" onClick={() => trackQuickContact("call", { location: "footer" })}>
