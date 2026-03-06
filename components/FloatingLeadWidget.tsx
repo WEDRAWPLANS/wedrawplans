@@ -4,7 +4,7 @@ import { submitBoroughLead } from "../lib/submitBoroughLead";
 type FloatingLeadWidgetProps = {
   boroughName?: string;
   serviceLabel?: string;
-  logoSrc?: string; // default: /images/wedrawplans-logo.png
+  logoSrc?: string;
 };
 
 function isValidUkPostcodeLoose(value: string) {
@@ -109,7 +109,6 @@ export default function FloatingLeadWidget({
   useEffect(() => {
     if (!open) return;
     setError(null);
-    setSent(false);
   }, [open]);
 
   const canSubmit = useMemo(() => {
@@ -123,6 +122,8 @@ export default function FloatingLeadWidget({
 
   function openModal() {
     setOpen(true);
+    setSent(false);
+    setError(null);
   }
 
   function closeModal() {
@@ -170,7 +171,7 @@ export default function FloatingLeadWidget({
       const messageParts = [
         `Project type: ${payloadProjectType}`,
         pagePath ? `Page: ${pagePath}` : null,
-        `Source: floating_lead_widget`,
+        "Source: floating_lead_widget",
       ].filter(Boolean);
 
       await submitBoroughLead({
@@ -184,14 +185,13 @@ export default function FloatingLeadWidget({
       });
 
       setSent(true);
+      setError(null);
 
       setName("");
       setPhone("");
       setEmail("");
       setPostcode("");
       setProjectType("");
-
-      window.setTimeout(() => closeModal(), 1100);
     } catch {
       setError("Sorry, something went wrong. Please try again or use WhatsApp.");
     } finally {
@@ -200,16 +200,10 @@ export default function FloatingLeadWidget({
   }
 
   const z = 2147483647;
+  const right = 16;
+  const bottom = 96;
 
   if (!mounted) return null;
-
-  // Round button same size feel as WhatsApp (typically ~56)
-  const size = 56;
-
-  // Place above WhatsApp
-  // Most WhatsApp buttons sit around bottom: 22-28px, so we stack above it with a gap.
-  const right = 18;
-  const bottom = 28 + size + 12;
 
   return (
     <>
@@ -222,52 +216,97 @@ export default function FloatingLeadWidget({
           right,
           bottom,
           zIndex: z,
-          width: size,
-          height: size,
+          minHeight: 56,
+          maxWidth: isMobile ? "calc(100vw - 32px)" : 320,
           borderRadius: 999,
           border: "1px solid rgba(0,0,0,0.10)",
-          background: "#E30613",
-          boxShadow: "0 10px 24px rgba(0,0,0,0.18)",
+          background: "#ffffff",
+          boxShadow: "0 12px 30px rgba(0,0,0,0.18)",
           cursor: "pointer",
           display: "inline-flex",
           alignItems: "center",
-          justifyContent: "center",
+          gap: 10,
+          padding: "8px 14px 8px 8px",
           overflow: "hidden",
-          transform: open ? "scale(1.06)" : "scale(1)",
-          transition: "transform 180ms ease",
+          transform: open ? "scale(1.03)" : "scale(1)",
+          transition: "transform 180ms ease, box-shadow 180ms ease",
         }}
       >
-        {!logoFailed ? (
-          <img
-            src={effectiveLogoSrc}
-            alt="WEDRAWPLANS"
-            width={size}
-            height={size}
+        <span
+          style={{
+            width: 40,
+            height: 40,
+            minWidth: 40,
+            borderRadius: 999,
+            background: "#E30613",
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            overflow: "hidden",
+          }}
+        >
+          {!logoFailed ? (
+            <img
+              src={effectiveLogoSrc}
+              alt="WEDRAWPLANS"
+              width={40}
+              height={40}
+              style={{
+                width: 40,
+                height: 40,
+                objectFit: "cover",
+              }}
+              onError={() => setLogoFailed(true)}
+            />
+          ) : (
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M3 17.25V21h3.75L19.81 7.94l-3.75-3.75L3 17.25z"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M14.06 4.19l3.75 3.75"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          )}
+        </span>
+
+        <span
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            textAlign: "left",
+            lineHeight: 1.15,
+          }}
+        >
+          <span
             style={{
-              width: size,
-              height: size,
-              objectFit: "cover",
+              fontSize: 14,
+              fontWeight: 900,
+              color: "#111",
+              whiteSpace: "nowrap",
             }}
-            onError={() => setLogoFailed(true)}
-          />
-        ) : (
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path
-              d="M3 17.25V21h3.75L19.81 7.94l-3.75-3.75L3 17.25z"
-              stroke="white"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M14.06 4.19l3.75 3.75"
-              stroke="white"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        )}
+          >
+            Need help with drawings?
+          </span>
+          <span
+            style={{
+              fontSize: 11.5,
+              color: "#666",
+              whiteSpace: "nowrap",
+            }}
+          >
+            Quick quote in under a minute
+          </span>
+        </span>
       </button>
 
       {open && (
@@ -311,8 +350,12 @@ export default function FloatingLeadWidget({
               }}
             >
               <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-                <div style={{ fontWeight: 900, fontSize: 16, color: "#111" }}>Get drawings quote</div>
-                <div style={{ fontSize: 12.5, color: "#555" }}>Initial survey within 48 hours.</div>
+                <div style={{ fontWeight: 900, fontSize: 16, color: "#111" }}>
+                  Get drawings quote
+                </div>
+                <div style={{ fontSize: 12.5, color: "#555" }}>
+                  Initial survey within 48 hours.
+                </div>
               </div>
 
               <button
@@ -334,164 +377,206 @@ export default function FloatingLeadWidget({
             </div>
 
             <form onSubmit={handleSubmit} style={{ padding: 16 }}>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
-                <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                  <span style={{ fontSize: 12.5, fontWeight: 800, color: "#222" }}>Name</span>
-                  <input
-                    ref={firstFieldRef}
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Your name"
-                    autoComplete="name"
-                    style={{
-                      border: "1px solid rgba(0,0,0,0.14)",
-                      borderRadius: 12,
-                      padding: "12px 12px",
-                      fontSize: 14,
-                      outline: "none",
-                    }}
-                  />
-                </label>
+              {!sent ? (
+                <>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+                    <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                      <span style={{ fontSize: 12.5, fontWeight: 800, color: "#222" }}>Name</span>
+                      <input
+                        ref={firstFieldRef}
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Your name"
+                        autoComplete="name"
+                        style={{
+                          border: "1px solid rgba(0,0,0,0.14)",
+                          borderRadius: 12,
+                          padding: "12px 12px",
+                          fontSize: 14,
+                          outline: "none",
+                        }}
+                      />
+                    </label>
 
-                <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                  <span style={{ fontSize: 12.5, fontWeight: 800, color: "#222" }}>Phone</span>
-                  <input
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    placeholder="07..."
-                    inputMode="tel"
-                    autoComplete="tel"
-                    style={{
-                      border: "1px solid rgba(0,0,0,0.14)",
-                      borderRadius: 12,
-                      padding: "12px 12px",
-                      fontSize: 14,
-                      outline: "none",
-                    }}
-                  />
-                </label>
+                    <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                      <span style={{ fontSize: 12.5, fontWeight: 800, color: "#222" }}>Phone</span>
+                      <input
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        placeholder="07..."
+                        inputMode="tel"
+                        autoComplete="tel"
+                        style={{
+                          border: "1px solid rgba(0,0,0,0.14)",
+                          borderRadius: 12,
+                          padding: "12px 12px",
+                          fontSize: 14,
+                          outline: "none",
+                        }}
+                      />
+                    </label>
 
-                <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                  <span style={{ fontSize: 12.5, fontWeight: 800, color: "#222" }}>Email</span>
-                  <input
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="you@email.com"
-                    inputMode="email"
-                    autoComplete="email"
-                    style={{
-                      border: "1px solid rgba(0,0,0,0.14)",
-                      borderRadius: 12,
-                      padding: "12px 12px",
-                      fontSize: 14,
-                      outline: "none",
-                    }}
-                  />
-                </label>
+                    <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                      <span style={{ fontSize: 12.5, fontWeight: 800, color: "#222" }}>Email</span>
+                      <input
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="you@email.com"
+                        inputMode="email"
+                        autoComplete="email"
+                        style={{
+                          border: "1px solid rgba(0,0,0,0.14)",
+                          borderRadius: 12,
+                          padding: "12px 12px",
+                          fontSize: 14,
+                          outline: "none",
+                        }}
+                      />
+                    </label>
 
-                <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                  <span style={{ fontSize: 12.5, fontWeight: 800, color: "#222" }}>Postcode</span>
-                  <input
-                    value={postcode}
-                    onChange={(e) => setPostcode(e.target.value)}
-                    placeholder="SE5 7GD"
-                    autoComplete="postal-code"
-                    style={{
-                      border: "1px solid rgba(0,0,0,0.14)",
-                      borderRadius: 12,
-                      padding: "12px 12px",
-                      fontSize: 14,
-                      outline: "none",
-                      textTransform: "uppercase",
-                    }}
-                  />
-                </label>
-              </div>
+                    <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                      <span style={{ fontSize: 12.5, fontWeight: 800, color: "#222" }}>Postcode</span>
+                      <input
+                        value={postcode}
+                        onChange={(e) => setPostcode(e.target.value)}
+                        placeholder="SE5 7GD"
+                        autoComplete="postal-code"
+                        style={{
+                          border: "1px solid rgba(0,0,0,0.14)",
+                          borderRadius: 12,
+                          padding: "12px 12px",
+                          fontSize: 14,
+                          outline: "none",
+                          textTransform: "uppercase",
+                        }}
+                      />
+                    </label>
+                  </div>
 
-              <div style={{ marginTop: 10 }}>
-                <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                  <span style={{ fontSize: 12.5, fontWeight: 800, color: "#222" }}>Project type</span>
-                  <select
-                    value={projectType}
-                    onChange={(e) => setProjectType(e.target.value)}
+                  <div style={{ marginTop: 10 }}>
+                    <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                      <span style={{ fontSize: 12.5, fontWeight: 800, color: "#222" }}>
+                        Project type
+                      </span>
+                      <select
+                        value={projectType}
+                        onChange={(e) => setProjectType(e.target.value)}
+                        style={{
+                          border: "1px solid rgba(0,0,0,0.14)",
+                          borderRadius: 12,
+                          padding: "12px 12px",
+                          fontSize: 14,
+                          outline: "none",
+                          background: "#fff",
+                        }}
+                      >
+                        <option value="">Select one</option>
+                        <option value="House extension">House extension</option>
+                        <option value="Loft conversion">Loft conversion</option>
+                        <option value="New build">New build</option>
+                        <option value="Internal alterations">Internal alterations</option>
+                        <option value="Garage conversion">Garage conversion</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </label>
+                  </div>
+
+                  {error && (
+                    <div
+                      style={{
+                        marginTop: 10,
+                        padding: "10px 12px",
+                        borderRadius: 12,
+                        background: "rgba(227,6,19,0.08)",
+                        border: "1px solid rgba(227,6,19,0.22)",
+                        color: "#8a0010",
+                        fontWeight: 800,
+                        fontSize: 13,
+                      }}
+                    >
+                      {error}
+                    </div>
+                  )}
+
+                  <div style={{ marginTop: 12, display: "flex", gap: 10, alignItems: "center" }}>
+                    <button
+                      type="submit"
+                      disabled={!canSubmit}
+                      style={{
+                        width: "100%",
+                        padding: "12px 14px",
+                        borderRadius: 12,
+                        border: "1px solid rgba(0,0,0,0.08)",
+                        background: canSubmit ? "#111" : "rgba(0,0,0,0.28)",
+                        color: "#fff",
+                        fontWeight: 900,
+                        fontSize: 14,
+                        cursor: canSubmit ? "pointer" : "not-allowed",
+                      }}
+                    >
+                      {submitting ? "Sending..." : "Request quote"}
+                    </button>
+                  </div>
+
+                  <div style={{ marginTop: 10, fontSize: 12, color: "#666", lineHeight: 1.35 }}>
+                    Borough: <strong style={{ color: "#111" }}>{effectiveBorough}</strong> · Service:{" "}
+                    <strong style={{ color: "#111" }}>{effectiveService}</strong>
+                  </div>
+                </>
+              ) : (
+                <div
+                  style={{
+                    padding: "10px 2px 4px 2px",
+                  }}
+                >
+                  <div
                     style={{
-                      border: "1px solid rgba(0,0,0,0.14)",
-                      borderRadius: 12,
-                      padding: "12px 12px",
-                      fontSize: 14,
-                      outline: "none",
-                      background: "#fff",
+                      padding: "14px 14px",
+                      borderRadius: 14,
+                      background: "rgba(0,0,0,0.05)",
+                      border: "1px solid rgba(0,0,0,0.10)",
                     }}
                   >
-                    <option value="">Select one</option>
-                    <option value="House extension">House extension</option>
-                    <option value="Loft conversion">Loft conversion</option>
-                    <option value="New build">New build</option>
-                    <option value="Internal alterations">Internal alterations</option>
-                    <option value="Garage conversion">Garage conversion</option>
-                    <option value="Other">Other</option>
-                  </select>
-                </label>
-              </div>
+                    <div
+                      style={{
+                        fontSize: 16,
+                        fontWeight: 900,
+                        color: "#111",
+                        marginBottom: 6,
+                      }}
+                    >
+                      Thank you. We have received your enquiry.
+                    </div>
+                    <div
+                      style={{
+                        fontSize: 13.5,
+                        color: "#555",
+                        lineHeight: 1.45,
+                      }}
+                    >
+                      We will contact you shortly. If your enquiry is urgent, please call 020 3654 8508.
+                    </div>
+                  </div>
 
-              {error && (
-                <div
-                  style={{
-                    marginTop: 10,
-                    padding: "10px 12px",
-                    borderRadius: 12,
-                    background: "rgba(227,6,19,0.08)",
-                    border: "1px solid rgba(227,6,19,0.22)",
-                    color: "#8a0010",
-                    fontWeight: 800,
-                    fontSize: 13,
-                  }}
-                >
-                  {error}
+                  <div style={{ marginTop: 14, display: "flex", justifyContent: "flex-end" }}>
+                    <button
+                      type="button"
+                      onClick={closeModal}
+                      style={{
+                        border: "1px solid rgba(0,0,0,0.10)",
+                        background: "#111",
+                        color: "#fff",
+                        borderRadius: 12,
+                        padding: "10px 14px",
+                        cursor: "pointer",
+                        fontWeight: 900,
+                      }}
+                    >
+                      Close
+                    </button>
+                  </div>
                 </div>
               )}
-
-              {sent && (
-                <div
-                  style={{
-                    marginTop: 10,
-                    padding: "10px 12px",
-                    borderRadius: 12,
-                    background: "rgba(0,0,0,0.06)",
-                    border: "1px solid rgba(0,0,0,0.10)",
-                    color: "#111",
-                    fontWeight: 900,
-                    fontSize: 13,
-                  }}
-                >
-                  Sent. We will contact you shortly.
-                </div>
-              )}
-
-              <div style={{ marginTop: 12, display: "flex", gap: 10, alignItems: "center" }}>
-                <button
-                  type="submit"
-                  disabled={!canSubmit}
-                  style={{
-                    width: "100%",
-                    padding: "12px 14px",
-                    borderRadius: 12,
-                    border: "1px solid rgba(0,0,0,0.08)",
-                    background: canSubmit ? "#111" : "rgba(0,0,0,0.28)",
-                    color: "#fff",
-                    fontWeight: 900,
-                    fontSize: 14,
-                    cursor: canSubmit ? "pointer" : "not-allowed",
-                  }}
-                >
-                  {submitting ? "Sending..." : "Request quote"}
-                </button>
-              </div>
-
-              <div style={{ marginTop: 10, fontSize: 12, color: "#666", lineHeight: 1.35 }}>
-                Borough: <strong style={{ color: "#111" }}>{effectiveBorough}</strong> · Service:{" "}
-                <strong style={{ color: "#111" }}>{effectiveService}</strong>
-              </div>
             </form>
           </div>
         </div>
