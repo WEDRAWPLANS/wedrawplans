@@ -1,6 +1,12 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { submitBoroughLead } from "../lib/submitBoroughLead";
 
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+  }
+}
+
 type FloatingLeadWidgetProps = {
   boroughName?: string;
   serviceLabel?: string;
@@ -227,6 +233,17 @@ export default function FloatingLeadWidget({
         message: messageParts.join(" | "),
       });
 
+      if (typeof window !== "undefined" && window.gtag) {
+        window.gtag("event", "generate_lead", {
+          event_category: "Lead",
+          event_label: "Floating Widget",
+          value: 1,
+          borough: effectiveBorough,
+          service: effectiveService,
+          page_path: pagePath || window.location?.pathname || "",
+        });
+      }
+
       setSent(true);
       setError(null);
 
@@ -267,29 +284,29 @@ export default function FloatingLeadWidget({
           background: "#ffffff",
           boxShadow: open ? "0 14px 34px rgba(0,0,0,0.22)" : "0 12px 30px rgba(0,0,0,0.18)",
           cursor: "pointer",
-         display: "inline-flex",
-alignItems: "center",
-gap: isMobile ? 6 : 8,
-padding: isMobile ? "8px 12px 8px 8px" : "8px 14px 8px 8px",
+          display: "inline-flex",
+          alignItems: "center",
+          gap: isMobile ? 6 : 8,
+          padding: isMobile ? "8px 12px 8px 8px" : "8px 14px 8px 8px",
           overflow: "hidden",
           transform: open ? "scale(1.02)" : "scale(1)",
           transition: "transform 180ms ease, box-shadow 180ms ease",
           WebkitTapHighlightColor: "transparent",
         }}
       >
-      <span
-  style={{
-    width: isMobile ? 40 : 42,
-    height: isMobile ? 40 : 42,
-    minWidth: isMobile ? 40 : 42,
-    borderRadius: 999,
-    background: "#F00000",
-    display: "inline-flex",
-    alignItems: "center",
-    justifyContent: "center",
-    overflow: "hidden",
-  }}
->
+        <span
+          style={{
+            width: isMobile ? 40 : 42,
+            height: isMobile ? 40 : 42,
+            minWidth: isMobile ? 40 : 42,
+            borderRadius: 999,
+            background: "#F00000",
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            overflow: "hidden",
+          }}
+        >
           {!logoFailed ? (
             <img
               src={effectiveLogoSrc}
