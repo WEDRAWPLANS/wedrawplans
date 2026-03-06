@@ -21,7 +21,7 @@ function normalisePhone(value: string) {
   return keepPlus ? `+${digits}` : digits;
 }
 
-function WdpEmblemIcon({ size = 21 }: { size?: number }) {
+function FallbackEmblemIcon({ size = 20 }: { size?: number }) {
   return (
     <svg
       width={size}
@@ -66,15 +66,18 @@ function WdpEmblemIcon({ size = 21 }: { size?: number }) {
 export default function FloatingLeadWidget({
   boroughName,
   serviceLabel,
+  logoSrc,
 }: FloatingLeadWidgetProps) {
   const effectiveBorough = (boroughName && boroughName.trim()) || "London";
   const effectiveService = (serviceLabel && serviceLabel.trim()) || "Planning drawings";
+  const effectiveLogoSrc = (logoSrc && logoSrc.trim()) || "/images/wedrawplans-emblem.png";
 
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [logoFailed, setLogoFailed] = useState(false);
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -242,7 +245,7 @@ export default function FloatingLeadWidget({
 
   const z = 2147483647;
   const right = 16;
-  const bottom = isMobile ? 112 : 96;
+  const bottom = isMobile ? 84 : 96;
 
   if (!mounted) return null;
 
@@ -257,8 +260,8 @@ export default function FloatingLeadWidget({
           right,
           bottom,
           zIndex: z,
-          minHeight: isMobile ? 58 : 56,
-          width: isMobile ? "min(calc(100vw - 32px), 320px)" : 320,
+          minHeight: isMobile ? 54 : 56,
+          maxWidth: isMobile ? 286 : 320,
           borderRadius: 999,
           border: "1px solid rgba(0,0,0,0.10)",
           background: "#ffffff",
@@ -266,8 +269,8 @@ export default function FloatingLeadWidget({
           cursor: "pointer",
           display: "inline-flex",
           alignItems: "center",
-          gap: 12,
-          padding: isMobile ? "9px 14px 9px 9px" : "8px 14px 8px 8px",
+          gap: isMobile ? 10 : 12,
+          padding: isMobile ? "8px 12px 8px 8px" : "8px 14px 8px 8px",
           overflow: "hidden",
           transform: open ? "scale(1.02)" : "scale(1)",
           transition: "transform 180ms ease, box-shadow 180ms ease",
@@ -276,9 +279,9 @@ export default function FloatingLeadWidget({
       >
         <span
           style={{
-            width: 42,
-            height: 42,
-            minWidth: 42,
+            width: isMobile ? 40 : 42,
+            height: isMobile ? 40 : 42,
+            minWidth: isMobile ? 40 : 42,
             borderRadius: 999,
             background: "#E30613",
             display: "inline-flex",
@@ -288,7 +291,23 @@ export default function FloatingLeadWidget({
             boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.10)",
           }}
         >
-          <WdpEmblemIcon size={21} />
+          {!logoFailed ? (
+            <img
+              src={effectiveLogoSrc}
+              alt="WEDRAWPLANS emblem"
+              width={28}
+              height={28}
+              style={{
+                width: isMobile ? 24 : 26,
+                height: isMobile ? 24 : 26,
+                objectFit: "contain",
+                display: "block",
+              }}
+              onError={() => setLogoFailed(true)}
+            />
+          ) : (
+            <FallbackEmblemIcon size={isMobile ? 18 : 20} />
+          )}
         </span>
 
         <span
@@ -297,13 +316,14 @@ export default function FloatingLeadWidget({
             flexDirection: "column",
             alignItems: "flex-start",
             textAlign: "left",
-            lineHeight: 1.15,
+            lineHeight: 1.1,
             minWidth: 0,
+            paddingRight: isMobile ? 2 : 0,
           }}
         >
           <span
             style={{
-              fontSize: isMobile ? 13.5 : 14,
+              fontSize: isMobile ? 12 : 14,
               fontWeight: 900,
               color: "#111",
               whiteSpace: "nowrap",
@@ -316,7 +336,8 @@ export default function FloatingLeadWidget({
           </span>
           <span
             style={{
-              fontSize: 11.5,
+              marginTop: 2,
+              fontSize: isMobile ? 10.5 : 11.5,
               color: "#666",
               whiteSpace: "nowrap",
               overflow: "hidden",
@@ -572,11 +593,7 @@ export default function FloatingLeadWidget({
                   </div>
                 </>
               ) : (
-                <div
-                  style={{
-                    padding: "10px 2px 4px 2px",
-                  }}
-                >
+                <div style={{ padding: "10px 2px 4px 2px" }}>
                   <div
                     style={{
                       padding: "14px 14px",
