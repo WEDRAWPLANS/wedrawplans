@@ -21,27 +21,67 @@ function normalisePhone(value: string) {
   return keepPlus ? `+${digits}` : digits;
 }
 
+function WdpEmblemIcon({ size = 21 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+      style={{ display: "block" }}
+    >
+      <path
+        d="M4 17.2V20h2.8L17.9 8.9l-2.8-2.8L4 17.2Z"
+        stroke="white"
+        strokeWidth="1.9"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M13.9 6.1 16.7 8.9"
+        stroke="white"
+        strokeWidth="1.9"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M7 15.7V7.9c0-.5.4-.9.9-.9h3"
+        stroke="white"
+        strokeWidth="1.9"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M9.6 18h6.5c.5 0 .9-.4.9-.9v-5"
+        stroke="white"
+        strokeWidth="1.9"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export default function FloatingLeadWidget({
   boroughName,
   serviceLabel,
-  logoSrc,
 }: FloatingLeadWidgetProps) {
   const effectiveBorough = (boroughName && boroughName.trim()) || "London";
   const effectiveService = (serviceLabel && serviceLabel.trim()) || "Planning drawings";
-  const effectiveLogoSrc = (logoSrc && logoSrc.trim()) || "/images/wedrawplans-logo.png";
 
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [logoFailed, setLogoFailed] = useState(false);
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [postcode, setPostcode] = useState("");
   const [projectType, setProjectType] = useState("");
+  const [projectDetails, setProjectDetails] = useState("");
 
   const firstFieldRef = useRef<HTMLInputElement | null>(null);
   const lastActiveElementRef = useRef<HTMLElement | null>(null);
@@ -53,7 +93,7 @@ export default function FloatingLeadWidget({
 
   const isMobile = useMemo(() => {
     if (typeof window === "undefined") return true;
-    return window.matchMedia && window.matchMedia("(max-width: 640px)").matches;
+    return window.matchMedia?.("(max-width: 640px)").matches ?? true;
   }, [mounted]);
 
   useEffect(() => {
@@ -89,11 +129,9 @@ export default function FloatingLeadWidget({
             e.preventDefault();
             last.focus();
           }
-        } else {
-          if (document.activeElement === last) {
-            e.preventDefault();
-            first.focus();
-          }
+        } else if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
         }
       }
     };
@@ -143,6 +181,7 @@ export default function FloatingLeadWidget({
     const payloadEmail = email.trim();
     const payloadPostcode = postcode.trim().toUpperCase();
     const payloadProjectType = projectType.trim();
+    const payloadProjectDetails = projectDetails.trim();
 
     if (!payloadName || payloadName.length < 2) {
       setError("Please enter your name.");
@@ -170,6 +209,7 @@ export default function FloatingLeadWidget({
 
       const messageParts = [
         `Project type: ${payloadProjectType}`,
+        payloadProjectDetails ? `Project details: ${payloadProjectDetails}` : null,
         pagePath ? `Page: ${pagePath}` : null,
         "Source: floating_lead_widget",
       ].filter(Boolean);
@@ -192,6 +232,7 @@ export default function FloatingLeadWidget({
       setEmail("");
       setPostcode("");
       setProjectType("");
+      setProjectDetails("");
     } catch {
       setError("Sorry, something went wrong. Please try again or use WhatsApp.");
     } finally {
@@ -201,7 +242,7 @@ export default function FloatingLeadWidget({
 
   const z = 2147483647;
   const right = 16;
-  const bottom = 96;
+  const bottom = isMobile ? 112 : 96;
 
   if (!mounted) return null;
 
@@ -216,66 +257,38 @@ export default function FloatingLeadWidget({
           right,
           bottom,
           zIndex: z,
-          minHeight: 56,
-          maxWidth: isMobile ? "calc(100vw - 32px)" : 320,
+          minHeight: isMobile ? 58 : 56,
+          width: isMobile ? "min(calc(100vw - 32px), 320px)" : 320,
           borderRadius: 999,
           border: "1px solid rgba(0,0,0,0.10)",
           background: "#ffffff",
-          boxShadow: "0 12px 30px rgba(0,0,0,0.18)",
+          boxShadow: open ? "0 14px 34px rgba(0,0,0,0.22)" : "0 12px 30px rgba(0,0,0,0.18)",
           cursor: "pointer",
           display: "inline-flex",
           alignItems: "center",
-          gap: 10,
-          padding: "8px 14px 8px 8px",
+          gap: 12,
+          padding: isMobile ? "9px 14px 9px 9px" : "8px 14px 8px 8px",
           overflow: "hidden",
-          transform: open ? "scale(1.03)" : "scale(1)",
+          transform: open ? "scale(1.02)" : "scale(1)",
           transition: "transform 180ms ease, box-shadow 180ms ease",
+          WebkitTapHighlightColor: "transparent",
         }}
       >
         <span
           style={{
-            width: 40,
-            height: 40,
-            minWidth: 40,
+            width: 42,
+            height: 42,
+            minWidth: 42,
             borderRadius: 999,
             background: "#E30613",
             display: "inline-flex",
             alignItems: "center",
             justifyContent: "center",
             overflow: "hidden",
+            boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.10)",
           }}
         >
-          {!logoFailed ? (
-            <img
-              src={effectiveLogoSrc}
-              alt="WEDRAWPLANS"
-              width={40}
-              height={40}
-              style={{
-                width: 40,
-                height: 40,
-                objectFit: "cover",
-              }}
-              onError={() => setLogoFailed(true)}
-            />
-          ) : (
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path
-                d="M3 17.25V21h3.75L19.81 7.94l-3.75-3.75L3 17.25z"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M14.06 4.19l3.75 3.75"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          )}
+          <WdpEmblemIcon size={21} />
         </span>
 
         <span
@@ -285,14 +298,18 @@ export default function FloatingLeadWidget({
             alignItems: "flex-start",
             textAlign: "left",
             lineHeight: 1.15,
+            minWidth: 0,
           }}
         >
           <span
             style={{
-              fontSize: 14,
+              fontSize: isMobile ? 13.5 : 14,
               fontWeight: 900,
               color: "#111",
               whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              maxWidth: "100%",
             }}
           >
             Need help with drawings?
@@ -302,9 +319,12 @@ export default function FloatingLeadWidget({
               fontSize: 11.5,
               color: "#666",
               whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              maxWidth: "100%",
             }}
           >
-            Quick quote in under a minute
+            Request your fixed fee quote
           </span>
         </span>
       </button>
@@ -379,7 +399,13 @@ export default function FloatingLeadWidget({
             <form onSubmit={handleSubmit} style={{ padding: 16 }}>
               {!sent ? (
                 <>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+                  <div
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+                      gap: 10,
+                    }}
+                  >
                     <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
                       <span style={{ fontSize: 12.5, fontWeight: 800, color: "#222" }}>Name</span>
                       <input
@@ -439,7 +465,7 @@ export default function FloatingLeadWidget({
                       <input
                         value={postcode}
                         onChange={(e) => setPostcode(e.target.value)}
-                        placeholder="SE5 7GD"
+                        placeholder="Enter your postcode"
                         autoComplete="postal-code"
                         style={{
                           border: "1px solid rgba(0,0,0,0.14)",
@@ -481,6 +507,29 @@ export default function FloatingLeadWidget({
                     </label>
                   </div>
 
+                  <div style={{ marginTop: 10 }}>
+                    <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                      <span style={{ fontSize: 12.5, fontWeight: 800, color: "#222" }}>
+                        Project details <span style={{ fontWeight: 600, color: "#666" }}>(optional)</span>
+                      </span>
+                      <textarea
+                        value={projectDetails}
+                        onChange={(e) => setProjectDetails(e.target.value)}
+                        placeholder="Briefly tell us about your project"
+                        rows={isMobile ? 3 : 4}
+                        style={{
+                          border: "1px solid rgba(0,0,0,0.14)",
+                          borderRadius: 12,
+                          padding: "12px 12px",
+                          fontSize: 14,
+                          outline: "none",
+                          resize: "vertical",
+                          fontFamily: "inherit",
+                        }}
+                      />
+                    </label>
+                  </div>
+
                   {error && (
                     <div
                       style={{
@@ -518,9 +567,8 @@ export default function FloatingLeadWidget({
                     </button>
                   </div>
 
-                  <div style={{ marginTop: 10, fontSize: 12, color: "#666", lineHeight: 1.35 }}>
-                    Borough: <strong style={{ color: "#111" }}>{effectiveBorough}</strong> · Service:{" "}
-                    <strong style={{ color: "#111" }}>{effectiveService}</strong>
+                  <div style={{ marginTop: 10, fontSize: 12, color: "#666", lineHeight: 1.45 }}>
+                    Share your details and we will come back with a clear fixed fee quote.
                   </div>
                 </>
               ) : (
