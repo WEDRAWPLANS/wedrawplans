@@ -28,7 +28,6 @@ const trackLeadEvent = (action: LeadAction) => {
   });
 };
 
-// This list is used for the grid section further down
 const BOROUGHS: { label: string; slug: string }[] = [
   { label: "Architectural drawings Barking and Dagenham", slug: "barking-dagenham" },
   { label: "Architectural drawings Barnet", slug: "barnet" },
@@ -65,7 +64,6 @@ const BOROUGHS: { label: string; slug: string }[] = [
   { label: "Architectural drawings Surrey borders and M25", slug: "surrey-m25" },
 ];
 
-// Header dropdown must match real /pages/areas/*.tsx routes
 const LOCAL_DESIGNERS_ITEMS: { label: string; href: string }[] = [
   { label: "Barnet", href: "/areas/barnet" },
   { label: "Harrow", href: "/areas/harrow" },
@@ -77,7 +75,6 @@ const LOCAL_DESIGNERS_ITEMS: { label: string; href: string }[] = [
   { label: "Bromley", href: "/areas/bromley" },
   { label: "Wandsworth", href: "/areas/wandsworth" },
   { label: "Camden", href: "/areas/camden" },
-
   { label: "Barking and Dagenham", href: "/areas/barking-dagenham" },
   { label: "Bexley", href: "/areas/bexley" },
   { label: "Brent", href: "/areas/brent" },
@@ -101,9 +98,7 @@ const LOCAL_DESIGNERS_ITEMS: { label: string; href: string }[] = [
   { label: "Tower Hamlets", href: "/areas/tower-hamlets" },
   { label: "Waltham Forest", href: "/areas/waltham-forest" },
   { label: "Westminster", href: "/areas/westminster" },
-
   { label: "Surrey Borders (M25)", href: "/areas/surrey-borders-m25" },
-
   { label: "View all boroughs", href: "/areas" },
 ];
 
@@ -376,23 +371,27 @@ export default function IndexPage() {
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
         {/* HEADER */}
         <header className="sticky top-0 z-[60] bg-[#fdf8f3]/95 backdrop-blur">
-          <div className="mx-auto max-w-6xl px-4 pt-6 pb-3 lg:px-6">
+          <div className="mx-auto max-w-6xl px-4 pt-4 pb-3 lg:px-6 lg:pt-5">
             <div className="flex flex-col items-center text-center">
               <img
                 src="/images/wedrawplans-logo.png"
                 alt="WEDRAWPLANS"
-                className="h-24 w-auto object-contain"
+                className="h-24 w-auto object-contain lg:h-28"
               />
 
-              <div className="mt-3 text-[11px] uppercase tracking-[0.18em] text-slate-600">
+              <div className="mt-2 text-[11px] uppercase tracking-[0.18em] text-slate-600">
                 Architectural Drawing Consultants
+              </div>
+
+              <div className="mt-2 hidden max-w-3xl text-[13px] font-medium text-slate-800 lg:block">
+                Architectural Drawings for New Builds, Extensions and Lofts – at an Affordable Fixed Cost
               </div>
             </div>
 
-            <hr className="mt-5 border-t border-slate-600" />
+            <hr className="mt-4 border-t border-slate-600" />
 
-            <div className="mt-3 flex w-full items-center justify-between">
-              <nav className="hidden flex-1 items-center justify-center gap-6 text-[13px] text-slate-900 lg:flex">
+            <div className="mt-3 hidden w-full items-center justify-between lg:flex">
+              <nav className="flex flex-1 items-center justify-center gap-6 text-[13px] text-slate-900">
                 <LocalDesignersDropdown />
                 <CommercialDropdown />
 
@@ -443,7 +442,7 @@ export default function IndexPage() {
                 </a>
               </nav>
 
-              <div className="hidden items-center gap-3 lg:flex">
+              <div className="flex items-center gap-3">
                 <a
                   href={PHONE_LINK}
                   className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#1ebe57]"
@@ -463,169 +462,195 @@ export default function IndexPage() {
                   <span>WhatsApp us</span>
                 </a>
               </div>
-
-              <div className="lg:hidden" />
             </div>
           </div>
         </header>
 
         {/* HERO */}
         <section className="border-b border-slate-200 bg-[#fdf8f3]">
-          <div className="mx-auto max-w-4xl px-4 py-8 lg:px-6 lg:py-12">
-            <div className="mx-auto max-w-[760px] text-center">
-              <h1 className="mx-auto max-w-[680px] text-[28px] font-semibold leading-tight text-slate-900 sm:text-[34px] lg:text-[44px]">
-                Planning Drawings for
-                <br className="hidden sm:block" /> Extensions, Lofts and Conversions
-              </h1>
-
-              <p className="mt-4 text-[18px] text-slate-700 sm:text-[20px]">
-                Initial survey within 48 hours.
-              </p>
-            </div>
-
-            <div className="mx-auto mt-8 max-w-[760px] rounded-[28px] border border-white/70 bg-white/70 p-4 shadow-[0_22px_60px_rgba(15,23,42,0.10)] backdrop-blur sm:p-6">
-              <div className="rounded-[24px] border border-slate-200/70 bg-[#f9fbfd] px-4 py-6 shadow-[0_8px_24px_rgba(15,23,42,0.06)] sm:px-7 sm:py-7">
-                <div className="text-center">
-                  <h2 className="text-[20px] font-semibold text-[#0f2340] sm:text-[24px]">
-                    Get Your Fixed Fee Quote
-                  </h2>
-
-                  <p className="mx-auto mt-4 max-w-[520px] text-[14px] leading-8 text-slate-700 sm:text-[16px]">
-                    Share a few details and we will send you
-                    <br className="hidden sm:block" /> a clear fixed price by email.
+          <div className="mx-auto max-w-6xl px-4 pt-6 pb-8 lg:px-6 lg:pt-10 lg:pb-12">
+            <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+              {/* LEFT COPY */}
+              <div className="text-center lg:text-left">
+                <div className="hidden lg:block">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-red-700">
+                    Planning and Building Regulation Drawings for London and the M25 area.
                   </p>
-                </div>
 
-                <form onSubmit={handleHeroSubmit} className="mx-auto mt-6 max-w-[560px]">
-                  <div className="space-y-4">
-                    <div className="relative">
-                      <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[22px] text-[#d85e56]">
-                        📍
-                      </span>
-                      <input
-                        ref={heroPostcodeRef}
-                        name="postcode"
-                        value={heroPostcode}
-                        onChange={(e) => setHeroPostcode(e.target.value)}
-                        onFocus={() => trackHeroFormStart("postcode")}
-                        placeholder="Postcode"
-                        className="h-14 w-full rounded-[14px] border border-slate-200 bg-white pl-14 pr-4 text-[16px] text-slate-800 shadow-sm outline-none transition focus:border-[#64b7c4]"
-                      />
-                    </div>
+                  <h1 className="mt-3 text-[26px] font-semibold uppercase leading-[1.3] tracking-[0.14em] text-slate-900 xl:text-[34px]">
+                    WEDRAWPLANS – Affordable Fixed-Cost Architectural Drawing Services for Homeowners and Developers
+                  </h1>
 
-                    <div className="relative">
-                      <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[22px] text-[#2f6f8a]">
-                        ✎
-                      </span>
-                      <select
-                        name="service"
-                        value={heroService}
-                        onFocus={() => trackHeroFormStart("service")}
-                        onChange={(e) => {
-                          setHeroService(e.target.value);
-                          trackHeroServiceSelect(e.target.value);
-                        }}
-                        className="h-14 w-full appearance-none rounded-[14px] border border-slate-200 bg-white pl-14 pr-12 text-[16px] text-slate-800 shadow-sm outline-none transition focus:border-[#64b7c4]"
-                      >
-                        <option value="">What drawings do you need?</option>
-                        <option value="House extension drawings">House extension drawings</option>
-                        <option value="Loft conversion drawings">Loft conversion drawings</option>
-                        <option value="Planning drawings">Planning drawings</option>
-                        <option value="Building regulation drawings">Building regulation drawings</option>
-                        <option value="New build drawings">New build drawings</option>
-                        <option value="Flat conversion drawings">Flat conversion drawings</option>
-                        <option value="Other drawings">Other drawings</option>
-                      </select>
-                      <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[20px] text-slate-700">
-                        ▾
-                      </span>
-                    </div>
+                  <p className="mt-3 text-[14px] font-medium text-slate-800">
+                    Planning | Extensions | Loft Conversions | New Build | Building Regs – High Quality, Low Cost Plans
+                  </p>
 
-                    {heroExpanded && (
-                      <div className="space-y-4 pt-1">
-                        <div className="relative">
-                          <input
-                            ref={heroNameRef}
-                            name="name"
-                            value={heroName}
-                            onChange={(e) => setHeroName(e.target.value)}
-                            onFocus={() => trackHeroFormStart("name")}
-                            placeholder="Your name"
-                            className="h-14 w-full rounded-[14px] border border-slate-200 bg-white px-4 text-[16px] text-slate-800 shadow-sm outline-none transition focus:border-[#64b7c4]"
-                          />
-                        </div>
-
-                        <div className="relative">
-                          <input
-                            name="phone"
-                            type="tel"
-                            value={heroPhone}
-                            onChange={(e) => setHeroPhone(e.target.value)}
-                            onFocus={() => trackHeroFormStart("phone")}
-                            placeholder="Phone number"
-                            className="h-14 w-full rounded-[14px] border border-slate-200 bg-white px-4 text-[16px] text-slate-800 shadow-sm outline-none transition focus:border-[#64b7c4]"
-                          />
-                        </div>
-
-                        <div className="relative">
-                          <input
-                            name="email"
-                            type="email"
-                            value={heroEmail}
-                            onChange={(e) => setHeroEmail(e.target.value)}
-                            onFocus={() => trackHeroFormStart("email")}
-                            placeholder="Email address"
-                            className="h-14 w-full rounded-[14px] border border-slate-200 bg-white px-4 text-[16px] text-slate-800 shadow-sm outline-none transition focus:border-[#64b7c4]"
-                          />
-                        </div>
-                      </div>
-                    )}
-
-                    <button
-                      type="submit"
-                      disabled={heroSubmitting}
-                      className="mt-1 flex h-14 w-full items-center justify-center rounded-full bg-[#5f9fbe] px-5 text-center text-[14px] font-semibold uppercase tracking-[0.18em] text-white shadow-[0_8px_22px_rgba(56,111,142,0.35)] transition hover:bg-[#4e8fae] disabled:cursor-not-allowed disabled:opacity-60 sm:text-[15px]"
-                    >
-                      {heroSubmitting
-                        ? "Submitting..."
-                        : heroExpanded
-                        ? "SEND MY QUOTE REQUEST →"
-                        : "GET MY FIXED FEE QUOTE →"}
-                    </button>
+                  <div className="mt-5 max-w-[640px] text-[14px] leading-7 text-slate-700">
+                    <p>
+                      WEDRAWPLANS focus on practical, buildable designs for house extensions, loft conversions, new builds and conversions across London and the M25 area.
+                      Drawings are tailored to planning and Building Regulation requirements and to what builders need on site.
+                    </p>
+                    <p className="mt-3">
+                      Many quotes are turned around the same working day. For urgent projects we can often arrange an initial survey within 48 hours.
+                    </p>
+                    <p className="mt-3">
+                      Call{" "}
+                      <a href={PHONE_LINK} className="font-semibold underline" onClick={() => trackLeadEvent("phone_click")}>
+                        {PHONE_DISPLAY}
+                      </a>{" "}
+                      or use the form to request a fixed fee.
+                    </p>
                   </div>
-                </form>
 
-                <div className="mx-auto mt-7 max-w-[420px] space-y-3">
-                  <TrustRow icon="✓" text="No obligation" />
-                  <TrustRow icon="◔" text="Local designers" />
-                  <TrustRow icon="◷" text="Initial survey within 48 hours" />
+                  <div className="mt-6 grid gap-4 md:grid-cols-3 text-[13px]">
+                    <MiniTrustCard title="Fast quoting" body="Clear fixed fees with quick turnaround." />
+                    <MiniTrustCard title="Direct designer" body="No call centre. Speak to a real person." />
+                    <MiniTrustCard title="London expertise" body="Borough-aware drawings that are practical to build." />
+                  </div>
                 </div>
 
-                <div className="mx-auto mt-6 flex max-w-[520px] flex-col items-center justify-center gap-3 sm:flex-row">
-                  <a
-                    href={PHONE_LINK}
-                    onClick={() => trackLeadEvent("phone_click")}
-                    className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#20243b] px-5 text-[15px] font-semibold text-white shadow-[0_8px_18px_rgba(15,23,42,0.25)] sm:flex-1"
-                  >
-                    Call {PHONE_DISPLAY}
-                  </a>
+                <div className="lg:hidden">
+                  <h1 className="mx-auto max-w-[340px] text-[28px] font-semibold leading-[1.25] text-slate-900 sm:max-w-[420px] sm:text-[34px]">
+                    Planning Drawings for Extensions, Lofts and Conversions
+                  </h1>
+                </div>
+              </div>
 
-                  <a
-                    href={WHATSAPP_LINK}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => trackLeadEvent("whatsapp_click")}
-                    className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#58a45d] px-5 text-[15px] font-semibold text-white shadow-[0_8px_18px_rgba(34,197,94,0.20)] sm:flex-1"
-                  >
-                    WhatsApp
-                  </a>
+              {/* RIGHT FORM */}
+              <div className="lg:pt-2">
+                <div className="mx-auto max-w-[560px] rounded-[26px] bg-white p-4 shadow-[0_18px_48px_rgba(15,23,42,0.10)] sm:p-5 lg:max-w-[580px] lg:rounded-[24px] lg:p-5">
+                  <div className="rounded-[22px] border border-slate-200/80 bg-[#f7fafc] px-4 py-5 shadow-[0_8px_24px_rgba(15,23,42,0.05)] sm:px-6 sm:py-6 lg:px-6 lg:py-6">
+                    <div className="text-center">
+                      <p className="mx-auto max-w-[470px] text-[14px] leading-8 text-slate-700 sm:text-[15px]">
+                        Share a few details and we will send you a clear fixed price by email.
+                      </p>
+                    </div>
+
+                    <form onSubmit={handleHeroSubmit} className="mx-auto mt-5 max-w-[500px]">
+                      <div className="space-y-3">
+                        <div className="relative">
+                          <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[20px] text-[#d85e56]">
+                            📍
+                          </span>
+                          <input
+                            ref={heroPostcodeRef}
+                            name="postcode"
+                            value={heroPostcode}
+                            onChange={(e) => setHeroPostcode(e.target.value)}
+                            onFocus={() => trackHeroFormStart("postcode")}
+                            placeholder="Postcode"
+                            className="h-14 w-full rounded-[16px] border border-slate-200 bg-white pl-14 pr-4 text-[16px] text-slate-800 shadow-sm outline-none transition focus:border-[#64b7c4]"
+                          />
+                        </div>
+
+                        <div className="relative">
+                          <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[20px] text-[#2f6f8a]">
+                            ✎
+                          </span>
+                          <select
+                            name="service"
+                            value={heroService}
+                            onFocus={() => trackHeroFormStart("service")}
+                            onChange={(e) => {
+                              setHeroService(e.target.value);
+                              trackHeroServiceSelect(e.target.value);
+                            }}
+                            className="h-14 w-full appearance-none rounded-[16px] border border-slate-200 bg-white pl-14 pr-12 text-[16px] text-slate-800 shadow-sm outline-none transition focus:border-[#64b7c4]"
+                          >
+                            <option value="">What drawings do you need?</option>
+                            <option value="House extension drawings">House extension drawings</option>
+                            <option value="Loft conversion drawings">Loft conversion drawings</option>
+                            <option value="Planning drawings">Planning drawings</option>
+                            <option value="Building regulation drawings">Building regulation drawings</option>
+                            <option value="New build drawings">New build drawings</option>
+                            <option value="Flat conversion drawings">Flat conversion drawings</option>
+                            <option value="Other drawings">Other drawings</option>
+                          </select>
+                          <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[18px] text-slate-700">
+                            ▾
+                          </span>
+                        </div>
+
+                        {heroExpanded && (
+                          <div className="space-y-3 pt-1">
+                            <input
+                              ref={heroNameRef}
+                              name="name"
+                              value={heroName}
+                              onChange={(e) => setHeroName(e.target.value)}
+                              onFocus={() => trackHeroFormStart("name")}
+                              placeholder="Your name"
+                              className="h-14 w-full rounded-[16px] border border-slate-200 bg-white px-4 text-[16px] text-slate-800 shadow-sm outline-none transition focus:border-[#64b7c4]"
+                            />
+
+                            <input
+                              name="phone"
+                              type="tel"
+                              value={heroPhone}
+                              onChange={(e) => setHeroPhone(e.target.value)}
+                              onFocus={() => trackHeroFormStart("phone")}
+                              placeholder="Phone number"
+                              className="h-14 w-full rounded-[16px] border border-slate-200 bg-white px-4 text-[16px] text-slate-800 shadow-sm outline-none transition focus:border-[#64b7c4]"
+                            />
+
+                            <input
+                              name="email"
+                              type="email"
+                              value={heroEmail}
+                              onChange={(e) => setHeroEmail(e.target.value)}
+                              onFocus={() => trackHeroFormStart("email")}
+                              placeholder="Email address"
+                              className="h-14 w-full rounded-[16px] border border-slate-200 bg-white px-4 text-[16px] text-slate-800 shadow-sm outline-none transition focus:border-[#64b7c4]"
+                            />
+                          </div>
+                        )}
+
+                        <button
+                          type="submit"
+                          disabled={heroSubmitting}
+                          className="mt-1 flex h-14 w-full items-center justify-center rounded-full bg-[#67a8c7] px-5 text-center text-[14px] font-semibold uppercase tracking-[0.18em] text-white shadow-[0_8px_22px_rgba(56,111,142,0.28)] transition hover:bg-[#5a9bb9] disabled:cursor-not-allowed disabled:opacity-60 sm:text-[15px]"
+                        >
+                          {heroSubmitting
+                            ? "Submitting..."
+                            : heroExpanded
+                            ? "SEND MY QUOTE REQUEST →"
+                            : "GET MY FIXED FEE QUOTE →"}
+                        </button>
+                      </div>
+                    </form>
+
+                    <div className="mx-auto mt-5 max-w-[360px] space-y-3">
+                      <TrustRow icon="✓" text="No obligation" />
+                      <TrustRow icon="◔" text="Local designers" />
+                      <TrustRow icon="◷" text="Initial survey within 48 hours" />
+                    </div>
+
+                    <div className="mx-auto mt-5 flex max-w-[430px] flex-col items-center justify-center gap-3 sm:flex-row">
+                      <a
+                        href={PHONE_LINK}
+                        onClick={() => trackLeadEvent("phone_click")}
+                        className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#20243b] px-5 text-[15px] font-semibold text-white shadow-[0_8px_18px_rgba(15,23,42,0.22)] sm:flex-1"
+                      >
+                        Call {PHONE_DISPLAY}
+                      </a>
+
+                      <a
+                        href={WHATSAPP_LINK}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => trackLeadEvent("whatsapp_click")}
+                        className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#58a45d] px-5 text-[15px] font-semibold text-white shadow-[0_8px_18px_rgba(34,197,94,0.18)] sm:flex-1"
+                      >
+                        WhatsApp
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* SLIDER MOVED LOWER */}
         <div className="border-b border-slate-200 bg-[#fdf8f3]">
           <HeroSlider
             slides={[
@@ -660,7 +685,6 @@ export default function IndexPage() {
           </div>
         </section>
 
-        {/* Commercial section */}
         <section className="border-b border-slate-200 bg-white py-10">
           <div className="mx-auto max-w-6xl px-4 lg:px-6">
             <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
@@ -944,8 +968,6 @@ export default function IndexPage() {
     </>
   );
 }
-
-/* Helper components */
 
 type NavMenuProps = {
   title: string;
