@@ -469,52 +469,52 @@ export default function IndexPage() {
         {/* HERO */}
         <section className="border-b border-slate-200 bg-[#fdf8f3]">
           <div className="mx-auto max-w-6xl px-4 pt-6 pb-8 lg:px-6 lg:pt-10 lg:pb-12">
-            <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
-              {/* LEFT COPY */}
-              <div className="text-center lg:text-left">
-                <div className="hidden lg:block">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-red-700">
-                    Planning and Building Regulation Drawings for London and the M25 area.
-                  </p>
+<div className="grid gap-4 lg:grid-cols-[1.05fr_0.95fr] lg:items-start lg:gap-8">
+  {/* LEFT COPY */}
+  <div className="text-center lg:text-left">
+    <div className="hidden lg:block">
+      <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-red-700">
+        Planning and Building Regulation Drawings for London and the M25 area.
+      </p>
 
-                  <h1 className="mt-3 text-[26px] font-semibold uppercase leading-[1.3] tracking-[0.14em] text-slate-900 xl:text-[34px]">
-                    WEDRAWPLANS – Affordable Fixed-Cost Architectural Drawing Services for Homeowners and Developers
-                  </h1>
+      <h1 className="mt-3 text-[26px] font-semibold uppercase leading-[1.3] tracking-[0.14em] text-slate-900 xl:text-[34px]">
+        WEDRAWPLANS – Affordable Fixed-Cost Architectural Drawing Services for Homeowners and Developers
+      </h1>
 
-                  <p className="mt-3 text-[14px] font-medium text-slate-800">
-                    Planning | Extensions | Loft Conversions | New Build | Building Regs – High Quality, Low Cost Plans
-                  </p>
+      <p className="mt-3 text-[14px] font-medium text-slate-800">
+        Planning | Extensions | Loft Conversions | New Build | Building Regs – High Quality, Low Cost Plans
+      </p>
 
-                  <div className="mt-5 max-w-[640px] text-[14px] leading-7 text-slate-700">
-                    <p>
-                      WEDRAWPLANS focus on practical, buildable designs for house extensions, loft conversions, new builds and conversions across London and the M25 area.
-                      Drawings are tailored to planning and Building Regulation requirements and to what builders need on site.
-                    </p>
-                    <p className="mt-3">
-                      Many quotes are turned around the same working day. For urgent projects we can often arrange an initial survey within 48 hours.
-                    </p>
-                    <p className="mt-3">
-                      Call{" "}
-                      <a href={PHONE_LINK} className="font-semibold underline" onClick={() => trackLeadEvent("phone_click")}>
-                        {PHONE_DISPLAY}
-                      </a>{" "}
-                      or use the form to request a fixed fee.
-                    </p>
-                  </div>
+      <div className="mt-5 max-w-[640px] text-[14px] leading-7 text-slate-700">
+        <p>
+          WEDRAWPLANS focus on practical, buildable designs for house extensions, loft conversions, new builds and conversions across London and the M25 area.
+          Drawings are tailored to planning and Building Regulation requirements and to what builders need on site.
+        </p>
+        <p className="mt-3">
+          Many quotes are turned around the same working day. For urgent projects we can often arrange an initial survey within 48 hours.
+        </p>
+        <p className="mt-3">
+          Call{" "}
+          <a href={PHONE_LINK} className="font-semibold underline" onClick={() => trackLeadEvent("phone_click")}>
+            {PHONE_DISPLAY}
+          </a>{" "}
+          or use the form to request a fixed fee.
+        </p>
+      </div>
 
-                  <div className="mt-6 grid gap-4 md:grid-cols-3 text-[13px]">
-                    <MiniTrustCard title="Fast quoting" body="Clear fixed fees with quick turnaround." />
-                    <MiniTrustCard title="Direct designer" body="No call centre. Speak to a real person." />
-                    <MiniTrustCard title="London expertise" body="Borough-aware drawings that are practical to build." />
-                  </div>
-                </div>
+      <div className="mt-6 grid gap-4 md:grid-cols-3 text-[13px]">
+        <MiniTrustCard title="Fast quoting" body="Clear fixed fees with quick turnaround." />
+        <MiniTrustCard title="Direct designer" body="No call centre. Speak to a real person." />
+        <MiniTrustCard title="London expertise" body="Borough-aware drawings that are practical to build." />
+      </div>
+    </div>
 
-                <div className="lg:hidden">
-                  <h1 className="mx-auto max-w-[340px] text-[28px] font-semibold leading-[1.25] text-slate-900 sm:max-w-[420px] sm:text-[34px]">
-                    Planning Drawings for Extensions, Lofts and Conversions
-                  </h1>
-                </div>
-              </div>
+    <div className="lg:hidden">
+      <h1 className="mx-auto max-w-[360px] text-[23px] font-semibold uppercase leading-[1.35] tracking-[0.12em] text-slate-900 sm:max-w-[420px] sm:text-[26px]">
+        Affordable Fixed-Cost Architectural Drawing Services for Homeowners and Developers
+      </h1>
+    </div>
+  </div>
 
               {/* RIGHT FORM */}
               <div className="lg:pt-2">
