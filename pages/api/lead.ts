@@ -6,6 +6,7 @@ type LeadBody = {
   email?: string | null;
   service?: string | null;
   postcode?: string | null;
+  turnstileToken?: string | null;
 };
 
 type LeadResponse = {
@@ -27,18 +28,63 @@ export default async function handler(
     return res.status(405).json({ ok: false, error: "Method not allowed" });
   }
 
-  const body = req.body as LeadBody | undefined;
+  const body = (req.body || {}) as LeadBody;
 
-  const name = (body?.name || "").toString().trim();
-  const phone = (body?.phone || "").toString().trim();
-  const email = (body?.email || "").toString().trim();
-  const service = (body?.service || "").toString().trim();
-  const postcode = (body?.postcode || "").toString().trim();
+  const name = (body.name || "").toString().trim();
+  const phone = (body.phone || "").toString().trim();
+  const email = (body.email || "").toString().trim();
+  const service = (body.service || "").toString().trim();
+  const postcode = (body.postcode || "").toString().trim();
+  const turnstileToken = (body.turnstileToken || "").toString().trim();
 
   if (!name || !phone || !email || !postcode) {
     return res
       .status(400)
       .json({ ok: false, error: "Missing required lead fields" });
+  }
+
+  // 0) Turnstile anti spam (required)
+  const TURNSTILE_SECRET_KEY = process.env.TURNSTILE_SECRET_KEY;
+
+  if (!TURNSTILE_SECRET_KEY) {
+    console.error("Missing TURNSTILE_SECRET_KEY environment variable");
+    return res
+      .status(500)
+      .json({ ok: false, error: "Server is missing Turnstile secret key" });
+  }
+
+  if (!turnstileToken) {
+    return res
+      .status(400)
+      .json({ ok: false, error: "Missing Turnstile token" });
+  }
+
+  try {
+    const verifyResp = await fetch(
+      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `secret=${encodeURIComponent(
+          TURNSTILE_SECRET_KEY
+        )}&response=${encodeURIComponent(turnstileToken)}`,
+      }
+    );
+
+    const verifyData = (await verifyResp.json().catch(() => null)) as
+      | { success?: boolean }
+      | null;
+
+    if (!verifyData?.success) {
+      return res
+        .status(400)
+        .json({ ok: false, error: "Turnstile verification failed" });
+    }
+  } catch (e) {
+    console.error("Turnstile verification error:", e);
+    return res
+      .status(500)
+      .json({ ok: false, error: "Turnstile verification error" });
   }
 
   const RESEND_API_KEY = process.env.RESEND_API_KEY;
@@ -160,7 +206,7 @@ export default async function handler(
 type ResendEmailParams = {
   apiKey: string;
   from: string;
-  to: string[];          // <-- can send to many addresses
+  to: string[];
   subject: string;
   text: string;
   replyTo?: string;
@@ -192,7 +238,6 @@ async function sendEmailWithResend({
   if (!resp.ok) {
     const errorText = await resp.text().catch(() => "Unknown error");
     console.error("Resend API error:", resp.status, errorText);
-    // Do not throw – we still want the API to return ok to the client
     return;
   }
 }
