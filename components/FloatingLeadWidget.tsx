@@ -277,20 +277,19 @@ export default function FloatingLeadWidget({
           WebkitTapHighlightColor: "transparent",
         }}
       >
-        <span
-          style={{
-            width: isMobile ? 40 : 42,
-            height: isMobile ? 40 : 42,
-            minWidth: isMobile ? 40 : 42,
-            borderRadius: 999,
-            background: "#E30613",
-            display: "inline-flex",
-            alignItems: "center",
-            justifyContent: "center",
-            overflow: "hidden",
-            boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.10)",
-          }}
-        >
+      <span
+  style={{
+    width: isMobile ? 40 : 42,
+    height: isMobile ? 40 : 42,
+    minWidth: isMobile ? 40 : 42,
+    borderRadius: 999,
+    background: "transparent",
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    overflow: "hidden",
+  }}
+>
           {!logoFailed ? (
             <img
               src={effectiveLogoSrc}
