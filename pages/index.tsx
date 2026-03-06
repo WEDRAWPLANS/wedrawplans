@@ -358,7 +358,7 @@ export default function IndexPage() {
         <title>WEDRAWPLANS – New build, extension and loft conversion drawings</title>
         <meta
           name="description"
-          content="Planning drawings for extensions, lofts and conversions. Request a fixed fee quote from WEDRAWPLANS."
+          content="Planning drawings for extensions, lofts and new builds. Request a fixed fee quote from WEDRAWPLANS."
         />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
@@ -369,9 +369,8 @@ export default function IndexPage() {
       </Head>
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
-        {/* HEADER */}
         <header className="sticky top-0 z-[60] bg-[#fdf8f3]/95 backdrop-blur">
-<div className="mx-auto max-w-6xl px-4 pt-3 pb-8 lg:px-6 lg:pt-10 lg:pb-12">
+          <div className="mx-auto max-w-6xl px-4 pt-4 pb-3 lg:px-6 lg:pt-5">
             <div className="flex flex-col items-center text-center">
               <img
                 src="/images/wedrawplans-logo.png"
@@ -466,67 +465,68 @@ export default function IndexPage() {
           </div>
         </header>
 
-        {/* HERO */}
         <section className="border-b border-slate-200 bg-[#fdf8f3]">
-          <div className="mx-auto max-w-6xl px-4 pt-6 pb-8 lg:px-6 lg:pt-10 lg:pb-12">
-<div className="grid gap-4 lg:grid-cols-[1.05fr_0.95fr] lg:items-start lg:gap-8">
-  {/* LEFT COPY */}
-  <div className="text-center lg:text-left">
-    <div className="hidden lg:block">
-      <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-red-700">
-        Planning and Building Regulation Drawings for London and the M25 area.
-      </p>
+          <div className="mx-auto max-w-6xl px-4 pt-2 pb-8 lg:px-6 lg:pt-10 lg:pb-12">
+            <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-start lg:gap-8">
+              <div className="text-center lg:text-left">
+                <div className="hidden lg:block">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-red-700">
+                    Planning and Building Regulation Drawings for London and the M25 area.
+                  </p>
 
-      <h1 className="mt-3 text-[26px] font-semibold uppercase leading-[1.3] tracking-[0.14em] text-slate-900 xl:text-[34px]">
-        WEDRAWPLANS – Affordable Fixed-Cost Architectural Drawing Services for Homeowners and Developers
-      </h1>
+                  <h1 className="mt-3 text-[26px] font-semibold uppercase leading-[1.3] tracking-[0.14em] text-slate-900 xl:text-[34px]">
+                    WEDRAWPLANS – Affordable Fixed-Cost Architectural Drawing Services for Homeowners and Developers
+                  </h1>
 
-      <p className="mt-3 text-[14px] font-medium text-slate-800">
-        Planning | Extensions | Loft Conversions | New Build | Building Regs – High Quality, Low Cost Plans
-      </p>
+                  <p className="mt-3 text-[14px] font-medium text-slate-800">
+                    Planning | Extensions | Loft Conversions | New Build | Building Regs – High Quality, Low Cost Plans
+                  </p>
 
-      <div className="mt-5 max-w-[640px] text-[14px] leading-7 text-slate-700">
-        <p>
-          WEDRAWPLANS focus on practical, buildable designs for house extensions, loft conversions, new builds and conversions across London and the M25 area.
-          Drawings are tailored to planning and Building Regulation requirements and to what builders need on site.
-        </p>
-        <p className="mt-3">
-          Many quotes are turned around the same working day. For urgent projects we can often arrange an initial survey within 48 hours.
-        </p>
-        <p className="mt-3">
-          Call{" "}
-          <a href={PHONE_LINK} className="font-semibold underline" onClick={() => trackLeadEvent("phone_click")}>
-            {PHONE_DISPLAY}
-          </a>{" "}
-          or use the form to request a fixed fee.
-        </p>
-      </div>
+                  <div className="mt-5 max-w-[640px] text-[14px] leading-7 text-slate-700">
+                    <p>
+                      WEDRAWPLANS focus on practical, buildable designs for house extensions, loft conversions, new builds and conversions across London and the M25 area.
+                      Drawings are tailored to planning and Building Regulation requirements and to what builders need on site.
+                    </p>
+                    <p className="mt-3">
+                      Many quotes are turned around the same working day. For urgent projects we can often arrange an initial survey within 48 hours.
+                    </p>
+                    <p className="mt-3">
+                      Call{" "}
+                      <a href={PHONE_LINK} className="font-semibold underline" onClick={() => trackLeadEvent("phone_click")}>
+                        {PHONE_DISPLAY}
+                      </a>{" "}
+                      or use the form to request a fixed fee.
+                    </p>
+                  </div>
 
-      <div className="mt-6 grid gap-4 md:grid-cols-3 text-[13px]">
-        <MiniTrustCard title="Fast quoting" body="Clear fixed fees with quick turnaround." />
-        <MiniTrustCard title="Direct designer" body="No call centre. Speak to a real person." />
-        <MiniTrustCard title="London expertise" body="Borough-aware drawings that are practical to build." />
-      </div>
-    </div>
+                  <div className="mt-6 grid gap-4 md:grid-cols-3 text-[13px]">
+                    <MiniTrustCard title="Fast quoting" body="Clear fixed fees with quick turnaround." />
+                    <MiniTrustCard title="Direct designer" body="No call centre. Speak to a real person." />
+                    <MiniTrustCard title="London expertise" body="Borough-aware drawings that are practical to build." />
+                  </div>
+                </div>
 
-    <div className="lg:hidden">
-      <h1 className="mx-auto max-w-[360px] text-[23px] font-semibold uppercase leading-[1.35] tracking-[0.12em] text-slate-900 sm:max-w-[420px] sm:text-[26px]">
-        Affordable Fixed-Cost Architectural Drawing Services for Homeowners and Developers
-      </h1>
-    </div>
-  </div>
+                <div className="lg:hidden">
+                  <h1 className="mx-auto max-w-[340px] text-[22px] font-semibold uppercase leading-[1.35] tracking-[0.12em] text-slate-900 sm:max-w-[400px] sm:text-[24px]">
+                    Planning Drawings for Extensions, Lofts and New Builds
+                  </h1>
 
-              {/* RIGHT FORM */}
+                  <p className="mx-auto mt-2 max-w-[320px] text-[13px] text-slate-600">
+                    Clear fixed fees and initial survey within 48 hours
+                  </p>
+                </div>
+              </div>
+
               <div className="lg:pt-2">
-                <div className="mx-auto max-w-[560px] rounded-[26px] bg-white p-4 shadow-[0_18px_48px_rgba(15,23,42,0.10)] sm:p-5 lg:max-w-[580px] lg:rounded-[24px] lg:p-5">
-                  <div className="rounded-[22px] border border-slate-200/80 bg-[#f7fafc] px-4 py-5 shadow-[0_8px_24px_rgba(15,23,42,0.05)] sm:px-6 sm:py-6 lg:px-6 lg:py-6">
+                <div className="mx-auto max-w-[560px] rounded-[24px] bg-white p-4 shadow-[0_18px_48px_rgba(15,23,42,0.10)] sm:p-5 lg:max-w-[580px] lg:rounded-[24px] lg:p-5">
+                  <div className="rounded-[20px] border border-slate-200/80 bg-[#f7fafc] px-4 py-4 shadow-[0_8px_24px_rgba(15,23,42,0.05)] sm:px-6 sm:py-5 lg:px-6 lg:py-5">
                     <div className="text-center">
-                      <p className="mx-auto max-w-[470px] text-[14px] leading-8 text-slate-700 sm:text-[15px]">
-                        Share a few details and we will send you a clear fixed price by email.
+                      <p className="mx-auto max-w-[430px] text-[14px] leading-6 text-slate-700 sm:text-[15px]">
+                        Get your fixed fee by email
                       </p>
                     </div>
 
-                    <form onSubmit={handleHeroSubmit} className="mx-auto mt-5 max-w-[500px]">
+                    <form onSubmit={handleHeroSubmit} className="mx-auto mt-4 max-w-[500px]">
                       <div className="space-y-3">
                         <div className="relative">
                           <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[20px] text-[#d85e56]">
@@ -619,13 +619,12 @@ export default function IndexPage() {
                       </div>
                     </form>
 
-                    <div className="mx-auto mt-5 max-w-[360px] space-y-3">
+                    <div className="mx-auto mt-4 max-w-[320px] space-y-3">
                       <TrustRow icon="✓" text="No obligation" />
                       <TrustRow icon="◔" text="Local designers" />
-                      <TrustRow icon="◷" text="Initial survey within 48 hours" />
                     </div>
 
-                    <div className="mx-auto mt-5 flex max-w-[430px] flex-col items-center justify-center gap-3 sm:flex-row">
+                    <div className="mx-auto mt-4 flex max-w-[430px] flex-col items-center justify-center gap-3 sm:flex-row">
                       <a
                         href={PHONE_LINK}
                         onClick={() => trackLeadEvent("phone_click")}
