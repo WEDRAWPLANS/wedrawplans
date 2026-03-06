@@ -371,7 +371,7 @@ export default function IndexPage() {
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
         {/* HEADER */}
         <header className="sticky top-0 z-[60] bg-[#fdf8f3]/95 backdrop-blur">
-          <div className="mx-auto max-w-6xl px-4 pt-4 pb-3 lg:px-6 lg:pt-5">
+<div className="mx-auto max-w-6xl px-4 pt-3 pb-8 lg:px-6 lg:pt-10 lg:pb-12">
             <div className="flex flex-col items-center text-center">
               <img
                 src="/images/wedrawplans-logo.png"
