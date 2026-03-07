@@ -23,7 +23,7 @@ const initialForm: FormState = {
   postcode: "",
   projectType: "",
   service: "Planning Drawings",
-  borough: "London",
+  borough: "London and surrounding M25 areas",
   message: "",
 };
 
@@ -83,7 +83,7 @@ function getBoroughFromPostcode(postcode: string) {
   if (p.startsWith("SW12") || p.startsWith("SW11") || p.startsWith("SW4")) return "Wandsworth";
   if (p.startsWith("E6") || p.startsWith("E12") || p.startsWith("E13")) return "Newham";
 
-  return "London";
+  return "London and surrounding M25 areas";
 }
 
 export default function GetDrawingsQuotePage() {
@@ -95,7 +95,9 @@ export default function GetDrawingsQuotePage() {
   const canonicalUrl = "https://www.wedrawplans.co.uk/get-drawings-quote";
 
   const inferredBorough = useMemo(() => {
-    return form.postcode.trim() ? getBoroughFromPostcode(form.postcode) : "London";
+    return form.postcode.trim()
+      ? getBoroughFromPostcode(form.postcode)
+      : "London and surrounding M25 areas";
   }, [form.postcode]);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -180,6 +182,7 @@ export default function GetDrawingsQuotePage() {
     email: "info@wedrawplans.com",
     areaServed: [
       "London",
+      "Surrounding M25 areas",
       "Barnet",
       "Camden",
       "Hackney",
@@ -190,9 +193,11 @@ export default function GetDrawingsQuotePage() {
       "Redbridge",
       "Newham",
       "Wandsworth",
+      "Hertfordshire",
+      "Essex",
     ],
     description:
-      "WEDRAWPLANS provides architectural drawings, planning drawings, building regulation drawings, loft conversion drawings, extension plans and measured building surveys across London.",
+      "WEDRAWPLANS provides architectural drawings, planning drawings, building regulation drawings, loft conversion drawings, extension plans and measured building surveys across London and surrounding M25 areas.",
     serviceType: [
       "Architectural Drawings",
       "Planning Drawings",
@@ -201,6 +206,7 @@ export default function GetDrawingsQuotePage() {
       "Extension Plans",
       "Measured Building Surveys",
       "Planning Application Drawings",
+      "Commercial Drawings",
     ],
   };
 
@@ -210,11 +216,11 @@ export default function GetDrawingsQuotePage() {
         <title>Get a Quote for Architectural Drawings in London | WEDRAWPLANS</title>
         <meta
           name="description"
-          content="Get a quote for architectural drawings in London with WEDRAWPLANS. We prepare planning drawings, extension plans, loft conversion drawings, measured surveys, planning application drawings and building regulation drawings."
+          content="Get a quote for architectural drawings in London and surrounding M25 areas with WEDRAWPLANS. We prepare planning drawings, extension plans, loft conversion drawings, measured surveys, planning application drawings and building regulation drawings."
         />
         <meta
           name="keywords"
-          content="architectural drawings London, planning drawings London, extension drawings quote, loft conversion drawings London, building regulation drawings London, measured building survey London, house extension plans London, planning application drawings London, WEDRAWPLANS"
+          content="architectural drawings London, architectural drawings M25, planning drawings London, extension drawings quote, loft conversion drawings London, building regulation drawings London, measured building survey London, house extension plans London, planning application drawings London, commercial drawings London, WEDRAWPLANS"
         />
         <meta
           property="og:title"
@@ -222,7 +228,7 @@ export default function GetDrawingsQuotePage() {
         />
         <meta
           property="og:description"
-          content="Need architectural drawings for a house extension, loft conversion or planning application? Send your details to WEDRAWPLANS for a fast quote."
+          content="Need architectural drawings for a house extension, loft conversion, commercial project or planning application? Send your details to WEDRAWPLANS for a fast quote."
         />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:type" content="website" />
@@ -326,7 +332,7 @@ export default function GetDrawingsQuotePage() {
                     marginBottom: 18,
                   }}
                 >
-                  Architectural drawings • Planning drawings • Extension plans • London coverage
+                  Architectural drawings • Planning drawings • Extension plans • London and M25 coverage
                 </div>
 
                 <h1
@@ -353,8 +359,9 @@ export default function GetDrawingsQuotePage() {
                 >
                   Tell us your postcode and project type and send your details directly to
                   WEDRAWPLANS. We prepare architectural drawings, planning drawings, building
-                  regulation drawings, loft conversion drawings, extension plans and measured
-                  building surveys for homeowners across London.
+                  regulation drawings, loft conversion drawings, extension plans, commercial
+                  drawings and measured building surveys for clients across London and surrounding
+                  M25 areas.
                 </p>
 
                 <div className="pillRow" style={{ marginTop: 24 }}>
@@ -362,7 +369,7 @@ export default function GetDrawingsQuotePage() {
                     "Initial survey within 48 hours",
                     "Fast quote review",
                     "Phone and email follow up",
-                    "London coverage",
+                    "London and surrounding M25 areas",
                   ].map((item) => (
                     <div
                       key={item}
@@ -385,7 +392,7 @@ export default function GetDrawingsQuotePage() {
                     "Side and wraparound extension plans",
                     "Measured building surveys",
                     "Internal structural alteration drawings",
-                    "Planning application drawings",
+                    "Commercial drawings and planning applications",
                   ].map((item) => (
                     <div
                       key={item}
@@ -422,7 +429,7 @@ export default function GetDrawingsQuotePage() {
 
                 <div className="pillRow" style={{ marginBottom: 18 }}>
                   {[
-                    "Trusted by homeowners across London",
+                    "Trusted by homeowners and developers",
                     "Fast response",
                     "Professional architectural drawings",
                   ].map((item) => (
@@ -541,6 +548,7 @@ export default function GetDrawingsQuotePage() {
                             Building regulation drawings
                           </option>
                           <option value="Measured survey">Measured survey</option>
+                          <option value="Commercial project">Commercial project</option>
                           <option value="Other domestic project">Other domestic project</option>
                         </select>
                       </div>
@@ -572,6 +580,7 @@ export default function GetDrawingsQuotePage() {
                           <option value="Planning Application Support">
                             Planning Application Support
                           </option>
+                          <option value="Commercial Drawings">Commercial Drawings</option>
                           <option value="Full Drawing Package">Full Drawing Package</option>
                         </select>
                       </div>
@@ -604,7 +613,7 @@ export default function GetDrawingsQuotePage() {
                         id="message"
                         value={form.message}
                         onChange={(e) => setForm((prev) => ({ ...prev, message: e.target.value }))}
-                        placeholder="Tell us what you need, for example rear extension, loft conversion, planning application or building regulation drawings."
+                        placeholder="Tell us what you need, for example rear extension, loft conversion, commercial fit out, planning application or building regulation drawings."
                         rows={5}
                         style={{ ...inputStyle, resize: "vertical", minHeight: 120 }}
                       />
@@ -682,7 +691,7 @@ export default function GetDrawingsQuotePage() {
                 {[
                   {
                     title: "Planning drawings",
-                    text: "Clear proposed planning drawings for house extensions, loft conversions and home improvement projects across London.",
+                    text: "Clear proposed planning drawings for house extensions, loft conversions, commercial projects and home improvement works across London and surrounding M25 areas.",
                   },
                   {
                     title: "Measured surveys",
@@ -717,9 +726,10 @@ export default function GetDrawingsQuotePage() {
                   }}
                 >
                   WEDRAWPLANS provides professional architectural drawings for house extensions,
-                  loft conversions, internal alterations and planning applications across London.
-                  Our team prepares clear and accurate drawings for planning permission, building
-                  regulations and the next stages of your project.
+                  loft conversions, internal alterations, commercial projects and planning
+                  applications across London and surrounding M25 areas. Our team prepares clear and
+                  accurate drawings for planning permission, building regulations and the next
+                  stages of your project.
                 </p>
                 <p
                   style={{
@@ -730,16 +740,16 @@ export default function GetDrawingsQuotePage() {
                   }}
                 >
                   Whether you need rear extension drawings, side extension plans, loft conversion
-                  drawings, measured surveys or building regulation drawings, we can review your
-                  project and guide you on the right package.
+                  drawings, measured surveys, commercial drawings or building regulation drawings,
+                  we can review your project and guide you on the right package.
                 </p>
 
                 <div className="cardGridFour" style={{ marginTop: 24 }}>
                   {[
-                    "Architectural drawings for homeowners",
+                    "Architectural drawings for homeowners and commercial clients",
                     "Fast quote request in less than one minute",
                     "Professional follow up by phone or email",
-                    "London wide coverage across multiple boroughs",
+                    "London wide and surrounding M25 coverage",
                   ].map((item) => (
                     <div key={item} className="softCard">
                       {item}
@@ -764,10 +774,11 @@ export default function GetDrawingsQuotePage() {
                     maxWidth: 980,
                   }}
                 >
-                  We prepare a wide range of architectural drawing services for London homeowners,
-                  including planning drawings, extension plans, loft conversion drawings, garage
-                  conversion drawings, measured building surveys, planning application drawings and
-                  building regulation drawing packages.
+                  We prepare a wide range of architectural drawing services for clients across
+                  London and surrounding M25 areas, including planning drawings, extension plans,
+                  loft conversion drawings, garage conversion drawings, measured building surveys,
+                  planning application drawings, commercial drawings and building regulation drawing
+                  packages.
                 </p>
 
                 <div className="cardGridThree" style={{ marginTop: 24 }}>
@@ -780,7 +791,7 @@ export default function GetDrawingsQuotePage() {
                     "Garage conversion drawings",
                     "Planning application drawings",
                     "Measured building surveys",
-                    "Building regulation drawings",
+                    "Commercial drawings",
                   ].map((item) => (
                     <div key={item} className="softCard">
                       {item}
@@ -805,10 +816,11 @@ export default function GetDrawingsQuotePage() {
                     maxWidth: 980,
                   }}
                 >
-                  WEDRAWPLANS works across London and surrounding areas, helping homeowners who need
-                  professional architectural drawings, planning drawings and building regulation
-                  drawings. We commonly support projects in Barnet, Camden, Hackney, Haringey,
-                  Enfield, Southwark, Harrow, Redbridge, Newham and Wandsworth.
+                  WEDRAWPLANS works across London and surrounding M25 areas, helping homeowners,
+                  developers and commercial clients who need professional architectural drawings,
+                  planning drawings and building regulation drawings. We commonly support projects
+                  in Barnet, Camden, Hackney, Haringey, Enfield, Southwark, Harrow, Redbridge,
+                  Newham and Wandsworth, as well as nearby surrounding areas around the M25.
                 </p>
 
                 <div className="cardGridFive" style={{ marginTop: 24 }}>
@@ -850,7 +862,7 @@ export default function GetDrawingsQuotePage() {
                     {
                       step: "2",
                       title: "We contact you",
-                      text: "Our team follows up by phone or email to discuss your house extension, loft conversion or planning project.",
+                      text: "Our team follows up by phone or email to discuss your extension, loft conversion, commercial project or planning proposal.",
                     },
                     {
                       step: "3",
@@ -910,11 +922,11 @@ export default function GetDrawingsQuotePage() {
                     },
                     {
                       q: "Can you help with loft conversion drawings?",
-                      a: "Yes. We prepare loft conversion drawings, house extension drawings, internal alteration drawings and other residential design packages across London.",
+                      a: "Yes. We prepare loft conversion drawings, house extension drawings, internal alteration drawings and other residential design packages across London and surrounding M25 areas.",
                     },
                     {
                       q: "Do you cover my area in London?",
-                      a: "We cover many London boroughs and surrounding areas. Submit your postcode above and we will review your location and project requirements.",
+                      a: "We cover many London boroughs and surrounding M25 areas. Submit your postcode above and we will review your location and project requirements.",
                     },
                     {
                       q: "How do I get a quote for architectural drawings?",
