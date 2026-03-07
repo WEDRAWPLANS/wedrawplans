@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { FormEvent } from "react";
 import React, { useMemo, useState } from "react";
 import { submitBoroughLead } from "../lib/submitBoroughLead";
+import ServiceInternalLinks from "../components/ServiceInternalLinks";
 
 type FormState = {
   name: string;
@@ -244,18 +245,7 @@ export default function GetDrawingsQuotePage() {
             borderBottom: "1px solid #e5e7eb",
           }}
         >
-          <div
-            style={{
-              maxWidth: 1200,
-              margin: "0 auto",
-              padding: "14px 20px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              gap: 16,
-              flexWrap: "wrap",
-            }}
-          >
+          <div className="container headerInner">
             <Link
               href="/"
               style={{
@@ -267,17 +257,18 @@ export default function GetDrawingsQuotePage() {
                 fontWeight: 800,
                 fontSize: 20,
                 letterSpacing: 0.2,
+                minWidth: 0,
               }}
             >
               <img
                 src="/images/wedrawplans-logo.png"
                 alt="WEDRAWPLANS"
-                style={{ height: 44, width: "auto", display: "block" }}
+                style={{ height: 44, width: "auto", display: "block", flexShrink: 0 }}
               />
-              <span>WEDRAWPLANS</span>
+              <span style={{ whiteSpace: "nowrap" }}>WEDRAWPLANS</span>
             </Link>
 
-            <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+            <div className="topCtas">
               <a
                 href="tel:+442036548508"
                 style={{
@@ -288,6 +279,7 @@ export default function GetDrawingsQuotePage() {
                   borderRadius: 999,
                   fontWeight: 700,
                   fontSize: 14,
+                  whiteSpace: "nowrap",
                 }}
               >
                 Call 020 3654 8508
@@ -304,6 +296,7 @@ export default function GetDrawingsQuotePage() {
                   borderRadius: 999,
                   fontWeight: 700,
                   fontSize: 14,
+                  whiteSpace: "nowrap",
                 }}
               >
                 WhatsApp
@@ -320,17 +313,7 @@ export default function GetDrawingsQuotePage() {
               color: "#ffffff",
             }}
           >
-            <div
-              style={{
-                maxWidth: 1200,
-                margin: "0 auto",
-                padding: "64px 20px 40px",
-                display: "grid",
-                gridTemplateColumns: "1.1fr 0.9fr",
-                gap: 28,
-                alignItems: "start",
-              }}
-            >
+            <div className="container heroGrid">
               <div>
                 <div
                   style={{
@@ -374,14 +357,7 @@ export default function GetDrawingsQuotePage() {
                   building surveys for homeowners across London.
                 </p>
 
-                <div
-                  style={{
-                    display: "flex",
-                    gap: 12,
-                    flexWrap: "wrap",
-                    marginTop: 24,
-                  }}
-                >
+                <div className="pillRow" style={{ marginTop: 24 }}>
                   {[
                     "Initial survey within 48 hours",
                     "Fast quote review",
@@ -390,12 +366,11 @@ export default function GetDrawingsQuotePage() {
                   ].map((item) => (
                     <div
                       key={item}
+                      className="pill"
                       style={{
-                        padding: "10px 14px",
-                        borderRadius: 999,
                         background: "rgba(255,255,255,0.1)",
-                        fontSize: 14,
-                        fontWeight: 700,
+                        color: "#ffffff",
+                        border: "1px solid rgba(255,255,255,0.08)",
                       }}
                     >
                       {item}
@@ -403,15 +378,7 @@ export default function GetDrawingsQuotePage() {
                   ))}
                 </div>
 
-                <div
-                  style={{
-                    marginTop: 28,
-                    display: "grid",
-                    gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
-                    gap: 14,
-                    maxWidth: 760,
-                  }}
-                >
+                <div className="featureGridTwo" style={{ marginTop: 28 }}>
                   {[
                     "Rear house extension drawings",
                     "Loft conversion drawings",
@@ -453,14 +420,7 @@ export default function GetDrawingsQuotePage() {
                   </p>
                 </div>
 
-                <div
-                  style={{
-                    display: "flex",
-                    gap: 10,
-                    flexWrap: "wrap",
-                    marginBottom: 18,
-                  }}
-                >
+                <div className="pillRow" style={{ marginBottom: 18 }}>
                   {[
                     "Trusted by homeowners across London",
                     "Fast response",
@@ -468,13 +428,10 @@ export default function GetDrawingsQuotePage() {
                   ].map((item) => (
                     <div
                       key={item}
+                      className="pill"
                       style={{
                         background: "#f8fafc",
                         border: "1px solid #e5e7eb",
-                        borderRadius: 999,
-                        padding: "8px 12px",
-                        fontSize: 13,
-                        fontWeight: 700,
                         color: "#334155",
                       }}
                     >
@@ -502,7 +459,7 @@ export default function GetDrawingsQuotePage() {
                       />
                     </div>
 
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+                    <div className="formTwoCol">
                       <div>
                         <label
                           htmlFor="email"
@@ -538,7 +495,7 @@ export default function GetDrawingsQuotePage() {
                       </div>
                     </div>
 
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+                    <div className="formTwoCol">
                       <div>
                         <label
                           htmlFor="postcode"
@@ -589,7 +546,7 @@ export default function GetDrawingsQuotePage() {
                       </div>
                     </div>
 
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+                    <div className="formTwoCol">
                       <div>
                         <label
                           htmlFor="service"
@@ -717,315 +674,27 @@ export default function GetDrawingsQuotePage() {
             </div>
           </section>
 
-          <section style={{ maxWidth: 1200, margin: "0 auto", padding: "42px 20px 20px" }}>
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
-                gap: 18,
-              }}
-            >
-              {[
-                {
-                  title: "Planning drawings",
-                  text: "Clear proposed planning drawings for house extensions, loft conversions and home improvement projects across London.",
-                },
-                {
-                  title: "Measured surveys",
-                  text: "Accurate existing drawings and measured building surveys to support planning applications and building regulation packages.",
-                },
-                {
-                  title: "Building regulation drawings",
-                  text: "Professional drawing packages for building control, structural coordination and the technical stage of your project.",
-                },
-              ].map((item) => (
-                <div
-                  key={item.title}
-                  style={{
-                    background: "#ffffff",
-                    border: "1px solid #e5e7eb",
-                    borderRadius: 22,
-                    padding: 22,
-                    boxShadow: "0 10px 30px rgba(15,23,42,0.05)",
-                  }}
-                >
-                  <h2 style={{ margin: 0, fontSize: 22 }}>{item.title}</h2>
-                  <p style={{ margin: "10px 0 0", color: "#475569", lineHeight: 1.7 }}>
-                    {item.text}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </section>
+          <ServiceInternalLinks boroughName="London" />
 
-          <section style={{ maxWidth: 1200, margin: "0 auto", padding: "20px 20px 20px" }}>
-            <div
-              style={{
-                background: "#ffffff",
-                border: "1px solid #e5e7eb",
-                borderRadius: 26,
-                padding: 28,
-                boxShadow: "0 10px 30px rgba(15,23,42,0.05)",
-              }}
-            >
-              <h2 style={{ margin: 0, fontSize: 34, lineHeight: 1.15 }}>Why Choose WEDRAWPLANS</h2>
-              <p
-                style={{
-                  margin: "14px 0 0",
-                  color: "#475569",
-                  lineHeight: 1.8,
-                  maxWidth: 980,
-                }}
-              >
-                WEDRAWPLANS provides professional architectural drawings for house extensions,
-                loft conversions, internal alterations and planning applications across London. Our
-                team prepares clear and accurate drawings for planning permission, building
-                regulations and the next stages of your project.
-              </p>
-              <p
-                style={{
-                  margin: "12px 0 0",
-                  color: "#475569",
-                  lineHeight: 1.8,
-                  maxWidth: 980,
-                }}
-              >
-                Whether you need rear extension drawings, side extension plans, loft conversion
-                drawings, measured surveys or building regulation drawings, we can review your
-                project and guide you on the right package.
-              </p>
-
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
-                  gap: 16,
-                  marginTop: 24,
-                }}
-              >
-                {[
-                  "Architectural drawings for homeowners",
-                  "Fast quote request in less than one minute",
-                  "Professional follow up by phone or email",
-                  "London wide coverage across multiple boroughs",
-                ].map((item) => (
-                  <div
-                    key={item}
-                    style={{
-                      background: "#f8fafc",
-                      border: "1px solid #e5e7eb",
-                      borderRadius: 18,
-                      padding: 18,
-                      fontWeight: 700,
-                      lineHeight: 1.6,
-                    }}
-                  >
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          <section style={{ maxWidth: 1200, margin: "0 auto", padding: "20px 20px 20px" }}>
-            <div
-              style={{
-                background: "#ffffff",
-                border: "1px solid #e5e7eb",
-                borderRadius: 26,
-                padding: 28,
-                boxShadow: "0 10px 30px rgba(15,23,42,0.05)",
-              }}
-            >
-              <h2 style={{ margin: 0, fontSize: 34, lineHeight: 1.15 }}>
-                Architectural Drawing Services We Provide
-              </h2>
-              <p
-                style={{
-                  margin: "14px 0 0",
-                  color: "#475569",
-                  lineHeight: 1.8,
-                  maxWidth: 980,
-                }}
-              >
-                We prepare a wide range of architectural drawing services for London homeowners,
-                including planning drawings, extension plans, loft conversion drawings, garage
-                conversion drawings, measured building surveys, planning application drawings and
-                building regulation drawing packages.
-              </p>
-
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
-                  gap: 16,
-                  marginTop: 24,
-                }}
-              >
-                {[
-                  "House extension drawings",
-                  "Rear extension drawings",
-                  "Side extension drawings",
-                  "Wraparound extension plans",
-                  "Loft conversion drawings",
-                  "Garage conversion drawings",
-                  "Planning application drawings",
-                  "Measured building surveys",
-                  "Building regulation drawings",
-                ].map((item) => (
-                  <div
-                    key={item}
-                    style={{
-                      background: "#f8fafc",
-                      border: "1px solid #e5e7eb",
-                      borderRadius: 18,
-                      padding: 18,
-                      fontWeight: 700,
-                      lineHeight: 1.6,
-                    }}
-                  >
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          <section style={{ maxWidth: 1200, margin: "0 auto", padding: "20px 20px 20px" }}>
-            <div
-              style={{
-                background: "#ffffff",
-                border: "1px solid #e5e7eb",
-                borderRadius: 26,
-                padding: 28,
-                boxShadow: "0 10px 30px rgba(15,23,42,0.05)",
-              }}
-            >
-              <h2 style={{ margin: 0, fontSize: 34, lineHeight: 1.15 }}>
-                London Areas We Commonly Cover
-              </h2>
-              <p
-                style={{
-                  margin: "14px 0 0",
-                  color: "#475569",
-                  lineHeight: 1.8,
-                  maxWidth: 980,
-                }}
-              >
-                WEDRAWPLANS works across London and surrounding areas, helping homeowners who need
-                professional architectural drawings, planning drawings and building regulation
-                drawings. We commonly support projects in Barnet, Camden, Hackney, Haringey,
-                Enfield, Southwark, Harrow, Redbridge, Newham and Wandsworth.
-              </p>
-
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(5, minmax(0, 1fr))",
-                  gap: 14,
-                  marginTop: 24,
-                }}
-              >
-                {[
-                  "Barnet",
-                  "Camden",
-                  "Hackney",
-                  "Haringey",
-                  "Enfield",
-                  "Southwark",
-                  "Harrow",
-                  "Redbridge",
-                  "Newham",
-                  "Wandsworth",
-                ].map((item) => (
-                  <div
-                    key={item}
-                    style={{
-                      background: "#f8fafc",
-                      border: "1px solid #e5e7eb",
-                      borderRadius: 16,
-                      padding: "14px 16px",
-                      textAlign: "center",
-                      fontWeight: 700,
-                    }}
-                  >
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          <section style={{ maxWidth: 1200, margin: "0 auto", padding: "20px 20px 20px" }}>
-            <div
-              style={{
-                background: "#ffffff",
-                border: "1px solid #e5e7eb",
-                borderRadius: 26,
-                padding: 28,
-                boxShadow: "0 10px 30px rgba(15,23,42,0.05)",
-              }}
-            >
-              <h2 style={{ margin: 0, fontSize: 34, lineHeight: 1.15 }}>
-                What Happens After You Submit the Form
-              </h2>
-
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
-                  gap: 16,
-                  marginTop: 24,
-                }}
-              >
+          <section className="sectionWrap">
+            <div className="container">
+              <div className="cardGridThree">
                 {[
                   {
-                    step: "1",
-                    title: "We review your details",
-                    text: "We check your postcode, project type and the architectural drawing service required.",
+                    title: "Planning drawings",
+                    text: "Clear proposed planning drawings for house extensions, loft conversions and home improvement projects across London.",
                   },
                   {
-                    step: "2",
-                    title: "We contact you",
-                    text: "Our team follows up by phone or email to discuss your house extension, loft conversion or planning project.",
+                    title: "Measured surveys",
+                    text: "Accurate existing drawings and measured building surveys to support planning applications and building regulation packages.",
                   },
                   {
-                    step: "3",
-                    title: "We provide guidance",
-                    text: "We explain the likely drawings package, scope and quotation route for your project.",
-                  },
-                  {
-                    step: "4",
-                    title: "We arrange the next step",
-                    text: "If you proceed, we arrange the initial survey and move the project forward quickly.",
+                    title: "Building regulation drawings",
+                    text: "Professional drawing packages for building control, structural coordination and the technical stage of your project.",
                   },
                 ].map((item) => (
-                  <div
-                    key={item.step}
-                    style={{
-                      background: "#f8fafc",
-                      border: "1px solid #e5e7eb",
-                      borderRadius: 18,
-                      padding: 20,
-                    }}
-                  >
-                    <div
-                      style={{
-                        width: 38,
-                        height: 38,
-                        borderRadius: 999,
-                        background: "#111827",
-                        color: "#ffffff",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        fontWeight: 800,
-                        marginBottom: 14,
-                      }}
-                    >
-                      {item.step}
-                    </div>
-                    <h3 style={{ margin: 0, fontSize: 20, lineHeight: 1.25 }}>{item.title}</h3>
+                  <div key={item.title} className="whiteCard">
+                    <h2 style={{ margin: 0, fontSize: 22 }}>{item.title}</h2>
                     <p style={{ margin: "10px 0 0", color: "#475569", lineHeight: 1.7 }}>
                       {item.text}
                     </p>
@@ -1035,137 +704,329 @@ export default function GetDrawingsQuotePage() {
             </div>
           </section>
 
-          <section style={{ maxWidth: 1200, margin: "0 auto", padding: "20px 20px 60px" }}>
-            <div
-              style={{
-                background: "#ffffff",
-                border: "1px solid #e5e7eb",
-                borderRadius: 26,
-                padding: 28,
-                boxShadow: "0 10px 30px rgba(15,23,42,0.05)",
-              }}
-            >
-              <h2 style={{ margin: 0, fontSize: 34, lineHeight: 1.15 }}>
-                Frequently Asked Questions
-              </h2>
+          <section className="sectionWrapSmallTop">
+            <div className="container">
+              <div className="bigWhiteCard">
+                <h2 style={{ margin: 0, fontSize: 34, lineHeight: 1.15 }}>Why Choose WEDRAWPLANS</h2>
+                <p
+                  style={{
+                    margin: "14px 0 0",
+                    color: "#475569",
+                    lineHeight: 1.8,
+                    maxWidth: 980,
+                  }}
+                >
+                  WEDRAWPLANS provides professional architectural drawings for house extensions,
+                  loft conversions, internal alterations and planning applications across London.
+                  Our team prepares clear and accurate drawings for planning permission, building
+                  regulations and the next stages of your project.
+                </p>
+                <p
+                  style={{
+                    margin: "12px 0 0",
+                    color: "#475569",
+                    lineHeight: 1.8,
+                    maxWidth: 980,
+                  }}
+                >
+                  Whether you need rear extension drawings, side extension plans, loft conversion
+                  drawings, measured surveys or building regulation drawings, we can review your
+                  project and guide you on the right package.
+                </p>
 
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
-                  gap: 18,
-                  marginTop: 24,
-                }}
-              >
-                {[
-                  {
-                    q: "Do I need planning drawings for a house extension?",
-                    a: "In many cases, yes. Professional planning drawings are usually needed for planning applications and are often also helpful when checking whether a project may fall under permitted development.",
-                  },
-                  {
-                    q: "Do you provide building regulation drawings?",
-                    a: "Yes. WEDRAWPLANS prepares building regulation drawings and technical drawing packages for projects moving beyond the planning stage.",
-                  },
-                  {
-                    q: "Can you help with loft conversion drawings?",
-                    a: "Yes. We prepare loft conversion drawings, house extension drawings, internal alteration drawings and other residential design packages across London.",
-                  },
-                  {
-                    q: "Do you cover my area in London?",
-                    a: "We cover many London boroughs and surrounding areas. Submit your postcode above and we will review your location and project requirements.",
-                  },
-                  {
-                    q: "How do I get a quote for architectural drawings?",
-                    a: "Simply complete the quote form on this page with your postcode, project type and contact details. We will review your enquiry and contact you to discuss the next steps.",
-                  },
-                  {
-                    q: "Do you provide measured building surveys?",
-                    a: "Yes. We provide measured building surveys and existing drawings to support planning drawings, extension plans and building regulation packages.",
-                  },
-                ].map((item) => (
-                  <div
-                    key={item.q}
-                    style={{
-                      background: "#f8fafc",
-                      border: "1px solid #e5e7eb",
-                      borderRadius: 18,
-                      padding: 20,
-                    }}
-                  >
-                    <h3 style={{ margin: 0, fontSize: 20, lineHeight: 1.35 }}>{item.q}</h3>
-                    <p style={{ margin: "12px 0 0", color: "#475569", lineHeight: 1.75 }}>
-                      {item.a}
-                    </p>
-                  </div>
-                ))}
+                <div className="cardGridFour" style={{ marginTop: 24 }}>
+                  {[
+                    "Architectural drawings for homeowners",
+                    "Fast quote request in less than one minute",
+                    "Professional follow up by phone or email",
+                    "London wide coverage across multiple boroughs",
+                  ].map((item) => (
+                    <div key={item} className="softCard">
+                      {item}
+                    </div>
+                  ))}
+                </div>
               </div>
+            </div>
+          </section>
 
-              <div
-                style={{
-                  marginTop: 28,
-                  padding: 22,
-                  borderRadius: 20,
-                  background: "#111827",
-                  color: "#ffffff",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  gap: 16,
-                  flexWrap: "wrap",
-                }}
-              >
-                <div>
-                  <h2 style={{ margin: 0, fontSize: 28, lineHeight: 1.2 }}>
-                    Ready to request your drawings quote?
-                  </h2>
-                  <p style={{ margin: "10px 0 0", color: "rgba(255,255,255,0.82)", lineHeight: 1.7 }}>
-                    Send your details today and our team will review your project and get back to you.
-                  </p>
+          <section className="sectionWrapSmallTop">
+            <div className="container">
+              <div className="bigWhiteCard">
+                <h2 style={{ margin: 0, fontSize: 34, lineHeight: 1.15 }}>
+                  Architectural Drawing Services We Provide
+                </h2>
+                <p
+                  style={{
+                    margin: "14px 0 0",
+                    color: "#475569",
+                    lineHeight: 1.8,
+                    maxWidth: 980,
+                  }}
+                >
+                  We prepare a wide range of architectural drawing services for London homeowners,
+                  including planning drawings, extension plans, loft conversion drawings, garage
+                  conversion drawings, measured building surveys, planning application drawings and
+                  building regulation drawing packages.
+                </p>
+
+                <div className="cardGridThree" style={{ marginTop: 24 }}>
+                  {[
+                    "House extension drawings",
+                    "Rear extension drawings",
+                    "Side extension drawings",
+                    "Wraparound extension plans",
+                    "Loft conversion drawings",
+                    "Garage conversion drawings",
+                    "Planning application drawings",
+                    "Measured building surveys",
+                    "Building regulation drawings",
+                  ].map((item) => (
+                    <div key={item} className="softCard">
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="sectionWrapSmallTop">
+            <div className="container">
+              <div className="bigWhiteCard">
+                <h2 style={{ margin: 0, fontSize: 34, lineHeight: 1.15 }}>
+                  London Areas We Commonly Cover
+                </h2>
+                <p
+                  style={{
+                    margin: "14px 0 0",
+                    color: "#475569",
+                    lineHeight: 1.8,
+                    maxWidth: 980,
+                  }}
+                >
+                  WEDRAWPLANS works across London and surrounding areas, helping homeowners who need
+                  professional architectural drawings, planning drawings and building regulation
+                  drawings. We commonly support projects in Barnet, Camden, Hackney, Haringey,
+                  Enfield, Southwark, Harrow, Redbridge, Newham and Wandsworth.
+                </p>
+
+                <div className="cardGridFive" style={{ marginTop: 24 }}>
+                  {[
+                    "Barnet",
+                    "Camden",
+                    "Hackney",
+                    "Haringey",
+                    "Enfield",
+                    "Southwark",
+                    "Harrow",
+                    "Redbridge",
+                    "Newham",
+                    "Wandsworth",
+                  ].map((item) => (
+                    <div key={item} className="softCard centerCard">
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="sectionWrapSmallTop">
+            <div className="container">
+              <div className="bigWhiteCard">
+                <h2 style={{ margin: 0, fontSize: 34, lineHeight: 1.15 }}>
+                  What Happens After You Submit the Form
+                </h2>
+
+                <div className="cardGridFour" style={{ marginTop: 24 }}>
+                  {[
+                    {
+                      step: "1",
+                      title: "We review your details",
+                      text: "We check your postcode, project type and the architectural drawing service required.",
+                    },
+                    {
+                      step: "2",
+                      title: "We contact you",
+                      text: "Our team follows up by phone or email to discuss your house extension, loft conversion or planning project.",
+                    },
+                    {
+                      step: "3",
+                      title: "We provide guidance",
+                      text: "We explain the likely drawings package, scope and quotation route for your project.",
+                    },
+                    {
+                      step: "4",
+                      title: "We arrange the next step",
+                      text: "If you proceed, we arrange the initial survey and move the project forward quickly.",
+                    },
+                  ].map((item) => (
+                    <div key={item.step} className="softCard">
+                      <div
+                        style={{
+                          width: 38,
+                          height: 38,
+                          borderRadius: 999,
+                          background: "#111827",
+                          color: "#ffffff",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          fontWeight: 800,
+                          marginBottom: 14,
+                        }}
+                      >
+                        {item.step}
+                      </div>
+                      <h3 style={{ margin: 0, fontSize: 20, lineHeight: 1.25 }}>{item.title}</h3>
+                      <p style={{ margin: "10px 0 0", color: "#475569", lineHeight: 1.7 }}>
+                        {item.text}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="sectionWrapSmallTop sectionBottomPad">
+            <div className="container">
+              <div className="bigWhiteCard">
+                <h2 style={{ margin: 0, fontSize: 34, lineHeight: 1.15 }}>
+                  Frequently Asked Questions
+                </h2>
+
+                <div className="faqGrid" style={{ marginTop: 24 }}>
+                  {[
+                    {
+                      q: "Do I need planning drawings for a house extension?",
+                      a: "In many cases, yes. Professional planning drawings are usually needed for planning applications and are often also helpful when checking whether a project may fall under permitted development.",
+                    },
+                    {
+                      q: "Do you provide building regulation drawings?",
+                      a: "Yes. WEDRAWPLANS prepares building regulation drawings and technical drawing packages for projects moving beyond the planning stage.",
+                    },
+                    {
+                      q: "Can you help with loft conversion drawings?",
+                      a: "Yes. We prepare loft conversion drawings, house extension drawings, internal alteration drawings and other residential design packages across London.",
+                    },
+                    {
+                      q: "Do you cover my area in London?",
+                      a: "We cover many London boroughs and surrounding areas. Submit your postcode above and we will review your location and project requirements.",
+                    },
+                    {
+                      q: "How do I get a quote for architectural drawings?",
+                      a: "Simply complete the quote form on this page with your postcode, project type and contact details. We will review your enquiry and contact you to discuss the next steps.",
+                    },
+                    {
+                      q: "Do you provide measured building surveys?",
+                      a: "Yes. We provide measured building surveys and existing drawings to support planning drawings, extension plans and building regulation packages.",
+                    },
+                  ].map((item) => (
+                    <div key={item.q} className="softCard">
+                      <h3 style={{ margin: 0, fontSize: 20, lineHeight: 1.35 }}>{item.q}</h3>
+                      <p style={{ margin: "12px 0 0", color: "#475569", lineHeight: 1.75 }}>
+                        {item.a}
+                      </p>
+                    </div>
+                  ))}
                 </div>
 
-                <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-                  <a
-                    href="tel:+442036548508"
-                    style={{
-                      textDecoration: "none",
-                      background: "#ffffff",
-                      color: "#111827",
-                      padding: "13px 18px",
-                      borderRadius: 999,
-                      fontWeight: 800,
-                    }}
-                  >
-                    Call now
+                <div
+                  className="bottomCta"
+                  style={{
+                    marginTop: 28,
+                    padding: 22,
+                    borderRadius: 20,
+                    background: "#111827",
+                    color: "#ffffff",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    gap: 16,
+                    flexWrap: "wrap",
+                  }}
+                >
+                  <div>
+                    <h2 style={{ margin: 0, fontSize: 28, lineHeight: 1.2 }}>
+                      Ready to request your drawings quote?
+                    </h2>
+                    <p
+                      style={{
+                        margin: "10px 0 0",
+                        color: "rgba(255,255,255,0.82)",
+                        lineHeight: 1.7,
+                      }}
+                    >
+                      Send your details today and our team will review your project and get back to you.
+                    </p>
+                  </div>
+
+                  <div className="bottomCtaButtons">
+                    <a
+                      href="tel:+442036548508"
+                      style={{
+                        textDecoration: "none",
+                        background: "#ffffff",
+                        color: "#111827",
+                        padding: "13px 18px",
+                        borderRadius: 999,
+                        fontWeight: 800,
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      Call now
+                    </a>
+                    <a
+                      href="https://wa.me/442036548508"
+                      target="_blank"
+                      rel="noreferrer"
+                      style={{
+                        textDecoration: "none",
+                        background: "#16a34a",
+                        color: "#ffffff",
+                        padding: "13px 18px",
+                        borderRadius: 999,
+                        fontWeight: 800,
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      WhatsApp us
+                    </a>
+                    <a
+                      href="mailto:info@wedrawplans.com"
+                      style={{
+                        textDecoration: "none",
+                        background: "transparent",
+                        color: "#ffffff",
+                        border: "1px solid rgba(255,255,255,0.35)",
+                        padding: "13px 18px",
+                        borderRadius: 999,
+                        fontWeight: 800,
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      Email us
+                    </a>
+                  </div>
+                </div>
+
+                <div style={{ fontSize: 12, color: "#475569", paddingTop: 18 }}>
+                  See also{" "}
+                  <a href="/extension-plans" style={{ textDecoration: "underline" }}>
+                    extension plans
                   </a>
-                  <a
-                    href="https://wa.me/442036548508"
-                    target="_blank"
-                    rel="noreferrer"
-                    style={{
-                      textDecoration: "none",
-                      background: "#16a34a",
-                      color: "#ffffff",
-                      padding: "13px 18px",
-                      borderRadius: 999,
-                      fontWeight: 800,
-                    }}
-                  >
-                    WhatsApp us
+                  ,{" "}
+                  <a href="/loft-plans" style={{ textDecoration: "underline" }}>
+                    loft plans
+                  </a>{" "}
+                  and{" "}
+                  <a href="/new-build-plans" style={{ textDecoration: "underline" }}>
+                    new build plans
                   </a>
-                  <a
-                    href="mailto:info@wedrawplans.com"
-                    style={{
-                      textDecoration: "none",
-                      background: "transparent",
-                      color: "#ffffff",
-                      border: "1px solid rgba(255,255,255,0.35)",
-                      padding: "13px 18px",
-                      borderRadius: 999,
-                      fontWeight: 800,
-                    }}
-                  >
-                    Email us
-                  </a>
+                  .
                 </div>
               </div>
             </div>
@@ -1174,15 +1035,198 @@ export default function GetDrawingsQuotePage() {
       </div>
 
       <style jsx>{`
+        .container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+
+        .headerInner {
+          padding-top: 14px;
+          padding-bottom: 14px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 16px;
+          flex-wrap: wrap;
+        }
+
+        .topCtas {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          flex-wrap: wrap;
+        }
+
+        .heroGrid {
+          padding-top: 64px;
+          padding-bottom: 40px;
+          display: grid;
+          grid-template-columns: 1.1fr 0.9fr;
+          gap: 28px;
+          align-items: start;
+        }
+
+        .sectionWrap {
+          padding-top: 42px;
+          padding-bottom: 20px;
+        }
+
+        .sectionWrapSmallTop {
+          padding-top: 20px;
+          padding-bottom: 20px;
+        }
+
+        .sectionBottomPad {
+          padding-bottom: 60px;
+        }
+
+        .whiteCard {
+          background: #ffffff;
+          border: 1px solid #e5e7eb;
+          border-radius: 22px;
+          padding: 22px;
+          box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+          min-width: 0;
+        }
+
+        .bigWhiteCard {
+          background: #ffffff;
+          border: 1px solid #e5e7eb;
+          border-radius: 26px;
+          padding: 28px;
+          box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+        }
+
+        .softCard {
+          background: #f8fafc;
+          border: 1px solid #e5e7eb;
+          border-radius: 18px;
+          padding: 18px;
+          font-weight: 700;
+          line-height: 1.6;
+          min-width: 0;
+          overflow-wrap: break-word;
+          word-break: normal;
+        }
+
+        .centerCard {
+          text-align: center;
+        }
+
+        .pillRow {
+          display: flex;
+          gap: 12px;
+          flex-wrap: wrap;
+        }
+
+        .pill {
+          padding: 10px 14px;
+          border-radius: 999px;
+          font-size: 14px;
+          font-weight: 700;
+          line-height: 1.4;
+        }
+
+        .formTwoCol {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 14px;
+        }
+
+        .featureGridTwo {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 14px;
+          max-width: 760px;
+        }
+
+        .cardGridThree {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 18px;
+        }
+
+        .cardGridFour {
+          display: grid;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          gap: 16px;
+        }
+
+        .cardGridFive {
+          display: grid;
+          grid-template-columns: repeat(5, minmax(0, 1fr));
+          gap: 14px;
+        }
+
+        .faqGrid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 18px;
+        }
+
+        .bottomCtaButtons {
+          display: flex;
+          gap: 12px;
+          flex-wrap: wrap;
+        }
+
         @media (max-width: 1100px) {
-          section > div {
-            grid-template-columns: 1fr !important;
+          .heroGrid,
+          .cardGridFour,
+          .cardGridFive {
+            grid-template-columns: 1fr 1fr;
+          }
+        }
+
+        @media (max-width: 900px) {
+          .cardGridThree,
+          .faqGrid,
+          .featureGridTwo {
+            grid-template-columns: 1fr;
           }
         }
 
         @media (max-width: 760px) {
+          .headerInner {
+            align-items: flex-start;
+          }
+
+          .topCtas {
+            width: 100%;
+          }
+
+          .topCtas a {
+            flex: 1 1 auto;
+            text-align: center;
+          }
+
+          .heroGrid,
+          .formTwoCol,
+          .cardGridThree,
+          .cardGridFour,
+          .cardGridFive,
+          .faqGrid,
+          .featureGridTwo {
+            grid-template-columns: 1fr;
+          }
+
           h1 {
             font-size: 36px !important;
+          }
+
+          .bigWhiteCard {
+            padding: 22px;
+          }
+
+          .bottomCtaButtons {
+            width: 100%;
+          }
+
+          .bottomCtaButtons a {
+            flex: 1 1 100%;
+            text-align: center;
           }
         }
       `}</style>
