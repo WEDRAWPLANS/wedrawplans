@@ -13,6 +13,13 @@ const WHATSAPP_LINK =
 
 type LeadAction = "phone_click" | "email_click" | "whatsapp_click";
 
+type PostcodeIntel = {
+  normalized: string;
+  outward: string;
+  borough: string | null;
+  coverageLabel: string | null;
+};
+
 const gtagEvent = (name: string, params: Record<string, any> = {}) => {
   if (typeof window === "undefined") return;
   const w = window as any;
@@ -113,6 +120,172 @@ const COMMERCIAL_ITEMS: { label: string; href: string }[] = [
   { label: "Building Regulations packs", href: "/building-regulation-drawings" },
   { label: "Commercial drawings overview", href: "/commercial" },
 ];
+
+const POSTCODE_RULES: Array<{
+  test: (outward: string) => boolean;
+  borough: string;
+}> = [
+  { test: (o) => /^SE1$/.test(o), borough: "Southwark" },
+  { test: (o) => /^SE5$/.test(o), borough: "Southwark" },
+  { test: (o) => /^SE15$/.test(o), borough: "Southwark" },
+  { test: (o) => /^SE16$/.test(o), borough: "Southwark" },
+
+  { test: (o) => /^SW4$/.test(o), borough: "Lambeth" },
+  { test: (o) => /^SW8$/.test(o), borough: "Lambeth" },
+  { test: (o) => /^SW9$/.test(o), borough: "Lambeth" },
+  { test: (o) => /^SW2$/.test(o), borough: "Lambeth" },
+  { test: (o) => /^SW16$/.test(o), borough: "Lambeth" },
+  { test: (o) => /^SE11$/.test(o), borough: "Lambeth" },
+  { test: (o) => /^SE19$/.test(o), borough: "Lambeth" },
+  { test: (o) => /^SE21$/.test(o), borough: "Lambeth" },
+  { test: (o) => /^SE24$/.test(o), borough: "Lambeth" },
+
+  { test: (o) => /^SW1/.test(o), borough: "Westminster" },
+  { test: (o) => /^SW3$/.test(o), borough: "Kensington and Chelsea" },
+  { test: (o) => /^SW5$/.test(o), borough: "Kensington and Chelsea" },
+  { test: (o) => /^W8$/.test(o), borough: "Kensington and Chelsea" },
+  { test: (o) => /^W1/.test(o), borough: "Westminster" },
+  { test: (o) => /^WC/.test(o), borough: "Camden" },
+
+  { test: (o) => /^NW1$/.test(o), borough: "Camden" },
+  { test: (o) => /^NW3$/.test(o), borough: "Camden" },
+  { test: (o) => /^NW5$/.test(o), borough: "Camden" },
+  { test: (o) => /^N1$/.test(o), borough: "Islington" },
+  { test: (o) => /^N5$/.test(o), borough: "Islington" },
+  { test: (o) => /^N7$/.test(o), borough: "Islington" },
+  { test: (o) => /^N19$/.test(o), borough: "Islington" },
+  { test: (o) => /^N4$/.test(o), borough: "Haringey" },
+  { test: (o) => /^N8$/.test(o), borough: "Haringey" },
+  { test: (o) => /^N10$/.test(o), borough: "Haringey" },
+  { test: (o) => /^N15$/.test(o), borough: "Haringey" },
+  { test: (o) => /^N17$/.test(o), borough: "Haringey" },
+  { test: (o) => /^N22$/.test(o), borough: "Haringey" },
+
+  { test: (o) => /^E8$/.test(o), borough: "Hackney" },
+  { test: (o) => /^E9$/.test(o), borough: "Hackney" },
+  { test: (o) => /^E5$/.test(o), borough: "Hackney" },
+  { test: (o) => /^N16$/.test(o), borough: "Hackney" },
+  { test: (o) => /^E1$/.test(o), borough: "Tower Hamlets" },
+  { test: (o) => /^E2$/.test(o), borough: "Tower Hamlets" },
+  { test: (o) => /^E3$/.test(o), borough: "Tower Hamlets" },
+  { test: (o) => /^E14$/.test(o), borough: "Tower Hamlets" },
+
+  { test: (o) => /^E13$/.test(o), borough: "Newham" },
+  { test: (o) => /^E15$/.test(o), borough: "Newham" },
+  { test: (o) => /^E16$/.test(o), borough: "Newham" },
+  { test: (o) => /^E6$/.test(o), borough: "Newham" },
+  { test: (o) => /^IG1$/.test(o), borough: "Redbridge" },
+  { test: (o) => /^IG2$/.test(o), borough: "Redbridge" },
+  { test: (o) => /^IG3$/.test(o), borough: "Redbridge" },
+  { test: (o) => /^IG4$/.test(o), borough: "Redbridge" },
+  { test: (o) => /^IG5$/.test(o), borough: "Redbridge" },
+  { test: (o) => /^IG6$/.test(o), borough: "Redbridge" },
+  { test: (o) => /^IG7$/.test(o), borough: "Redbridge" },
+  { test: (o) => /^E11$/.test(o), borough: "Waltham Forest" },
+  { test: (o) => /^E17$/.test(o), borough: "Waltham Forest" },
+  { test: (o) => /^E10$/.test(o), borough: "Waltham Forest" },
+  { test: (o) => /^E4$/.test(o), borough: "Waltham Forest" },
+
+  { test: (o) => /^EN5$/.test(o), borough: "Barnet" },
+  { test: (o) => /^EN4$/.test(o), borough: "Barnet" },
+  { test: (o) => /^N2$/.test(o), borough: "Barnet" },
+  { test: (o) => /^N3$/.test(o), borough: "Barnet" },
+  { test: (o) => /^N12$/.test(o), borough: "Barnet" },
+  { test: (o) => /^NW4$/.test(o), borough: "Barnet" },
+  { test: (o) => /^NW7$/.test(o), borough: "Barnet" },
+  { test: (o) => /^HA8$/.test(o), borough: "Barnet" },
+
+  { test: (o) => /^EN1$/.test(o), borough: "Enfield" },
+  { test: (o) => /^EN2$/.test(o), borough: "Enfield" },
+  { test: (o) => /^EN3$/.test(o), borough: "Enfield" },
+  { test: (o) => /^N9$/.test(o), borough: "Enfield" },
+  { test: (o) => /^N11$/.test(o), borough: "Enfield" },
+  { test: (o) => /^N13$/.test(o), borough: "Enfield" },
+  { test: (o) => /^N14$/.test(o), borough: "Enfield" },
+  { test: (o) => /^N18$/.test(o), borough: "Enfield" },
+  { test: (o) => /^N21$/.test(o), borough: "Enfield" },
+
+  { test: (o) => /^HA1$/.test(o), borough: "Harrow" },
+  { test: (o) => /^HA2$/.test(o), borough: "Harrow" },
+  { test: (o) => /^HA3$/.test(o), borough: "Harrow" },
+  { test: (o) => /^HA5$/.test(o), borough: "Harrow" },
+  { test: (o) => /^HA7$/.test(o), borough: "Harrow" },
+
+  { test: (o) => /^UB1$/.test(o), borough: "Ealing" },
+  { test: (o) => /^UB2$/.test(o), borough: "Ealing" },
+  { test: (o) => /^UB5$/.test(o), borough: "Ealing" },
+  { test: (o) => /^W5$/.test(o), borough: "Ealing" },
+  { test: (o) => /^W7$/.test(o), borough: "Ealing" },
+  { test: (o) => /^NW10$/.test(o), borough: "Brent" },
+  { test: (o) => /^HA0$/.test(o), borough: "Brent" },
+  { test: (o) => /^HA9$/.test(o), borough: "Brent" },
+  { test: (o) => /^NW2$/.test(o), borough: "Brent" },
+  { test: (o) => /^NW6$/.test(o), borough: "Brent" },
+
+  { test: (o) => /^TW1$/.test(o), borough: "Richmond upon Thames" },
+  { test: (o) => /^TW9$/.test(o), borough: "Richmond upon Thames" },
+  { test: (o) => /^TW10$/.test(o), borough: "Richmond upon Thames" },
+  { test: (o) => /^KT1$/.test(o), borough: "Kingston upon Thames" },
+  { test: (o) => /^KT2$/.test(o), borough: "Kingston upon Thames" },
+  { test: (o) => /^SW19$/.test(o), borough: "Merton" },
+  { test: (o) => /^SM4$/.test(o), borough: "Merton" },
+  { test: (o) => /^SW17$/.test(o), borough: "Wandsworth" },
+  { test: (o) => /^SW18$/.test(o), borough: "Wandsworth" },
+  { test: (o) => /^SW11$/.test(o), borough: "Wandsworth" },
+  { test: (o) => /^SW12$/.test(o), borough: "Wandsworth" },
+  { test: (o) => /^SW15$/.test(o), borough: "Wandsworth" },
+  { test: (o) => /^SW13$/.test(o), borough: "Richmond upon Thames" },
+  { test: (o) => /^SW14$/.test(o), borough: "Richmond upon Thames" },
+
+  { test: (o) => /^CR0$/.test(o), borough: "Croydon" },
+  { test: (o) => /^CR2$/.test(o), borough: "Croydon" },
+  { test: (o) => /^CR7$/.test(o), borough: "Croydon" },
+  { test: (o) => /^SM1$/.test(o), borough: "Sutton" },
+  { test: (o) => /^SM2$/.test(o), borough: "Sutton" },
+  { test: (o) => /^SM3$/.test(o), borough: "Sutton" },
+  { test: (o) => /^BR1$/.test(o), borough: "Bromley" },
+  { test: (o) => /^BR2$/.test(o), borough: "Bromley" },
+  { test: (o) => /^BR3$/.test(o), borough: "Bromley" },
+  { test: (o) => /^BR4$/.test(o), borough: "Bromley" },
+  { test: (o) => /^SE9$/.test(o), borough: "Greenwich" },
+  { test: (o) => /^SE10$/.test(o), borough: "Greenwich" },
+  { test: (o) => /^SE18$/.test(o), borough: "Greenwich" },
+  { test: (o) => /^SE28$/.test(o), borough: "Greenwich" },
+  { test: (o) => /^SE12$/.test(o), borough: "Lewisham" },
+  { test: (o) => /^SE13$/.test(o), borough: "Lewisham" },
+  { test: (o) => /^SE23$/.test(o), borough: "Lewisham" },
+  { test: (o) => /^SE26$/.test(o), borough: "Lewisham" },
+  { test: (o) => /^SE6$/.test(o), borough: "Lewisham" },
+];
+
+function normalisePostcode(value: string) {
+  return value.trim().toUpperCase().replace(/\s+/g, " ");
+}
+
+function getOutwardCode(postcode: string) {
+  const cleaned = postcode.toUpperCase().replace(/\s+/g, "");
+  const match = cleaned.match(/^([A-Z]{1,2}\d[A-Z\d]?)/);
+  return match ? match[1] : "";
+}
+
+function detectPostcodeIntel(postcode: string): PostcodeIntel {
+  const normalized = normalisePostcode(postcode);
+  const outward = getOutwardCode(normalized);
+  const borough = outward
+    ? POSTCODE_RULES.find((rule) => rule.test(outward))?.borough || null
+    : null;
+
+  return {
+    normalized,
+    outward,
+    borough,
+    coverageLabel: borough
+      ? `Serving ${outward} • ${borough} area`
+      : outward
+      ? `Serving ${outward} area`
+      : null,
+  };
+}
 
 function LocalDesignersDropdown() {
   const [open, setOpen] = useState(false);
@@ -254,6 +427,8 @@ export default function IndexPage() {
     return () => window.clearTimeout(timer);
   }, [heroExpanded]);
 
+  const postcodeIntel = detectPostcodeIntel(heroPostcode);
+
   function trackHeroFormStart(firstFieldName?: string) {
     if (!heroStartedRef.current) {
       heroStartedRef.current = true;
@@ -270,6 +445,8 @@ export default function IndexPage() {
     gtagEvent("lead_select_project_type", {
       form_name: "homepage_hero",
       service: serviceValue,
+      borough_detected: postcodeIntel.borough || "unknown",
+      outward_code: postcodeIntel.outward || "unknown",
     });
   }
 
@@ -283,7 +460,7 @@ export default function IndexPage() {
     const honeypot = String(formData.get("company") || "").trim();
     if (honeypot) return;
 
-    const postcode = heroPostcode.trim();
+    const postcode = postcodeIntel.normalized;
     const service = heroService.trim();
     const name = heroName.trim();
     const phone = heroPhone.trim();
@@ -301,6 +478,8 @@ export default function IndexPage() {
         step: "details_opened",
         service,
         postcode,
+        borough_detected: postcodeIntel.borough || "unknown",
+        outward_code: postcodeIntel.outward || "unknown",
       });
       return;
     }
@@ -318,6 +497,9 @@ export default function IndexPage() {
       email,
       service,
       postcode,
+      borough: postcodeIntel.borough,
+      coverageLabel: postcodeIntel.coverageLabel,
+      outwardCode: postcodeIntel.outward,
       message: "Quick quote from homepage hero form",
       hp: honeypot,
       formStartedAt: heroStartTimeRef.current,
@@ -332,6 +514,8 @@ export default function IndexPage() {
         step: "submit",
         service,
         postcode,
+        borough_detected: postcodeIntel.borough || "unknown",
+        outward_code: postcodeIntel.outward || "unknown",
       });
 
       const res = await fetch("/api/contact-resend", {
@@ -345,6 +529,8 @@ export default function IndexPage() {
           form_name: "homepage_hero",
           service,
           postcode,
+          borough_detected: postcodeIntel.borough || "unknown",
+          outward_code: postcodeIntel.outward || "unknown",
         });
 
         alert("Thank you. Your request has been submitted. WEDRAWPLANS will contact you shortly.");
@@ -360,7 +546,7 @@ export default function IndexPage() {
       } else {
         alert("Something went wrong. Please try again or call us directly.");
       }
-    } catch (err) {
+    } catch {
       alert("Network error. Please try again.");
     } finally {
       setHeroSubmitting(false);
@@ -480,8 +666,8 @@ export default function IndexPage() {
           </div>
         </header>
 
-        <section className="border-b border-slate-200 bg-[#fdf8f3] pt-4 sm:pt-6">
-          <div className="mx-auto max-w-6xl px-4 pt-1 pb-8 lg:px-6 lg:pt-10 lg:pb-12">
+        <section className="border-b border-slate-200 bg-[#fdf8f3] pt-4 sm:pt-6 lg:pt-0">
+          <div className="mx-auto max-w-6xl px-4 pt-0 pb-8 lg:px-6 lg:pt-10 lg:pb-12">
             <div className="grid gap-3 lg:grid-cols-[1.05fr_0.95fr] lg:items-start lg:gap-8">
               <div className="text-center lg:text-left">
                 <div className="hidden lg:block">
@@ -522,7 +708,7 @@ export default function IndexPage() {
                 </div>
 
                 <div className="lg:hidden">
-                  <h1 className="mx-auto max-w-[410px] text-[18px] font-semibold uppercase leading-[1.42] tracking-[0.11em] text-slate-900 sm:text-[20px]">
+                  <h1 className="mx-auto max-w-[440px] text-[20px] font-semibold uppercase leading-[1.34] tracking-[0.08em] text-slate-900 sm:text-[22px]">
                     Planning Drawings for Extensions, Lofts and New Builds
                   </h1>
 
@@ -565,6 +751,12 @@ export default function IndexPage() {
                             className="h-14 w-full rounded-[16px] border border-slate-200 bg-white pl-14 pr-4 text-[16px] text-slate-800 shadow-sm outline-none transition focus:border-[#64b7c4]"
                           />
                         </div>
+
+                        {postcodeIntel.coverageLabel && (
+                          <div className="px-1 text-center text-[12px] font-medium text-[#2f7f4f]">
+                            ✓ {postcodeIntel.coverageLabel}
+                          </div>
+                        )}
 
                         <div className="relative">
                           <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[20px] text-[#2f6f8a]">
@@ -1113,7 +1305,7 @@ function ContactForm() {
       } else {
         alert("Something went wrong. Please try again or call us directly.");
       }
-    } catch (err) {
+    } catch {
       alert("Network error. Please try again.");
     }
   }
