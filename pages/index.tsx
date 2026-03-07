@@ -236,6 +236,7 @@ export default function IndexPage() {
   const heroStartedRef = useRef(false);
   const heroPostcodeRef = useRef<null | HTMLInputElement>(null);
   const heroNameRef = useRef<null | HTMLInputElement>(null);
+  const heroStartTimeRef = useRef<number | null>(null);
 
   const [heroSubmitting, setHeroSubmitting] = useState(false);
   const [heroExpanded, setHeroExpanded] = useState(false);
@@ -254,12 +255,14 @@ export default function IndexPage() {
   }, [heroExpanded]);
 
   function trackHeroFormStart(firstFieldName?: string) {
-    if (heroStartedRef.current) return;
-    heroStartedRef.current = true;
-    gtagEvent("form_start", {
-      form_name: "homepage_hero",
-      first_field_name: firstFieldName || "unknown",
-    });
+    if (!heroStartedRef.current) {
+      heroStartedRef.current = true;
+      heroStartTimeRef.current = Date.now();
+      gtagEvent("form_start", {
+        form_name: "homepage_hero",
+        first_field_name: firstFieldName || "unknown",
+      });
+    }
   }
 
   function trackHeroServiceSelect(serviceValue: string) {
@@ -273,6 +276,14 @@ export default function IndexPage() {
   async function handleHeroSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (heroSubmitting) return;
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    const honeypot = String(formData.get("company") || "").trim();
+    if (honeypot) {
+      return;
+    }
 
     const postcode = heroPostcode.trim();
     const service = heroService.trim();
@@ -301,6 +312,8 @@ export default function IndexPage() {
       return;
     }
 
+    const timeTakenMs = heroStartTimeRef.current ? Date.now() - heroStartTimeRef.current : null;
+
     const payload = {
       name,
       phone,
@@ -308,6 +321,9 @@ export default function IndexPage() {
       service,
       postcode,
       message: "Quick quote from homepage hero form",
+      hp: honeypot,
+      formStartedAt: heroStartTimeRef.current,
+      timeTakenMs,
     };
 
     try {
@@ -341,6 +357,7 @@ export default function IndexPage() {
         setHeroEmail("");
         setHeroExpanded(false);
         heroStartedRef.current = false;
+        heroStartTimeRef.current = null;
         heroPostcodeRef.current?.blur();
       } else {
         alert("Something went wrong. Please try again or call us directly.");
@@ -467,7 +484,7 @@ export default function IndexPage() {
 
         <section className="border-b border-slate-200 bg-[#fdf8f3]">
           <div className="mx-auto max-w-6xl px-4 pt-2 pb-8 lg:px-6 lg:pt-10 lg:pb-12">
-            <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-start lg:gap-8">
+            <div className="grid gap-4 lg:grid-cols-[1.05fr_0.95fr] lg:items-start lg:gap-8">
               <div className="text-center lg:text-left">
                 <div className="hidden lg:block">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-red-700">
@@ -499,7 +516,7 @@ export default function IndexPage() {
                     </p>
                   </div>
 
-                  <div className="mt-6 grid gap-4 md:grid-cols-3 text-[13px]">
+                  <div className="mt-6 grid gap-4 text-[13px] md:grid-cols-3">
                     <MiniTrustCard title="Fast quoting" body="Clear fixed fees with quick turnaround." />
                     <MiniTrustCard title="Direct designer" body="No call centre. Speak to a real person." />
                     <MiniTrustCard title="London expertise" body="Borough-aware drawings that are practical to build." />
@@ -507,7 +524,7 @@ export default function IndexPage() {
                 </div>
 
                 <div className="lg:hidden">
-                  <h1 className="mx-auto max-w-[340px] text-[22px] font-semibold uppercase leading-[1.35] tracking-[0.12em] text-slate-900 sm:max-w-[400px] sm:text-[24px]">
+                  <h1 className="mx-auto max-w-[340px] text-[18px] font-semibold uppercase leading-[1.45] tracking-[0.14em] text-slate-900 sm:max-w-[400px] sm:text-[20px]">
                     Planning Drawings for Extensions, Lofts and New Builds
                   </h1>
 
@@ -518,7 +535,7 @@ export default function IndexPage() {
               </div>
 
               <div className="lg:pt-2">
-                <div className="mx-auto max-w-[560px] rounded-[24px] bg-white p-4 shadow-[0_18px_48px_rgba(15,23,42,0.10)] sm:p-5 lg:max-w-[580px] lg:rounded-[24px] lg:p-5">
+                <div className="mx-auto max-w-[560px] rounded-[24px] bg-white p-3 shadow-[0_18px_48px_rgba(15,23,42,0.10)] sm:p-4 lg:max-w-[580px] lg:rounded-[24px] lg:p-5">
                   <div className="rounded-[20px] border border-slate-200/80 bg-[#f7fafc] px-4 py-4 shadow-[0_8px_24px_rgba(15,23,42,0.05)] sm:px-6 sm:py-5 lg:px-6 lg:py-5">
                     <div className="text-center">
                       <p className="mx-auto max-w-[430px] text-[14px] leading-6 text-slate-700 sm:text-[15px]">
@@ -527,6 +544,14 @@ export default function IndexPage() {
                     </div>
 
                     <form onSubmit={handleHeroSubmit} className="mx-auto mt-4 max-w-[500px]">
+                      <input
+                        type="text"
+                        name="company"
+                        autoComplete="off"
+                        tabIndex={-1}
+                        className="hidden"
+                      />
+
                       <div className="space-y-3">
                         <div className="relative">
                           <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[20px] text-[#d85e56]">
@@ -619,12 +644,9 @@ export default function IndexPage() {
                       </div>
                     </form>
 
-                    <div className="mx-auto mt-4 max-w-[320px] space-y-3">
-                      <TrustRow icon="✓" text="No obligation" />
-                      <TrustRow icon="◔" text="Local designers" />
-                    </div>
+                    <div className="mt-2" />
 
-                    <div className="mx-auto mt-4 flex max-w-[430px] flex-col items-center justify-center gap-3 sm:flex-row">
+                    <div className="mx-auto mt-3 flex max-w-[430px] flex-col items-center justify-center gap-3 sm:flex-row">
                       <a
                         href={PHONE_LINK}
                         onClick={() => trackLeadEvent("phone_click")}
@@ -1151,17 +1173,6 @@ function MiniTrustCard({ title, body }: { title: string; body: string }) {
     <div className="rounded-md border border-slate-200 bg-white p-4 shadow-sm">
       <div className="text-[12px] font-semibold uppercase tracking-[0.12em] text-slate-900">{title}</div>
       <div className="mt-2 text-[12px] text-slate-600">{body}</div>
-    </div>
-  );
-}
-
-function TrustRow({ icon, text }: { icon: string; text: string }) {
-  return (
-    <div className="flex items-center justify-center gap-3 text-[15px] text-slate-800 sm:text-[16px]">
-      <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#2c4463] text-[16px] text-[#2c4463]">
-        {icon}
-      </span>
-      <span>{text}</span>
     </div>
   );
 }
