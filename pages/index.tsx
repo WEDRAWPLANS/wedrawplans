@@ -281,9 +281,7 @@ export default function IndexPage() {
     const formData = new FormData(form);
 
     const honeypot = String(formData.get("company") || "").trim();
-    if (honeypot) {
-      return;
-    }
+    if (honeypot) return;
 
     const postcode = heroPostcode.trim();
     const service = heroService.trim();
@@ -483,8 +481,8 @@ export default function IndexPage() {
         </header>
 
         <section className="border-b border-slate-200 bg-[#fdf8f3]">
-          <div className="mx-auto max-w-6xl px-4 pt-2 pb-8 lg:px-6 lg:pt-10 lg:pb-12">
-            <div className="grid gap-4 lg:grid-cols-[1.05fr_0.95fr] lg:items-start lg:gap-8">
+          <div className="mx-auto max-w-6xl px-4 pt-1 pb-8 lg:px-6 lg:pt-10 lg:pb-12">
+            <div className="grid gap-3 lg:grid-cols-[1.05fr_0.95fr] lg:items-start lg:gap-8">
               <div className="text-center lg:text-left">
                 <div className="hidden lg:block">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-red-700">
@@ -524,12 +522,12 @@ export default function IndexPage() {
                 </div>
 
                 <div className="lg:hidden">
-                  <h1 className="mx-auto max-w-[340px] text-[18px] font-semibold uppercase leading-[1.45] tracking-[0.14em] text-slate-900 sm:max-w-[400px] sm:text-[20px]">
+                  <h1 className="mx-auto max-w-[410px] text-[18px] font-semibold uppercase leading-[1.42] tracking-[0.11em] text-slate-900 sm:text-[20px]">
                     Planning Drawings for Extensions, Lofts and New Builds
                   </h1>
 
-                  <p className="mx-auto mt-2 max-w-[320px] text-[13px] text-slate-600">
-                    Clear fixed fees and initial survey within 48 hours
+                  <p className="mx-auto mt-2 max-w-[340px] text-[13px] text-slate-600">
+                    Clear fixed fees. Initial survey available within 48 hours.
                   </p>
                 </div>
               </div>
@@ -538,7 +536,7 @@ export default function IndexPage() {
                 <div className="mx-auto max-w-[560px] rounded-[24px] bg-white p-3 shadow-[0_18px_48px_rgba(15,23,42,0.10)] sm:p-4 lg:max-w-[580px] lg:rounded-[24px] lg:p-5">
                   <div className="rounded-[20px] border border-slate-200/80 bg-[#f7fafc] px-4 py-4 shadow-[0_8px_24px_rgba(15,23,42,0.05)] sm:px-6 sm:py-5 lg:px-6 lg:py-5">
                     <div className="text-center">
-                      <p className="mx-auto max-w-[430px] text-[14px] leading-6 text-slate-700 sm:text-[15px]">
+                      <p className="mx-auto max-w-[430px] text-[15px] leading-6 text-slate-700">
                         Get your fixed fee by email
                       </p>
                     </div>
@@ -644,8 +642,6 @@ export default function IndexPage() {
                       </div>
                     </form>
 
-                    <div className="mt-2" />
-
                     <div className="mx-auto mt-3 flex max-w-[430px] flex-col items-center justify-center gap-3 sm:flex-row">
                       <a
                         href={PHONE_LINK}
@@ -665,6 +661,10 @@ export default function IndexPage() {
                         WhatsApp
                       </a>
                     </div>
+
+                    <p className="mt-3 text-center text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-600">
+                      Planning drawings specialists
+                    </p>
                   </div>
                 </div>
               </div>
