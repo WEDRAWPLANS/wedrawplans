@@ -480,7 +480,7 @@ export default function IndexPage() {
           </div>
         </header>
 
-        <section className="border-b border-slate-200 bg-[#fdf8f3]">
+        <section className="border-b border-slate-200 bg-[#fdf8f3] pt-4 sm:pt-6">
           <div className="mx-auto max-w-6xl px-4 pt-1 pb-8 lg:px-6 lg:pt-10 lg:pb-12">
             <div className="grid gap-3 lg:grid-cols-[1.05fr_0.95fr] lg:items-start lg:gap-8">
               <div className="text-center lg:text-left">
