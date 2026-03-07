@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import type { FormEvent } from "react";
-import { useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { submitBoroughLead } from "../lib/submitBoroughLead";
 
 type FormState = {
@@ -48,26 +48,50 @@ function getBoroughFromPostcode(postcode: string) {
   const p = postcode.trim().toUpperCase();
 
   if (p.startsWith("SE1") || p.startsWith("SE5") || p.startsWith("SE15")) return "Southwark";
-  if (p.startsWith("N2") || p.startsWith("N3") || p.startsWith("N12") || p.startsWith("NW11") || p.startsWith("EN4")) return "Barnet";
-  if (p.startsWith("N6") || p.startsWith("N8") || p.startsWith("N10") || p.startsWith("N15") || p.startsWith("N17")) return "Haringey";
-  if (p.startsWith("E8") || p.startsWith("E9") || p.startsWith("N1") || p.startsWith("N16")) return "Hackney";
-  if (p.startsWith("NW1") || p.startsWith("NW3") || p.startsWith("WC1") || p.startsWith("WC2")) return "Camden";
+  if (
+    p.startsWith("N2") ||
+    p.startsWith("N3") ||
+    p.startsWith("N12") ||
+    p.startsWith("NW11") ||
+    p.startsWith("EN4")
+  ) {
+    return "Barnet";
+  }
+  if (
+    p.startsWith("N6") ||
+    p.startsWith("N8") ||
+    p.startsWith("N10") ||
+    p.startsWith("N15") ||
+    p.startsWith("N17")
+  ) {
+    return "Haringey";
+  }
+  if (p.startsWith("E8") || p.startsWith("E9") || p.startsWith("N1") || p.startsWith("N16")) {
+    return "Hackney";
+  }
+  if (p.startsWith("NW1") || p.startsWith("NW3") || p.startsWith("WC1") || p.startsWith("WC2")) {
+    return "Camden";
+  }
   if (p.startsWith("E18") || p.startsWith("IG8") || p.startsWith("E11")) return "Redbridge";
-  if (p.startsWith("EN1") || p.startsWith("EN2") || p.startsWith("EN3") || p.startsWith("EN4")) return "Enfield";
-  if (p.startsWith("HA1") || p.startsWith("HA2") || p.startsWith("HA3") || p.startsWith("HA5")) return "Harrow";
+  if (p.startsWith("EN1") || p.startsWith("EN2") || p.startsWith("EN3") || p.startsWith("EN4")) {
+    return "Enfield";
+  }
+  if (p.startsWith("HA1") || p.startsWith("HA2") || p.startsWith("HA3") || p.startsWith("HA5")) {
+    return "Harrow";
+  }
   if (p.startsWith("SW12") || p.startsWith("SW11") || p.startsWith("SW4")) return "Wandsworth";
   if (p.startsWith("E6") || p.startsWith("E12") || p.startsWith("E13")) return "Newham";
 
   return "London";
 }
 
-export default function GetInstantQuotePage() {
+export default function GetDrawingsQuotePage() {
   const [form, setForm] = useState<FormState>(initialForm);
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
 
-  const canonicalUrl = "https://www.wedrawplans.co.uk/get-instant-quote";
+  const canonicalUrl = "https://www.wedrawplans.co.uk/get-drawings-quote";
 
   const inferredBorough = useMemo(() => {
     return form.postcode.trim() ? getBoroughFromPostcode(form.postcode) : "London";
@@ -121,10 +145,10 @@ export default function GetInstantQuotePage() {
         service: form.service,
         message:
           cleanedMessage ||
-          `New instant quote request for ${form.projectType}. Postcode: ${cleanedPostcode}.`,
+          `New architectural drawings quote request for ${form.projectType}. Postcode: ${cleanedPostcode}.`,
         raw: {
-          source: "get-instant-quote-page",
-          page: "/get-instant-quote",
+          source: "get-drawings-quote-page",
+          page: "/get-drawings-quote",
           projectType: form.projectType,
           inferredBorough,
           service: form.service,
@@ -132,37 +156,81 @@ export default function GetInstantQuotePage() {
         },
       });
 
-      setSuccess("Thank you. Your request has been sent successfully. We will contact you shortly.");
+      setSuccess(
+        "Thank you. Your request has been sent successfully. We will contact you shortly."
+      );
       setForm(initialForm);
     } catch (err) {
       console.error(err);
-      setError("Sorry, something went wrong while sending your request. Please try again or call us on 020 3654 8508.");
+      setError(
+        "Sorry, something went wrong while sending your request. Please try again or call us on 020 3654 8508."
+      );
     } finally {
       setSubmitting(false);
     }
   }
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: "WEDRAWPLANS",
+    url: canonicalUrl,
+    telephone: "+44 20 3654 8508",
+    email: "info@wedrawplans.com",
+    areaServed: [
+      "London",
+      "Barnet",
+      "Camden",
+      "Hackney",
+      "Haringey",
+      "Enfield",
+      "Southwark",
+      "Harrow",
+      "Redbridge",
+      "Newham",
+      "Wandsworth",
+    ],
+    description:
+      "WEDRAWPLANS provides architectural drawings, planning drawings, building regulation drawings, loft conversion drawings, extension plans and measured building surveys across London.",
+    serviceType: [
+      "Architectural Drawings",
+      "Planning Drawings",
+      "Building Regulation Drawings",
+      "Loft Conversion Drawings",
+      "Extension Plans",
+      "Measured Building Surveys",
+      "Planning Application Drawings",
+    ],
+  };
+
   return (
     <>
       <Head>
-        <title>Get Instant Quote | WEDRAWPLANS</title>
+        <title>Get a Quote for Architectural Drawings in London | WEDRAWPLANS</title>
         <meta
           name="description"
-          content="Get an instant quote request started with WEDRAWPLANS for planning drawings, extension plans, loft conversion drawings, measured surveys and building regulation drawings across London."
+          content="Get a quote for architectural drawings in London with WEDRAWPLANS. We prepare planning drawings, extension plans, loft conversion drawings, measured surveys, planning application drawings and building regulation drawings."
         />
         <meta
           name="keywords"
-          content="get instant quote, planning drawings quote, extension drawings quote, loft conversion drawings quote, building regulation drawings quote, WEDRAWPLANS"
+          content="architectural drawings London, planning drawings London, extension drawings quote, loft conversion drawings London, building regulation drawings London, measured building survey London, house extension plans London, planning application drawings London, WEDRAWPLANS"
         />
-        <meta property="og:title" content="Get Instant Quote | WEDRAWPLANS" />
+        <meta
+          property="og:title"
+          content="Get a Quote for Architectural Drawings in London | WEDRAWPLANS"
+        />
         <meta
           property="og:description"
-          content="Need architectural drawings for your extension, loft conversion or planning application? Send your details to WEDRAWPLANS now."
+          content="Need architectural drawings for a house extension, loft conversion or planning application? Send your details to WEDRAWPLANS for a fast quote."
         />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:type" content="website" />
         <link rel="canonical" href={canonicalUrl} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </Head>
 
       <div style={{ background: "#f8fafc", minHeight: "100vh", color: "#0f172a" }}>
@@ -260,6 +328,7 @@ export default function GetInstantQuotePage() {
                 display: "grid",
                 gridTemplateColumns: "1.1fr 0.9fr",
                 gap: 28,
+                alignItems: "start",
               }}
             >
               <div>
@@ -274,7 +343,7 @@ export default function GetInstantQuotePage() {
                     marginBottom: 18,
                   }}
                 >
-                  Planning drawings • Extension plans • Loft conversion drawings
+                  Architectural drawings • Planning drawings • Extension plans • London coverage
                 </div>
 
                 <h1
@@ -286,7 +355,7 @@ export default function GetInstantQuotePage() {
                     maxWidth: 760,
                   }}
                 >
-                  Get instant quote guidance for your drawings project
+                  Get a Quote for Architectural Drawings in London
                 </h1>
 
                 <p
@@ -299,9 +368,10 @@ export default function GetInstantQuotePage() {
                     color: "rgba(255,255,255,0.88)",
                   }}
                 >
-                  Tell us your postcode and project type and send your details directly to WEDRAWPLANS.
-                  We handle planning drawings, building regulation drawings, measured surveys and extension
-                  plans across London.
+                  Tell us your postcode and project type and send your details directly to
+                  WEDRAWPLANS. We prepare architectural drawings, planning drawings, building
+                  regulation drawings, loft conversion drawings, extension plans and measured
+                  building surveys for homeowners across London.
                 </p>
 
                 <div
@@ -332,6 +402,39 @@ export default function GetInstantQuotePage() {
                     </div>
                   ))}
                 </div>
+
+                <div
+                  style={{
+                    marginTop: 28,
+                    display: "grid",
+                    gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+                    gap: 14,
+                    maxWidth: 760,
+                  }}
+                >
+                  {[
+                    "Rear house extension drawings",
+                    "Loft conversion drawings",
+                    "Side and wraparound extension plans",
+                    "Measured building surveys",
+                    "Internal structural alteration drawings",
+                    "Planning application drawings",
+                  ].map((item) => (
+                    <div
+                      key={item}
+                      style={{
+                        background: "rgba(255,255,255,0.08)",
+                        border: "1px solid rgba(255,255,255,0.12)",
+                        borderRadius: 18,
+                        padding: "14px 16px",
+                        fontWeight: 700,
+                        lineHeight: 1.5,
+                      }}
+                    >
+                      {item}
+                    </div>
+                  ))}
+                </div>
               </div>
 
               <div
@@ -346,14 +449,47 @@ export default function GetInstantQuotePage() {
                 <div style={{ marginBottom: 18 }}>
                   <h2 style={{ margin: 0, fontSize: 28, lineHeight: 1.15 }}>Request your quote</h2>
                   <p style={{ margin: "10px 0 0", color: "#475569", lineHeight: 1.6 }}>
-                    Complete this short form and we will review your project details.
+                    Complete this short form and we will review your project details quickly.
                   </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    gap: 10,
+                    flexWrap: "wrap",
+                    marginBottom: 18,
+                  }}
+                >
+                  {[
+                    "Trusted by homeowners across London",
+                    "Fast response",
+                    "Professional architectural drawings",
+                  ].map((item) => (
+                    <div
+                      key={item}
+                      style={{
+                        background: "#f8fafc",
+                        border: "1px solid #e5e7eb",
+                        borderRadius: 999,
+                        padding: "8px 12px",
+                        fontSize: 13,
+                        fontWeight: 700,
+                        color: "#334155",
+                      }}
+                    >
+                      {item}
+                    </div>
+                  ))}
                 </div>
 
                 <form onSubmit={handleSubmit} noValidate>
                   <div style={{ display: "grid", gap: 14 }}>
                     <div>
-                      <label htmlFor="name" style={{ display: "block", marginBottom: 6, fontWeight: 700 }}>
+                      <label
+                        htmlFor="name"
+                        style={{ display: "block", marginBottom: 6, fontWeight: 700 }}
+                      >
                         Full name
                       </label>
                       <input
@@ -368,7 +504,10 @@ export default function GetInstantQuotePage() {
 
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
                       <div>
-                        <label htmlFor="email" style={{ display: "block", marginBottom: 6, fontWeight: 700 }}>
+                        <label
+                          htmlFor="email"
+                          style={{ display: "block", marginBottom: 6, fontWeight: 700 }}
+                        >
                           Email
                         </label>
                         <input
@@ -382,7 +521,10 @@ export default function GetInstantQuotePage() {
                       </div>
 
                       <div>
-                        <label htmlFor="phone" style={{ display: "block", marginBottom: 6, fontWeight: 700 }}>
+                        <label
+                          htmlFor="phone"
+                          style={{ display: "block", marginBottom: 6, fontWeight: 700 }}
+                        >
                           Phone
                         </label>
                         <input
@@ -398,27 +540,37 @@ export default function GetInstantQuotePage() {
 
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
                       <div>
-                        <label htmlFor="postcode" style={{ display: "block", marginBottom: 6, fontWeight: 700 }}>
+                        <label
+                          htmlFor="postcode"
+                          style={{ display: "block", marginBottom: 6, fontWeight: 700 }}
+                        >
                           Postcode
                         </label>
                         <input
                           id="postcode"
                           type="text"
                           value={form.postcode}
-                          onChange={(e) => setForm((prev) => ({ ...prev, postcode: e.target.value }))}
+                          onChange={(e) =>
+                            setForm((prev) => ({ ...prev, postcode: e.target.value }))
+                          }
                           placeholder="SE1 1JA"
                           style={inputStyle}
                         />
                       </div>
 
                       <div>
-                        <label htmlFor="projectType" style={{ display: "block", marginBottom: 6, fontWeight: 700 }}>
+                        <label
+                          htmlFor="projectType"
+                          style={{ display: "block", marginBottom: 6, fontWeight: 700 }}
+                        >
                           Project type
                         </label>
                         <select
                           id="projectType"
                           value={form.projectType}
-                          onChange={(e) => setForm((prev) => ({ ...prev, projectType: e.target.value }))}
+                          onChange={(e) =>
+                            setForm((prev) => ({ ...prev, projectType: e.target.value }))
+                          }
                           style={inputStyle}
                         >
                           <option value="">Select project type</option>
@@ -428,7 +580,9 @@ export default function GetInstantQuotePage() {
                           <option value="Loft conversion">Loft conversion</option>
                           <option value="Garage conversion">Garage conversion</option>
                           <option value="Internal alterations">Internal alterations</option>
-                          <option value="Building regulation drawings">Building regulation drawings</option>
+                          <option value="Building regulation drawings">
+                            Building regulation drawings
+                          </option>
                           <option value="Measured survey">Measured survey</option>
                           <option value="Other domestic project">Other domestic project</option>
                         </select>
@@ -437,25 +591,39 @@ export default function GetInstantQuotePage() {
 
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
                       <div>
-                        <label htmlFor="service" style={{ display: "block", marginBottom: 6, fontWeight: 700 }}>
+                        <label
+                          htmlFor="service"
+                          style={{ display: "block", marginBottom: 6, fontWeight: 700 }}
+                        >
                           Service needed
                         </label>
                         <select
                           id="service"
                           value={form.service}
-                          onChange={(e) => setForm((prev) => ({ ...prev, service: e.target.value }))}
+                          onChange={(e) =>
+                            setForm((prev) => ({ ...prev, service: e.target.value }))
+                          }
                           style={inputStyle}
                         >
                           <option value="Planning Drawings">Planning Drawings</option>
-                          <option value="Building Regulation Drawings">Building Regulation Drawings</option>
-                          <option value="Measured Building Survey">Measured Building Survey</option>
-                          <option value="Planning Application Support">Planning Application Support</option>
+                          <option value="Building Regulation Drawings">
+                            Building Regulation Drawings
+                          </option>
+                          <option value="Measured Building Survey">
+                            Measured Building Survey
+                          </option>
+                          <option value="Planning Application Support">
+                            Planning Application Support
+                          </option>
                           <option value="Full Drawing Package">Full Drawing Package</option>
                         </select>
                       </div>
 
                       <div>
-                        <label htmlFor="borough" style={{ display: "block", marginBottom: 6, fontWeight: 700 }}>
+                        <label
+                          htmlFor="borough"
+                          style={{ display: "block", marginBottom: 6, fontWeight: 700 }}
+                        >
                           Area served
                         </label>
                         <input
@@ -469,7 +637,10 @@ export default function GetInstantQuotePage() {
                     </div>
 
                     <div>
-                      <label htmlFor="message" style={{ display: "block", marginBottom: 6, fontWeight: 700 }}>
+                      <label
+                        htmlFor="message"
+                        style={{ display: "block", marginBottom: 6, fontWeight: 700 }}
+                      >
                         Project details
                       </label>
                       <textarea
@@ -529,11 +700,16 @@ export default function GetInstantQuotePage() {
                         fontWeight: 800,
                       }}
                     >
-                      {submitting ? "Sending request..." : "Get my quote review"}
+                      {submitting ? "Sending request..." : "Get My Quote"}
                     </button>
 
                     <div style={{ fontSize: 13, color: "#64748b", lineHeight: 1.6 }}>
-                      By submitting this form, you agree to be contacted by phone or email regarding your drawings project.
+                      By submitting this form, you agree to be contacted by phone or email regarding
+                      your drawings project.
+                    </div>
+
+                    <div style={{ fontSize: 14, color: "#334155", lineHeight: 1.6, fontWeight: 700 }}>
+                      We typically respond to quote requests the same day.
                     </div>
                   </div>
                 </form>
@@ -552,15 +728,15 @@ export default function GetInstantQuotePage() {
               {[
                 {
                   title: "Planning drawings",
-                  text: "Clear proposed drawings for house extensions, loft conversions and home improvement projects.",
+                  text: "Clear proposed planning drawings for house extensions, loft conversions and home improvement projects across London.",
                 },
                 {
                   title: "Measured surveys",
-                  text: "Accurate existing drawings to support planning applications and building regulation packages.",
+                  text: "Accurate existing drawings and measured building surveys to support planning applications and building regulation packages.",
                 },
                 {
-                  title: "Fast follow up",
-                  text: "Your enquiry goes straight to WEDRAWPLANS so we can review and respond quickly.",
+                  title: "Building regulation drawings",
+                  text: "Professional drawing packages for building control, structural coordination and the technical stage of your project.",
                 },
               ].map((item) => (
                 <div
@@ -573,14 +749,16 @@ export default function GetInstantQuotePage() {
                     boxShadow: "0 10px 30px rgba(15,23,42,0.05)",
                   }}
                 >
-                  <h3 style={{ margin: 0, fontSize: 22 }}>{item.title}</h3>
-                  <p style={{ margin: "10px 0 0", color: "#475569", lineHeight: 1.7 }}>{item.text}</p>
+                  <h2 style={{ margin: 0, fontSize: 22 }}>{item.title}</h2>
+                  <p style={{ margin: "10px 0 0", color: "#475569", lineHeight: 1.7 }}>
+                    {item.text}
+                  </p>
                 </div>
               ))}
             </div>
           </section>
 
-          <section style={{ maxWidth: 1200, margin: "0 auto", padding: "20px 20px 60px" }}>
+          <section style={{ maxWidth: 1200, margin: "0 auto", padding: "20px 20px 20px" }}>
             <div
               style={{
                 background: "#ffffff",
@@ -590,11 +768,31 @@ export default function GetInstantQuotePage() {
                 boxShadow: "0 10px 30px rgba(15,23,42,0.05)",
               }}
             >
-              <h2 style={{ margin: 0, fontSize: 34, lineHeight: 1.15 }}>Why this page matters for Google leads</h2>
-              <p style={{ margin: "14px 0 0", color: "#475569", lineHeight: 1.8, maxWidth: 980 }}>
-                This page gives your Google Business Profile a dedicated conversion destination. Instead of sending visitors
-                to a general page, you can now link your profile, posts, services, products and Q and A directly to a short
-                lead form page designed to convert homeowners who need drawings.
+              <h2 style={{ margin: 0, fontSize: 34, lineHeight: 1.15 }}>Why Choose WEDRAWPLANS</h2>
+              <p
+                style={{
+                  margin: "14px 0 0",
+                  color: "#475569",
+                  lineHeight: 1.8,
+                  maxWidth: 980,
+                }}
+              >
+                WEDRAWPLANS provides professional architectural drawings for house extensions,
+                loft conversions, internal alterations and planning applications across London. Our
+                team prepares clear and accurate drawings for planning permission, building
+                regulations and the next stages of your project.
+              </p>
+              <p
+                style={{
+                  margin: "12px 0 0",
+                  color: "#475569",
+                  lineHeight: 1.8,
+                  maxWidth: 980,
+                }}
+              >
+                Whether you need rear extension drawings, side extension plans, loft conversion
+                drawings, measured surveys or building regulation drawings, we can review your
+                project and guide you on the right package.
               </p>
 
               <div
@@ -606,10 +804,10 @@ export default function GetInstantQuotePage() {
                 }}
               >
                 {[
-                  "Use this as the Website link in Google posts",
-                  "Use this as the Product button link",
-                  "Use this in Google Q and A answers",
-                  "Use this in booking and contact call to actions",
+                  "Architectural drawings for homeowners",
+                  "Fast quote request in less than one minute",
+                  "Professional follow up by phone or email",
+                  "London wide coverage across multiple boroughs",
                 ].map((item) => (
                   <div
                     key={item}
@@ -626,42 +824,349 @@ export default function GetInstantQuotePage() {
                   </div>
                 ))}
               </div>
+            </div>
+          </section>
+
+          <section style={{ maxWidth: 1200, margin: "0 auto", padding: "20px 20px 20px" }}>
+            <div
+              style={{
+                background: "#ffffff",
+                border: "1px solid #e5e7eb",
+                borderRadius: 26,
+                padding: 28,
+                boxShadow: "0 10px 30px rgba(15,23,42,0.05)",
+              }}
+            >
+              <h2 style={{ margin: 0, fontSize: 34, lineHeight: 1.15 }}>
+                Architectural Drawing Services We Provide
+              </h2>
+              <p
+                style={{
+                  margin: "14px 0 0",
+                  color: "#475569",
+                  lineHeight: 1.8,
+                  maxWidth: 980,
+                }}
+              >
+                We prepare a wide range of architectural drawing services for London homeowners,
+                including planning drawings, extension plans, loft conversion drawings, garage
+                conversion drawings, measured building surveys, planning application drawings and
+                building regulation drawing packages.
+              </p>
+
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
+                  gap: 16,
+                  marginTop: 24,
+                }}
+              >
+                {[
+                  "House extension drawings",
+                  "Rear extension drawings",
+                  "Side extension drawings",
+                  "Wraparound extension plans",
+                  "Loft conversion drawings",
+                  "Garage conversion drawings",
+                  "Planning application drawings",
+                  "Measured building surveys",
+                  "Building regulation drawings",
+                ].map((item) => (
+                  <div
+                    key={item}
+                    style={{
+                      background: "#f8fafc",
+                      border: "1px solid #e5e7eb",
+                      borderRadius: 18,
+                      padding: 18,
+                      fontWeight: 700,
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section style={{ maxWidth: 1200, margin: "0 auto", padding: "20px 20px 20px" }}>
+            <div
+              style={{
+                background: "#ffffff",
+                border: "1px solid #e5e7eb",
+                borderRadius: 26,
+                padding: 28,
+                boxShadow: "0 10px 30px rgba(15,23,42,0.05)",
+              }}
+            >
+              <h2 style={{ margin: 0, fontSize: 34, lineHeight: 1.15 }}>
+                London Areas We Commonly Cover
+              </h2>
+              <p
+                style={{
+                  margin: "14px 0 0",
+                  color: "#475569",
+                  lineHeight: 1.8,
+                  maxWidth: 980,
+                }}
+              >
+                WEDRAWPLANS works across London and surrounding areas, helping homeowners who need
+                professional architectural drawings, planning drawings and building regulation
+                drawings. We commonly support projects in Barnet, Camden, Hackney, Haringey,
+                Enfield, Southwark, Harrow, Redbridge, Newham and Wandsworth.
+              </p>
+
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(5, minmax(0, 1fr))",
+                  gap: 14,
+                  marginTop: 24,
+                }}
+              >
+                {[
+                  "Barnet",
+                  "Camden",
+                  "Hackney",
+                  "Haringey",
+                  "Enfield",
+                  "Southwark",
+                  "Harrow",
+                  "Redbridge",
+                  "Newham",
+                  "Wandsworth",
+                ].map((item) => (
+                  <div
+                    key={item}
+                    style={{
+                      background: "#f8fafc",
+                      border: "1px solid #e5e7eb",
+                      borderRadius: 16,
+                      padding: "14px 16px",
+                      textAlign: "center",
+                      fontWeight: 700,
+                    }}
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section style={{ maxWidth: 1200, margin: "0 auto", padding: "20px 20px 20px" }}>
+            <div
+              style={{
+                background: "#ffffff",
+                border: "1px solid #e5e7eb",
+                borderRadius: 26,
+                padding: 28,
+                boxShadow: "0 10px 30px rgba(15,23,42,0.05)",
+              }}
+            >
+              <h2 style={{ margin: 0, fontSize: 34, lineHeight: 1.15 }}>
+                What Happens After You Submit the Form
+              </h2>
+
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
+                  gap: 16,
+                  marginTop: 24,
+                }}
+              >
+                {[
+                  {
+                    step: "1",
+                    title: "We review your details",
+                    text: "We check your postcode, project type and the architectural drawing service required.",
+                  },
+                  {
+                    step: "2",
+                    title: "We contact you",
+                    text: "Our team follows up by phone or email to discuss your house extension, loft conversion or planning project.",
+                  },
+                  {
+                    step: "3",
+                    title: "We provide guidance",
+                    text: "We explain the likely drawings package, scope and quotation route for your project.",
+                  },
+                  {
+                    step: "4",
+                    title: "We arrange the next step",
+                    text: "If you proceed, we arrange the initial survey and move the project forward quickly.",
+                  },
+                ].map((item) => (
+                  <div
+                    key={item.step}
+                    style={{
+                      background: "#f8fafc",
+                      border: "1px solid #e5e7eb",
+                      borderRadius: 18,
+                      padding: 20,
+                    }}
+                  >
+                    <div
+                      style={{
+                        width: 38,
+                        height: 38,
+                        borderRadius: 999,
+                        background: "#111827",
+                        color: "#ffffff",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        fontWeight: 800,
+                        marginBottom: 14,
+                      }}
+                    >
+                      {item.step}
+                    </div>
+                    <h3 style={{ margin: 0, fontSize: 20, lineHeight: 1.25 }}>{item.title}</h3>
+                    <p style={{ margin: "10px 0 0", color: "#475569", lineHeight: 1.7 }}>
+                      {item.text}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section style={{ maxWidth: 1200, margin: "0 auto", padding: "20px 20px 60px" }}>
+            <div
+              style={{
+                background: "#ffffff",
+                border: "1px solid #e5e7eb",
+                borderRadius: 26,
+                padding: 28,
+                boxShadow: "0 10px 30px rgba(15,23,42,0.05)",
+              }}
+            >
+              <h2 style={{ margin: 0, fontSize: 34, lineHeight: 1.15 }}>
+                Frequently Asked Questions
+              </h2>
+
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap: 18,
+                  marginTop: 24,
+                }}
+              >
+                {[
+                  {
+                    q: "Do I need planning drawings for a house extension?",
+                    a: "In many cases, yes. Professional planning drawings are usually needed for planning applications and are often also helpful when checking whether a project may fall under permitted development.",
+                  },
+                  {
+                    q: "Do you provide building regulation drawings?",
+                    a: "Yes. WEDRAWPLANS prepares building regulation drawings and technical drawing packages for projects moving beyond the planning stage.",
+                  },
+                  {
+                    q: "Can you help with loft conversion drawings?",
+                    a: "Yes. We prepare loft conversion drawings, house extension drawings, internal alteration drawings and other residential design packages across London.",
+                  },
+                  {
+                    q: "Do you cover my area in London?",
+                    a: "We cover many London boroughs and surrounding areas. Submit your postcode above and we will review your location and project requirements.",
+                  },
+                  {
+                    q: "How do I get a quote for architectural drawings?",
+                    a: "Simply complete the quote form on this page with your postcode, project type and contact details. We will review your enquiry and contact you to discuss the next steps.",
+                  },
+                  {
+                    q: "Do you provide measured building surveys?",
+                    a: "Yes. We provide measured building surveys and existing drawings to support planning drawings, extension plans and building regulation packages.",
+                  },
+                ].map((item) => (
+                  <div
+                    key={item.q}
+                    style={{
+                      background: "#f8fafc",
+                      border: "1px solid #e5e7eb",
+                      borderRadius: 18,
+                      padding: 20,
+                    }}
+                  >
+                    <h3 style={{ margin: 0, fontSize: 20, lineHeight: 1.35 }}>{item.q}</h3>
+                    <p style={{ margin: "12px 0 0", color: "#475569", lineHeight: 1.75 }}>
+                      {item.a}
+                    </p>
+                  </div>
+                ))}
+              </div>
 
               <div
                 style={{
                   marginTop: 28,
+                  padding: 22,
+                  borderRadius: 20,
+                  background: "#111827",
+                  color: "#ffffff",
                   display: "flex",
-                  gap: 12,
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  gap: 16,
                   flexWrap: "wrap",
                 }}
               >
-                <a
-                  href="tel:+442036548508"
-                  style={{
-                    textDecoration: "none",
-                    background: "#111827",
-                    color: "#ffffff",
-                    padding: "13px 18px",
-                    borderRadius: 999,
-                    fontWeight: 800,
-                  }}
-                >
-                  Call now
-                </a>
-                <a
-                  href="mailto:info@wedrawplans.com"
-                  style={{
-                    textDecoration: "none",
-                    background: "#ffffff",
-                    color: "#111827",
-                    border: "1px solid #cbd5e1",
-                    padding: "13px 18px",
-                    borderRadius: 999,
-                    fontWeight: 800,
-                  }}
-                >
-                  Email info@wedrawplans.com
-                </a>
+                <div>
+                  <h2 style={{ margin: 0, fontSize: 28, lineHeight: 1.2 }}>
+                    Ready to request your drawings quote?
+                  </h2>
+                  <p style={{ margin: "10px 0 0", color: "rgba(255,255,255,0.82)", lineHeight: 1.7 }}>
+                    Send your details today and our team will review your project and get back to you.
+                  </p>
+                </div>
+
+                <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+                  <a
+                    href="tel:+442036548508"
+                    style={{
+                      textDecoration: "none",
+                      background: "#ffffff",
+                      color: "#111827",
+                      padding: "13px 18px",
+                      borderRadius: 999,
+                      fontWeight: 800,
+                    }}
+                  >
+                    Call now
+                  </a>
+                  <a
+                    href="https://wa.me/442036548508"
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{
+                      textDecoration: "none",
+                      background: "#16a34a",
+                      color: "#ffffff",
+                      padding: "13px 18px",
+                      borderRadius: 999,
+                      fontWeight: 800,
+                    }}
+                  >
+                    WhatsApp us
+                  </a>
+                  <a
+                    href="mailto:info@wedrawplans.com"
+                    style={{
+                      textDecoration: "none",
+                      background: "transparent",
+                      color: "#ffffff",
+                      border: "1px solid rgba(255,255,255,0.35)",
+                      padding: "13px 18px",
+                      borderRadius: 999,
+                      fontWeight: 800,
+                    }}
+                  >
+                    Email us
+                  </a>
+                </div>
               </div>
             </div>
           </section>
@@ -669,7 +1174,7 @@ export default function GetInstantQuotePage() {
       </div>
 
       <style jsx>{`
-        @media (max-width: 980px) {
+        @media (max-width: 1100px) {
           section > div {
             grid-template-columns: 1fr !important;
           }
