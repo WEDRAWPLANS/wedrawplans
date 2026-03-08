@@ -606,9 +606,23 @@ export default function AreasIndexPage() {
                 .
               </div>
             </div>
-          </section>
-        </main>
-      </div>
+</section>
+
+<div className="text-center text-[13px] text-slate-600 pb-8">
+  Find WEDRAWPLANS on Google Maps:
+  <br />
+  <a
+    href="https://share.google/V5ma9MtNxQ1dYcxL5"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-blue-600 underline underline-offset-4 hover:text-blue-800"
+  >
+    View our Google Business Profile
+  </a>
+</div>
+
+</main>
+</div>
     </>
   );
 }
