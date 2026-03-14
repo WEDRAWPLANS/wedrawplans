@@ -1,3 +1,4 @@
+```tsx
 import Head from "next/head";
 import Link from "next/link";
 import { FormEvent, useMemo, useState } from "react";
@@ -368,7 +369,7 @@ export default function CommercialChangeOfUsePage() {
           <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.2fr_0.8fr] lg:px-8">
             <div>
               <h2 className="text-3xl font-bold tracking-tight">
-                Change of use drawings built for planning strength, property value and serious lead capture
+                Change of use drawings prepared for planning strength, layout clarity and property value
               </h2>
 
               <p className="mt-6 text-lg leading-8 text-slate-700">
@@ -439,41 +440,39 @@ export default function CommercialChangeOfUsePage() {
               </div>
 
               <h2 className="mt-14 text-3xl font-bold tracking-tight">
-                SEO and lead generation strategy behind this page
+                Why clients choose WEDRAWPLANS for change of use drawings
               </h2>
 
               <div className="mt-6 grid gap-6 sm:grid-cols-2">
                 <div className="rounded-2xl bg-slate-50 p-6 ring-1 ring-slate-200">
-                  <h3 className="text-xl font-semibold">High value planning intent targeting</h3>
+                  <h3 className="text-xl font-semibold">Clear planning-ready conversion layouts</h3>
                   <p className="mt-3 text-slate-700">
-                    This page is built around high intent searches from landlords,
-                    developers and investors looking for change of use drawings,
-                    commercial conversion planning drawings, office to residential
-                    layouts and mixed use scheme support in London.
+                    We prepare existing and proposed drawings that help explain
+                    the current use, the proposed use and the new internal
+                    arrangement clearly for planning review and project
+                    coordination.
                   </p>
                 </div>
 
                 <div className="rounded-2xl bg-slate-50 p-6 ring-1 ring-slate-200">
-                  <h3 className="text-xl font-semibold">Lead first conversion structure</h3>
+                  <h3 className="text-xl font-semibold">Commercially focused property reconfiguration</h3>
                   <p className="mt-3 text-slate-700">
-                    The page starts with quote, phone and WhatsApp actions, then
-                    reinforces trust with technical detail, conversion examples,
-                    strong internal interlinking, FAQ support and a proper enquiry
-                    form connected to your tracking setup.
+                    Our drawings are prepared with an understanding of value,
+                    layout logic, operational use and development potential,
+                    helping property owners present a stronger and more practical
+                    conversion proposal.
                   </p>
                 </div>
               </div>
 
               <h2 className="mt-14 text-3xl font-bold tracking-tight">
-                Interlinked services to multiply lead paths across the site
+                Related architectural drawing services
               </h2>
 
               <p className="mt-5 text-lg leading-8 text-slate-700">
-                Change of use clients often overlap with residential extension
-                clients, loft conversion owners and new build developers. That is
-                why this page intentionally interlinks with your key residential
-                and development services, helping WEDRAWPLANS capture wider intent
-                from a single visitor and strengthening the site’s topical depth.
+                In addition to change of use work, WEDRAWPLANS also provides
+                architectural drawing services for extensions, loft conversions
+                and new build developments across London and surrounding areas.
               </p>
 
               <div className="mt-8 grid gap-4 md:grid-cols-3">
@@ -760,8 +759,7 @@ export default function CommercialChangeOfUsePage() {
                   Check our Google Business Profile
                 </h2>
                 <p className="mt-3 max-w-3xl text-slate-700">
-                  View our business profile, on Google.
-                 
+                  View our business profile on Google.
                 </p>
               </div>
 
@@ -787,3 +785,4 @@ export default function CommercialChangeOfUsePage() {
     </>
   );
 }
+```
