@@ -759,7 +759,7 @@ export default function CommercialShopfrontDrawingsPage() {
                   })
                 }
               >
-                View our Google Business Profile
+                View our Google Business Profile https://share.google/xOwhyM90bNTj0iWf9
               </a>
             </div>
           </div>
