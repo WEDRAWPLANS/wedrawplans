@@ -1,4 +1,3 @@
-```tsx
 import Head from "next/head";
 import Link from "next/link";
 import { FormEvent, useMemo, useState } from "react";
@@ -785,4 +784,3 @@ export default function CommercialChangeOfUsePage() {
     </>
   );
 }
-```
