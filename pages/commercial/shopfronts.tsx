@@ -12,9 +12,9 @@ declare global {
 const GBP_LINK = "https://share.google/xOwhyM90bNTj0iWf9";
 const PAGE_URL = "https://www.wedrawplans.co.uk/commercial/shopfronts";
 const PAGE_TITLE =
-  "Commercial Shopfront Drawings London | Planning Permission & Building Regulations | WEDRAWPLANS";
+  "Commercial Shopfront Drawings London | Shopfront Design, Planning Permission & Building Regulations | WEDRAWPLANS";
 const PAGE_DESCRIPTION =
-  "Commercial shopfront drawings in London for planning permission, signage design, retail refurbishments, restaurant fronts, change of use projects and building regulations packages. Fast initial survey within 48 hours in most cases.";
+  "Commercial shopfront drawings in London for planning permission, signage design, retail refurbishments, restaurant fronts, salon fronts, cafe fronts, change of use projects and Building Regulations packages. Fast initial survey within 48 hours in most cases.";
 const PAGE_IMAGE = "/images/commercial-shopfront.jpg";
 
 type FormState = {
@@ -67,12 +67,12 @@ export default function CommercialShopfrontDrawingsPage() {
           name: "Do I need planning permission for a new shopfront in London?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Many shopfront changes do require planning permission, especially in conservation areas, on prominent high streets, or where signage, glazing, materials or fascia details are changing materially. WEDRAWPLANS prepares existing and proposed drawings to support the application.",
+            text: "Many shopfront changes do require planning permission, especially in conservation areas, on prominent high streets, where materials, fascia details, glazing patterns, signage or lighting are changing materially. WEDRAWPLANS prepares existing and proposed drawings to support the application properly.",
           },
         },
         {
           "@type": "Question",
-          name: "Can WEDRAWPLANS help with restaurant and takeaway fronts?",
+          name: "Can WEDRAWPLANS help with restaurant, takeaway and cafe fronts?",
           acceptedAnswer: {
             "@type": "Answer",
             text: "Yes. We prepare commercial drawings for restaurants, takeaways, cafes, salons, offices, mixed use buildings and retail units, including shopfront alterations, signage layout and supporting planning packs.",
@@ -80,7 +80,7 @@ export default function CommercialShopfrontDrawingsPage() {
         },
         {
           "@type": "Question",
-          name: "Do you also provide residential drawings?",
+          name: "Do you also provide drawings for residential projects?",
           acceptedAnswer: {
             "@type": "Answer",
             text: "Yes. In addition to commercial work, WEDRAWPLANS provides drawings for house extensions, loft conversions and new build developments across London and surrounding areas.",
@@ -139,7 +139,8 @@ export default function CommercialShopfrontDrawingsPage() {
         message: [
           `Business name: ${form.businessName || "Not provided"}`,
           "",
-          form.message || "Customer requested a quote for commercial shopfront drawings.",
+          form.message ||
+            "Customer requested a quote for commercial shopfront drawings.",
         ].join("\n"),
         raw: {
           pageType: "commercial",
@@ -189,7 +190,7 @@ export default function CommercialShopfrontDrawingsPage() {
         <meta name="description" content={PAGE_DESCRIPTION} />
         <meta
           name="keywords"
-          content="commercial shopfront drawings London, shopfront planning permission London, retail unit architectural drawings, restaurant shopfront drawings, takeaway shopfront design, fascia signage drawings, commercial planning drawings London, building regulations drawings commercial"
+          content="commercial shopfront drawings London, shopfront design London, shopfront planning permission London, retail unit architectural drawings, restaurant shopfront drawings, takeaway shopfront design, fascia signage drawings, commercial planning drawings London, building regulations drawings commercial"
         />
         <meta name="robots" content="index,follow,max-image-preview:large" />
         <link rel="canonical" href={PAGE_URL} />
@@ -227,10 +228,10 @@ export default function CommercialShopfrontDrawingsPage() {
                   Commercial Shopfront Drawings in London
                 </h1>
                 <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-700">
-                  Planning drawings, design support and measured surveys for
-                  retail shopfronts, restaurant fronts, cafe units, salon
-                  frontages, mixed use ground floors and commercial refurbishments
-                  across London and surrounding areas.
+                  Planning drawings, measured surveys and design support for
+                  retail shopfronts, restaurant fronts, cafe units, salons,
+                  mixed use ground floors and commercial refurbishments across
+                  London and surrounding areas.
                 </p>
 
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -316,6 +317,24 @@ export default function CommercialShopfrontDrawingsPage() {
                 Commercial overview
               </Link>
               <Link
+                href="/commercial/restaurants"
+                className="rounded-full bg-slate-100 px-4 py-2 text-slate-800 transition hover:bg-slate-200"
+              >
+                Restaurant drawings
+              </Link>
+              <Link
+                href="/commercial/office-fitout"
+                className="rounded-full bg-slate-100 px-4 py-2 text-slate-800 transition hover:bg-slate-200"
+              >
+                Office fit out drawings
+              </Link>
+              <Link
+                href="/commercial/change-of-use"
+                className="rounded-full bg-slate-100 px-4 py-2 text-slate-800 transition hover:bg-slate-200"
+              >
+                Change of use drawings
+              </Link>
+              <Link
                 href="/extension-plans"
                 className="rounded-full bg-slate-100 px-4 py-2 text-slate-800 transition hover:bg-slate-200"
               >
@@ -353,24 +372,37 @@ export default function CommercialShopfrontDrawingsPage() {
           <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.2fr_0.8fr] lg:px-8">
             <div>
               <h2 className="text-3xl font-bold tracking-tight">
-                Shopfront planning drawings designed to win approvals and enquiries
+                Shopfront planning drawings prepared to strengthen presentation,
+                planning quality and first impressions
               </h2>
 
               <p className="mt-6 text-lg leading-8 text-slate-700">
-                A commercial shopfront is one of the most visible parts of a
-                building. Councils assess proportions, materials, signage,
-                glazing, fascia depth, illumination, visual impact on the street
-                scene and the relationship with neighbouring units. That means
-                generic sketch work is not enough. You need clear, persuasive,
-                accurate architectural drawings that explain the proposal properly.
+                A commercial shopfront is one of the most important visual
+                elements of a business premises. It shapes how the unit is seen
+                from the street, how clearly the business is presented, and how
+                the building contributes to the wider character of the parade or
+                town centre. Councils often look closely at materials, fascia
+                proportions, glazing patterns, signage, lighting and the overall
+                visual impact of the proposal before granting approval.
               </p>
 
               <p className="mt-6 text-lg leading-8 text-slate-700">
-                WEDRAWPLANS prepares professional shopfront drawing packages for
-                London high streets, parades, corner units, mixed use buildings
-                and standalone commercial premises. We help owners and occupiers
-                move from concept to planning submission with a fast, practical
-                and commercially focused approach.
+                That is why generic sketch work is rarely enough. A good
+                shopfront proposal needs professional measured drawings, a clear
+                understanding of the existing frontage and a carefully prepared
+                set of proposed elevations that explain the design properly.
+                WEDRAWPLANS prepares strong, planning-ready shopfront drawing
+                packages for commercial clients across London.
+              </p>
+
+              <p className="mt-6 text-lg leading-8 text-slate-700">
+                We work with shop owners, landlords, restaurant operators,
+                takeaway businesses, salon owners, office occupiers and mixed use
+                property owners who need a new frontage, a cleaner street
+                presence, a rebrand, a change of materials or a better quality
+                planning submission. Whether the goal is approval, improvement of
+                the unit, or a more professional public image, our drawings are
+                prepared to help the project move forward with clarity.
               </p>
 
               <div className="mt-10 grid gap-6 sm:grid-cols-2">
@@ -379,10 +411,11 @@ export default function CommercialShopfrontDrawingsPage() {
                   <ul className="mt-4 space-y-3 text-slate-700">
                     <li>Measured surveys of the existing frontage</li>
                     <li>Existing and proposed plans and elevations</li>
-                    <li>Shopfront design options and signage layout</li>
+                    <li>Shopfront design options and signage layouts</li>
                     <li>Planning drawing packages for submission</li>
+                    <li>Design support for materials and visual appearance</li>
                     <li>Building Regulations support where required</li>
-                    <li>Drawing coordination with structural changes if needed</li>
+                    <li>Coordination where structural alterations are involved</li>
                   </ul>
                 </div>
 
@@ -392,7 +425,7 @@ export default function CommercialShopfrontDrawingsPage() {
                     <li>Retail shops and high street units</li>
                     <li>Restaurants, cafes and takeaways</li>
                     <li>Barbers, salons and beauty premises</li>
-                    <li>Office frontages and entrance alterations</li>
+                    <li>Office frontages and entrance upgrades</li>
                     <li>Mixed use ground floor commercial units</li>
                     <li>Refurbishments, rebrands and frontage upgrades</li>
                   </ul>
@@ -400,41 +433,50 @@ export default function CommercialShopfrontDrawingsPage() {
               </div>
 
               <h2 className="mt-14 text-3xl font-bold tracking-tight">
-                Why this page is built for lead generation
+                Why businesses choose WEDRAWPLANS for shopfront drawings
               </h2>
 
               <div className="mt-6 grid gap-6 sm:grid-cols-2">
                 <div className="rounded-2xl bg-slate-50 p-6 ring-1 ring-slate-200">
-                  <h3 className="text-xl font-semibold">High intent search targeting</h3>
+                  <h3 className="text-xl font-semibold">
+                    Clear planning-ready presentation
+                  </h3>
                   <p className="mt-3 text-slate-700">
-                    This page is written to target buyers searching for commercial
-                    shopfront drawings, planning drawings, signage design,
-                    restaurant frontage plans and retail refurbishment support in London.
+                    We prepare clean, accurate existing and proposed drawings
+                    that help councils, landlords and project teams understand
+                    the proposal clearly from the outset. This improves the
+                    overall presentation of the scheme and reduces confusion
+                    during review.
                   </p>
                 </div>
 
                 <div className="rounded-2xl bg-slate-50 p-6 ring-1 ring-slate-200">
-                  <h3 className="text-xl font-semibold">Conversion focused layout</h3>
+                  <h3 className="text-xl font-semibold">
+                    Strong balance of design and commercial practicality
+                  </h3>
                   <p className="mt-3 text-slate-700">
-                    The page pushes quote requests, calls and WhatsApp clicks from
-                    the top, while also building trust with technical detail,
-                    examples, FAQs and strong internal links.
+                    A good shopfront must do more than look attractive. It also
+                    needs to work for the business, reflect the brand, respect
+                    the character of the street and support day to day use. Our
+                    drawings are prepared with that full picture in mind.
                   </p>
                 </div>
               </div>
 
               <h2 className="mt-14 text-3xl font-bold tracking-tight">
-                Common reasons clients contact us for shopfront drawings
+                Typical reasons clients contact us for shopfront drawings
               </h2>
 
               <div className="mt-6 grid gap-4">
                 {[
                   "A new business tenant needs a rebrand and replacement fascia",
-                  "The owner wants a more modern frontage with clearer glazing and cleaner proportions",
-                  "A restaurant or takeaway needs a compliant frontage package for planning",
+                  "The owner wants a cleaner and more modern frontage with better proportions",
+                  "A restaurant or takeaway needs a stronger frontage package for planning",
                   "A mixed use building needs the ground floor commercial frontage redesigned",
-                  "An old unit requires a better street presence before letting or sale",
-                  "A council has asked for existing and proposed drawings before validation",
+                  "An older unit requires improvement before reletting or sale",
+                  "The council has requested clear existing and proposed elevations before validation",
+                  "A business wants to improve visibility and presentation on a busy high street",
+                  "A landlord wants a better quality frontage to suit a new occupier",
                 ].map((item) => (
                   <div
                     key={item}
@@ -446,14 +488,42 @@ export default function CommercialShopfrontDrawingsPage() {
               </div>
 
               <h2 className="mt-14 text-3xl font-bold tracking-tight">
-                Related residential and development services
+                Shopfront design considerations we help clients address
+              </h2>
+
+              <div className="mt-6 grid gap-6 sm:grid-cols-2">
+                <div className="rounded-2xl border border-slate-200 p-6">
+                  <h3 className="text-xl font-semibold">Visual quality</h3>
+                  <ul className="mt-4 space-y-3 text-slate-700">
+                    <li>Fascia depth and overall proportions</li>
+                    <li>Glazing arrangement and mullion design</li>
+                    <li>Material selection and finish consistency</li>
+                    <li>Relationship with neighbouring units</li>
+                    <li>Traditional or contemporary frontage character</li>
+                  </ul>
+                </div>
+
+                <div className="rounded-2xl border border-slate-200 p-6">
+                  <h3 className="text-xl font-semibold">Operational practicality</h3>
+                  <ul className="mt-4 space-y-3 text-slate-700">
+                    <li>Entrance positioning and access</li>
+                    <li>Visibility of the business from the street</li>
+                    <li>Signage zones and branding arrangement</li>
+                    <li>Security shutter coordination where relevant</li>
+                    <li>Fit with the internal layout and business use</li>
+                  </ul>
+                </div>
+              </div>
+
+              <h2 className="mt-14 text-3xl font-bold tracking-tight">
+                Related architectural drawing services
               </h2>
 
               <p className="mt-5 text-lg leading-8 text-slate-700">
-                Many commercial clients also own residential properties, mixed use
-                buildings or development sites. For that reason we deliberately
-                interlink our commercial pages with our core residential services
-                so visitors can move directly to the right package.
+                Many of our commercial clients also own residential property,
+                mixed use buildings or development sites. We also provide
+                professional drawing packages for extensions, loft conversions
+                and new build projects across London and surrounding areas.
               </p>
 
               <div className="mt-8 grid gap-4 md:grid-cols-3">
@@ -463,8 +533,8 @@ export default function CommercialShopfrontDrawingsPage() {
                 >
                   <h3 className="text-lg font-semibold">Extension drawings</h3>
                   <p className="mt-3 text-sm leading-6 text-slate-700">
-                    House extension planning drawings, rear extensions, side return
-                    schemes and wrap around layouts.
+                    House extension planning drawings, rear extensions, side
+                    return schemes and wrap around layouts.
                   </p>
                 </Link>
 
@@ -499,10 +569,10 @@ export default function CommercialShopfrontDrawingsPage() {
                     Do shopfront changes always need planning permission?
                   </h3>
                   <p className="mt-3 text-slate-700">
-                    Not always, but many do. Conservation areas, listed settings,
-                    prominent high streets, material changes to fascia design,
-                    glazing arrangement, colours, signage or lighting can all
-                    trigger planning requirements. We assess the proposal and
+                    Not always, but many do. Conservation areas, listed
+                    settings, prominent high streets, material changes to fascia
+                    design, glazing arrangement, colours, signage or lighting can
+                    all trigger planning requirements. We assess the proposal and
                     prepare the right drawing package for submission.
                   </p>
                 </div>
@@ -514,8 +584,20 @@ export default function CommercialShopfrontDrawingsPage() {
                   <p className="mt-3 text-slate-700">
                     Yes. Restaurant, cafe and takeaway frontages are a major part
                     of our commercial drawing work, especially where external
-                    appearance, branding, ventilation implications and street scene
-                    quality are important.
+                    appearance, branding, ventilation implications and street
+                    scene quality are important.
+                  </p>
+                </div>
+
+                <div className="rounded-2xl border border-slate-200 p-6">
+                  <h3 className="text-lg font-semibold">
+                    Can you help if the frontage is part of a mixed use building?
+                  </h3>
+                  <p className="mt-3 text-slate-700">
+                    Yes. We regularly prepare drawings for mixed use buildings
+                    where the ground floor commercial frontage needs to be
+                    upgraded while still working well with the upper residential
+                    parts of the property.
                   </p>
                 </div>
 
@@ -525,8 +607,8 @@ export default function CommercialShopfrontDrawingsPage() {
                   </h3>
                   <p className="mt-3 text-slate-700">
                     We can usually arrange an initial survey within 48 hours in
-                    most cases, then move quickly into drawing production and quote
-                    support depending on complexity and access.
+                    most cases, then move quickly into drawing production and
+                    quote support depending on complexity and access.
                   </p>
                 </div>
               </div>
@@ -655,7 +737,7 @@ export default function CommercialShopfrontDrawingsPage() {
                       onChange={(e) =>
                         setForm((prev) => ({ ...prev, message: e.target.value }))
                       }
-                      placeholder="Tell us what you want to change, the property type and whether you need planning permission or Building Regulations drawings."
+                      placeholder="Tell us what you want to change, the property type, whether the unit is retail, restaurant, cafe or salon, and whether you need planning permission or Building Regulations drawings."
                       className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none ring-0 transition focus:border-slate-500"
                     />
                   </div>
@@ -740,8 +822,7 @@ export default function CommercialShopfrontDrawingsPage() {
                   Check our Google Business Profile
                 </h2>
                 <p className="mt-3 max-w-3xl text-slate-700">
-                  View our business profile, on Google.
-              
+                  View our business profile on Google.
                 </p>
               </div>
 
