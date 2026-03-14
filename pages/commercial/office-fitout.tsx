@@ -367,7 +367,7 @@ export default function CommercialOfficeFitOutPage() {
           <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.2fr_0.8fr] lg:px-8">
             <div>
               <h2 className="text-3xl font-bold tracking-tight">
-                Office fit out drawings built for approvals, workspace quality and lead generation
+                Office fit out drawings prepared for approval, coordination and long term workspace quality
               </h2>
 
               <p className="mt-6 text-lg leading-8 text-slate-700">
@@ -437,41 +437,39 @@ export default function CommercialOfficeFitOutPage() {
               </div>
 
               <h2 className="mt-14 text-3xl font-bold tracking-tight">
-                SEO and conversion strategy behind this page
+                Why clients choose WEDRAWPLANS for office fit out drawings
               </h2>
 
               <div className="mt-6 grid gap-6 sm:grid-cols-2">
                 <div className="rounded-2xl bg-slate-50 p-6 ring-1 ring-slate-200">
-                  <h3 className="text-xl font-semibold">High intent commercial targeting</h3>
+                  <h3 className="text-xl font-semibold">Efficient, professional space planning</h3>
                   <p className="mt-3 text-slate-700">
-                    This page is built around search intent from landlords,
-                    office operators, businesses and developers looking for office
-                    fit out drawings, workspace redesign plans, commercial
-                    interior layouts and technical planning support in London.
+                    We prepare office layouts that help businesses organise
+                    workstations, meeting rooms, reception areas, circulation
+                    routes and support spaces in a practical and visually clear way.
                   </p>
                 </div>
 
                 <div className="rounded-2xl bg-slate-50 p-6 ring-1 ring-slate-200">
-                  <h3 className="text-xl font-semibold">Lead first structure</h3>
+                  <h3 className="text-xl font-semibold">Strong technical presentation</h3>
                   <p className="mt-3 text-slate-700">
-                    Quote request, phone and WhatsApp actions sit at the top of
-                    the page, then the page builds trust with technical depth,
-                    FAQs, interlinking and a proper commercial enquiry form that
-                    feeds into your lead tracking setup.
+                    Our drawing packages are prepared to communicate the proposal
+                    clearly to landlords, consultants, contractors and approval
+                    bodies, helping projects move forward with less confusion and
+                    stronger coordination.
                   </p>
                 </div>
               </div>
 
               <h2 className="mt-14 text-3xl font-bold tracking-tight">
-                Office fit out drawings that connect with your wider property portfolio
+                Related architectural drawing services
               </h2>
 
               <p className="mt-5 text-lg leading-8 text-slate-700">
-                Many commercial office clients also own residential buildings,
-                mixed use properties or development sites. That is why this page
-                deliberately interlinks with our core residential and development
-                services, keeping users inside the WEDRAWPLANS ecosystem and
-                opening multiple lead routes from a single page visit.
+                Alongside office fit out work, WEDRAWPLANS also provides
+                professional drawing packages for residential extensions, loft
+                conversions and new build projects across London and surrounding
+                areas.
               </p>
 
               <div className="mt-8 grid gap-4 md:grid-cols-3">
@@ -760,8 +758,7 @@ export default function CommercialOfficeFitOutPage() {
                   Check our Google Business Profile
                 </h2>
                 <p className="mt-3 max-w-3xl text-slate-700">
-                  View our business profile, on Google.
-              
+                  View our business profile on Google.
                 </p>
               </div>
 
