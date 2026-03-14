@@ -355,7 +355,7 @@ export default function CommercialRestaurantsPage() {
           <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.2fr_0.8fr] lg:px-8">
             <div>
               <h2 className="text-3xl font-bold tracking-tight">
-                Restaurant architectural drawings built for approvals and commercial enquiries
+                Restaurant architectural drawings prepared for planning approval and operational clarity
               </h2>
 
               <p className="mt-6 text-lg leading-8 text-slate-700">
@@ -425,40 +425,39 @@ export default function CommercialRestaurantsPage() {
               </div>
 
               <h2 className="mt-14 text-3xl font-bold tracking-tight">
-                Why this page is designed for lead generation
+                Why clients choose WEDRAWPLANS for restaurant drawings
               </h2>
 
               <div className="mt-6 grid gap-6 sm:grid-cols-2">
                 <div className="rounded-2xl bg-slate-50 p-6 ring-1 ring-slate-200">
-                  <h3 className="text-xl font-semibold">High intent search focus</h3>
+                  <h3 className="text-xl font-semibold">Planning-ready presentation</h3>
                   <p className="mt-3 text-slate-700">
-                    This page is written around the exact type of searches
-                    restaurant owners, takeaway operators and commercial agents
-                    use when they need planning drawings, layout plans, frontage
-                    support or change of use help in London.
+                    We prepare clear existing and proposed drawings that help
+                    councils, landlords and project teams understand the frontage,
+                    layout and operational proposal properly from the outset.
                   </p>
                 </div>
 
                 <div className="rounded-2xl bg-slate-50 p-6 ring-1 ring-slate-200">
-                  <h3 className="text-xl font-semibold">Built to convert fast</h3>
+                  <h3 className="text-xl font-semibold">Commercially practical layouts</h3>
                   <p className="mt-3 text-slate-700">
-                    Strong quote, phone and WhatsApp actions sit at the top of
-                    the page, then the page builds trust with technical detail,
-                    FAQs, interlinking and a focused commercial enquiry form.
+                    Our approach considers branding, customer flow, seating,
+                    service arrangement, back-of-house requirements and day to day
+                    use so the design works both on paper and in operation.
                   </p>
                 </div>
               </div>
 
               <h2 className="mt-14 text-3xl font-bold tracking-tight">
-                Related services for property owners and developers
+                Related architectural drawing services
               </h2>
 
               <p className="mt-5 text-lg leading-8 text-slate-700">
                 Many of our commercial restaurant clients also own residential
-                property, mixed use buildings or development sites. That is why
-                our commercial pages interlink directly with our residential
-                drawing services to keep users inside the WEDRAWPLANS ecosystem
-                and help them move to the right service quickly.
+                property, mixed use buildings or development sites. We also
+                provide professional drawing packages for extensions, loft
+                conversions and new build projects across London and surrounding
+                areas.
               </p>
 
               <div className="mt-8 grid gap-4 md:grid-cols-3">
@@ -748,7 +747,6 @@ export default function CommercialRestaurantsPage() {
                 </h2>
                 <p className="mt-3 max-w-3xl text-slate-700">
                   View our business profile on Google.
-            
                 </p>
               </div>
 
