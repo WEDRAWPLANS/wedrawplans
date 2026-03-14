@@ -9,7 +9,7 @@ declare global {
   }
 }
 
-const GBP_LINK = "PASTE_YOUR_GOOGLE_BUSINESS_PROFILE_LINK_HERE";
+const GBP_LINK = "https://share.google/xOwhyM90bNTj0iWf9";
 const PAGE_URL = "https://www.wedrawplans.co.uk/commercial/shopfronts";
 const PAGE_TITLE =
   "Commercial Shopfront Drawings London | Planning Permission & Building Regulations | WEDRAWPLANS";
@@ -759,7 +759,7 @@ export default function CommercialShopfrontDrawingsPage() {
                   })
                 }
               >
-                https://share.google/xOwhyM90bNTj0iWf9
+                View our Google Business Profile
               </a>
             </div>
           </div>
