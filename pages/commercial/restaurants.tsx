@@ -747,9 +747,8 @@ export default function CommercialRestaurantsPage() {
                   Check our Google Business Profile
                 </h2>
                 <p className="mt-3 max-w-3xl text-slate-700">
-                  View our business profile, reviews and company details on Google.
-                  This adds trust for commercial clients comparing architectural
-                  drawing providers before they enquire.
+                  View our business profile on Google.
+            
                 </p>
               </div>
 
