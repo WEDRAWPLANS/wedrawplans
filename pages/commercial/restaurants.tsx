@@ -15,7 +15,7 @@ const PAGE_TITLE =
   "Restaurant Planning Drawings London | Restaurant & Takeaway Architectural Plans | WEDRAWPLANS";
 const PAGE_DESCRIPTION =
   "Restaurant planning drawings in London for restaurants, cafes, takeaways and food premises. Architectural drawings for planning permission, shopfront changes, internal layouts, change of use and building regulations. Fast initial survey within 48 hours in most cases.";
-const PAGE_IMAGE = "/images/commercial-restaurants.jpg";
+const PAGE_IMAGE = "/images/commercial-restaurants.png";
 
 type FormState = {
   name: string;
