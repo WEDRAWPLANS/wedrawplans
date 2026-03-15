@@ -8,15 +8,15 @@ import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const WHATSAPP_LINK =
-  "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Lambeth";
+  "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Tower%20Hamlets";
 
-export default function LambethAreaPage() {
+export default function TowerHamletsAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    await submitBoroughLead(e, { boroughName: "Lambeth" });
+    await submitBoroughLead(e, { boroughName: "Tower Hamlets" });
   }
 
   function scrollToForm() {
-    const el = document.getElementById("lambeth-quote");
+    const el = document.getElementById("tower-hamlets-quote");
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
@@ -24,7 +24,7 @@ export default function LambethAreaPage() {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: "WEDRAWPLANS",
-    url: "https://www.wedrawplans.co.uk/areas/lambeth",
+    url: "https://www.wedrawplans.co.uk/areas/tower-hamlets",
     telephone: "+44 20 3654 8508",
     email: "info@wedrawplans.com",
     image: "https://www.wedrawplans.co.uk/images/hero.jpg",
@@ -36,21 +36,22 @@ export default function LambethAreaPage() {
       addressCountry: "UK",
     },
     areaServed: [
-      "Lambeth",
-      "Clapham",
-      "Brixton",
-      "Streatham",
-      "Norwood",
-      "Vauxhall",
-      "Waterloo",
-      "Kennington borders",
-      "Herne Hill",
-      "Stockwell",
-      "Tulse Hill",
-      "West Norwood",
+      "Tower Hamlets",
+      "Bethnal Green",
+      "Bow",
+      "Canary Wharf",
+      "Isle of Dogs",
+      "Limehouse",
+      "Mile End",
+      "Poplar",
+      "Shadwell",
+      "Spitalfields",
+      "Stepney",
+      "Whitechapel",
+      "Wapping",
     ],
     description:
-      "Architectural drawing services in Lambeth for extensions, loft conversions, flat conversions, outbuildings and building regulation packs.",
+      "Architectural drawing services in Tower Hamlets for extensions, loft conversions, flat reconfigurations, refurbishments and building regulation packs.",
   };
 
   const faqJson = {
@@ -59,38 +60,38 @@ export default function LambethAreaPage() {
     mainEntity: [
       {
         "@type": "Question",
-        name: "Do I need planning permission for a rear extension in Lambeth?",
+        name: "Do I need planning permission for a rear extension in Tower Hamlets?",
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Not always. Many rear extensions in Lambeth can be carried out under permitted development. We confirm the correct route once we review your address and house type.",
+            "Not always. Some rear extensions in Tower Hamlets can fall under permitted development, but many properties are affected by conservation area controls, flat status, listed building constraints or local planning sensitivities. We check the address and advise the correct route.",
         },
       },
       {
         "@type": "Question",
-        name: "Is Lambeth strict with loft conversions and extensions?",
+        name: "Is Tower Hamlets strict with loft conversions and extensions?",
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Lambeth can be stricter in conservation areas and on character streets, including parts of Clapham, Brixton and riverside locations. Clear drawings and a strong planning case help.",
+            "Tower Hamlets can be strict where properties sit in conservation areas, on prominent terraces or where changes affect the street scene. A well-drawn proposal with the right planning approach is especially important here.",
         },
       },
       {
         "@type": "Question",
-        name: "How long does Lambeth Council take to decide?",
+        name: "How long does Tower Hamlets Council take to decide?",
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Householder planning applications usually take around eight weeks after validation. Lawful Development Certificates are often around six to eight weeks, subject to workload and validation.",
+            "Householder planning applications are typically around eight weeks after validation. Lawful Development Certificate timescales are often around six to eight weeks, depending on validation and workload.",
         },
       },
       {
         "@type": "Question",
-        name: "Do you manage the full application to Lambeth Council?",
+        name: "Do you manage the full application to Tower Hamlets Council?",
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Yes. We prepare drawings, complete forms, upload documents, submit to Lambeth Council and respond to planning officer queries.",
+            "Yes. We prepare drawings, complete the forms, upload the documents, submit the application to Tower Hamlets Council and deal with planning queries during the process.",
         },
       },
     ],
@@ -99,12 +100,12 @@ export default function LambethAreaPage() {
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Lambeth | Extensions, Lofts, New Builds</title>
+        <title>Architectural Drawings in Tower Hamlets | Extensions, Lofts, New Builds</title>
         <meta
           name="description"
-          content="Architectural drawings in Lambeth for house extensions, loft conversions, flat conversions, refurbishments and building regulation packs. Fixed fees with clear scope and fast communication."
+          content="Architectural drawings in Tower Hamlets for house extensions, loft conversions, refurbishments, flat reconfigurations and building regulation packs. Fixed fees with clear scope and fast communication."
         />
-        <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/lambeth" />
+        <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/tower-hamlets" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
@@ -123,11 +124,11 @@ export default function LambethAreaPage() {
             <div className="mx-auto max-w-5xl flex flex-col lg:flex-row gap-6 px-4 py-8 lg:px-6 lg:py-10">
               <div className="lg:w-1/2">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-red-700">
-                  Lambeth architectural drawings
+                  Tower Hamlets architectural drawings
                 </p>
 
                 <h1 className="mt-2 text-[22px] sm:text-[26px] font-semibold uppercase leading-snug tracking-[0.14em]">
-                  Plans for extensions, lofts and conversions in Lambeth
+                  Plans for extensions, lofts and conversions in Tower Hamlets
                 </h1>
 
                 <p className="mt-2 text-[12px] font-medium text-slate-700">
@@ -135,21 +136,19 @@ export default function LambethAreaPage() {
                 </p>
 
                 <p className="mt-3 text-[13px] text-slate-700">
-                  We regularly work across Lambeth including Clapham, Brixton, Stockwell, Streatham and West Norwood, helping homeowners
-                  extend, convert lofts and upgrade layouts with clear planning and technical drawings.
+                  We work across Tower Hamlets including Bethnal Green, Bow, Whitechapel, Mile End, Limehouse, Canary Wharf and the Isle of Dogs, helping homeowners improve layouts, extend where possible and prepare clear planning and technical drawing packages.
                 </p>
 
                 <p className="mt-3 text-[13px] text-slate-700">
-                  Typical Lambeth homes include Victorian terraces where side return and wrap around extensions are popular, plus loft dormers
-                  where the street character and conservation constraints allow.
+                  Typical Tower Hamlets projects include rear extensions to terraces, loft proposals where the roof form allows, internal remodelling to older London homes and flat layout upgrades where planning and building control coordination is important.
                 </p>
 
                 <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
-                  <li>• Side return extensions and wrap around layouts for Victorian terraces</li>
-                  <li>• Loft conversions including dormers and hip to gable where suitable</li>
-                  <li>• Flat conversions, layout upgrades and internal remodelling</li>
+                  <li>• Rear and side return extension drawings where the property type allows</li>
+                  <li>• Loft conversion and roof alteration drawings for suitable houses</li>
+                  <li>• Flat reconfigurations, refurbishments and internal remodelling</li>
                   <li>• Planning drawings and building regulation packs</li>
-                  <li>• Covering Clapham, Brixton, Streatham, Norwood and more</li>
+                  <li>• Covering Bethnal Green, Bow, Whitechapel, Limehouse and more</li>
                   <li>• Same day response on most enquiries</li>
                 </ul>
 
@@ -181,7 +180,7 @@ export default function LambethAreaPage() {
                   <div className="relative h-[170px] w-full">
                     <Image
                       src="/images/drawings.jpg"
-                      alt="Planning and building regulation drawings in Lambeth"
+                      alt="Planning and building regulation drawings in Tower Hamlets"
                       fill
                       sizes="(max-width: 1024px) 100vw, 520px"
                       className="object-cover"
@@ -189,12 +188,12 @@ export default function LambethAreaPage() {
                     />
                   </div>
                   <div className="p-4 text-[12px] text-slate-600">
-                    Planning drawings, loft dormers and building regulation packs across Lambeth.
+                    Planning drawings, loft proposals and building regulation packs across Tower Hamlets.
                   </div>
                 </div>
               </div>
 
-              <div id="lambeth-quote" className="lg:w-1/2">
+              <div id="tower-hamlets-quote" className="lg:w-1/2">
                 <div className="bg-white p-5 rounded-2xl shadow-md">
                   <h2 className="text-[14px] uppercase font-semibold tracking-[0.16em] text-slate-900">
                     Free fixed fee quote
@@ -237,13 +236,13 @@ export default function LambethAreaPage() {
                     </div>
 
                     <div className="space-y-1">
-                      <label className="text-[11px] font-medium">Lambeth postcode</label>
+                      <label className="text-[11px] font-medium">Tower Hamlets postcode</label>
                       <input
                         name="postcode"
                         required
-                        placeholder="SW2 1AA"
+                        placeholder="E1 5AA"
                         onFocus={(e) => (e.target.placeholder = "")}
-                        onBlur={(e) => !e.target.value && (e.target.placeholder = "SW2 1AA")}
+                        onBlur={(e) => !e.target.value && (e.target.placeholder = "E1 5AA")}
                         className="w-full border-b border-slate-300 bg-transparent py-1.5 px-1 text-slate-500/70 focus:text-slate-900 focus:border-[#64b7c4] outline-none"
                       />
                     </div>
@@ -262,7 +261,7 @@ export default function LambethAreaPage() {
                         <option>House extension</option>
                         <option>Loft conversion</option>
                         <option>Internal remodelling</option>
-                        <option>Conversion to flats</option>
+                        <option>Flat reconfiguration</option>
                         <option>Building regulation pack only</option>
                         <option>Outbuilding or garden room</option>
                         <option>Other domestic project</option>
@@ -274,7 +273,7 @@ export default function LambethAreaPage() {
                       <textarea
                         name="projectDetails"
                         rows={4}
-                        placeholder="For example: side return and rear extension to a Victorian terrace plus a dormer loft room."
+                        placeholder="For example: rear extension to a terrace, loft conversion or internal reconfiguration with planning drawings required."
                         className="w-full border border-slate-300 rounded bg-white px-2 py-2 focus:border-[#64b7c4] outline-none"
                       />
                     </div>
@@ -291,7 +290,7 @@ export default function LambethAreaPage() {
                     </p>
 
                     <p className="text-[11px] text-slate-500 mt-2">
-                      Typical Lambeth projects include side return extensions, loft conversions and flat layout upgrades.
+                      Typical Tower Hamlets projects include rear extensions, loft proposals, flat reconfigurations and internal layout upgrades.
                     </p>
                   </form>
                 </div>
@@ -299,21 +298,20 @@ export default function LambethAreaPage() {
             </div>
           </section>
 
-          <ServiceInternalLinks boroughName="Lambeth" />
+          <ServiceInternalLinks boroughName="Tower Hamlets" />
 
           <section className="bg-white border-b border-slate-200 py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
               <div className="grid md:grid-cols-[1.7fr,1.3fr] gap-10 items-start">
                 <div className="space-y-4">
                   <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
-                    Architectural drawing services in Lambeth
+                    Architectural drawing services in Tower Hamlets
                   </h2>
                   <p className="text-[13px] text-slate-700">
-                    WEDRAWPLANS provide full drawing packages for extensions, loft conversions, internal alterations, outbuildings and flat conversion
-                    projects across Lambeth.
+                    WEDRAWPLANS provide full drawing packages for extensions, loft conversions, internal alterations, refurbishments and flat layout projects across Tower Hamlets.
                   </p>
                   <p className="text-[13px] text-slate-700">
-                    We work throughout Clapham, Brixton, Streatham, Stockwell, Tulse Hill, West Norwood, Vauxhall, Waterloo and nearby streets.
+                    We work throughout Bethnal Green, Bow, Whitechapel, Mile End, Limehouse, Wapping, Poplar, Canary Wharf, Stepney, Spitalfields and the Isle of Dogs.
                   </p>
 
                   <div className="flex flex-wrap gap-3 items-center">
@@ -338,7 +336,7 @@ export default function LambethAreaPage() {
                 <div className="rounded-2xl bg-white shadow-md border border-slate-100 overflow-hidden">
                   <Image
                     src="/images/drawings.jpg"
-                    alt="Example of architectural drawings for a Lambeth extension"
+                    alt="Example of architectural drawings for a Tower Hamlets extension"
                     width={800}
                     height={500}
                     className="object-cover w-full h-48 md:h-56"
@@ -357,54 +355,54 @@ export default function LambethAreaPage() {
               <div className="grid md:grid-cols-2 gap-10">
                 <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
                   <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                    Lambeth areas we cover
+                    Tower Hamlets areas we cover
                   </h3>
                   <Image
-                    src="/images/lambeth-area.jpg"
-                    alt="Lambeth area coverage"
+                    src="/images/tower-hamlets-area.jpg"
+                    alt="Tower Hamlets area coverage"
                     width={800}
                     height={500}
                     className="rounded-xl object-cover mb-3"
                   />
-                  <p className="text-[13px] text-slate-700">Drawings for the whole borough of Lambeth, including:</p>
+                  <p className="text-[13px] text-slate-700">Drawings for the whole borough of Tower Hamlets, including:</p>
                   <div className="grid grid-cols-2 gap-2 text-[13px] text-slate-700">
                     <ul className="list-disc pl-4 space-y-1">
-                      <li>Clapham</li>
-                      <li>Brixton</li>
-                      <li>Stockwell</li>
-                      <li>Herne Hill</li>
-                      <li>Tulse Hill</li>
-                      <li>Streatham</li>
+                      <li>Bethnal Green</li>
+                      <li>Bow</li>
+                      <li>Mile End</li>
+                      <li>Whitechapel</li>
+                      <li>Stepney</li>
+                      <li>Spitalfields</li>
                     </ul>
                     <ul className="list-disc pl-4 space-y-1">
-                      <li>West Norwood</li>
-                      <li>Norwood</li>
-                      <li>Vauxhall</li>
-                      <li>Waterloo</li>
-                      <li>Kennington borders</li>
-                      <li>Riverside locations</li>
+                      <li>Limehouse</li>
+                      <li>Poplar</li>
+                      <li>Wapping</li>
+                      <li>Canary Wharf</li>
+                      <li>Isle of Dogs</li>
+                      <li>Shadwell</li>
                     </ul>
                   </div>
                 </div>
 
                 <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
                   <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                    Popular projects in Lambeth
+                    Popular projects in Tower Hamlets
                   </h3>
                   <div className="grid grid-cols-2 gap-3 text-[13px] text-slate-700">
                     <ul className="list-disc pl-4 space-y-1">
-                      <li>Rear and side return extensions</li>
-                      <li>Wrap around and L shaped extensions</li>
+                      <li>Rear extensions to terraces</li>
+                      <li>Side return extensions where suitable</li>
                       <li>Loft conversions and dormers</li>
-                      <li>Mansards in sensitive streets</li>
+                      <li>Roof extensions in appropriate settings</li>
                       <li>Internal remodelling and knock throughs</li>
                     </ul>
                     <ul className="list-disc pl-4 space-y-1">
-                      <li>Flat and maisonette conversions</li>
+                      <li>Flat layout reconfigurations</li>
+                      <li>Refurbishments and upgrade works</li>
                       <li>Garden studios and outbuildings</li>
-                      <li>Basement layouts and refurbishments</li>
-                      <li>Change of use layouts</li>
-                      <li>Small infill schemes</li>
+                      <li>Change of use layout packages</li>
+                      <li>Small infill and new build plots</li>
                     </ul>
                   </div>
                   <Image
@@ -419,10 +417,10 @@ export default function LambethAreaPage() {
 
               <div className="space-y-5">
                 <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
-                  Permitted development limits in Lambeth
+                  Permitted development limits in Tower Hamlets
                 </h2>
                 <p className="text-[13px] text-slate-700">
-                  This is a simplified guide to common permitted development limits. Final confirmation depends on your house type, location, conservation constraints and any Article 4 directions.
+                  This is a simplified guide to common permitted development limits. Final confirmation depends on your house type, whether the property is a flat, local conservation constraints, Article 4 directions and any listed building issues.
                 </p>
 
                 <div className="grid md:grid-cols-3 gap-8 text-[13px] text-slate-700">
@@ -459,7 +457,7 @@ export default function LambethAreaPage() {
               <div className="grid md:grid-cols-2 gap-10">
                 <div className="rounded-2xl bg-white shadow-sm p-6 border border-slate-100 space-y-4">
                   <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                    Planning drawings for Lambeth
+                    Planning drawings for Tower Hamlets
                   </h3>
                   <ul className="list-disc pl-4 space-y-1 text-[13px] text-slate-700">
                     <li>Existing and proposed floor plans</li>
@@ -473,7 +471,7 @@ export default function LambethAreaPage() {
 
                 <div className="rounded-2xl bg-white shadow-sm p-6 border border-slate-100 space-y-4">
                   <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                    Building regulation drawings for Lambeth
+                    Building regulation drawings for Tower Hamlets
                   </h3>
                   <ul className="list-disc pl-4 space-y-1 text-[13px] text-slate-700">
                     <li>Structural layouts and coordination</li>
@@ -488,10 +486,10 @@ export default function LambethAreaPage() {
 
               <div className="rounded-2xl bg-emerald-50 border border-emerald-100 p-6 space-y-3">
                 <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-emerald-900">
-                  Local planning knowledge for Lambeth projects
+                  Local planning knowledge for Tower Hamlets projects
                 </h2>
                 <p className="text-[13px] text-emerald-900">
-                  Lambeth includes conservation areas, character terraces, busy high streets and sensitive streetscapes. We shape each scheme to fit local context so approval chances are as strong as possible.
+                  Tower Hamlets includes conservation areas, dense urban streets, varied housing stock, heritage sensitivities and many flats where permitted development rights are more limited. We shape each scheme carefully so the drawings match local context and approval chances are as strong as possible.
                 </p>
               </div>
 
@@ -501,27 +499,27 @@ export default function LambethAreaPage() {
                 </h2>
                 <div className="grid md:grid-cols-2 gap-6 text-[13px] text-slate-700">
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">Do I need planning permission for a rear extension in Lambeth</h3>
+                    <h3 className="font-semibold text-slate-900">Do I need planning permission for a rear extension in Tower Hamlets</h3>
                     <p>
-                      Not always. Many rear extensions in Lambeth can be carried out under permitted development. We confirm the correct route once we review your address and house type.
+                      Not always. Some rear extensions in Tower Hamlets can fall under permitted development, but many properties are affected by conservation area controls, flat status, listed building constraints or local planning sensitivities. We check the address and advise the correct route.
                     </p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">Is Lambeth strict with loft conversions and extensions</h3>
+                    <h3 className="font-semibold text-slate-900">Is Tower Hamlets strict with loft conversions and extensions</h3>
                     <p>
-                      Lambeth can be stricter in conservation areas and on character streets, including parts of Clapham, Brixton and riverside locations. Clear drawings and a strong planning case help.
+                      Tower Hamlets can be strict where properties sit in conservation areas, on prominent terraces or where changes affect the street scene. A well-drawn proposal with the right planning approach is especially important here.
                     </p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">How long does Lambeth Council take to decide</h3>
+                    <h3 className="font-semibold text-slate-900">How long does Tower Hamlets Council take to decide</h3>
                     <p>
-                      Householder planning applications usually take around eight weeks after validation. Lawful Development Certificates are often around six to eight weeks, subject to workload and validation.
+                      Householder planning applications are typically around eight weeks after validation. Lawful Development Certificate timescales are often around six to eight weeks, depending on validation and workload.
                     </p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">Do you manage the full application to Lambeth Council</h3>
+                    <h3 className="font-semibold text-slate-900">Do you manage the full application to Tower Hamlets Council</h3>
                     <p>
-                      Yes. We prepare drawings, complete forms, upload documents, submit to Lambeth Council and respond to planning officer queries.
+                      Yes. We prepare drawings, complete the forms, upload the documents, submit the application to Tower Hamlets Council and deal with planning queries during the process.
                     </p>
                   </div>
                 </div>
