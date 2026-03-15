@@ -17,6 +17,7 @@ const PAGE_DESCRIPTION =
   "Building Regulation drawings in London for extensions, loft conversions, new builds, conversions and commercial projects. Detailed building control drawing packs, construction details, structural coordination and technical drawing packages prepared for approval and build stage.";
 const HERO_IMAGE = "/images/building-regulations-hero.jpg";
 const SECOND_IMAGE = "/images/building-regulations-detail.jpg";
+const LOGO_IMAGE = "/images/wedrawplans-logo.png";
 
 type FormState = {
   name: string;
@@ -220,15 +221,44 @@ export default function BuildingRegulationDrawingsPage() {
         />
       </Head>
 
-      <main className="bg-white text-slate-900">
+      <main className="min-h-screen bg-slate-50 text-slate-900">
+        <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur">
+          <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+            <Link href="/" className="flex items-center gap-3">
+              <img
+                src={LOGO_IMAGE}
+                alt="WEDRAWPLANS logo"
+                className="h-11 w-auto object-contain"
+              />
+            </Link>
+
+            <div className="hidden items-center gap-3 md:flex">
+              <a
+                href="tel:+442036548508"
+                className="inline-flex items-center justify-center rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-900 transition hover:border-slate-400 hover:bg-slate-50"
+              >
+                020 3654 8508
+              </a>
+              <a
+                href="https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20need%20Building%20Regulation%20drawings."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center rounded-full bg-green-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-green-600"
+              >
+                WhatsApp us
+              </a>
+            </div>
+          </div>
+        </header>
+
         <section className="border-b border-slate-200 bg-slate-50">
           <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-            <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+            <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
               <div>
-                <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-red-700">
+                <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-red-700">
                   Technical Drawing Packages
                 </p>
-                <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+                <h1 className="max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">
                   Building Regulation Drawings in London
                 </h1>
                 <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-700">
@@ -285,19 +315,20 @@ export default function BuildingRegulationDrawingsPage() {
                   </a>
                 </div>
 
-                <ul className="mt-8 grid gap-3 text-sm text-slate-700 sm:grid-cols-2">
-                  <li className="rounded-xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
-                    Detailed plans, sections and construction notes
-                  </li>
-                  <li className="rounded-xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
-                    Building control submission support
-                  </li>
-                  <li className="rounded-xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
-                    Structural engineer coordination
-                  </li>
-                  <li className="rounded-xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
-                    Residential and commercial technical packages
-                  </li>
+                <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+                  {[
+                    "Detailed plans, sections and construction notes",
+                    "Building control submission support",
+                    "Structural engineer coordination",
+                    "Residential and commercial technical packages",
+                  ].map((item) => (
+                    <li
+                      key={item}
+                      className="rounded-2xl border border-slate-200 bg-white px-4 py-4 text-sm font-medium text-slate-700 shadow-sm"
+                    >
+                      {item}
+                    </li>
+                  ))}
                 </ul>
               </div>
 
@@ -311,7 +342,11 @@ export default function BuildingRegulationDrawingsPage() {
                   with a clear quote.
                 </p>
 
-                <form id="quote-form" className="mt-6 space-y-4" onSubmit={handleSubmit}>
+                <form
+                  id="quote-form"
+                  className="mt-6 space-y-4"
+                  onSubmit={handleSubmit}
+                >
                   <div>
                     <label
                       htmlFor="name"
@@ -516,7 +551,7 @@ export default function BuildingRegulationDrawingsPage() {
 
         <section className="border-b border-slate-200 bg-white">
           <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-            <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+            <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
               <div>
                 <h2 className="text-3xl font-bold tracking-tight">
                   Building Regulation drawings prepared for approval, pricing and the build stage
@@ -544,17 +579,17 @@ export default function BuildingRegulationDrawingsPage() {
                   This service is especially important for extensions, loft
                   conversions, new builds, internal structural alterations,
                   conversions and commercial schemes where the technical pack
-                  needs to coordinate with structural engineer input, fire safety,
-                  thermal performance, sound requirements, drainage or other
-                  construction details.
+                  needs to coordinate with structural engineer input, fire
+                  safety, thermal performance, sound requirements, drainage or
+                  other construction details.
                 </p>
               </div>
 
               <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl">
                 <img
-                  src={HERO_IMAGE}
-                  alt="Building Regulation drawings technical pack presentation"
-                  className="h-full w-full object-cover"
+                  src={SECOND_IMAGE}
+                  alt="Detailed Building Regulation construction drawings and technical details"
+                  className="block h-auto w-full object-contain"
                 />
               </div>
             </div>
@@ -602,12 +637,12 @@ export default function BuildingRegulationDrawingsPage() {
 
         <section className="border-b border-slate-200 bg-white">
           <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-            <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+            <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-center">
               <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl">
                 <img
-                  src={SECOND_IMAGE}
-                  alt="Detailed Building Regulation construction drawings and technical details"
-                  className="h-full w-full object-cover"
+                  src={HERO_IMAGE}
+                  alt="Building Regulation project delivery and completed construction example"
+                  className="block h-auto w-full object-contain"
                 />
               </div>
 
@@ -820,6 +855,71 @@ export default function BuildingRegulationDrawingsPage() {
                   survey within 48 hours in most cases, then move into the technical
                   drawing stage once the scope and starting information are confirmed.
                 </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="border-b border-slate-200 bg-slate-900 text-white">
+          <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+            <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-cyan-300">
+                  Ready to move into the technical stage
+                </p>
+                <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+                  Send your planning drawings and let us build the technical pack properly
+                </h2>
+                <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-300">
+                  If your planning drawings are approved and you are ready to
+                  move toward building control, pricing or construction, send us
+                  the project details and we will review the technical scope and
+                  come back with a clear next step.
+                </p>
+
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                  <a
+                    href="#quote-form"
+                    className="inline-flex items-center justify-center rounded-xl bg-cyan-500 px-6 py-4 text-base font-semibold text-white transition hover:bg-cyan-400"
+                  >
+                    Get my Building Reg quote
+                  </a>
+                  <a
+                    href="https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20need%20Building%20Regulation%20drawings."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center rounded-xl border border-slate-600 px-6 py-4 text-base font-semibold text-white transition hover:border-slate-400 hover:bg-slate-800"
+                  >
+                    Chat on WhatsApp
+                  </a>
+                </div>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div className="rounded-2xl border border-slate-800 bg-slate-800/70 p-5">
+                  <h3 className="text-lg font-semibold">Extensions</h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-300">
+                    Rear extensions, side returns, wrap around extensions and structural openings.
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-slate-800 bg-slate-800/70 p-5">
+                  <h3 className="text-lg font-semibold">Loft conversions</h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-300">
+                    Dormers, mansards, stairs, roof alterations and technical junctions.
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-slate-800 bg-slate-800/70 p-5">
+                  <h3 className="text-lg font-semibold">New builds</h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-300">
+                    Full technical packs for houses and small development schemes.
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-slate-800 bg-slate-800/70 p-5">
+                  <h3 className="text-lg font-semibold">Commercial works</h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-300">
+                    Change of use, mixed use, fit outs and structural commercial packages.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
