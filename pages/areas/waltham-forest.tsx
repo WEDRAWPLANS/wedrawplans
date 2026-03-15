@@ -241,7 +241,7 @@ export default function WalthamForestAreaPage() {
                       Local focus
                     </p>
                     <p className="mt-2 text-[13px] text-slate-700">
-                      We create clean drawing packs that help approvals move smoothly and give builders clear information to price and build.
+                      We create clear drawing packs that help approvals move smoothly and give builders clear information to price and build.
                     </p>
                   </div>
                 </div>
