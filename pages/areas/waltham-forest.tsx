@@ -7,20 +7,20 @@ import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const WHATSAPP_LINK =
-  "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Waltham%20Cross";
+  "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Waltham%20Forest";
 
-const HERO_IMAGE = "/images/hero.jpg";
-const PROJECT_IMAGE_1 = "/images/drawings.jpg";
-const PROJECT_IMAGE_2 = "/images/hero.jpg";
-const AREA_IMAGE = "/images/drawings.jpg";
+const HERO_IMAGE = "/images/waltham-forest-hero.jpg";
+const DRAWINGS_IMAGE = "/images/waltham-forest-drawings.jpg";
+const PROJECT_IMAGE = "/images/waltham-forest-project.jpg";
+const PROMO_IMAGE = "/images/waltham-forest-promo.jpg";
 
-export default function WalthamCrossAreaPage() {
+export default function WalthamForestAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    await submitBoroughLead(e, { boroughName: "Waltham Cross" });
+    await submitBoroughLead(e, { boroughName: "Waltham Forest" });
   }
 
   function scrollToForm() {
-    const el = document.getElementById("waltham-cross-quote");
+    const el = document.getElementById("waltham-forest-quote");
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
@@ -28,10 +28,10 @@ export default function WalthamCrossAreaPage() {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: "WEDRAWPLANS",
-    url: "https://www.wedrawplans.co.uk/areas/waltham-cross",
+    url: "https://www.wedrawplans.co.uk/areas/waltham-forest",
     telephone: "+44 20 3654 8508",
     email: "info@wedrawplans.com",
-    image: "https://www.wedrawplans.co.uk/images/drawings.jpg",
+    image: "https://www.wedrawplans.co.uk/images/waltham-forest-hero.jpg",
     address: {
       "@type": "PostalAddress",
       streetAddress: "201 Borough High Street",
@@ -40,17 +40,21 @@ export default function WalthamCrossAreaPage() {
       addressCountry: "UK",
     },
     areaServed: [
-      "Waltham Cross",
-      "Cheshunt",
-      "Goffs Oak",
-      "Turnford",
-      "Waltham Abbey borders",
-      "Enfield borders",
-      "Theobalds Grove",
-      "Broxbourne area",
+      "Waltham Forest",
+      "Walthamstow",
+      "Leyton",
+      "Leytonstone",
+      "Chingford",
+      "Highams Park",
+      "Wood Street",
+      "Blackhorse Road",
+      "Upper Walthamstow",
+      "South Woodford borders",
+      "Whipps Cross borders",
+      "Snaresbrook borders",
     ],
     description:
-      "Architectural drawing services in Waltham Cross for extensions, loft conversions, refurbishments, conversions and building regulations.",
+      "Architectural drawing services in Waltham Forest for house extensions, loft conversions, refurbishments, flat reconfigurations and building regulation packs.",
   };
 
   const faqJson = {
@@ -59,38 +63,38 @@ export default function WalthamCrossAreaPage() {
     mainEntity: [
       {
         "@type": "Question",
-        name: "Do I need planning permission for a rear extension in Waltham Cross?",
+        name: "Do I need planning permission for a rear extension in Waltham Forest?",
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Not always. Many rear extensions can be carried out under permitted development, but it depends on your house type, location, and any restrictions on the property. We confirm the correct route once we review your address.",
+            "Not always. Many rear extensions in Waltham Forest can be carried out under permitted development, but some homes are affected by conservation area controls, flat status, local constraints or previous planning conditions. We review the address and advise the correct route.",
         },
       },
       {
         "@type": "Question",
-        name: "Can you handle a Lawful Development Certificate for Waltham Cross?",
+        name: "Is Waltham Forest strict with loft conversions and extensions?",
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Yes. We prepare the drawings and supporting information for a Lawful Development Certificate when the works are permitted development and you want formal written confirmation.",
+            "Waltham Forest can be more sensitive in conservation areas, on strong character streets and where roof alterations affect the front street scene. Clear drawings and a well-shaped planning proposal are important.",
         },
       },
       {
         "@type": "Question",
-        name: "How fast can you survey in Waltham Cross?",
+        name: "How long does Waltham Forest Council take to decide?",
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "In most cases we can arrange the initial measured survey within 48 hours of instruction, subject to access.",
+            "Householder planning applications usually take around eight weeks after validation. Lawful Development Certificates are often around six to eight weeks, subject to workload and validation.",
         },
       },
       {
         "@type": "Question",
-        name: "Do you provide building regulation drawings as well as planning drawings?",
+        name: "Do you manage the full application to Waltham Forest Council?",
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Yes. We produce technical building regulation packages coordinated with structural design so your builder and Building Control can work from one clear set of drawings.",
+            "Yes. We prepare the drawings, complete the forms, upload the documents, submit the application to Waltham Forest Council and respond to planning queries during the process.",
         },
       },
     ],
@@ -99,12 +103,21 @@ export default function WalthamCrossAreaPage() {
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Waltham Cross | Extensions, Lofts</title>
+        <title>Architectural Drawings in Waltham Forest | Extensions, Lofts, Planning Drawings</title>
         <meta
           name="description"
-          content="Architectural drawings in Waltham Cross for extensions, loft conversions, refurbishments and building regulation packs. Fixed fees, clear scope and fast communication."
+          content="Architectural drawings in Waltham Forest for house extensions, loft conversions, refurbishments, planning applications and building regulation packs. Fixed fees, clear scope and fast communication."
         />
-        <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/waltham-cross" />
+        <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/waltham-forest" />
+        <meta property="og:title" content="Architectural Drawings in Waltham Forest | WEDRAWPLANS" />
+        <meta
+          property="og:description"
+          content="Planning drawings, extension plans, loft conversion drawings and building regulation packages in Waltham Forest."
+        />
+        <meta
+          property="og:image"
+          content="https://www.wedrawplans.co.uk/images/waltham-forest-hero.jpg"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
@@ -141,7 +154,7 @@ export default function WalthamCrossAreaPage() {
 
             <div className="mt-2 flex w-full items-center justify-between gap-3">
               <div className="text-[12px] text-slate-700">
-                <span className="font-semibold text-slate-900">Waltham Cross</span> area page
+                <span className="font-semibold text-slate-900">Waltham Forest</span> area page
               </div>
 
               <div className="flex items-center gap-2">
@@ -170,28 +183,31 @@ export default function WalthamCrossAreaPage() {
             <div className="mx-auto max-w-5xl flex flex-col lg:flex-row gap-6 px-4 py-8 lg:px-6 lg:py-10">
               <div className="lg:w-1/2">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-red-700">
-                  Waltham Cross architectural drawings
+                  Waltham Forest architectural drawings
                 </p>
 
                 <h1 className="mt-2 text-[22px] sm:text-[26px] font-semibold uppercase leading-snug tracking-[0.14em]">
-                  Plans for extensions, lofts and refurbishments in Waltham Cross
+                  Plans for extensions, lofts and conversions in Waltham Forest
                 </h1>
 
-                <p className="mt-2 text-[12px] text-slate-700">
-                  Get a fixed fee quote today and book an initial survey within 48 hours
+                <p className="mt-2 text-[12px] font-medium text-slate-700">
+                  Local London designers • Fixed fee guaranteed • Council-ready drawings
                 </p>
 
                 <p className="mt-3 text-[13px] text-slate-700">
-                  WEDRAWPLANS prepare planning and technical drawings for homes in Waltham Cross, Cheshunt and
-                  nearby areas. Fixed fees with clear scope and fast communication.
+                  We regularly work across Waltham Forest including Walthamstow, Leyton, Leytonstone, Chingford and Highams Park, helping homeowners extend, convert lofts and improve layouts with clear planning and technical drawings.
+                </p>
+
+                <p className="mt-3 text-[13px] text-slate-700">
+                  Typical Waltham Forest homes include Victorian and Edwardian terraces where rear and side return extensions are popular, plus loft dormers and internal remodelling where the roof form and planning context allow.
                 </p>
 
                 <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
-                  <li>• Rear, side and wrap around extensions</li>
-                  <li>• Loft conversions and dormers</li>
-                  <li>• Internal remodelling and structural openings</li>
-                  <li>• Conversions and layout improvements</li>
+                  <li>• Rear and side return extensions for terraces and family homes</li>
+                  <li>• Loft conversions including dormers and hip to gable where suitable</li>
+                  <li>• Flat reconfigurations, refurbishments and internal remodelling</li>
                   <li>• Planning drawings and building regulation packs</li>
+                  <li>• Covering Walthamstow, Leyton, Leytonstone, Chingford and more</li>
                   <li>• Initial survey within 48 hours where required</li>
                 </ul>
 
@@ -213,7 +229,7 @@ export default function WalthamCrossAreaPage() {
                   <div className="relative h-[190px] w-full">
                     <Image
                       src={HERO_IMAGE}
-                      alt="Waltham Cross architectural drawings and home extension plans"
+                      alt="Waltham Forest house extension design"
                       fill
                       sizes="(max-width: 1024px) 100vw, 520px"
                       className="object-cover"
@@ -225,8 +241,7 @@ export default function WalthamCrossAreaPage() {
                       Local focus
                     </p>
                     <p className="mt-2 text-[13px] text-slate-700">
-                      We create clean drawing packs that help approvals move smoothly and give builders clear information
-                      to price and build.
+                      We create clean drawing packs that help approvals move smoothly and give builders clear information to price and build.
                     </p>
                   </div>
                 </div>
@@ -236,7 +251,7 @@ export default function WalthamCrossAreaPage() {
                 </p>
               </div>
 
-              <div id="waltham-cross-quote" className="lg:w-1/2">
+              <div id="waltham-forest-quote" className="lg:w-1/2">
                 <div className="bg-white p-5 rounded-2xl shadow-md">
                   <h2 className="text-[14px] uppercase font-semibold tracking-[0.16em] text-slate-900">
                     Free fixed fee quote
@@ -279,13 +294,13 @@ export default function WalthamCrossAreaPage() {
                     </div>
 
                     <div className="space-y-1">
-                      <label className="text-[11px] font-medium">Waltham Cross postcode</label>
+                      <label className="text-[11px] font-medium">Waltham Forest postcode</label>
                       <input
                         name="postcode"
                         required
-                        placeholder="EN8 7AA"
+                        placeholder="E17 4AA"
                         onFocus={(e) => (e.target.placeholder = "")}
-                        onBlur={(e) => !e.target.value && (e.target.placeholder = "EN8 7AA")}
+                        onBlur={(e) => !e.target.value && (e.target.placeholder = "E17 4AA")}
                         className="w-full border-b border-slate-300 bg-transparent py-1.5 px-1 text-slate-500/70 focus:text-slate-900 focus:border-[#64b7c4] outline-none"
                       />
                     </div>
@@ -304,9 +319,9 @@ export default function WalthamCrossAreaPage() {
                         <option>House extension</option>
                         <option>Loft conversion</option>
                         <option>Internal remodelling</option>
-                        <option>New build house</option>
-                        <option>Conversion</option>
+                        <option>Flat reconfiguration</option>
                         <option>Building regulation pack only</option>
+                        <option>Outbuilding or garden room</option>
                         <option>Other domestic project</option>
                       </select>
                     </div>
@@ -316,7 +331,7 @@ export default function WalthamCrossAreaPage() {
                       <textarea
                         name="projectDetails"
                         rows={4}
-                        placeholder="For example: rear extension plus loft dormer and internal changes."
+                        placeholder="For example: rear extension to a terrace house, loft conversion or internal reconfiguration with planning drawings required."
                         className="w-full border border-slate-300 rounded bg-white px-2 py-2 focus:border-[#64b7c4] outline-none"
                       />
                     </div>
@@ -359,22 +374,20 @@ export default function WalthamCrossAreaPage() {
             </div>
           </section>
 
-          <ServiceInternalLinks boroughName="Waltham Cross" />
+          <ServiceInternalLinks boroughName="Waltham Forest" />
 
           <section className="bg-white border-b border-slate-200 py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
               <div className="grid md:grid-cols-[1.7fr,1.3fr] gap-10 items-start">
                 <div className="space-y-4">
                   <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
-                    Architectural drawing services in Waltham Cross
+                    Architectural drawing services in Waltham Forest
                   </h2>
                   <p className="text-[13px] text-slate-700">
-                    We produce planning and technical drawing packages for extensions, loft conversions, internal
-                    reconfiguration, refurbishments and conversion layouts across Waltham Cross and nearby areas.
+                    We produce planning and technical drawing packages for extensions, loft conversions, internal reconfiguration, refurbishments and conversion layouts across Waltham Forest.
                   </p>
                   <p className="text-[13px] text-slate-700">
-                    Common work includes open plan kitchen extensions, dormer lofts, side extensions, structural openings,
-                    and building regulation packs coordinated with structural design.
+                    Common work includes open plan kitchen extensions, dormer lofts, side extensions, structural openings, and building regulation packs coordinated with structural design.
                   </p>
 
                   <div className="flex flex-wrap gap-3 items-center">
@@ -398,8 +411,8 @@ export default function WalthamCrossAreaPage() {
 
                 <div className="rounded-2xl bg-white shadow-md border border-slate-100 overflow-hidden">
                   <Image
-                    src="/images/drawings.jpg"
-                    alt="Example of architectural drawings for a Waltham Cross project"
+                    src={DRAWINGS_IMAGE}
+                    alt="Architectural drawings and planning design workspace"
                     width={800}
                     height={500}
                     className="object-cover w-full h-48 md:h-56"
@@ -409,8 +422,7 @@ export default function WalthamCrossAreaPage() {
                       Clear drawings builders can price from
                     </h3>
                     <p className="text-[13px] text-slate-700">
-                      Floor plans, elevations and sections set out clearly, with notes that help Building Control and
-                      contractors understand the scope fast.
+                      Floor plans, elevations and sections set out clearly, with notes that help Building Control and contractors understand the scope fast.
                     </p>
                   </div>
                 </div>
@@ -419,53 +431,21 @@ export default function WalthamCrossAreaPage() {
               <section className="border-b border-slate-200 bg-white py-10">
                 <div className="mx-auto max-w-5xl px-0 lg:px-0">
                   <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
-                    Example drawing packages
+                    Waltham Forest coverage and service focus
                   </h2>
                   <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-                    Example visuals to show typical extension and loft drawing outputs. Replace with local Waltham Cross
-                    project imagery when ready.
+                    WEDRAWPLANS support homeowners across Waltham Forest with extension plans, loft conversion drawings, planning submissions and building regulation packages.
                   </p>
 
-                  <div className="mt-6 grid gap-5 md:grid-cols-2">
-                    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-[#fdf8f3]">
-                      <div className="relative h-[220px] w-full">
-                        <Image
-                          src={PROJECT_IMAGE_1}
-                          alt="Waltham Cross extension drawings example"
-                          fill
-                          sizes="(max-width: 1024px) 100vw, 520px"
-                          className="object-cover"
-                        />
-                      </div>
-                      <div className="p-4">
-                        <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-slate-900">
-                          Extensions
-                        </p>
-                        <p className="mt-2 text-[13px] text-slate-700">
-                          Plans, elevations and sections for rear and side extensions with clear notes for planning and
-                          building control.
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-[#fdf8f3]">
-                      <div className="relative h-[220px] w-full">
-                        <Image
-                          src={PROJECT_IMAGE_2}
-                          alt="Waltham Cross loft conversion drawings example"
-                          fill
-                          sizes="(max-width: 1024px) 100vw, 520px"
-                          className="object-cover"
-                        />
-                      </div>
-                      <div className="p-4">
-                        <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-slate-900">
-                          Lofts
-                        </p>
-                        <p className="mt-2 text-[13px] text-slate-700">
-                          Loft conversion drawing sets including dormers, stair layouts and compliance notes.
-                        </p>
-                      </div>
+                  <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-[#fdf8f3]">
+                    <div className="relative h-[360px] md:h-[520px] w-full">
+                      <Image
+                        src={PROMO_IMAGE}
+                        alt="Architectural drawings services across Waltham Forest including Walthamstow, Leyton, Leytonstone, Chingford and Highams Park"
+                        fill
+                        sizes="100vw"
+                        className="object-cover"
+                      />
                     </div>
                   </div>
                 </div>
@@ -474,33 +454,29 @@ export default function WalthamCrossAreaPage() {
               <div className="grid md:grid-cols-2 gap-10">
                 <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
                   <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                    Areas we cover near Waltham Cross
+                    Areas we cover in Waltham Forest
                   </h3>
 
-                  <Image
-                    src={AREA_IMAGE}
-                    alt="Waltham Cross local area"
-                    width={800}
-                    height={500}
-                    className="rounded-xl object-cover mb-3"
-                  />
-
                   <p className="text-[13px] text-slate-700">
-                    We cover Waltham Cross and surrounding areas, including:
+                    We cover Waltham Forest and surrounding residential streets, including:
                   </p>
 
                   <div className="grid grid-cols-2 gap-2 text-[13px] text-slate-700">
                     <ul className="list-disc pl-4 space-y-1">
-                      <li>Waltham Cross</li>
-                      <li>Cheshunt</li>
-                      <li>Turnford</li>
-                      <li>Goffs Oak</li>
+                      <li>Walthamstow</li>
+                      <li>Leyton</li>
+                      <li>Leytonstone</li>
+                      <li>Wood Street</li>
+                      <li>Blackhorse Road</li>
+                      <li>Whipps Cross borders</li>
                     </ul>
                     <ul className="list-disc pl-4 space-y-1">
-                      <li>Theobalds Grove</li>
-                      <li>Waltham Abbey borders</li>
-                      <li>Enfield borders</li>
-                      <li>Broxbourne area</li>
+                      <li>Chingford</li>
+                      <li>Highams Park</li>
+                      <li>Upper Walthamstow</li>
+                      <li>South Woodford borders</li>
+                      <li>Snaresbrook borders</li>
+                      <li>Nearby residential streets</li>
                     </ul>
                   </div>
                 </div>
@@ -512,29 +488,160 @@ export default function WalthamCrossAreaPage() {
 
                   <div className="grid grid-cols-2 gap-3 text-[13px] text-slate-700">
                     <ul className="list-disc pl-4 space-y-1">
-                      <li>Single storey rear extensions</li>
-                      <li>Side and wrap around extensions</li>
-                      <li>Dormer loft conversions</li>
-                      <li>Hip to gable lofts where suitable</li>
-                      <li>Internal knock through layouts</li>
+                      <li>Rear and side return extensions</li>
+                      <li>Wrap around and L shaped extensions</li>
+                      <li>Loft conversions and dormers</li>
+                      <li>Hip to gable loft changes</li>
+                      <li>Internal remodelling and knock throughs</li>
                     </ul>
                     <ul className="list-disc pl-4 space-y-1">
-                      <li>Garage conversions</li>
-                      <li>Garden rooms and studios</li>
-                      <li>Refurbishment layouts</li>
-                      <li>Conversion layouts</li>
-                      <li>Building regulation packs</li>
+                      <li>Flat layout reconfigurations</li>
+                      <li>Garden studios and outbuildings</li>
+                      <li>Refurbishments and layout upgrades</li>
+                      <li>Change of use layouts</li>
+                      <li>Small infill schemes</li>
                     </ul>
                   </div>
 
                   <Image
-                    src="/images/hero.jpg"
-                    alt="Completed home improvement project"
+                    src={PROJECT_IMAGE}
+                    alt="Completed rear extension project in London"
                     width={800}
                     height={500}
                     className="rounded-xl object-cover mt-2"
                   />
                 </div>
+              </div>
+
+              <div className="space-y-5">
+                <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
+                  Permitted development limits in Waltham Forest
+                </h2>
+                <p className="text-[13px] text-slate-700">
+                  This is a simplified guide to common permitted development limits. Final confirmation depends on your house type, location, conservation constraints, Article 4 directions and any previous planning restrictions.
+                </p>
+
+                <div className="grid md:grid-cols-3 gap-8 text-[13px] text-slate-700">
+                  <div>
+                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">
+                      Rear extensions
+                    </h3>
+                    <ul className="list-disc pl-4 space-y-1">
+                      <li>Up to 3 m deep on terrace houses</li>
+                      <li>Up to 4 m on semi detached houses</li>
+                      <li>Up to 6 to 8 m with Prior Approval</li>
+                      <li>Maximum 4 m high for single storey</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">
+                      Loft conversions
+                    </h3>
+                    <ul className="list-disc pl-4 space-y-1">
+                      <li>Up to 40 to 50 cubic metres volume</li>
+                      <li>No extensions on the front roof slope</li>
+                      <li>Side windows obscure glazed and fixed</li>
+                      <li>External materials to be similar</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">
+                      Outbuildings
+                    </h3>
+                    <ul className="list-disc pl-4 space-y-1">
+                      <li>Maximum 2.5 m high near boundaries</li>
+                      <li>Cannot be used as a separate dwelling</li>
+                      <li>Use must be incidental to the house</li>
+                      <li>Not more than 50 percent of garden area</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-10">
+                <div className="rounded-2xl bg-white shadow-sm p-6 border border-slate-100 space-y-4">
+                  <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
+                    Planning drawings for Waltham Forest
+                  </h3>
+                  <ul className="list-disc pl-4 space-y-1 text-[13px] text-slate-700">
+                    <li>Existing and proposed floor plans</li>
+                    <li>Existing and proposed elevations</li>
+                    <li>Roof plans and key sections</li>
+                    <li>Block plans and location plans</li>
+                    <li>Drainage and construction notes</li>
+                    <li>Design and access or heritage statements where needed</li>
+                  </ul>
+                </div>
+
+                <div className="rounded-2xl bg-white shadow-sm p-6 border border-slate-100 space-y-4">
+                  <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
+                    Building regulation drawings for Waltham Forest
+                  </h3>
+                  <ul className="list-disc pl-4 space-y-1 text-[13px] text-slate-700">
+                    <li>Structural layouts and coordination</li>
+                    <li>Foundation and beam information</li>
+                    <li>Fire safety and escape routes</li>
+                    <li>Thermal build ups and insulation specs</li>
+                    <li>Ventilation and extract positions</li>
+                    <li>Drainage runs and manhole information</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="rounded-2xl bg-emerald-50 border border-emerald-100 p-6 space-y-3">
+                <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-emerald-900">
+                  Local planning knowledge for Waltham Forest projects
+                </h2>
+                <p className="text-[13px] text-emerald-900">
+                  Waltham Forest includes conservation areas, strong Victorian and Edwardian streets, family housing and rooflines where design quality matters. We shape each scheme to fit local context so approval chances are as strong as possible.
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
+                  Frequently asked questions
+                </h2>
+                <div className="grid md:grid-cols-2 gap-6 text-[13px] text-slate-700">
+                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                    <h3 className="font-semibold text-slate-900">
+                      Do I need planning permission for a rear extension in Waltham Forest
+                    </h3>
+                    <p>
+                      Not always. Many rear extensions in Waltham Forest can be carried out under permitted development, but some homes are affected by conservation area controls, flat status, local constraints or previous planning conditions. We review the address and advise the right route.
+                    </p>
+                  </div>
+                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                    <h3 className="font-semibold text-slate-900">
+                      Is Waltham Forest strict with loft conversions and extensions
+                    </h3>
+                    <p>
+                      Waltham Forest can be more sensitive in conservation areas, on strong character streets and where roof alterations affect the front street scene. Clear drawings and a well-shaped planning proposal are important.
+                    </p>
+                  </div>
+                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                    <h3 className="font-semibold text-slate-900">
+                      How long does Waltham Forest Council take to decide
+                    </h3>
+                    <p>
+                      Householder planning applications usually take around eight weeks after validation. Lawful Development Certificates are often around six to eight weeks, subject to workload and validation.
+                    </p>
+                  </div>
+                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                    <h3 className="font-semibold text-slate-900">
+                      Do you manage the full application to Waltham Forest Council
+                    </h3>
+                    <p>
+                      Yes. We prepare the drawings, complete the forms, upload the documents, submit the application to Waltham Forest Council and respond to planning queries during the process.
+                    </p>
+                  </div>
+                </div>
+
+                <p className="mt-6 text-[13px] font-semibold text-slate-800">
+                  Prefer to speak. Call{" "}
+                  <a href={PHONE_LINK} className="underline">
+                    {PHONE_DISPLAY}
+                  </a>
+                </p>
               </div>
 
               <div className="rounded-2xl bg-slate-900 text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
