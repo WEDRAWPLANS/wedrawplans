@@ -29,11 +29,35 @@ function normalisePhone(value: string) {
 
 function FallbackEmblemIcon({ size = 20 }: { size?: number }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-      <path d="M4 17.2V20h2.8L17.9 8.9l-2.8-2.8L4 17.2Z" stroke="white" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M13.9 6.1 16.7 8.9" stroke="white" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M7 15.7V7.9c0-.5.4-.9.9-.9h3" stroke="white" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M9.6 18h6.5c.5 0 .9-.4.9-.9v-5" stroke="white" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round"/>
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M4 17.2V20h2.8L17.9 8.9l-2.8-2.8L4 17.2Z"
+        stroke="white"
+        strokeWidth="1.9"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M13.9 6.1 16.7 8.9"
+        stroke="white"
+        strokeWidth="1.9"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M7 15.7V7.9c0-.5.4-.9.9-.9h3"
+        stroke="white"
+        strokeWidth="1.9"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M9.6 18h6.5c.5 0 .9-.4.9-.9v-5"
+        stroke="white"
+        strokeWidth="1.9"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }
@@ -43,7 +67,6 @@ export default function FloatingLeadWidget({
   serviceLabel,
   logoSrc,
 }: FloatingLeadWidgetProps) {
-
   const effectiveBorough = (boroughName && boroughName.trim()) || "London";
   const effectiveService = (serviceLabel && serviceLabel.trim()) || "Planning drawings";
   const effectiveLogoSrc = (logoSrc && logoSrc.trim()) || "/images/wedrawplans-emblem.png";
@@ -65,11 +88,6 @@ export default function FloatingLeadWidget({
   const firstFieldRef = useRef<HTMLInputElement | null>(null);
   const lastActiveElementRef = useRef<HTMLElement | null>(null);
 
-  const pagePath = useMemo(() => {
-    if (typeof window === "undefined") return "";
-    return window.location?.pathname || "";
-  }, []);
-
   const isMobile = useMemo(() => {
     if (typeof window === "undefined") return true;
     return window.matchMedia?.("(max-width: 640px)").matches ?? true;
@@ -78,6 +96,35 @@ export default function FloatingLeadWidget({
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (!open) return;
+
+    lastActiveElementRef.current = document.activeElement as HTMLElement | null;
+
+    const timer = window.setTimeout(() => {
+      firstFieldRef.current?.focus();
+    }, 50);
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      window.clearTimeout(timer);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open]);
+
+  useEffect(() => {
+    if (!open && lastActiveElementRef.current) {
+      lastActiveElementRef.current.focus();
+    }
+  }, [open]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -135,14 +182,12 @@ export default function FloatingLeadWidget({
       }
 
       setSent(true);
-
       setName("");
       setPhone("");
       setEmail("");
       setPostcode("");
       setProjectType("");
       setProjectDetails("");
-
     } catch {
       setError("Something went wrong. Please try again.");
     } finally {
@@ -150,29 +195,30 @@ export default function FloatingLeadWidget({
     }
   }
 
-  const z = 2147483647;
+  if (!mounted) return null;
+
+  const widgetZIndex = 60;
+  const overlayZIndex = 100;
   const right = 16;
 
-  /* LOWERED WIDGET POSITION */
-  const bottom = isMobile ? 16 : 24;
-
-  if (!mounted) return null;
+  const bottom = isMobile ? 92 : 24;
+  const maxWidth = isMobile ? 290 : 340;
+  const minHeight = isMobile ? 58 : 60;
 
   return (
     <>
       <button
         type="button"
+        aria-label="Open fixed fee quote form"
         onClick={() => setOpen(true)}
         style={{
           position: "fixed",
           right,
           bottom,
-          zIndex: z,
-          minHeight: isMobile ? 54 : 56,
-
-          /* slightly smaller mobile width */
-          maxWidth: isMobile ? 250 : 320,
-
+          zIndex: widgetZIndex,
+          minHeight,
+          maxWidth,
+          width: "calc(100vw - 32px)",
           borderRadius: 999,
           border: "1px solid rgba(0,0,0,0.10)",
           background: "#ffffff",
@@ -180,27 +226,31 @@ export default function FloatingLeadWidget({
           cursor: "pointer",
           display: "inline-flex",
           alignItems: "center",
-          gap: 8,
-          padding: isMobile ? "8px 12px 8px 8px" : "8px 14px 8px 8px",
+          gap: 10,
+          padding: isMobile ? "9px 14px 9px 9px" : "9px 16px 9px 9px",
+          textAlign: "left",
         }}
       >
         <span
           style={{
-            width: 40,
-            height: 40,
+            width: 42,
+            height: 42,
+            minWidth: 42,
             borderRadius: 999,
             background: "#F00000",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            overflow: "hidden",
           }}
         >
           {!logoFailed ? (
             <img
               src={effectiveLogoSrc}
+              alt="WEDRAWPLANS"
               width={26}
               height={26}
-              style={{ objectFit: "contain" }}
+              style={{ objectFit: "contain", display: "block" }}
               onError={() => setLogoFailed(true)}
             />
           ) : (
@@ -208,12 +258,36 @@ export default function FloatingLeadWidget({
           )}
         </span>
 
-        <span style={{ display: "flex", flexDirection: "column", lineHeight: 1.1 }}>
-          <span style={{ fontSize: 13, fontWeight: 900 }}>
+        <span
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            lineHeight: 1.08,
+            overflow: "hidden",
+          }}
+        >
+          <span
+            style={{
+              fontSize: isMobile ? 12.5 : 14,
+              fontWeight: 900,
+              color: "#111",
+              whiteSpace: "nowrap",
+              textOverflow: "ellipsis",
+              overflow: "hidden",
+            }}
+          >
             Need help with drawings?
           </span>
 
-          <span style={{ fontSize: 11, color: "#666" }}>
+          <span
+            style={{
+              fontSize: isMobile ? 10.5 : 11.5,
+              color: "#666",
+              whiteSpace: "nowrap",
+              textOverflow: "ellipsis",
+              overflow: "hidden",
+            }}
+          >
             Request your fixed fee quote
           </span>
         </span>
@@ -221,27 +295,68 @@ export default function FloatingLeadWidget({
 
       {open && (
         <div
+          role="dialog"
+          aria-modal="true"
           style={{
             position: "fixed",
             inset: 0,
-            zIndex: z + 1,
+            zIndex: overlayZIndex,
             background: "rgba(0,0,0,0.5)",
             display: "flex",
             alignItems: isMobile ? "flex-end" : "center",
             justifyContent: "center",
-            padding: 12,
+            padding: isMobile ? 10 : 16,
           }}
+          onClick={() => setOpen(false)}
         >
           <div
             style={{
               width: "100%",
               maxWidth: 520,
-              borderRadius: 18,
+              borderRadius: isMobile ? "18px 18px 0 0" : 18,
               background: "#fff",
               boxShadow: "0 16px 40px rgba(0,0,0,0.25)",
+              maxHeight: isMobile ? "88vh" : "90vh",
+              overflowY: "auto",
             }}
+            onClick={(e) => e.stopPropagation()}
           >
             <form onSubmit={handleSubmit} style={{ padding: 20 }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  marginBottom: 14,
+                }}
+              >
+                <div>
+                  <div style={{ fontSize: 20, fontWeight: 900, color: "#111" }}>
+                    Get your fixed fee quote
+                  </div>
+                  <div style={{ fontSize: 13, color: "#666", marginTop: 4 }}>
+                    {effectiveService} in {effectiveBorough}
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setOpen(false)}
+                  aria-label="Close"
+                  style={{
+                    border: "1px solid rgba(0,0,0,0.12)",
+                    background: "#fff",
+                    width: 38,
+                    height: 38,
+                    borderRadius: 999,
+                    cursor: "pointer",
+                    fontSize: 18,
+                    lineHeight: 1,
+                  }}
+                >
+                  ×
+                </button>
+              </div>
 
               {!sent ? (
                 <>
@@ -250,34 +365,70 @@ export default function FloatingLeadWidget({
                     placeholder="Name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    style={{ width: "100%", padding: 10, marginBottom: 8 }}
+                    style={{
+                      width: "100%",
+                      padding: 12,
+                      marginBottom: 10,
+                      borderRadius: 10,
+                      border: "1px solid #d9d9d9",
+                      fontSize: 15,
+                    }}
                   />
 
                   <input
                     placeholder="Phone"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    style={{ width: "100%", padding: 10, marginBottom: 8 }}
+                    style={{
+                      width: "100%",
+                      padding: 12,
+                      marginBottom: 10,
+                      borderRadius: 10,
+                      border: "1px solid #d9d9d9",
+                      fontSize: 15,
+                    }}
                   />
 
                   <input
                     placeholder="Email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    style={{ width: "100%", padding: 10, marginBottom: 8 }}
+                    style={{
+                      width: "100%",
+                      padding: 12,
+                      marginBottom: 10,
+                      borderRadius: 10,
+                      border: "1px solid #d9d9d9",
+                      fontSize: 15,
+                    }}
                   />
 
                   <input
                     placeholder="Postcode"
                     value={postcode}
                     onChange={(e) => setPostcode(e.target.value)}
-                    style={{ width: "100%", padding: 10, marginBottom: 8 }}
+                    style={{
+                      width: "100%",
+                      padding: 12,
+                      marginBottom: 10,
+                      borderRadius: 10,
+                      border: "1px solid #d9d9d9",
+                      fontSize: 15,
+                    }}
                   />
 
                   <select
                     value={projectType}
                     onChange={(e) => setProjectType(e.target.value)}
-                    style={{ width: "100%", padding: 10, marginBottom: 8 }}
+                    style={{
+                      width: "100%",
+                      padding: 12,
+                      marginBottom: 10,
+                      borderRadius: 10,
+                      border: "1px solid #d9d9d9",
+                      fontSize: 15,
+                      background: "#fff",
+                    }}
                   >
                     <option value="">Project type</option>
                     <option>House extension</option>
@@ -290,30 +441,60 @@ export default function FloatingLeadWidget({
                     placeholder="Project details"
                     value={projectDetails}
                     onChange={(e) => setProjectDetails(e.target.value)}
-                    rows={3}
-                    style={{ width: "100%", padding: 10 }}
+                    rows={4}
+                    style={{
+                      width: "100%",
+                      padding: 12,
+                      marginBottom: 4,
+                      borderRadius: 10,
+                      border: "1px solid #d9d9d9",
+                      fontSize: 15,
+                      resize: "vertical",
+                    }}
                   />
 
-                  {error && <div style={{ color: "red", marginTop: 8 }}>{error}</div>}
+                  {error && (
+                    <div
+                      style={{
+                        color: "#b00020",
+                        marginTop: 8,
+                        marginBottom: 4,
+                        fontSize: 14,
+                        fontWeight: 600,
+                      }}
+                    >
+                      {error}
+                    </div>
+                  )}
 
                   <button
                     type="submit"
                     disabled={submitting}
                     style={{
-                      marginTop: 10,
+                      marginTop: 12,
                       width: "100%",
-                      padding: 12,
+                      padding: 14,
                       background: "#111",
                       color: "#fff",
-                      borderRadius: 10,
+                      borderRadius: 12,
+                      border: "none",
                       fontWeight: 900,
+                      fontSize: 15,
+                      cursor: "pointer",
                     }}
                   >
                     {submitting ? "Sending..." : "Request quote"}
                   </button>
                 </>
               ) : (
-                <div>
+                <div
+                  style={{
+                    padding: "10px 0 2px",
+                    fontSize: 16,
+                    fontWeight: 700,
+                    color: "#111",
+                  }}
+                >
                   Thank you. We received your enquiry.
                 </div>
               )}
