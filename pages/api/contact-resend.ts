@@ -9,7 +9,7 @@ type PostcodeIntel = {
   coverageLabel: string | null;
 };
 
-const SERVICE_OPTIONS = new Set([
+const KNOWN_SERVICE_OPTIONS = new Set([
   "House extension drawings",
   "Loft conversion drawings",
   "Planning drawings",
@@ -19,11 +19,8 @@ const SERVICE_OPTIONS = new Set([
   "Other drawings",
 ]);
 
-const UK_POSTCODE_REGEX =
-  /^[A-Z]{1,2}\d[A-Z\d]?\s?\d[A-Z]{2}$/i;
-
-const EMAIL_REGEX =
-  /^[^\s@]+@[^\s@]+\.[^\s@]+$/i;
+const UK_POSTCODE_REGEX = /^[A-Z]{1,2}\d[A-Z\d]?\s?\d[A-Z]{2}$/i;
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/i;
 
 const POSTCODE_RULES: Array<{
   test: (outward: string) => boolean;
@@ -162,6 +159,11 @@ const POSTCODE_RULES: Array<{
   { test: (o) => /^SE6$/.test(o), borough: "Lewisham" },
 ];
 
+function toText(value: unknown) {
+  if (value === null || value === undefined) return "";
+  return String(value).trim();
+}
+
 function normalisePostcode(value: string) {
   return value.trim().toUpperCase().replace(/\s+/g, " ");
 }
@@ -186,8 +188,8 @@ function detectPostcodeIntel(postcode: string): PostcodeIntel {
     coverageLabel: borough
       ? `Serving ${outward} • ${borough} area`
       : outward
-      ? `Serving ${outward} area`
-      : null,
+        ? `Serving ${outward} area`
+        : null,
   };
 }
 
@@ -200,6 +202,38 @@ function getClientIp(req: NextApiRequest) {
     return forwarded[0];
   }
   return req.socket.remoteAddress || "unknown";
+}
+
+function normalizeService(value: string) {
+  const raw = toText(value);
+  if (!raw) return "General enquiry";
+
+  const lower = raw.toLowerCase();
+
+  if (KNOWN_SERVICE_OPTIONS.has(raw)) return raw;
+  if (lower.includes("house extension") || lower.includes("rear extension") || lower.includes("side extension") || lower.includes("wraparound")) {
+    return "House extension drawings";
+  }
+  if (lower.includes("loft")) {
+    return "Loft conversion drawings";
+  }
+  if (lower.includes("planning")) {
+    return "Planning drawings";
+  }
+  if (lower.includes("building regulation") || lower.includes("building regs") || lower.includes("building control")) {
+    return "Building regulation drawings";
+  }
+  if (lower.includes("new build")) {
+    return "New build drawings";
+  }
+  if (lower.includes("flat conversion") || lower.includes("conversion to flats") || lower.includes("hmo")) {
+    return "Flat conversion drawings";
+  }
+  if (lower.includes("other")) {
+    return "Other drawings";
+  }
+
+  return raw;
 }
 
 function scoreLead(input: {
@@ -217,7 +251,7 @@ function scoreLead(input: {
   if (EMAIL_REGEX.test(input.email)) score += 20;
   if (input.phone.replace(/[^\d+]/g, "").length >= 10) score += 20;
   if (UK_POSTCODE_REGEX.test(input.postcode)) score += 20;
-  if (SERVICE_OPTIONS.has(input.service)) score += 15;
+  if (input.service.length >= 3) score += 15;
   if (input.borough) score += 5;
   if (typeof input.timeTakenMs === "number" && input.timeTakenMs >= 2500) score += 5;
 
@@ -260,34 +294,30 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   if (req.method !== "POST") {
-    return res
-      .status(405)
-      .json({ success: false, error: "Method not allowed" });
+    return res.status(405).json({ success: false, error: "Method not allowed" });
   }
 
   const ip = getClientIp(req);
   const now = Date.now();
   const windowMs = 10 * 60 * 1000;
-  const maxRequests = 5;
+  const maxRequests = 20;
 
   const recent = (rateStore.get(ip) || []).filter((ts) => now - ts < windowMs);
   if (recent.length >= maxRequests) {
-    return res
-      .status(429)
-      .json({ success: false, error: "Too many requests. Please try again later." });
+    return res.status(429).json({ success: false, error: "Too many requests. Please try again later." });
   }
   recent.push(now);
   rateStore.set(ip, recent);
 
   const body = (req.body as any) || {};
 
-  const name = String(body.name || "").trim();
-  const email = String(body.email || "").trim();
-  const phone = String(body.phone || "").trim();
-  const message = String(body.message || "").trim();
-  const service = String(body.service || "").trim();
-  const postcode = String(body.postcode || "").trim();
-  const hp = String(body.hp || body.company || "").trim();
+  const rawName = toText(body.name);
+  const rawEmail = toText(body.email);
+  const rawPhone = toText(body.phone);
+  const rawMessage = toText(body.message);
+  const rawService = toText(body.service);
+  const rawPostcode = toText(body.postcode);
+  const hp = toText(body.hp || body.company);
   const timeTakenMs =
     typeof body.timeTakenMs === "number"
       ? body.timeTakenMs
@@ -297,66 +327,56 @@ export default async function handler(
     return res.status(200).json({ success: true });
   }
 
-  if (!name || !email || !phone || !service || !postcode) {
-    return res
-      .status(400)
-      .json({ success: false, error: "Missing required fields." });
-  }
+  const name = rawName || "Website visitor";
+  const email = rawEmail;
+  const phone = rawPhone;
+  const message = rawMessage;
+  const service = normalizeService(rawService);
+  const postcode = rawPostcode;
+  const normalisedPostcode = postcode ? normalisePostcode(postcode) : "";
 
-  if (name.length < 2 || name.length > 80) {
-    return res
-      .status(400)
-      .json({ success: false, error: "Invalid name." });
-  }
+  const postcodeIntel = postcode ? detectPostcodeIntel(postcode) : {
+    normalized: "",
+    outward: "",
+    borough: null,
+    coverageLabel: null,
+  };
 
-  if (!EMAIL_REGEX.test(email)) {
-    return res
-      .status(400)
-      .json({ success: false, error: "Invalid email address." });
-  }
+  const borough =
+    toText(body.borough) ||
+    postcodeIntel.borough ||
+    null;
 
-  if (phone.replace(/[^\d+]/g, "").length < 10) {
-    return res
-      .status(400)
-      .json({ success: false, error: "Invalid phone number." });
-  }
-
-  if (!UK_POSTCODE_REGEX.test(postcode)) {
-    return res
-      .status(400)
-      .json({ success: false, error: "Invalid postcode." });
-  }
-
-  if (!SERVICE_OPTIONS.has(service)) {
-    return res
-      .status(400)
-      .json({ success: false, error: "Invalid service." });
-  }
-
-  if (typeof timeTakenMs === "number" && timeTakenMs > 0 && timeTakenMs < 2500) {
-    return res
-      .status(400)
-      .json({ success: false, error: "Submission rejected." });
-  }
-
-  if (message && isSuspiciousMessage(message)) {
-    return res
-      .status(400)
-      .json({ success: false, error: "Submission rejected." });
-  }
-
-  const postcodeIntel = detectPostcodeIntel(postcode);
-  const borough = String(body.borough || postcodeIntel.borough || "").trim() || null;
   const coverageLabel =
-    String(body.coverageLabel || postcodeIntel.coverageLabel || "").trim() || null;
+    toText(body.coverageLabel) ||
+    postcodeIntel.coverageLabel ||
+    null;
+
   const outwardCode =
-    String(body.outwardCode || postcodeIntel.outward || "").trim() || null;
+    toText(body.outwardCode) ||
+    postcodeIntel.outward ||
+    null;
+
+  const validationWarnings: string[] = [];
+
+  if (!rawName) validationWarnings.push("Name missing");
+  if (!email && !phone) validationWarnings.push("No email or phone provided");
+  if (email && !EMAIL_REGEX.test(email)) validationWarnings.push("Email format looks invalid");
+  if (phone && phone.replace(/[^\d+]/g, "").length < 10) validationWarnings.push("Phone number looks short");
+  if (postcode && !UK_POSTCODE_REGEX.test(postcode)) validationWarnings.push("Postcode format not standard");
+  if (!rawService) validationWarnings.push("Service missing");
+  if (typeof timeTakenMs === "number" && timeTakenMs > 0 && timeTakenMs < 2500) {
+    validationWarnings.push("Submitted very quickly");
+  }
+  if (message && isSuspiciousMessage(message)) {
+    validationWarnings.push("Message matched spam keywords");
+  }
 
   const leadScore = scoreLead({
     name,
     email,
     phone,
-    postcode: normalisePostcode(postcode),
+    postcode: normalisedPostcode,
     service,
     borough,
     timeTakenMs,
@@ -369,9 +389,7 @@ export default async function handler(
 
     if (!apiKey) {
       console.error("RESEND_API_KEY is not set in environment variables");
-      return res
-        .status(500)
-        .json({ success: false, error: "Email service not configured." });
+      return res.status(500).json({ success: false, error: "Email service not configured." });
     }
 
     const fromAddress = "WeDrawPlans <onboarding@resend.dev>";
@@ -394,14 +412,18 @@ export default async function handler(
       `IP: ${ip}`,
       "",
       `Name: ${name}`,
-      `Email: ${email}`,
-      `Phone: ${phone}`,
-      `Postcode: ${normalisePostcode(postcode)}`,
-      `Service: ${service}`,
+      `Email: ${email || "Not provided"}`,
+      `Phone: ${phone || "Not provided"}`,
+      `Postcode: ${normalisedPostcode || "Not provided"}`,
+      `Service: ${service || "General enquiry"}`,
+      `Raw service submitted: ${rawService || "Not provided"}`,
       `Borough: ${borough || "Not specified"}`,
       "",
       "Main message / description:",
-      message || "Quick quote from homepage hero form",
+      message || "Quick quote from website form",
+      "",
+      "Validation warnings:",
+      validationWarnings.length ? validationWarnings.join(" | ") : "None",
       "",
       "All submitted form fields:",
       JSON.stringify(body, null, 2),
@@ -409,34 +431,35 @@ export default async function handler(
 
     const text = textLines.join("\n");
 
+    const resendPayload: Record<string, unknown> = {
+      from: fromAddress,
+      to: toAddresses,
+      subject,
+      text,
+    };
+
+    if (EMAIL_REGEX.test(email)) {
+      resendPayload.reply_to = email;
+    }
+
     const response = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${apiKey}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        from: fromAddress,
-        to: toAddresses,
-        reply_to: email,
-        subject,
-        text,
-      }),
+      body: JSON.stringify(resendPayload),
     });
 
     if (!response.ok) {
       const responseBody = await response.text();
       console.error("Resend error:", response.status, responseBody);
-      return res
-        .status(500)
-        .json({ success: false, error: "Failed to send email." });
+      return res.status(500).json({ success: false, error: "Failed to send email." });
     }
 
     return res.status(200).json({ success: true });
   } catch (err) {
     console.error("Unexpected error sending email:", err);
-    return res
-      .status(500)
-      .json({ success: false, error: "Unexpected error sending email." });
+    return res.status(500).json({ success: false, error: "Unexpected error sending email." });
   }
 }
