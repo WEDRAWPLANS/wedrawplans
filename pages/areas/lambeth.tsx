@@ -2,7 +2,6 @@ import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
-import AreaTopHeader from "../../components/AreaTopHeader";
 import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 
 const PHONE_DISPLAY = "020 3654 8508";
@@ -115,9 +114,38 @@ export default function LambethAreaPage() {
         />
       </Head>
 
-      <AreaTopHeader />
-
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
+        <header className="border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur">
+          <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 lg:px-6">
+            <div>
+              <div className="text-lg font-semibold tracking-[0.2em] uppercase">
+                WEDRAWPLANS
+              </div>
+              <div className="text-[11px] uppercase tracking-[0.2em] text-slate-500">
+                Architectural drawing consultants
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <a
+                href={PHONE_LINK}
+                className="hidden sm:inline-flex items-center gap-1 rounded-full border border-slate-300 px-3 py-1.5 text-[12px] font-medium text-slate-900 hover:bg-slate-900 hover:text-white"
+              >
+                {PHONE_DISPLAY}
+              </a>
+
+              <a
+                href={WHATSAPP_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-3 py-1.5 text-[12px] font-medium text-white hover:bg-[#1ebe57]"
+              >
+                💬 WhatsApp
+              </a>
+            </div>
+          </div>
+        </header>
+
         <main>
           <section className="border-b border-slate-200 bg-[#fdf8f3]">
             <div className="mx-auto max-w-5xl flex flex-col lg:flex-row gap-6 px-4 py-8 lg:px-6 lg:py-10">
@@ -135,13 +163,11 @@ export default function LambethAreaPage() {
                 </p>
 
                 <p className="mt-3 text-[13px] text-slate-700">
-                  We regularly work across Lambeth including Clapham, Brixton, Stockwell, Streatham and West Norwood, helping homeowners
-                  extend, convert lofts and upgrade layouts with clear planning and technical drawings.
+                  We regularly work across Lambeth including Clapham, Brixton, Stockwell, Streatham and West Norwood, helping homeowners extend, convert lofts and upgrade layouts with clear planning and technical drawings.
                 </p>
 
                 <p className="mt-3 text-[13px] text-slate-700">
-                  Typical Lambeth homes include Victorian terraces where side return and wrap around extensions are popular, plus loft dormers
-                  where the street character and conservation constraints allow.
+                  Typical Lambeth homes include Victorian terraces where side return and wrap around extensions are popular, plus loft dormers where the street character and conservation constraints allow.
                 </p>
 
                 <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
@@ -262,6 +288,7 @@ export default function LambethAreaPage() {
                         <option>House extension</option>
                         <option>Loft conversion</option>
                         <option>Internal remodelling</option>
+                        <option>New build house</option>
                         <option>Conversion to flats</option>
                         <option>Building regulation pack only</option>
                         <option>Outbuilding or garden room</option>
@@ -309,8 +336,7 @@ export default function LambethAreaPage() {
                     Architectural drawing services in Lambeth
                   </h2>
                   <p className="text-[13px] text-slate-700">
-                    WEDRAWPLANS provide full drawing packages for extensions, loft conversions, internal alterations, outbuildings and flat conversion
-                    projects across Lambeth.
+                    WEDRAWPLANS provide full drawing packages for extensions, loft conversions, internal alterations, outbuildings and flat conversion projects across Lambeth.
                   </p>
                   <p className="text-[13px] text-slate-700">
                     We work throughout Clapham, Brixton, Streatham, Stockwell, Tulse Hill, West Norwood, Vauxhall, Waterloo and nearby streets.
