@@ -1,13 +1,28 @@
 import React from "react";
 import Head from "next/head";
 import Image from "next/image";
+import { submitBoroughLead } from "../lib/submitBoroughLead";
+
+const PHONE_DISPLAY = "020 3654 8508";
+const PHONE_LINK = "tel:+442036548508";
+const WHATSAPP_LINK =
+  "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20need%20a%20quote%20for%20plans%20in%20Lambeth";
 
 export default function Lambeth() {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    await submitBoroughLead(e, { boroughName: "Lambeth" });
+  }
+
+  function scrollToForm() {
+    const el = document.getElementById("lambeth-quote");
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
   const localBusinessJson = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: "WEDRAWPLANS",
-    url: "https://www.wedrawplans.co.uk/lambeth",
+    url: "https://www.wedrawplans.co.uk/areas/lambeth",
     telephone: "+44 20 3654 8508",
     email: "info@wedrawplans.com",
     image: "https://www.wedrawplans.co.uk/images/drawings.jpg",
@@ -86,7 +101,7 @@ export default function Lambeth() {
           name="description"
           content="Architectural drawing services in Lambeth for extensions, loft conversions, flat conversions, outbuildings and building regulation plans. Fast surveys, clear drawings and full planning support with Lambeth Council."
         />
-        <link rel="canonical" href="https://www.wedrawplans.co.uk/lambeth" />
+        <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/lambeth" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
@@ -97,9 +112,39 @@ export default function Lambeth() {
         />
       </Head>
 
-      <main className="bg-slate-50">
-        {/* HERO */}
-        <section className="relative bg-emerald-900 text-white">
+      <div className="min-h-screen bg-slate-50 text-slate-900">
+        <header className="border-b border-slate-200 bg-white/95 backdrop-blur">
+          <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 lg:px-6">
+            <div>
+              <div className="text-lg font-semibold tracking-[0.2em] uppercase">
+                WEDRAWPLANS
+              </div>
+              <div className="text-[11px] uppercase tracking-[0.2em] text-slate-500">
+                Architectural drawing consultants
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <a
+                href={PHONE_LINK}
+                className="hidden sm:inline-flex items-center gap-1 rounded-full border border-slate-300 px-3 py-1.5 text-[12px] font-medium text-slate-900 hover:bg-slate-900 hover:text-white"
+              >
+                {PHONE_DISPLAY}
+              </a>
+
+              <a
+                href={WHATSAPP_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-3 py-1.5 text-[12px] font-medium text-white hover:bg-[#1ebe57]"
+              >
+                WhatsApp
+              </a>
+            </div>
+          </div>
+        </header>
+
+        <section className="relative overflow-hidden border-b border-slate-200 bg-emerald-900 text-white">
           <div className="absolute inset-0 opacity-15 mix-blend-soft-light">
             <Image
               src="/images/drawings.jpg"
@@ -109,81 +154,157 @@ export default function Lambeth() {
             />
           </div>
 
-          <div className="relative mx-auto max-w-5xl px-6 py-16 space-y-8">
-            <p className="text-xs font-semibold tracking-[0.2em] text-emerald-100">
-              WEDRAWPLANS • LAMBETH
-            </p>
+          <div className="relative mx-auto max-w-5xl px-4 py-10 lg:px-6">
+            <div className="grid gap-8 lg:grid-cols-[1.1fr,0.9fr] lg:items-start">
+              <div>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-emerald-100">
+                  WEDRAWPLANS • Lambeth
+                </p>
 
-            <h1 className="text-4xl md:text-5xl font-bold leading-tight">
-              Architectural Drawings in Lambeth
-            </h1>
+                <h1 className="mt-3 text-3xl font-bold leading-tight md:text-5xl">
+                  Architectural Drawings in Lambeth
+                </h1>
 
-            <p className="max-w-3xl text-sm md:text-base text-emerald-50">
-              Architectural drawing services in Clapham, Brixton, Streatham, Norwood,
-              Vauxhall, Waterloo and across Lambeth. We prepare drawings for
-              extensions, loft conversions, flat conversions and outbuildings, aligned
-              with Lambeth Council guidance and current Building Regulations.
-            </p>
+                <p className="mt-4 max-w-3xl text-sm md:text-base text-emerald-50">
+                  Architectural drawing services in Clapham, Brixton, Streatham, Norwood,
+                  Vauxhall, Waterloo and across Lambeth. We prepare drawings for
+                  extensions, loft conversions, flat conversions and outbuildings, aligned
+                  with Lambeth Council guidance and current Building Regulations.
+                </p>
 
-            <div className="grid md:grid-cols-[2fr,1.2fr] gap-8 items-start">
-              <div className="space-y-3 text-sm">
-                <div className="grid sm:grid-cols-2 gap-3">
-                  <ul className="space-y-1 list-disc pl-4">
+                <div className="mt-5 grid gap-3 sm:grid-cols-2 text-sm">
+                  <ul className="space-y-1 list-disc pl-4 text-emerald-50">
                     <li>Measured survey within 48 hours</li>
                     <li>Planning and permitted development advice</li>
                     <li>Support with basements and split levels</li>
                   </ul>
-                  <ul className="space-y-1 list-disc pl-4">
+                  <ul className="space-y-1 list-disc pl-4 text-emerald-50">
                     <li>Drawings tailored to Lambeth policies</li>
                     <li>Building regulation packages for 2025 standards</li>
                     <li>Fixed quotes with clear scope of work</li>
                   </ul>
                 </div>
 
-                <p className="mt-2 text-xs text-emerald-100">
+                <p className="mt-4 text-xs text-emerald-100">
                   Typical Lambeth projects include rear and wrap extensions in
                   Streatham and Norwood, loft conversions in Clapham and Brixton, and
                   refurbishments and flat layouts near Vauxhall and Waterloo.
                 </p>
+
+                <div className="mt-5 flex flex-wrap items-center gap-3">
+                  <button
+                    onClick={scrollToForm}
+                    className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-emerald-900 shadow-lg shadow-emerald-900/30 hover:bg-emerald-50 transition"
+                  >
+                    Get your free Lambeth quote
+                  </button>
+
+                  <a
+                    href={PHONE_LINK}
+                    className="text-sm font-medium text-white underline"
+                  >
+                    Or call {PHONE_DISPLAY}
+                  </a>
+                </div>
               </div>
 
-              <div className="space-y-2 text-sm text-right md:text-left">
-                <p className="text-xs text-emerald-100">Talk to us</p>
-                <p className="text-sm text-white">
-                  Phone{" "}
-                  <a
-                    href="tel:+442036548508"
-                    className="font-semibold text-white underline"
-                  >
-                    +44 20 3654 8508
-                  </a>
-                </p>
-                <p className="text-sm text-white">
-                  Email{" "}
-                  <a
-                    href="mailto:info@wedrawplans.com"
-                    className="font-semibold text-white underline"
-                  >
-                    info@wedrawplans.com
-                  </a>
-                </p>
-              </div>
-            </div>
+              <div id="lambeth-quote">
+                <div className="rounded-2xl bg-white p-5 shadow-xl">
+                  <h2 className="text-[14px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+                    Free fixed fee quote
+                  </h2>
 
-            <div className="pt-2">
-              <a
-                href="/#quote"
-                className="inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-semibold text-emerald-900 shadow-lg shadow-emerald-900/30 hover:bg-emerald-50 transition"
-              >
-                Get your free Lambeth quote
-              </a>
+                  <p className="mt-2 text-[13px] text-slate-700">
+                    Tell us a little about your property and what you plan to build. We will
+                    reply with a clear fixed fee for your drawings.
+                  </p>
+
+                  <form onSubmit={handleSubmit} className="mt-4 space-y-3 text-[13px]">
+                    <div>
+                      <label className="text-[11px] font-medium text-slate-900">Name</label>
+                      <input
+                        name="name"
+                        required
+                        className="w-full border-b border-slate-300 bg-transparent px-1 py-2 focus:border-emerald-700 focus:outline-none"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                      <div>
+                        <label className="text-[11px] font-medium text-slate-900">Telephone</label>
+                        <input
+                          name="phone"
+                          required
+                          className="w-full border-b border-slate-300 bg-transparent px-1 py-2 focus:border-emerald-700 focus:outline-none"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="text-[11px] font-medium text-slate-900">Email</label>
+                        <input
+                          name="email"
+                          required
+                          className="w-full border-b border-slate-300 bg-transparent px-1 py-2 focus:border-emerald-700 focus:outline-none"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="text-[11px] font-medium text-slate-900">Lambeth postcode</label>
+                      <input
+                        name="postcode"
+                        required
+                        placeholder="SW2 1AA"
+                        className="w-full border-b border-slate-300 bg-transparent px-1 py-2 focus:border-emerald-700 focus:outline-none"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="text-[11px] font-medium text-slate-900">Project type</label>
+                      <select
+                        name="projectType"
+                        required
+                        defaultValue=""
+                        className="w-full border-b border-slate-300 bg-transparent px-1 py-2 focus:border-emerald-700 focus:outline-none"
+                      >
+                        <option value="" disabled>Select one</option>
+                        <option>Extension</option>
+                        <option>Loft conversion</option>
+                        <option>Internal remodelling</option>
+                        <option>New build house</option>
+                        <option>Conversion to flats</option>
+                        <option>Building regulation pack</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="text-[11px] font-medium text-slate-900">Brief description of your project</label>
+                      <textarea
+                        name="projectDetails"
+                        rows={4}
+                        className="w-full rounded border border-slate-300 px-2 py-2 focus:border-emerald-700 focus:outline-none"
+                        placeholder="Tell us about your Lambeth project…"
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="w-full rounded-full bg-emerald-800 px-4 py-3 text-[13px] font-semibold uppercase tracking-[0.2em] text-white hover:bg-emerald-700"
+                    >
+                      Get a fixed fee quote
+                    </button>
+
+                    <p className="text-[12px] text-slate-600">
+                      No obligation. Same-day response on most enquiries.
+                    </p>
+                  </form>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* MAIN CONTENT */}
-        <section className="mx-auto max-w-5xl px-6 py-14 space-y-14">
-          {/* INTRO + DRAWINGS CARD */}
+        <main className="mx-auto max-w-5xl px-4 py-14 lg:px-6 space-y-14">
           <div className="grid md:grid-cols-[1.7fr,1.3fr] gap-10 items-start">
             <div className="space-y-4">
               <h2 className="text-2xl font-semibold">
@@ -221,7 +342,6 @@ export default function Lambeth() {
             </div>
           </div>
 
-          {/* AREAS + PROJECT TYPES */}
           <div className="grid md:grid-cols-2 gap-10">
             <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
               <h3 className="text-lg font-semibold">Lambeth areas we cover</h3>
@@ -276,7 +396,6 @@ export default function Lambeth() {
             </div>
           </div>
 
-          {/* PLANNING / PD */}
           <div className="space-y-5">
             <h2 className="text-2xl font-semibold">
               Planning and permitted development in Lambeth
@@ -319,7 +438,6 @@ export default function Lambeth() {
             </div>
           </div>
 
-          {/* PACKS */}
           <div className="grid md:grid-cols-2 gap-10">
             <div className="rounded-2xl bg-white shadow-sm p-6 border border-slate-100 space-y-4">
               <h3 className="text-lg font-semibold">
@@ -350,7 +468,6 @@ export default function Lambeth() {
             </div>
           </div>
 
-          {/* LOCAL KNOWLEDGE */}
           <div className="rounded-2xl bg-emerald-50 border border-emerald-100 p-6 space-y-3">
             <h2 className="text-2xl font-semibold text-emerald-900">
               Local planning knowledge for Lambeth projects
@@ -362,7 +479,6 @@ export default function Lambeth() {
             </p>
           </div>
 
-          {/* FAQ */}
           <div className="space-y-4">
             <h2 className="text-2xl font-semibold">Frequently asked questions</h2>
             <div className="grid md:grid-cols-2 gap-6 text-sm text-slate-700">
@@ -406,7 +522,6 @@ export default function Lambeth() {
             </div>
           </div>
 
-          {/* FINAL CTA */}
           <div className="rounded-2xl bg-slate-900 text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
               <h2 className="text-xl font-semibold">
@@ -420,10 +535,10 @@ export default function Lambeth() {
             </div>
             <div className="flex flex-col space-y-1 text-sm">
               <a
-                href="tel:+442036548508"
+                href={PHONE_LINK}
                 className="font-semibold text-emerald-300 underline"
               >
-                +44 20 3654 8508
+                {PHONE_DISPLAY}
               </a>
               <a
                 href="mailto:info@wedrawplans.com"
@@ -431,19 +546,18 @@ export default function Lambeth() {
               >
                 info@wedrawplans.com
               </a>
-              <a
-                href="/#quote"
+              <button
+                onClick={scrollToForm}
                 className="mt-2 inline-flex items-center justify-center rounded-full bg-white px-5 py-2 text-sm font-semibold text-emerald-900 shadow hover:bg-emerald-100"
               >
                 Get your free Lambeth quote
-              </a>
+              </button>
             </div>
           </div>
 
-          {/* INTERNAL LINKS */}
           <div className="text-xs text-slate-500 pt-4">
             <p>
-              See also:{" "}
+              See also{" "}
               <a href="/extension-plans" className="underline text-emerald-700">
                 House extension drawings
               </a>
@@ -453,16 +567,16 @@ export default function Lambeth() {
                 className="underline text-emerald-700"
               >
                 Loft conversion drawings
-              </a>{" "}
-              and{" "}
+              </a>
+              {" "}and{" "}
               <a href="/" className="underline text-emerald-700">
                 WEDRAWPLANS home page
               </a>
               .
             </p>
           </div>
-        </section>
-      </main>
+        </main>
+      </div>
     </>
   );
 }
