@@ -12,7 +12,7 @@ interface HeroSliderProps {
 
 const HeroSlider: React.FC<HeroSliderProps> = ({
   slides,
-  intervalMs = 4500,
+  intervalMs = 5000,
 }) => {
   const [current, setCurrent] = useState(0);
 
@@ -44,15 +44,6 @@ const HeroSlider: React.FC<HeroSliderProps> = ({
     setCurrent(index);
   };
 
-  const mobileVisibleSlides = useMemo(() => {
-    if (!safeSlides.length) return [];
-    return safeSlides;
-  }, [safeSlides]);
-
-  const desktopTop = safeSlides.slice(0, 2);
-  const desktopMiddle = safeSlides.slice(2, 5);
-  const desktopBottom = safeSlides.slice(5, 10);
-
   if (!safeSlides.length) return null;
 
   return (
@@ -60,155 +51,86 @@ const HeroSlider: React.FC<HeroSliderProps> = ({
       <div className="mx-auto max-w-7xl px-4 py-10 lg:px-6 lg:py-14">
         <div className="mb-8 text-center">
           <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-red-700">
-            Real drawings • Real projects • Real build quality
+            Architectural drawing showcase
           </p>
-          <h2 className="mt-3 text-[22px] font-semibold uppercase tracking-[0.12em] text-slate-900 sm:text-[28px]">
-            Real drawings. Real projects. Built across London.
+
+          <h2 className="mt-3 text-[22px] font-semibold uppercase tracking-[0.12em] text-slate-900 sm:text-[28px] lg:text-[34px]">
+            Professional drawings prepared for planning, pricing and construction
           </h2>
-          <p className="mx-auto mt-3 max-w-3xl text-[13px] text-slate-700 sm:text-[15px]">
-            Planning drawings, building regulation details and real extension work
-            that help homeowners trust the process and move forward with confidence.
+
+          <p className="mx-auto mt-3 max-w-3xl text-[13px] text-slate-700 sm:text-[15px] lg:text-[17px]">
+            Planning drawings, building regulation details and design packages prepared to help homeowners, builders and councils move forward with clarity.
           </p>
         </div>
 
-        {/* MOBILE / TABLET SLIDER */}
-        <div className="lg:hidden">
-          <div className="relative overflow-hidden rounded-[24px] bg-white shadow-md">
-            <div
-              className="flex transition-transform duration-700 ease-in-out"
-              style={{ transform: `translateX(-${current * 100}%)` }}
-            >
-              {mobileVisibleSlides.map((slide, idx) => (
-                <div
-                  key={`${slide.src}-${idx}`}
-                  className="w-full flex-shrink-0"
-                >
-                  <div className="relative h-[260px] sm:h-[340px]">
-                    <img
-                      src={slide.src}
-                      alt={slide.alt}
-                      className="h-full w-full object-cover object-center"
-                    />
-                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 text-white">
-                      <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/80">
-                        WEDRAWPLANS showcase
+        <div className="relative overflow-hidden rounded-[28px] bg-white shadow-xl">
+          <div
+            className="flex transition-transform duration-700 ease-in-out"
+            style={{ transform: `translateX(-${current * 100}%)` }}
+          >
+            {safeSlides.map((slide, idx) => (
+              <div
+                key={`${slide.src}-${idx}`}
+                className="relative w-full flex-shrink-0"
+              >
+                <div className="relative h-[260px] sm:h-[360px] md:h-[440px] lg:h-[560px] xl:h-[620px]">
+                  <img
+                    src={slide.src}
+                    alt={slide.alt}
+                    className="h-full w-full object-cover object-center"
+                  />
+
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
+
+                  <div className="absolute inset-x-0 bottom-0 p-4 text-white sm:p-6 lg:p-8">
+                    <div className="max-w-3xl">
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/85 sm:text-[11px]">
+                        WEDRAWPLANS project showcase
                       </p>
-                      <p className="mt-1 text-[14px] font-semibold">
+                      <p className="mt-2 text-[18px] font-semibold leading-tight sm:text-[24px] lg:text-[32px]">
                         {slide.alt}
                       </p>
                     </div>
                   </div>
                 </div>
-              ))}
-            </div>
-
-            {mobileVisibleSlides.length > 1 && (
-              <>
-                <button
-                  onClick={() => goTo(current - 1)}
-                  aria-label="Previous image"
-                  className="absolute left-3 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/90 px-3 py-2 text-lg shadow-md hover:bg-white"
-                >
-                  ‹
-                </button>
-
-                <button
-                  onClick={() => goTo(current + 1)}
-                  aria-label="Next image"
-                  className="absolute right-3 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/90 px-3 py-2 text-lg shadow-md hover:bg-white"
-                >
-                  ›
-                </button>
-
-                <div className="flex items-center justify-center gap-2 px-4 py-4">
-                  {mobileVisibleSlides.map((_, idx) => (
-                    <button
-                      key={idx}
-                      aria-label={`Go to image ${idx + 1}`}
-                      onClick={() => goTo(idx)}
-                      className={`h-2.5 rounded-full transition-all ${
-                        idx === current
-                          ? "w-8 bg-[#64b7c4]"
-                          : "w-2.5 bg-slate-300"
-                      }`}
-                    />
-                  ))}
-                </div>
-              </>
-            )}
+              </div>
+            ))}
           </div>
-        </div>
 
-        {/* DESKTOP SHOWCASE */}
-        <div className="hidden lg:block">
-          <div className="space-y-4">
-            {desktopTop.length > 0 && (
-              <div className="grid grid-cols-2 gap-4">
-                {desktopTop.map((slide, idx) => (
-                  <div
-                    key={`${slide.src}-${idx}`}
-                    className="group relative overflow-hidden rounded-[26px] bg-white shadow-md"
-                  >
-                    <img
-                      src={slide.src}
-                      alt={slide.alt}
-                      className="h-[320px] w-full object-cover object-center transition duration-300 group-hover:scale-[1.03]"
-                    />
-                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-5 text-white">
-                      <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/80">
-                        Featured project
-                      </p>
-                      <p className="mt-1 text-[18px] font-semibold">
-                        {slide.alt}
-                      </p>
-                    </div>
-                  </div>
+          {safeSlides.length > 1 && (
+            <>
+              <button
+                onClick={() => goTo(current - 1)}
+                aria-label="Previous image"
+                className="absolute left-3 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/90 px-3 py-2 text-lg shadow-md transition hover:bg-white sm:left-4 sm:px-4 sm:py-2.5 sm:text-xl"
+              >
+                ‹
+              </button>
+
+              <button
+                onClick={() => goTo(current + 1)}
+                aria-label="Next image"
+                className="absolute right-3 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/90 px-3 py-2 text-lg shadow-md transition hover:bg-white sm:right-4 sm:px-4 sm:py-2.5 sm:text-xl"
+              >
+                ›
+              </button>
+
+              <div className="absolute inset-x-0 bottom-3 z-20 flex items-center justify-center gap-2 sm:bottom-4">
+                {safeSlides.map((_, idx) => (
+                  <button
+                    key={idx}
+                    aria-label={`Go to image ${idx + 1}`}
+                    onClick={() => goTo(idx)}
+                    className={`h-2.5 rounded-full transition-all ${
+                      idx === current
+                        ? "w-8 bg-white"
+                        : "w-2.5 bg-white/60 hover:bg-white/80"
+                    }`}
+                  />
                 ))}
               </div>
-            )}
-
-            {desktopMiddle.length > 0 && (
-              <div className="grid grid-cols-3 gap-4">
-                {desktopMiddle.map((slide, idx) => (
-                  <div
-                    key={`${slide.src}-${idx}`}
-                    className="group relative overflow-hidden rounded-[22px] bg-white shadow-sm"
-                  >
-                    <img
-                      src={slide.src}
-                      alt={slide.alt}
-                      className="h-[220px] w-full object-cover object-center transition duration-300 group-hover:scale-[1.03]"
-                    />
-                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 text-white">
-                      <p className="text-[14px] font-semibold">{slide.alt}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {desktopBottom.length > 0 && (
-              <div className="grid grid-cols-5 gap-4">
-                {desktopBottom.map((slide, idx) => (
-                  <div
-                    key={`${slide.src}-${idx}`}
-                    className="group relative overflow-hidden rounded-[18px] bg-white shadow-sm"
-                  >
-                    <img
-                      src={slide.src}
-                      alt={slide.alt}
-                      className="h-[145px] w-full object-cover object-center transition duration-300 group-hover:scale-[1.03]"
-                    />
-                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent p-3 text-white">
-                      <p className="text-[11px] font-semibold leading-tight">
-                        {slide.alt}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
+            </>
+          )}
         </div>
 
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
