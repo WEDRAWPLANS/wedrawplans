@@ -12,6 +12,7 @@ const EMAIL_LINK = "mailto:info@wedrawplans.com";
 const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Barnet";
 const GOOGLE_BUSINESS_PROFILE_LINK = "https://share.google/D3KId64vHtHSKPALr";
+const VIMEO_BARNET_PROJECT = "https://player.vimeo.com/video/443886303";
 
 type ChatRole = "assistant" | "user";
 type ChatMessage = { role: ChatRole; text: string };
@@ -717,6 +718,51 @@ export default function BarnetAreaPage() {
                     </form>
                   </div>
                 </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="border-b border-slate-200 bg-white py-10">
+            <div className="mx-auto max-w-5xl px-4 lg:px-6">
+              <h2 className="text-center text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+                Planning approved Barnet project
+              </h2>
+
+              <p className="mx-auto mt-3 max-w-3xl text-center text-[13px] leading-7 text-slate-700">
+                A real Barnet planning approved animation showcasing the type of project WEDRAWPLANS can help move from concept to council-ready submission. This is the kind of proof that helps homeowners see how a proposal can be developed and presented properly.
+              </p>
+
+              <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg">
+                <div className="relative w-full overflow-hidden pt-[56.25%]">
+                  <iframe
+                    src={VIMEO_BARNET_PROJECT}
+                    title="Barnet planning approved project animation"
+                    className="absolute left-0 top-0 h-full w-full"
+                    frameBorder="0"
+                    allow="autoplay; fullscreen; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+              </div>
+
+              <div className="mt-5 flex flex-wrap justify-center gap-3">
+                <button
+                  type="button"
+                  onClick={scrollToForm}
+                  className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-[13px] font-semibold uppercase tracking-[0.16em] text-white shadow-sm hover:bg-[#4da4b4]"
+                >
+                  Request drawing fees instantly
+                </button>
+
+                <a
+                  href={GOOGLE_BUSINESS_PROFILE_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2.5 text-[13px] font-semibold text-slate-800 shadow-sm hover:bg-slate-900 hover:text-white"
+                >
+                  <span>⭐</span>
+                  <span>Google Profile</span>
+                </a>
               </div>
             </div>
           </section>
