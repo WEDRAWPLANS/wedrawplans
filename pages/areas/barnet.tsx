@@ -1,14 +1,17 @@
 import React, { useMemo, useRef, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
-import AreaTopHeader from "../../components/AreaTopHeader";
 import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
+const EMAIL = "info@wedrawplans.com";
+const EMAIL_LINK = "mailto:info@wedrawplans.com";
 const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Barnet";
+const GOOGLE_BUSINESS_PROFILE_LINK = "https://share.google/D3KId64vHtHSKPALr";
 
 type ChatRole = "assistant" | "user";
 type ChatMessage = { role: ChatRole; text: string };
@@ -118,13 +121,12 @@ function PlanningAssistant({
 
     const knownPostcode = foundPostcode || postcode;
     const knownType =
-      projectType ||
-      (hasLoftIntent ? "Loft conversion" : hasExtensionIntent ? "House extension" : null);
+      projectType || (hasLoftIntent ? "Loft conversion" : hasExtensionIntent ? "House extension" : null);
 
     if (includesAny(userLower, ["book", "survey", "visit", "measure", "measured"])) {
       return [
         "We can usually arrange the initial measured survey within 48 hours in Barnet, subject to availability.",
-        "If you want, tap Get a quick quote and enter your postcode and project type. We will confirm the next available survey slot.",
+        "If you want, tap Request drawing fees instantly and enter your postcode and project type. We will confirm the next available survey slot.",
       ];
     }
 
@@ -140,7 +142,7 @@ function PlanningAssistant({
       return [
         "We price drawings as fixed fees with a clear scope so you know exactly what you get.",
         "For the fastest accurate quote, share your postcode and project type. If you can, add a one line description like rear extension to a semi or dormer loft with ensuite.",
-        "You can also tap Get a quick quote and complete the form in 60 seconds.",
+        "You can also tap Request drawing fees instantly and complete the form in 60 seconds.",
       ];
     }
 
@@ -156,7 +158,7 @@ function PlanningAssistant({
       return [
         "Loft conversions in Barnet often work well as rear dormers and hip to gable layouts, depending on roof shape and permitted development limits.",
         "Key checks include volume allowance, front roof restrictions, and side window rules. Conservation areas and corner plots may require more careful design.",
-        "Share your postcode and your roof idea and I will tell you the likely path, then you can request a fixed fee quote.",
+        "Share your postcode and your roof idea and I will tell you the likely path, then you can request fixed drawing fees.",
       ];
     }
 
@@ -174,14 +176,14 @@ function PlanningAssistant({
       return [
         "To give accurate guidance, I need two details.",
         ...prompts,
-        "Once I have them, I can recommend the fastest route and you can request a fixed fee quote.",
+        "Once I have them, I can recommend the fastest route and you can request fixed drawing fees.",
       ];
     }
 
     return [
       `Thanks. I have ${knownType}${knownPostcode ? ` for ${knownPostcode}` : ""}.`,
-      "Next step: request a fixed fee quote so we can confirm scope, survey timing, and the correct planning route for Barnet.",
-      "Tap Get a quick quote and we will reply with clear next steps.",
+      "Next step: request fixed drawing fees so we can confirm scope, survey timing, and the correct planning route for Barnet.",
+      "Tap Request drawing fees instantly and we will reply with clear next steps.",
     ];
   }
 
@@ -202,29 +204,29 @@ function PlanningAssistant({
   return (
     <div className="fixed bottom-4 right-4 z-50">
       {open ? (
-        <div className="w-[320px] sm:w-[360px] rounded-2xl shadow-xl border border-slate-200 bg-white overflow-hidden">
-          <div className="flex items-center justify-between px-4 py-3 bg-slate-900 text-white">
+        <div className="w-[320px] sm:w-[360px] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl">
+          <div className="flex items-center justify-between bg-slate-900 px-4 py-3 text-white">
             <div className="text-[12px] font-semibold uppercase tracking-[0.16em]">
               Planning Assistant • {boroughName}
             </div>
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="text-white/90 hover:text-white text-[14px]"
+              className="text-[14px] text-white/90 hover:text-white"
               aria-label="Close assistant"
             >
               ✕
             </button>
           </div>
 
-          <div ref={listRef} className="max-h-[320px] overflow-y-auto px-4 py-3 space-y-3">
+          <div ref={listRef} className="max-h-[320px] space-y-3 overflow-y-auto px-4 py-3">
             {messages.map((m, i) => (
               <div
                 key={i}
                 className={
                   m.role === "user"
-                    ? "ml-auto max-w-[85%] rounded-2xl bg-[#64b7c4] text-white px-3 py-2 text-[13px]"
-                    : "mr-auto max-w-[85%] rounded-2xl bg-slate-100 text-slate-900 px-3 py-2 text-[13px]"
+                    ? "ml-auto max-w-[85%] rounded-2xl bg-[#64b7c4] px-3 py-2 text-[13px] text-white"
+                    : "mr-auto max-w-[85%] rounded-2xl bg-slate-100 px-3 py-2 text-[13px] text-slate-900"
                 }
               >
                 {m.text}
@@ -232,14 +234,14 @@ function PlanningAssistant({
             ))}
 
             <div className="pt-1">
-              <div className="text-[11px] text-slate-500 mb-2">Quick questions</div>
+              <div className="mb-2 text-[11px] text-slate-500">Quick questions</div>
               <div className="flex flex-wrap gap-2">
                 {quickReplies.map((q) => (
                   <button
                     key={q}
                     type="button"
                     onClick={() => handleSend(q)}
-                    className="text-[11px] px-3 py-1.5 rounded-full border border-slate-200 bg-white hover:bg-slate-900 hover:text-white"
+                    className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-[11px] hover:bg-slate-900 hover:text-white"
                   >
                     {q}
                   </button>
@@ -259,7 +261,7 @@ function PlanningAssistant({
               <button
                 type="button"
                 onClick={() => handleSend(input)}
-                className="rounded-full bg-slate-900 text-white px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.14em] hover:bg-slate-800"
+                className="rounded-full bg-slate-900 px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.14em] text-white hover:bg-slate-800"
               >
                 Send
               </button>
@@ -269,15 +271,15 @@ function PlanningAssistant({
               <button
                 type="button"
                 onClick={onGetQuote}
-                className="flex-1 rounded-full bg-[#64b7c4] text-white px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.14em] hover:bg-[#4da4b4]"
+                className="flex-1 rounded-full bg-[#64b7c4] px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.14em] text-white hover:bg-[#4da4b4]"
               >
-                Get a quick quote
+                Request drawing fees instantly
               </button>
               <a
                 href={WHATSAPP_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 text-center rounded-full border border-slate-300 bg-white px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.14em] hover:bg-slate-900 hover:text-white"
+                className="flex-1 rounded-full border border-slate-300 bg-white px-4 py-2 text-center text-[12px] font-semibold uppercase tracking-[0.14em] hover:bg-slate-900 hover:text-white"
               >
                 WhatsApp
               </a>
@@ -292,7 +294,7 @@ function PlanningAssistant({
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="rounded-full shadow-lg border border-slate-200 bg-slate-900 text-white px-4 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] hover:bg-slate-800"
+          className="rounded-full border border-slate-200 bg-slate-900 px-4 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-white shadow-lg hover:bg-slate-800"
         >
           Planning Assistant
         </button>
@@ -346,7 +348,7 @@ export default function BarnetAreaPage() {
       ],
       description:
         "Architectural drawing services in Barnet for extensions, loft conversions, refurbishments, conversions and building regulation packs. Fixed fees with clear scope, survey within 48 hours and fast communication.",
-      sameAs: ["https://twitter.com/WEDRAWPLANS"],
+      sameAs: ["https://twitter.com/WEDRAWPLANS", GOOGLE_BUSINESS_PROFILE_LINK],
     }),
     []
   );
@@ -441,6 +443,10 @@ export default function BarnetAreaPage() {
           name="description"
           content="Architectural drawings in Barnet for extensions, loft conversions, planning applications and building regulation packs. Fixed fees, clear scope, survey within 48 hours and fast communication."
         />
+        <meta
+          name="keywords"
+          content="architectural drawings Barnet, extension drawings Barnet, loft conversion drawings Barnet, planning drawings Barnet, building regulation drawings Barnet, architectural plans Finchley, Hendon, Mill Hill"
+        />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/barnet" />
         <script
           type="application/ld+json"
@@ -452,169 +458,264 @@ export default function BarnetAreaPage() {
         />
       </Head>
 
-      <AreaTopHeader />
-
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
-        <main>
-          <section className="border-b border-slate-200 bg-[#fdf8f3]">
-            <div className="mx-auto max-w-5xl flex flex-col lg:flex-row gap-6 px-4 py-8 lg:px-6 lg:py-10">
-              <div className="lg:w-1/2">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-red-700">
-                  Barnet architectural drawings
-                </p>
+        <header className="sticky top-0 z-[60] border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur">
+          <div className="mx-auto max-w-6xl px-4 pt-4 pb-3 lg:px-6 lg:pt-5">
+            <div className="flex flex-col items-center text-center">
+              <Link href="/" className="inline-flex items-center justify-center">
+                <img
+                  src="/images/wedrawplans-logo.png"
+                  alt="WEDRAWPLANS"
+                  className="h-24 w-auto object-contain lg:h-28"
+                />
+              </Link>
 
-                <h1 className="mt-2 text-[22px] sm:text-[26px] font-semibold uppercase leading-snug tracking-[0.14em]">
-                  Plans for extensions, lofts and new builds in Barnet
-                </h1>
-
-                <p className="mt-3 text-[13px] text-slate-700">
-                  WEDRAWPLANS prepare planning and technical drawings for house extensions, loft conversions, new builds
-                  and conversions across the London Borough of Barnet. Fixed fees with clear scope and fast
-                  communication, focused on approval ready submissions and buildable technical packs.
-                </p>
-
-                <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
-                  <li>• House extensions, side return and wraparound extensions</li>
-                  <li>• Loft conversions including dormers, hip to gable and mansards where suitable</li>
-                  <li>• New build houses and small residential schemes</li>
-                  <li>• Planning drawings and building regulation packs</li>
-                  <li>• Covering Finchley, Hendon, Mill Hill, Whetstone, Totteridge and High Barnet</li>
-                  <li>• Same day response on most enquiries</li>
-                </ul>
-
-                <div className="mt-5 flex flex-wrap gap-3 items-center">
-                  <button
-                    onClick={scrollToForm}
-                    type="button"
-                    className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-white text-[13px] font-semibold uppercase tracking-[0.18em] hover:bg-[#4da4b4]"
-                  >
-                    Get a quick quote
-                  </button>
-
-                  <a href={PHONE_LINK} className="text-[13px] underline text-slate-800">
-                    Or call {PHONE_DISPLAY}
-                  </a>
-                </div>
-
-                <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-4">
-                  <div className="text-[12px] font-semibold uppercase tracking-[0.16em] text-slate-900">
-                    Fast route for Barnet homeowners
-                  </div>
-                  <div className="mt-2 grid grid-cols-1 sm:grid-cols-3 gap-3 text-[12px] text-slate-700">
-                    <div className="rounded-xl border border-slate-100 p-3">
-                      <div className="font-semibold text-slate-900">Step 1</div>
-                      <div>Send postcode and project type</div>
-                    </div>
-                    <div className="rounded-xl border border-slate-100 p-3">
-                      <div className="font-semibold text-slate-900">Step 2</div>
-                      <div>Survey within 48 hours</div>
-                    </div>
-                    <div className="rounded-xl border border-slate-100 p-3">
-                      <div className="font-semibold text-slate-900">Step 3</div>
-                      <div>Fixed fee drawings and submission support</div>
-                    </div>
-                  </div>
-                </div>
+              <div className="mt-2 text-[11px] uppercase tracking-[0.18em] text-slate-600">
+                Architectural Drawing Consultants
               </div>
 
-              <div id="barnet-quote" className="lg:w-1/2">
-                <div className="bg-white p-5 rounded-2xl shadow-md">
-                  <h2 className="text-[14px] uppercase font-semibold tracking-[0.16em] text-slate-900">
-                    Free fixed fee quote
-                  </h2>
+              <div className="mt-4 flex flex-wrap items-center justify-center gap-x-7 gap-y-2 text-[13px] text-slate-900">
+                <Link href="/" className="hover:text-black">
+                  Home
+                </Link>
+                <Link href="/extensions" className="hover:text-black">
+                  Extension Drawings
+                </Link>
+                <Link href="/loft-conversion" className="hover:text-black">
+                  Loft Drawings
+                </Link>
+                <Link href="/new-build" className="hover:text-black">
+                  New Build Drawings
+                </Link>
+                <Link href="/building-regulation-drawings" className="hover:text-black">
+                  Building Regulations
+                </Link>
+                <Link href="/areas" className="hover:text-black">
+                  Areas We Cover
+                </Link>
+              </div>
 
-                  <p className="mt-1 text-[12px] text-slate-600">
-                    Tell us a little about your property and what you plan to build. We will reply with a clear fixed
-                    fee for your drawings and the recommended next steps for Barnet.
+              <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
+                <a
+                  href={PHONE_LINK}
+                  className="inline-flex items-center gap-2 rounded-full bg-[#20243b] px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-[#161a2f]"
+                >
+                  <span>📞</span>
+                  <span>Call {PHONE_DISPLAY}</span>
+                </a>
+
+                <a
+                  href={WHATSAPP_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-[#1ebe57]"
+                >
+                  <span>WhatsApp us now</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <main>
+          <section className="border-b border-slate-200 bg-[#fdf8f3]">
+            <div className="mx-auto max-w-6xl px-4 py-8 lg:px-6 lg:py-10">
+              <div className="flex flex-col gap-8 lg:flex-row lg:items-start">
+                <div className="lg:w-[56%]">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-red-700">
+                    Barnet architectural drawings
                   </p>
 
-                  <form onSubmit={handleSubmit} className="mt-3 space-y-3 text-[13px]">
-                    <div className="space-y-1">
-                      <label className="text-[11px] font-medium">Name</label>
-                      <input
-                        name="name"
-                        required
-                        className="w-full bg-transparent border-b border-slate-300 py-1.5 px-1 focus:border-[#64b7c4] outline-none"
-                      />
-                    </div>
+                  <h1 className="mt-2 text-[22px] font-semibold uppercase leading-snug tracking-[0.14em] text-slate-900 sm:text-[27px]">
+                    Architectural Drawings in Barnet for Extensions, Lofts and New Builds
+                  </h1>
 
-                    <div className="grid sm:grid-cols-2 gap-3">
-                      <div className="space-y-1">
-                        <label className="text-[11px] font-medium">Telephone</label>
-                        <input
-                          name="phone"
-                          required
-                          type="tel"
-                          className="w-full bg-transparent border-b border-slate-300 py-1.5 px-1 focus:border-[#64b7c4] outline-none"
-                        />
-                      </div>
+                  <p className="mt-3 text-[13px] font-semibold tracking-[0.08em] text-slate-800">
+                    Fixed price • Initial survey within 48 hours • Planning and Building Regulation drawings
+                  </p>
 
-                      <div className="space-y-1">
-                        <label className="text-[11px] font-medium">Email</label>
-                        <input
-                          name="email"
-                          required
-                          type="email"
-                          className="w-full bg-transparent border-b border-slate-300 py-1.5 px-1 focus:border-[#64b7c4] outline-none"
-                        />
-                      </div>
-                    </div>
+                  <p className="mt-4 text-[13px] leading-7 text-slate-700">
+                    WEDRAWPLANS prepare planning and technical drawings for house extensions, loft conversions, new builds and conversions across the London Borough of Barnet. We focus on approval ready submissions, practical layouts and buildable technical packs so your project can move from idea to permission and construction with more confidence.
+                  </p>
 
-                    <div className="space-y-1">
-                      <label className="text-[11px] font-medium">Barnet postcode</label>
-                      <input
-                        name="postcode"
-                        required
-                        placeholder="N20 0JZ"
-                        onFocus={(e) => (e.target.placeholder = "")}
-                        onBlur={(e) => !e.target.value && (e.target.placeholder = "N20 0JZ")}
-                        className="w-full border-b border-slate-300 bg-transparent py-1.5 px-1 text-slate-500/70 focus:text-slate-900 focus:border-[#64b7c4] outline-none"
-                      />
-                    </div>
+                  <p className="mt-3 text-[13px] leading-7 text-slate-700">
+                    We work across Finchley, Hendon, Golders Green, Mill Hill, Colindale, Burnt Oak, Whetstone, Totteridge, High Barnet, East Barnet, New Barnet and surrounding streets. If you are in N20, NW4, EN5 or close by, we can advise quickly.
+                  </p>
 
-                    <div className="space-y-1">
-                      <label className="text-[11px] font-medium">Project type</label>
-                      <select
-                        name="projectType"
-                        required
-                        defaultValue=""
-                        className="w-full border-b border-slate-300 bg-transparent py-1.5 px-1 focus:border-[#64b7c4] outline-none"
-                      >
-                        <option value="" disabled>
-                          Select project type
-                        </option>
-                        <option>House extension</option>
-                        <option>Loft conversion</option>
-                        <option>Internal remodelling</option>
-                        <option>New build house</option>
-                        <option>Conversion to flats</option>
-                        <option>Building regulation pack only</option>
-                        <option>Other domestic project</option>
-                      </select>
-                    </div>
+                  <p className="mt-3 text-[13px] leading-7 text-slate-700">
+                    Common Barnet enquiries include rear extensions to semis, wraparound kitchen enlargements, loft dormers, garage conversions and technical packs for projects moving into construction.
+                  </p>
 
-                    <div className="space-y-1">
-                      <label className="text-[11px] font-medium">Brief description of your project</label>
-                      <textarea
-                        name="projectDetails"
-                        rows={4}
-                        placeholder="For example: rear extension to a 1930s semi with a new open plan kitchen diner and a loft bedroom."
-                        className="w-full border border-slate-300 rounded bg-white px-2 py-2 focus:border-[#64b7c4] outline-none"
-                      />
-                    </div>
+                  <div className="mt-5 grid gap-3 sm:grid-cols-3">
+                    <TrustPill title="Fixed drawing fees" body="Clear written pricing before work starts." />
+                    <TrustPill title="Fast response" body="Same day replies on many enquiries." />
+                    <TrustPill title="Barnet aware" body="Prepared for real local planning routes." />
+                  </div>
 
+                  <ul className="mt-5 space-y-1 text-[13px] text-slate-800">
+                    <li>• House extensions, side return and wraparound extensions</li>
+                    <li>• Loft conversions including dormers, hip to gable and mansards where suitable</li>
+                    <li>• New build houses and small residential schemes</li>
+                    <li>• Planning drawings and Building Regulation packs</li>
+                    <li>• Covering Finchley, Hendon, Mill Hill, Whetstone, Totteridge and High Barnet</li>
+                    <li>• Same day response on most enquiries</li>
+                  </ul>
+
+                  <div className="mt-6 flex flex-wrap items-center gap-3">
                     <button
-                      type="submit"
-                      className="w-full rounded-full bg-[#64b7c4] py-2.5 text-white text-[13px] font-semibold uppercase tracking-[0.2em] hover:bg-[#4da4b4]"
+                      type="button"
+                      onClick={scrollToForm}
+                      className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-[13px] font-semibold uppercase tracking-[0.16em] text-white shadow-sm hover:bg-[#4da4b4]"
                     >
-                      Get a fixed fee quote
+                      Request drawing fees instantly
                     </button>
 
-                    <div className="text-[11px] text-slate-500 mt-2 space-y-1">
-                      <div>Typical Barnet projects include rear extensions, loft conversions, wraparound extensions and side returns.</div>
-                      <div>We reply with a clear scope, fixed fee, and the recommended planning route for your address.</div>
+                    <a
+                      href={WHATSAPP_LINK}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2.5 text-[13px] font-semibold text-slate-800 shadow-sm hover:bg-slate-900 hover:text-white"
+                    >
+                      <span>💬</span>
+                      <span>Send photos on WhatsApp</span>
+                    </a>
+
+                    <a
+                      href={GOOGLE_BUSINESS_PROFILE_LINK}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2.5 text-[13px] font-semibold text-slate-800 shadow-sm hover:bg-slate-900 hover:text-white"
+                    >
+                      <span>⭐</span>
+                      <span>Google Profile</span>
+                    </a>
+                  </div>
+
+                  <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                    <div className="text-[12px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+                      Fast route for Barnet homeowners
                     </div>
-                  </form>
+                    <div className="mt-2 grid grid-cols-1 gap-3 text-[12px] text-slate-700 sm:grid-cols-3">
+                      <div className="rounded-xl border border-slate-100 p-3">
+                        <div className="font-semibold text-slate-900">Step 1</div>
+                        <div>Send postcode and project type</div>
+                      </div>
+                      <div className="rounded-xl border border-slate-100 p-3">
+                        <div className="font-semibold text-slate-900">Step 2</div>
+                        <div>Survey within 48 hours</div>
+                      </div>
+                      <div className="rounded-xl border border-slate-100 p-3">
+                        <div className="font-semibold text-slate-900">Step 3</div>
+                        <div>Fixed fee drawings and submission support</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div id="barnet-quote" className="lg:w-[44%]">
+                  <div className="rounded-2xl bg-white p-5 shadow-md">
+                    <h2 className="text-[14px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+                      Request fixed drawing fees for your Barnet project
+                    </h2>
+
+                    <p className="mt-2 text-[12px] leading-6 text-slate-600">
+                      Tell us a little about your property and what you plan to build. We will reply with a clear fixed fee for your drawings and the recommended next steps for Barnet.
+                    </p>
+
+                    <form onSubmit={handleSubmit} className="mt-4 space-y-3 text-[13px]">
+                      <div className="space-y-1">
+                        <label className="text-[11px] font-medium text-slate-700">Name</label>
+                        <input
+                          name="name"
+                          required
+                          className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] outline-none focus:border-[#64b7c4]"
+                        />
+                      </div>
+
+                      <div className="grid gap-3 sm:grid-cols-2">
+                        <div className="space-y-1">
+                          <label className="text-[11px] font-medium text-slate-700">Telephone</label>
+                          <input
+                            name="phone"
+                            required
+                            type="tel"
+                            className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] outline-none focus:border-[#64b7c4]"
+                          />
+                        </div>
+
+                        <div className="space-y-1">
+                          <label className="text-[11px] font-medium text-slate-700">Email</label>
+                          <input
+                            name="email"
+                            required
+                            type="email"
+                            className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] outline-none focus:border-[#64b7c4]"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="space-y-1">
+                        <label className="text-[11px] font-medium text-slate-700">Barnet postcode</label>
+                        <input
+                          name="postcode"
+                          required
+                          placeholder="N20 0JZ"
+                          onFocus={(e) => {
+                            e.target.placeholder = "";
+                          }}
+                          onBlur={(e) => {
+                            if (!e.target.value) e.target.placeholder = "N20 0JZ";
+                          }}
+                          className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] text-slate-500/70 outline-none focus:border-[#64b7c4] focus:text-slate-900"
+                        />
+                      </div>
+
+                      <div className="space-y-1">
+                        <label className="text-[11px] font-medium text-slate-700">What drawings do you need</label>
+                        <select
+                          name="projectType"
+                          required
+                          defaultValue=""
+                          className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] outline-none focus:border-[#64b7c4]"
+                        >
+                          <option value="" disabled>
+                            Select project type
+                          </option>
+                          <option value="House extension drawings">House extension drawings</option>
+                          <option value="Loft conversion drawings">Loft conversion drawings</option>
+                          <option value="Garage conversion drawings">Garage conversion drawings</option>
+                          <option value="Outbuilding or garden room drawings">Outbuilding or garden room drawings</option>
+                          <option value="Internal remodelling drawings">Internal remodelling drawings</option>
+                          <option value="New build house drawings">New build house drawings</option>
+                          <option value="Conversion to flats drawings">Conversion to self contained flats</option>
+                          <option value="Planning drawings only">Planning drawings only</option>
+                          <option value="Building regulation pack only">Building regulation pack only</option>
+                        </select>
+                      </div>
+
+                      <div className="space-y-1">
+                        <label className="text-[11px] font-medium text-slate-700">Brief description of your project</label>
+                        <textarea
+                          name="projectDetails"
+                          rows={4}
+                          placeholder="For example: rear extension to a 1930s semi with a new open plan kitchen diner and a loft bedroom."
+                          className="w-full rounded border border-slate-300 bg-white px-2 py-2 text-[13px] outline-none focus:border-[#64b7c4]"
+                        />
+                      </div>
+
+                      <button
+                        type="submit"
+                        className="w-full rounded-full bg-[#64b7c4] py-2.5 text-[13px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-[#4da4b4]"
+                      >
+                        Request drawing fees instantly
+                      </button>
+
+                      <div className="mt-2 space-y-1 text-[11px] text-slate-500">
+                        <div>Typical Barnet projects include rear extensions, loft conversions, wraparound extensions and side returns.</div>
+                        <div>We reply with a clear scope, fixed fee, and the recommended planning route for your address.</div>
+                      </div>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
@@ -622,50 +723,52 @@ export default function BarnetAreaPage() {
 
           <ServiceInternalLinks boroughName="Barnet" />
 
-          <section className="bg-white border-b border-slate-200 py-10">
-            <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
-              <div className="grid md:grid-cols-[1.7fr,1.3fr] gap-10 items-start">
+          <section className="border-b border-slate-200 bg-white py-10">
+            <div className="mx-auto max-w-5xl space-y-10 px-4 lg:px-6">
+              <div className="grid items-start gap-10 md:grid-cols-[1.7fr,1.3fr]">
                 <div className="space-y-4">
-                  <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
+                  <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
                     Architectural drawing services in Barnet
                   </h2>
-                  <p className="text-[13px] text-slate-700">
-                    WEDRAWPLANS deliver planning drawings and technical packs for Barnet homeowners and property
-                    developers. We design and draw single storey and double storey house extensions, side return and
-                    wraparound extensions, loft conversions, internal reconfiguration, outbuildings, and small new build
-                    schemes. Every package is structured to reduce delays, improve approval confidence, and give builders
-                    clear information to price and build accurately.
+                  <p className="text-[13px] leading-7 text-slate-700">
+                    WEDRAWPLANS deliver planning drawings and technical packs for Barnet homeowners and property developers. We design and draw single storey and double storey house extensions, side return and wraparound extensions, loft conversions, internal reconfiguration, outbuildings, and small new build schemes. Every package is structured to reduce delays, improve approval confidence, and give builders clear information to price and build accurately.
                   </p>
-                  <p className="text-[13px] text-slate-700">
-                    We work throughout Finchley, Hendon, Golders Green, Mill Hill, Whetstone, Totteridge, High Barnet,
-                    East Barnet, New Barnet, Friern Barnet and nearby streets. If you are in N20, NW4, EN5 or close by,
-                    we can advise quickly.
+                  <p className="text-[13px] leading-7 text-slate-700">
+                    We work throughout Finchley, Hendon, Golders Green, Mill Hill, Whetstone, Totteridge, High Barnet, East Barnet, New Barnet, Friern Barnet and nearby streets. If you are in N20, NW4, EN5 or close by, we can advise quickly.
                   </p>
 
-                  <div className="flex flex-wrap gap-3 items-center">
+                  <div className="flex flex-wrap items-center gap-3">
                     <button
                       type="button"
                       onClick={scrollToForm}
-                      className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-white text-[13px] font-semibold uppercase tracking-[0.18em] hover:bg-[#4da4b4]"
+                      className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-[13px] font-semibold uppercase tracking-[0.16em] text-white hover:bg-[#4da4b4]"
                     >
-                      Get a quick quote
+                      Request drawing fees instantly
                     </button>
                     <a
                       href={WHATSAPP_LINK}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-300 bg-white text-[13px] text-slate-800 hover:bg-slate-900 hover:text-white"
+                      className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-[13px] text-slate-800 hover:bg-slate-900 hover:text-white"
                     >
                       💬 Chat on WhatsApp
                     </a>
+                    <a
+                      href={GOOGLE_BUSINESS_PROFILE_LINK}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-[13px] text-slate-800 hover:bg-slate-900 hover:text-white"
+                    >
+                      ⭐ Google Profile
+                    </a>
                   </div>
 
-                  <div className="grid sm:grid-cols-2 gap-4 pt-2">
+                  <div className="grid gap-4 pt-2 sm:grid-cols-2">
                     <div className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
                       <div className="text-[12px] font-semibold uppercase tracking-[0.16em] text-slate-900">
                         What you get
                       </div>
-                      <ul className="mt-3 list-disc pl-5 space-y-1 text-[13px] text-slate-700">
+                      <ul className="mt-3 list-disc space-y-1 pl-5 text-[13px] text-slate-700">
                         <li>Measured survey and existing drawings</li>
                         <li>Proposed plans, elevations and sections</li>
                         <li>Planning submission support if required</li>
@@ -678,7 +781,7 @@ export default function BarnetAreaPage() {
                       <div className="text-[12px] font-semibold uppercase tracking-[0.16em] text-slate-900">
                         Built for lead certainty
                       </div>
-                      <ul className="mt-3 list-disc pl-5 space-y-1 text-[13px] text-slate-700">
+                      <ul className="mt-3 list-disc space-y-1 pl-5 text-[13px] text-slate-700">
                         <li>Fixed fee quote with deliverables listed</li>
                         <li>Survey within 48 hours where possible</li>
                         <li>Barnet specific planning route guidance</li>
@@ -690,37 +793,36 @@ export default function BarnetAreaPage() {
                   </div>
                 </div>
 
-                <div className="rounded-2xl bg-white shadow-md border border-slate-100 overflow-hidden">
+                <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-md">
                   <Image
                     src="/images/drawings.jpg"
                     alt="Example of architectural drawings for a Barnet extension"
                     width={800}
                     height={500}
-                    className="object-cover w-full h-48 md:h-56"
+                    className="h-48 w-full object-cover md:h-56"
                   />
-                  <div className="p-5 space-y-2">
+                  <div className="space-y-2 p-5">
                     <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
                       Technical drawings builders can price from
                     </h3>
-                    <p className="text-[13px] text-slate-700">
-                      Clear floor plans, elevations, sections and notes, coordinated with structural design so builders,
-                      Building Control and inspectors have what they need for accurate pricing and site delivery.
+                    <p className="text-[13px] leading-7 text-slate-700">
+                      Clear floor plans, elevations, sections and notes, coordinated with structural design so builders, Building Control and inspectors have what they need for accurate pricing and site delivery.
                     </p>
                     <div className="pt-2">
                       <button
                         type="button"
                         onClick={scrollToForm}
-                        className="w-full rounded-full bg-slate-900 px-5 py-2.5 text-white text-[12px] font-semibold uppercase tracking-[0.16em] hover:bg-slate-800"
+                        className="w-full rounded-full bg-slate-900 px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.16em] text-white hover:bg-slate-800"
                       >
-                        Get a fixed fee quote
+                        Get fixed drawing fees
                       </button>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-10">
-                <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
+              <div className="grid gap-10 md:grid-cols-2">
+                <div className="space-y-4 rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
                   <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
                     Barnet areas we cover
                   </h3>
@@ -729,11 +831,11 @@ export default function BarnetAreaPage() {
                     alt="Barnet streets and local housing"
                     width={800}
                     height={500}
-                    className="rounded-xl object-cover mb-3"
+                    className="mb-3 rounded-xl object-cover"
                   />
                   <p className="text-[13px] text-slate-700">Drawings for the whole borough of Barnet, including:</p>
                   <div className="grid grid-cols-2 gap-2 text-[13px] text-slate-700">
-                    <ul className="list-disc pl-4 space-y-1">
+                    <ul className="list-disc space-y-1 pl-4">
                       <li>Finchley</li>
                       <li>Hendon</li>
                       <li>Mill Hill</li>
@@ -741,7 +843,7 @@ export default function BarnetAreaPage() {
                       <li>Totteridge</li>
                       <li>High Barnet</li>
                     </ul>
-                    <ul className="list-disc pl-4 space-y-1">
+                    <ul className="list-disc space-y-1 pl-4">
                       <li>Golders Green</li>
                       <li>Colindale</li>
                       <li>Burnt Oak</li>
@@ -752,19 +854,19 @@ export default function BarnetAreaPage() {
                   </div>
                 </div>
 
-                <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
+                <div className="space-y-4 rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
                   <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
                     Popular projects in Barnet
                   </h3>
                   <div className="grid grid-cols-2 gap-3 text-[13px] text-slate-700">
-                    <ul className="list-disc pl-4 space-y-1">
+                    <ul className="list-disc space-y-1 pl-4">
                       <li>3m and larger rear extensions</li>
                       <li>Wraparound and L shaped extensions</li>
                       <li>Side extensions and infill extensions</li>
                       <li>Dormer loft conversions</li>
                       <li>Hip to gable loft conversions</li>
                     </ul>
-                    <ul className="list-disc pl-4 space-y-1">
+                    <ul className="list-disc space-y-1 pl-4">
                       <li>Garage conversions</li>
                       <li>Internal reconfiguration</li>
                       <li>Outbuildings and studios</li>
@@ -777,24 +879,23 @@ export default function BarnetAreaPage() {
                     alt="Completed extension and loft project"
                     width={800}
                     height={500}
-                    className="rounded-xl object-cover mt-2"
+                    className="mt-2 rounded-xl object-cover"
                   />
                 </div>
               </div>
 
               <div className="space-y-5">
-                <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
+                <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
                   Permitted development limits in Barnet
                 </h2>
                 <p className="text-[13px] text-slate-700">
-                  This is a simplified guide to common permitted development limits. Final confirmation depends on your
-                  house type, location and any Article 4 directions or restrictions on your property.
+                  This is a simplified guide to common permitted development limits. Final confirmation depends on your house type, location and any Article 4 directions or restrictions on your property.
                 </p>
 
-                <div className="grid md:grid-cols-3 gap-8 text-[13px] text-slate-700">
+                <div className="grid gap-8 text-[13px] text-slate-700 md:grid-cols-3">
                   <div>
-                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">Rear extensions</h3>
-                    <ul className="list-disc pl-4 space-y-1">
+                    <h3 className="mb-2 font-semibold uppercase tracking-[0.14em] text-slate-900">Rear extensions</h3>
+                    <ul className="list-disc space-y-1 pl-4">
                       <li>Up to 3m deep on terrace houses</li>
                       <li>Up to 4m on semi detached houses</li>
                       <li>Up to 6m to 8m with prior approval where eligible</li>
@@ -802,8 +903,8 @@ export default function BarnetAreaPage() {
                     </ul>
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">Loft conversions</h3>
-                    <ul className="list-disc pl-4 space-y-1">
+                    <h3 className="mb-2 font-semibold uppercase tracking-[0.14em] text-slate-900">Loft conversions</h3>
+                    <ul className="list-disc space-y-1 pl-4">
                       <li>Volume allowance typically 40 to 50 cubic metres depending on house type</li>
                       <li>No extensions on the front roof slope in many cases</li>
                       <li>Side windows often require obscure glazing and fixed opening</li>
@@ -811,8 +912,8 @@ export default function BarnetAreaPage() {
                     </ul>
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">Outbuildings</h3>
-                    <ul className="list-disc pl-4 space-y-1">
+                    <h3 className="mb-2 font-semibold uppercase tracking-[0.14em] text-slate-900">Outbuildings</h3>
+                    <ul className="list-disc space-y-1 pl-4">
                       <li>Maximum 2.5m high near boundaries in many cases</li>
                       <li>Cannot be used as a separate dwelling</li>
                       <li>Use must be incidental to the main house</li>
@@ -822,17 +923,15 @@ export default function BarnetAreaPage() {
                 </div>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-10">
-                <div className="rounded-2xl bg-white shadow-sm p-6 border border-slate-100 space-y-4">
+              <div className="grid gap-10 md:grid-cols-2">
+                <div className="space-y-4 rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
                   <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
                     Planning drawings for Barnet
                   </h3>
-                  <p className="text-[13px] text-slate-700">
-                    Our Barnet planning drawings are set out for smooth validation and clear review. We make sure key
-                    heights, depths and neighbour relationships are communicated properly to reduce unnecessary planning
-                    queries.
+                  <p className="text-[13px] leading-7 text-slate-700">
+                    Our Barnet planning drawings are set out for smooth validation and clear review. We make sure key heights, depths and neighbour relationships are communicated properly to reduce unnecessary planning queries.
                   </p>
-                  <ul className="list-disc pl-4 space-y-1 text-[13px] text-slate-700">
+                  <ul className="list-disc space-y-1 pl-4 text-[13px] text-slate-700">
                     <li>Existing and proposed floor plans</li>
                     <li>Existing and proposed elevations</li>
                     <li>Roof plans and key sections</li>
@@ -842,15 +941,14 @@ export default function BarnetAreaPage() {
                   </ul>
                 </div>
 
-                <div className="rounded-2xl bg-white shadow-sm p-6 border border-slate-100 space-y-4">
+                <div className="space-y-4 rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
                   <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
                     Building regulation drawings for Barnet
                   </h3>
-                  <p className="text-[13px] text-slate-700">
-                    Our Barnet building regs packs focus on buildability and compliance. They reduce site questions, help
-                    builders price accurately, and give Building Control the technical information they need.
+                  <p className="text-[13px] leading-7 text-slate-700">
+                    Our Barnet building regs packs focus on buildability and compliance. They reduce site questions, help builders price accurately, and give Building Control the technical information they need.
                   </p>
-                  <ul className="list-disc pl-4 space-y-1 text-[13px] text-slate-700">
+                  <ul className="list-disc space-y-1 pl-4 text-[13px] text-slate-700">
                     <li>Structural layout coordination and key details</li>
                     <li>Foundation strategy notes and critical junctions</li>
                     <li>Fire safety approach and escape routes where required</li>
@@ -861,117 +959,295 @@ export default function BarnetAreaPage() {
                 </div>
               </div>
 
-              <div className="rounded-2xl bg-emerald-50 border border-emerald-100 p-6 space-y-3">
+              <div className="space-y-3 rounded-2xl border border-emerald-100 bg-emerald-50 p-6">
                 <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-emerald-900">
                   Local planning knowledge for Barnet projects
                 </h2>
-                <p className="text-[13px] text-emerald-900">
-                  Barnet includes conservation areas and character streets where design, scale and materials matter
-                  more. We shape each scheme to suit local context so approval confidence is as strong as possible while
-                  keeping layouts practical for build cost and space gain.
+                <p className="text-[13px] leading-7 text-emerald-900">
+                  Barnet includes conservation areas and character streets where design, scale and materials matter more. We shape each scheme to suit local context so approval confidence is as strong as possible while keeping layouts practical for build cost and space gain.
                 </p>
-                <div className="flex flex-wrap gap-3 items-center pt-2">
+                <div className="flex flex-wrap items-center gap-3 pt-2">
                   <button
                     type="button"
                     onClick={scrollToForm}
-                    className="rounded-full bg-emerald-900 px-5 py-2.5 text-white text-[12px] font-semibold uppercase tracking-[0.16em] hover:bg-emerald-800"
+                    className="rounded-full bg-emerald-900 px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.16em] text-white hover:bg-emerald-800"
                   >
-                    Request a fixed fee quote
+                    Request fixed drawing fees
                   </button>
-                  <a href={PHONE_LINK} className="text-[12px] underline text-emerald-900 font-semibold">
+                  <a href={PHONE_LINK} className="text-[12px] font-semibold text-emerald-900 underline">
                     Call {PHONE_DISPLAY}
+                  </a>
+                  <a
+                    href={GOOGLE_BUSINESS_PROFILE_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[12px] font-semibold text-emerald-900 underline"
+                  >
+                    Google Profile
                   </a>
                 </div>
               </div>
 
               <div className="space-y-4">
-                <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">Frequently asked questions</h2>
-                <div className="grid md:grid-cols-2 gap-6 text-[13px] text-slate-700">
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+                  Frequently asked questions
+                </h2>
+                <div className="grid gap-6 text-[13px] text-slate-700 md:grid-cols-2">
+                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
                     <h3 className="font-semibold text-slate-900">Do I need planning permission in Barnet</h3>
                     <p>
-                      Many extensions and lofts can be permitted development. We check your address and advise the best
-                      route from the start so you avoid delays.
+                      Many extensions and lofts can be permitted development. We check your address and advise the best route from the start so you avoid delays.
                     </p>
                   </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
                     <h3 className="font-semibold text-slate-900">How fast can you survey</h3>
                     <p>In most cases we can arrange the initial measured survey within 48 hours of instruction.</p>
                   </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
                     <h3 className="font-semibold text-slate-900">Do you submit to Barnet Council</h3>
                     <p>Yes. We handle submission, monitor progress and respond to planning officer queries.</p>
                   </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
                     <h3 className="font-semibold text-slate-900">Can you coordinate structural design</h3>
                     <p>
-                      Yes. We coordinate with structural engineers so beams and load paths are designed and shown
-                      correctly on the drawings.
+                      Yes. We coordinate with structural engineers so beams and load paths are designed and shown correctly on the drawings.
                     </p>
                   </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
                     <h3 className="font-semibold text-slate-900">How do you help approval chances in Barnet</h3>
                     <p>
-                      We set out clear dimensions, neighbour relationships and proportionate design. In conservation
-                      areas we focus on character, materials and roof form so the proposal reads well to planners.
+                      We set out clear dimensions, neighbour relationships and proportionate design. In conservation areas we focus on character, materials and roof form so the proposal reads well to planners.
                     </p>
                   </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
                     <h3 className="font-semibold text-slate-900">What is the next step</h3>
                     <p>
-                      Send your postcode and a short description. We reply with a fixed fee and the recommended route:
-                      permitted development, lawful certificate, prior approval or full planning.
+                      Send your postcode and a short description. We reply with fixed drawing fees and the recommended route: permitted development, lawful certificate, prior approval or full planning.
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="rounded-2xl bg-slate-900 text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div className="flex flex-col justify-between gap-4 rounded-2xl bg-slate-900 p-6 text-white md:flex-row md:items-center md:p-8">
                 <div>
                   <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">Ready to start your project</h2>
-                  <p className="text-[13px] text-slate-300 mt-2">
-                    Send your postcode and a short description. We review and reply with a fixed fee and recommended next
-                    steps.
+                  <p className="mt-2 text-[13px] text-slate-300">
+                    Send your postcode and a short description. We review and reply with fixed drawing fees and recommended next steps.
                   </p>
                 </div>
                 <div className="flex flex-col space-y-2 text-[13px]">
                   <a href={PHONE_LINK} className="font-semibold text-emerald-300 underline">
                     {PHONE_DISPLAY}
                   </a>
-                  <a href="mailto:info@wedrawplans.com" className="font-semibold text-emerald-300 underline">
-                    info@wedrawplans.com
+                  <a href={EMAIL_LINK} className="font-semibold text-emerald-300 underline">
+                    {EMAIL}
                   </a>
                   <button
                     type="button"
                     onClick={scrollToForm}
                     className="mt-2 inline-flex items-center justify-center rounded-full bg-white px-5 py-2 text-[13px] font-semibold text-slate-900 shadow hover:bg-emerald-100"
                   >
-                    Get a quick quote
+                    Request drawing fees instantly
                   </button>
                 </div>
               </div>
 
-              <div className="text-[12px] text-slate-600 pt-2">
+              <div className="pt-2 text-[12px] text-slate-600">
                 See also{" "}
-                <a href="/extension-plans" className="underline">
-                  extension plans
-                </a>
+                <Link href="/extensions" className="underline">
+                  extension drawings
+                </Link>
                 ,{" "}
-                <a href="/loft-plans" className="underline">
-                  loft plans
-                </a>{" "}
+                <Link href="/loft-conversion" className="underline">
+                  loft drawings
+                </Link>{" "}
                 and{" "}
-                <a href="/new-build-plans" className="underline">
-                  new build plans
-                </a>
+                <Link href="/new-build" className="underline">
+                  new build drawings
+                </Link>
                 .
               </div>
             </div>
           </section>
 
+          <section className="bg-[#f8f4f0] py-10">
+            <div className="mx-auto max-w-5xl px-4 text-center lg:px-6">
+              <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+                Ready to move your Barnet project forward
+              </h2>
+
+              <p className="mt-3 text-[13px] text-slate-700">
+                Share a few details and WEDRAWPLANS will reply with a clear fixed fee and suggested next steps for your Barnet extension, loft conversion, refurbishment or small new build scheme.
+              </p>
+
+              <div className="mt-5 flex flex-wrap justify-center gap-3">
+                <button
+                  type="button"
+                  onClick={scrollToForm}
+                  className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-[13px] font-semibold uppercase tracking-[0.16em] text-white shadow-sm hover:bg-[#4da4b4]"
+                >
+                  Request drawing fees instantly
+                </button>
+
+                <a
+                  href={WHATSAPP_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-[13px] text-slate-800 shadow-sm hover:bg-slate-900 hover:text-white"
+                >
+                  <span>💬</span>
+                  <span>Chat on WhatsApp</span>
+                </a>
+
+                <a
+                  href={GOOGLE_BUSINESS_PROFILE_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-[13px] text-slate-800 shadow-sm hover:bg-slate-900 hover:text-white"
+                >
+                  <span>⭐</span>
+                  <span>Google Profile</span>
+                </a>
+              </div>
+
+              <p className="mt-5 text-[13px] font-medium text-slate-800">Prefer to speak. Call {PHONE_DISPLAY}</p>
+            </div>
+          </section>
+
           <PlanningAssistant boroughName="Barnet" onGetQuote={scrollToForm} />
         </main>
+
+        <footer className="border-t border-[#2a3050] bg-[#20243b]">
+          <div className="mx-auto max-w-6xl px-4 py-10 lg:px-6">
+            <div className="flex flex-col items-center text-center">
+              <Link href="/" className="inline-flex items-center justify-center">
+                <img
+                  src="/images/wedrawplans-logo.png"
+                  alt="WEDRAWPLANS"
+                  className="h-20 w-auto object-contain"
+                />
+              </Link>
+
+              <div className="mt-3 text-[11px] uppercase tracking-[0.18em] text-white/70">
+                Architectural Drawing Consultants
+              </div>
+
+              <p className="mt-4 max-w-2xl text-[13px] leading-7 text-white/80">
+                WEDRAWPLANS provide architectural drawings for house extensions, loft conversions, planning applications, Building Regulations and small new build projects across Barnet, Finchley, Hendon and surrounding areas.
+              </p>
+
+              <div className="mt-6 flex flex-wrap justify-center gap-3">
+                <a
+                  href={PHONE_LINK}
+                  className="inline-flex items-center justify-center rounded-full bg-white px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.12em] text-[#20243b] shadow-sm hover:bg-slate-100"
+                >
+                  Call {PHONE_DISPLAY}
+                </a>
+
+                <a
+                  href={WHATSAPP_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-full bg-[#25D366] px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.12em] text-white shadow-sm hover:bg-[#1ebe57]"
+                >
+                  WhatsApp us
+                </a>
+
+                <a
+                  href={EMAIL_LINK}
+                  className="inline-flex items-center justify-center rounded-full border border-white/35 px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.12em] text-white hover:bg-white hover:text-[#20243b]"
+                >
+                  Email us
+                </a>
+
+                <a
+                  href={GOOGLE_BUSINESS_PROFILE_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-full border border-white/35 px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.12em] text-white hover:bg-white hover:text-[#20243b]"
+                >
+                  Google Profile
+                </a>
+              </div>
+
+              <div className="mt-8 grid w-full max-w-4xl gap-6 border-t border-white/10 pt-8 text-center md:grid-cols-3">
+                <div>
+                  <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/85">Phone</div>
+                  <div className="mt-2 text-[12px] text-white/65">
+                    <a href={PHONE_LINK} className="hover:text-white">
+                      {PHONE_DISPLAY}
+                    </a>
+                  </div>
+                </div>
+
+                <div>
+                  <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/85">Email</div>
+                  <div className="mt-2 text-[12px] text-white/65">
+                    <a href={EMAIL_LINK} className="hover:text-white">
+                      {EMAIL}
+                    </a>
+                  </div>
+                </div>
+
+                <div>
+                  <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/85">Studio</div>
+                  <div className="mt-2 text-[12px] leading-6 text-white/65">
+                    201 Borough High Street
+                    <br />
+                    London SE1 1JA
+                    <br />
+                    United Kingdom
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8 flex flex-wrap justify-center gap-x-5 gap-y-2 text-[12px] text-white/65">
+                <Link href="/" className="hover:text-white">
+                  Home
+                </Link>
+                <Link href="/areas" className="hover:text-white">
+                  Areas We Cover
+                </Link>
+                <Link href="/extensions" className="hover:text-white">
+                  Extension Drawings
+                </Link>
+                <Link href="/loft-conversion" className="hover:text-white">
+                  Loft Drawings
+                </Link>
+                <Link href="/new-build" className="hover:text-white">
+                  New Build
+                </Link>
+                <Link href="/building-regulation-drawings" className="hover:text-white">
+                  Building Regulations
+                </Link>
+              </div>
+
+              <div className="mt-6 text-[11px] text-white/45">
+                Copyright {new Date().getFullYear()} WEDRAWPLANS. All rights reserved.
+              </div>
+            </div>
+          </div>
+        </footer>
+
+        <a
+          href={WHATSAPP_LINK}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Chat on WhatsApp with WEDRAWPLANS"
+          className="fixed bottom-4 right-4 z-[70] flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg ring-2 ring-white/70 hover:bg-[#1ebe57]"
+        >
+          <span className="text-xl">💬</span>
+        </a>
       </div>
     </>
+  );
+}
+
+function TrustPill({ title, body }: { title: string; body: string }) {
+  return (
+    <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+      <div className="text-[12px] font-semibold uppercase tracking-[0.12em] text-slate-900">{title}</div>
+      <div className="mt-2 text-[12px] leading-6 text-slate-600">{body}</div>
+    </div>
   );
 }
