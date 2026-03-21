@@ -680,9 +680,9 @@ export default function IndexPage() {
                     London architectural drawing specialists
                   </p>
 
-                  <h1 className="mt-3 text-[26px] font-semibold uppercase leading-[1.3] tracking-[0.12em] text-slate-900 xl:text-[34px]">
-                    House Extension & Planning Drawings in London
-                  </h1>
+                  <h1 className="mt-3 text-[26px] font-semibold uppercase leading-[1.3] tracking-[0.14em] text-slate-900 xl:text-[34px]">
+  Get Your House Extension & Planning Drawings Approved Across London & Surrounding Areas
+</h1>
 
                   <p className="mt-3 max-w-[640px] text-[15px] font-medium leading-7 text-slate-800">
                     Get professional drawings for house extensions, loft conversions, new builds and Building Regulations. Initial survey within 48 hours and clear fixed pricing.
