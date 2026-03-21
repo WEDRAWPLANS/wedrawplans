@@ -729,21 +729,41 @@ export default function BarnetAreaPage() {
               </h2>
 
               <p className="mx-auto mt-3 max-w-3xl text-center text-[13px] leading-7 text-slate-700">
-              Planning approved Barnet project (2020) The Reddings, NW7 Complete architectural drawings from concept through to approval and build-ready information.
+                Planning approved Barnet project (2020). Complete architectural drawings from concept through to approval and build-ready information.
               </p>
 
-              <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg">
-                <div className="relative w-full overflow-hidden pt-[56.25%]">
-                  <iframe
-                    src={VIMEO_BARNET_PROJECT}
-                    title="Barnet planning approved project animation"
-                    className="absolute left-0 top-0 h-full w-full"
-                    frameBorder="0"
-                    allow="autoplay; fullscreen; picture-in-picture"
-                    allowFullScreen
-                  />
+              <div className="mt-6 grid items-stretch gap-6 md:grid-cols-2">
+                <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg">
+                  <div className="relative w-full overflow-hidden pt-[56.25%]">
+                    <iframe
+                      src={VIMEO_BARNET_PROJECT}
+                      title="Barnet planning approved project animation"
+                      className="absolute left-0 top-0 h-full w-full"
+                      frameBorder="0"
+                      allow="autoplay; fullscreen; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
                 </div>
+
+                <button
+                  type="button"
+                  onClick={scrollToForm}
+                  className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg text-left transition hover:-translate-y-0.5"
+                >
+                  <Image
+                    src="/images/barnet-extension-planning-drawings.jpg"
+                    alt="Planning drawings for approved Barnet extension project including plans elevations and sections"
+                    width={900}
+                    height={700}
+                    className="h-full w-full object-cover"
+                  />
+                </button>
               </div>
+
+              <p className="mx-auto mt-4 max-w-3xl text-center text-[13px] leading-7 text-slate-700">
+                A coordinated Barnet drawing package including plans, elevations and technical information prepared for approval and construction.
+              </p>
 
               <div className="mt-5 flex flex-wrap justify-center gap-3">
                 <button
