@@ -729,7 +729,7 @@ export default function BarnetAreaPage() {
               </h2>
 
               <p className="mx-auto mt-3 max-w-3xl text-center text-[13px] leading-7 text-slate-700">
-                A real Barnet planning approved animation showcasing the type of project WEDRAWPLANS can help move from concept to council-ready submission. This is the kind of proof that helps homeowners see how a proposal can be developed and presented properly.
+              Planning approved Barnet project (2020) The Reddings, NW7 Complete architectural drawings from concept through to approval and build-ready information.
               </p>
 
               <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg">
