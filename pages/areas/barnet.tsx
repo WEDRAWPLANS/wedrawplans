@@ -12,7 +12,6 @@ const EMAIL_LINK = "mailto:info@wedrawplans.com";
 const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Barnet";
 const GOOGLE_BUSINESS_PROFILE_LINK = "https://share.google/D3KId64vHtHSKPALr";
-const VIMEO_BARNET_PROJECT = "https://player.vimeo.com/video/443886303";
 
 type ChatRole = "assistant" | "user";
 type ChatMessage = { role: ChatRole; text: string };
@@ -322,7 +321,7 @@ export default function BarnetAreaPage() {
       url: "https://www.wedrawplans.co.uk/areas/barnet",
       telephone: "+44 20 3654 8508",
       email: "info@wedrawplans.com",
-      image: "https://www.wedrawplans.co.uk/images/hero.jpg",
+      image: "https://www.wedrawplans.co.uk/images/barnet-extension-planning-drawings.jpg",
       address: {
         "@type": "PostalAddress",
         streetAddress: "201 Borough High Street",
@@ -729,21 +728,21 @@ export default function BarnetAreaPage() {
               </h2>
 
               <p className="mx-auto mt-3 max-w-3xl text-center text-[13px] leading-7 text-slate-700">
-                Planning approved Barnet project (2020). Complete architectural drawings from concept through to approval and build-ready information.
+                Barnet planning approved project from 2020. Example of a full drawing package developed from design stage through approval and onward into build-ready information.
               </p>
 
               <div className="mt-6 grid items-stretch gap-6 md:grid-cols-2">
-                <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg">
-                  <div className="relative w-full overflow-hidden pt-[56.25%]">
-                    <iframe
-                      src={VIMEO_BARNET_PROJECT}
-                      title="Barnet planning approved project animation"
-                      className="absolute left-0 top-0 h-full w-full"
-                      frameBorder="0"
-                      allow="autoplay; fullscreen; picture-in-picture"
-                      allowFullScreen
-                    />
-                  </div>
+                <div className="overflow-hidden rounded-2xl border border-slate-200 bg-black shadow-lg">
+                  <video
+                    controls
+                    playsInline
+                    preload="metadata"
+                    poster="/images/barnet-video-poster.jpg"
+                    className="h-full w-full"
+                  >
+                    <source src="/videos/barnet-planning-project.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
                 </div>
 
                 <button
@@ -753,7 +752,7 @@ export default function BarnetAreaPage() {
                 >
                   <Image
                     src="/images/barnet-extension-planning-drawings.jpg"
-                    alt="Planning drawings for approved Barnet extension project including plans elevations and sections"
+                    alt="Planning drawings for approved Barnet project including plans elevations and sections"
                     width={900}
                     height={700}
                     className="h-full w-full object-cover"
@@ -762,7 +761,7 @@ export default function BarnetAreaPage() {
               </div>
 
               <p className="mx-auto mt-4 max-w-3xl text-center text-[13px] leading-7 text-slate-700">
-                A coordinated Barnet drawing package including plans, elevations and technical information prepared for approval and construction.
+                A coordinated Barnet drawing package including plans, elevations, sections and technical information prepared for approval and construction.
               </p>
 
               <div className="mt-5 flex flex-wrap justify-center gap-3">
@@ -893,8 +892,8 @@ export default function BarnetAreaPage() {
                     Barnet areas we cover
                   </h3>
                   <Image
-                    src="/images/hero.jpg"
-                    alt="Barnet streets and local housing"
+                    src="/images/barnet-area-covered.jpg"
+                    alt="Barnet streets and local housing across Finchley Hendon Mill Hill Whetstone and surrounding areas"
                     width={800}
                     height={500}
                     className="mb-3 rounded-xl object-cover"
