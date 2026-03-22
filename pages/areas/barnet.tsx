@@ -732,19 +732,18 @@ export default function BarnetAreaPage() {
               </p>
 
               <div className="mt-6 grid items-stretch gap-6 md:grid-cols-2">
-                <div className="overflow-hidden rounded-2xl border border-slate-200 bg-black shadow-lg">
-                  <video
-                    controls
-                    playsInline
-                    preload="metadata"
-                    poster="/images/barnet-video-poster.jpg"
-                    className="h-full w-full"
-                  >
-                    <source src="/videos/barnet-planning-project.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
-                </div>
-
+    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-black shadow-lg">
+  <video
+    controls
+    playsInline
+    preload="metadata"
+    poster="/images/video-main-poster.jpg"
+    className="h-full w-full object-cover"
+  >
+    <source src="/videos/barnet-planning-project.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+</div>
                 <button
                   type="button"
                   onClick={scrollToForm}
