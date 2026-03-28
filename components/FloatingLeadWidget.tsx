@@ -201,9 +201,9 @@ export default function FloatingLeadWidget({
   const overlayZIndex = 100;
   const right = 16;
 
-  const bottom = isMobile ? 116 : 28;
-  const maxWidth = isMobile ? 290 : 340;
-  const minHeight = isMobile ? 58 : 60;
+  const bottom = isMobile ? 86 : 26;
+  const maxWidth = isMobile ? 340 : 340;
+  const minHeight = isMobile ? 56 : 60;
 
   return (
     <>
@@ -218,7 +218,7 @@ export default function FloatingLeadWidget({
           zIndex: widgetZIndex,
           minHeight,
           maxWidth,
-          width: "calc(100vw - 32px)",
+          width: isMobile ? "calc(100vw - 32px)" : 340,
           borderRadius: 999,
           border: "1px solid rgba(0,0,0,0.10)",
           background: "#ffffff",
