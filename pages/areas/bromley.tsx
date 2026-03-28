@@ -25,17 +25,68 @@ function includesAny(haystack: string, needles: string[]) {
   return needles.some((n) => s.includes(n));
 }
 
+function extractPostcodeLoose(text: string) {
+  const t = text.toUpperCase();
+  const match = t.match(/\bBR\d{1,2}\s?\d?[A-Z]{0,2}\b/g);
+  if (!match) return "";
+  return match[0].replace(/\s+/g, " ").trim();
+}
+
+function detectProjectType(text: string) {
+  const userLower = text.toLowerCase();
+
+  const projectSignals: Array<{ label: string; terms: string[] }> = [
+    {
+      label: "House extension drawings",
+      terms: ["extension", "rear", "side", "wrap", "wraparound", "kitchen", "dining", "single storey", "double storey"],
+    },
+    {
+      label: "Loft conversion drawings",
+      terms: ["loft", "dormer", "hip", "gable", "mansard", "roof"],
+    },
+    {
+      label: "Building regulation pack only",
+      terms: ["building regs", "building regulation", "regulations", "building control", "technical", "structural notes"],
+    },
+    {
+      label: "Garage conversion drawings",
+      terms: ["garage", "garage conversion"],
+    },
+    {
+      label: "Outbuilding or garden room drawings",
+      terms: ["outbuilding", "garden room", "studio", "annexe", "summerhouse"],
+    },
+    {
+      label: "New build house drawings",
+      terms: ["new build", "newbuild", "self build", "house build"],
+    },
+    {
+      label: "Conversion to self contained flats",
+      terms: ["flat", "flats", "conversion", "hmo", "studio flat", "change of use"],
+    },
+    {
+      label: "Internal remodelling drawings",
+      terms: ["internal", "knock through", "open plan", "layout", "reconfigure"],
+    },
+  ];
+
+  const match = projectSignals.find((p) => includesAny(userLower, p.terms));
+  return match ? match.label : "";
+}
+
 function PlanningAssistant({
   boroughName,
-  onGetQuote,
 }: {
   boroughName: string;
-  onGetQuote: () => void;
 }) {
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
-  const [postcode, setPostcode] = useState<string | null>(null);
-  const [projectType, setProjectType] = useState<string | null>(null);
+  const [postcode, setPostcode] = useState("");
+  const [projectType, setProjectType] = useState("");
+  const [projectStage, setProjectStage] = useState("");
+  const [showLeadForm, setShowLeadForm] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: "assistant",
@@ -45,7 +96,7 @@ function PlanningAssistant({
     {
       role: "assistant",
       text:
-        "Quick start: type something like rear extension BR1, loft conversion BR2, garage conversion BR5, or building regs pack BR6.",
+        "I can help with extensions, lofts, garage conversions, planning drawings and building regs, then prepare your fixed fee request inside this assistant.",
     },
   ]);
 
@@ -53,12 +104,22 @@ function PlanningAssistant({
 
   const quickReplies = useMemo(
     () => [
-      "Do I need planning permission in Bromley",
-      "Permitted development for rear extension",
-      "Loft conversion rules in Bromley",
+      "Rear extension BR1",
+      "Loft conversion BR2",
+      "Building regs pack BR3",
+      "Garage conversion BR5",
       "How long does Bromley Council take",
       "How much do drawings cost",
-      "Book a survey within 48 hours",
+    ],
+    []
+  );
+
+  const stageOptions = useMemo(
+    () => [
+      "Just exploring",
+      "Need planning drawings",
+      "Need building regs",
+      "Ready to start",
     ],
     []
   );
@@ -70,59 +131,24 @@ function PlanningAssistant({
     }, 0);
   }
 
-  function extractPostcode(text: string) {
-    const t = text.toUpperCase();
-    const match = t.match(/\bBR\d{1,2}\s?\d?[A-Z]{0,2}\b/g);
-    if (!match) return null;
-    return match[0].replace(/\s+/g, " ").trim();
+  function maybeOpenLeadForm(nextPostcode: string, nextProjectType: string) {
+    if (nextPostcode && nextProjectType) {
+      setShowLeadForm(true);
+    }
   }
 
   function generateAssistantReply(userTextRaw: string) {
     const userText = sanitizeText(userTextRaw);
     const userLower = userText.toLowerCase();
 
-    const foundPostcode = extractPostcode(userText);
+    const foundPostcode = extractPostcodeLoose(userText);
+    const foundProjectType = detectProjectType(userText);
+
+    const nextPostcode = foundPostcode || postcode;
+    const nextProjectType = foundProjectType || projectType;
+
     if (foundPostcode && !postcode) setPostcode(foundPostcode);
-
-    const projectSignals: Array<{ label: string; terms: string[] }> = [
-      {
-        label: "House extension",
-        terms: ["extension", "rear", "side", "wrap", "wraparound", "kitchen", "dining", "single storey", "double storey"],
-      },
-      {
-        label: "Loft conversion",
-        terms: ["loft", "dormer", "hip", "gable", "mansard", "roof"],
-      },
-      {
-        label: "Building regulation pack",
-        terms: ["building regs", "building regulation", "regulations", "building control", "technical", "structural notes"],
-      },
-      {
-        label: "Garage conversion",
-        terms: ["garage", "garage conversion"],
-      },
-      {
-        label: "Outbuilding or garden room",
-        terms: ["outbuilding", "garden room", "studio", "annexe", "summerhouse"],
-      },
-      {
-        label: "New build house",
-        terms: ["new build", "newbuild", "self build", "house build"],
-      },
-      {
-        label: "Conversion to flats",
-        terms: ["flat", "flats", "conversion", "hmo", "studio flat", "change of use"],
-      },
-      {
-        label: "Internal remodelling",
-        terms: ["internal", "knock through", "open plan", "layout", "reconfigure"],
-      },
-    ];
-
-    if (!projectType) {
-      const match = projectSignals.find((p) => includesAny(userLower, p.terms));
-      if (match) setProjectType(match.label);
-    }
+    if (foundProjectType && !projectType) setProjectType(foundProjectType);
 
     const hasPlanningIntent = includesAny(userLower, [
       "planning",
@@ -153,86 +179,70 @@ function PlanningAssistant({
 
     const hasCostIntent = includesAny(userLower, ["cost", "price", "how much", "fee", "quote", "budget"]);
     const hasSurveyIntent = includesAny(userLower, ["book", "survey", "visit", "measure", "measured", "come out"]);
-    const hasLoftIntent = includesAny(userLower, ["loft", "dormer", "hip", "gable", "mansard", "roof"]);
-    const hasExtensionIntent = includesAny(userLower, [
-      "rear extension",
-      "side return",
-      "wrap",
-      "extension",
-      "kitchen",
-      "single storey",
-      "double storey",
-    ]);
-
-    const knownPostcode = foundPostcode || postcode;
-    const knownType =
-      projectType || (hasLoftIntent ? "Loft conversion" : hasExtensionIntent ? "House extension" : null);
 
     if (hasSurveyIntent) {
+      maybeOpenLeadForm(nextPostcode, nextProjectType);
       return [
         "We can usually arrange the initial measured survey within 48 hours in Bromley, subject to availability.",
-        "Tap Request drawing fees instantly and enter your postcode and project type. We will confirm the next available survey slot and the likely planning route.",
+        nextPostcode && nextProjectType
+          ? "I have enough to start your fixed fee request. Complete the short form below and we will confirm the next step."
+          : "Tell me your postcode and project type, and I will prepare the fixed fee request inside this assistant.",
       ];
     }
 
     if (hasTimelineIntent) {
+      maybeOpenLeadForm(nextPostcode, nextProjectType);
       return [
         "Typical times: a householder planning application is often 6 to 8 weeks after validation. A Lawful Development Certificate is often 4 to 6 weeks after validation.",
         "For Bromley, we focus on getting the submission correct first time so validation is not delayed.",
-        "Tell me your postcode and what you want to build and I will suggest the best route.",
+        nextPostcode && nextProjectType
+          ? "I can now turn this into a fixed fee request for you below."
+          : "Tell me your postcode and project type and I will guide you to the best route.",
       ];
     }
 
     if (hasCostIntent) {
+      maybeOpenLeadForm(nextPostcode, nextProjectType);
       return [
         "We price drawings as fixed fees with a clear written scope so you know exactly what is included.",
         "For the fastest accurate quote, share your postcode and project type, plus a one line description like 4m rear extension or dormer loft with ensuite.",
-        "You can also tap Request drawing fees instantly and complete the form in about 60 seconds.",
+        nextPostcode && nextProjectType
+          ? "You can now complete the short quote form below."
+          : "Once I have the basics, I will open the fixed fee request here for you.",
       ];
     }
 
     if (hasPlanningIntent) {
+      maybeOpenLeadForm(nextPostcode, nextProjectType);
       return [
         "In Bromley, many home extensions and loft conversions can be permitted development, but it depends on house type, location, conservation status, green belt constraints in some areas, and any restrictions affecting the property.",
         "The safest approach is a quick address check, then we recommend permitted development, prior approval, lawful certificate, or full planning where needed.",
-        "Share your postcode and what you want to build and I will guide you to the correct route.",
+        nextPostcode && nextProjectType
+          ? "I have enough to start your request below."
+          : "Share your postcode and what you want to build and I will guide you to the correct route.",
       ];
     }
 
-    if (hasLoftIntent) {
-      return [
-        "Loft conversions in Bromley often work well as rear dormers and hip to gable layouts, depending on the roof shape and permitted development limits.",
-        "Key checks include volume allowance, front roof restrictions, side window rules, and whether the property sits in a sensitive location.",
-        "Share your postcode and your loft idea and I will tell you the likely route, then you can request fixed drawing fees.",
-      ];
-    }
-
-    if (hasExtensionIntent) {
-      return [
-        "Rear and wraparound extensions are common in Bromley. The route can be permitted development, prior approval, or full planning depending on depth, height, location and neighbour relationships.",
-        "Share your postcode and a simple description like 4m rear extension or wraparound kitchen extension, and I will guide you to the best route.",
-      ];
-    }
-
-    if (!knownPostcode || !knownType) {
+    if (!nextPostcode || !nextProjectType) {
       const prompts: string[] = [];
-      if (!knownType) {
-        prompts.push("What is your project type: extension, loft, garage conversion, outbuilding, new build, or building regs pack");
+      if (!nextProjectType) {
+        prompts.push("What is your project type: extension, loft, garage conversion, outbuilding, new build, or building regs pack.");
       }
-      if (!knownPostcode) {
-        prompts.push("What is your postcode: for example BR1, BR2, BR3, BR5 or BR6");
+      if (!nextPostcode) {
+        prompts.push("What is your postcode: for example BR1, BR2, BR3, BR5 or BR6.");
       }
       return [
-        "To give accurate guidance, I need two details.",
+        "To guide you properly, I need two details.",
         ...prompts,
-        "Once I have them, I can recommend the fastest route and you can request fixed drawing fees.",
       ];
     }
+
+    maybeOpenLeadForm(nextPostcode, nextProjectType);
 
     return [
-      `Thanks. I have ${knownType}${knownPostcode ? ` for ${knownPostcode}` : ""}.`,
-      "Next step: request fixed drawing fees so we can confirm scope, survey timing, and the correct planning route for Bromley.",
-      "Tap Request drawing fees instantly and we will reply with clear next steps.",
+      `Perfect. I have ${nextProjectType}${nextPostcode ? ` for ${nextPostcode}` : ""}.`,
+      "The next best step is a fixed fee request so we can confirm scope, survey timing and the likely planning route.",
+      "Complete the short form below and we will review it quickly.",
     ];
   }
 
@@ -250,53 +260,181 @@ function PlanningAssistant({
     setInput("");
   }
 
+  async function handleAssistantLeadSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    await submitBoroughLead(e, { boroughName: "Bromley" });
+    setSubmitted(true);
+    pushMessage({
+      role: "assistant",
+      text:
+        "Thank you. Your request has been received. We will review your project and come back with the likely route and fixed fee.",
+    });
+  }
+
   return (
-<div className="fixed bottom-4 right-[76px] z-[70]">
+    <div className="fixed bottom-4 right-[76px] z-[70]">
       {open ? (
-        <div className="w-[320px] sm:w-[360px] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl">
-          <div className="flex items-center justify-between bg-slate-900 px-4 py-3 text-white">
-            <div className="text-[12px] font-semibold uppercase tracking-[0.16em]">
-              Planning Assistant • {boroughName}
+        <div className="w-[320px] sm:w-[360px] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl">
+          <div className="border-b border-slate-200 bg-slate-900 px-4 py-3 text-white">
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <div className="text-[12px] font-semibold uppercase tracking-[0.16em]">
+                  Planning Assistant
+                </div>
+                <div className="mt-1 text-[11px] text-white/75">
+                  Fast guidance and fixed fee request for {boroughName}
+                </div>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                className="rounded-full border border-white/15 px-2.5 py-1 text-[12px] text-white/90 hover:bg-white/10 hover:text-white"
+                aria-label="Close assistant"
+              >
+                ✕
+              </button>
             </div>
-            <button
-              type="button"
-              onClick={() => setOpen(false)}
-              className="text-[14px] text-white/90 hover:text-white"
-              aria-label="Close assistant"
-            >
-              ✕
-            </button>
           </div>
 
-          <div ref={listRef} className="max-h-[320px] space-y-3 overflow-y-auto px-4 py-3">
+          <div ref={listRef} className="max-h-[280px] space-y-3 overflow-y-auto px-4 py-4">
             {messages.map((m, i) => (
               <div
                 key={i}
                 className={
                   m.role === "user"
-                    ? "ml-auto max-w-[85%] rounded-2xl bg-[#64b7c4] px-3 py-2 text-[13px] text-white"
-                    : "mr-auto max-w-[85%] rounded-2xl bg-slate-100 px-3 py-2 text-[13px] text-slate-900"
+                    ? "ml-auto max-w-[88%] rounded-2xl bg-[#64b7c4] px-3 py-2 text-[13px] leading-6 text-white"
+                    : "mr-auto max-w-[88%] rounded-2xl bg-slate-100 px-3 py-2 text-[13px] leading-6 text-slate-900"
                 }
               >
                 {m.text}
               </div>
             ))}
 
-            <div className="pt-1">
-              <div className="mb-2 text-[11px] text-slate-500">Quick questions</div>
-              <div className="flex flex-wrap gap-2">
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
+              <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-700">
+                Quick start
+              </div>
+              <div className="mt-2 flex flex-wrap gap-2">
                 {quickReplies.map((q) => (
                   <button
                     key={q}
                     type="button"
                     onClick={() => handleSend(q)}
-                    className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-[11px] hover:bg-slate-900 hover:text-white"
+                    className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-[11px] text-slate-700 hover:bg-slate-900 hover:text-white"
                   >
                     {q}
                   </button>
                 ))}
               </div>
             </div>
+
+            {showLeadForm && (
+              <div className="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
+                <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-700">
+                  Fixed fee request
+                </div>
+
+                {!submitted ? (
+                  <form onSubmit={handleAssistantLeadSubmit} className="mt-3 space-y-2.5">
+                    <input
+                      name="name"
+                      required
+                      placeholder="Name"
+                      className="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-[13px] outline-none focus:border-[#64b7c4]"
+                    />
+
+                    <input
+                      name="phone"
+                      required
+                      type="tel"
+                      placeholder="Phone"
+                      className="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-[13px] outline-none focus:border-[#64b7c4]"
+                    />
+
+                    <input
+                      name="email"
+                      required
+                      type="email"
+                      placeholder="Email"
+                      className="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-[13px] outline-none focus:border-[#64b7c4]"
+                    />
+
+                    <input
+                      name="postcode"
+                      required
+                      value={postcode}
+                      onChange={(e) => setPostcode(e.target.value)}
+                      placeholder="Postcode"
+                      className="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-[13px] outline-none focus:border-[#64b7c4]"
+                    />
+
+                    <select
+                      name="projectType"
+                      required
+                      value={projectType}
+                      onChange={(e) => setProjectType(e.target.value)}
+                      className="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-[13px] outline-none focus:border-[#64b7c4]"
+                    >
+                      <option value="">Select project type</option>
+                      <option value="House extension drawings">House extension drawings</option>
+                      <option value="Loft conversion drawings">Loft conversion drawings</option>
+                      <option value="Garage conversion drawings">Garage conversion drawings</option>
+                      <option value="Outbuilding or garden room drawings">Outbuilding or garden room drawings</option>
+                      <option value="Internal remodelling drawings">Internal remodelling drawings</option>
+                      <option value="New build house drawings">New build house drawings</option>
+                      <option value="Conversion to self contained flats">Conversion to self contained flats</option>
+                      <option value="Planning drawings only">Planning drawings only</option>
+                      <option value="Building regulation pack only">Building regulation pack only</option>
+                    </select>
+
+                    <div>
+                      <div className="mb-2 text-[11px] font-medium text-slate-600">Project stage</div>
+                      <div className="flex flex-wrap gap-2">
+                        {stageOptions.map((stage) => (
+                          <button
+                            key={stage}
+                            type="button"
+                            onClick={() => setProjectStage(stage)}
+                            className={`rounded-full border px-3 py-1.5 text-[11px] ${
+                              projectStage === stage
+                                ? "border-slate-900 bg-slate-900 text-white"
+                                : "border-slate-300 bg-white text-slate-700 hover:bg-slate-100"
+                            }`}
+                          >
+                            {stage}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    <input type="hidden" name="projectStage" value={projectStage} />
+
+                    <textarea
+                      name="projectDetails"
+                      rows={3}
+                      placeholder="Brief project details"
+                      className="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-[13px] outline-none focus:border-[#64b7c4]"
+                    />
+
+                    <button
+                      type="submit"
+                      className="w-full rounded-full bg-[#64b7c4] px-4 py-2.5 text-[12px] font-semibold uppercase tracking-[0.14em] text-white hover:bg-[#4da4b4]"
+                    >
+                      Get fixed fee quote
+                    </button>
+
+                    <div className="text-[10px] leading-5 text-slate-500">
+                      We review the details, confirm the likely route, and come back with clear next steps.
+                    </div>
+                  </form>
+                ) : (
+                  <div className="mt-3 rounded-xl bg-emerald-50 px-3 py-3 text-[12px] leading-6 text-emerald-900">
+                    Thank you. Your request has been sent. You can also send photos on WhatsApp for a faster review.
+                  </div>
+                )}
+              </div>
+            )}
           </div>
 
           <div className="border-t border-slate-200 p-3">
@@ -316,26 +454,26 @@ function PlanningAssistant({
               </button>
             </div>
 
-            <div className="mt-3 flex items-center justify-between gap-2">
+            <div className="mt-3 grid grid-cols-2 gap-2">
               <button
                 type="button"
-                onClick={onGetQuote}
-                className="flex-1 rounded-full bg-[#64b7c4] px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.14em] text-white hover:bg-[#4da4b4]"
+                onClick={() => setShowLeadForm(true)}
+                className="rounded-full bg-[#64b7c4] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-white hover:bg-[#4da4b4]"
               >
-                Request drawing fees instantly
+                Fixed fee request
               </button>
               <a
                 href={WHATSAPP_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 rounded-full border border-slate-300 bg-white px-4 py-2 text-center text-[12px] font-semibold uppercase tracking-[0.14em] hover:bg-slate-900 hover:text-white"
+                className="rounded-full border border-slate-300 bg-white px-4 py-2 text-center text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-700 hover:bg-slate-900 hover:text-white"
               >
                 WhatsApp
               </a>
             </div>
 
             <div className="mt-2 text-[10px] text-slate-500">
-              This assistant gives general guidance only. We confirm the correct route after checking your address and proposal.
+              Guidance is general only. We confirm the correct route after checking your address and proposal.
             </div>
           </div>
         </div>
@@ -934,15 +1072,15 @@ export default function BromleyAreaPage() {
 
                   <p className="text-[13px] leading-7 text-slate-700">
                     Alongside householder work, some clients also need commercial drawing services for
-                    <Link href="/commercial/restaurants" className="font-semibold underline ml-1">
+                    <Link href="/commercial/restaurants" className="ml-1 font-semibold underline">
                       restaurant drawings
                     </Link>
                     ,
-                    <Link href="/commercial/shopfronts" className="font-semibold underline ml-1">
+                    <Link href="/commercial/shopfronts" className="ml-1 font-semibold underline">
                       shopfront drawings
                     </Link>
                     , or
-                    <Link href="/commercial/office-fitout" className="font-semibold underline ml-1">
+                    <Link href="/commercial/office-fitout" className="ml-1 font-semibold underline">
                       office fit out drawings
                     </Link>
                     . Keeping these links visible helps both search visibility and real client journeys.
@@ -1512,7 +1650,7 @@ export default function BromleyAreaPage() {
             </div>
           </section>
 
-          <PlanningAssistant boroughName="Bromley" onGetQuote={scrollToForm} />
+          <PlanningAssistant boroughName="Bromley" />
         </main>
 
         <footer className="border-t border-[#2a3050] bg-[#20243b]">
@@ -1634,7 +1772,7 @@ export default function BromleyAreaPage() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat on WhatsApp with WEDRAWPLANS"
-     className="fixed bottom-4 right-4 z-[80] flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg ring-2 ring-white/70 hover:bg-[#1ebe57]"
+          className="fixed bottom-4 right-4 z-[80] flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg ring-2 ring-white/70 hover:bg-[#1ebe57]"
         >
           <span className="text-xl">💬</span>
         </a>
