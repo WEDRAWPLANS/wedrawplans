@@ -74,31 +74,226 @@ function detectProjectType(text: string) {
   return match ? match.label : "";
 }
 
-function PlanningAssistant({
-  boroughName,
-}: {
-  boroughName: string;
-}) {
+function PlanningAssistant({ boroughName }: { boroughName: string }) {
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
-  const [postcode, setPostcode] = useState("");
-  const [projectType, setProjectType] = useState("");
-  const [projectStage, setProjectStage] = useState("");
-  const [showLeadForm, setShowLeadForm] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: "assistant",
-      text:
-        "Hi, I am the WEDRAWPLANS planning assistant for Bromley. Tell me what you want to build and your postcode, and I will guide you to the fastest route for drawings and planning.",
+      text: `Hi, I am the WEDRAWPLANS planning assistant for ${boroughName}. Tell me what you want to build and your postcode.`,
     },
     {
       role: "assistant",
-      text:
-        "I can help with extensions, lofts, garage conversions, planning drawings and building regs, then prepare your fixed fee request inside this assistant.",
+      text: "I can guide you on extensions, lofts, garage conversions, planning drawings and building regs.",
     },
   ]);
+
+  const listRef = useRef<HTMLDivElement | null>(null);
+
+  const quickReplies = useMemo(
+    () => [
+      "Rear extension BR1",
+      "Loft conversion BR2",
+      "Garage conversion BR5",
+      "Building regs pack BR3",
+      "How long does Bromley Council take",
+      "How much do drawings cost",
+    ],
+    []
+  );
+
+  function pushMessage(msg: ChatMessage) {
+    setMessages((prev) => [...prev, msg]);
+    setTimeout(() => {
+      if (listRef.current) {
+        listRef.current.scrollTop = listRef.current.scrollHeight;
+      }
+    }, 0);
+  }
+
+  function handleSend(text: string) {
+    const t = sanitizeText(text);
+    if (!t) return;
+
+    pushMessage({ role: "user", text: t });
+
+    const foundPostcode = extractPostcodeLoose(t);
+    const foundProjectType = detectProjectType(t);
+
+    const replies: string[] = [];
+
+    if (!foundPostcode && !foundProjectType) {
+      replies.push("Please tell me your postcode and what type of project you are planning.");
+    } else {
+      if (foundProjectType) {
+        replies.push(`This sounds like ${foundProjectType.toLowerCase()}.`);
+      }
+
+      if (foundPostcode) {
+        replies.push(`I can see the postcode area as ${foundPostcode}.`);
+      }
+
+      if (includesAny(t, ["how long", "timeline", "weeks", "decision"])) {
+        replies.push(
+          "Typical householder planning decisions are often around 6 to 8 weeks after validation. Lawful Development Certificates are often around 4 to 6 weeks."
+        );
+      } else if (includesAny(t, ["cost", "price", "fee", "quote", "budget"])) {
+        replies.push(
+          "We work on fixed drawing fees with a clear written scope. The next step is for us to review your details and reply with the likely route and fee."
+        );
+      } else if (includesAny(t, ["planning", "permission", "permitted", "pd", "lawful", "ldc"])) {
+        replies.push(
+          "Many Bromley extensions and lofts can be permitted development, but the correct route depends on the property, location and proposal."
+        );
+      } else {
+        replies.push(
+          "The quickest route is to share your postcode and project type, then we can guide you properly on drawings and planning."
+        );
+      }
+    }
+
+    replies.forEach((reply, idx) => {
+      setTimeout(() => {
+        pushMessage({ role: "assistant", text: reply });
+      }, 140 * (idx + 1));
+    });
+
+    setInput("");
+  }
+
+  return (
+    <>
+      {!open && (
+        <div className="fixed bottom-4 right-[76px] z-[70]">
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            className="rounded-full border border-slate-200 bg-slate-900 px-4 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-white shadow-lg hover:bg-slate-800"
+          >
+            Planning Assistant
+          </button>
+        </div>
+      )}
+
+      {open && (
+        <div className="fixed inset-0 z-[100] bg-black/40 backdrop-blur-sm flex items-end justify-center sm:items-center">
+          <div className="flex h-full w-full flex-col overflow-hidden bg-white shadow-2xl sm:h-auto sm:max-h-[90vh] sm:w-[420px] sm:rounded-2xl">
+            <div className="border-b border-slate-200 bg-slate-900 px-4 py-3 text-white">
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <img
+                    src="/images/wedrawplans-logo.png"
+                    alt="WEDRAWPLANS"
+                    className="h-8 w-auto object-contain"
+                  />
+                  <div>
+                    <div className="text-[12px] font-semibold uppercase tracking-[0.16em]">
+                      Planning Assistant
+                    </div>
+                    <div className="mt-0.5 text-[10px] text-white/70">
+                      {boroughName}
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setOpen(false)}
+                  className="rounded-full border border-white/15 px-2.5 py-1 text-[12px] text-white/90 hover:bg-white/10 hover:text-white"
+                  aria-label="Close assistant"
+                >
+                  ✕
+                </button>
+              </div>
+            </div>
+
+            <div ref={listRef} className="flex-1 overflow-y-auto px-4 py-4 space-y-3">
+              {messages.map((m, i) => (
+                <div
+                  key={i}
+                  className={
+                    m.role === "user"
+                      ? "ml-auto max-w-[85%] rounded-2xl bg-[#64b7c4] px-3 py-2 text-[13px] leading-6 text-white"
+                      : "mr-auto max-w-[85%] rounded-2xl bg-slate-100 px-3 py-2 text-[13px] leading-6 text-slate-900"
+                  }
+                >
+                  {m.text}
+                </div>
+              ))}
+
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
+                <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-700">
+                  Quick start
+                </div>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {quickReplies.map((q) => (
+                    <button
+                      key={q}
+                      type="button"
+                      onClick={() => handleSend(q)}
+                      className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-[11px] text-slate-700 hover:bg-slate-900 hover:text-white"
+                    >
+                      {q}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
+                <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-700">
+                  Need a fixed fee quote
+                </div>
+                <div className="mt-2 text-[12px] leading-6 text-slate-600">
+                  Use the main page form for now and we will review your project quickly. This assistant is now easier to read and use on mobile.
+                </div>
+              </div>
+            </div>
+
+            <div className="border-t border-slate-200 p-3">
+              <div className="flex gap-2">
+                <input
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  placeholder="Type your question or postcode"
+                  className="flex-1 rounded-full border border-slate-300 px-4 py-2 text-[13px] outline-none focus:border-[#64b7c4]"
+                />
+                <button
+                  type="button"
+                  onClick={() => handleSend(input)}
+                  className="rounded-full bg-slate-900 px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.14em] text-white hover:bg-slate-800"
+                >
+                  Send
+                </button>
+              </div>
+
+              <div className="mt-3 grid grid-cols-2 gap-2">
+                <a
+                  href="#bromley-quote"
+                  onClick={() => setOpen(false)}
+                  className="rounded-full bg-[#64b7c4] px-4 py-2 text-center text-[11px] font-semibold uppercase tracking-[0.14em] text-white hover:bg-[#4da4b4]"
+                >
+                  Fixed fee form
+                </a>
+                <a
+                  href={WHATSAPP_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border border-slate-300 bg-white px-4 py-2 text-center text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-700 hover:bg-slate-900 hover:text-white"
+                >
+                  WhatsApp
+                </a>
+              </div>
+
+              <div className="mt-2 text-[10px] text-slate-500">
+                Guidance is general only. We confirm the correct route after checking your address and proposal.
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
 
   const listRef = useRef<HTMLDivElement | null>(null);
 
