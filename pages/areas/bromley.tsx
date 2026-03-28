@@ -251,7 +251,7 @@ function PlanningAssistant({
   }
 
   return (
-    <div className="fixed bottom-20 right-4 z-[70]">
+<div className="fixed bottom-4 right-[76px] z-[70]">
       {open ? (
         <div className="w-[320px] sm:w-[360px] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl">
           <div className="flex items-center justify-between bg-slate-900 px-4 py-3 text-white">
