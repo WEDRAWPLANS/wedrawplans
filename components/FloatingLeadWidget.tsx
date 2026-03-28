@@ -201,7 +201,7 @@ export default function FloatingLeadWidget({
   const overlayZIndex = 100;
   const right = 16;
 
-  const bottom = isMobile ? 92 : 24;
+  const bottom = isMobile ? 116 : 28;
   const maxWidth = isMobile ? 290 : 340;
   const minHeight = isMobile ? 58 : 60;
 
