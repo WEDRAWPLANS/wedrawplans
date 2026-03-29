@@ -289,13 +289,7 @@ function answerQuickQuestion(args: {
   return "Share the project type, property type and postcode, and the route can be narrowed down properly before a fixed fee is issued.";
 }
 
-function StepPill({
-  active,
-  label,
-}: {
-  active: boolean;
-  label: string;
-}) {
+function StepPill({ active, label }: { active: boolean; label: string }) {
   return (
     <div
       className={`rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] ${
@@ -305,53 +299,6 @@ function StepPill({
       }`}
     >
       {label}
-    </div>
-  );
-}
-
-function AssistantShell({
-  children,
-  onClose,
-}: {
-  children: React.ReactNode;
-  onClose: () => void;
-}) {
-  return (
-    <div className="fixed inset-0 z-[100] flex items-stretch justify-center bg-black/60 backdrop-blur-sm sm:items-center sm:p-8">
-      <div className="flex h-[100dvh] w-screen max-w-none flex-col overflow-hidden rounded-none bg-white shadow-2xl sm:h-auto sm:max-h-[94vh] sm:w-[820px] sm:max-w-[820px] sm:rounded-[32px]">
-        <div className="border-b border-slate-200 bg-slate-900 px-5 py-4 text-white sm:px-6 sm:py-5">
-          <div className="flex items-center justify-between gap-3">
-            <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#e31c23] shadow-sm">
-                <img
-                  src="/images/wedrawplans-emblem.png"
-                  alt="WEDRAWPLANS"
-                  className="h-7 w-7 object-contain"
-                />
-              </div>
-              <div>
-                <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/90">
-                  WEDRAWPLANS
-                </div>
-                <div className="mt-1 text-[11px] uppercase tracking-[0.16em] text-white/65">
-                  Smart Planning Assistant
-                </div>
-              </div>
-            </div>
-
-            <button
-              type="button"
-              onClick={onClose}
-              className="rounded-full border border-white/15 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/85 hover:bg-white/10 hover:text-white"
-              aria-label="Close assistant"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-
-        {children}
-      </div>
     </div>
   );
 }
@@ -405,12 +352,14 @@ export default function SmartPlanningAssistant({
 
   const projectSummary = useMemo(() => {
     const bits: string[] = [];
+
     if (projectType) bits.push(`Project: ${projectType}`);
     if (propertyType) bits.push(`Property: ${propertyType}`);
     if (postcode) bits.push(`Postcode: ${postcode.toUpperCase()}`);
     if (stage) bits.push(`Stage: ${stage}`);
     if (constraints.length) bits.push(`Flags: ${constraints.join(", ")}`);
     if (details.trim()) bits.push(`Details: ${sanitizeText(details)}`);
+
     return bits.join(" | ");
   }, [constraints, details, postcode, projectType, propertyType, stage]);
 
@@ -512,441 +461,472 @@ export default function SmartPlanningAssistant({
         </div>
       )}
 
-      {open && !done && (
-        <AssistantShell onClose={() => setOpen(false)}>
-          <div className="border-b border-slate-200 bg-slate-900 px-5 pb-5 text-white sm:px-6">
-            <div className="rounded-2xl bg-white/5 p-4">
-              <div className="text-[12px] font-semibold uppercase tracking-[0.14em] text-white">
-                {effectiveBorough} homeowner route check
-              </div>
-              <div className="mt-2 text-[13px] leading-7 text-white/80">
-                Get instant borough-specific guidance, understand the likely planning route,
-                and send your details for a fixed fee review.
-              </div>
-            </div>
-
-            <div className="mt-4 flex flex-wrap items-center gap-2">
-              <StepPill active={step === 1} label="Project" />
-              <StepPill active={step === 2} label="Property" />
-              <StepPill active={step === 3} label="Route" />
-              <StepPill active={step === 4} label="Details" />
-            </div>
-
-            <div className="mt-3 h-1.5 rounded-full bg-white/10">
-              <div
-                className="h-1.5 rounded-full bg-[#64b7c4]"
-                style={{ width: `${progress}%` }}
-              />
-            </div>
-          </div>
-
-          <div className="flex-1 overflow-y-auto px-4 py-4 sm:px-6 sm:py-5">
-            <div className="grid gap-4 lg:grid-cols-[1.1fr,0.9fr]">
-              <div className="space-y-4">
-                <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-                  <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-700">
-                    Why this tool matters
+      {open && (
+        <div className="fixed inset-0 z-[100] flex items-stretch justify-center bg-black/60 backdrop-blur-sm">
+          <div className="flex h-screen w-screen flex-col overflow-hidden bg-white shadow-2xl sm:m-6 sm:h-[92vh] sm:max-w-[920px] sm:rounded-[32px]">
+            <div className="border-b border-slate-200 bg-slate-900 px-5 py-4 text-white sm:px-6 sm:py-5">
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#e31c23] shadow-sm">
+                    <img
+                      src="/images/wedrawplans-emblem.png"
+                      alt="WEDRAWPLANS"
+                      className="h-7 w-7 object-contain"
+                    />
                   </div>
-                  <p className="mt-2 text-[13px] leading-7 text-slate-700">
-                    This assistant is built to help homeowners in {effectiveBorough} understand the basics quickly,
-                    avoid the wrong route, and move straight toward drawings, survey booking, and a fixed fee review.
-                  </p>
-                </div>
-
-                <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-                  <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-700">
-                    Likely route
-                  </div>
-                  <h3 className="mt-2 text-[16px] font-semibold text-slate-900">
-                    {guidance.routeTitle}
-                  </h3>
-                  <p className="mt-2 text-[13px] leading-7 text-slate-700">{guidance.routeBody}</p>
-
-                  <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                    <div className="rounded-xl border border-slate-100 bg-slate-50 p-3">
-                      <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-700">
-                        Usually needed
-                      </div>
-                      <ul className="mt-2 space-y-1 text-[12px] leading-6 text-slate-700">
-                        {guidance.drawings.map((item) => (
-                          <li key={item}>• {item}</li>
-                        ))}
-                      </ul>
+                  <div>
+                    <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/90">
+                      WEDRAWPLANS
                     </div>
-
-                    <div className="rounded-xl border border-slate-100 bg-slate-50 p-3">
-                      <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-700">
-                        Watch points
-                      </div>
-                      <ul className="mt-2 space-y-1 text-[12px] leading-6 text-slate-700">
-                        {guidance.cautions.map((item) => (
-                          <li key={item}>• {item}</li>
-                        ))}
-                      </ul>
+                    <div className="mt-1 text-[11px] uppercase tracking-[0.16em] text-white/65">
+                      Smart Planning Assistant
                     </div>
-                  </div>
-
-                  <div className="mt-4 rounded-xl bg-[#fdf8f3] p-3 text-[12px] leading-6 text-slate-700">
-                    <span className="font-semibold text-slate-900">Typical timing:</span> {guidance.timing}
                   </div>
                 </div>
 
-                <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-                  {step === 1 && (
-                    <>
+                <button
+                  type="button"
+                  onClick={() => setOpen(false)}
+                  className="rounded-full border border-white/15 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/85 hover:bg-white/10 hover:text-white"
+                  aria-label="Close assistant"
+                >
+                  Close
+                </button>
+              </div>
+
+              <div className="mt-4 rounded-2xl bg-white/5 p-4">
+                <div className="text-[12px] font-semibold uppercase tracking-[0.14em] text-white">
+                  {effectiveBorough} homeowner route check
+                </div>
+                <div className="mt-2 text-[13px] leading-7 text-white/80">
+                  Understand the likely route, get smarter borough-based guidance,
+                  and send your details for a fixed fee review.
+                </div>
+              </div>
+
+              <div className="mt-4 flex flex-wrap items-center gap-2">
+                <StepPill active={step === 1} label="Project" />
+                <StepPill active={step === 2} label="Property" />
+                <StepPill active={step === 3} label="Route" />
+                <StepPill active={step === 4} label="Details" />
+              </div>
+
+              <div className="mt-3 h-1.5 rounded-full bg-white/10">
+                <div
+                  className="h-1.5 rounded-full bg-[#64b7c4]"
+                  style={{ width: `${progress}%` }}
+                />
+              </div>
+            </div>
+
+            <div className="flex-1 overflow-y-auto px-4 py-4 sm:px-6 sm:py-5">
+              {!done ? (
+                <div className="grid gap-4 lg:grid-cols-[1.1fr,0.9fr]">
+                  <div className="space-y-4">
+                    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
                       <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-700">
-                        Step 1
+                        Why this tool matters
+                      </div>
+                      <p className="mt-2 text-[13px] leading-7 text-slate-700">
+                        This assistant helps homeowners in {effectiveBorough} understand the basics quickly,
+                        avoid the wrong route, and move toward drawings, survey booking, and a fixed fee review.
+                      </p>
+                    </div>
+
+                    <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                      <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-700">
+                        Likely route
                       </div>
                       <h3 className="mt-2 text-[16px] font-semibold text-slate-900">
-                        What are you planning to do
+                        {guidance.routeTitle}
                       </h3>
-                      <div className="mt-4 grid gap-2">
-                        {PROJECT_TYPES.map((item) => (
-                          <button
-                            key={item}
-                            type="button"
-                            onClick={() => setProjectType(item)}
-                            className={`rounded-2xl border px-4 py-3 text-left text-[13px] font-medium transition ${
-                              projectType === item
-                                ? "border-slate-900 bg-slate-900 text-white"
-                                : "border-slate-200 bg-white text-slate-800 hover:border-slate-400"
-                            }`}
-                          >
-                            {item}
-                          </button>
-                        ))}
-                      </div>
-                    </>
-                  )}
+                      <p className="mt-2 text-[13px] leading-7 text-slate-700">
+                        {guidance.routeBody}
+                      </p>
 
-                  {step === 2 && (
-                    <>
-                      <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-700">
-                        Step 2
-                      </div>
-                      <h3 className="mt-2 text-[16px] font-semibold text-slate-900">
-                        Tell us the property and postcode
-                      </h3>
-
-                      <div className="mt-4 grid gap-2">
-                        {PROPERTY_TYPES.map((item) => (
-                          <button
-                            key={item}
-                            type="button"
-                            onClick={() => setPropertyType(item)}
-                            className={`rounded-2xl border px-4 py-3 text-left text-[13px] font-medium transition ${
-                              propertyType === item
-                                ? "border-slate-900 bg-slate-900 text-white"
-                                : "border-slate-200 bg-white text-slate-800 hover:border-slate-400"
-                            }`}
-                          >
-                            {item}
-                          </button>
-                        ))}
-                      </div>
-
-                      <div className="mt-4">
-                        <label className="text-[11px] font-medium uppercase tracking-[0.14em] text-slate-700">
-                          Postcode
-                        </label>
-                        <input
-                          value={postcode}
-                          onChange={(e) => setPostcode(e.target.value.toUpperCase())}
-                          placeholder="BR1 3AA"
-                          className="mt-2 w-full rounded-2xl border border-slate-300 px-4 py-3 text-[13px] outline-none focus:border-[#64b7c4]"
-                        />
-                        <div className="mt-2 text-[11px] text-slate-500">
-                          This helps narrow the likely route and local considerations.
+                      <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                        <div className="rounded-xl border border-slate-100 bg-slate-50 p-3">
+                          <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-700">
+                            Usually needed
+                          </div>
+                          <ul className="mt-2 space-y-1 text-[12px] leading-6 text-slate-700">
+                            {guidance.drawings.map((item) => (
+                              <li key={item}>• {item}</li>
+                            ))}
+                          </ul>
                         </div>
-                      </div>
-                    </>
-                  )}
 
-                  {step === 3 && (
-                    <>
-                      <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-700">
-                        Step 3
-                      </div>
-                      <h3 className="mt-2 text-[16px] font-semibold text-slate-900">
-                        Smart route check
-                      </h3>
-
-                      <div className="mt-4">
-                        <div className="text-[11px] font-medium uppercase tracking-[0.14em] text-slate-700">
-                          Where are you in the process
-                        </div>
-                        <div className="mt-2 grid gap-2">
-                          {STAGES.map((item) => (
-                            <button
-                              key={item}
-                              type="button"
-                              onClick={() => setStage(item)}
-                              className={`rounded-2xl border px-4 py-3 text-left text-[13px] font-medium transition ${
-                                stage === item
-                                  ? "border-slate-900 bg-slate-900 text-white"
-                                  : "border-slate-200 bg-white text-slate-800 hover:border-slate-400"
-                              }`}
-                            >
-                              {item}
-                            </button>
-                          ))}
+                        <div className="rounded-xl border border-slate-100 bg-slate-50 p-3">
+                          <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-700">
+                            Watch points
+                          </div>
+                          <ul className="mt-2 space-y-1 text-[12px] leading-6 text-slate-700">
+                            {guidance.cautions.map((item) => (
+                              <li key={item}>• {item}</li>
+                            ))}
+                          </ul>
                         </div>
                       </div>
 
-                      <div className="mt-4">
-                        <div className="text-[11px] font-medium uppercase tracking-[0.14em] text-slate-700">
-                          Useful flags
-                        </div>
-                        <div className="mt-2 flex flex-wrap gap-2">
-                          {CONSTRAINT_OPTIONS.map((item) => {
-                            const active = constraints.includes(item);
-                            return (
+                      <div className="mt-4 rounded-xl bg-[#fdf8f3] p-3 text-[12px] leading-6 text-slate-700">
+                        <span className="font-semibold text-slate-900">Typical timing:</span> {guidance.timing}
+                      </div>
+                    </div>
+
+                    <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                      {step === 1 && (
+                        <>
+                          <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-700">
+                            Step 1
+                          </div>
+                          <h3 className="mt-2 text-[16px] font-semibold text-slate-900">
+                            What are you planning to do
+                          </h3>
+                          <div className="mt-4 grid gap-2">
+                            {PROJECT_TYPES.map((item) => (
                               <button
                                 key={item}
                                 type="button"
-                                onClick={() => toggleConstraint(item)}
-                                className={`rounded-full border px-3 py-2 text-[11px] font-semibold transition ${
-                                  active
+                                onClick={() => setProjectType(item)}
+                                className={`rounded-2xl border px-4 py-3 text-left text-[13px] font-medium transition ${
+                                  projectType === item
                                     ? "border-slate-900 bg-slate-900 text-white"
-                                    : "border-slate-300 bg-white text-slate-700 hover:bg-slate-100"
+                                    : "border-slate-200 bg-white text-slate-800 hover:border-slate-400"
                                 }`}
                               >
                                 {item}
                               </button>
-                            );
-                          })}
-                        </div>
-                      </div>
-
-                      <div className="mt-4">
-                        <label className="text-[11px] font-medium uppercase tracking-[0.14em] text-slate-700">
-                          Brief project details
-                        </label>
-                        <textarea
-                          value={details}
-                          onChange={(e) => setDetails(e.target.value)}
-                          rows={4}
-                          placeholder="For example: 4m rear extension to a semi detached house with open plan kitchen and steels needed."
-                          className="mt-2 w-full rounded-2xl border border-slate-300 px-4 py-3 text-[13px] outline-none focus:border-[#64b7c4]"
-                        />
-                      </div>
-                    </>
-                  )}
-
-                  {step === 4 && (
-                    <>
-                      <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-700">
-                        Step 4
-                      </div>
-                      <h3 className="mt-2 text-[16px] font-semibold text-slate-900">
-                        Get your fixed fee review
-                      </h3>
-                      <p className="mt-2 text-[13px] leading-7 text-slate-700">
-                        Leave your details and WEDRAWPLANS will review the project, confirm the likely route,
-                        and reply with the next steps and fixed fee.
-                      </p>
-
-                      <form onSubmit={handleSubmit} className="mt-4 space-y-3">
-                        <input type="hidden" name="projectType" value={projectType} />
-                        <input type="hidden" name="propertyType" value={propertyType} />
-                        <input type="hidden" name="projectStage" value={stage} />
-                        <input type="hidden" name="postcode" value={postcode} />
-                        <input type="hidden" name="projectDetails" value={projectSummary} />
-
-                        <div>
-                          <label className="text-[11px] font-medium uppercase tracking-[0.14em] text-slate-700">
-                            Name
-                          </label>
-                          <input
-                            name="name"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            className="mt-2 w-full rounded-2xl border border-slate-300 px-4 py-3 text-[13px] outline-none focus:border-[#64b7c4]"
-                          />
-                        </div>
-
-                        <div className="grid gap-3 sm:grid-cols-2">
-                          <div>
-                            <label className="text-[11px] font-medium uppercase tracking-[0.14em] text-slate-700">
-                              Telephone
-                            </label>
-                            <input
-                              name="phone"
-                              type="tel"
-                              value={phone}
-                              onChange={(e) => setPhone(e.target.value)}
-                              className="mt-2 w-full rounded-2xl border border-slate-300 px-4 py-3 text-[13px] outline-none focus:border-[#64b7c4]"
-                            />
+                            ))}
                           </div>
+                        </>
+                      )}
 
-                          <div>
-                            <label className="text-[11px] font-medium uppercase tracking-[0.14em] text-slate-700">
-                              Email
-                            </label>
-                            <input
-                              name="email"
-                              type="email"
-                              value={email}
-                              onChange={(e) => setEmail(e.target.value)}
-                              className="mt-2 w-full rounded-2xl border border-slate-300 px-4 py-3 text-[13px] outline-none focus:border-[#64b7c4]"
-                            />
-                          </div>
-                        </div>
-
-                        {error && (
-                          <div className="rounded-xl bg-red-50 px-3 py-2 text-[12px] text-red-700">
-                            {error}
-                          </div>
-                        )}
-
-                        <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
+                      {step === 2 && (
+                        <>
                           <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-700">
-                            Your summary
+                            Step 2
                           </div>
-                          <div className="mt-2 text-[12px] leading-6 text-slate-700">
-                            {projectSummary || "Your selections will appear here as you complete the steps."}
+                          <h3 className="mt-2 text-[16px] font-semibold text-slate-900">
+                            Tell us the property and postcode
+                          </h3>
+
+                          <div className="mt-4 grid gap-2">
+                            {PROPERTY_TYPES.map((item) => (
+                              <button
+                                key={item}
+                                type="button"
+                                onClick={() => setPropertyType(item)}
+                                className={`rounded-2xl border px-4 py-3 text-left text-[13px] font-medium transition ${
+                                  propertyType === item
+                                    ? "border-slate-900 bg-slate-900 text-white"
+                                    : "border-slate-200 bg-white text-slate-800 hover:border-slate-400"
+                                }`}
+                              >
+                                {item}
+                              </button>
+                            ))}
                           </div>
-                        </div>
 
-                        <button
-                          type="submit"
-                          disabled={submitting}
-                          className="w-full rounded-full bg-[#64b7c4] px-4 py-3 text-[12px] font-semibold uppercase tracking-[0.16em] text-white hover:bg-[#4da4b4] disabled:cursor-not-allowed disabled:bg-slate-300"
-                        >
-                          {submitting ? "Sending..." : "Send my details"}
-                        </button>
+                          <div className="mt-4">
+                            <label className="text-[11px] font-medium uppercase tracking-[0.14em] text-slate-700">
+                              Postcode
+                            </label>
+                            <input
+                              value={postcode}
+                              onChange={(e) => setPostcode(e.target.value.toUpperCase())}
+                              placeholder="BR1 3AA"
+                              className="mt-2 w-full rounded-2xl border border-slate-300 px-4 py-3 text-[13px] outline-none focus:border-[#64b7c4]"
+                            />
+                            <div className="mt-2 text-[11px] text-slate-500">
+                              This helps narrow the likely route and local considerations.
+                            </div>
+                          </div>
+                        </>
+                      )}
 
-                        <div className="text-[11px] leading-6 text-slate-500">
-                          We review the route, drawings likely needed, and the fastest next step for your project in {effectiveBorough}.
-                        </div>
-                      </form>
-                    </>
-                  )}
-                </div>
-              </div>
+                      {step === 3 && (
+                        <>
+                          <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-700">
+                            Step 3
+                          </div>
+                          <h3 className="mt-2 text-[16px] font-semibold text-slate-900">
+                            Smart route check
+                          </h3>
 
-              <div className="space-y-4">
-                <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-                  <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-700">
-                    Fast homeowner questions
-                  </div>
+                          <div className="mt-4">
+                            <div className="text-[11px] font-medium uppercase tracking-[0.14em] text-slate-700">
+                              Where are you in the process
+                            </div>
+                            <div className="mt-2 grid gap-2">
+                              {STAGES.map((item) => (
+                                <button
+                                  key={item}
+                                  type="button"
+                                  onClick={() => setStage(item)}
+                                  className={`rounded-2xl border px-4 py-3 text-left text-[13px] font-medium transition ${
+                                    stage === item
+                                      ? "border-slate-900 bg-slate-900 text-white"
+                                      : "border-slate-200 bg-white text-slate-800 hover:border-slate-400"
+                                  }`}
+                                >
+                                  {item}
+                                </button>
+                              ))}
+                            </div>
+                          </div>
 
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {QUICK_QUESTIONS.map((item) => (
-                      <button
-                        key={item}
-                        type="button"
-                        onClick={() => askQuestion(item)}
-                        className="rounded-full border border-slate-300 bg-white px-3 py-2 text-[11px] font-semibold text-slate-700 hover:bg-slate-900 hover:text-white"
-                      >
-                        {item}
-                      </button>
-                    ))}
-                  </div>
+                          <div className="mt-4">
+                            <div className="text-[11px] font-medium uppercase tracking-[0.14em] text-slate-700">
+                              Useful flags
+                            </div>
+                            <div className="mt-2 flex flex-wrap gap-2">
+                              {CONSTRAINT_OPTIONS.map((item) => {
+                                const active = constraints.includes(item);
+                                return (
+                                  <button
+                                    key={item}
+                                    type="button"
+                                    onClick={() => toggleConstraint(item)}
+                                    className={`rounded-full border px-3 py-2 text-[11px] font-semibold transition ${
+                                      active
+                                        ? "border-slate-900 bg-slate-900 text-white"
+                                        : "border-slate-300 bg-white text-slate-700 hover:bg-slate-100"
+                                    }`}
+                                  >
+                                    {item}
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          </div>
 
-                  <div className="mt-3 flex gap-2">
-                    <input
-                      value={questionInput}
-                      onChange={(e) => setQuestionInput(e.target.value)}
-                      placeholder="Ask a quick question"
-                      className="flex-1 rounded-full border border-slate-300 px-4 py-2 text-[13px] outline-none focus:border-[#64b7c4]"
-                    />
-                    <button
-                      type="button"
-                      onClick={() => askQuestion(questionInput)}
-                      className="rounded-full bg-slate-900 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-white hover:bg-slate-800"
-                    >
-                      Ask
-                    </button>
-                  </div>
+                          <div className="mt-4">
+                            <label className="text-[11px] font-medium uppercase tracking-[0.14em] text-slate-700">
+                              Brief project details
+                            </label>
+                            <textarea
+                              value={details}
+                              onChange={(e) => setDetails(e.target.value)}
+                              rows={4}
+                              placeholder="For example: 4m rear extension to a semi detached house with open plan kitchen and steels needed."
+                              className="mt-2 w-full rounded-2xl border border-slate-300 px-4 py-3 text-[13px] outline-none focus:border-[#64b7c4]"
+                            />
+                          </div>
+                        </>
+                      )}
 
-                  {questionAnswer && (
-                    <div className="mt-3 rounded-xl bg-slate-50 p-3 text-[12px] leading-6 text-slate-700">
-                      {questionAnswer}
+                      {step === 4 && (
+                        <>
+                          <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-700">
+                            Step 4
+                          </div>
+                          <h3 className="mt-2 text-[16px] font-semibold text-slate-900">
+                            Get your fixed fee review
+                          </h3>
+                          <p className="mt-2 text-[13px] leading-7 text-slate-700">
+                            Leave your details and WEDRAWPLANS will review the project, confirm the likely route,
+                            and reply with the next steps and fixed fee.
+                          </p>
+
+                          <form onSubmit={handleSubmit} className="mt-4 space-y-3">
+                            <input type="hidden" name="projectType" value={projectType} />
+                            <input type="hidden" name="propertyType" value={propertyType} />
+                            <input type="hidden" name="projectStage" value={stage} />
+                            <input type="hidden" name="postcode" value={postcode} />
+                            <input type="hidden" name="projectDetails" value={projectSummary} />
+
+                            <div>
+                              <label className="text-[11px] font-medium uppercase tracking-[0.14em] text-slate-700">
+                                Name
+                              </label>
+                              <input
+                                name="name"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                className="mt-2 w-full rounded-2xl border border-slate-300 px-4 py-3 text-[13px] outline-none focus:border-[#64b7c4]"
+                              />
+                            </div>
+
+                            <div className="grid gap-3 sm:grid-cols-2">
+                              <div>
+                                <label className="text-[11px] font-medium uppercase tracking-[0.14em] text-slate-700">
+                                  Telephone
+                                </label>
+                                <input
+                                  name="phone"
+                                  type="tel"
+                                  value={phone}
+                                  onChange={(e) => setPhone(e.target.value)}
+                                  className="mt-2 w-full rounded-2xl border border-slate-300 px-4 py-3 text-[13px] outline-none focus:border-[#64b7c4]"
+                                />
+                              </div>
+
+                              <div>
+                                <label className="text-[11px] font-medium uppercase tracking-[0.14em] text-slate-700">
+                                  Email
+                                </label>
+                                <input
+                                  name="email"
+                                  type="email"
+                                  value={email}
+                                  onChange={(e) => setEmail(e.target.value)}
+                                  className="mt-2 w-full rounded-2xl border border-slate-300 px-4 py-3 text-[13px] outline-none focus:border-[#64b7c4]"
+                                />
+                              </div>
+                            </div>
+
+                            {error && (
+                              <div className="rounded-xl bg-red-50 px-3 py-2 text-[12px] text-red-700">
+                                {error}
+                              </div>
+                            )}
+
+                            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
+                              <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-700">
+                                Your summary
+                              </div>
+                              <div className="mt-2 text-[12px] leading-6 text-slate-700">
+                                {projectSummary || "Your selections will appear here as you complete the steps."}
+                              </div>
+                            </div>
+
+                            <button
+                              type="submit"
+                              disabled={submitting}
+                              className="w-full rounded-full bg-[#64b7c4] px-4 py-3 text-[12px] font-semibold uppercase tracking-[0.16em] text-white hover:bg-[#4da4b4] disabled:cursor-not-allowed disabled:bg-slate-300"
+                            >
+                              {submitting ? "Sending..." : "Send my details"}
+                            </button>
+
+                            <div className="text-[11px] leading-6 text-slate-500">
+                              We review the route, drawings likely needed, and the fastest next step for your project in {effectiveBorough}.
+                            </div>
+                          </form>
+                        </>
+                      )}
                     </div>
-                  )}
-                </div>
-
-                <div className="rounded-2xl border border-slate-200 bg-[#fdf8f3] p-4 shadow-sm">
-                  <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-700">
-                    Why homeowners use this
                   </div>
-                  <ul className="mt-3 space-y-2 text-[12px] leading-6 text-slate-700">
-                    <li>• Borough-aware guidance before you commit</li>
-                    <li>• Better route clarity for planning or permitted development</li>
-                    <li>• Faster path to survey and fixed fees</li>
-                    <li>• Stronger lead capture for real projects, not vague enquiries</li>
-                  </ul>
-                </div>
 
-                <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-                  <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-700">
-                    Preferred next step
+                  <div className="space-y-4">
+                    <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                      <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-700">
+                        Fast homeowner questions
+                      </div>
+
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {QUICK_QUESTIONS.map((item) => (
+                          <button
+                            key={item}
+                            type="button"
+                            onClick={() => askQuestion(item)}
+                            className="rounded-full border border-slate-300 bg-white px-3 py-2 text-[11px] font-semibold text-slate-700 hover:bg-slate-900 hover:text-white"
+                          >
+                            {item}
+                          </button>
+                        ))}
+                      </div>
+
+                      <div className="mt-3 flex gap-2">
+                        <input
+                          value={questionInput}
+                          onChange={(e) => setQuestionInput(e.target.value)}
+                          placeholder="Ask a quick question"
+                          className="flex-1 rounded-full border border-slate-300 px-4 py-2 text-[13px] outline-none focus:border-[#64b7c4]"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => askQuestion(questionInput)}
+                          className="rounded-full bg-slate-900 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-white hover:bg-slate-800"
+                        >
+                          Ask
+                        </button>
+                      </div>
+
+                      {questionAnswer && (
+                        <div className="mt-3 rounded-xl bg-slate-50 p-3 text-[12px] leading-6 text-slate-700">
+                          {questionAnswer}
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="rounded-2xl border border-slate-200 bg-[#fdf8f3] p-4 shadow-sm">
+                      <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-700">
+                        Why homeowners use this
+                      </div>
+                      <ul className="mt-3 space-y-2 text-[12px] leading-6 text-slate-700">
+                        <li>• Borough-aware guidance before you commit</li>
+                        <li>• Better route clarity for planning or permitted development</li>
+                        <li>• Faster path to survey and fixed fees</li>
+                        <li>• Stronger lead capture for real projects</li>
+                      </ul>
+                    </div>
+
+                    <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                      <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-700">
+                        Preferred next step
+                      </div>
+                      <p className="mt-2 text-[12px] leading-6 text-slate-700">
+                        Complete the assistant fully. That gives WEDRAWPLANS enough detail to review the route and come back with a strong, relevant fixed fee.
+                      </p>
+                    </div>
                   </div>
-                  <p className="mt-2 text-[12px] leading-6 text-slate-700">
-                    Complete the assistant fully. That gives WEDRAWPLANS enough detail to review the route and come back with a strong, relevant fixed fee.
+                </div>
+              ) : (
+                <div className="rounded-2xl border border-emerald-100 bg-emerald-50 p-5">
+                  <h3 className="text-[16px] font-semibold text-emerald-900">
+                    Thank you. Your details have been received
+                  </h3>
+                  <p className="mt-2 text-[13px] leading-7 text-emerald-900">
+                    We will review your project in {effectiveBorough} and reply with a clear fixed fee,
+                    the likely route, and the next steps.
                   </p>
                 </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-slate-200 bg-white px-4 py-4 sm:px-6">
-            <div className="flex items-center justify-between gap-3">
-              <div>
-                {step > 1 ? (
-                  <button
-                    type="button"
-                    onClick={previousStep}
-                    className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-600 underline"
-                  >
-                    Back
-                  </button>
-                ) : (
-                  <span className="text-[11px] text-slate-400">WEDRAWPLANS</span>
-                )}
-              </div>
-
-              {step < 4 ? (
-                <button
-                  type="button"
-                  onClick={nextStep}
-                  disabled={!canMoveNext()}
-                  className="rounded-full bg-slate-900 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-white hover:bg-slate-800 disabled:cursor-not-allowed disabled:bg-slate-300"
-                >
-                  Continue
-                </button>
-              ) : (
-                <a
-                  href={`https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20help%20with%20my%20project%20in%20${encodeURIComponent(
-                    effectiveBorough
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-full border border-slate-300 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-700 hover:bg-slate-900 hover:text-white"
-                >
-                  WhatsApp instead
-                </a>
               )}
             </div>
-          </div>
-        </AssistantShell>
-      )}
 
-      {open && done && (
-        <AssistantShell onClose={() => setOpen(false)}>
-          <div className="flex-1 overflow-y-auto px-4 py-5 sm:px-6">
-            <div className="rounded-2xl border border-emerald-100 bg-emerald-50 p-5">
-              <h3 className="text-[16px] font-semibold text-emerald-900">
-                Thank you. Your details have been received
-              </h3>
-              <p className="mt-2 text-[13px] leading-7 text-emerald-900">
-                We will review your project in {effectiveBorough} and reply with a clear fixed fee,
-                the likely route, and the next steps.
-              </p>
-            </div>
+            {!done && (
+              <div className="border-t border-slate-200 bg-white px-4 py-4 sm:px-6">
+                <div className="flex items-center justify-between gap-3">
+                  <div>
+                    {step > 1 ? (
+                      <button
+                        type="button"
+                        onClick={previousStep}
+                        className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-600 underline"
+                      >
+                        Back
+                      </button>
+                    ) : (
+                      <span className="text-[11px] text-slate-400">WEDRAWPLANS</span>
+                    )}
+                  </div>
+
+                  {step < 4 ? (
+                    <button
+                      type="button"
+                      onClick={nextStep}
+                      disabled={!canMoveNext()}
+                      className="rounded-full bg-slate-900 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-white hover:bg-slate-800 disabled:cursor-not-allowed disabled:bg-slate-300"
+                    >
+                      Continue
+                    </button>
+                  ) : (
+                    <a
+                      href={`https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20help%20with%20my%20project%20in%20${encodeURIComponent(
+                        effectiveBorough
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="rounded-full border border-slate-300 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-700 hover:bg-slate-900 hover:text-white"
+                    >
+                      WhatsApp instead
+                    </a>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
-        </AssistantShell>
+        </div>
       )}
     </>
   );
