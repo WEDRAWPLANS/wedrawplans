@@ -471,8 +471,8 @@ export function SmartPlanningAssistant({
         </div>
 
         {open && (
-          <div className="fixed inset-0 z-[100] flex items-end justify-center bg-black/50 backdrop-blur-sm sm:items-center sm:p-6">
-            <div className="flex h-full w-full flex-col overflow-hidden bg-white shadow-2xl sm:h-auto sm:max-h-[92vh] sm:w-[460px] sm:rounded-[28px]">
+         <div className="fixed inset-0 z-[100] flex items-stretch justify-center bg-black/50 backdrop-blur-sm sm:items-center sm:p-6">
+  <div className="flex h-[100dvh] w-screen max-w-none flex-col overflow-hidden rounded-none bg-white shadow-2xl sm:h-auto sm:max-h-[92vh] sm:w-[460px] sm:max-w-[460px] sm:rounded-[28px]">
               <div className="border-b border-emerald-100 bg-slate-50 px-5 py-4">
                 <div className="flex items-center justify-between gap-3">
                   <div className="flex items-center gap-3">
