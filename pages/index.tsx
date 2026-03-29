@@ -7,6 +7,7 @@ const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const EMAIL = "info@wedrawplans.com";
 const EMAIL_LINK = "mailto:info@wedrawplans.com";
+const GOOGLE_BUSINESS_PROFILE_LINK = "https://share.google/D3KId64vHtHSKPALr";
 
 const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20my%20project";
@@ -18,6 +19,11 @@ type PostcodeIntel = {
   outward: string;
   borough: string | null;
   coverageLabel: string | null;
+};
+
+type NavDropdownItem = {
+  label: string;
+  href: string;
 };
 
 const gtagEvent = (name: string, params: Record<string, any> = {}) => {
@@ -119,6 +125,42 @@ const COMMERCIAL_ITEMS: { label: string; href: string }[] = [
   { label: "Fire strategy and means of escape", href: "/commercial/fire-strategy" },
   { label: "Building Regulations packs", href: "/building-regulation-drawings" },
   { label: "Commercial drawings overview", href: "/commercial" },
+];
+
+const EXTENSION_ITEMS: NavDropdownItem[] = [
+  { label: "Rear extension plans", href: "/extensions" },
+  { label: "Side return extensions", href: "/extensions" },
+  { label: "Wrap-around extensions", href: "/extensions" },
+  { label: "Two storey extensions", href: "/extensions" },
+  { label: "Kitchen extension layouts", href: "/extensions" },
+  { label: "Garage conversion plans", href: "/extensions" },
+  { label: "Garden room / studio plans", href: "/extensions" },
+];
+
+const LOFT_ITEMS: NavDropdownItem[] = [
+  { label: "Dormer loft conversions", href: "/loft-conversion" },
+  { label: "Hip to gable lofts", href: "/loft-conversion" },
+  { label: "Mansard loft conversions", href: "/loft-conversion" },
+  { label: "Velux loft layouts", href: "/loft-conversion" },
+  { label: "Attic conversions", href: "/loft-conversion" },
+];
+
+const NEW_BUILD_ITEMS: NavDropdownItem[] = [
+  { label: "New build house plans", href: "/new-build" },
+  { label: "Small residential developments", href: "/new-build" },
+  { label: "Backland and infill sites", href: "/new-build" },
+  { label: "Conversion to self-contained flats", href: "/new-build" },
+  { label: "Basement and lower ground conversions", href: "/new-build" },
+];
+
+const TECHNICAL_ITEMS: NavDropdownItem[] = [
+  { label: "Building Regulation drawing packs", href: "/building-regulation-drawings" },
+  { label: "Fire and escape strategy plans", href: "/building-regulation-drawings" },
+  { label: "Measured surveys", href: "/building-regulation-drawings" },
+  { label: "Structural engineer coordination", href: "/building-regulation-drawings" },
+  { label: "Party wall plans and support", href: "/building-regulation-drawings" },
+  { label: "HMO layout and licensing drawings", href: "/building-regulation-drawings" },
+  { label: "Interior layouts and finishes", href: "/building-regulation-drawings" },
 ];
 
 const POSTCODE_RULES: Array<{
@@ -575,14 +617,16 @@ export default function IndexPage() {
       </Head>
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
-        <header className="sticky top-0 z-[60] bg-[#fdf8f3]/95 backdrop-blur">
+        <header className="sticky top-0 z-[60] bg-[#fdf8f3]/95 backdrop-blur border-b border-slate-200">
           <div className="mx-auto max-w-6xl px-4 pt-4 pb-3 lg:px-6 lg:pt-5">
             <div className="flex flex-col items-center text-center">
-              <img
-                src="/images/wedrawplans-logo.png"
-                alt="WEDRAWPLANS"
-                className="h-24 w-auto object-contain lg:h-28"
-              />
+              <Link href="/" className="inline-flex items-center justify-center">
+                <img
+                  src="/images/wedrawplans-logo.png"
+                  alt="WEDRAWPLANS"
+                  className="h-24 w-auto object-contain lg:h-28"
+                />
+              </Link>
 
               <div className="mt-2 text-[11px] uppercase tracking-[0.18em] text-slate-600">
                 Architectural Drawing Consultants
@@ -600,45 +644,18 @@ export default function IndexPage() {
                 <LocalDesignersDropdown />
                 <CommercialDropdown />
 
-                <NavMenu title="Extension Plans">
-                  <NavItem>Rear extension plans</NavItem>
-                  <NavItem>Side return extensions</NavItem>
-                  <NavItem>Wrap-around extensions</NavItem>
-                  <NavItem>Two storey extensions</NavItem>
-                  <NavItem>Kitchen extension layouts</NavItem>
-                  <NavItem>Garage conversion plans</NavItem>
-                  <NavItem>Garden room / studio plans</NavItem>
-                </NavMenu>
+                <NavMenu title="Extension Plans" href="/extensions" items={EXTENSION_ITEMS} />
+                <NavMenu title="Loft Plans" href="/loft-conversion" items={LOFT_ITEMS} />
+                <NavMenu title="New Build" href="/new-build" items={NEW_BUILD_ITEMS} />
+                <NavMenu
+                  title="Technical & Support"
+                  href="/building-regulation-drawings"
+                  items={TECHNICAL_ITEMS}
+                />
 
-                <NavMenu title="Loft Plans">
-                  <NavItem>Dormer loft conversions</NavItem>
-                  <NavItem>Hip to gable lofts</NavItem>
-                  <NavItem>Mansard loft conversions</NavItem>
-                  <NavItem>Velux loft layouts</NavItem>
-                  <NavItem>Attic conversions</NavItem>
-                </NavMenu>
-
-                <NavMenu title="New Build">
-                  <NavItem>New build house plans</NavItem>
-                  <NavItem>Small residential developments</NavItem>
-                  <NavItem>Backland and infill sites</NavItem>
-                  <NavItem>Conversion to self-contained flats</NavItem>
-                  <NavItem>Basement and lower ground conversions</NavItem>
-                </NavMenu>
-
-                <NavMenu title="Technical & Support">
-                  <NavItem>Building Regulation drawing packs</NavItem>
-                  <NavItem>Fire and escape strategy plans</NavItem>
-                  <NavItem>Measured surveys</NavItem>
-                  <NavItem>Structural engineer coordination</NavItem>
-                  <NavItem>Party wall plans and support</NavItem>
-                  <NavItem>HMO layout and licensing drawings</NavItem>
-                  <NavItem>Interior layouts and finishes</NavItem>
-                </NavMenu>
-
-                <a href="/areas" className="whitespace-nowrap hover:text-black">
+                <Link href="/areas" className="whitespace-nowrap hover:text-black">
                   Areas we cover
-                </a>
+                </Link>
                 <a href="#price-guide" className="whitespace-nowrap hover:text-black">
                   Price guide
                 </a>
@@ -681,8 +698,8 @@ export default function IndexPage() {
                   </p>
 
                   <h1 className="mt-3 text-[26px] font-semibold uppercase leading-[1.3] tracking-[0.14em] text-slate-900 xl:text-[34px]">
-  Get Your House Extension & Planning Drawings Approved Across London & Surrounding Areas
-</h1>
+                    Get Your House Extension & Planning Drawings Approved Across London & Surrounding Areas
+                  </h1>
 
                   <p className="mt-3 max-w-[640px] text-[15px] font-medium leading-7 text-slate-800">
                     Get professional drawings for house extensions, loft conversions, new builds and Building Regulations. Initial survey within 48 hours and clear fixed pricing.
@@ -1183,61 +1200,127 @@ export default function IndexPage() {
           </div>
         </section>
 
-        <footer className="border-t border-slate-200 bg-white">
-          <div className="mx-auto max-w-6xl px-4 py-8 text-[12px] text-slate-600 lg:px-6">
-            <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
-              <div>
-                <div className="text-[14px] font-semibold uppercase tracking-[0.2em] text-slate-900">
-                  WEDRAWPLANS
-                </div>
-                <p className="mt-2 max-w-sm text-[12px] text-slate-600">
-                  Architectural drawing consultants for new builds, extensions, loft conversions and commercial developments across London and the M25 area.
-                </p>
+        <footer className="border-t border-[#2a3050] bg-[#20243b]">
+          <div className="mx-auto max-w-6xl px-4 py-10 lg:px-6">
+            <div className="flex flex-col items-center text-center">
+              <Link href="/" className="inline-flex items-center justify-center">
+                <img
+                  src="/images/wedrawplans-logo.png"
+                  alt="WEDRAWPLANS"
+                  className="h-20 w-auto object-contain"
+                />
+              </Link>
+
+              <div className="mt-3 text-[11px] uppercase tracking-[0.18em] text-white/70">
+                Architectural Drawing Consultants
               </div>
-              <div>
-                <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-900">
-                  Contact
-                </div>
-                <ul className="mt-2 space-y-1">
-                  <li>
-                    <a href={PHONE_LINK} className="hover:underline" onClick={() => trackLeadEvent("phone_click")}>
-                      Phone {PHONE_DISPLAY}
+
+              <p className="mt-4 max-w-2xl text-[13px] leading-7 text-white/80">
+                WEDRAWPLANS provide architectural drawings for house extensions, loft conversions, planning applications,
+                Building Regulations and small residential development projects across London and the surrounding M25 area.
+              </p>
+
+              <div className="mt-6 flex flex-wrap justify-center gap-3">
+                <a
+                  href={PHONE_LINK}
+                  className="inline-flex items-center justify-center rounded-full bg-white px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.12em] text-[#20243b] shadow-sm hover:bg-slate-100"
+                  onClick={() => trackLeadEvent("phone_click")}
+                >
+                  Call {PHONE_DISPLAY}
+                </a>
+
+                <a
+                  href={WHATSAPP_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-full bg-[#25D366] px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.12em] text-white shadow-sm hover:bg-[#1ebe57]"
+                  onClick={() => trackLeadEvent("whatsapp_click")}
+                >
+                  WhatsApp us
+                </a>
+
+                <a
+                  href={EMAIL_LINK}
+                  className="inline-flex items-center justify-center rounded-full border border-white/35 px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.12em] text-white hover:bg-white hover:text-[#20243b]"
+                  onClick={() => trackLeadEvent("email_click")}
+                >
+                  Email us
+                </a>
+
+                <a
+                  href={GOOGLE_BUSINESS_PROFILE_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-full border border-white/35 px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.12em] text-white hover:bg-white hover:text-[#20243b]"
+                >
+                  Google Profile
+                </a>
+              </div>
+
+              <div className="mt-8 grid w-full max-w-4xl gap-6 border-t border-white/10 pt-8 text-center md:grid-cols-3">
+                <div>
+                  <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/85">Phone</div>
+                  <div className="mt-2 text-[12px] text-white/65">
+                    <a href={PHONE_LINK} className="hover:text-white" onClick={() => trackLeadEvent("phone_click")}>
+                      {PHONE_DISPLAY}
                     </a>
-                  </li>
-                  <li>
-                    <a href={EMAIL_LINK} className="hover:underline" onClick={() => trackLeadEvent("email_click")}>
+                  </div>
+                </div>
+
+                <div>
+                  <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/85">Email</div>
+                  <div className="mt-2 text-[12px] text-white/65">
+                    <a href={EMAIL_LINK} className="hover:text-white" onClick={() => trackLeadEvent("email_click")}>
                       {EMAIL}
                     </a>
-                  </li>
-                  <li>
-                    <a
-                      href={WHATSAPP_LINK}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hover:underline"
-                      onClick={() => trackLeadEvent("whatsapp_click")}
-                    >
-                      Chat on WhatsApp
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-900">
-                  Studio
+                  </div>
                 </div>
-                <p className="mt-2 text-[12px] text-slate-600">
-                  201 Borough High Street
-                  <br />
-                  London SE1 1JA
-                  <br />
-                  United Kingdom
-                </p>
-              </div>
-            </div>
 
-            <div className="mt-6 border-t border-slate-200 pt-3 text-center text-[11px] text-slate-500">
-              Copyright {new Date().getFullYear()} WEDRAWPLANS. All rights reserved.
+                <div>
+                  <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/85">Studio</div>
+                  <div className="mt-2 text-[12px] leading-6 text-white/65">
+                    201 Borough High Street
+                    <br />
+                    London SE1 1JA
+                    <br />
+                    United Kingdom
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8 flex flex-wrap justify-center gap-x-5 gap-y-2 text-[12px] text-white/65">
+                <Link href="/" className="hover:text-white">
+                  Home
+                </Link>
+                <Link href="/areas" className="hover:text-white">
+                  Areas We Cover
+                </Link>
+                <Link href="/extensions" className="hover:text-white">
+                  Extension Plans
+                </Link>
+                <Link href="/loft-conversion" className="hover:text-white">
+                  Loft Plans
+                </Link>
+                <Link href="/new-build" className="hover:text-white">
+                  New Build
+                </Link>
+                <Link href="/building-regulation-drawings" className="hover:text-white">
+                  Technical &amp; Support
+                </Link>
+                <Link href="/commercial" className="hover:text-white">
+                  Commercial
+                </Link>
+                <a href="#price-guide" className="hover:text-white">
+                  Price Guide
+                </a>
+                <a href="#contact" className="hover:text-white">
+                  Contact
+                </a>
+              </div>
+
+              <div className="mt-6 text-[11px] text-white/45">
+                Copyright {new Date().getFullYear()} WEDRAWPLANS. All rights reserved.
+              </div>
             </div>
           </div>
         </footer>
@@ -1259,24 +1342,33 @@ export default function IndexPage() {
 
 type NavMenuProps = {
   title: string;
-  children: React.ReactNode;
+  href: string;
+  items: NavDropdownItem[];
 };
 
-function NavMenu({ title, children }: NavMenuProps) {
+function NavMenu({ title, href, items }: NavMenuProps) {
   return (
     <div className="group relative">
-      <button className="whitespace-nowrap text-[14px] font-normal text-slate-900 hover:text-black">
+      <Link href={href} className="whitespace-nowrap text-[14px] font-normal text-slate-900 hover:text-black">
         {title}
-      </button>
-      <div className="pointer-events-none absolute left-0 top-full z-20 mt-2 min-w-[260px] rounded-md bg-white py-2 text-[13px] shadow-lg opacity-0 group-hover:pointer-events-auto group-hover:opacity-100">
-        {children}
+      </Link>
+      <div className="pointer-events-none absolute left-0 top-full z-20 mt-2 min-w-[260px] rounded-md bg-white py-2 text-[13px] shadow-lg opacity-0 transition-opacity group-hover:pointer-events-auto group-hover:opacity-100">
+        {items.map((item) => (
+          <NavItem key={`${title}-${item.label}`} href={item.href}>
+            {item.label}
+          </NavItem>
+        ))}
       </div>
     </div>
   );
 }
 
-function NavItem({ children }: { children: React.ReactNode }) {
-  return <div className="px-4 py-1 hover:bg-slate-100">{children}</div>;
+function NavItem({ children, href }: { children: React.ReactNode; href: string }) {
+  return (
+    <Link href={href} className="block px-4 py-2 hover:bg-slate-100">
+      {children}
+    </Link>
+  );
 }
 
 type ServiceColumnProps = {
