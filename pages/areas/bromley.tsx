@@ -1,9 +1,10 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, { useMemo } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
 import ServiceInternalLinks from "../../components/ServiceInternalLinks";
+import SmartPlanningAssistant from "../../components/SmartPlanningAssistant";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
@@ -12,68 +13,6 @@ const EMAIL_LINK = "mailto:info@wedrawplans.com";
 const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Bromley";
 const GOOGLE_BUSINESS_PROFILE_LINK = "https://share.google/D3KId64vHtHSKPALr";
-
-type ChatRole = "assistant" | "user";
-type ChatMessage = { role: ChatRole; text: string };
-
-function sanitizeText(input: string) {
-  return input.replace(/\s+/g, " ").trim();
-}
-
-function includesAny(haystack: string, needles: string[]) {
-  const s = haystack.toLowerCase();
-  return needles.some((n) => s.includes(n));
-}
-
-function extractPostcodeLoose(text: string) {
-  const t = text.toUpperCase();
-  const match = t.match(/\bBR\d{1,2}\s?\d?[A-Z]{0,2}\b/g);
-  if (!match) return "";
-  return match[0].replace(/\s+/g, " ").trim();
-}
-
-function detectProjectType(text: string) {
-  const userLower = text.toLowerCase();
-
-  const projectSignals: Array<{ label: string; terms: string[] }> = [
-    {
-      label: "House extension drawings",
-      terms: ["extension", "rear", "side", "wrap", "wraparound", "kitchen", "dining", "single storey", "double storey"],
-    },
-    {
-      label: "Loft conversion drawings",
-      terms: ["loft", "dormer", "hip", "gable", "mansard", "roof"],
-    },
-    {
-      label: "Building regulation pack only",
-      terms: ["building regs", "building regulation", "regulations", "building control", "technical", "structural notes"],
-    },
-    {
-      label: "Garage conversion drawings",
-      terms: ["garage", "garage conversion"],
-    },
-    {
-      label: "Outbuilding or garden room drawings",
-      terms: ["outbuilding", "garden room", "studio", "annexe", "summerhouse"],
-    },
-    {
-      label: "New build house drawings",
-      terms: ["new build", "newbuild", "self build", "house build"],
-    },
-    {
-      label: "Conversion to self contained flats",
-      terms: ["flat", "flats", "conversion", "hmo", "studio flat", "change of use"],
-    },
-    {
-      label: "Internal remodelling drawings",
-      terms: ["internal", "knock through", "open plan", "layout", "reconfigure"],
-    },
-  ];
-
-  const match = projectSignals.find((p) => includesAny(userLower, p.terms));
-  return match ? match.label : "";
-}
-
 
 export default function BromleyAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -1180,8 +1119,8 @@ export default function BromleyAreaPage() {
                 ,{" "}
                 <Link href="/commercial/shopfronts" className="underline">
                   shopfront drawings
-                </Link>
-                {" "}and{" "}
+                </Link>{" "}
+                and{" "}
                 <Link href="/commercial/office-fitout" className="underline">
                   office fit out drawings
                 </Link>
@@ -1235,7 +1174,7 @@ export default function BromleyAreaPage() {
             </div>
           </section>
 
-          <PlanningAssistant boroughName="Bromley" />
+          <SmartPlanningAssistant boroughName="Bromley" />
         </main>
 
         <footer className="border-t border-[#2a3050] bg-[#20243b]">
