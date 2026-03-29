@@ -128,29 +128,29 @@ const COMMERCIAL_ITEMS: { label: string; href: string }[] = [
 ];
 
 const EXTENSION_ITEMS: NavDropdownItem[] = [
-  { label: "Rear extension plans", href: "/extensions" },
-  { label: "Side return extensions", href: "/extensions" },
-  { label: "Wrap-around extensions", href: "/extensions" },
-  { label: "Two storey extensions", href: "/extensions" },
-  { label: "Kitchen extension layouts", href: "/extensions" },
-  { label: "Garage conversion plans", href: "/extensions" },
-  { label: "Garden room / studio plans", href: "/extensions" },
+  { label: "Rear extension plans", href: "/extension-plans" },
+  { label: "Side return extensions", href: "/extension-plans" },
+  { label: "Wrap-around extensions", href: "/extension-plans" },
+  { label: "Two storey extensions", href: "/extension-plans" },
+  { label: "Kitchen extension layouts", href: "/extension-plans" },
+  { label: "Garage conversion plans", href: "/extension-plans" },
+  { label: "Garden room / studio plans", href: "/extension-plans" },
 ];
 
 const LOFT_ITEMS: NavDropdownItem[] = [
-  { label: "Dormer loft conversions", href: "/loft-conversion" },
-  { label: "Hip to gable lofts", href: "/loft-conversion" },
-  { label: "Mansard loft conversions", href: "/loft-conversion" },
-  { label: "Velux loft layouts", href: "/loft-conversion" },
-  { label: "Attic conversions", href: "/loft-conversion" },
+  { label: "Dormer loft conversions", href: "/loft-conversion-plans" },
+  { label: "Hip to gable lofts", href: "/loft-conversion-plans" },
+  { label: "Mansard loft conversions", href: "/loft-conversion-plans" },
+  { label: "Velux loft layouts", href: "/loft-conversion-plans" },
+  { label: "Attic conversions", href: "/loft-conversion-plans" },
 ];
 
 const NEW_BUILD_ITEMS: NavDropdownItem[] = [
-  { label: "New build house plans", href: "/new-build" },
-  { label: "Small residential developments", href: "/new-build" },
-  { label: "Backland and infill sites", href: "/new-build" },
-  { label: "Conversion to self-contained flats", href: "/new-build" },
-  { label: "Basement and lower ground conversions", href: "/new-build" },
+  { label: "New build house plans", href: "/new-build-plans" },
+  { label: "Small residential developments", href: "/new-build-plans" },
+  { label: "Backland and infill sites", href: "/new-build-plans" },
+  { label: "Conversion to self-contained flats", href: "/new-build-plans" },
+  { label: "Basement and lower ground conversions", href: "/new-build-plans" },
 ];
 
 const TECHNICAL_ITEMS: NavDropdownItem[] = [
@@ -617,8 +617,8 @@ export default function IndexPage() {
       </Head>
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
-        <header className="sticky top-0 z-[60] bg-[#fdf8f3]/95 backdrop-blur border-b border-slate-200">
-          <div className="mx-auto max-w-6xl px-4 pt-4 pb-3 lg:px-6 lg:pt-5">
+        <header className="sticky top-0 z-[60] border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur">
+          <div className="mx-auto max-w-6xl px-4 pb-3 pt-4 lg:px-6 lg:pt-5">
             <div className="flex flex-col items-center text-center">
               <Link href="/" className="inline-flex items-center justify-center">
                 <img
@@ -644,9 +644,9 @@ export default function IndexPage() {
                 <LocalDesignersDropdown />
                 <CommercialDropdown />
 
-                <NavMenu title="Extension Plans" href="/extensions" items={EXTENSION_ITEMS} />
-                <NavMenu title="Loft Plans" href="/loft-conversion" items={LOFT_ITEMS} />
-                <NavMenu title="New Build" href="/new-build" items={NEW_BUILD_ITEMS} />
+                <NavMenu title="Extension Plans" href="/extension-plans" items={EXTENSION_ITEMS} />
+                <NavMenu title="Loft Plans" href="/loft-conversion-plans" items={LOFT_ITEMS} />
+                <NavMenu title="New Build" href="/new-build-plans" items={NEW_BUILD_ITEMS} />
                 <NavMenu
                   title="Technical & Support"
                   href="/building-regulation-drawings"
@@ -689,7 +689,7 @@ export default function IndexPage() {
         </header>
 
         <section className="border-b border-slate-200 bg-[#fdf8f3] pt-4 sm:pt-6 lg:pt-0">
-          <div className="mx-auto max-w-6xl px-4 pt-0 pb-8 lg:px-6 lg:pt-10 lg:pb-12">
+          <div className="mx-auto max-w-6xl px-4 pb-8 pt-0 lg:px-6 lg:pb-12 lg:pt-10">
             <div className="grid gap-3 lg:grid-cols-[1.05fr_0.95fr] lg:items-start lg:gap-8">
               <div className="text-center lg:text-left">
                 <div className="hidden lg:block">
@@ -1295,13 +1295,13 @@ export default function IndexPage() {
                 <Link href="/areas" className="hover:text-white">
                   Areas We Cover
                 </Link>
-                <Link href="/extensions" className="hover:text-white">
+                <Link href="/extension-plans" className="hover:text-white">
                   Extension Plans
                 </Link>
-                <Link href="/loft-conversion" className="hover:text-white">
+                <Link href="/loft-conversion-plans" className="hover:text-white">
                   Loft Plans
                 </Link>
-                <Link href="/new-build" className="hover:text-white">
+                <Link href="/new-build-plans" className="hover:text-white">
                   New Build
                 </Link>
                 <Link href="/building-regulation-drawings" className="hover:text-white">
