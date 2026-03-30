@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import Head from "next/head";
 import HeroSlider from "../components/HeroSlider";
 import Link from "next/link";
@@ -26,6 +26,12 @@ type NavDropdownItem = {
   href: string;
 };
 
+type ServiceOption = {
+  label: string;
+  value: string;
+  href?: string;
+};
+
 const gtagEvent = (name: string, params: Record<string, any> = {}) => {
   if (typeof window === "undefined") return;
   const w = window as any;
@@ -40,6 +46,28 @@ const trackLeadEvent = (action: LeadAction) => {
     event_label: action,
   });
 };
+
+const HERO_SERVICE_OPTIONS: ServiceOption[] = [
+  { label: "House Extension Drawings", value: "House extension drawings", href: "/extension-plans" },
+  { label: "Loft Conversion Drawings", value: "Loft conversion drawings", href: "/loft-conversion-plans" },
+  { label: "Building Regulations Plans", value: "Building regulation drawings", href: "/building-regulation-drawings" },
+  { label: "Design Plans", value: "Design plans", href: "/building-regulation-drawings" },
+  { label: "Detailed Sections", value: "Detailed sections", href: "/building-regulation-drawings" },
+  { label: "Dropped Kerb Plans", value: "Dropped kerb plans", href: "/building-regulation-drawings" },
+  { label: "Elevation Plans", value: "Elevation plans", href: "/building-regulation-drawings" },
+  { label: "Floor Plans", value: "Floor plans", href: "/building-regulation-drawings" },
+  { label: "Garage Conversion Plans", value: "Garage conversion drawings", href: "/extension-plans" },
+  { label: "Garage Plans", value: "Garage plans", href: "/extension-plans" },
+  { label: "Garden Studio Plans", value: "Garden studio drawings", href: "/extension-plans" },
+  { label: "HMO Plans", value: "HMO plans", href: "/building-regulation-drawings" },
+  { label: "Party Wall Services", value: "Party wall drawings", href: "/building-regulation-drawings" },
+  { label: "Planning Applications", value: "Planning drawings", href: "/extension-plans" },
+  { label: "Property Conversion", value: "Property conversion drawings", href: "/new-build-plans" },
+  { label: "Shop Plans", value: "Shop plans", href: "/commercial/shopfronts" },
+  { label: "Structural Calculations", value: "Structural calculations", href: "/building-regulation-drawings" },
+  { label: "New Build Plans", value: "New build drawings", href: "/new-build-plans" },
+  { label: "Other", value: "Other drawings" },
+];
 
 const BOROUGHS: { label: string; slug: string }[] = [
   { label: "Architectural drawings Barking and Dagenham", slug: "barking-dagenham" },
@@ -161,6 +189,45 @@ const TECHNICAL_ITEMS: NavDropdownItem[] = [
   { label: "Party wall plans and support", href: "/building-regulation-drawings" },
   { label: "HMO layout and licensing drawings", href: "/building-regulation-drawings" },
   { label: "Interior layouts and finishes", href: "/building-regulation-drawings" },
+];
+
+const MOBILE_SERVICE_SECTIONS: {
+  title: string;
+  href?: string;
+  items: NavDropdownItem[];
+  defaultOpen?: boolean;
+}[] = [
+  {
+    title: "Local Designers",
+    href: "/areas",
+    items: LOCAL_DESIGNERS_ITEMS,
+  },
+  {
+    title: "Commercial",
+    href: "/commercial",
+    items: COMMERCIAL_ITEMS,
+  },
+  {
+    title: "Extension Plans",
+    href: "/extension-plans",
+    items: EXTENSION_ITEMS,
+  },
+  {
+    title: "Loft Plans",
+    href: "/loft-conversion-plans",
+    items: LOFT_ITEMS,
+  },
+  {
+    title: "New Build",
+    href: "/new-build-plans",
+    items: NEW_BUILD_ITEMS,
+  },
+  {
+    title: "Technical & Support",
+    href: "/building-regulation-drawings",
+    items: TECHNICAL_ITEMS,
+    defaultOpen: true,
+  },
 ];
 
 const POSTCODE_RULES: Array<{
@@ -329,7 +396,26 @@ function detectPostcodeIntel(postcode: string): PostcodeIntel {
   };
 }
 
-function LocalDesignersDropdown() {
+function useCloseOnEscape(open: boolean, onClose: () => void) {
+  useEffect(() => {
+    if (!open) return;
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") onClose();
+    }
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open, onClose]);
+}
+
+function DesktopDropdown({
+  label,
+  href,
+  items,
+}: {
+  label: string;
+  href: string;
+  items: NavDropdownItem[];
+}) {
   const [open, setOpen] = useState(false);
   const wrapRef = useRef<HTMLDivElement | null>(null);
 
@@ -343,13 +429,7 @@ function LocalDesignersDropdown() {
     return () => document.removeEventListener("mousedown", onDocMouseDown);
   }, []);
 
-  useEffect(() => {
-    function onKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") setOpen(false);
-    }
-    document.addEventListener("keydown", onKeyDown);
-    return () => document.removeEventListener("keydown", onKeyDown);
-  }, []);
+  useCloseOnEscape(open, () => setOpen(false));
 
   return (
     <div
@@ -360,22 +440,31 @@ function LocalDesignersDropdown() {
     >
       <button
         type="button"
-        className="whitespace-nowrap text-[14px] font-normal text-slate-900 hover:text-black"
+        className="inline-flex items-center gap-1 whitespace-nowrap text-[14px] font-medium text-slate-900 transition hover:text-black"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-haspopup="true"
       >
-        Local Designers
+        <span>{label}</span>
+        <span className="text-[11px]">▾</span>
       </button>
 
       {open && (
-        <div className="absolute left-0 top-full z-[9999]">
-          <div className="mt-2 max-h-[70vh] w-80 overflow-auto rounded-xl border border-slate-200 bg-white p-2 shadow-lg">
-            {LOCAL_DESIGNERS_ITEMS.map((item) => (
+        <div className="absolute left-0 top-full z-[9999] pt-3">
+          <div className="max-h-[70vh] w-[290px] overflow-auto rounded-2xl border border-slate-200 bg-white p-2 shadow-[0_18px_42px_rgba(15,23,42,0.15)]">
+            <Link
+              href={href}
+              className="block rounded-xl px-3 py-2 text-[14px] font-semibold text-slate-900 hover:bg-slate-100"
+              onClick={() => setOpen(false)}
+            >
+              View all {label}
+            </Link>
+            <div className="my-2 border-t border-slate-200" />
+            {items.map((item) => (
               <Link
-                key={item.href}
+                key={`${label}-${item.label}`}
                 href={item.href}
-                className="block rounded-lg px-3 py-2 text-[14px] text-slate-900 hover:bg-slate-100"
+                className="block rounded-xl px-3 py-2 text-[14px] text-slate-800 hover:bg-slate-100"
                 onClick={() => setOpen(false)}
               >
                 {item.label}
@@ -388,54 +477,44 @@ function LocalDesignersDropdown() {
   );
 }
 
-function CommercialDropdown() {
-  const [open, setOpen] = useState(false);
-  const wrapRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    function onDocMouseDown(e: MouseEvent) {
-      if (!wrapRef.current) return;
-      const target = e.target as Node | null;
-      if (target && !wrapRef.current.contains(target)) setOpen(false);
-    }
-    document.addEventListener("mousedown", onDocMouseDown);
-    return () => document.removeEventListener("mousedown", onDocMouseDown);
-  }, []);
-
-  useEffect(() => {
-    function onKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") setOpen(false);
-    }
-    document.addEventListener("keydown", onKeyDown);
-    return () => document.removeEventListener("keydown", onKeyDown);
-  }, []);
+function MobileMenuSection({
+  title,
+  href,
+  items,
+  defaultOpen = false,
+}: {
+  title: string;
+  href?: string;
+  items: NavDropdownItem[];
+  defaultOpen?: boolean;
+}) {
+  const [open, setOpen] = useState(defaultOpen);
 
   return (
-    <div
-      ref={wrapRef}
-      className="relative"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-    >
+    <div className="border-b border-slate-200 py-5">
       <button
         type="button"
-        className="whitespace-nowrap text-[14px] font-normal text-slate-900 hover:text-black"
         onClick={() => setOpen((v) => !v)}
-        aria-expanded={open}
-        aria-haspopup="true"
+        className="flex w-full items-center justify-between gap-4 text-left"
       >
-        Commercial
+        <span className="text-[18px] font-medium text-slate-900">{title}</span>
+        <span className="text-[22px] leading-none text-slate-700">{open ? "−" : "+"}</span>
       </button>
 
       {open && (
-        <div className="absolute left-0 top-full z-[9999]">
-          <div className="mt-2 max-h-[70vh] w-80 overflow-auto rounded-xl border border-slate-200 bg-white p-2 shadow-lg">
-            {COMMERCIAL_ITEMS.map((item) => (
+        <div className="pt-4">
+          {href ? (
+            <Link href={href} className="block py-2 text-[16px] font-medium text-slate-900">
+              View all {title}
+            </Link>
+          ) : null}
+
+          <div className="space-y-1">
+            {items.map((item) => (
               <Link
-                key={item.href}
+                key={`${title}-${item.label}`}
                 href={item.href}
-                className="block rounded-lg px-3 py-2 text-[14px] text-slate-900 hover:bg-slate-100"
-                onClick={() => setOpen(false)}
+                className="block py-2 text-[16px] text-slate-700"
               >
                 {item.label}
               </Link>
@@ -444,6 +523,36 @@ function CommercialDropdown() {
         </div>
       )}
     </div>
+  );
+}
+
+function HamburgerButton({
+  isOpen,
+  onClick,
+}: {
+  isOpen: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      aria-label={isOpen ? "Close menu" : "Open menu"}
+      aria-expanded={isOpen}
+      onClick={onClick}
+      className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-900 shadow-sm transition hover:border-slate-400"
+    >
+      <span className="relative block h-5 w-6">
+        <span
+          className={`absolute left-0 top-0 h-[2px] w-6 bg-current transition ${isOpen ? "translate-y-[9px] rotate-45" : ""}`}
+        />
+        <span
+          className={`absolute left-0 top-[9px] h-[2px] w-6 bg-current transition ${isOpen ? "opacity-0" : "opacity-100"}`}
+        />
+        <span
+          className={`absolute left-0 top-[18px] h-[2px] w-6 bg-current transition ${isOpen ? "-translate-y-[9px] -rotate-45" : ""}`}
+        />
+      </span>
+    </button>
   );
 }
 
@@ -460,6 +569,7 @@ export default function IndexPage() {
   const [heroName, setHeroName] = useState("");
   const [heroPhone, setHeroPhone] = useState("");
   const [heroEmail, setHeroEmail] = useState("");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     if (!heroExpanded) return;
@@ -469,7 +579,24 @@ export default function IndexPage() {
     return () => window.clearTimeout(timer);
   }, [heroExpanded]);
 
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const original = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = original;
+    };
+  }, [mobileMenuOpen]);
+
+  useCloseOnEscape(mobileMenuOpen, () => setMobileMenuOpen(false));
+
   const postcodeIntel = detectPostcodeIntel(heroPostcode);
+
+  const serviceLookup = useMemo(() => {
+    const map = new Map<string, ServiceOption>();
+    HERO_SERVICE_OPTIONS.forEach((item) => map.set(item.value, item));
+    return map;
+  }, []);
 
   function trackHeroFormStart(firstFieldName?: string) {
     if (!heroStartedRef.current) {
@@ -484,9 +611,11 @@ export default function IndexPage() {
 
   function trackHeroServiceSelect(serviceValue: string) {
     if (!serviceValue) return;
+    const selected = serviceLookup.get(serviceValue);
     gtagEvent("lead_select_project_type", {
       form_name: "homepage_hero",
       service: serviceValue,
+      service_label: selected?.label || serviceValue,
       borough_detected: postcodeIntel.borough || "unknown",
       outward_code: postcodeIntel.outward || "unknown",
     });
@@ -619,78 +748,208 @@ export default function IndexPage() {
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
         <header className="sticky top-0 z-[60] border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur">
           <div className="mx-auto max-w-6xl px-4 pb-3 pt-4 lg:px-6 lg:pt-5">
-            <div className="flex flex-col items-center text-center">
-              <Link href="/" className="inline-flex items-center justify-center">
-                <img
-                  src="/images/wedrawplans-logo.png"
-                  alt="WEDRAWPLANS"
-                  className="h-24 w-auto object-contain lg:h-28"
-                />
-              </Link>
+            <div className="flex items-start justify-between gap-4">
+              <div className="flex min-w-0 flex-1 flex-col items-start text-left sm:items-center sm:text-center">
+                <Link href="/" className="inline-flex items-center justify-center">
+                  <img
+                    src="/images/wedrawplans-logo.png"
+                    alt="WEDRAWPLANS"
+                    className="h-20 w-auto object-contain sm:h-24 lg:h-28"
+                  />
+                </Link>
 
-              <div className="mt-2 text-[11px] uppercase tracking-[0.18em] text-slate-600">
-                Architectural Drawing Consultants
+                <div className="mt-2 text-[10px] uppercase tracking-[0.18em] text-slate-600 sm:text-[11px]">
+                  Architectural Drawing Consultants
+                </div>
+
+                <div className="mt-2 hidden max-w-3xl text-[13px] font-medium text-slate-800 xl:block">
+                  House extension, loft conversion and planning drawings across London
+                </div>
               </div>
 
-              <div className="mt-2 hidden max-w-3xl text-[13px] font-medium text-slate-800 lg:block">
-                House extension, loft conversion and planning drawings across London
+              <div className="flex shrink-0 items-center gap-2 lg:hidden">
+                <a
+                  href={PHONE_LINK}
+                  onClick={() => trackLeadEvent("phone_click")}
+                  className="inline-flex h-11 items-center justify-center rounded-full bg-[#20243b] px-4 text-[13px] font-semibold text-white shadow-sm"
+                >
+                  Call
+                </a>
+                <HamburgerButton
+                  isOpen={mobileMenuOpen}
+                  onClick={() => setMobileMenuOpen((v) => !v)}
+                />
               </div>
             </div>
 
             <hr className="mt-4 border-t border-slate-600" />
 
-            <div className="mt-3 hidden w-full items-center justify-between lg:flex">
-              <nav className="flex flex-1 items-center justify-center gap-6 text-[13px] text-slate-900">
-                <LocalDesignersDropdown />
-                <CommercialDropdown />
-
-                <NavMenu title="Extension Plans" href="/extension-plans" items={EXTENSION_ITEMS} />
-                <NavMenu title="Loft Plans" href="/loft-conversion-plans" items={LOFT_ITEMS} />
-                <NavMenu title="New Build" href="/new-build-plans" items={NEW_BUILD_ITEMS} />
-                <NavMenu
-                  title="Technical & Support"
+            <div className="mt-4 hidden items-center justify-between gap-4 lg:flex">
+              <nav className="flex min-w-0 flex-1 items-center gap-5 xl:gap-6">
+                <DesktopDropdown label="Local Designers" href="/areas" items={LOCAL_DESIGNERS_ITEMS} />
+                <DesktopDropdown label="Commercial" href="/commercial" items={COMMERCIAL_ITEMS} />
+                <DesktopDropdown label="Extension Plans" href="/extension-plans" items={EXTENSION_ITEMS} />
+                <DesktopDropdown label="Loft Plans" href="/loft-conversion-plans" items={LOFT_ITEMS} />
+                <DesktopDropdown label="New Build" href="/new-build-plans" items={NEW_BUILD_ITEMS} />
+                <DesktopDropdown
+                  label="Technical & Support"
                   href="/building-regulation-drawings"
                   items={TECHNICAL_ITEMS}
                 />
 
-                <Link href="/areas" className="whitespace-nowrap hover:text-black">
+                <Link href="/areas" className="whitespace-nowrap text-[14px] font-medium text-slate-900 hover:text-black">
                   Areas we cover
                 </Link>
-                <a href="#price-guide" className="whitespace-nowrap hover:text-black">
+                <a href="#price-guide" className="whitespace-nowrap text-[14px] font-medium text-slate-900 hover:text-black">
                   Price guide
                 </a>
-                <a href="#contact" className="whitespace-nowrap hover:text-black">
+                <a href="#contact" className="whitespace-nowrap text-[14px] font-medium text-slate-900 hover:text-black">
                   Contact
                 </a>
               </nav>
 
-              <div className="flex items-center gap-3">
+              <div className="flex shrink-0 items-center gap-3">
                 <a
                   href={PHONE_LINK}
-                  className="inline-flex items-center gap-2 rounded-full bg-[#20243b] px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#161a2f]"
+                  className="inline-flex h-12 items-center justify-center rounded-full bg-[#20243b] px-6 text-[14px] font-semibold text-white shadow-sm transition hover:bg-[#161a2f]"
                   onClick={() => trackLeadEvent("phone_click")}
                 >
-                  <span className="text-base">📞</span>
-                  <span>Call {PHONE_DISPLAY}</span>
+                  Call {PHONE_DISPLAY}
                 </a>
 
                 <a
                   href={WHATSAPP_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#1ebe57]"
+                  className="inline-flex h-12 items-center justify-center rounded-full bg-[#25D366] px-6 text-[14px] font-semibold text-white shadow-sm transition hover:bg-[#1ebe57]"
                   onClick={() => trackLeadEvent("whatsapp_click")}
                 >
-                  <span>WhatsApp us now</span>
+                  WhatsApp us now
                 </a>
               </div>
+            </div>
+
+            <div className="mt-4 hidden items-center gap-3 md:flex lg:hidden">
+              <a
+                href={PHONE_LINK}
+                className="inline-flex h-11 items-center justify-center rounded-full bg-[#20243b] px-5 text-[13px] font-semibold text-white shadow-sm"
+                onClick={() => trackLeadEvent("phone_click")}
+              >
+                Call {PHONE_DISPLAY}
+              </a>
+              <a
+                href={WHATSAPP_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-11 items-center justify-center rounded-full bg-[#25D366] px-5 text-[13px] font-semibold text-white shadow-sm"
+                onClick={() => trackLeadEvent("whatsapp_click")}
+              >
+                WhatsApp us now
+              </a>
             </div>
           </div>
         </header>
 
+        {mobileMenuOpen && (
+          <div className="fixed inset-0 z-[80] lg:hidden">
+            <button
+              type="button"
+              aria-label="Close mobile menu"
+              className="absolute inset-0 bg-slate-900/35"
+              onClick={() => setMobileMenuOpen(false)}
+            />
+            <div className="absolute right-0 top-0 h-full w-full max-w-[420px] overflow-y-auto bg-[#fdf8f3] px-6 pb-10 pt-6 shadow-[0_20px_50px_rgba(15,23,42,0.28)]">
+              <div className="flex items-center justify-between">
+                <div className="text-[13px] font-semibold uppercase tracking-[0.16em] text-slate-700">
+                  Menu
+                </div>
+                <button
+                  type="button"
+                  aria-label="Close menu"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-300 bg-white text-[24px] text-slate-900"
+                >
+                  ×
+                </button>
+              </div>
+
+              <div className="mt-6 space-y-2">
+                <Link
+                  href="/"
+                  className="block py-2 text-[18px] font-medium text-slate-900"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Home
+                </Link>
+                <Link
+                  href="/areas"
+                  className="block py-2 text-[18px] font-medium text-slate-900"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Areas We Cover
+                </Link>
+                <a
+                  href="#price-guide"
+                  className="block py-2 text-[18px] font-medium text-slate-900"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Price Guide
+                </a>
+                <a
+                  href="#contact"
+                  className="block py-2 text-[18px] font-medium text-slate-900"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Contact
+                </a>
+              </div>
+
+              <div className="mt-4 border-t border-slate-200" />
+
+              <div>
+                {MOBILE_SERVICE_SECTIONS.map((section) => (
+                  <MobileMenuSection
+                    key={section.title}
+                    title={section.title}
+                    href={section.href}
+                    items={section.items}
+                    defaultOpen={section.defaultOpen}
+                  />
+                ))}
+              </div>
+
+              <div className="mt-8 grid gap-3">
+                <a
+                  href={PHONE_LINK}
+                  className="inline-flex h-12 items-center justify-center rounded-full bg-[#20243b] px-5 text-[14px] font-semibold text-white shadow-sm"
+                  onClick={() => trackLeadEvent("phone_click")}
+                >
+                  Call {PHONE_DISPLAY}
+                </a>
+                <a
+                  href={WHATSAPP_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-12 items-center justify-center rounded-full bg-[#25D366] px-5 text-[14px] font-semibold text-white shadow-sm"
+                  onClick={() => trackLeadEvent("whatsapp_click")}
+                >
+                  WhatsApp us now
+                </a>
+                <a
+                  href={EMAIL_LINK}
+                  className="inline-flex h-12 items-center justify-center rounded-full border border-slate-300 bg-white px-5 text-[14px] font-semibold text-slate-900 shadow-sm"
+                  onClick={() => trackLeadEvent("email_click")}
+                >
+                  Email us
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
+
         <section className="border-b border-slate-200 bg-[#fdf8f3] pt-4 sm:pt-6 lg:pt-0">
           <div className="mx-auto max-w-6xl px-4 pb-8 pt-0 lg:px-6 lg:pb-12 lg:pt-10">
-            <div className="grid gap-3 lg:grid-cols-[1.05fr_0.95fr] lg:items-start lg:gap-8">
+            <div className="grid gap-4 lg:grid-cols-[1.05fr_0.95fr] lg:items-start lg:gap-8">
               <div className="text-center lg:text-left">
                 <div className="hidden lg:block">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-red-700">
@@ -748,33 +1007,52 @@ export default function IndexPage() {
                 </div>
 
                 <div className="lg:hidden">
-                  <h1 className="mx-auto max-w-[440px] text-[21px] font-semibold uppercase leading-[1.34] tracking-[0.08em] text-slate-900 sm:text-[23px]">
-                    House Extension & Planning Drawings in London
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-red-700">
+                    London architectural drawing specialists
+                  </p>
+
+                  <h1 className="mx-auto mt-3 max-w-[520px] text-[21px] font-semibold uppercase leading-[1.34] tracking-[0.08em] text-slate-900 sm:text-[24px]">
+                    House Extension, Loft Conversion and Building Regulation Drawings in London
                   </h1>
 
-                  <p className="mx-auto mt-3 max-w-[360px] text-[13px] leading-6 text-slate-700">
-                    Get a fixed quote today. Initial survey within 48 hours.
+                  <p className="mx-auto mt-3 max-w-[520px] text-[14px] leading-6 text-slate-700">
+                    Clear fixed fees, practical drawings and initial survey within 48 hours in most cases.
                   </p>
 
-                  <p className="mx-auto mt-2 max-w-[360px] text-[13px] leading-6 text-slate-700">
-                    Send us your house photo on WhatsApp and we will advise instantly.
-                  </p>
+                  <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:justify-center">
+                    <a
+                      href={PHONE_LINK}
+                      onClick={() => trackLeadEvent("phone_click")}
+                      className="inline-flex h-12 items-center justify-center rounded-full bg-[#20243b] px-6 text-[14px] font-semibold text-white shadow-sm"
+                    >
+                      Call {PHONE_DISPLAY}
+                    </a>
+                    <a
+                      href={WHATSAPP_LINK}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => trackLeadEvent("whatsapp_click")}
+                      className="inline-flex h-12 items-center justify-center rounded-full bg-[#25D366] px-6 text-[14px] font-semibold text-white shadow-sm"
+                    >
+                      WhatsApp us now
+                    </a>
+                  </div>
                 </div>
               </div>
 
               <div className="lg:pt-2">
-                <div className="mx-auto max-w-[560px] rounded-[24px] bg-white p-3 shadow-[0_18px_48px_rgba(15,23,42,0.10)] sm:p-4 lg:max-w-[580px] lg:rounded-[24px] lg:p-5">
+                <div className="mx-auto max-w-[620px] rounded-[24px] bg-white p-3 shadow-[0_18px_48px_rgba(15,23,42,0.10)] sm:p-4 lg:rounded-[24px] lg:p-5">
                   <div className="rounded-[20px] border border-slate-200/80 bg-[#f7fafc] px-4 py-4 shadow-[0_8px_24px_rgba(15,23,42,0.05)] sm:px-6 sm:py-5 lg:px-6 lg:py-5">
                     <div className="text-center">
                       <p className="mx-auto max-w-[430px] text-[16px] font-semibold leading-6 text-slate-800">
                         Get your fixed price in minutes
                       </p>
-                      <p className="mx-auto mt-2 max-w-[440px] text-[12px] leading-5 text-slate-600">
-                        Tell us your postcode and the drawings you need. Then add your details and we will come back with a clear quote.
+                      <p className="mx-auto mt-2 max-w-[500px] text-[12px] leading-5 text-slate-600">
+                        Choose the service you need, tell us your postcode, then add your details and we will come back with a clear quote.
                       </p>
                     </div>
 
-                    <form onSubmit={handleHeroSubmit} className="mx-auto mt-4 max-w-[500px]">
+                    <form onSubmit={handleHeroSubmit} className="mx-auto mt-4 max-w-[520px]">
                       <input
                         type="text"
                         name="company"
@@ -784,6 +1062,32 @@ export default function IndexPage() {
                       />
 
                       <div className="space-y-3">
+                        <div className="relative">
+                          <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[20px] text-[#2f6f8a]">
+                            ✎
+                          </span>
+                          <select
+                            name="service"
+                            value={heroService}
+                            onFocus={() => trackHeroFormStart("service")}
+                            onChange={(e) => {
+                              setHeroService(e.target.value);
+                              trackHeroServiceSelect(e.target.value);
+                            }}
+                            className="h-14 w-full appearance-none rounded-[16px] border border-slate-200 bg-white pl-14 pr-12 text-[16px] text-slate-800 shadow-sm outline-none transition focus:border-[#64b7c4]"
+                          >
+                            <option value="">Which service do you need?</option>
+                            {HERO_SERVICE_OPTIONS.map((option) => (
+                              <option key={option.value} value={option.value}>
+                                {option.label}
+                              </option>
+                            ))}
+                          </select>
+                          <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[18px] text-slate-700">
+                            ▾
+                          </span>
+                        </div>
+
                         <div className="relative">
                           <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[20px] text-[#d85e56]">
                             📍
@@ -804,34 +1108,6 @@ export default function IndexPage() {
                             ✓ {postcodeIntel.coverageLabel}
                           </div>
                         )}
-
-                        <div className="relative">
-                          <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[20px] text-[#2f6f8a]">
-                            ✎
-                          </span>
-                          <select
-                            name="service"
-                            value={heroService}
-                            onFocus={() => trackHeroFormStart("service")}
-                            onChange={(e) => {
-                              setHeroService(e.target.value);
-                              trackHeroServiceSelect(e.target.value);
-                            }}
-                            className="h-14 w-full appearance-none rounded-[16px] border border-slate-200 bg-white pl-14 pr-12 text-[16px] text-slate-800 shadow-sm outline-none transition focus:border-[#64b7c4]"
-                          >
-                            <option value="">What drawings do you need?</option>
-                            <option value="House extension drawings">House extension drawings</option>
-                            <option value="Loft conversion drawings">Loft conversion drawings</option>
-                            <option value="Planning drawings">Planning drawings</option>
-                            <option value="Building regulation drawings">Building regulation drawings</option>
-                            <option value="New build drawings">New build drawings</option>
-                            <option value="Flat conversion drawings">Flat conversion drawings</option>
-                            <option value="Other drawings">Other drawings</option>
-                          </select>
-                          <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[18px] text-slate-700">
-                            ▾
-                          </span>
-                        </div>
 
                         {heroExpanded && (
                           <div className="space-y-3 pt-1">
@@ -893,11 +1169,11 @@ export default function IndexPage() {
                       </div>
                     </div>
 
-                    <div className="mx-auto mt-4 flex max-w-[430px] flex-col items-center justify-center gap-3 sm:flex-row">
+                    <div className="mx-auto mt-4 grid max-w-[460px] gap-3 sm:grid-cols-2">
                       <a
                         href={PHONE_LINK}
                         onClick={() => trackLeadEvent("phone_click")}
-                        className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#20243b] px-5 text-[15px] font-semibold text-white shadow-[0_8px_18px_rgba(15,23,42,0.22)] sm:flex-1"
+                        className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#20243b] px-5 text-[15px] font-semibold text-white shadow-[0_8px_18px_rgba(15,23,42,0.22)]"
                       >
                         Call {PHONE_DISPLAY}
                       </a>
@@ -907,7 +1183,7 @@ export default function IndexPage() {
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={() => trackLeadEvent("whatsapp_click")}
-                        className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#58a45d] px-5 text-[15px] font-semibold text-white shadow-[0_8px_18px_rgba(34,197,94,0.18)] sm:flex-1"
+                        className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#58a45d] px-5 text-[15px] font-semibold text-white shadow-[0_8px_18px_rgba(34,197,94,0.18)]"
                       >
                         WhatsApp us now
                       </a>
@@ -1330,44 +1606,13 @@ export default function IndexPage() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat on WhatsApp with WEDRAWPLANS"
-          className="fixed bottom-4 right-4 z-[70] flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg ring-2 ring-white/70 hover:bg-[#1ebe57]"
+          className="fixed bottom-4 right-4 z-[70] inline-flex h-14 items-center justify-center rounded-full bg-[#25D366] px-5 text-[14px] font-semibold text-white shadow-lg ring-2 ring-white/70 hover:bg-[#1ebe57]"
           onClick={() => trackLeadEvent("whatsapp_click")}
         >
-          <span className="text-xl">💬</span>
+          WhatsApp
         </a>
       </div>
     </>
-  );
-}
-
-type NavMenuProps = {
-  title: string;
-  href: string;
-  items: NavDropdownItem[];
-};
-
-function NavMenu({ title, href, items }: NavMenuProps) {
-  return (
-    <div className="group relative">
-      <Link href={href} className="whitespace-nowrap text-[14px] font-normal text-slate-900 hover:text-black">
-        {title}
-      </Link>
-      <div className="pointer-events-none absolute left-0 top-full z-20 mt-2 min-w-[260px] rounded-md bg-white py-2 text-[13px] shadow-lg opacity-0 transition-opacity group-hover:pointer-events-auto group-hover:opacity-100">
-        {items.map((item) => (
-          <NavItem key={`${title}-${item.label}`} href={item.href}>
-            {item.label}
-          </NavItem>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function NavItem({ children, href }: { children: React.ReactNode; href: string }) {
-  return (
-    <Link href={href} className="block px-4 py-2 hover:bg-slate-100">
-      {children}
-    </Link>
   );
 }
 
