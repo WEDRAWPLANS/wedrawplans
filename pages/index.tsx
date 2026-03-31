@@ -29,7 +29,7 @@ type NavDropdownItem = {
 type ServiceOption = {
   label: string;
   value: string;
-  href?: string;
+  href: string;
 };
 
 const gtagEvent = (name: string, params: Record<string, any> = {}) => {
@@ -47,9 +47,9 @@ const trackLeadEvent = (action: LeadAction) => {
   });
 };
 
-const HERO_SERVICE_OPTIONS: ServiceOption[] = [
-  { label: "House Extension Drawings", value: "House extension drawings", href: "/extension-plans" },
-  { label: "Loft Conversion Drawings", value: "Loft conversion drawings", href: "/loft-conversion-plans" },
+const SERVICE_OPTIONS: ServiceOption[] = [
+  { label: "Extension Plans", value: "House extension drawings", href: "/extension-plans" },
+  { label: "Loft Conversion Plans", value: "Loft conversion drawings", href: "/loft-conversion-plans" },
   { label: "Building Regulations Plans", value: "Building regulation drawings", href: "/building-regulation-drawings" },
   { label: "Design Plans", value: "Design plans", href: "/building-regulation-drawings" },
   { label: "Detailed Sections", value: "Detailed sections", href: "/building-regulation-drawings" },
@@ -66,7 +66,7 @@ const HERO_SERVICE_OPTIONS: ServiceOption[] = [
   { label: "Shop Plans", value: "Shop plans", href: "/commercial/shopfronts" },
   { label: "Structural Calculations", value: "Structural calculations", href: "/building-regulation-drawings" },
   { label: "New Build Plans", value: "New build drawings", href: "/new-build-plans" },
-  { label: "Other", value: "Other drawings" },
+  { label: "Other", value: "Other drawings", href: "/contact" },
 ];
 
 const BOROUGHS: { label: string; slug: string }[] = [
@@ -105,7 +105,7 @@ const BOROUGHS: { label: string; slug: string }[] = [
   { label: "Architectural drawings Surrey borders and M25", slug: "surrey-m25" },
 ];
 
-const LOCAL_DESIGNERS_ITEMS: { label: string; href: string }[] = [
+const LOCAL_DESIGNERS_ITEMS: NavDropdownItem[] = [
   { label: "Barnet", href: "/areas/barnet" },
   { label: "Harrow", href: "/areas/harrow" },
   { label: "Croydon", href: "/areas/croydon" },
@@ -143,7 +143,7 @@ const LOCAL_DESIGNERS_ITEMS: { label: string; href: string }[] = [
   { label: "View all boroughs", href: "/areas" },
 ];
 
-const COMMERCIAL_ITEMS: { label: string; href: string }[] = [
+const COMMERCIAL_ITEMS: NavDropdownItem[] = [
   { label: "Shopfronts and signage drawings", href: "/commercial/shopfronts" },
   { label: "Restaurant and cafe layouts", href: "/commercial/restaurants" },
   { label: "Office fit out plans", href: "/commercial/office-fitout" },
@@ -191,43 +191,13 @@ const TECHNICAL_ITEMS: NavDropdownItem[] = [
   { label: "Interior layouts and finishes", href: "/building-regulation-drawings" },
 ];
 
-const MOBILE_SERVICE_SECTIONS: {
-  title: string;
-  href?: string;
-  items: NavDropdownItem[];
-  defaultOpen?: boolean;
-}[] = [
-  {
-    title: "Local Designers",
-    href: "/areas",
-    items: LOCAL_DESIGNERS_ITEMS,
-  },
-  {
-    title: "Commercial",
-    href: "/commercial",
-    items: COMMERCIAL_ITEMS,
-  },
-  {
-    title: "Extension Plans",
-    href: "/extension-plans",
-    items: EXTENSION_ITEMS,
-  },
-  {
-    title: "Loft Plans",
-    href: "/loft-conversion-plans",
-    items: LOFT_ITEMS,
-  },
-  {
-    title: "New Build",
-    href: "/new-build-plans",
-    items: NEW_BUILD_ITEMS,
-  },
-  {
-    title: "Technical & Support",
-    href: "/building-regulation-drawings",
-    items: TECHNICAL_ITEMS,
-    defaultOpen: true,
-  },
+const MOBILE_SECTIONS: { title: string; items: NavDropdownItem[]; href: string }[] = [
+  { title: "Local Designers", items: LOCAL_DESIGNERS_ITEMS, href: "/areas" },
+  { title: "Commercial", items: COMMERCIAL_ITEMS, href: "/commercial" },
+  { title: "Extension Plans", items: EXTENSION_ITEMS, href: "/extension-plans" },
+  { title: "Loft Plans", items: LOFT_ITEMS, href: "/loft-conversion-plans" },
+  { title: "New Build", items: NEW_BUILD_ITEMS, href: "/new-build-plans" },
+  { title: "Technical & Support", items: TECHNICAL_ITEMS, href: "/building-regulation-drawings" },
 ];
 
 const POSTCODE_RULES: Array<{
@@ -391,28 +361,28 @@ function detectPostcodeIntel(postcode: string): PostcodeIntel {
     coverageLabel: borough
       ? `Serving ${outward} • ${borough} area`
       : outward
-      ? `Serving ${outward} area`
-      : null,
+        ? `Serving ${outward} area`
+        : null,
   };
 }
 
-function useCloseOnEscape(open: boolean, onClose: () => void) {
+function useCloseOnEscape(isOpen: boolean, onClose: () => void) {
   useEffect(() => {
-    if (!open) return;
-    function onKeyDown(e: KeyboardEvent) {
+    if (!isOpen) return;
+    function handleEscape(e: KeyboardEvent) {
       if (e.key === "Escape") onClose();
     }
-    document.addEventListener("keydown", onKeyDown);
-    return () => document.removeEventListener("keydown", onKeyDown);
-  }, [open, onClose]);
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, [isOpen, onClose]);
 }
 
 function DesktopDropdown({
-  label,
+  title,
   href,
   items,
 }: {
-  label: string;
+  title: string;
   href: string;
   items: NavDropdownItem[];
 }) {
@@ -420,13 +390,13 @@ function DesktopDropdown({
   const wrapRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    function onDocMouseDown(e: MouseEvent) {
+    function handleMouseDown(e: MouseEvent) {
       if (!wrapRef.current) return;
       const target = e.target as Node | null;
       if (target && !wrapRef.current.contains(target)) setOpen(false);
     }
-    document.addEventListener("mousedown", onDocMouseDown);
-    return () => document.removeEventListener("mousedown", onDocMouseDown);
+    document.addEventListener("mousedown", handleMouseDown);
+    return () => document.removeEventListener("mousedown", handleMouseDown);
   }, []);
 
   useCloseOnEscape(open, () => setOpen(false));
@@ -440,31 +410,31 @@ function DesktopDropdown({
     >
       <button
         type="button"
-        className="inline-flex items-center gap-1 whitespace-nowrap text-[14px] font-medium text-slate-900 transition hover:text-black"
         onClick={() => setOpen((v) => !v)}
+        className="inline-flex items-center gap-1 whitespace-nowrap text-[14px] font-medium text-slate-900 transition hover:text-black"
         aria-expanded={open}
         aria-haspopup="true"
       >
-        <span>{label}</span>
-        <span className="text-[11px]">▾</span>
+        <span>{title}</span>
+        <span className="text-[10px]">▾</span>
       </button>
 
       {open && (
-        <div className="absolute left-0 top-full z-[9999] pt-3">
-          <div className="max-h-[70vh] w-[290px] overflow-auto rounded-2xl border border-slate-200 bg-white p-2 shadow-[0_18px_42px_rgba(15,23,42,0.15)]">
+        <div className="absolute left-0 top-full z-[100] pt-3">
+          <div className="max-h-[70vh] w-[290px] overflow-auto rounded-2xl border border-slate-200 bg-white p-2 shadow-[0_18px_44px_rgba(15,23,42,0.18)]">
             <Link
               href={href}
               className="block rounded-xl px-3 py-2 text-[14px] font-semibold text-slate-900 hover:bg-slate-100"
               onClick={() => setOpen(false)}
             >
-              View all {label}
+              View all {title}
             </Link>
             <div className="my-2 border-t border-slate-200" />
             {items.map((item) => (
               <Link
-                key={`${label}-${item.label}`}
+                key={`${title}-${item.label}`}
                 href={item.href}
-                className="block rounded-xl px-3 py-2 text-[14px] text-slate-800 hover:bg-slate-100"
+                className="block rounded-xl px-3 py-2 text-[14px] text-slate-700 hover:bg-slate-100"
                 onClick={() => setOpen(false)}
               >
                 {item.label}
@@ -481,40 +451,35 @@ function MobileMenuSection({
   title,
   href,
   items,
-  defaultOpen = false,
 }: {
   title: string;
-  href?: string;
+  href: string;
   items: NavDropdownItem[];
-  defaultOpen?: boolean;
 }) {
-  const [open, setOpen] = useState(defaultOpen);
+  const [open, setOpen] = useState(false);
 
   return (
-    <div className="border-b border-slate-200 py-5">
+    <div className="border-b border-slate-200 py-4">
       <button
         type="button"
-        onClick={() => setOpen((v) => !v)}
         className="flex w-full items-center justify-between gap-4 text-left"
+        onClick={() => setOpen((v) => !v)}
       >
         <span className="text-[18px] font-medium text-slate-900">{title}</span>
-        <span className="text-[22px] leading-none text-slate-700">{open ? "−" : "+"}</span>
+        <span className="text-[22px] text-slate-700">{open ? "−" : "+"}</span>
       </button>
 
       {open && (
-        <div className="pt-4">
-          {href ? (
-            <Link href={href} className="block py-2 text-[16px] font-medium text-slate-900">
-              View all {title}
-            </Link>
-          ) : null}
-
+        <div className="pt-3">
+          <Link href={href} className="block py-2 text-[15px] font-semibold text-slate-900">
+            View all {title}
+          </Link>
           <div className="space-y-1">
             {items.map((item) => (
               <Link
                 key={`${title}-${item.label}`}
                 href={item.href}
-                className="block py-2 text-[16px] text-slate-700"
+                className="block py-2 text-[15px] text-slate-700"
               >
                 {item.label}
               </Link>
@@ -571,6 +536,12 @@ export default function IndexPage() {
   const [heroEmail, setHeroEmail] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const postcodeIntel = detectPostcodeIntel(heroPostcode);
+
+  const selectedServiceHref = useMemo(() => {
+    return SERVICE_OPTIONS.find((option) => option.value === heroService)?.href || "";
+  }, [heroService]);
+
   useEffect(() => {
     if (!heroExpanded) return;
     const timer = window.setTimeout(() => {
@@ -581,22 +552,14 @@ export default function IndexPage() {
 
   useEffect(() => {
     if (!mobileMenuOpen) return;
-    const original = document.body.style.overflow;
+    const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     return () => {
-      document.body.style.overflow = original;
+      document.body.style.overflow = previousOverflow;
     };
   }, [mobileMenuOpen]);
 
   useCloseOnEscape(mobileMenuOpen, () => setMobileMenuOpen(false));
-
-  const postcodeIntel = detectPostcodeIntel(heroPostcode);
-
-  const serviceLookup = useMemo(() => {
-    const map = new Map<string, ServiceOption>();
-    HERO_SERVICE_OPTIONS.forEach((item) => map.set(item.value, item));
-    return map;
-  }, []);
 
   function trackHeroFormStart(firstFieldName?: string) {
     if (!heroStartedRef.current) {
@@ -611,11 +574,9 @@ export default function IndexPage() {
 
   function trackHeroServiceSelect(serviceValue: string) {
     if (!serviceValue) return;
-    const selected = serviceLookup.get(serviceValue);
     gtagEvent("lead_select_project_type", {
       form_name: "homepage_hero",
       service: serviceValue,
-      service_label: selected?.label || serviceValue,
       borough_detected: postcodeIntel.borough || "unknown",
       outward_code: postcodeIntel.outward || "unknown",
     });
@@ -786,13 +747,13 @@ export default function IndexPage() {
 
             <div className="mt-4 hidden items-center justify-between gap-4 lg:flex">
               <nav className="flex min-w-0 flex-1 items-center gap-5 xl:gap-6">
-                <DesktopDropdown label="Local Designers" href="/areas" items={LOCAL_DESIGNERS_ITEMS} />
-                <DesktopDropdown label="Commercial" href="/commercial" items={COMMERCIAL_ITEMS} />
-                <DesktopDropdown label="Extension Plans" href="/extension-plans" items={EXTENSION_ITEMS} />
-                <DesktopDropdown label="Loft Plans" href="/loft-conversion-plans" items={LOFT_ITEMS} />
-                <DesktopDropdown label="New Build" href="/new-build-plans" items={NEW_BUILD_ITEMS} />
+                <DesktopDropdown title="Local Designers" href="/areas" items={LOCAL_DESIGNERS_ITEMS} />
+                <DesktopDropdown title="Commercial" href="/commercial" items={COMMERCIAL_ITEMS} />
+                <DesktopDropdown title="Extension Plans" href="/extension-plans" items={EXTENSION_ITEMS} />
+                <DesktopDropdown title="Loft Plans" href="/loft-conversion-plans" items={LOFT_ITEMS} />
+                <DesktopDropdown title="New Build" href="/new-build-plans" items={NEW_BUILD_ITEMS} />
                 <DesktopDropdown
-                  label="Technical & Support"
+                  title="Technical & Support"
                   href="/building-regulation-drawings"
                   items={TECHNICAL_ITEMS}
                 />
@@ -854,7 +815,7 @@ export default function IndexPage() {
           <div className="fixed inset-0 z-[80] lg:hidden">
             <button
               type="button"
-              aria-label="Close mobile menu"
+              aria-label="Close mobile menu overlay"
               className="absolute inset-0 bg-slate-900/35"
               onClick={() => setMobileMenuOpen(false)}
             />
@@ -873,7 +834,7 @@ export default function IndexPage() {
                 </button>
               </div>
 
-              <div className="mt-6 space-y-2">
+              <div className="mt-6 space-y-1">
                 <Link
                   href="/"
                   className="block py-2 text-[18px] font-medium text-slate-900"
@@ -906,14 +867,13 @@ export default function IndexPage() {
 
               <div className="mt-4 border-t border-slate-200" />
 
-              <div>
-                {MOBILE_SERVICE_SECTIONS.map((section) => (
+              <div className="mt-2">
+                {MOBILE_SECTIONS.map((section) => (
                   <MobileMenuSection
                     key={section.title}
                     title={section.title}
                     href={section.href}
                     items={section.items}
-                    defaultOpen={section.defaultOpen}
                   />
                 ))}
               </div>
@@ -1077,7 +1037,7 @@ export default function IndexPage() {
                             className="h-14 w-full appearance-none rounded-[16px] border border-slate-200 bg-white pl-14 pr-12 text-[16px] text-slate-800 shadow-sm outline-none transition focus:border-[#64b7c4]"
                           >
                             <option value="">Which service do you need?</option>
-                            {HERO_SERVICE_OPTIONS.map((option) => (
+                            {SERVICE_OPTIONS.map((option) => (
                               <option key={option.value} value={option.value}>
                                 {option.label}
                               </option>
@@ -1087,6 +1047,15 @@ export default function IndexPage() {
                             ▾
                           </span>
                         </div>
+
+                        {selectedServiceHref ? (
+                          <div className="px-1 text-center text-[12px] text-slate-600">
+                            Related page:{" "}
+                            <Link href={selectedServiceHref} className="font-medium text-blue-700 underline underline-offset-4">
+                              View service guidance
+                            </Link>
+                          </div>
+                        ) : null}
 
                         <div className="relative">
                           <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[20px] text-[#d85e56]">
@@ -1151,8 +1120,8 @@ export default function IndexPage() {
                           {heroSubmitting
                             ? "Submitting..."
                             : heroExpanded
-                            ? "Send my quote request →"
-                            : "Get my price now →"}
+                              ? "Send my quote request →"
+                              : "Get my price now →"}
                         </button>
                       </div>
                     </form>
@@ -1238,8 +1207,7 @@ export default function IndexPage() {
               Local architectural drawing services across London and M25
             </h2>
             <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-              WEDRAWPLANS prepare drawings in boroughs across London and the wider M25 area. These local area pages help homeowners and small developers see how
-              typical extensions, lofts and new builds are viewed in their council area.
+              WEDRAWPLANS prepare drawings in boroughs across London and the wider M25 area. These local area pages help homeowners and small developers see how typical extensions, lofts and new builds are viewed in their council area.
             </p>
 
             <div className="mt-6 grid gap-3 text-[14px] sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -1262,8 +1230,7 @@ export default function IndexPage() {
               Commercial and mixed use drawings
             </h2>
             <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-              WEDRAWPLANS provide commercial and mixed use drawings across London, including shopfront upgrades, restaurant layouts, office fit outs,
-              change of use applications and Building Regulation packs.
+              WEDRAWPLANS provide commercial and mixed use drawings across London, including shopfront upgrades, restaurant layouts, office fit outs, change of use applications and Building Regulation packs.
             </p>
 
             <div className="mt-6 grid gap-4 text-[13px] md:grid-cols-2 lg:grid-cols-4">
@@ -1492,8 +1459,7 @@ export default function IndexPage() {
               </div>
 
               <p className="mt-4 max-w-2xl text-[13px] leading-7 text-white/80">
-                WEDRAWPLANS provide architectural drawings for house extensions, loft conversions, planning applications,
-                Building Regulations and small residential development projects across London and the surrounding M25 area.
+                WEDRAWPLANS provide architectural drawings for house extensions, loft conversions, planning applications, Building Regulations and small residential development projects across London and the surrounding M25 area.
               </p>
 
               <div className="mt-6 flex flex-wrap justify-center gap-3">
@@ -1774,8 +1740,7 @@ function ContactSummary() {
   return (
     <div className="text-[13px] text-slate-700">
       <p>
-        WEDRAWPLANS provide a full range of architectural drawing services for new builds, house extensions, loft conversions, garage conversions, garden rooms,
-        flat conversions, HMOs and commercial developments.
+        WEDRAWPLANS provide a full range of architectural drawing services for new builds, house extensions, loft conversions, garage conversions, garden rooms, flat conversions, HMOs and commercial developments.
       </p>
       <p className="mt-3">
         The focus is on clear, buildable designs that support planning and Building Regulation approvals and that help builders understand exactly what is intended on site.
