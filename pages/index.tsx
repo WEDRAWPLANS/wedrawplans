@@ -504,7 +504,7 @@ function HamburgerButton({
       aria-label={isOpen ? "Close menu" : "Open menu"}
       aria-expanded={isOpen}
       onClick={onClick}
-      className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-900 shadow-sm transition hover:border-slate-400"
+      className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-900 shadow-sm transition hover:border-slate-400"
     >
       <span className="relative block h-5 w-6">
         <span
@@ -518,6 +518,32 @@ function HamburgerButton({
         />
       </span>
     </button>
+  );
+}
+
+function IconButton({
+  href,
+  label,
+  symbol,
+  onClick,
+  className = "",
+}: {
+  href: string;
+  label: string;
+  symbol: string;
+  onClick?: () => void;
+  className?: string;
+}) {
+  return (
+    <a
+      href={href}
+      aria-label={label}
+      title={label}
+      onClick={onClick}
+      className={`inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-300 bg-white text-[18px] text-slate-900 shadow-sm transition hover:border-slate-400 ${className}`}
+    >
+      <span aria-hidden="true">{symbol}</span>
+    </a>
   );
 }
 
@@ -708,34 +734,35 @@ export default function IndexPage() {
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
         <header className="sticky top-0 z-[60] border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur">
-          <div className="mx-auto max-w-6xl px-4 pb-3 pt-4 lg:px-6 lg:pt-5">
-            <div className="flex items-start justify-between gap-4">
-              <div className="flex min-w-0 flex-1 flex-col items-start text-left sm:items-center sm:text-center">
-                <Link href="/" className="inline-flex items-center justify-center">
-                  <img
-                    src="/images/wedrawplans-logo.png"
-                    alt="WEDRAWPLANS"
-                    className="h-20 w-auto object-contain sm:h-24 lg:h-28"
-                  />
-                </Link>
+          <div className="mx-auto max-w-6xl px-4 pb-4 pt-4 lg:px-6 lg:pt-5">
+            <div className="relative">
+              <div className="flex justify-center">
+                <div className="flex flex-col items-center text-center">
+                  <Link href="/" className="inline-flex items-center justify-center">
+                    <img
+                      src="/images/wedrawplans-logo.png"
+                      alt="WEDRAWPLANS"
+                      className="h-20 w-auto object-contain sm:h-24 lg:h-28"
+                    />
+                  </Link>
 
-                <div className="mt-2 text-[10px] uppercase tracking-[0.18em] text-slate-600 sm:text-[11px]">
-                  Architectural Drawing Consultants
-                </div>
+                  <div className="mt-2 text-[10px] uppercase tracking-[0.18em] text-slate-600 sm:text-[11px]">
+                    Architectural Drawing Consultants
+                  </div>
 
-                <div className="mt-2 hidden max-w-3xl text-[13px] font-medium text-slate-800 xl:block">
-                  House extension, loft conversion and planning drawings across London
+                  <div className="mt-2 hidden max-w-3xl text-[13px] font-medium text-slate-800 xl:block">
+                    House extension, loft conversion and planning drawings across London
+                  </div>
                 </div>
               </div>
 
-              <div className="flex shrink-0 items-center gap-2 lg:hidden">
-                <a
+              <div className="absolute right-0 top-1/2 flex -translate-y-1/2 items-center gap-2 lg:hidden">
+                <IconButton
                   href={PHONE_LINK}
+                  label={`Call ${PHONE_DISPLAY}`}
+                  symbol="📞"
                   onClick={() => trackLeadEvent("phone_click")}
-                  className="inline-flex h-11 items-center justify-center rounded-full bg-[#20243b] px-4 text-[13px] font-semibold text-white shadow-sm"
-                >
-                  Call
-                </a>
+                />
                 <HamburgerButton
                   isOpen={mobileMenuOpen}
                   onClick={() => setMobileMenuOpen((v) => !v)}
@@ -745,8 +772,8 @@ export default function IndexPage() {
 
             <hr className="mt-4 border-t border-slate-600" />
 
-            <div className="mt-4 hidden items-center justify-between gap-4 lg:flex">
-              <nav className="flex min-w-0 flex-1 items-center gap-5 xl:gap-6">
+            <div className="mt-4 hidden xl:flex xl:items-center xl:justify-between xl:gap-6">
+              <nav className="flex min-w-0 flex-1 items-center gap-5">
                 <DesktopDropdown title="Local Designers" href="/areas" items={LOCAL_DESIGNERS_ITEMS} />
                 <DesktopDropdown title="Commercial" href="/commercial" items={COMMERCIAL_ITEMS} />
                 <DesktopDropdown title="Extension Plans" href="/extension-plans" items={EXTENSION_ITEMS} />
@@ -772,41 +799,70 @@ export default function IndexPage() {
               <div className="flex shrink-0 items-center gap-3">
                 <a
                   href={PHONE_LINK}
-                  className="inline-flex h-12 items-center justify-center rounded-full bg-[#20243b] px-6 text-[14px] font-semibold text-white shadow-sm transition hover:bg-[#161a2f]"
+                  className="inline-flex h-12 items-center justify-center rounded-full bg-[#20243b] px-5 text-[14px] font-semibold text-white shadow-sm transition hover:bg-[#161a2f]"
                   onClick={() => trackLeadEvent("phone_click")}
                 >
-                  Call {PHONE_DISPLAY}
+                  <span className="mr-2" aria-hidden="true">📞</span>
+                  <span>Call {PHONE_DISPLAY}</span>
                 </a>
 
                 <a
                   href={WHATSAPP_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-12 items-center justify-center rounded-full bg-[#25D366] px-6 text-[14px] font-semibold text-white shadow-sm transition hover:bg-[#1ebe57]"
+                  className="inline-flex h-12 items-center justify-center rounded-full bg-[#25D366] px-5 text-[14px] font-semibold text-white shadow-sm transition hover:bg-[#1ebe57]"
                   onClick={() => trackLeadEvent("whatsapp_click")}
                 >
-                  WhatsApp us now
+                  <span className="mr-2" aria-hidden="true">💬</span>
+                  <span>WhatsApp us now</span>
                 </a>
               </div>
             </div>
 
-            <div className="mt-4 hidden items-center gap-3 md:flex lg:hidden">
-              <a
-                href={PHONE_LINK}
-                className="inline-flex h-11 items-center justify-center rounded-full bg-[#20243b] px-5 text-[13px] font-semibold text-white shadow-sm"
-                onClick={() => trackLeadEvent("phone_click")}
-              >
-                Call {PHONE_DISPLAY}
-              </a>
-              <a
-                href={WHATSAPP_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex h-11 items-center justify-center rounded-full bg-[#25D366] px-5 text-[13px] font-semibold text-white shadow-sm"
-                onClick={() => trackLeadEvent("whatsapp_click")}
-              >
-                WhatsApp us now
-              </a>
+            <div className="mt-4 hidden lg:block xl:hidden">
+              <nav className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3">
+                <DesktopDropdown title="Local Designers" href="/areas" items={LOCAL_DESIGNERS_ITEMS} />
+                <DesktopDropdown title="Commercial" href="/commercial" items={COMMERCIAL_ITEMS} />
+                <DesktopDropdown title="Extension Plans" href="/extension-plans" items={EXTENSION_ITEMS} />
+                <DesktopDropdown title="Loft Plans" href="/loft-conversion-plans" items={LOFT_ITEMS} />
+                <DesktopDropdown title="New Build" href="/new-build-plans" items={NEW_BUILD_ITEMS} />
+                <DesktopDropdown
+                  title="Technical & Support"
+                  href="/building-regulation-drawings"
+                  items={TECHNICAL_ITEMS}
+                />
+                <Link href="/areas" className="whitespace-nowrap text-[14px] font-medium text-slate-900 hover:text-black">
+                  Areas we cover
+                </Link>
+                <a href="#price-guide" className="whitespace-nowrap text-[14px] font-medium text-slate-900 hover:text-black">
+                  Price guide
+                </a>
+                <a href="#contact" className="whitespace-nowrap text-[14px] font-medium text-slate-900 hover:text-black">
+                  Contact
+                </a>
+              </nav>
+
+              <div className="mt-4 flex items-center justify-center gap-3">
+                <a
+                  href={PHONE_LINK}
+                  className="inline-flex h-11 items-center justify-center rounded-full bg-[#20243b] px-5 text-[14px] font-semibold text-white shadow-sm transition hover:bg-[#161a2f]"
+                  onClick={() => trackLeadEvent("phone_click")}
+                >
+                  <span className="mr-2" aria-hidden="true">📞</span>
+                  <span>Call {PHONE_DISPLAY}</span>
+                </a>
+
+                <a
+                  href={WHATSAPP_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-11 items-center justify-center rounded-full bg-[#25D366] px-5 text-[14px] font-semibold text-white shadow-sm transition hover:bg-[#1ebe57]"
+                  onClick={() => trackLeadEvent("whatsapp_click")}
+                >
+                  <span className="mr-2" aria-hidden="true">💬</span>
+                  <span>WhatsApp us now</span>
+                </a>
+              </div>
             </div>
           </div>
         </header>
@@ -878,26 +934,22 @@ export default function IndexPage() {
                 ))}
               </div>
 
-              <div className="mt-8 grid gap-3">
-                <a
+              <div className="mt-8 flex items-center gap-3">
+                <IconButton
                   href={PHONE_LINK}
-                  className="inline-flex h-12 items-center justify-center rounded-full bg-[#20243b] px-5 text-[14px] font-semibold text-white shadow-sm"
+                  label={`Call ${PHONE_DISPLAY}`}
+                  symbol="📞"
                   onClick={() => trackLeadEvent("phone_click")}
-                >
-                  Call {PHONE_DISPLAY}
-                </a>
-                <a
+                />
+                <IconButton
                   href={WHATSAPP_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex h-12 items-center justify-center rounded-full bg-[#25D366] px-5 text-[14px] font-semibold text-white shadow-sm"
+                  label="Chat on WhatsApp"
+                  symbol="💬"
                   onClick={() => trackLeadEvent("whatsapp_click")}
-                >
-                  WhatsApp us now
-                </a>
+                />
                 <a
                   href={EMAIL_LINK}
-                  className="inline-flex h-12 items-center justify-center rounded-full border border-slate-300 bg-white px-5 text-[14px] font-semibold text-slate-900 shadow-sm"
+                  className="inline-flex h-11 items-center justify-center rounded-full border border-slate-300 bg-white px-4 text-[13px] font-semibold text-slate-900 shadow-sm"
                   onClick={() => trackLeadEvent("email_click")}
                 >
                   Email us
@@ -907,9 +959,9 @@ export default function IndexPage() {
           </div>
         )}
 
-        <section className="border-b border-slate-200 bg-[#fdf8f3] pt-4 sm:pt-6 lg:pt-0">
-          <div className="mx-auto max-w-6xl px-4 pb-8 pt-0 lg:px-6 lg:pb-12 lg:pt-10">
-            <div className="grid gap-4 lg:grid-cols-[1.05fr_0.95fr] lg:items-start lg:gap-8">
+        <section className="border-b border-slate-200 bg-[#fdf8f3] pt-6 lg:pt-10">
+          <div className="mx-auto max-w-6xl px-4 pb-8 lg:px-6 lg:pb-12">
+            <div className="grid gap-6 lg:grid-cols-[1.02fr_0.98fr] lg:items-start lg:gap-10">
               <div className="text-center lg:text-left">
                 <div className="hidden lg:block">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-red-700">
@@ -954,14 +1006,16 @@ export default function IndexPage() {
                       onClick={() => trackLeadEvent("whatsapp_click")}
                       className="inline-flex items-center rounded-full bg-[#25D366] px-6 py-3 text-[13px] font-semibold uppercase tracking-[0.12em] text-white shadow-sm hover:bg-[#1ebe57]"
                     >
-                      WhatsApp us now
+                      <span className="mr-2" aria-hidden="true">💬</span>
+                      <span>WhatsApp us now</span>
                     </a>
                     <a
                       href={PHONE_LINK}
                       onClick={() => trackLeadEvent("phone_click")}
                       className="inline-flex items-center rounded-full border border-slate-300 bg-white px-6 py-3 text-[13px] font-semibold uppercase tracking-[0.12em] text-slate-900 shadow-sm hover:border-slate-400"
                     >
-                      Call {PHONE_DISPLAY}
+                      <span className="mr-2" aria-hidden="true">📞</span>
+                      <span>Call {PHONE_DISPLAY}</span>
                     </a>
                   </div>
                 </div>
@@ -978,25 +1032,6 @@ export default function IndexPage() {
                   <p className="mx-auto mt-3 max-w-[520px] text-[14px] leading-6 text-slate-700">
                     Clear fixed fees, practical drawings and initial survey within 48 hours in most cases.
                   </p>
-
-                  <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:justify-center">
-                    <a
-                      href={PHONE_LINK}
-                      onClick={() => trackLeadEvent("phone_click")}
-                      className="inline-flex h-12 items-center justify-center rounded-full bg-[#20243b] px-6 text-[14px] font-semibold text-white shadow-sm"
-                    >
-                      Call {PHONE_DISPLAY}
-                    </a>
-                    <a
-                      href={WHATSAPP_LINK}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => trackLeadEvent("whatsapp_click")}
-                      className="inline-flex h-12 items-center justify-center rounded-full bg-[#25D366] px-6 text-[14px] font-semibold text-white shadow-sm"
-                    >
-                      WhatsApp us now
-                    </a>
-                  </div>
                 </div>
               </div>
 
@@ -1050,7 +1085,7 @@ export default function IndexPage() {
 
                         {selectedServiceHref ? (
                           <div className="px-1 text-center text-[12px] text-slate-600">
-                            Related page:{" "}
+                            Related page{" "}
                             <Link href={selectedServiceHref} className="font-medium text-blue-700 underline underline-offset-4">
                               View service guidance
                             </Link>
@@ -1144,7 +1179,8 @@ export default function IndexPage() {
                         onClick={() => trackLeadEvent("phone_click")}
                         className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#20243b] px-5 text-[15px] font-semibold text-white shadow-[0_8px_18px_rgba(15,23,42,0.22)]"
                       >
-                        Call {PHONE_DISPLAY}
+                        <span className="mr-2" aria-hidden="true">📞</span>
+                        <span>Call {PHONE_DISPLAY}</span>
                       </a>
 
                       <a
@@ -1154,7 +1190,8 @@ export default function IndexPage() {
                         onClick={() => trackLeadEvent("whatsapp_click")}
                         className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#58a45d] px-5 text-[15px] font-semibold text-white shadow-[0_8px_18px_rgba(34,197,94,0.18)]"
                       >
-                        WhatsApp us now
+                        <span className="mr-2" aria-hidden="true">💬</span>
+                        <span>WhatsApp us now</span>
                       </a>
                     </div>
 
@@ -1443,84 +1480,103 @@ export default function IndexPage() {
           </div>
         </section>
 
-        <footer className="border-t border-[#2a3050] bg-[#20243b]">
+        <footer className="border-t border-slate-800 bg-[#20243b]">
           <div className="mx-auto max-w-6xl px-4 py-10 lg:px-6">
-            <div className="flex flex-col items-center text-center">
-              <Link href="/" className="inline-flex items-center justify-center">
-                <img
-                  src="/images/wedrawplans-logo.png"
-                  alt="WEDRAWPLANS"
-                  className="h-20 w-auto object-contain"
-                />
-              </Link>
+            <div className="grid gap-8 lg:grid-cols-[1.25fr_0.9fr_0.9fr_0.9fr]">
+              <div>
+                <Link href="/" className="inline-flex items-center justify-center">
+                  <img
+                    src="/images/wedrawplans-logo.png"
+                    alt="WEDRAWPLANS"
+                    className="h-20 w-auto object-contain"
+                  />
+                </Link>
 
-              <div className="mt-3 text-[11px] uppercase tracking-[0.18em] text-white/70">
-                Architectural Drawing Consultants
-              </div>
-
-              <p className="mt-4 max-w-2xl text-[13px] leading-7 text-white/80">
-                WEDRAWPLANS provide architectural drawings for house extensions, loft conversions, planning applications, Building Regulations and small residential development projects across London and the surrounding M25 area.
-              </p>
-
-              <div className="mt-6 flex flex-wrap justify-center gap-3">
-                <a
-                  href={PHONE_LINK}
-                  className="inline-flex items-center justify-center rounded-full bg-white px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.12em] text-[#20243b] shadow-sm hover:bg-slate-100"
-                  onClick={() => trackLeadEvent("phone_click")}
-                >
-                  Call {PHONE_DISPLAY}
-                </a>
-
-                <a
-                  href={WHATSAPP_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-full bg-[#25D366] px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.12em] text-white shadow-sm hover:bg-[#1ebe57]"
-                  onClick={() => trackLeadEvent("whatsapp_click")}
-                >
-                  WhatsApp us
-                </a>
-
-                <a
-                  href={EMAIL_LINK}
-                  className="inline-flex items-center justify-center rounded-full border border-white/35 px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.12em] text-white hover:bg-white hover:text-[#20243b]"
-                  onClick={() => trackLeadEvent("email_click")}
-                >
-                  Email us
-                </a>
-
-                <a
-                  href={GOOGLE_BUSINESS_PROFILE_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-full border border-white/35 px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.12em] text-white hover:bg-white hover:text-[#20243b]"
-                >
-                  Google Profile
-                </a>
-              </div>
-
-              <div className="mt-8 grid w-full max-w-4xl gap-6 border-t border-white/10 pt-8 text-center md:grid-cols-3">
-                <div>
-                  <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/85">Phone</div>
-                  <div className="mt-2 text-[12px] text-white/65">
-                    <a href={PHONE_LINK} className="hover:text-white" onClick={() => trackLeadEvent("phone_click")}>
-                      {PHONE_DISPLAY}
-                    </a>
-                  </div>
+                <div className="mt-3 text-[11px] uppercase tracking-[0.18em] text-white/70">
+                  Architectural Drawing Consultants
                 </div>
 
-                <div>
-                  <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/85">Email</div>
-                  <div className="mt-2 text-[12px] text-white/65">
-                    <a href={EMAIL_LINK} className="hover:text-white" onClick={() => trackLeadEvent("email_click")}>
-                      {EMAIL}
-                    </a>
-                  </div>
-                </div>
+                <p className="mt-4 max-w-md text-[13px] leading-7 text-white/80">
+                  WEDRAWPLANS provide architectural drawings for house extensions, loft conversions, planning applications, Building Regulations and small residential development projects across London and the surrounding M25 area.
+                </p>
 
-                <div>
-                  <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/85">Studio</div>
-                  <div className="mt-2 text-[12px] leading-6 text-white/65">
+                <div className="mt-5 flex flex-wrap gap-3">
+                  <a
+                    href={PHONE_LINK}
+                    className="inline-flex items-center justify-center rounded-full bg-white px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.12em] text-[#20243b] shadow-sm hover:bg-slate-100"
+                    onClick={() => trackLeadEvent("phone_click")}
+                  >
+                    <span className="mr-2" aria-hidden="true">📞</span>
+                    <span>Call</span>
+                  </a>
+
+                  <a
+                    href={WHATSAPP_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center rounded-full bg-[#25D366] px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.12em] text-white shadow-sm hover:bg-[#1ebe57]"
+                    onClick={() => trackLeadEvent("whatsapp_click")}
+                  >
+                    <span className="mr-2" aria-hidden="true">💬</span>
+                    <span>WhatsApp</span>
+                  </a>
+                </div>
+              </div>
+
+              <div>
+                <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/85">Services</div>
+                <div className="mt-3 space-y-2 text-[13px] text-white/65">
+                  <Link href="/extension-plans" className="block hover:text-white">
+                    Extension Plans
+                  </Link>
+                  <Link href="/loft-conversion-plans" className="block hover:text-white">
+                    Loft Plans
+                  </Link>
+                  <Link href="/new-build-plans" className="block hover:text-white">
+                    New Build
+                  </Link>
+                  <Link href="/building-regulation-drawings" className="block hover:text-white">
+                    Technical &amp; Support
+                  </Link>
+                  <Link href="/commercial" className="block hover:text-white">
+                    Commercial
+                  </Link>
+                </div>
+              </div>
+
+              <div>
+                <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/85">Links</div>
+                <div className="mt-3 space-y-2 text-[13px] text-white/65">
+                  <Link href="/areas" className="block hover:text-white">
+                    Areas We Cover
+                  </Link>
+                  <a href="#price-guide" className="block hover:text-white">
+                    Price Guide
+                  </a>
+                  <a href="#contact" className="block hover:text-white">
+                    Contact
+                  </a>
+                  <a
+                    href={GOOGLE_BUSINESS_PROFILE_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block hover:text-white"
+                  >
+                    Google Profile
+                  </a>
+                </div>
+              </div>
+
+              <div>
+                <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/85">Contact</div>
+                <div className="mt-3 space-y-3 text-[13px] text-white/65">
+                  <a href={PHONE_LINK} className="block hover:text-white" onClick={() => trackLeadEvent("phone_click")}>
+                    {PHONE_DISPLAY}
+                  </a>
+                  <a href={EMAIL_LINK} className="block hover:text-white" onClick={() => trackLeadEvent("email_click")}>
+                    {EMAIL}
+                  </a>
+                  <div className="leading-6">
                     201 Borough High Street
                     <br />
                     London SE1 1JA
@@ -1529,40 +1585,10 @@ export default function IndexPage() {
                   </div>
                 </div>
               </div>
+            </div>
 
-              <div className="mt-8 flex flex-wrap justify-center gap-x-5 gap-y-2 text-[12px] text-white/65">
-                <Link href="/" className="hover:text-white">
-                  Home
-                </Link>
-                <Link href="/areas" className="hover:text-white">
-                  Areas We Cover
-                </Link>
-                <Link href="/extension-plans" className="hover:text-white">
-                  Extension Plans
-                </Link>
-                <Link href="/loft-conversion-plans" className="hover:text-white">
-                  Loft Plans
-                </Link>
-                <Link href="/new-build-plans" className="hover:text-white">
-                  New Build
-                </Link>
-                <Link href="/building-regulation-drawings" className="hover:text-white">
-                  Technical &amp; Support
-                </Link>
-                <Link href="/commercial" className="hover:text-white">
-                  Commercial
-                </Link>
-                <a href="#price-guide" className="hover:text-white">
-                  Price Guide
-                </a>
-                <a href="#contact" className="hover:text-white">
-                  Contact
-                </a>
-              </div>
-
-              <div className="mt-6 text-[11px] text-white/45">
-                Copyright {new Date().getFullYear()} WEDRAWPLANS. All rights reserved.
-              </div>
+            <div className="mt-8 border-t border-white/10 pt-6 text-[11px] text-white/45">
+              Copyright {new Date().getFullYear()} WEDRAWPLANS. All rights reserved.
             </div>
           </div>
         </footer>
@@ -1572,10 +1598,11 @@ export default function IndexPage() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat on WhatsApp with WEDRAWPLANS"
-          className="fixed bottom-4 right-4 z-[70] inline-flex h-14 items-center justify-center rounded-full bg-[#25D366] px-5 text-[14px] font-semibold text-white shadow-lg ring-2 ring-white/70 hover:bg-[#1ebe57]"
+          className="fixed bottom-4 right-4 z-[70] hidden h-12 items-center justify-center rounded-full bg-[#25D366] px-5 text-[14px] font-semibold text-white shadow-lg ring-2 ring-white/70 hover:bg-[#1ebe57] lg:inline-flex"
           onClick={() => trackLeadEvent("whatsapp_click")}
         >
-          WhatsApp
+          <span className="mr-2" aria-hidden="true">💬</span>
+          <span>WhatsApp</span>
         </a>
       </div>
     </>
