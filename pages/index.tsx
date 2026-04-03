@@ -1683,20 +1683,62 @@ function HelpCard({ title, body, linkText }: HelpCardProps) {
 }
 
 function ContactForm() {
+  const formStartedRef = useRef<number>(Date.now());
+  const [contactSubmitting, setContactSubmitting] = useState(false);
+  const [contactService, setContactService] = useState("");
+
+  useEffect(() => {
+    formStartedRef.current = Date.now();
+  }, []);
+
   async function handleContactSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (contactSubmitting) return;
+
     const form = e.currentTarget;
     const data = new FormData(form);
 
+    const honeypot = String(data.get("company") || "").trim();
+    if (honeypot) return;
+
+    const rawName = String(data.get("name") || "").trim();
+    const rawPhone = String(data.get("phone") || "").trim();
+    const rawPostcode = String(data.get("postcode") || "").trim();
+    const rawEmail = String(data.get("email") || "").trim();
+    const rawMessage = String(data.get("message") || "").trim();
+    const rawService = String(data.get("service") || "").trim();
+
+    if (!rawService) {
+      alert("Please select the service you need.");
+      return;
+    }
+
+    if (!rawName || (!rawPhone && !rawEmail)) {
+      alert("Please add your name and at least a phone number or email address.");
+      return;
+    }
+
+    const postcodeIntel = rawPostcode ? detectPostcodeIntel(rawPostcode) : null;
+    const timeTakenMs = formStartedRef.current ? Date.now() - formStartedRef.current : null;
+
     const payload = {
-      name: data.get("name"),
-      phone: data.get("phone"),
-      postcode: data.get("postcode"),
-      email: data.get("email"),
-      message: data.get("message"),
+      name: rawName,
+      phone: rawPhone,
+      postcode: rawPostcode,
+      email: rawEmail,
+      message: rawMessage || "General enquiry from homepage contact form",
+      service: rawService,
+      borough: postcodeIntel?.borough || null,
+      coverageLabel: postcodeIntel?.coverageLabel || null,
+      outwardCode: postcodeIntel?.outward || null,
+      hp: honeypot,
+      formStartedAt: formStartedRef.current,
+      timeTakenMs,
     };
 
     try {
+      setContactSubmitting(true);
+
       const res = await fetch("/api/contact-resend", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -1706,19 +1748,53 @@ function ContactForm() {
       if (res.ok) {
         gtagEvent("generate_lead", {
           form_name: "homepage_contact",
+          service: rawService,
+          postcode: rawPostcode || "unknown",
+          borough_detected: postcodeIntel?.borough || "unknown",
+          outward_code: postcodeIntel?.outward || "unknown",
         });
+
         alert("Thank you. Your message has been sent to WEDRAWPLANS. We will contact you shortly.");
         form.reset();
+        setContactService("");
+        formStartedRef.current = Date.now();
       } else {
         alert("Something went wrong. Please try again or call us directly.");
       }
     } catch {
       alert("Network error. Please try again.");
+    } finally {
+      setContactSubmitting(false);
     }
   }
 
   return (
     <form onSubmit={handleContactSubmit} className="space-y-3 text-[13px]">
+      <input
+        type="text"
+        name="company"
+        autoComplete="off"
+        tabIndex={-1}
+        className="hidden"
+      />
+
+      <div className="space-y-1">
+        <label className="text-[11px] font-medium text-slate-700">Service required</label>
+        <select
+          name="service"
+          value={contactService}
+          onChange={(e) => setContactService(e.target.value)}
+          className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
+        >
+          <option value="">Select service</option>
+          {SERVICE_OPTIONS.map((option) => (
+            <option key={`contact-${option.value}`} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      </div>
+
       <div className="space-y-1">
         <label className="text-[11px] font-medium text-slate-700">Name</label>
         <input
@@ -1726,13 +1802,16 @@ function ContactForm() {
           className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
         />
       </div>
+
       <div className="space-y-1">
         <label className="text-[11px] font-medium text-slate-700">Telephone</label>
         <input
           name="phone"
+          type="tel"
           className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
         />
       </div>
+
       <div className="space-y-1">
         <label className="text-[11px] font-medium text-slate-700">Postcode</label>
         <input
@@ -1740,6 +1819,7 @@ function ContactForm() {
           className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
         />
       </div>
+
       <div className="space-y-1">
         <label className="text-[11px] font-medium text-slate-700">Email</label>
         <input
@@ -1748,6 +1828,7 @@ function ContactForm() {
           className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
         />
       </div>
+
       <div className="space-y-1">
         <label className="text-[11px] font-medium text-slate-700">Type your message here</label>
         <textarea
@@ -1756,8 +1837,13 @@ function ContactForm() {
           className="w-full border border-slate-300 bg-white px-2 py-2 text-[13px] focus:border-[#64b7c4] focus:outline-none"
         />
       </div>
-      <button type="submit" className="mt-2 w-full bg-slate-900 py-2 text-[13px] font-semibold text-white">
-        Submit
+
+      <button
+        type="submit"
+        disabled={contactSubmitting}
+        className="mt-2 w-full bg-slate-900 py-2 text-[13px] font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60"
+      >
+        {contactSubmitting ? "Submitting..." : "Submit"}
       </button>
     </form>
   );
