@@ -757,36 +757,32 @@ export default function IndexPage() {
               </div>
 
               <div className="absolute right-0 top-1/2 flex -translate-y-1/2 items-center gap-2 lg:hidden">
+                <a
+                  href={PHONE_LINK}
+                  onClick={() => trackLeadEvent("phone_click")}
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-300 bg-white text-[18px] text-slate-900 shadow-sm"
+                  aria-label="Call"
+                >
+                  📞
+                </a>
 
-  {/* Phone */}
-  <a
-    href={PHONE_LINK}
-    onClick={() => trackLeadEvent("phone_click")}
-    className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-300 bg-white text-[18px] text-slate-900 shadow-sm"
-    aria-label="Call"
-  >
-    📞
-  </a>
+                <a
+                  href={WHATSAPP_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackLeadEvent("whatsapp_click")}
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-300 bg-white text-[18px] text-slate-900 shadow-sm"
+                  aria-label="WhatsApp"
+                >
+                  💬
+                </a>
 
-  {/* WhatsApp */}
-  <a
-    href={WHATSAPP_LINK}
-    target="_blank"
-    rel="noopener noreferrer"
-    onClick={() => trackLeadEvent("whatsapp_click")}
-    className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-300 bg-white text-[18px] text-slate-900 shadow-sm"
-    aria-label="WhatsApp"
-  >
-    💬
-  </a>
-
-  {/* Hamburger */}
-  <HamburgerButton
-    isOpen={mobileMenuOpen}
-    onClick={() => setMobileMenuOpen((v) => !v)}
-  />
-
-</div>
+                <HamburgerButton
+                  isOpen={mobileMenuOpen}
+                  onClick={() => setMobileMenuOpen((v) => !v)}
+                />
+              </div>
+            </div>
             <hr className="mt-4 border-t border-slate-600" />
 
             <div className="mt-4 hidden xl:flex xl:items-center xl:justify-between xl:gap-6">
