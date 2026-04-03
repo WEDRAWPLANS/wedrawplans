@@ -204,6 +204,24 @@ function getClientIp(req: NextApiRequest) {
   return req.socket.remoteAddress || "unknown";
 }
 
+function normalisePhone(value: string) {
+  const raw = toText(value);
+  if (!raw) return "";
+  const keepPlus = raw.startsWith("+");
+  const digits = raw.replace(/[^\d]/g, "");
+  return keepPlus ? `+${digits}` : digits;
+}
+
+function hasValidEmail(value: string) {
+  return EMAIL_REGEX.test(value);
+}
+
+function hasValidPhone(value: string) {
+  const normalized = normalisePhone(value);
+  const digitsOnly = normalized.replace(/[^\d]/g, "");
+  return digitsOnly.length >= 10;
+}
+
 function normalizeService(value: string) {
   const raw = toText(value);
   if (!raw) return "General enquiry";
@@ -211,7 +229,12 @@ function normalizeService(value: string) {
   const lower = raw.toLowerCase();
 
   if (KNOWN_SERVICE_OPTIONS.has(raw)) return raw;
-  if (lower.includes("house extension") || lower.includes("rear extension") || lower.includes("side extension") || lower.includes("wraparound")) {
+  if (
+    lower.includes("house extension") ||
+    lower.includes("rear extension") ||
+    lower.includes("side extension") ||
+    lower.includes("wraparound")
+  ) {
     return "House extension drawings";
   }
   if (lower.includes("loft")) {
@@ -220,13 +243,21 @@ function normalizeService(value: string) {
   if (lower.includes("planning")) {
     return "Planning drawings";
   }
-  if (lower.includes("building regulation") || lower.includes("building regs") || lower.includes("building control")) {
+  if (
+    lower.includes("building regulation") ||
+    lower.includes("building regs") ||
+    lower.includes("building control")
+  ) {
     return "Building regulation drawings";
   }
   if (lower.includes("new build")) {
     return "New build drawings";
   }
-  if (lower.includes("flat conversion") || lower.includes("conversion to flats") || lower.includes("hmo")) {
+  if (
+    lower.includes("flat conversion") ||
+    lower.includes("conversion to flats") ||
+    lower.includes("hmo")
+  ) {
     return "Flat conversion drawings";
   }
   if (lower.includes("other")) {
@@ -244,41 +275,78 @@ function scoreLead(input: {
   service: string;
   borough: string | null;
   timeTakenMs?: number | null;
+  message: string;
 }) {
   let score = 0;
 
   if (input.name.length >= 2) score += 15;
-  if (EMAIL_REGEX.test(input.email)) score += 20;
-  if (input.phone.replace(/[^\d+]/g, "").length >= 10) score += 20;
-  if (UK_POSTCODE_REGEX.test(input.postcode)) score += 20;
-  if (input.service.length >= 3) score += 15;
+  if (hasValidEmail(input.email)) score += 20;
+  if (hasValidPhone(input.phone)) score += 20;
+  if (UK_POSTCODE_REGEX.test(input.postcode)) score += 15;
+  if (input.service.length >= 3) score += 10;
   if (input.borough) score += 5;
-  if (typeof input.timeTakenMs === "number" && input.timeTakenMs >= 2500) score += 5;
+  if (input.message.length >= 10) score += 5;
+  if (typeof input.timeTakenMs === "number" && input.timeTakenMs >= 2500) score += 10;
 
   return Math.min(score, 100);
 }
 
 function getLeadBand(score: number) {
-  if (score >= 85) return "High";
-  if (score >= 65) return "Medium";
+  if (score >= 80) return "High";
+  if (score >= 55) return "Medium";
   return "Low";
 }
 
-function isSuspiciousMessage(message: string) {
+function isObviousSpamMessage(message: string) {
   const v = message.toLowerCase();
   const badPatterns = [
     "seo service",
+    "seo services",
     "crypto",
     "telegram",
     "forex",
     "backlink",
+    "backlinks",
     "guest post",
+    "guest posts",
     "casino",
     "viagra",
     "loan",
     "marketing agency",
+    "boost your traffic",
+    "domain authority",
+    "dr 50+",
+    "link building",
   ];
   return badPatterns.some((p) => v.includes(p));
+}
+
+function looksLikeGibberishName(name: string) {
+  const v = name.trim();
+  if (!v) return false;
+  if (v.length < 2) return true;
+  if (/https?:\/\//i.test(v)) return true;
+  if (/[@<>[\]{}_=+]/.test(v)) return true;
+  if (/^\d+$/.test(v)) return true;
+  if (!/[a-z]/i.test(v)) return true;
+  return false;
+}
+
+function getOriginOrReferer(req: NextApiRequest) {
+  const origin = toText(req.headers.origin);
+  const referer = toText(req.headers.referer);
+  return origin || referer || "";
+}
+
+function isLikelyFromOwnSite(req: NextApiRequest) {
+  const source = getOriginOrReferer(req).toLowerCase();
+  if (!source) return true;
+  return (
+    source.includes("wedrawplans.co.uk") ||
+    source.includes("www.wedrawplans.co.uk") ||
+    source.includes("vercel.app") ||
+    source.includes("localhost")
+  );
 }
 
 type RateStore = Map<string, number[]>;
@@ -300,7 +368,7 @@ export default async function handler(
   const ip = getClientIp(req);
   const now = Date.now();
   const windowMs = 10 * 60 * 1000;
-  const maxRequests = 20;
+  const maxRequests = 10;
 
   const recent = (rateStore.get(ip) || []).filter((ts) => now - ts < windowMs);
   if (recent.length >= maxRequests) {
@@ -309,7 +377,7 @@ export default async function handler(
   recent.push(now);
   rateStore.set(ip, recent);
 
-  const body = (req.body as any) || {};
+  const body = (req.body as Record<string, unknown>) || {};
 
   const rawName = toText(body.name);
   const rawEmail = toText(body.email);
@@ -327,7 +395,6 @@ export default async function handler(
     return res.status(200).json({ success: true });
   }
 
-  const name = rawName || "Website visitor";
   const email = rawEmail;
   const phone = rawPhone;
   const message = rawMessage;
@@ -335,54 +402,95 @@ export default async function handler(
   const postcode = rawPostcode;
   const normalisedPostcode = postcode ? normalisePostcode(postcode) : "";
 
-  const postcodeIntel = postcode ? detectPostcodeIntel(postcode) : {
-    normalized: "",
-    outward: "",
-    borough: null,
-    coverageLabel: null,
-  };
+  const postcodeIntel = postcode
+    ? detectPostcodeIntel(postcode)
+    : {
+        normalized: "",
+        outward: "",
+        borough: null,
+        coverageLabel: null,
+      };
 
-  const borough =
-    toText(body.borough) ||
-    postcodeIntel.borough ||
-    null;
+  const borough = toText(body.borough) || postcodeIntel.borough || null;
+  const coverageLabel = toText(body.coverageLabel) || postcodeIntel.coverageLabel || null;
+  const outwardCode = toText(body.outwardCode) || postcodeIntel.outward || null;
 
-  const coverageLabel =
-    toText(body.coverageLabel) ||
-    postcodeIntel.coverageLabel ||
-    null;
+  const validEmail = hasValidEmail(email);
+  const validPhone = hasValidPhone(phone);
+  const hasWorkingContact = validEmail || validPhone;
 
-  const outwardCode =
-    toText(body.outwardCode) ||
-    postcodeIntel.outward ||
-    null;
+  const safeName = rawName || "Website visitor";
 
-  const validationWarnings: string[] = [];
+  const hardBlockReasons: string[] = [];
+  const softFlags: string[] = [];
 
-  if (!rawName) validationWarnings.push("Name missing");
-  if (!email && !phone) validationWarnings.push("No email or phone provided");
-  if (email && !EMAIL_REGEX.test(email)) validationWarnings.push("Email format looks invalid");
-  if (phone && phone.replace(/[^\d+]/g, "").length < 10) validationWarnings.push("Phone number looks short");
-  if (postcode && !UK_POSTCODE_REGEX.test(postcode)) validationWarnings.push("Postcode format not standard");
-  if (!rawService) validationWarnings.push("Service missing");
-  if (typeof timeTakenMs === "number" && timeTakenMs > 0 && timeTakenMs < 2500) {
-    validationWarnings.push("Submitted very quickly");
+  if (!hasWorkingContact) {
+    hardBlockReasons.push("No valid email or phone provided");
   }
-  if (message && isSuspiciousMessage(message)) {
-    validationWarnings.push("Message matched spam keywords");
+
+  if (message && isObviousSpamMessage(message)) {
+    hardBlockReasons.push("Message matched obvious spam keywords");
+  }
+
+  if (rawName && looksLikeGibberishName(rawName)) {
+    softFlags.push("Name looks unusual");
+  }
+
+  if (email && !validEmail) {
+    softFlags.push("Email format looks invalid");
+  }
+
+  if (phone && !validPhone) {
+    softFlags.push("Phone number looks short");
+  }
+
+  if (postcode && !UK_POSTCODE_REGEX.test(normalisedPostcode)) {
+    softFlags.push("Postcode format not standard");
+  }
+
+  if (!rawName) {
+    softFlags.push("Name missing");
+  }
+
+  if (!rawService) {
+    softFlags.push("Service missing");
+  }
+
+  if (typeof timeTakenMs === "number" && timeTakenMs > 0 && timeTakenMs < 2500) {
+    softFlags.push("Submitted very quickly");
+  }
+
+  if (!isLikelyFromOwnSite(req)) {
+    softFlags.push("Origin or referer did not look like own site");
   }
 
   const leadScore = scoreLead({
-    name,
+    name: safeName,
     email,
     phone,
     postcode: normalisedPostcode,
     service,
     borough,
     timeTakenMs,
+    message,
   });
 
   const leadBand = getLeadBand(leadScore);
+
+  if (hardBlockReasons.length > 0) {
+    console.warn("Blocked spam submission", {
+      ip,
+      hardBlockReasons,
+      body,
+    });
+    return res.status(200).json({ success: true });
+  }
+
+  const needsReview =
+    softFlags.length >= 2 ||
+    leadScore < 45 ||
+    !rawName ||
+    (!postcode && !message);
 
   try {
     const apiKey = process.env.RESEND_API_KEY;
@@ -395,8 +503,9 @@ export default async function handler(
     const fromAddress = "WeDrawPlans <onboarding@resend.dev>";
     const toAddresses = ["architectabbey@gmail.com"];
 
+    const subjectPrefix = needsReview ? "[Needs Review] " : "";
     const subject =
-      `New enquiry from ${name} via wedrawplans.com` +
+      `${subjectPrefix}New enquiry from ${safeName} via wedrawplans.com` +
       `${borough ? ` (${borough})` : ""}` +
       ` [${leadBand} Lead ${leadScore}/100]`;
 
@@ -405,13 +514,15 @@ export default async function handler(
       "",
       `Lead score: ${leadScore}/100`,
       `Lead quality: ${leadBand}`,
+      `Needs review: ${needsReview ? "Yes" : "No"}`,
       `Detected borough: ${borough || "Not detected"}`,
       `Detected outward code: ${outwardCode || "Not detected"}`,
       `Coverage message: ${coverageLabel || "Not available"}`,
       `Time taken: ${typeof timeTakenMs === "number" ? `${timeTakenMs} ms` : "Unknown"}`,
       `IP: ${ip}`,
+      `Origin/referer check: ${isLikelyFromOwnSite(req) ? "Looks normal" : "Unusual"}`,
       "",
-      `Name: ${name}`,
+      `Name: ${safeName}`,
       `Email: ${email || "Not provided"}`,
       `Phone: ${phone || "Not provided"}`,
       `Postcode: ${normalisedPostcode || "Not provided"}`,
@@ -422,23 +533,21 @@ export default async function handler(
       "Main message / description:",
       message || "Quick quote from website form",
       "",
-      "Validation warnings:",
-      validationWarnings.length ? validationWarnings.join(" | ") : "None",
+      "Soft review flags:",
+      softFlags.length ? softFlags.join(" | ") : "None",
       "",
       "All submitted form fields:",
       JSON.stringify(body, null, 2),
     ];
 
-    const text = textLines.join("\n");
-
     const resendPayload: Record<string, unknown> = {
       from: fromAddress,
       to: toAddresses,
       subject,
-      text,
+      text: textLines.join("\n"),
     };
 
-    if (EMAIL_REGEX.test(email)) {
+    if (validEmail) {
       resendPayload.reply_to = email;
     }
 
