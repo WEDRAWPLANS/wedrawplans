@@ -734,6 +734,84 @@ export default function IndexPage() {
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
         <header className="sticky top-0 z-[60] border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur">
+  <div className="mx-auto max-w-6xl px-4 py-3 lg:px-6">
+    
+    {/* TOP BAR */}
+    <div className="flex items-center justify-between">
+
+      {/* LEFT: LOGO */}
+      <Link href="/" className="flex items-center">
+        <img
+          src="/images/wedrawplans-logo.png"
+          alt="WEDRAWPLANS"
+          className="h-12 w-auto object-contain sm:h-14"
+        />
+      </Link>
+
+      {/* RIGHT: DESKTOP CTA */}
+      <div className="hidden lg:flex items-center gap-3">
+        <a
+          href={PHONE_LINK}
+          onClick={() => trackLeadEvent("phone_click")}
+          className="inline-flex items-center rounded-full bg-[#20243b] px-5 py-2 text-[13px] font-semibold text-white"
+        >
+          📞 {PHONE_DISPLAY}
+        </a>
+
+        <a
+          href={WHATSAPP_LINK}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => trackLeadEvent("whatsapp_click")}
+          className="inline-flex items-center rounded-full bg-[#25D366] px-5 py-2 text-[13px] font-semibold text-white"
+        >
+          💬 WhatsApp
+        </a>
+      </div>
+
+      {/* MOBILE RIGHT */}
+      <div className="flex items-center gap-2 lg:hidden">
+        <IconButton
+          href={PHONE_LINK}
+          label="Call"
+          symbol="📞"
+          onClick={() => trackLeadEvent("phone_click")}
+        />
+        <IconButton
+          href={WHATSAPP_LINK}
+          label="WhatsApp"
+          symbol="💬"
+          onClick={() => trackLeadEvent("whatsapp_click")}
+        />
+        <HamburgerButton
+          isOpen={mobileMenuOpen}
+          onClick={() => setMobileMenuOpen((v) => !v)}
+        />
+      </div>
+    </div>
+
+    {/* NAV BAR */}
+    <div className="mt-3 hidden lg:flex items-center justify-between gap-6">
+      <nav className="flex items-center gap-5">
+        <DesktopDropdown title="Local Designers" href="/areas" items={LOCAL_DESIGNERS_ITEMS} />
+        <DesktopDropdown title="Commercial" href="/commercial" items={COMMERCIAL_ITEMS} />
+        <DesktopDropdown title="Extension Plans" href="/extension-plans" items={EXTENSION_ITEMS} />
+        <DesktopDropdown title="Loft Plans" href="/loft-conversion-plans" items={LOFT_ITEMS} />
+        <DesktopDropdown title="New Build" href="/new-build-plans" items={NEW_BUILD_ITEMS} />
+        <DesktopDropdown
+          title="Technical & Support"
+          href="/building-regulation-drawings"
+          items={TECHNICAL_ITEMS}
+        />
+
+        <Link href="/areas" className="text-[14px] font-medium text-slate-900">
+          Areas
+        </Link>
+      </nav>
+    </div>
+
+  </div>
+</header>
           <div className="mx-auto max-w-6xl px-4 pb-4 pt-4 lg:px-6 lg:pt-5">
             <div className="relative">
               <div className="flex justify-center">
