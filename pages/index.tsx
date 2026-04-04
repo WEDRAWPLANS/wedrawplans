@@ -882,9 +882,6 @@ export default function IndexPage() {
                     House Extension, Loft Conversion and Building Regulation Drawings in London
                   </h1>
 
-                  <p className="mx-auto mt-3 max-w-[520px] text-[14px] leading-6 text-slate-700">
-                    Clear fixed fees, practical drawings and initial survey within 48 hours in most cases.
-                  </p>
                 </div>
               </div>
 
