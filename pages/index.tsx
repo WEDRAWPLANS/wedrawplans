@@ -917,24 +917,6 @@ export default function IndexPage() {
           </div>
         )}
 
-        {mobileLeadOpen && (
-          <div className="fixed inset-0 z-[95] bg-[#f8f4f0] lg:hidden">
-            <div className="flex h-full flex-col">
-              <div className="flex items-center justify-between border-b border-slate-200 bg-white px-4 py-4">
-                <div>
-                  <div className="text-[15px] font-semibold text-slate-900">Need help with drawings?</div>
-                  <div className="text-[12px] text-slate-600">Request your fixed quote</div>
-                </div>
-                <button
-                  type="button"
-                  aria-label="Close lead form"
-                  onClick={() => setMobileLeadOpen(false)}
-                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-300 bg-white text-[24px] text-slate-900"
-                >
-                  ×
-                </button>
-              </div>
-
               <div className="flex-1 overflow-y-auto px-4 py-5">
                 <form onSubmit={handleMobileLeadSubmit} className="mx-auto max-w-[560px] space-y-4">
                   <div className="rounded-[24px] border border-slate-200 bg-white p-4 shadow-[0_12px_32px_rgba(15,23,42,0.08)]">
