@@ -744,7 +744,7 @@ export default function IndexPage() {
   <img
     src="/images/wedrawplans-logo.png"
     alt="WEDRAWPLANS"
-    className="h-16 w-auto object-contain sm:h-20 lg:h-24"
+  className="h-20 w-auto object-contain sm:h-24 lg:h-28"
   />
 </Link>
       {/* RIGHT: DESKTOP CTA */}
