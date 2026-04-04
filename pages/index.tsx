@@ -740,7 +740,7 @@ export default function IndexPage() {
    <div className="flex items-center justify-center relative">
 
       {/* LEFT: LOGO */}
-      <Link href="/" className="flex items-center">
+      <Link href="/" className="flex items-center justify-center">
         <img
           src="/images/wedrawplans-logo.png"
           alt="WEDRAWPLANS"
