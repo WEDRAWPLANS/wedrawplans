@@ -812,6 +812,83 @@ export default function IndexPage() {
 
   </div>
 </header>
+        {mobileMenuOpen && (
+  <div className="fixed inset-0 z-[80] lg:hidden">
+    <button
+      type="button"
+      aria-label="Close mobile menu overlay"
+      className="absolute inset-0 bg-slate-900/35"
+      onClick={() => setMobileMenuOpen(false)}
+    />
+    <div className="absolute right-0 top-0 h-full w-full max-w-[420px] overflow-y-auto bg-[#fdf8f3] px-6 pb-10 pt-6 shadow-[0_20px_50px_rgba(15,23,42,0.28)]">
+      
+      <div className="flex items-center justify-between">
+        <div className="text-[13px] font-semibold uppercase tracking-[0.16em] text-slate-700">
+          Menu
+        </div>
+        <button
+          type="button"
+          aria-label="Close menu"
+          onClick={() => setMobileMenuOpen(false)}
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-300 bg-white text-[24px] text-slate-900"
+        >
+          ×
+        </button>
+      </div>
+
+      <div className="mt-6 space-y-1">
+        <Link href="/" className="block py-2 text-[18px] font-medium text-slate-900" onClick={() => setMobileMenuOpen(false)}>
+          Home
+        </Link>
+        <Link href="/areas" className="block py-2 text-[18px] font-medium text-slate-900" onClick={() => setMobileMenuOpen(false)}>
+          Areas We Cover
+        </Link>
+        <a href="#price-guide" className="block py-2 text-[18px] font-medium text-slate-900" onClick={() => setMobileMenuOpen(false)}>
+          Price Guide
+        </a>
+        <a href="#contact" className="block py-2 text-[18px] font-medium text-slate-900" onClick={() => setMobileMenuOpen(false)}>
+          Contact
+        </a>
+      </div>
+
+      <div className="mt-4 border-t border-slate-200" />
+
+      <div className="mt-2">
+        {MOBILE_SECTIONS.map((section) => (
+          <MobileMenuSection
+            key={section.title}
+            title={section.title}
+            href={section.href}
+            items={section.items}
+          />
+        ))}
+      </div>
+
+      <div className="mt-8 flex items-center gap-3">
+        <IconButton
+          href={PHONE_LINK}
+          label={`Call ${PHONE_DISPLAY}`}
+          symbol="📞"
+          onClick={() => trackLeadEvent("phone_click")}
+        />
+        <IconButton
+          href={WHATSAPP_LINK}
+          label="Chat on WhatsApp"
+          symbol="💬"
+          onClick={() => trackLeadEvent("whatsapp_click")}
+        />
+        <a
+          href={EMAIL_LINK}
+          className="inline-flex h-11 items-center justify-center rounded-full border border-slate-300 bg-white px-4 text-[13px] font-semibold text-slate-900 shadow-sm"
+          onClick={() => trackLeadEvent("email_click")}
+        >
+          Email us
+        </a>
+      </div>
+
+    </div>
+  </div>
+)}
         <section className="border-b border-slate-200 bg-[#fdf8f3] pt-6 lg:pt-10">
           <div className="mx-auto max-w-6xl px-4 pb-8 lg:px-6 lg:pb-12">
             <div className="grid gap-6 lg:grid-cols-[1.02fr_0.98fr] lg:items-start lg:gap-10">
