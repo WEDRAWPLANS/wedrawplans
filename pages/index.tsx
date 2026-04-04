@@ -643,7 +643,10 @@ export default function IndexPage() {
       borough: postcodeIntel.borough,
       coverageLabel: postcodeIntel.coverageLabel,
       outwardCode: postcodeIntel.outward,
-      message: formName === "mobile_floating_widget" ? "Lead from floating mobile widget" : "Quick quote from homepage hero form",
+      message:
+        formName === "mobile_floating_widget"
+          ? "Lead from floating mobile widget"
+          : "Quick quote from homepage hero form",
       hp: "",
       formStartedAt: heroStartTimeRef.current,
       timeTakenMs,
@@ -833,7 +836,10 @@ export default function IndexPage() {
                   href="/building-regulation-drawings"
                   items={TECHNICAL_ITEMS}
                 />
-                <Link href="/areas" className="whitespace-nowrap text-[14px] font-medium text-slate-900 hover:text-black">
+                <Link
+                  href="/areas"
+                  className="whitespace-nowrap text-[14px] font-medium text-slate-900 hover:text-black"
+                >
                   Areas
                 </Link>
               </nav>
@@ -865,16 +871,32 @@ export default function IndexPage() {
               </div>
 
               <div className="mt-6 space-y-1">
-                <Link href="/" className="block py-2 text-[18px] font-medium text-slate-900" onClick={() => setMobileMenuOpen(false)}>
+                <Link
+                  href="/"
+                  className="block py-2 text-[18px] font-medium text-slate-900"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
                   Home
                 </Link>
-                <Link href="/areas" className="block py-2 text-[18px] font-medium text-slate-900" onClick={() => setMobileMenuOpen(false)}>
+                <Link
+                  href="/areas"
+                  className="block py-2 text-[18px] font-medium text-slate-900"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
                   Areas We Cover
                 </Link>
-                <a href="#price-guide" className="block py-2 text-[18px] font-medium text-slate-900" onClick={() => setMobileMenuOpen(false)}>
+                <a
+                  href="#price-guide"
+                  className="block py-2 text-[18px] font-medium text-slate-900"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
                   Price Guide
                 </a>
-                <a href="#contact" className="block py-2 text-[18px] font-medium text-slate-900" onClick={() => setMobileMenuOpen(false)}>
+                <a
+                  href="#contact"
+                  className="block py-2 text-[18px] font-medium text-slate-900"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
                   Contact
                 </a>
               </div>
@@ -916,6 +938,24 @@ export default function IndexPage() {
             </div>
           </div>
         )}
+
+        {mobileLeadOpen && (
+          <div className="fixed inset-0 z-[95] bg-[#f8f4f0] lg:hidden">
+            <div className="flex h-full flex-col">
+              <div className="flex items-center justify-between border-b border-slate-200 bg-white px-4 py-4">
+                <div>
+                  <div className="text-[15px] font-semibold text-slate-900">Need help with drawings?</div>
+                  <div className="text-[12px] text-slate-600">Request your fixed quote</div>
+                </div>
+                <button
+                  type="button"
+                  aria-label="Close lead form"
+                  onClick={() => setMobileLeadOpen(false)}
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-300 bg-white text-[24px] text-slate-900"
+                >
+                  ×
+                </button>
+              </div>
 
               <div className="flex-1 overflow-y-auto px-4 py-5">
                 <form onSubmit={handleMobileLeadSubmit} className="mx-auto max-w-[560px] space-y-4">
@@ -1025,19 +1065,27 @@ export default function IndexPage() {
                   </h1>
 
                   <p className="mt-3 max-w-[640px] text-[15px] font-medium leading-7 text-slate-800">
-                    Get professional drawings for house extensions, loft conversions, new builds and Building Regulations. Initial survey within 48 hours and clear fixed pricing.
+                    Get professional drawings for house extensions, loft conversions, new builds and Building Regulations.
+                    Initial survey within 48 hours and clear fixed pricing.
                   </p>
 
                   <div className="mt-5 max-w-[640px] text-[14px] leading-7 text-slate-700">
                     <p>
-                      WEDRAWPLANS prepare practical, buildable drawings for homeowners, developers and commercial clients across London and the M25 area. We keep the process clear, fast and focused on getting your project moving.
+                      WEDRAWPLANS prepare practical, buildable drawings for homeowners, developers and commercial clients
+                      across London and the M25 area. We keep the process clear, fast and focused on getting your project
+                      moving.
                     </p>
                     <p className="mt-3">
-                      Send us your house photo on WhatsApp and we will advise instantly. Many quotes are turned around the same working day.
+                      Send us your house photo on WhatsApp and we will advise instantly. Many quotes are turned around the
+                      same working day.
                     </p>
                     <p className="mt-3">
                       Call{" "}
-                      <a href={PHONE_LINK} className="font-semibold underline" onClick={() => trackLeadEvent("phone_click")}>
+                      <a
+                        href={PHONE_LINK}
+                        className="font-semibold underline"
+                        onClick={() => trackLeadEvent("phone_click")}
+                      >
                         {PHONE_DISPLAY}
                       </a>{" "}
                       or use the form to get your fixed quote started now.
@@ -1091,18 +1139,13 @@ export default function IndexPage() {
                         Get your fixed price in minutes
                       </p>
                       <p className="mx-auto mt-2 max-w-[500px] text-[12px] leading-5 text-slate-600">
-                        Choose the service you need, tell us your postcode, then add your details and we will come back with a clear quote.
+                        Choose the service you need, tell us your postcode, then add your details and we will come back
+                        with a clear quote.
                       </p>
                     </div>
 
                     <form onSubmit={handleHeroSubmit} className="mx-auto mt-4 max-w-[520px]">
-                      <input
-                        type="text"
-                        name="company"
-                        autoComplete="off"
-                        tabIndex={-1}
-                        className="hidden"
-                      />
+                      <input type="text" name="company" autoComplete="off" tabIndex={-1} className="hidden" />
 
                       <div className="space-y-3">
                         <div className="relative">
@@ -1134,7 +1177,10 @@ export default function IndexPage() {
                         {selectedServiceHref ? (
                           <div className="px-1 text-center text-[12px] text-slate-600">
                             Related page{" "}
-                            <Link href={selectedServiceHref} className="font-medium text-blue-700 underline underline-offset-4">
+                            <Link
+                              href={selectedServiceHref}
+                              className="font-medium text-blue-700 underline underline-offset-4"
+                            >
                               View service guidance
                             </Link>
                           </div>
@@ -1292,7 +1338,9 @@ export default function IndexPage() {
               Local architectural drawing services across London and M25
             </h2>
             <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-              WEDRAWPLANS prepare drawings in boroughs across London and the wider M25 area. These local area pages help homeowners and small developers see how typical extensions, lofts and new builds are viewed in their council area.
+              WEDRAWPLANS prepare drawings in boroughs across London and the wider M25 area. These local area pages help
+              homeowners and small developers see how typical extensions, lofts and new builds are viewed in their council
+              area.
             </p>
 
             <div className="mt-6 grid gap-3 text-[14px] sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -1315,7 +1363,8 @@ export default function IndexPage() {
               Commercial and mixed use drawings
             </h2>
             <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-              WEDRAWPLANS provide commercial and mixed use drawings across London, including shopfront upgrades, restaurant layouts, office fit outs, change of use applications and Building Regulation packs.
+              WEDRAWPLANS provide commercial and mixed use drawings across London, including shopfront upgrades,
+              restaurant layouts, office fit outs, change of use applications and Building Regulation packs.
             </p>
 
             <div className="mt-6 grid gap-4 text-[13px] md:grid-cols-2 lg:grid-cols-4">
@@ -1348,7 +1397,8 @@ export default function IndexPage() {
               Extension plans · loft plans · new build and technical drawings
             </h2>
             <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-              WEDRAWPLANS follow a clear and structured approach, while adding more depth around construction, structural coordination and on site delivery.
+              WEDRAWPLANS follow a clear and structured approach, while adding more depth around construction, structural
+              coordination and on site delivery.
             </p>
 
             <div className="mt-6 grid gap-6 text-[13px] md:grid-cols-3">
@@ -1395,7 +1445,8 @@ export default function IndexPage() {
               Architectural drawings for almost any residential project
             </h2>
             <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-              From a simple rear extension to full house remodelling and new build, WEDRAWPLANS provide drawings for a wide range of project types.
+              From a simple rear extension to full house remodelling and new build, WEDRAWPLANS provide drawings for a
+              wide range of project types.
             </p>
 
             <div className="mt-5 grid gap-2 text-[13px] sm:grid-cols-2 lg:grid-cols-3">
@@ -1433,7 +1484,8 @@ export default function IndexPage() {
               Support services around your drawings
             </h2>
             <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-              Beyond pure drawing production, WEDRAWPLANS help bring projects together by coordinating key professionals and offering additional documentation where needed.
+              Beyond pure drawing production, WEDRAWPLANS help bring projects together by coordinating key professionals
+              and offering additional documentation where needed.
             </p>
 
             <div className="mt-6 grid gap-6 text-[13px] md:grid-cols-3">
@@ -1471,7 +1523,8 @@ export default function IndexPage() {
               Price guide for drawings
             </h2>
             <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-              Every project is quoted once the scope and location are understood. These guide figures reflect common extension and loft projects.
+              Every project is quoted once the scope and location are understood. These guide figures reflect common
+              extension and loft projects.
             </p>
 
             <div className="mt-5 grid gap-4 text-[13px] md:grid-cols-2 lg:grid-cols-3">
@@ -1518,7 +1571,8 @@ export default function IndexPage() {
               Get in touch and tell us what you need
             </h2>
             <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
-              Share a short description of the property and what you would like to achieve. WEDRAWPLANS normally respond the same working day.
+              Share a short description of the property and what you would like to achieve. WEDRAWPLANS normally respond
+              the same working day.
             </p>
 
             <div className="mt-6 grid gap-8 lg:grid-cols-2">
@@ -1531,7 +1585,7 @@ export default function IndexPage() {
         <footer className="border-t border-slate-800 bg-[#20243b]">
           <div className="mx-auto max-w-6xl px-4 py-10 lg:px-6">
             <div className="grid gap-8 lg:grid-cols-[1.25fr_0.9fr_0.9fr_0.9fr]">
-              <div className="text-center lg:text-center">
+              <div className="text-center">
                 <Link href="/" className="inline-flex items-center justify-center">
                   <img
                     src="/images/wedrawplans-logo.png"
@@ -1545,7 +1599,9 @@ export default function IndexPage() {
                 </div>
 
                 <p className="mx-auto mt-4 max-w-md text-[13px] leading-7 text-white/80">
-                  WEDRAWPLANS provide architectural drawings for house extensions, loft conversions, planning applications, Building Regulations and small residential development projects across London and the surrounding M25 area.
+                  WEDRAWPLANS provide architectural drawings for house extensions, loft conversions, planning
+                  applications, Building Regulations and small residential development projects across London and the
+                  surrounding M25 area.
                 </p>
 
                 <div className="mt-5 flex flex-wrap justify-center gap-3">
@@ -1618,10 +1674,18 @@ export default function IndexPage() {
               <div>
                 <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/85">Contact</div>
                 <div className="mt-3 space-y-3 text-[13px] text-white/65">
-                  <a href={PHONE_LINK} className="block hover:text-white" onClick={() => trackLeadEvent("phone_click")}>
+                  <a
+                    href={PHONE_LINK}
+                    className="block hover:text-white"
+                    onClick={() => trackLeadEvent("phone_click")}
+                  >
                     {PHONE_DISPLAY}
                   </a>
-                  <a href={EMAIL_LINK} className="block hover:text-white" onClick={() => trackLeadEvent("email_click")}>
+                  <a
+                    href={EMAIL_LINK}
+                    className="block hover:text-white"
+                    onClick={() => trackLeadEvent("email_click")}
+                  >
                     {EMAIL}
                   </a>
                   <div className="leading-6">
@@ -1836,13 +1900,7 @@ function ContactForm() {
 
   return (
     <form onSubmit={handleContactSubmit} className="space-y-3 text-[13px]">
-      <input
-        type="text"
-        name="company"
-        autoComplete="off"
-        tabIndex={-1}
-        className="hidden"
-      />
+      <input type="text" name="company" autoComplete="off" tabIndex={-1} className="hidden" />
 
       <div className="space-y-1">
         <label className="text-[11px] font-medium text-slate-700">Service required</label>
@@ -1919,13 +1977,16 @@ function ContactSummary() {
   return (
     <div className="text-[13px] text-slate-700">
       <p>
-        WEDRAWPLANS provide a full range of architectural drawing services for new builds, house extensions, loft conversions, garage conversions, garden rooms, flat conversions, HMOs and commercial developments.
+        WEDRAWPLANS provide a full range of architectural drawing services for new builds, house extensions, loft
+        conversions, garage conversions, garden rooms, flat conversions, HMOs and commercial developments.
       </p>
       <p className="mt-3">
-        The focus is on clear, buildable designs that support planning and Building Regulation approvals and that help builders understand exactly what is intended on site.
+        The focus is on clear, buildable designs that support planning and Building Regulation approvals and that help
+        builders understand exactly what is intended on site.
       </p>
       <p className="mt-3">
-        If you already have estate agent plans, older drawings or simple sketches, you can email them together with photos so the property can be reviewed before a call.
+        If you already have estate agent plans, older drawings or simple sketches, you can email them together with
+        photos so the property can be reviewed before a call.
       </p>
     </div>
   );
