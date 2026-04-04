@@ -744,7 +744,18 @@ export default function IndexPage() {
         />
       </Link>
 
-      <div className="absolute right-0 hidden items-center gap-3 lg:flex">
+ 
+
+    <div className="mt-1 hidden text-center text-[10px] uppercase tracking-[0.18em] text-slate-600 sm:block">
+      Architectural Drawing Consultants
+    </div>
+
+    <div className="mt-2 hidden lg:flex items-center justify-between gap-6 border-t border-slate-300 pt-3">
+      <nav className="flex items-center gap-5">
+        <DesktopDropdown title="Local Designers" href="/areas" items={LOCAL_DESIGNERS_ITEMS} />
+        <DesktopDropdown title="Commercial" href="/commercial" items={COMMERCIAL_ITEMS} />
+        <DesktopDropdown title="Extension Plans" href="/extension-plans" items={EXTENSION_ITEMS} />
+        <DesktopDropdown title="Loft Plans" href="/loft-conversion-plans" items={LOFT_ITEMS} /      <div className="absolute right-0 hidden items-center gap-3 lg:flex">
         <a
           href={PHONE_LINK}
           onClick={() => trackLeadEvent("phone_click")}
@@ -758,7 +769,14 @@ export default function IndexPage() {
           href={WHATSAPP_LINK}
           target="_blank"
           rel="noopener noreferrer"
-         
+          onClick={() => trackLeadEvent("whatsapp_click")}
+          className="inline-flex items-center rounded-full bg-[#25D366] px-5 py-2 text-[13px] font-semibold text-white shadow-sm transition hover:bg-[#1ebe57]"
+        >
+          <span className="mr-2" aria-hidden="true">💬</span>
+          <span>WhatsApp</span>
+        </a>
+      </div>
+
       <div className="absolute right-0 top-1/2 flex -translate-y-1/2 items-center gap-2 lg:hidden">
         <IconButton
           href={PHONE_LINK}
@@ -776,19 +794,7 @@ export default function IndexPage() {
           isOpen={mobileMenuOpen}
           onClick={() => setMobileMenuOpen((v) => !v)}
         />
-      </div>
-    </div>
-
-    <div className="mt-1 hidden text-center text-[10px] uppercase tracking-[0.18em] text-slate-600 sm:block">
-      Architectural Drawing Consultants
-    </div>
-
-    <div className="mt-2 hidden lg:flex items-center justify-between gap-6 border-t border-slate-300 pt-3">
-      <nav className="flex items-center gap-5">
-        <DesktopDropdown title="Local Designers" href="/areas" items={LOCAL_DESIGNERS_ITEMS} />
-        <DesktopDropdown title="Commercial" href="/commercial" items={COMMERCIAL_ITEMS} />
-        <DesktopDropdown title="Extension Plans" href="/extension-plans" items={EXTENSION_ITEMS} />
-        <DesktopDropdown title="Loft Plans" href="/loft-conversion-plans" items={LOFT_ITEMS} />
+      </div>>
         <DesktopDropdown title="New Build" href="/new-build-plans" items={NEW_BUILD_ITEMS} />
         <DesktopDropdown
           title="Technical & Support"
