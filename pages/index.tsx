@@ -740,14 +740,13 @@ export default function IndexPage() {
    <div className="flex items-center justify-center relative">
 
       {/* LEFT: LOGO */}
-      <Link href="/" className="flex items-center justify-center">
-        <img
-          src="/images/wedrawplans-logo.png"
-          alt="WEDRAWPLANS"
-          className="h-12 w-auto object-contain sm:h-14"
-        />
-      </Link>
-
+     <Link href="/" className="flex items-center justify-center">
+  <img
+    src="/images/wedrawplans-logo.png"
+    alt="WEDRAWPLANS"
+    className="h-16 w-auto object-contain sm:h-20 lg:h-24"
+  />
+</Link>
       {/* RIGHT: DESKTOP CTA */}
       <div className="hidden lg:flex items-center gap-3">
         <a
