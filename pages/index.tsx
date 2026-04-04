@@ -770,7 +770,7 @@ export default function IndexPage() {
       </div>
 
       {/* MOBILE RIGHT */}
-      <div className="flex items-center gap-2 lg:hidden">
+     <div className="absolute right-0 flex items-center gap-2 lg:hidden">
         <IconButton
           href={PHONE_LINK}
           label="Call"
