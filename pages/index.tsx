@@ -758,14 +758,7 @@ export default function IndexPage() {
           href={WHATSAPP_LINK}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() => trackLeadEvent("whatsapp_click")}
-          className="inline-flex items-center rounded-full bg-[#25D366] px-5 py-2 text-[13px] font-semibold text-white shadow-sm transition hover:bg-[#1ebe57]"
-        >
-          <span className="mr-2" aria-hidden="true">💬</span>
-          <span>WhatsApp</span>
-        </a>
-      </div>
-
+         
       <div className="absolute right-0 top-1/2 flex -translate-y-1/2 items-center gap-2 lg:hidden">
         <IconButton
           href={PHONE_LINK}
