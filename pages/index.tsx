@@ -358,11 +358,7 @@ function detectPostcodeIntel(postcode: string): PostcodeIntel {
     normalized,
     outward,
     borough,
-    coverageLabel: borough
-      ? `Serving ${outward} • ${borough} area`
-      : outward
-        ? `Serving ${outward} area`
-        : null,
+    coverageLabel: borough ? `Serving ${outward} • ${borough} area` : outward ? `Serving ${outward} area` : null,
   };
 }
 
@@ -560,6 +556,7 @@ export default function IndexPage() {
   const [heroName, setHeroName] = useState("");
   const [heroPhone, setHeroPhone] = useState("");
   const [heroEmail, setHeroEmail] = useState("");
+  const [heroMessage, setHeroMessage] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileLeadOpen, setMobileLeadOpen] = useState(false);
 
@@ -621,6 +618,7 @@ export default function IndexPage() {
     const name = heroName.trim();
     const phone = heroPhone.trim();
     const email = heroEmail.trim();
+    const message = heroMessage.trim();
 
     if (!postcode || !service) {
       alert("Please enter your postcode and select the drawings you need.");
@@ -644,9 +642,10 @@ export default function IndexPage() {
       coverageLabel: postcodeIntel.coverageLabel,
       outwardCode: postcodeIntel.outward,
       message:
-        formName === "mobile_floating_widget"
+        message ||
+        (formName === "mobile_floating_widget"
           ? "Lead from floating mobile widget"
-          : "Quick quote from homepage hero form",
+          : "Quick quote from homepage hero form"),
       hp: "",
       formStartedAt: heroStartTimeRef.current,
       timeTakenMs,
@@ -685,6 +684,7 @@ export default function IndexPage() {
         setHeroName("");
         setHeroPhone("");
         setHeroEmail("");
+        setHeroMessage("");
         setHeroExpanded(false);
         setMobileLeadOpen(false);
         heroStartedRef.current = false;
@@ -942,19 +942,25 @@ export default function IndexPage() {
         {mobileLeadOpen && (
           <div className="fixed inset-0 z-[95] bg-[#f8f4f0] lg:hidden">
             <div className="flex h-full flex-col">
-              <div className="flex items-center justify-between border-b border-slate-200 bg-white px-4 py-4">
-                <div>
-                  <div className="text-[15px] font-semibold text-slate-900">Need help with drawings?</div>
-                  <div className="text-[12px] text-slate-600">Request your fixed quote</div>
+              <div className="border-b border-slate-200 bg-white px-4 py-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="text-[16px] font-semibold text-slate-900">Need help with drawings?</div>
+                    <div className="text-[12px] text-slate-600">Request your fixed quote</div>
+                  </div>
+                  <button
+                    type="button"
+                    aria-label="Close lead form"
+                    onClick={() => setMobileLeadOpen(false)}
+                    className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-300 bg-white text-[24px] text-slate-900"
+                  >
+                    ×
+                  </button>
                 </div>
-                <button
-                  type="button"
-                  aria-label="Close lead form"
-                  onClick={() => setMobileLeadOpen(false)}
-                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-300 bg-white text-[24px] text-slate-900"
-                >
-                  ×
-                </button>
+
+                <div className="mt-3 rounded-2xl bg-[#f8f4f0] px-3 py-3 text-[12px] leading-5 text-slate-600">
+                  Tell us the type of drawings you need, your postcode and any key details. The more context you add, the faster we can quote properly.
+                </div>
               </div>
 
               <div className="flex-1 overflow-y-auto px-4 py-5">
@@ -1028,6 +1034,16 @@ export default function IndexPage() {
                         onFocus={() => trackHeroFormStart("mobile_email")}
                         placeholder="Email address"
                         className="h-14 w-full rounded-[16px] border border-slate-200 bg-white px-4 text-[16px] text-slate-800 shadow-sm outline-none transition focus:border-[#64b7c4]"
+                      />
+
+                      <textarea
+                        name="message"
+                        value={heroMessage}
+                        onChange={(e) => setHeroMessage(e.target.value)}
+                        onFocus={() => trackHeroFormStart("mobile_message")}
+                        placeholder="Briefly tell us what you want to build or change"
+                        rows={4}
+                        className="w-full rounded-[16px] border border-slate-200 bg-white px-4 py-4 text-[16px] text-slate-800 shadow-sm outline-none transition focus:border-[#64b7c4]"
                       />
 
                       {postcodeIntel.coverageLabel && (
@@ -1706,14 +1722,14 @@ export default function IndexPage() {
         </footer>
 
         <div
-          className="fixed inset-x-0 bottom-0 z-[90] px-3 pb-[calc(env(safe-area-inset-bottom)+8px)] lg:hidden"
-          style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 8px)" }}
+          className="fixed inset-x-0 bottom-0 z-[90] px-3 pb-[max(env(safe-area-inset-bottom),8px)] lg:hidden"
+          style={{ paddingBottom: "max(env(safe-area-inset-bottom), 8px)" }}
         >
           <div className="mx-auto max-w-md">
             <button
               type="button"
               onClick={openMobileLead}
-              className="flex w-full items-center gap-3 rounded-full border border-slate-200 bg-white px-4 py-3 text-left shadow-[0_10px_30px_rgba(0,0,0,0.15)]"
+              className="flex w-full items-center gap-3 rounded-[28px] border border-slate-200 bg-white px-4 py-3 text-left shadow-[0_10px_30px_rgba(0,0,0,0.15)]"
             >
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-red-600 text-white text-xl">
                 ✎
