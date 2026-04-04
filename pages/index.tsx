@@ -1518,12 +1518,31 @@ export default function IndexPage() {
           </div>
         </footer>
 
-        <a
-          href={WHATSAPP_LINK}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Chat on WhatsApp with WEDRAWPLANS"
-          className="fixed bottom-4 right-4 z-[70] hidden h-12 items-center justify-center rounded-full bg-[#25D366] px-5 text-[14px] font-semibold text-white shadow-lg ring-2 ring-white/70 hover:bg-[#1ebe57] lg:inline-flex"
+   <div className="fixed bottom-0 left-0 right-0 z-[90] px-3 pb-3 lg:hidden">
+  <div className="flex items-center gap-3 rounded-2xl bg-white p-3 shadow-[0_-10px_30px_rgba(0,0,0,0.15)] border border-slate-200">
+    
+    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-red-600 text-white text-xl">
+      ✎
+    </div>
+
+    <div className="flex-1">
+      <div className="text-[13px] font-semibold text-slate-900">
+        Need help with drawings?
+      </div>
+      <div className="text-[11px] text-slate-600">
+        Tap to get your fixed quote
+      </div>
+    </div>
+
+    <button
+      onClick={() => setHeroExpanded(true)}
+      className="rounded-full bg-[#20243b] px-4 py-2 text-[12px] font-semibold text-white"
+    >
+      Start
+    </button>
+
+  </div>
+</div>
           onClick={() => trackLeadEvent("whatsapp_click")}
         >
           <span className="mr-2" aria-hidden="true">💬</span>
