@@ -561,6 +561,7 @@ export default function IndexPage() {
   const [heroPhone, setHeroPhone] = useState("");
   const [heroEmail, setHeroEmail] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileLeadOpen, setMobileLeadOpen] = useState(false);
 
   const postcodeIntel = detectPostcodeIntel(heroPostcode);
 
@@ -577,15 +578,21 @@ export default function IndexPage() {
   }, [heroExpanded]);
 
   useEffect(() => {
-    if (!mobileMenuOpen) return;
+    if (!mobileMenuOpen && !mobileLeadOpen) {
+      document.body.style.overflow = "";
+      return;
+    }
+
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+
     return () => {
       document.body.style.overflow = previousOverflow;
     };
-  }, [mobileMenuOpen]);
+  }, [mobileMenuOpen, mobileLeadOpen]);
 
   useCloseOnEscape(mobileMenuOpen, () => setMobileMenuOpen(false));
+  useCloseOnEscape(mobileLeadOpen, () => setMobileLeadOpen(false));
 
   function trackHeroFormStart(firstFieldName?: string) {
     if (!heroStartedRef.current) {
@@ -608,16 +615,7 @@ export default function IndexPage() {
     });
   }
 
-  async function handleHeroSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    if (heroSubmitting) return;
-
-    const form = e.currentTarget;
-    const formData = new FormData(form);
-
-    const honeypot = String(formData.get("company") || "").trim();
-    if (honeypot) return;
-
+  async function submitLead(formName: "homepage_hero" | "mobile_floating_widget") {
     const postcode = postcodeIntel.normalized;
     const service = heroService.trim();
     const name = heroName.trim();
@@ -626,19 +624,6 @@ export default function IndexPage() {
 
     if (!postcode || !service) {
       alert("Please enter your postcode and select the drawings you need.");
-      return;
-    }
-
-    if (!heroExpanded) {
-      setHeroExpanded(true);
-      gtagEvent("lead_step_continue", {
-        form_name: "homepage_hero",
-        step: "details_opened",
-        service,
-        postcode,
-        borough_detected: postcodeIntel.borough || "unknown",
-        outward_code: postcodeIntel.outward || "unknown",
-      });
       return;
     }
 
@@ -658,8 +643,8 @@ export default function IndexPage() {
       borough: postcodeIntel.borough,
       coverageLabel: postcodeIntel.coverageLabel,
       outwardCode: postcodeIntel.outward,
-      message: "Quick quote from homepage hero form",
-      hp: honeypot,
+      message: formName === "mobile_floating_widget" ? "Lead from floating mobile widget" : "Quick quote from homepage hero form",
+      hp: "",
       formStartedAt: heroStartTimeRef.current,
       timeTakenMs,
     };
@@ -668,7 +653,7 @@ export default function IndexPage() {
       setHeroSubmitting(true);
 
       gtagEvent("lead_step_continue", {
-        form_name: "homepage_hero",
+        form_name: formName,
         step: "submit",
         service,
         postcode,
@@ -684,7 +669,7 @@ export default function IndexPage() {
 
       if (res.ok) {
         gtagEvent("generate_lead", {
-          form_name: "homepage_hero",
+          form_name: formName,
           service,
           postcode,
           borough_detected: postcodeIntel.borough || "unknown",
@@ -698,9 +683,9 @@ export default function IndexPage() {
         setHeroPhone("");
         setHeroEmail("");
         setHeroExpanded(false);
+        setMobileLeadOpen(false);
         heroStartedRef.current = false;
         heroStartTimeRef.current = null;
-        heroPostcodeRef.current?.blur();
       } else {
         alert("Something went wrong. Please try again or call us directly.");
       }
@@ -709,6 +694,52 @@ export default function IndexPage() {
     } finally {
       setHeroSubmitting(false);
     }
+  }
+
+  async function handleHeroSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (heroSubmitting) return;
+
+    if (!heroStartedRef.current) {
+      heroStartedRef.current = true;
+      heroStartTimeRef.current = Date.now();
+    }
+
+    if (!heroExpanded) {
+      setHeroExpanded(true);
+      gtagEvent("lead_step_continue", {
+        form_name: "homepage_hero",
+        step: "details_opened",
+        service: heroService || "unknown",
+        postcode: postcodeIntel.normalized || "unknown",
+        borough_detected: postcodeIntel.borough || "unknown",
+        outward_code: postcodeIntel.outward || "unknown",
+      });
+      return;
+    }
+
+    await submitLead("homepage_hero");
+  }
+
+  async function handleMobileLeadSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (heroSubmitting) return;
+
+    if (!heroStartedRef.current) {
+      heroStartedRef.current = true;
+      heroStartTimeRef.current = Date.now();
+    }
+
+    await submitLead("mobile_floating_widget");
+  }
+
+  function openMobileLead() {
+    if (!heroStartedRef.current) {
+      heroStartedRef.current = true;
+      heroStartTimeRef.current = Date.now();
+    }
+    setHeroExpanded(true);
+    setMobileLeadOpen(true);
   }
 
   return (
@@ -732,159 +763,272 @@ export default function IndexPage() {
         />
       </Head>
 
-      <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
-       <header className="sticky top-0 z-[60] border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur">
-  <div className="mx-auto max-w-6xl px-4 py-2 lg:px-6 lg:py-3">
-    <div className="relative flex items-center justify-center min-h-[92px] sm:min-h-[110px] lg:min-h-0">
-      <Link href="/" className="inline-flex items-center justify-center">
-        <img
-          src="/images/wedrawplans-logo.png"
-          alt="WEDRAWPLANS"
-       className="h-16 w-auto object-contain sm:h-20 lg:h-24 xl:h-26"
-        />
-      </Link>
+      <div className="min-h-screen bg-[#f8f4f0] pb-24 text-slate-900 lg:pb-0">
+        <header className="sticky top-0 z-[60] border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur">
+          <div className="mx-auto max-w-6xl px-4 py-3 lg:px-6 lg:py-4">
+            <div className="relative flex min-h-[96px] items-center justify-center sm:min-h-[118px] lg:min-h-[120px]">
+              <Link href="/" className="inline-flex items-center justify-center">
+                <img
+                  src="/images/wedrawplans-logo.png"
+                  alt="WEDRAWPLANS"
+                  className="h-24 w-auto object-contain sm:h-28 lg:h-28 xl:h-32"
+                />
+              </Link>
 
- 
+              <div className="absolute right-0 hidden items-center gap-3 lg:flex">
+                <a
+                  href={PHONE_LINK}
+                  onClick={() => trackLeadEvent("phone_click")}
+                  className="inline-flex items-center rounded-full bg-[#20243b] px-5 py-2 text-[13px] font-semibold text-white shadow-sm transition hover:bg-[#161a2f]"
+                >
+                  <span className="mr-2" aria-hidden="true">📞</span>
+                  <span>{PHONE_DISPLAY}</span>
+                </a>
 
-    <div className="mt-1 hidden text-center text-[10px] uppercase tracking-[0.18em] text-slate-600 sm:block">
-      Architectural Drawing Consultants
-    </div>
+                <a
+                  href={WHATSAPP_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackLeadEvent("whatsapp_click")}
+                  className="inline-flex items-center rounded-full bg-[#25D366] px-5 py-2 text-[13px] font-semibold text-white shadow-sm transition hover:bg-[#1ebe57]"
+                >
+                  <span className="mr-2" aria-hidden="true">💬</span>
+                  <span>WhatsApp</span>
+                </a>
+              </div>
 
-    <div className="mt-2 hidden lg:flex items-center justify-between gap-6 border-t border-slate-300 pt-3">
-      <nav className="flex items-center gap-5">
-        <DesktopDropdown title="Local Designers" href="/areas" items={LOCAL_DESIGNERS_ITEMS} />
-        <DesktopDropdown title="Commercial" href="/commercial" items={COMMERCIAL_ITEMS} />
-        <DesktopDropdown title="Extension Plans" href="/extension-plans" items={EXTENSION_ITEMS} />
-        <DesktopDropdown title="Loft Plans" href="/loft-conversion-plans" items={LOFT_ITEMS} /      <div className="absolute right-0 hidden items-center gap-3 lg:flex">
-        <a
-          href={PHONE_LINK}
-          onClick={() => trackLeadEvent("phone_click")}
-          className="inline-flex items-center rounded-full bg-[#20243b] px-5 py-2 text-[13px] font-semibold text-white shadow-sm transition hover:bg-[#161a2f]"
-        >
-          <span className="mr-2" aria-hidden="true">📞</span>
-          <span>{PHONE_DISPLAY}</span>
-        </a>
+              <div className="absolute right-0 top-1/2 flex -translate-y-1/2 items-center gap-2 lg:hidden">
+                <IconButton
+                  href={PHONE_LINK}
+                  label="Call"
+                  symbol="📞"
+                  onClick={() => trackLeadEvent("phone_click")}
+                />
+                <IconButton
+                  href={WHATSAPP_LINK}
+                  label="WhatsApp"
+                  symbol="💬"
+                  onClick={() => trackLeadEvent("whatsapp_click")}
+                />
+                <HamburgerButton
+                  isOpen={mobileMenuOpen}
+                  onClick={() => setMobileMenuOpen((v) => !v)}
+                />
+              </div>
+            </div>
 
-        <a
-          href={WHATSAPP_LINK}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => trackLeadEvent("whatsapp_click")}
-          className="inline-flex items-center rounded-full bg-[#25D366] px-5 py-2 text-[13px] font-semibold text-white shadow-sm transition hover:bg-[#1ebe57]"
-        >
-          <span className="mr-2" aria-hidden="true">💬</span>
-          <span>WhatsApp</span>
-        </a>
-      </div>
+            <div className="hidden text-center text-[10px] uppercase tracking-[0.18em] text-slate-600 sm:block">
+              Architectural Drawing Consultants
+            </div>
 
-      <div className="absolute right-0 top-1/2 flex -translate-y-1/2 items-center gap-2 lg:hidden">
-        <IconButton
-          href={PHONE_LINK}
-          label="Call"
-          symbol="📞"
-          onClick={() => trackLeadEvent("phone_click")}
-        />
-        <IconButton
-          href={WHATSAPP_LINK}
-          label="WhatsApp"
-          symbol="💬"
-          onClick={() => trackLeadEvent("whatsapp_click")}
-        />
-        <HamburgerButton
-          isOpen={mobileMenuOpen}
-          onClick={() => setMobileMenuOpen((v) => !v)}
-        />
-      </div>>
-        <DesktopDropdown title="New Build" href="/new-build-plans" items={NEW_BUILD_ITEMS} />
-        <DesktopDropdown
-          title="Technical & Support"
-          href="/building-regulation-drawings"
-          items={TECHNICAL_ITEMS}
-        />
-        <Link href="/areas" className="text-[14px] font-medium text-slate-900">
-          Areas
-        </Link>
-      </nav>
-    </div>
-  </div>
-</header>
+            <div className="mt-3 hidden border-t border-slate-300 pt-3 lg:block">
+              <nav className="flex w-full items-center justify-between gap-4">
+                <DesktopDropdown title="Local Designers" href="/areas" items={LOCAL_DESIGNERS_ITEMS} />
+                <DesktopDropdown title="Commercial" href="/commercial" items={COMMERCIAL_ITEMS} />
+                <DesktopDropdown title="Extension Plans" href="/extension-plans" items={EXTENSION_ITEMS} />
+                <DesktopDropdown title="Loft Plans" href="/loft-conversion-plans" items={LOFT_ITEMS} />
+                <DesktopDropdown title="New Build" href="/new-build-plans" items={NEW_BUILD_ITEMS} />
+                <DesktopDropdown
+                  title="Technical & Support"
+                  href="/building-regulation-drawings"
+                  items={TECHNICAL_ITEMS}
+                />
+                <Link href="/areas" className="whitespace-nowrap text-[14px] font-medium text-slate-900 hover:text-black">
+                  Areas
+                </Link>
+              </nav>
+            </div>
+          </div>
+        </header>
+
         {mobileMenuOpen && (
-  <div className="fixed inset-0 z-[80] lg:hidden">
-    <button
-      type="button"
-      aria-label="Close mobile menu overlay"
-      className="absolute inset-0 bg-slate-900/35"
-      onClick={() => setMobileMenuOpen(false)}
-    />
-    <div className="absolute right-0 top-0 h-full w-full max-w-[420px] overflow-y-auto bg-[#fdf8f3] px-6 pb-10 pt-6 shadow-[0_20px_50px_rgba(15,23,42,0.28)]">
-      
-      <div className="flex items-center justify-between">
-        <div className="text-[13px] font-semibold uppercase tracking-[0.16em] text-slate-700">
-          Menu
-        </div>
-        <button
-          type="button"
-          aria-label="Close menu"
-          onClick={() => setMobileMenuOpen(false)}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-300 bg-white text-[24px] text-slate-900"
-        >
-          ×
-        </button>
-      </div>
+          <div className="fixed inset-0 z-[80] lg:hidden">
+            <button
+              type="button"
+              aria-label="Close mobile menu overlay"
+              className="absolute inset-0 bg-slate-900/35"
+              onClick={() => setMobileMenuOpen(false)}
+            />
+            <div className="absolute right-0 top-0 h-full w-full max-w-[420px] overflow-y-auto bg-[#fdf8f3] px-6 pb-10 pt-6 shadow-[0_20px_50px_rgba(15,23,42,0.28)]">
+              <div className="flex items-center justify-between">
+                <div className="text-[13px] font-semibold uppercase tracking-[0.16em] text-slate-700">
+                  Menu
+                </div>
+                <button
+                  type="button"
+                  aria-label="Close menu"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-300 bg-white text-[24px] text-slate-900"
+                >
+                  ×
+                </button>
+              </div>
 
-      <div className="mt-6 space-y-1">
-        <Link href="/" className="block py-2 text-[18px] font-medium text-slate-900" onClick={() => setMobileMenuOpen(false)}>
-          Home
-        </Link>
-        <Link href="/areas" className="block py-2 text-[18px] font-medium text-slate-900" onClick={() => setMobileMenuOpen(false)}>
-          Areas We Cover
-        </Link>
-        <a href="#price-guide" className="block py-2 text-[18px] font-medium text-slate-900" onClick={() => setMobileMenuOpen(false)}>
-          Price Guide
-        </a>
-        <a href="#contact" className="block py-2 text-[18px] font-medium text-slate-900" onClick={() => setMobileMenuOpen(false)}>
-          Contact
-        </a>
-      </div>
+              <div className="mt-6 space-y-1">
+                <Link href="/" className="block py-2 text-[18px] font-medium text-slate-900" onClick={() => setMobileMenuOpen(false)}>
+                  Home
+                </Link>
+                <Link href="/areas" className="block py-2 text-[18px] font-medium text-slate-900" onClick={() => setMobileMenuOpen(false)}>
+                  Areas We Cover
+                </Link>
+                <a href="#price-guide" className="block py-2 text-[18px] font-medium text-slate-900" onClick={() => setMobileMenuOpen(false)}>
+                  Price Guide
+                </a>
+                <a href="#contact" className="block py-2 text-[18px] font-medium text-slate-900" onClick={() => setMobileMenuOpen(false)}>
+                  Contact
+                </a>
+              </div>
 
-      <div className="mt-4 border-t border-slate-200" />
+              <div className="mt-4 border-t border-slate-200" />
 
-      <div className="mt-2">
-        {MOBILE_SECTIONS.map((section) => (
-          <MobileMenuSection
-            key={section.title}
-            title={section.title}
-            href={section.href}
-            items={section.items}
-          />
-        ))}
-      </div>
+              <div className="mt-2">
+                {MOBILE_SECTIONS.map((section) => (
+                  <MobileMenuSection
+                    key={section.title}
+                    title={section.title}
+                    href={section.href}
+                    items={section.items}
+                  />
+                ))}
+              </div>
 
-      <div className="mt-8 flex items-center gap-3">
-        <IconButton
-          href={PHONE_LINK}
-          label={`Call ${PHONE_DISPLAY}`}
-          symbol="📞"
-          onClick={() => trackLeadEvent("phone_click")}
-        />
-        <IconButton
-          href={WHATSAPP_LINK}
-          label="Chat on WhatsApp"
-          symbol="💬"
-          onClick={() => trackLeadEvent("whatsapp_click")}
-        />
-        <a
-          href={EMAIL_LINK}
-          className="inline-flex h-11 items-center justify-center rounded-full border border-slate-300 bg-white px-4 text-[13px] font-semibold text-slate-900 shadow-sm"
-          onClick={() => trackLeadEvent("email_click")}
-        >
-          Email us
-        </a>
-      </div>
+              <div className="mt-8 flex items-center gap-3">
+                <IconButton
+                  href={PHONE_LINK}
+                  label={`Call ${PHONE_DISPLAY}`}
+                  symbol="📞"
+                  onClick={() => trackLeadEvent("phone_click")}
+                />
+                <IconButton
+                  href={WHATSAPP_LINK}
+                  label="Chat on WhatsApp"
+                  symbol="💬"
+                  onClick={() => trackLeadEvent("whatsapp_click")}
+                />
+                <a
+                  href={EMAIL_LINK}
+                  className="inline-flex h-11 items-center justify-center rounded-full border border-slate-300 bg-white px-4 text-[13px] font-semibold text-slate-900 shadow-sm"
+                  onClick={() => trackLeadEvent("email_click")}
+                >
+                  Email us
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
 
-    </div>
-  </div>
-)}
+        {mobileLeadOpen && (
+          <div className="fixed inset-0 z-[95] bg-[#f8f4f0] lg:hidden">
+            <div className="flex h-full flex-col">
+              <div className="flex items-center justify-between border-b border-slate-200 bg-white px-4 py-4">
+                <div>
+                  <div className="text-[15px] font-semibold text-slate-900">Need help with drawings?</div>
+                  <div className="text-[12px] text-slate-600">Request your fixed quote</div>
+                </div>
+                <button
+                  type="button"
+                  aria-label="Close lead form"
+                  onClick={() => setMobileLeadOpen(false)}
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-300 bg-white text-[24px] text-slate-900"
+                >
+                  ×
+                </button>
+              </div>
+
+              <div className="flex-1 overflow-y-auto px-4 py-5">
+                <form onSubmit={handleMobileLeadSubmit} className="mx-auto max-w-[560px] space-y-4">
+                  <div className="rounded-[24px] border border-slate-200 bg-white p-4 shadow-[0_12px_32px_rgba(15,23,42,0.08)]">
+                    <div className="space-y-3">
+                      <div className="relative">
+                        <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[20px] text-[#2f6f8a]">
+                          ✎
+                        </span>
+                        <select
+                          name="service"
+                          value={heroService}
+                          onFocus={() => trackHeroFormStart("mobile_service")}
+                          onChange={(e) => {
+                            setHeroService(e.target.value);
+                            trackHeroServiceSelect(e.target.value);
+                          }}
+                          className="h-14 w-full appearance-none rounded-[16px] border border-slate-200 bg-white pl-14 pr-12 text-[16px] text-slate-800 shadow-sm outline-none transition focus:border-[#64b7c4]"
+                        >
+                          <option value="">Which service do you need?</option>
+                          {SERVICE_OPTIONS.map((option) => (
+                            <option key={`mobile-${option.value}`} value={option.value}>
+                              {option.label}
+                            </option>
+                          ))}
+                        </select>
+                        <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[18px] text-slate-700">
+                          ▾
+                        </span>
+                      </div>
+
+                      <div className="relative">
+                        <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[20px] text-[#d85e56]">
+                          📍
+                        </span>
+                        <input
+                          name="postcode"
+                          value={heroPostcode}
+                          onChange={(e) => setHeroPostcode(e.target.value)}
+                          onFocus={() => trackHeroFormStart("mobile_postcode")}
+                          placeholder="Postcode"
+                          className="h-14 w-full rounded-[16px] border border-slate-200 bg-white pl-14 pr-4 text-[16px] text-slate-800 shadow-sm outline-none transition focus:border-[#64b7c4]"
+                        />
+                      </div>
+
+                      <input
+                        name="name"
+                        value={heroName}
+                        onChange={(e) => setHeroName(e.target.value)}
+                        onFocus={() => trackHeroFormStart("mobile_name")}
+                        placeholder="Your name"
+                        className="h-14 w-full rounded-[16px] border border-slate-200 bg-white px-4 text-[16px] text-slate-800 shadow-sm outline-none transition focus:border-[#64b7c4]"
+                      />
+
+                      <input
+                        name="phone"
+                        type="tel"
+                        value={heroPhone}
+                        onChange={(e) => setHeroPhone(e.target.value)}
+                        onFocus={() => trackHeroFormStart("mobile_phone")}
+                        placeholder="Phone number"
+                        className="h-14 w-full rounded-[16px] border border-slate-200 bg-white px-4 text-[16px] text-slate-800 shadow-sm outline-none transition focus:border-[#64b7c4]"
+                      />
+
+                      <input
+                        name="email"
+                        type="email"
+                        value={heroEmail}
+                        onChange={(e) => setHeroEmail(e.target.value)}
+                        onFocus={() => trackHeroFormStart("mobile_email")}
+                        placeholder="Email address"
+                        className="h-14 w-full rounded-[16px] border border-slate-200 bg-white px-4 text-[16px] text-slate-800 shadow-sm outline-none transition focus:border-[#64b7c4]"
+                      />
+
+                      {postcodeIntel.coverageLabel && (
+                        <div className="px-1 text-center text-[12px] font-medium text-[#2f7f4f]">
+                          ✓ {postcodeIntel.coverageLabel}
+                        </div>
+                      )}
+
+                      <button
+                        type="submit"
+                        disabled={heroSubmitting}
+                        className="flex h-14 w-full items-center justify-center rounded-full bg-[#20243b] px-5 text-center text-[14px] font-semibold uppercase tracking-[0.16em] text-white shadow-[0_8px_22px_rgba(15,23,42,0.22)] transition hover:bg-[#161a2f] disabled:cursor-not-allowed disabled:opacity-60"
+                      >
+                        {heroSubmitting ? "Submitting..." : "Send my quote request"}
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        )}
+
         <section className="border-b border-slate-200 bg-[#fdf8f3] pt-6 lg:pt-10">
           <div className="mx-auto max-w-6xl px-4 pb-8 lg:px-6 lg:pb-12">
             <div className="grid gap-6 lg:grid-cols-[1.02fr_0.98fr] lg:items-start lg:gap-10">
@@ -954,7 +1098,6 @@ export default function IndexPage() {
                   <h1 className="mx-auto mt-3 max-w-[520px] text-[21px] font-semibold uppercase leading-[1.34] tracking-[0.08em] text-slate-900 sm:text-[24px]">
                     House Extension, Loft Conversion and Building Regulation Drawings in London
                   </h1>
-
                 </div>
               </div>
 
@@ -1084,20 +1227,19 @@ export default function IndexPage() {
                       </div>
                     </form>
 
-                   <div className="mt-4 flex flex-wrap justify-center gap-2"> 
-                     
-<div className="rounded-full border border-[#d7e8ee] bg-white px-3 py-1 text-[11px] font-medium text-slate-700">
-  ✓ Fixed price
-</div>
-<div className="rounded-full border border-[#d7e8ee] bg-white px-3 py-1 text-[11px] font-medium text-slate-700">
-  ✓ Fast turnaround
-</div>
-<div className="rounded-full border border-[#d7e8ee] bg-white px-3 py-1 text-[11px] font-medium text-slate-700">
-  ✓ London experts
-</div>
+                    <div className="mt-4 flex flex-wrap justify-center gap-2">
+                      <div className="rounded-full border border-[#d7e8ee] bg-white px-3 py-1 text-[11px] font-medium text-slate-700">
+                        ✓ Fixed price
+                      </div>
+                      <div className="rounded-full border border-[#d7e8ee] bg-white px-3 py-1 text-[11px] font-medium text-slate-700">
+                        ✓ Fast turnaround
+                      </div>
+                      <div className="rounded-full border border-[#d7e8ee] bg-white px-3 py-1 text-[11px] font-medium text-slate-700">
+                        ✓ London experts
+                      </div>
                     </div>
 
-                    <div className="mx-auto mt-4 grid max-w-[460px] gap-3 sm:grid-cols-2">
+                    <div className="mx-auto mt-4 hidden max-w-[460px] gap-3 sm:grid sm:grid-cols-2">
                       <a
                         href={PHONE_LINK}
                         onClick={() => trackLeadEvent("phone_click")}
@@ -1119,7 +1261,7 @@ export default function IndexPage() {
                       </a>
                     </div>
 
-                    <p className="mt-3 text-center text-[12px] leading-5 text-slate-700">
+                    <p className="mt-3 hidden text-center text-[12px] leading-5 text-slate-700 sm:block">
                       Send your house photo on WhatsApp for quick guidance and a faster quote.
                     </p>
 
@@ -1407,7 +1549,7 @@ export default function IndexPage() {
         <footer className="border-t border-slate-800 bg-[#20243b]">
           <div className="mx-auto max-w-6xl px-4 py-10 lg:px-6">
             <div className="grid gap-8 lg:grid-cols-[1.25fr_0.9fr_0.9fr_0.9fr]">
-              <div>
+              <div className="text-center lg:text-center">
                 <Link href="/" className="inline-flex items-center justify-center">
                   <img
                     src="/images/wedrawplans-logo.png"
@@ -1420,11 +1562,11 @@ export default function IndexPage() {
                   Architectural Drawing Consultants
                 </div>
 
-                <p className="mt-4 max-w-md text-[13px] leading-7 text-white/80">
+                <p className="mx-auto mt-4 max-w-md text-[13px] leading-7 text-white/80">
                   WEDRAWPLANS provide architectural drawings for house extensions, loft conversions, planning applications, Building Regulations and small residential development projects across London and the surrounding M25 area.
                 </p>
 
-                <div className="mt-5 flex flex-wrap gap-3">
+                <div className="mt-5 flex flex-wrap justify-center gap-3">
                   <a
                     href={PHONE_LINK}
                     className="inline-flex items-center justify-center rounded-full bg-white px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.12em] text-[#20243b] shadow-sm hover:bg-slate-100"
@@ -1517,31 +1659,36 @@ export default function IndexPage() {
           </div>
         </footer>
 
-   <div className="fixed bottom-0 left-0 right-0 z-[90] px-3 pb-3 lg:hidden">
-  <div className="flex items-center gap-3 rounded-2xl bg-white p-3 shadow-[0_-10px_30px_rgba(0,0,0,0.15)] border border-slate-200">
-    
-    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-red-600 text-white text-xl">
-      ✎
-    </div>
+        <div
+          className="fixed inset-x-0 bottom-0 z-[90] px-3 pb-[calc(env(safe-area-inset-bottom)+8px)] lg:hidden"
+          style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 8px)" }}
+        >
+          <div className="mx-auto max-w-md">
+            <button
+              type="button"
+              onClick={openMobileLead}
+              className="flex w-full items-center gap-3 rounded-full border border-slate-200 bg-white px-4 py-3 text-left shadow-[0_10px_30px_rgba(0,0,0,0.15)]"
+            >
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-red-600 text-white text-xl">
+                ✎
+              </div>
 
-    <div className="flex-1">
-      <div className="text-[13px] font-semibold text-slate-900">
-        Need help with drawings?
+              <div className="min-w-0 flex-1">
+                <div className="truncate text-[13px] font-semibold text-slate-900">
+                  Need help with drawings?
+                </div>
+                <div className="truncate text-[11px] text-slate-600">
+                  Tap to get your fixed quote
+                </div>
+              </div>
+
+              <div className="rounded-full bg-[#20243b] px-4 py-2 text-[12px] font-semibold text-white">
+                Start
+              </div>
+            </button>
+          </div>
+        </div>
       </div>
-      <div className="text-[11px] text-slate-600">
-        Tap to get your fixed quote
-      </div>
-    </div>
-
-    <button
-      onClick={() => setHeroExpanded(true)}
-      className="rounded-full bg-[#20243b] px-4 py-2 text-[12px] font-semibold text-white"
-    >
-      Start
-    </button>
-
-  </div>
-</div>
     </>
   );
 }
