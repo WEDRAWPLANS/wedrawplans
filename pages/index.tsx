@@ -733,28 +733,25 @@ export default function IndexPage() {
       </Head>
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
-        <header className="sticky top-0 z-[60] border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur">
-  <div className="mx-auto max-w-6xl px-4 py-3 lg:px-6">
-    
-    {/* TOP BAR */}
-   <div className="flex items-center justify-center relative">
+       <header className="sticky top-0 z-[60] border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur">
+  <div className="mx-auto max-w-6xl px-4 py-2 lg:px-6 lg:py-3">
+    <div className="relative flex items-center justify-center min-h-[92px] sm:min-h-[110px] lg:min-h-0">
+      <Link href="/" className="inline-flex items-center justify-center">
+        <img
+          src="/images/wedrawplans-logo.png"
+          alt="WEDRAWPLANS"
+          className="h-24 w-auto object-contain sm:h-28 lg:h-24 xl:h-28"
+        />
+      </Link>
 
-      {/* LEFT: LOGO */}
-     <Link href="/" className="flex items-center justify-center">
-  <img
-    src="/images/wedrawplans-logo.png"
-    alt="WEDRAWPLANS"
-  className="h-20 w-auto object-contain sm:h-24 lg:h-28"
-  />
-</Link>
-      {/* RIGHT: DESKTOP CTA */}
-      <div className="hidden lg:flex items-center gap-3">
+      <div className="absolute right-0 hidden items-center gap-3 lg:flex">
         <a
           href={PHONE_LINK}
           onClick={() => trackLeadEvent("phone_click")}
-          className="inline-flex items-center rounded-full bg-[#20243b] px-5 py-2 text-[13px] font-semibold text-white"
+          className="inline-flex items-center rounded-full bg-[#20243b] px-5 py-2 text-[13px] font-semibold text-white shadow-sm transition hover:bg-[#161a2f]"
         >
-          📞 {PHONE_DISPLAY}
+          <span className="mr-2" aria-hidden="true">📞</span>
+          <span>{PHONE_DISPLAY}</span>
         </a>
 
         <a
@@ -762,14 +759,14 @@ export default function IndexPage() {
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => trackLeadEvent("whatsapp_click")}
-          className="inline-flex items-center rounded-full bg-[#25D366] px-5 py-2 text-[13px] font-semibold text-white"
+          className="inline-flex items-center rounded-full bg-[#25D366] px-5 py-2 text-[13px] font-semibold text-white shadow-sm transition hover:bg-[#1ebe57]"
         >
-          💬 WhatsApp
+          <span className="mr-2" aria-hidden="true">💬</span>
+          <span>WhatsApp</span>
         </a>
       </div>
 
-      {/* MOBILE RIGHT */}
-     <div className="absolute right-0 flex items-center gap-2 lg:hidden">
+      <div className="absolute right-0 top-1/2 flex -translate-y-1/2 items-center gap-2 lg:hidden">
         <IconButton
           href={PHONE_LINK}
           label="Call"
@@ -789,8 +786,11 @@ export default function IndexPage() {
       </div>
     </div>
 
-    {/* NAV BAR */}
-    <div className="mt-3 hidden lg:flex items-center justify-between gap-6">
+    <div className="mt-1 hidden text-center text-[10px] uppercase tracking-[0.18em] text-slate-600 sm:block">
+      Architectural Drawing Consultants
+    </div>
+
+    <div className="mt-2 hidden lg:flex items-center justify-between gap-6 border-t border-slate-300 pt-3">
       <nav className="flex items-center gap-5">
         <DesktopDropdown title="Local Designers" href="/areas" items={LOCAL_DESIGNERS_ITEMS} />
         <DesktopDropdown title="Commercial" href="/commercial" items={COMMERCIAL_ITEMS} />
@@ -802,13 +802,11 @@ export default function IndexPage() {
           href="/building-regulation-drawings"
           items={TECHNICAL_ITEMS}
         />
-
         <Link href="/areas" className="text-[14px] font-medium text-slate-900">
           Areas
         </Link>
       </nav>
     </div>
-
   </div>
 </header>
         {mobileMenuOpen && (
