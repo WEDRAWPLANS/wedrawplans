@@ -1012,9 +1012,7 @@ export default function IndexPage() {
                     </form>
 
                    <div className="mt-4 flex flex-wrap justify-center gap-2"> 
-                      <div className="rounded-full border border-[#d7e8ee] bg-white px-4 py-2 text-center text-[12px] font-medium text-slate-700">
-                        ✓ Fixed price
-                      </div>
+                     
 <div className="rounded-full border border-[#d7e8ee] bg-white px-3 py-1 text-[11px] font-medium text-slate-700">
   ✓ Fixed price
 </div>
