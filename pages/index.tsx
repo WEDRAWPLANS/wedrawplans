@@ -1542,12 +1542,6 @@ export default function IndexPage() {
 
   </div>
 </div>
-          onClick={() => trackLeadEvent("whatsapp_click")}
-        >
-          <span className="mr-2" aria-hidden="true">💬</span>
-          <span>WhatsApp</span>
-        </a>
-      </div>
     </>
   );
 }
