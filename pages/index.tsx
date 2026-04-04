@@ -1011,16 +1011,19 @@ export default function IndexPage() {
                       </div>
                     </form>
 
-                    <div className="mt-4 grid gap-2 sm:grid-cols-3">
+                   <div className="mt-4 flex flex-wrap justify-center gap-2"> 
                       <div className="rounded-full border border-[#d7e8ee] bg-white px-4 py-2 text-center text-[12px] font-medium text-slate-700">
                         ✓ Fixed price
                       </div>
-                      <div className="rounded-full border border-[#d7e8ee] bg-white px-4 py-2 text-center text-[12px] font-medium text-slate-700">
-                        ✓ Fast turnaround
-                      </div>
-                      <div className="rounded-full border border-[#d7e8ee] bg-white px-4 py-2 text-center text-[12px] font-medium text-slate-700">
-                        ✓ London experts
-                      </div>
+<div className="rounded-full border border-[#d7e8ee] bg-white px-3 py-1 text-[11px] font-medium text-slate-700">
+  ✓ Fixed price
+</div>
+<div className="rounded-full border border-[#d7e8ee] bg-white px-3 py-1 text-[11px] font-medium text-slate-700">
+  ✓ Fast turnaround
+</div>
+<div className="rounded-full border border-[#d7e8ee] bg-white px-3 py-1 text-[11px] font-medium text-slate-700">
+  ✓ London experts
+</div>
                     </div>
 
                     <div className="mx-auto mt-4 grid max-w-[460px] gap-3 sm:grid-cols-2">
