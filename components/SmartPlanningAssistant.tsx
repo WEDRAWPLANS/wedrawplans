@@ -189,7 +189,7 @@ export default function SmartPlanningAssistant({ boroughName }: Props) {
         <div className="fixed inset-0 z-[100] bg-black/65 backdrop-blur-[2px]">
           <div className="flex h-screen w-screen items-stretch justify-center md:p-6">
             <div className="flex h-screen w-screen flex-col overflow-hidden bg-[#f7f4ee] md:h-[92vh] md:max-h-[940px] md:w-full md:max-w-[960px] md:rounded-[28px] md:border md:border-[#d8d2c6] md:shadow-[0_32px_120px_rgba(15,23,42,0.30)]">
-              <div className="border-b border-[#ddd6c9] bg-[#f7f4ee] px-5 py-4 md:px-10 md:py-6">
+              <div className="shrink-0 border-b border-[#ddd6c9] bg-[#f7f4ee] px-5 py-4 md:px-10 md:py-6">
                 <div className="relative">
                   <div className="absolute right-0 top-0">
                     <button
@@ -231,7 +231,7 @@ export default function SmartPlanningAssistant({ boroughName }: Props) {
                 </div>
               </div>
 
-              <div className="flex-1 overflow-y-auto px-5 py-6 md:px-10 md:py-8">
+              <div className="min-h-0 flex-1 overflow-y-auto px-5 py-6 pb-28 md:px-10 md:py-8 md:pb-8">
                 {!done && (
                   <>
                     {step === 1 && (
@@ -297,16 +297,6 @@ export default function SmartPlanningAssistant({ boroughName }: Props) {
                             </button>
                           ))}
                         </div>
-
-                        <div className="mt-6 flex justify-center">
-                          <button
-                            type="button"
-                            onClick={() => setStep(1)}
-                            className="rounded-full border border-[#d8d2c6] bg-white px-5 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-[#24324a] transition hover:bg-[#f3efe6]"
-                          >
-                            Back
-                          </button>
-                        </div>
                       </div>
                     )}
 
@@ -334,23 +324,6 @@ export default function SmartPlanningAssistant({ boroughName }: Props) {
                               {error}
                             </div>
                           )}
-
-                          <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-                            <button
-                              type="button"
-                              onClick={() => setStep(2)}
-                              className="w-full rounded-full border border-[#d8d2c6] bg-white px-5 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-[#24324a] transition hover:bg-[#f3efe6]"
-                            >
-                              Back
-                            </button>
-                            <button
-                              type="button"
-                              onClick={goNextFromPostcode}
-                              className="w-full rounded-full bg-[#0f172a] px-5 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-white transition hover:bg-[#16213b]"
-                            >
-                              Continue
-                            </button>
-                          </div>
                         </div>
                       </div>
                     )}
@@ -374,23 +347,6 @@ export default function SmartPlanningAssistant({ boroughName }: Props) {
                             placeholder="Short description of the works..."
                             className="w-full rounded-[16px] border border-[#d7d0c4] bg-[#fcfbf8] px-4 py-4 text-[15px] text-[#1f2a3d] outline-none transition focus:border-[#0f172a]"
                           />
-
-                          <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-                            <button
-                              type="button"
-                              onClick={() => setStep(3)}
-                              className="w-full rounded-full border border-[#d8d2c6] bg-white px-5 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-[#24324a] transition hover:bg-[#f3efe6]"
-                            >
-                              Back
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => setStep(5)}
-                              className="w-full rounded-full bg-[#0f172a] px-5 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-white transition hover:bg-[#16213b]"
-                            >
-                              Continue
-                            </button>
-                          </div>
                         </div>
                       </div>
                     )}
@@ -407,6 +363,7 @@ export default function SmartPlanningAssistant({ boroughName }: Props) {
                         </div>
 
                         <form
+                          id="planning-assistant-form"
                           onSubmit={handleSubmit}
                           className="rounded-[22px] border border-[#d7d0c4] bg-white p-4 md:p-6"
                         >
@@ -467,24 +424,6 @@ export default function SmartPlanningAssistant({ boroughName }: Props) {
                               {error}
                             </div>
                           )}
-
-                          <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-                            <button
-                              type="button"
-                              onClick={() => setStep(4)}
-                              className="w-full rounded-full border border-[#d8d2c6] bg-white px-5 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-[#24324a] transition hover:bg-[#f3efe6]"
-                            >
-                              Back
-                            </button>
-
-                            <button
-                              type="submit"
-                              disabled={submitting}
-                              className="w-full rounded-full bg-[#e31c23] px-5 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-white transition hover:bg-[#c9151c] disabled:cursor-not-allowed disabled:bg-[#d9a4a8]"
-                            >
-                              {submitting ? "Sending..." : "Send enquiry"}
-                            </button>
-                          </div>
                         </form>
                       </div>
                     )}
@@ -525,6 +464,81 @@ export default function SmartPlanningAssistant({ boroughName }: Props) {
                   </div>
                 )}
               </div>
+
+              {!done && (
+                <div className="shrink-0 border-t border-[#ddd6c9] bg-[#f7f4ee] px-5 py-4 shadow-[0_-8px_20px_rgba(15,23,42,0.04)] md:px-10">
+                  <div className="mx-auto max-w-[680px]">
+                    {step === 2 && (
+                      <button
+                        type="button"
+                        onClick={() => setStep(1)}
+                        className="w-full rounded-full border border-[#d8d2c6] bg-white px-5 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-[#24324a] transition hover:bg-[#f3efe6]"
+                      >
+                        Back
+                      </button>
+                    )}
+
+                    {step === 3 && (
+                      <div className="flex flex-col gap-3 sm:flex-row">
+                        <button
+                          type="button"
+                          onClick={() => setStep(2)}
+                          className="w-full rounded-full border border-[#d8d2c6] bg-white px-5 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-[#24324a] transition hover:bg-[#f3efe6]"
+                        >
+                          Back
+                        </button>
+                        <button
+                          type="button"
+                          onClick={goNextFromPostcode}
+                          className="w-full rounded-full bg-[#0f172a] px-5 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-white transition hover:bg-[#16213b]"
+                        >
+                          Continue
+                        </button>
+                      </div>
+                    )}
+
+                    {step === 4 && (
+                      <div className="flex flex-col gap-3 sm:flex-row">
+                        <button
+                          type="button"
+                          onClick={() => setStep(3)}
+                          className="w-full rounded-full border border-[#d8d2c6] bg-white px-5 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-[#24324a] transition hover:bg-[#f3efe6]"
+                        >
+                          Back
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setStep(5)}
+                          className="w-full rounded-full bg-[#0f172a] px-5 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-white transition hover:bg-[#16213b]"
+                        >
+                          Continue
+                        </button>
+                      </div>
+                    )}
+
+                    {step === 5 && (
+                      <div className="flex flex-col gap-3 sm:flex-row">
+                        <button
+                          type="button"
+                          onClick={() => setStep(4)}
+                          className="w-full rounded-full border border-[#d8d2c6] bg-white px-5 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-[#24324a] transition hover:bg-[#f3efe6]"
+                        >
+                          Back
+                        </button>
+
+                        <button
+                          type="submit"
+                          form="planning-assistant-form"
+                          disabled={submitting}
+                          className="w-full rounded-full bg-[#e31c23] px-5 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-white transition hover:bg-[#c9151c] disabled:cursor-not-allowed disabled:bg-[#d9a4a8]"
+                        >
+                          {submitting ? "Sending..." : "Send enquiry"}
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
