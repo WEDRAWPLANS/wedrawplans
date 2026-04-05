@@ -50,7 +50,7 @@ export default function SmartPlanningAssistant({ boroughName }: Props) {
     setStep((s) => s + 1);
   }
 
-handleSubmit(e: React.FormEvent<HTMLFormElement>)
+async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError("");
 
