@@ -526,7 +526,7 @@ export default function HaveringAreaPage() {
                     controls
                     playsInline
                     preload="metadata"
-                    poster="/images/havering-extension-planning-drawings.jpg"
+                    poster="/images/video-main-poster.jpg"
                     className="h-full w-full object-cover"
                   >
                     <source src="/videos/havering-planning-project.mp4" type="video/mp4" />
@@ -540,8 +540,8 @@ export default function HaveringAreaPage() {
                   className="overflow-hidden rounded-2xl border border-slate-200 bg-white text-left shadow-lg transition hover:-translate-y-0.5"
                 >
                   <Image
-                    src="/images/havering-extension-planning-drawings.jpg"
-                    alt="Planning drawings for approved Havering project including plans elevations and sections"
+                    src="/images/havering-before-after-kitchen-extension.jpg"
+                    alt="Completed Havering extension project showing the kind of finished result homeowners want"
                     width={900}
                     height={700}
                     className="h-full w-full object-cover"
@@ -784,8 +784,8 @@ export default function HaveringAreaPage() {
                 <div className="grid gap-6 md:grid-cols-2">
                   <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                     <Image
-                      src="/images/havering-extension-planning-drawings.jpg"
-                      alt="Havering extension drawings presentation"
+                      src="/images/havering-before-after-kitchen-extension.jpg"
+                      alt="Completed Havering extension transformation showing the finished family home result"
                       width={900}
                       height={700}
                       className="h-64 w-full object-cover"
