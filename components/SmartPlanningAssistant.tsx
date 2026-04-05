@@ -107,14 +107,17 @@ export default function SmartPlanningAssistant({ boroughName }: Props) {
 
   function goNextFromPostcode() {
     const cleanPostcode = sanitizeText(postcode).toUpperCase();
+
     if (!cleanPostcode) {
       setError("Please enter your postcode.");
       return;
     }
+
     if (!isValidUkPostcodeLoose(cleanPostcode)) {
       setError("Please enter a valid UK postcode.");
       return;
     }
+
     setPostcode(cleanPostcode);
     setStep(4);
   }
@@ -161,6 +164,7 @@ export default function SmartPlanningAssistant({ boroughName }: Props) {
               type="button"
               onClick={() => setOpen(true)}
               className="flex items-center gap-2 rounded-full border border-[#16213b] bg-[#0f172a] px-4 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-white shadow-2xl"
+              aria-label="Open planning assistant"
             >
               <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#e31c23]">
                 <span className="block h-3 w-3 rounded-full bg-white" />
@@ -174,6 +178,7 @@ export default function SmartPlanningAssistant({ boroughName }: Props) {
               type="button"
               onClick={() => setOpen(true)}
               className="rounded-full border border-[#16213b] bg-[#0f172a] px-5 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-white shadow-2xl transition hover:bg-[#16213b]"
+              aria-label="Open planning assistant"
             >
               Planning Assistant
             </button>
@@ -184,41 +189,49 @@ export default function SmartPlanningAssistant({ boroughName }: Props) {
       {open && (
         <div className="fixed inset-0 z-[100] bg-black/65 backdrop-blur-[2px]">
           <div className="flex h-screen w-screen items-stretch justify-center md:p-6">
-            <div className="flex h-screen w-screen flex-col overflow-hidden bg-[#f7f4ee] md:h-[92vh] md:max-h-[940px] md:w-full md:max-w-[920px] md:rounded-[28px] md:border md:border-[#d8d2c6] md:shadow-[0_32px_120px_rgba(15,23,42,0.30)]">
-              <div className="border-b border-[#ddd6c9] bg-[#f7f4ee] px-5 py-5 md:px-10 md:py-7">
-                <div className="flex items-start justify-between gap-4">
-                  <button
-                    type="button"
-                    onClick={resetAssistant}
-                    className="hidden rounded-full border border-[#d8d2c6] bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#24324a] transition hover:bg-[#f3efe6] md:inline-flex"
-                  >
-                    Reset
-                  </button>
+            <div className="flex h-screen w-screen flex-col overflow-hidden bg-[#f7f4ee] md:h-[92vh] md:max-h-[940px] md:w-full md:max-w-[960px] md:rounded-[28px] md:border md:border-[#d8d2c6] md:shadow-[0_32px_120px_rgba(15,23,42,0.30)]">
+              <div className="border-b border-[#ddd6c9] bg-[#f7f4ee] px-5 py-4 md:px-10 md:py-6">
+                <div className="grid grid-cols-[auto_1fr_auto] items-start gap-4">
+                  <div className="hidden md:block">
+                    <button
+                      type="button"
+                      onClick={resetAssistant}
+                      className="rounded-full border border-[#d8d2c6] bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#24324a] transition hover:bg-[#f3efe6]"
+                    >
+                      Reset
+                    </button>
+                  </div>
 
-                  <div className="flex-1 text-center">
-                    <img
-                      src="/images/wedrawplans-logo.png"
-                      alt="WEDRAWPLANS"
-                      className="mx-auto h-auto w-[150px] object-contain md:w-[170px]"
-                      onError={(e) => {
-                        e.currentTarget.src = "/images/wedrawplans-emblem.png";
-                      }}
-                    />
+                  <div className="min-w-0 text-center">
+                    <div className="flex justify-center">
+                      <img
+                        src="/images/wedrawplans-logo.png"
+                        alt="WEDRAWPLANS"
+                        className="h-auto w-[110px] object-contain md:w-[130px]"
+                        onError={(e) => {
+                          e.currentTarget.src = "/images/wedrawplans-emblem.png";
+                        }}
+                      />
+                    </div>
+
                     <div className="mt-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-[#5f6b7d]">
                       Planning Assistant
                     </div>
-                    <div className="mt-2 text-[14px] text-[#24324a]">
+
+                    <div className="mt-2 text-[14px] leading-6 text-[#24324a]">
                       Simple steps to help you get the right quote faster
                     </div>
                   </div>
 
-                  <button
-                    type="button"
-                    onClick={closeAssistant}
-                    className="rounded-full border border-[#d8d2c6] bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#24324a] transition hover:bg-[#f3efe6]"
-                  >
-                    Close
-                  </button>
+                  <div className="flex justify-end">
+                    <button
+                      type="button"
+                      onClick={closeAssistant}
+                      className="rounded-full border border-[#d8d2c6] bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#24324a] transition hover:bg-[#f3efe6]"
+                    >
+                      Close
+                    </button>
+                  </div>
                 </div>
 
                 <div className="mt-5">
@@ -406,7 +419,10 @@ export default function SmartPlanningAssistant({ boroughName }: Props) {
                           </p>
                         </div>
 
-                        <form onSubmit={handleSubmit} className="rounded-[22px] border border-[#d7d0c4] bg-white p-4 md:p-6">
+                        <form
+                          onSubmit={handleSubmit}
+                          className="rounded-[22px] border border-[#d7d0c4] bg-white p-4 md:p-6"
+                        >
                           <input name="projectType" value={service} type="hidden" />
                           <input name="propertyType" value={propertyType} type="hidden" />
                           <input name="postcode" value={postcode} type="hidden" />
@@ -491,14 +507,16 @@ export default function SmartPlanningAssistant({ boroughName }: Props) {
                 {done && (
                   <div className="mx-auto max-w-[620px] text-center">
                     <div className="rounded-[24px] border border-[#d7d0c4] bg-white px-6 py-10 shadow-sm">
-                      <img
-                        src="/images/wedrawplans-logo.png"
-                        alt="WEDRAWPLANS"
-                        className="mx-auto h-auto w-[130px] object-contain"
-                        onError={(e) => {
-                          e.currentTarget.src = "/images/wedrawplans-emblem.png";
-                        }}
-                      />
+                      <div className="flex justify-center">
+                        <img
+                          src="/images/wedrawplans-logo.png"
+                          alt="WEDRAWPLANS"
+                          className="h-auto w-[110px] object-contain md:w-[130px]"
+                          onError={(e) => {
+                            e.currentTarget.src = "/images/wedrawplans-emblem.png";
+                          }}
+                        />
+                      </div>
 
                       <h2 className="mt-6 text-[30px] font-semibold tracking-[-0.02em] text-[#0f172a]">
                         Thank you for your enquiry
