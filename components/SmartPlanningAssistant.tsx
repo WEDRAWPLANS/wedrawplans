@@ -9,21 +9,21 @@ const SERVICES = [
   "Extension Plans",
   "Loft Conversion Plans",
   "Building Regulations Plans",
-  "Design Plans",
-  "Detailed Sections",
-  "Dropped Kerb Plans",
-  "Elevation Plans",
-  "Floor Plans",
-  "Garage Conversion Plans",
-  "Garage Plans",
-  "Garden Studio Plans",
-  "HMO Plans",
-  "Party Wall Services",
+  "New Build Plans",
+  "Structural Calculations",
   "Planning Applications",
   "Property Conversion",
+  "Garage Conversion Plans",
+  "Garden Studio Plans",
+  "HMO Plans",
   "Shop Plans",
-  "Structural Calculations",
-  "New Build Plans",
+  "Design Plans",
+  "Elevation Plans",
+  "Floor Plans",
+  "Detailed Sections",
+  "Dropped Kerb Plans",
+  "Party Wall Services",
+  "Garage Plans",
   "Other",
 ];
 
@@ -130,7 +130,6 @@ export default function SmartPlanningAssistant({ boroughName }: Props) {
     const cleanPhone = sanitizeText(phone);
     const cleanEmail = sanitizeText(email);
     const cleanPostcode = sanitizeText(postcode).toUpperCase();
-    const cleanDetails = sanitizeText(details);
 
     if (!service || !propertyType || !cleanPostcode || !cleanName || !cleanPhone || !cleanEmail) {
       setError("Please complete all required fields.");
@@ -191,39 +190,8 @@ export default function SmartPlanningAssistant({ boroughName }: Props) {
           <div className="flex h-screen w-screen items-stretch justify-center md:p-6">
             <div className="flex h-screen w-screen flex-col overflow-hidden bg-[#f7f4ee] md:h-[92vh] md:max-h-[940px] md:w-full md:max-w-[960px] md:rounded-[28px] md:border md:border-[#d8d2c6] md:shadow-[0_32px_120px_rgba(15,23,42,0.30)]">
               <div className="border-b border-[#ddd6c9] bg-[#f7f4ee] px-5 py-4 md:px-10 md:py-6">
-                <div className="grid grid-cols-[auto_1fr_auto] items-start gap-4">
-                  <div className="hidden md:block">
-                    <button
-                      type="button"
-                      onClick={resetAssistant}
-                      className="rounded-full border border-[#d8d2c6] bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#24324a] transition hover:bg-[#f3efe6]"
-                    >
-                      Reset
-                    </button>
-                  </div>
-
-                  <div className="min-w-0 text-center">
-                    <div className="flex justify-center">
-                      <img
-                        src="/images/wedrawplans-logo.png"
-                        alt="WEDRAWPLANS"
-                        className="h-auto w-[110px] object-contain md:w-[130px]"
-                        onError={(e) => {
-                          e.currentTarget.src = "/images/wedrawplans-emblem.png";
-                        }}
-                      />
-                    </div>
-
-                    <div className="mt-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-[#5f6b7d]">
-                      Planning Assistant
-                    </div>
-
-                    <div className="mt-2 text-[14px] leading-6 text-[#24324a]">
-                      Simple steps to help you get the right quote faster
-                    </div>
-                  </div>
-
-                  <div className="flex justify-end">
+                <div className="relative">
+                  <div className="absolute right-0 top-0">
                     <button
                       type="button"
                       onClick={closeAssistant}
@@ -231,6 +199,25 @@ export default function SmartPlanningAssistant({ boroughName }: Props) {
                     >
                       Close
                     </button>
+                  </div>
+
+                  <div className="flex flex-col items-center justify-center text-center">
+                    <img
+                      src="/images/wedrawplans-logo.png"
+                      alt="WEDRAWPLANS"
+                      className="h-auto w-[132px] object-contain md:w-[142px]"
+                      onError={(e) => {
+                        e.currentTarget.src = "/images/wedrawplans-emblem.png";
+                      }}
+                    />
+
+                    <div className="mt-4 text-[11px] font-semibold uppercase tracking-[0.30em] text-[#5f6b7d]">
+                      Planning Assistant
+                    </div>
+
+                    <div className="mt-3 max-w-[420px] text-[15px] font-medium leading-7 text-[#24324a] md:text-[16px]">
+                      Simple steps to help you get the right quote faster
+                    </div>
                   </div>
                 </div>
 
@@ -511,7 +498,7 @@ export default function SmartPlanningAssistant({ boroughName }: Props) {
                         <img
                           src="/images/wedrawplans-logo.png"
                           alt="WEDRAWPLANS"
-                          className="h-auto w-[110px] object-contain md:w-[130px]"
+                          className="h-auto w-[132px] object-contain md:w-[142px]"
                           onError={(e) => {
                             e.currentTarget.src = "/images/wedrawplans-emblem.png";
                           }}
