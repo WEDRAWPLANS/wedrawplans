@@ -189,47 +189,49 @@ export default function SmartPlanningAssistant({ boroughName }: Props) {
         <div className="fixed inset-0 z-[100] bg-black/65 backdrop-blur-[2px]">
           <div className="flex h-[100dvh] w-screen items-stretch justify-center md:h-screen md:p-6">
             <div className="flex h-[100dvh] w-screen min-h-0 flex-col overflow-hidden bg-[#f7f4ee] md:h-[92vh] md:max-h-[940px] md:w-full md:max-w-[960px] md:rounded-[28px] md:border md:border-[#d8d2c6] md:shadow-[0_32px_120px_rgba(15,23,42,0.30)]">
-              <div className="shrink-0 border-b border-[#ddd6c9] bg-[#f7f4ee] px-5 py-4 md:px-10 md:py-6">
-                <div className="relative">
-                  <div className="absolute right-0 top-0">
-                    <button
-                      type="button"
-                      onClick={closeAssistant}
-                      className="rounded-full border border-[#d8d2c6] bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#24324a] transition hover:bg-[#f3efe6]"
-                    >
-                      Close
-                    </button>
-                  </div>
-
-                  <div className="flex flex-col items-center justify-center text-center">
-                    <img
-                      src="/images/wedrawplans-logo.png"
-                      alt="WEDRAWPLANS"
-                      className="h-auto w-[132px] object-contain md:w-[142px]"
-                      onError={(e) => {
-                        e.currentTarget.src = "/images/wedrawplans-emblem.png";
-                      }}
-                    />
-
-                    <div className="mt-4 text-[11px] font-semibold uppercase tracking-[0.30em] text-[#5f6b7d]">
-                      Planning Assistant
+              {!done && (
+                <div className="shrink-0 border-b border-[#ddd6c9] bg-[#f7f4ee] px-5 py-4 md:px-10 md:py-6">
+                  <div className="relative">
+                    <div className="absolute right-0 top-0">
+                      <button
+                        type="button"
+                        onClick={closeAssistant}
+                        className="rounded-full border border-[#d8d2c6] bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#24324a] transition hover:bg-[#f3efe6]"
+                      >
+                        Close
+                      </button>
                     </div>
 
-                    <div className="mt-3 max-w-[420px] text-[15px] font-medium leading-7 text-[#24324a] md:text-[16px]">
-                      Simple steps to help you get the right quote faster
+                    <div className="flex flex-col items-center justify-center text-center">
+                      <img
+                        src="/images/wedrawplans-logo.png"
+                        alt="WEDRAWPLANS"
+                        className="h-auto w-[132px] object-contain md:w-[142px]"
+                        onError={(e) => {
+                          e.currentTarget.src = "/images/wedrawplans-emblem.png";
+                        }}
+                      />
+
+                      <div className="mt-4 text-[11px] font-semibold uppercase tracking-[0.30em] text-[#5f6b7d]">
+                        Planning Assistant
+                      </div>
+
+                      <div className="mt-3 max-w-[420px] text-[15px] font-medium leading-7 text-[#24324a] md:text-[16px]">
+                        Simple steps to help you get the right quote faster
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-5">
+                    <div className="h-2 rounded-full bg-[#e5dfd3]">
+                      <div
+                        className="h-2 rounded-full bg-[#0f172a] transition-all duration-300"
+                        style={{ width: `${progress}%` }}
+                      />
                     </div>
                   </div>
                 </div>
-
-                <div className="mt-5">
-                  <div className="h-2 rounded-full bg-[#e5dfd3]">
-                    <div
-                      className="h-2 rounded-full bg-[#0f172a] transition-all duration-300"
-                      style={{ width: `${progress}%` }}
-                    />
-                  </div>
-                </div>
-              </div>
+              )}
 
               <div className="min-h-0 flex-1 overflow-y-auto px-5 py-6 pb-[112px] md:px-10 md:py-8 md:pb-8">
                 {!done && (
@@ -431,7 +433,7 @@ export default function SmartPlanningAssistant({ boroughName }: Props) {
                 )}
 
                 {done && (
-                  <div className="mx-auto max-w-[620px] text-center">
+                  <div className="mx-auto max-w-[620px] pt-8 text-center">
                     <div className="rounded-[24px] border border-[#d7d0c4] bg-white px-6 py-10 shadow-sm">
                       <div className="flex justify-center">
                         <img
