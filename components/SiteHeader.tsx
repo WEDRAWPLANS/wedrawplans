@@ -75,7 +75,6 @@ export default function SiteHeader() {
     <header className="bg-[#fdf8f3]/95 backdrop-blur relative z-[9999]">
       <div className="mx-auto max-w-6xl px-4 pt-6 pb-3 lg:px-6">
         <div className="flex flex-col items-center text-center">
-          {/* CLICKABLE LOGO */}
           <Link
             href="/"
             aria-label="Go to homepage"
@@ -109,7 +108,7 @@ export default function SiteHeader() {
               Extension Plans
             </Link>
             <Link
-              href="/loft-plans"
+              href="/loft-conversion-plans"
               className="px-3 py-2 text-[15px] font-medium text-slate-900 hover:text-slate-700"
             >
               Loft Plans
