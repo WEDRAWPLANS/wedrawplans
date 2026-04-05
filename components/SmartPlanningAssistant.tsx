@@ -187,8 +187,8 @@ export default function SmartPlanningAssistant({ boroughName }: Props) {
 
       {open && (
         <div className="fixed inset-0 z-[100] bg-black/65 backdrop-blur-[2px]">
-          <div className="flex h-screen w-screen items-stretch justify-center md:p-6">
-            <div className="flex h-screen w-screen flex-col overflow-hidden bg-[#f7f4ee] md:h-[92vh] md:max-h-[940px] md:w-full md:max-w-[960px] md:rounded-[28px] md:border md:border-[#d8d2c6] md:shadow-[0_32px_120px_rgba(15,23,42,0.30)]">
+          <div className="flex h-[100dvh] w-screen items-stretch justify-center md:h-screen md:p-6">
+            <div className="flex h-[100dvh] w-screen min-h-0 flex-col overflow-hidden bg-[#f7f4ee] md:h-[92vh] md:max-h-[940px] md:w-full md:max-w-[960px] md:rounded-[28px] md:border md:border-[#d8d2c6] md:shadow-[0_32px_120px_rgba(15,23,42,0.30)]">
               <div className="shrink-0 border-b border-[#ddd6c9] bg-[#f7f4ee] px-5 py-4 md:px-10 md:py-6">
                 <div className="relative">
                   <div className="absolute right-0 top-0">
@@ -231,7 +231,7 @@ export default function SmartPlanningAssistant({ boroughName }: Props) {
                 </div>
               </div>
 
-              <div className="min-h-0 flex-1 overflow-y-auto px-5 py-6 pb-28 md:px-10 md:py-8 md:pb-8">
+              <div className="min-h-0 flex-1 overflow-y-auto px-5 py-6 pb-[112px] md:px-10 md:py-8 md:pb-8">
                 {!done && (
                   <>
                     {step === 1 && (
@@ -466,7 +466,7 @@ export default function SmartPlanningAssistant({ boroughName }: Props) {
               </div>
 
               {!done && (
-                <div className="shrink-0 border-t border-[#ddd6c9] bg-[#f7f4ee] px-5 py-4 shadow-[0_-8px_20px_rgba(15,23,42,0.04)] md:px-10">
+                <div className="sticky bottom-0 z-20 shrink-0 border-t border-[#ddd6c9] bg-[#f7f4ee] px-5 py-4 pb-[calc(env(safe-area-inset-bottom)+16px)] shadow-[0_-8px_20px_rgba(15,23,42,0.04)] md:px-10 md:pb-4">
                   <div className="mx-auto max-w-[680px]">
                     {step === 2 && (
                       <button
