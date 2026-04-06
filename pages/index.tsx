@@ -1266,7 +1266,7 @@ export default function IndexPage() {
                             ? "Submitting..."
                             : heroExpanded
                               ? "Send my quote request →"
-                              : "Get my price now →"}
+                              "Get a quick quote →"
                         </button>
                       </div>
                     </form>
