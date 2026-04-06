@@ -1057,7 +1057,7 @@ export default function IndexPage() {
                         disabled={heroSubmitting}
                         className="flex h-14 w-full items-center justify-center rounded-full bg-[#20243b] px-5 text-center text-[14px] font-semibold uppercase tracking-[0.16em] text-white shadow-[0_8px_22px_rgba(15,23,42,0.22)] transition hover:bg-[#161a2f] disabled:cursor-not-allowed disabled:opacity-60"
                       >
-                        {heroSubmitting ? "Submitting..." : "Send my quote request"}
+                       {heroSubmitting ? "Submitting..." : "Get a quick quote →"}
                       </button>
                     </div>
                   </div>
