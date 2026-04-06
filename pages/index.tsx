@@ -1152,7 +1152,7 @@ export default function IndexPage() {
                   <div className="rounded-[20px] border border-slate-200/80 bg-[#f7fafc] px-4 py-4 shadow-[0_8px_24px_rgba(15,23,42,0.05)] sm:px-6 sm:py-5 lg:px-6 lg:py-5">
                     <div className="text-center">
                       <p className="mx-auto max-w-[430px] text-[16px] font-semibold leading-6 text-slate-800">
-                        Get your fixed price in minutes
+                      Get your quick quote in minutes
                       </p>
                       <p className="mx-auto mt-2 max-w-[500px] text-[12px] leading-5 text-slate-600">
                         Choose the service you need, tell us your postcode, then add your details and we will come back
