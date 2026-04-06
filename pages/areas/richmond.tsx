@@ -519,15 +519,29 @@ export default function RichmondAreaPage() {
           <section className="border-b border-slate-200 bg-white py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6">
               <h2 className="text-center text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
-                Planning approved Richmond project
+                Example extension scheme
               </h2>
 
               <p className="mx-auto mt-3 max-w-3xl text-center text-[13px] leading-7 text-slate-700">
-                Richmond planning approved project example showing how a full drawing package can move from concept
-                stage through planning and onward into build ready information.
+                A visual example showing how a project can move from concept stage through drawing presentation and
+                onward into a more build ready package. This section is here to help homeowners understand the
+                quality and clarity expected from a professional drawing set.
               </p>
 
               <div className="mt-6 grid items-stretch gap-6 md:grid-cols-2">
+                <div className="overflow-hidden rounded-2xl border border-slate-200 bg-black shadow-lg">
+                  <video
+                    controls
+                    playsInline
+                    preload="metadata"
+                    poster="/images/video-main-poster.jpg"
+                    className="h-full w-full object-cover"
+                  >
+                    <source src="/videos/barnet-planning-project.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+
                 <button
                   type="button"
                   onClick={scrollToForm}
@@ -535,21 +549,7 @@ export default function RichmondAreaPage() {
                 >
                   <Image
                     src={PROJECT_IMAGE_1}
-                    alt="Planning drawings for approved Richmond project including plans elevations and sections"
-                    width={900}
-                    height={700}
-                    className="h-full w-full object-cover"
-                  />
-                </button>
-
-                <button
-                  type="button"
-                  onClick={scrollToForm}
-                  className="overflow-hidden rounded-2xl border border-slate-200 bg-white text-left shadow-lg transition hover:-translate-y-0.5"
-                >
-                  <Image
-                    src={PROJECT_IMAGE_2}
-                    alt="Richmond extension and loft project example"
+                    alt="Example extension drawings presentation including plans elevations and sections"
                     width={900}
                     height={700}
                     className="h-full w-full object-cover"
@@ -558,7 +558,8 @@ export default function RichmondAreaPage() {
               </div>
 
               <p className="mx-auto mt-4 max-w-3xl text-center text-[13px] leading-7 text-slate-700">
-                A complete drawing package prepared clearly, professionally, and ready for the next stage of approval.
+                A complete drawing package prepared clearly, professionally, and ready for the next stage of review,
+                planning or technical development.
               </p>
 
               <div className="mt-5 flex flex-wrap justify-center gap-3">
