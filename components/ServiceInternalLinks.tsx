@@ -132,7 +132,7 @@ const BOROUGH_LINKS: Record<string, BoroughLinks> = {
     nearby: ["Hackney", "Newham", "Greenwich", "Southwark", "Islington"],
     other: ["Lewisham", "Redbridge", "Waltham Forest", "Barnet", "Camden", "Westminster"],
   },
-  Waltham Forest: {
+"Waltham Forest": {
     nearby: ["Enfield", "Haringey", "Hackney", "Newham", "Redbridge"],
     other: ["Barnet", "Southwark", "Tower Hamlets", "Greenwich", "Lewisham", "Croydon"],
   },
