@@ -9,6 +9,5 @@ export const getServerSideProps: GetServerSideProps = async () => {
   };
 };
 
-export default function WestminsterRedirect() {
-  return null;
-}
+const WestminsterRedirectPage = () => null;
+export default WestminsterRedirectPage;
