@@ -9,6 +9,5 @@ export const getServerSideProps: GetServerSideProps = async () => {
   };
 };
 
-export default function BarkingAndDagenhamRedirect() {
-  return null;
-}
+const BarkingAndDagenhamRedirectPage = () => null;
+export default BarkingAndDagenhamRedirectPage;
