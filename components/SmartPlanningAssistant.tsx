@@ -162,13 +162,13 @@ export default function SmartPlanningAssistant({ boroughName }: Props) {
             <button
               type="button"
               onClick={() => setOpen(true)}
-              className="flex items-center gap-2 rounded-full border border-[#16213b] bg-[#0f172a] px-4 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-white shadow-2xl"
+              className="flex items-center gap-2 rounded-full border border-[#16213b] bg-[#0f172a] px-4 py-3 text-[12px] font-semibold text-white shadow-2xl"
               aria-label="Open planning assistant"
             >
               <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#e31c23]">
                 <span className="block h-3 w-3 rounded-full bg-white" />
               </span>
-              Planning Assistant
+              Need help with your plans?
             </button>
           </div>
 
@@ -176,10 +176,10 @@ export default function SmartPlanningAssistant({ boroughName }: Props) {
             <button
               type="button"
               onClick={() => setOpen(true)}
-              className="rounded-full border border-[#16213b] bg-[#0f172a] px-5 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-white shadow-2xl transition hover:bg-[#16213b]"
+              className="rounded-full border border-[#16213b] bg-[#0f172a] px-5 py-3 text-[12px] font-semibold text-white shadow-2xl transition hover:bg-[#16213b]"
               aria-label="Open planning assistant"
             >
-              Planning Assistant
+              Need help with your plans?
             </button>
           </div>
         </>
