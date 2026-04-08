@@ -429,14 +429,21 @@ function cleanupOldEntries(now: number) {
   const rateWindowMs = 10 * 60 * 1000;
   const duplicateWindowMs = 60 * 60 * 1000;
 
-  for (const [key, timestamps] of rateStore.entries()) {
+  rateStore.forEach((timestamps, key) => {
     const kept = timestamps.filter((ts) => now - ts < rateWindowMs);
     if (kept.length) {
       rateStore.set(key, kept);
     } else {
       rateStore.delete(key);
     }
-  }
+  });
+}
+  duplicateStore.forEach((ts, key) => {
+    if (now - ts >= duplicateWindowMs) {
+      duplicateStore.delete(key);
+    }
+  });
+}
 
   for (const [key, ts] of duplicateStore.entries()) {
     if (now - ts >= duplicateWindowMs) {
