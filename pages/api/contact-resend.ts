@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import crypto from "crypto";
 
 type Data = { success: true } | { success: false; error: string };
 
@@ -17,6 +18,7 @@ const KNOWN_SERVICE_OPTIONS = new Set([
   "New build drawings",
   "Flat conversion drawings",
   "Other drawings",
+  "General enquiry",
 ]);
 
 const UK_POSTCODE_REGEX = /^[A-Z]{1,2}\d[A-Z\d]?\s?\d[A-Z]{2}$/i;
@@ -267,36 +269,6 @@ function normalizeService(value: string) {
   return raw;
 }
 
-function scoreLead(input: {
-  name: string;
-  email: string;
-  phone: string;
-  postcode: string;
-  service: string;
-  borough: string | null;
-  timeTakenMs?: number | null;
-  message: string;
-}) {
-  let score = 0;
-
-  if (input.name.length >= 2) score += 15;
-  if (hasValidEmail(input.email)) score += 20;
-  if (hasValidPhone(input.phone)) score += 20;
-  if (UK_POSTCODE_REGEX.test(input.postcode)) score += 15;
-  if (input.service.length >= 3) score += 10;
-  if (input.borough) score += 5;
-  if (input.message.length >= 10) score += 5;
-  if (typeof input.timeTakenMs === "number" && input.timeTakenMs >= 2500) score += 10;
-
-  return Math.min(score, 100);
-}
-
-function getLeadBand(score: number) {
-  if (score >= 80) return "High";
-  if (score >= 55) return "Medium";
-  return "Low";
-}
-
 function isObviousSpamMessage(message: string) {
   const v = message.toLowerCase();
   const badPatterns = [
@@ -321,6 +293,39 @@ function isObviousSpamMessage(message: string) {
   return badPatterns.some((p) => v.includes(p));
 }
 
+function looksLikeDisposableEmail(email: string) {
+  const v = email.toLowerCase();
+  const disposableDomains = [
+    "mailinator.com",
+    "guerrillamail.com",
+    "10minutemail.com",
+    "tempmail.com",
+    "temp-mail.org",
+    "yopmail.com",
+    "sharklasers.com",
+  ];
+  return disposableDomains.some((domain) => v.endsWith(`@${domain}`));
+}
+
+function hasManyDigits(value: string) {
+  const digits = value.replace(/[^\d]/g, "");
+  return digits.length >= 6;
+}
+
+function hasRepeatedConsonantRun(value: string) {
+  return /[bcdfghjklmnpqrstvwxyz]{6,}/i.test(value);
+}
+
+function hasLongMixedCaseRandomness(value: string) {
+  const v = value.trim();
+  if (v.length < 10) return false;
+  const letters = v.replace(/[^a-z]/gi, "");
+  if (letters.length < 8) return false;
+  const upperCount = (letters.match(/[A-Z]/g) || []).length;
+  const lowerCount = (letters.match(/[a-z]/g) || []).length;
+  return upperCount >= 2 && lowerCount >= 2 && !/\s/.test(v);
+}
+
 function looksLikeGibberishName(name: string) {
   const v = name.trim();
   if (!v) return false;
@@ -329,6 +334,9 @@ function looksLikeGibberishName(name: string) {
   if (/[@<>[\]{}_=+]/.test(v)) return true;
   if (/^\d+$/.test(v)) return true;
   if (!/[a-z]/i.test(v)) return true;
+  if (hasManyDigits(v) && !/\s/.test(v)) return true;
+  if (hasRepeatedConsonantRun(v)) return true;
+  if (hasLongMixedCaseRandomness(v)) return true;
   return false;
 }
 
@@ -349,13 +357,93 @@ function isLikelyFromOwnSite(req: NextApiRequest) {
   );
 }
 
+function scoreLead(input: {
+  name: string;
+  email: string;
+  phone: string;
+  postcode: string;
+  service: string;
+  borough: string | null;
+  timeTakenMs?: number | null;
+  message: string;
+  pagePath: string;
+}) {
+  let score = 0;
+
+  if (input.name.length >= 2) score += 15;
+  if (hasValidEmail(input.email)) score += 20;
+  if (hasValidPhone(input.phone)) score += 20;
+  if (UK_POSTCODE_REGEX.test(input.postcode)) score += 15;
+  if (input.service.length >= 3) score += 10;
+  if (input.borough) score += 5;
+  if (input.message.length >= 10) score += 5;
+  if (typeof input.timeTakenMs === "number" && input.timeTakenMs >= 2500) score += 5;
+  if (input.pagePath.startsWith("/")) score += 5;
+
+  return Math.min(score, 100);
+}
+
+function getLeadBand(score: number) {
+  if (score >= 80) return "High";
+  if (score >= 55) return "Medium";
+  return "Low";
+}
+
+function makeFingerprint(input: {
+  name: string;
+  email: string;
+  phone: string;
+  postcode: string;
+  service: string;
+  message: string;
+  pagePath: string;
+}) {
+  const base = [
+    input.name.toLowerCase(),
+    input.email.toLowerCase(),
+    normalisePhone(input.phone),
+    normalisePostcode(input.postcode || ""),
+    input.service.toLowerCase(),
+    input.message.toLowerCase(),
+    input.pagePath.toLowerCase(),
+  ].join("|");
+
+  return crypto.createHash("sha1").update(base).digest("hex");
+}
+
 type RateStore = Map<string, number[]>;
-const globalForRateLimit = globalThis as unknown as {
+type DuplicateStore = Map<string, number>;
+
+const globalForSpamProtection = globalThis as unknown as {
   __wdpRateStore?: RateStore;
+  __wdpDuplicateStore?: DuplicateStore;
 };
 
-const rateStore: RateStore = globalForRateLimit.__wdpRateStore || new Map();
-globalForRateLimit.__wdpRateStore = rateStore;
+const rateStore: RateStore = globalForSpamProtection.__wdpRateStore || new Map();
+const duplicateStore: DuplicateStore = globalForSpamProtection.__wdpDuplicateStore || new Map();
+
+globalForSpamProtection.__wdpRateStore = rateStore;
+globalForSpamProtection.__wdpDuplicateStore = duplicateStore;
+
+function cleanupOldEntries(now: number) {
+  const rateWindowMs = 10 * 60 * 1000;
+  const duplicateWindowMs = 60 * 60 * 1000;
+
+  for (const [key, timestamps] of rateStore.entries()) {
+    const kept = timestamps.filter((ts) => now - ts < rateWindowMs);
+    if (kept.length) {
+      rateStore.set(key, kept);
+    } else {
+      rateStore.delete(key);
+    }
+  }
+
+  for (const [key, ts] of duplicateStore.entries()) {
+    if (now - ts >= duplicateWindowMs) {
+      duplicateStore.delete(key);
+    }
+  }
+}
 
 export default async function handler(
   req: NextApiRequest,
@@ -367,12 +455,18 @@ export default async function handler(
 
   const ip = getClientIp(req);
   const now = Date.now();
+
+  cleanupOldEntries(now);
+
   const windowMs = 10 * 60 * 1000;
-  const maxRequests = 10;
+  const maxRequestsPerIp = 8;
 
   const recent = (rateStore.get(ip) || []).filter((ts) => now - ts < windowMs);
-  if (recent.length >= maxRequests) {
-    return res.status(429).json({ success: false, error: "Too many requests. Please try again later." });
+  if (recent.length >= maxRequestsPerIp) {
+    return res.status(429).json({
+      success: false,
+      error: "Too many requests. Please try again later.",
+    });
   }
   recent.push(now);
   rateStore.set(ip, recent);
@@ -385,11 +479,19 @@ export default async function handler(
   const rawMessage = toText(body.message);
   const rawService = toText(body.service);
   const rawPostcode = toText(body.postcode);
-  const hp = toText(body.hp || body.company);
-  const timeTakenMs =
+  const rawPagePath = toText(body.pagePath);
+  const rawUserAgent = toText(body.userAgent) || toText(req.headers["user-agent"]);
+  const hp = toText(body.hp || body.company || body.website);
+
+  const parsedTimeTaken =
     typeof body.timeTakenMs === "number"
       ? body.timeTakenMs
-      : Number(body.timeTakenMs || 0) || null;
+      : Number(body.timeTakenMs || 0);
+
+  const timeTakenMs =
+    Number.isFinite(parsedTimeTaken) && parsedTimeTaken > 0
+      ? parsedTimeTaken
+      : null;
 
   if (hp) {
     return res.status(200).json({ success: true });
@@ -414,11 +516,10 @@ export default async function handler(
   const borough = toText(body.borough) || postcodeIntel.borough || null;
   const coverageLabel = toText(body.coverageLabel) || postcodeIntel.coverageLabel || null;
   const outwardCode = toText(body.outwardCode) || postcodeIntel.outward || null;
-
+  const pagePath = rawPagePath || "/";
   const validEmail = hasValidEmail(email);
   const validPhone = hasValidPhone(phone);
   const hasWorkingContact = validEmail || validPhone;
-
   const safeName = rawName || "Website visitor";
 
   const hardBlockReasons: string[] = [];
@@ -440,6 +541,10 @@ export default async function handler(
     softFlags.push("Email format looks invalid");
   }
 
+  if (validEmail && looksLikeDisposableEmail(email)) {
+    softFlags.push("Disposable email domain");
+  }
+
   if (phone && !validPhone) {
     softFlags.push("Phone number looks short");
   }
@@ -456,12 +561,20 @@ export default async function handler(
     softFlags.push("Service missing");
   }
 
+  if (!message) {
+    softFlags.push("Message missing");
+  }
+
   if (typeof timeTakenMs === "number" && timeTakenMs > 0 && timeTakenMs < 2500) {
     softFlags.push("Submitted very quickly");
   }
 
   if (!isLikelyFromOwnSite(req)) {
     softFlags.push("Origin or referer did not look like own site");
+  }
+
+  if (!rawUserAgent) {
+    softFlags.push("User agent missing");
   }
 
   const leadScore = scoreLead({
@@ -473,14 +586,51 @@ export default async function handler(
     borough,
     timeTakenMs,
     message,
+    pagePath,
   });
 
   const leadBand = getLeadBand(leadScore);
 
-  if (hardBlockReasons.length > 0) {
+  const fingerprint = makeFingerprint({
+    name: safeName,
+    email,
+    phone,
+    postcode: normalisedPostcode,
+    service,
+    message,
+    pagePath,
+  });
+
+  const duplicateSeenAt = duplicateStore.get(fingerprint);
+  const duplicateWindowMs = 60 * 60 * 1000;
+  const isDuplicate =
+    typeof duplicateSeenAt === "number" && now - duplicateSeenAt < duplicateWindowMs;
+
+  if (isDuplicate) {
+    console.warn("Duplicate submission swallowed", {
+      ip,
+      fingerprint,
+      name: safeName,
+      email,
+      phone,
+      postcode: normalisedPostcode,
+      pagePath,
+    });
+    return res.status(200).json({ success: true });
+  }
+
+  const probableBotAutoSwallow =
+    looksLikeGibberishName(safeName) &&
+    (!message || message.length < 6) &&
+    (!postcode || !UK_POSTCODE_REGEX.test(normalisedPostcode)) &&
+    typeof timeTakenMs === "number" &&
+    timeTakenMs < 2500;
+
+  if (hardBlockReasons.length > 0 || probableBotAutoSwallow) {
     console.warn("Blocked spam submission", {
       ip,
       hardBlockReasons,
+      probableBotAutoSwallow,
       body,
     });
     return res.status(200).json({ success: true });
@@ -489,7 +639,7 @@ export default async function handler(
   const needsReview =
     softFlags.length >= 2 ||
     leadScore < 45 ||
-    !rawName ||
+    (!rawName && !message) ||
     (!postcode && !message);
 
   try {
@@ -497,7 +647,10 @@ export default async function handler(
 
     if (!apiKey) {
       console.error("RESEND_API_KEY is not set in environment variables");
-      return res.status(500).json({ success: false, error: "Email service not configured." });
+      return res.status(500).json({
+        success: false,
+        error: "Email service not configured.",
+      });
     }
 
     const fromAddress = "WeDrawPlans <onboarding@resend.dev>";
@@ -505,12 +658,12 @@ export default async function handler(
 
     const subjectPrefix = needsReview ? "[Needs Review] " : "";
     const subject =
-      `${subjectPrefix}New enquiry from ${safeName} via wedrawplans.com` +
+      `${subjectPrefix}New enquiry from ${safeName} via wedrawplans.co.uk` +
       `${borough ? ` (${borough})` : ""}` +
       ` [${leadBand} Lead ${leadScore}/100]`;
 
     const textLines = [
-      "New website enquiry from wedrawplans.com",
+      "New website enquiry from wedrawplans.co.uk",
       "",
       `Lead score: ${leadScore}/100`,
       `Lead quality: ${leadBand}`,
@@ -518,8 +671,10 @@ export default async function handler(
       `Detected borough: ${borough || "Not detected"}`,
       `Detected outward code: ${outwardCode || "Not detected"}`,
       `Coverage message: ${coverageLabel || "Not available"}`,
+      `Page path: ${pagePath || "Unknown"}`,
       `Time taken: ${typeof timeTakenMs === "number" ? `${timeTakenMs} ms` : "Unknown"}`,
       `IP: ${ip}`,
+      `User agent: ${rawUserAgent || "Not available"}`,
       `Origin/referer check: ${isLikelyFromOwnSite(req) ? "Looks normal" : "Unusual"}`,
       "",
       `Name: ${safeName}`,
@@ -566,9 +721,14 @@ export default async function handler(
       return res.status(500).json({ success: false, error: "Failed to send email." });
     }
 
+    duplicateStore.set(fingerprint, now);
+
     return res.status(200).json({ success: true });
   } catch (err) {
     console.error("Unexpected error sending email:", err);
-    return res.status(500).json({ success: false, error: "Unexpected error sending email." });
+    return res.status(500).json({
+      success: false,
+      error: "Unexpected error sending email.",
+    });
   }
 }
