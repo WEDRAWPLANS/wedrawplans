@@ -437,19 +437,12 @@ function cleanupOldEntries(now: number) {
       rateStore.delete(key);
     }
   });
-}
+
   duplicateStore.forEach((ts, key) => {
     if (now - ts >= duplicateWindowMs) {
       duplicateStore.delete(key);
     }
   });
-}
-
-  for (const [key, ts] of duplicateStore.entries()) {
-    if (now - ts >= duplicateWindowMs) {
-      duplicateStore.delete(key);
-    }
-  }
 }
 
 export default async function handler(
