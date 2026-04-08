@@ -54,6 +54,9 @@ type BoroughLeadObject = {
   service?: string;
   message?: string;
   borough?: string;
+  hp?: string;
+  website?: string;
+  formStartedAt?: number | string;
   raw?: any;
 };
 
@@ -74,6 +77,41 @@ function firstNonEmpty(...values: any[]) {
   return "";
 }
 
+function getNow() {
+  return Date.now();
+}
+
+function getPagePath() {
+  try {
+    if (typeof window === "undefined") return "";
+    return window.location.pathname || "";
+  } catch {
+    return "";
+  }
+}
+
+function getUserAgent() {
+  try {
+    if (typeof window === "undefined") return "";
+    return navigator.userAgent || "";
+  } catch {
+    return "";
+  }
+}
+
+function parseStartedAt(value: FormDataEntryValue | null) {
+  const raw = coerceToString(value);
+  if (!raw) return 0;
+  const num = Number(raw);
+  return Number.isFinite(num) && num > 0 ? num : 0;
+}
+
+function getTimeTakenMs(startedAt: number) {
+  if (!startedAt) return 0;
+  const delta = getNow() - startedAt;
+  return delta > 0 ? delta : 0;
+}
+
 function buildPayloadFromFormEvent(
   e: React.FormEvent<HTMLFormElement>,
   options?: { boroughName?: string }
@@ -88,6 +126,10 @@ function buildPayloadFromFormEvent(
     data.get("boroughName"),
     data.get("area"),
     data.get("location")
+  );
+
+  const startedAt = parseStartedAt(
+    data.get("formStartedAt") || data.get("startedAt")
   );
 
   const payload = {
@@ -136,6 +178,15 @@ function buildPayloadFromFormEvent(
       data.get("enquiryMessage")
     ),
     borough: boroughName,
+    hp: firstNonEmpty(
+      data.get("hp"),
+      data.get("website"),
+      data.get("company")
+    ),
+    formStartedAt: startedAt || "",
+    timeTakenMs: getTimeTakenMs(startedAt),
+    pagePath: getPagePath(),
+    userAgent: getUserAgent(),
     raw,
   };
 
@@ -145,6 +196,14 @@ function buildPayloadFromFormEvent(
 function buildPayloadFromObject(obj: BoroughLeadObject) {
   const boroughName = coerceToString(obj.borough);
 
+  const startedAtRaw =
+    typeof obj.formStartedAt === "number"
+      ? obj.formStartedAt
+      : Number(coerceToString(obj.formStartedAt));
+
+  const startedAt =
+    Number.isFinite(startedAtRaw) && startedAtRaw > 0 ? startedAtRaw : 0;
+
   const payload = {
     name: coerceToString(obj.name),
     email: coerceToString(obj.email),
@@ -153,6 +212,11 @@ function buildPayloadFromObject(obj: BoroughLeadObject) {
     service: coerceToString(obj.service),
     message: coerceToString(obj.message),
     borough: boroughName,
+    hp: firstNonEmpty(obj.hp, obj.website),
+    formStartedAt: startedAt || "",
+    timeTakenMs: getTimeTakenMs(startedAt),
+    pagePath: getPagePath(),
+    userAgent: getUserAgent(),
     raw: obj.raw ?? obj,
   };
 
@@ -224,6 +288,7 @@ export async function submitBoroughLead(
       postcode: coerceToString(payload.postcode),
       has_phone: !!payload.phone,
       has_email: !!payload.email,
+      page_path: coerceToString(payload.pagePath),
     });
 
     if (form) {
