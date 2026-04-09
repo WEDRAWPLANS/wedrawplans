@@ -1340,12 +1340,16 @@ export default function IndexPage() {
 
         <div className="border-b border-slate-200 bg-[#fdf8f3]">
           <HeroSlider
-            slides={[
-              { src: "/hero/one.jpg", alt: "Kitchen extension with rooflight" },
-              { src: "/hero/two.jpg", alt: "Loft conversion with dormer" },
-              { src: "/hero/three.jpg", alt: "Open plan living with garden" },
-            ]}
-          />
+  slides={[
+    {
+      src: "/images/rear-extension-planning-building-reg-drawings.jpg",
+      alt: "Rear extension planning and Building Regulation drawings by WEDRAWPLANS",
+    },
+    { src: "/hero/one.jpg", alt: "Kitchen extension with rooflight" },
+    { src: "/hero/two.jpg", alt: "Loft conversion with dormer" },
+    { src: "/hero/three.jpg", alt: "Open plan living with garden" },
+  ]}
+/>
         </div>
 
         <section className="border-b border-slate-200 bg-white py-10">
