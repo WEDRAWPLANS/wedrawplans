@@ -77,7 +77,7 @@ const HeroSlider: React.FC<HeroSliderProps> = ({
                   <img
                     src={slide.src}
                     alt={slide.alt}
-                    className="h-full w-full object-cover object-center"
+                    className="h-full w-full object-cover object-[68%_center] sm:object-center"
                   />
 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
