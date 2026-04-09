@@ -1339,15 +1339,40 @@ export default function IndexPage() {
         </section>
 
         <div className="border-b border-slate-200 bg-[#fdf8f3]">
-          <HeroSlider
+  <HeroSlider
   slides={[
     {
       src: "/images/rear-extension-planning-building-reg-drawings.jpg",
       alt: "Rear extension planning and Building Regulation drawings by WEDRAWPLANS",
     },
-    { src: "/hero/one.jpg", alt: "Kitchen extension with rooflight" },
-    { src: "/hero/two.jpg", alt: "Loft conversion with dormer" },
-    { src: "/hero/three.jpg", alt: "Open plan living with garden" },
+    {
+      src: "/images/loft-conversion-mansard-hip-to-gable.jpg",
+      alt: "Mansard and hip to gable loft conversion drawings by WEDRAWPLANS",
+    },
+    {
+      src: "/images/building-regulation-technical-drawing-packs.jpg",
+      alt: "Building Regulation and technical drawing packs by WEDRAWPLANS",
+    },
+    {
+      src: "/images/new-build-house-planning-design-drawings.jpg",
+      alt: "New build house planning and design drawings by WEDRAWPLANS",
+    },
+    {
+      src: "/images/flats-small-developments-planning-drawings.jpg",
+      alt: "Flats and small developments planning drawings by WEDRAWPLANS",
+    },
+    {
+      src: "/images/structural-coordination-technical-detailing.jpg",
+      alt: "Structural coordination and technical detailing by WEDRAWPLANS",
+    },
+    {
+      src: "/images/interior-layout-planning-3d-visuals.jpg",
+      alt: "Interior layout planning and 3D visuals by WEDRAWPLANS",
+    },
+    {
+      src: "/images/new-build-homes-small-developments.jpg",
+      alt: "New build homes and small developments by WEDRAWPLANS",
+    },
   ]}
 />
         </div>
