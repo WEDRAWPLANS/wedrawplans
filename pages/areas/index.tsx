@@ -45,10 +45,36 @@ function initialsForBadge(name: string) {
   return `${first}${second}`.toUpperCase();
 }
 
+function SectionIntro({
+  eyebrow,
+  title,
+  body,
+}: {
+  eyebrow?: string;
+  title: string;
+  body: string;
+}) {
+  return (
+    <div className="max-w-4xl">
+      {eyebrow ? (
+        <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-red-700">
+          {eyebrow}
+        </p>
+      ) : null}
+      <h2 className="mt-2 text-[20px] font-semibold uppercase tracking-[0.14em] text-slate-900 sm:text-[22px]">
+        {title}
+      </h2>
+      <p className="mt-3 text-[14px] leading-7 text-slate-700">{body}</p>
+    </div>
+  );
+}
+
 function TrustPill({ title, body }: { title: string; body: string }) {
   return (
     <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-      <div className="text-[12px] font-semibold uppercase tracking-[0.12em] text-slate-900">{title}</div>
+      <div className="text-[12px] font-semibold uppercase tracking-[0.12em] text-slate-900">
+        {title}
+      </div>
       <div className="mt-2 text-[12px] leading-6 text-slate-600">{body}</div>
     </div>
   );
@@ -79,6 +105,63 @@ function ServiceCard({
       <p className="mt-3 text-[14px] leading-7 text-slate-700">{body}</p>
       <div className="mt-5 text-[14px] font-semibold text-blue-700 underline underline-offset-4">
         View service page
+      </div>
+    </Link>
+  );
+}
+
+function BoroughCard({
+  name,
+  href,
+}: {
+  name: string;
+  href: string;
+}) {
+  return (
+    <Link
+      href={href}
+      className="group rounded-[22px] border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:border-[#64b7c4] hover:shadow-md"
+    >
+      <div className="flex items-start gap-3">
+        <div className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-slate-200 bg-[#f8f4f0] text-[12px] font-semibold text-slate-900 transition group-hover:border-[#64b7c4] group-hover:bg-white">
+          {initialsForBadge(name)}
+        </div>
+
+        <div className="min-w-0 flex-1">
+          <div className="text-[15px] font-semibold leading-6 text-slate-900">{name}</div>
+          <div className="mt-2 text-[12px] font-medium uppercase tracking-[0.12em] text-slate-600 transition group-hover:text-[#2f6f8a]">
+            Get your fixed quote
+          </div>
+        </div>
+
+        <div className="pt-1 text-[18px] text-slate-400 transition group-hover:text-[#2f6f8a]">
+          →
+        </div>
+      </div>
+    </Link>
+  );
+}
+
+function OuterAreaCard({
+  name,
+  href,
+}: {
+  name: string;
+  href: string;
+}) {
+  return (
+    <Link
+      href={href}
+      className="group rounded-[22px] border border-slate-200 bg-white px-5 py-4 shadow-sm transition hover:-translate-y-0.5 hover:border-[#64b7c4] hover:shadow-md"
+    >
+      <div className="flex items-center justify-between gap-3">
+        <div>
+          <div className="text-[15px] font-semibold text-slate-900">{name}</div>
+          <div className="mt-2 text-[12px] font-medium uppercase tracking-[0.12em] text-slate-600 transition group-hover:text-[#2f6f8a]">
+            View area page
+          </div>
+        </div>
+        <div className="text-[18px] text-slate-400 transition group-hover:text-[#2f6f8a]">→</div>
       </div>
     </Link>
   );
@@ -187,7 +270,8 @@ export default function AreasIndexPage() {
       url: "https://www.wedrawplans.co.uk/areas",
       telephone: "+44 20 3654 8508",
       email: "info@wedrawplans.com",
-      image: "https://www.wedrawplans.co.uk/images/rear-extension-planning-building-reg-drawings.jpg",
+      image:
+        "https://www.wedrawplans.co.uk/images/rear-extension-planning-building-reg-drawings.jpg",
       address: {
         "@type": "PostalAddress",
         streetAddress: "201 Borough High Street",
@@ -433,7 +517,7 @@ export default function AreasIndexPage() {
                   </p>
 
                   <p className="text-[13px] leading-7 text-slate-700">
-                    Whether you are planning a rear extension in Bromley, a loft conversion in Richmond, a side return in Southwark, a garage conversion in Harrow, a flat conversion in Redbridge or a new build scheme in Barnet, this page is designed to push you quickly to the right borough page and the right drawing package while keeping lead capture strong from start to finish.
+                    Whether you are planning a rear extension in Bromley, a loft conversion in Richmond, a side return in Southwark, a garage conversion in Harrow, a flat conversion in Redbridge or a new build scheme in Barnet, this page is designed to move you quickly to the right borough page and the right drawing package while keeping the process clear from start to finish.
                   </p>
 
                   <p className="text-[13px] leading-7 text-slate-700">
@@ -451,7 +535,7 @@ export default function AreasIndexPage() {
                     <li>• Loft conversions including dormers, mansards and hip to gable schemes</li>
                     <li>• Building regulation drawing packs with structural coordination</li>
                     <li>• Flat conversions, internal remodelling, new builds and small developments</li>
-                    <li>• Strong internal linking into borough pages and service pages</li>
+                    <li>• Strong internal links into borough pages and service pages</li>
                     <li>• Same day response on many enquiries</li>
                   </ul>
 
@@ -510,7 +594,7 @@ export default function AreasIndexPage() {
                   <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-md">
                     <div className="p-5">
                       <div className="text-[12px] font-semibold uppercase tracking-[0.16em] text-slate-900">
-                        Built to grab serious London leads
+                        London quote request
                       </div>
                       <h2 className="mt-2 text-[14px] font-semibold uppercase tracking-[0.16em] text-slate-900">
                         Request your fixed fee quote
@@ -648,13 +732,13 @@ export default function AreasIndexPage() {
 
                   <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-md">
                     <div className="text-[12px] font-semibold uppercase tracking-[0.16em] text-slate-900">
-                      Why this page matters
+                      London wide drawing support
                     </div>
                     <ul className="mt-3 space-y-1 text-[13px] text-slate-700">
-                      <li>• It links every borough page from one authority hub</li>
-                      <li>• It covers every major homeowner drawing intent</li>
-                      <li>• It gives clients a fast quote route from anywhere in London</li>
-                      <li>• It supports extension, loft, new build and building regs SEO together</li>
+                      <li>• Borough specific guidance when needed</li>
+                      <li>• Service pages for every main project type</li>
+                      <li>• Fast fixed fee route from one central page</li>
+                      <li>• Clear progression from planning to technical stages</li>
                     </ul>
                   </div>
                 </div>
@@ -668,14 +752,12 @@ export default function AreasIndexPage() {
             <div className="mx-auto max-w-6xl px-4 lg:px-6">
               <div className="grid gap-8 lg:grid-cols-[1fr,1fr] lg:items-center">
                 <div className="space-y-4">
-                  <h2 className="text-[20px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                    London and outer London coverage map
-                  </h2>
+                  <SectionIntro
+                    title="London and outer London coverage map"
+                    body="This section is designed to make coverage obvious at a glance. WEDRAWPLANS support projects across inner London, outer London and selected high demand M25 edge locations. If your property is near a borough boundary or just outside Greater London, send the postcode and we will route you correctly."
+                  />
                   <p className="text-[14px] leading-7 text-slate-700">
-                    This section is designed to make coverage obvious at a glance. WEDRAWPLANS support projects across inner London, outer London and selected high demand M25 edge locations. If your property is near a borough boundary or just outside Greater London, send the postcode and we will route you correctly.
-                  </p>
-                  <p className="text-[14px] leading-7 text-slate-700">
-                    The strongest lead advantage on this page is not only borough coverage, but the way coverage is tied directly into extension drawings, loft conversion drawings, Building Reg packs, new build layouts and internal remodelling work. This helps clients immediately see that they are in the right place whether they arrived looking for borough help or service help.
+                    The page combines borough pages, service pages and a direct quote route so homeowners can move quickly whether they arrived looking for local council guidance or for a specific type of drawing package.
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {[
@@ -728,12 +810,10 @@ export default function AreasIndexPage() {
 
           <section className="border-b border-slate-200 bg-white py-10">
             <div className="mx-auto max-w-6xl px-4 lg:px-6">
-              <h2 className="text-[20px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                Start with the right drawing package
-              </h2>
-              <p className="mt-2 max-w-4xl text-[14px] leading-7 text-slate-700">
-                This page is built to capture clients at every stage. Some people arrive looking for borough help. Others already know the exact service they need. These core service routes make it easy to move into the strongest page for your project type before or after choosing your borough.
-              </p>
+              <SectionIntro
+                title="Start with the right drawing package"
+                body="Some visitors arrive looking for borough help. Others already know the exact service they need. These core service routes make it easy to move into the strongest page for your project type before or after choosing your borough."
+              />
 
               <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
                 <ServiceCard
@@ -778,12 +858,10 @@ export default function AreasIndexPage() {
 
           <section className="border-b border-slate-200 bg-[#f8f4f0] py-10">
             <div className="mx-auto max-w-6xl px-4 lg:px-6">
-              <h2 className="text-[20px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                High intent London project clusters
-              </h2>
-              <p className="mt-2 max-w-4xl text-[14px] leading-7 text-slate-700">
-                Different parts of London behave differently. Some boroughs convert strongly for rear extensions and kitchen enlargements. Others bring more loft, conversion or new build enquiries. This section helps reinforce that WEDRAWPLANS understand London at borough level, not just as one broad area.
-              </p>
+              <SectionIntro
+                title="Popular London project types by area"
+                body="Different parts of London often see different types of home improvement projects. In some boroughs we see more rear extensions and kitchen enlargements, while in others loft conversions, remodelling and development projects are more common. This helps us guide clients towards the most suitable drawing approach for their area and property type."
+              />
 
               <div className="mt-6 grid gap-4 lg:grid-cols-3">
                 <ClusterCard
@@ -825,69 +903,47 @@ export default function AreasIndexPage() {
 
           <section className="border-b border-slate-200 bg-white py-10">
             <div className="mx-auto max-w-6xl px-4 lg:px-6">
-              <h2 className="text-[20px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                Full London borough directory
-              </h2>
-              <p className="mt-2 max-w-4xl text-[14px] leading-7 text-slate-700">
-                Every borough below links to a dedicated page. This is where local knowledge, service intent, planning sensitivity and direct lead capture come together. Select your borough to view the stronger local page and request a fixed fee quote.
-              </p>
+              <SectionIntro
+                title="Choose your London borough"
+                body="Select your borough to view the local page and request your fixed quote."
+              />
 
               <div className="mt-7 grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 {boroughLinks.map((borough) => (
-                  <Link
-                    key={borough.name}
-                    href={borough.href}
-                    className="group rounded-2xl border border-slate-200 bg-[#fdf8f3] p-4 shadow-sm transition hover:-translate-y-0.5 hover:border-[#64b7c4] hover:bg-white hover:shadow-md"
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="grid h-10 w-10 place-items-center rounded-full border border-slate-200 bg-white text-[12px] font-semibold text-slate-900 group-hover:border-[#64b7c4]">
-                        {initialsForBadge(borough.name)}
-                      </div>
-                      <div className="text-[14px] font-semibold text-slate-900">{borough.name}</div>
-                    </div>
-                    <div className="mt-3 text-[13px] leading-6 text-slate-700">
-                      View borough page and request a fixed fee quote.
-                    </div>
-                  </Link>
+                  <BoroughCard key={borough.name} name={borough.name} href={borough.href} />
                 ))}
               </div>
 
-              <div className="mt-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+              <div className="mt-10 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
                 <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                  Why this borough directory is powerful for lead capture
+                  Why use a borough specific page
                 </h3>
                 <div className="mt-3 grid gap-3 md:grid-cols-3">
-                  <div className="rounded-2xl border border-slate-100 bg-slate-50 p-4 text-[13px] text-slate-700">
-                    Borough pages let homeowners feel the service is local, specific and relevant to their council area.
+                  <div className="rounded-2xl border border-slate-100 bg-slate-50 p-4 text-[13px] leading-7 text-slate-700">
+                    Borough pages help homeowners see guidance that is more relevant to their local council area, planning context and property type.
                   </div>
-                  <div className="rounded-2xl border border-slate-100 bg-slate-50 p-4 text-[13px] text-slate-700">
-                    Internal linking strengthens borough SEO while keeping service intent anchored back into the main site.
+                  <div className="rounded-2xl border border-slate-100 bg-slate-50 p-4 text-[13px] leading-7 text-slate-700">
+                    They make it easier to find the right drawings, understand the likely planning route and move faster with a clear next step.
                   </div>
-                  <div className="rounded-2xl border border-slate-100 bg-slate-50 p-4 text-[13px] text-slate-700">
-                    The combination of local trust plus a direct fixed fee quote route is one of the strongest drivers of enquiries.
+                  <div className="rounded-2xl border border-slate-100 bg-slate-50 p-4 text-[13px] leading-7 text-slate-700">
+                    If you are unsure where to begin, choosing your borough page is often the quickest way to get advice that feels more specific to your project.
                   </div>
                 </div>
               </div>
+            </div>
+          </section>
 
-              <div className="mt-10">
-                <h2 className="text-[20px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                  Surrounding M25 locations
-                </h2>
-                <p className="mt-2 max-w-4xl text-[14px] leading-7 text-slate-700">
-                  We also support projects outside Greater London where demand overlaps strongly with London homeowner searches and planning activity.
-                </p>
+          <section className="border-b border-slate-200 bg-white py-10">
+            <div className="mx-auto max-w-6xl px-4 lg:px-6">
+              <SectionIntro
+                title="Outer London and M25 areas"
+                body="We also support selected surrounding locations outside Greater London where homeowner demand overlaps strongly with London planning and drawing work."
+              />
 
-                <div className="mt-5 grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-                  {countyLinks.map((county) => (
-                    <Link
-                      key={county.name}
-                      href={county.href}
-                      className="rounded-xl border border-slate-200 bg-[#fdf8f3] px-4 py-3 text-[13px] font-medium text-slate-900 shadow-sm transition hover:border-[#64b7c4] hover:bg-white"
-                    >
-                      {county.name}
-                    </Link>
-                  ))}
-                </div>
+              <div className="mt-6 grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+                {countyLinks.map((county) => (
+                  <OuterAreaCard key={county.name} name={county.name} href={county.href} />
+                ))}
               </div>
             </div>
           </section>
@@ -896,14 +952,12 @@ export default function AreasIndexPage() {
             <div className="mx-auto max-w-6xl px-4 lg:px-6">
               <div className="grid gap-8 lg:grid-cols-[1fr,1fr] lg:items-center">
                 <div className="space-y-4">
-                  <h2 className="text-[20px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                    Example scheme and quality benchmark
-                  </h2>
+                  <SectionIntro
+                    title="Example scheme and quality benchmark"
+                    body="This section helps show the level of clarity, drawing quality and technical progression we aim to provide before a client even sends an enquiry."
+                  />
                   <p className="text-[14px] leading-7 text-slate-700">
-                    This section is here to show the level of clarity and confidence we aim to create before a client even submits an enquiry. A good London mother page should not just list services. It should also prove design quality, technical maturity and the kind of presentation homeowners trust.
-                  </p>
-                  <p className="text-[14px] leading-7 text-slate-700">
-                    The video and showcase image below help bridge the gap between search intent and action. They give visitors enough visual proof to feel comfortable sending their details rather than leaving the page to compare competitors.
+                    The video and showcase image below help bridge the gap between search and action. They give visitors enough visual proof to feel comfortable sending their details rather than continuing to compare providers.
                   </p>
                   <div className="flex flex-wrap gap-3">
                     <button
@@ -958,12 +1012,10 @@ export default function AreasIndexPage() {
 
           <section className="border-b border-slate-200 bg-[#f8f4f0] py-10">
             <div className="mx-auto max-w-6xl px-4 lg:px-6">
-              <h2 className="text-[20px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                Planning drawings, Building Regs and what clients usually need next
-              </h2>
-              <p className="mt-2 max-w-4xl text-[14px] leading-7 text-slate-700">
-                One of the biggest reasons leads fail to convert is confusion. Many clients know they need drawings, but they do not know whether they need planning drawings, a lawful development set, a Building Regulation package, structural coordination or all of the above. This page should remove that confusion and push people smoothly into enquiry.
-              </p>
+              <SectionIntro
+                title="Planning drawings, Building Regs and what clients usually need next"
+                body="Many clients know they need drawings, but they do not always know whether they need planning drawings, a lawful development set, a Building Regulation package, structural coordination or all of the above. This section helps remove that confusion."
+              />
 
               <div className="mt-6 grid gap-4 lg:grid-cols-2">
                 <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
@@ -1004,7 +1056,7 @@ export default function AreasIndexPage() {
                   Local planning knowledge matters in London
                 </h3>
                 <p className="mt-3 text-[13px] leading-7 text-emerald-900">
-                  London includes conservation areas, listed settings, Article 4 directions, tighter roofscape control and borough specific design expectations. The strongest strategy is to start with the right planning route from the beginning and then shape the drawings so they read clearly in the local context.
+                  London includes conservation areas, listed settings, Article 4 directions, tighter roofscape control and borough specific design expectations. The strongest starting point is to choose the correct planning route early and shape the drawings so they read clearly in the local context.
                 </p>
               </div>
             </div>
@@ -1012,9 +1064,10 @@ export default function AreasIndexPage() {
 
           <section className="border-b border-slate-200 bg-white py-10">
             <div className="mx-auto max-w-6xl px-4 lg:px-6">
-              <h2 className="text-[20px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                Frequently asked questions
-              </h2>
+              <SectionIntro
+                title="Frequently asked questions"
+                body="Answers to common questions about coverage, planning routes, technical drawing packages and how to get started."
+              />
 
               <div className="mt-6 grid gap-6 md:grid-cols-2">
                 <FaqCard
