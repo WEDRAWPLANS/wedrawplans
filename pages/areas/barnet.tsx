@@ -280,7 +280,7 @@ export default function BarnetAreaPage() {
                   <div className="overflow-hidden border border-slate-200 bg-white shadow-md">
                     <Image
                       src={HERO_IMAGE}
-                      alt="Premium Barnet side extension and kitchen family space image"
+                      alt="Premium Barnet extension and kitchen family space image"
                       width={1600}
                       height={1000}
                       priority
@@ -306,14 +306,14 @@ export default function BarnetAreaPage() {
                   <p className="text-[13px] leading-7 text-slate-700">
                     WEDRAWPLANS have helped homeowners across Barnet secure planning approval for loft conversions,
                     extensions, new build developments, HMOs and similar planning applications with a very strong
-                    approval track record. Our drawings are prepared with real planning understanding, helping
+                    approval track record. Our drawings are prepared with strong planning understanding, helping
                     proposals read clearly to planners while also working properly for buildability and day to day use.
                   </p>
 
                   <div className="grid gap-3 sm:grid-cols-3">
                     <TrustPill title="Fixed drawing fees" body="Clear written pricing before work starts." />
                     <TrustPill title="Fast response" body="Same day replies on many enquiries." />
-                    <TrustPill title="Barnet aware" body="Prepared for real local planning routes." />
+                    <TrustPill title="Barnet aware" body="Prepared for local planning routes." />
                   </div>
 
                   <ul className="space-y-1 text-[13px] text-slate-800">
@@ -451,22 +451,12 @@ export default function BarnetAreaPage() {
                               Select project type
                             </option>
                             <option value="House extension drawings">House extension drawings</option>
-                            <option value="Single storey rear extension drawings">
-                              Single storey rear extension drawings
-                            </option>
-                            <option value="Double storey rear extension drawings">
-                              Double storey rear extension drawings
-                            </option>
                             <option value="Loft conversion drawings">Loft conversion drawings</option>
-                            <option value="Garage conversion drawings">Garage conversion drawings</option>
-                            <option value="Outbuilding or garden room drawings">
-                              Outbuilding or garden room drawings
-                            </option>
-                            <option value="Internal remodelling drawings">Internal remodelling drawings</option>
                             <option value="Planning drawings only">Planning drawings only</option>
                             <option value="Building regulation pack only">Building regulation pack only</option>
-                            <option value="HMO drawings">HMO drawings</option>
                             <option value="New build house drawings">New build house drawings</option>
+                            <option value="Conversion to flats drawings">Conversion to self contained flats</option>
+                            <option value="Other drawings">Other drawings</option>
                           </select>
                         </div>
 
@@ -505,7 +495,7 @@ export default function BarnetAreaPage() {
                   <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-md">
                     <Image
                       src={PREMIUM_SIDE_EXTENSION_IMAGE}
-                      alt="Premium Barnet side extension CGI image"
+                      alt="Premium Barnet side extension image"
                       width={1600}
                       height={1000}
                       className="h-[250px] w-full object-cover"
@@ -534,9 +524,9 @@ export default function BarnetAreaPage() {
 
               <p className="mx-auto mt-3 max-w-3xl text-center text-[13px] leading-7 text-slate-700">
                 One from many of our Barnet projects showing how a full drawing package can move from concept stage,
-                through planning, and onward into build ready information. This section is designed to show local
-                proof that WEDRAWPLANS understand what Barnet homeowners and property clients need in order to secure
-                approval and move forward with confidence.
+                through planning, and onward into build ready information. This section is designed to show Barnet
+                homeowners and property clients how WEDRAWPLANS support projects from the early stage through to
+                approval and delivery.
               </p>
 
               <div className="mt-6 grid items-stretch gap-6 md:grid-cols-2">
@@ -609,6 +599,43 @@ export default function BarnetAreaPage() {
                   <span>⭐</span>
                   <span>Google Profile</span>
                 </a>
+              </div>
+            </div>
+          </section>
+
+          <section className="border-b border-slate-200 bg-white py-10">
+            <div className="mx-auto max-w-5xl px-4 lg:px-6">
+              <h2 className="text-center text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
+                Barnet single storey rear extension before and after
+              </h2>
+
+              <p className="mx-auto mt-3 max-w-3xl text-center text-[13px] leading-7 text-slate-700">
+                A Barnet EN5 project showing the existing house and the approved proposed rear extension,
+                helping homeowners clearly understand how the space transforms before construction begins.
+              </p>
+
+              <div className="mt-6 grid gap-6 md:grid-cols-2">
+                <HoverPreviewVideo
+                  src="/videos/barnet-en5-existing.mp4"
+                  title="Existing house view"
+                  description="The original rear layout before extension, showing the existing condition and limitations prior to design and planning."
+                />
+
+                <HoverPreviewVideo
+                  src="/videos/barnet-en5-proposed.mp4"
+                  title="Proposed extension view"
+                  description="The approved rear extension design, showing improved internal space, garden connection and overall layout transformation."
+                />
+              </div>
+
+              <div className="mt-6 text-center">
+                <button
+                  type="button"
+                  onClick={scrollToForm}
+                  className="rounded-full bg-[#64b7c4] px-6 py-2.5 text-[13px] font-semibold uppercase tracking-[0.16em] text-white shadow-sm hover:bg-[#4da4b4]"
+                >
+                  Request drawing fees instantly
+                </button>
               </div>
             </div>
           </section>
@@ -736,11 +763,11 @@ export default function BarnetAreaPage() {
                     />
                     <div className="space-y-2 p-5">
                       <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                        Real local streets and housing context
+                        Local streets and housing context
                       </h3>
                       <p className="text-[13px] leading-7 text-slate-700">
                         Barnet homeowners want drawings that suit the kind of streets they actually live on. This page
-                        is shaped around real borough context, local housing types and the kinds of schemes that are
+                        is shaped around borough context, local housing types and the kinds of schemes that are
                         most likely to generate enquiries and approvals.
                       </p>
                     </div>
@@ -777,7 +804,7 @@ export default function BarnetAreaPage() {
                   title="Outbuilding and garden room"
                   image={OUTBUILDING_IMAGE}
                   alt="Outbuilding approved project showcase in Barnet"
-                  body="Garden rooms and outbuildings remain a strong search category for Barnet homeowners. We prepare drawings that suit real use, realistic scale and the correct planning route for the site."
+                  body="Garden rooms and outbuildings remain a strong search category for Barnet homeowners. We prepare drawings that suit use, realistic scale and the correct planning route for the site."
                   onClick={scrollToForm}
                 />
               </div>
@@ -809,8 +836,8 @@ export default function BarnetAreaPage() {
                 </h2>
 
                 <p className="text-[13px] text-slate-700">
-                  Barnet is one of the boroughs where a real portfolio can do the heavy lifting for lead generation.
-                  Instead of only talking about services, this page is designed to prove local capability through
+                  Barnet is one of the boroughs where a strong portfolio can do the heavy lifting for lead generation.
+                  Instead of only talking about services, this page is designed to show local capability through
                   approved projects, different extension types, loft work, outbuildings, HMOs, new build schemes
                   and postcode-based proof across the borough.
                 </p>
@@ -1404,6 +1431,46 @@ function ImagePanel({
       <div className="p-5">
         <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">{title}</h3>
         <p className="mt-2 text-[13px] leading-7 text-slate-700">{body}</p>
+      </div>
+    </div>
+  );
+}
+
+function HoverPreviewVideo({
+  src,
+  title,
+  description,
+}: {
+  src: string;
+  title: string;
+  description: string;
+}) {
+  return (
+    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-black shadow-lg">
+      <video
+        controls
+        muted
+        playsInline
+        preload="metadata"
+        poster="/images/video-main-poster.jpg"
+        className="h-full w-full object-cover"
+        onMouseEnter={(e) => {
+          e.currentTarget.play().catch(() => {});
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.pause();
+          e.currentTarget.currentTime = 0;
+        }}
+      >
+        <source src={src} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      <div className="bg-white p-4">
+        <h3 className="text-[13px] font-semibold uppercase tracking-[0.14em] text-slate-900">
+          {title}
+        </h3>
+        <p className="mt-2 text-[12px] leading-6 text-slate-700">{description}</p>
       </div>
     </div>
   );
