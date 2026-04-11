@@ -21,8 +21,10 @@ const LOFT_IMAGE = "/images/barnet-project-loft.jpg";
 const OUTBUILDING_IMAGE = "/images/barnet-project-outbuilding.jpg";
 const DRAWINGS_BOARD_IMAGE = "/images/barnet-project-drawings-board.jpg";
 const BARNET_MAP_IMAGE = "/images/barnet-area-map.jpg";
-const BEFORE_AFTER_IMAGE = "/images/barnet-project-before-after.jpg";
-const CONSTRUCTION_PROGRESS_IMAGE = "/images/barnet-construction-progress.jpg";
+const BEFORE_AFTER_IMAGE = "/images/barnet-6a-before-after.jpg";
+const CONSTRUCTION_PROGRESS_IMAGE = "/images/barnet-6b-construction-progress.jpg";
+const BARNET_STREET_IMAGE = "/images/barnet-7a-barnet-street-scene.jpg";
+const PREMIUM_SIDE_EXTENSION_IMAGE = "/images/barnet-11-premium-side-extension.jpg";
 const APPROVED_LOCATIONS_IMAGE = "/images/barnet-approved-locations.jpg";
 
 export default function BarnetAreaPage() {
@@ -68,7 +70,7 @@ export default function BarnetAreaPage() {
         "Chipping Barnet",
       ],
       description:
-        "Architectural drawing services in Barnet for single storey and double storey extensions, loft conversions, outbuildings, planning applications, HMOs, new build developments and building regulation packs. Fixed fees, clear scope, initial survey within 48 hours and fast communication.",
+        "Architectural drawing services in Barnet for single storey and double storey extensions, loft conversions, outbuildings, HMOs, planning applications, new build developments and building regulation packs. Fixed fees, clear scope, initial survey within 48 hours and fast communication.",
       sameAs: ["https://twitter.com/WEDRAWPLANS", GOOGLE_BUSINESS_PROFILE_LINK],
     }),
     []
@@ -502,8 +504,8 @@ export default function BarnetAreaPage() {
 
                   <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-md">
                     <Image
-                      src={DRAWINGS_BOARD_IMAGE}
-                      alt="Barnet drawings board and approved scheme showcase"
+                      src={PREMIUM_SIDE_EXTENSION_IMAGE}
+                      alt="Premium Barnet side extension CGI image"
                       width={1600}
                       height={1000}
                       className="h-[250px] w-full object-cover"
@@ -557,8 +559,8 @@ export default function BarnetAreaPage() {
                   className="overflow-hidden rounded-2xl border border-slate-200 bg-white text-left shadow-lg transition hover:-translate-y-0.5"
                 >
                   <Image
-                    src={DRAWINGS_BOARD_IMAGE}
-                    alt="Planning drawings for approved Barnet project including plans elevations and sections"
+                    src={BEFORE_AFTER_IMAGE}
+                    alt="Before and after transformation showing approved Barnet extension project"
                     width={1600}
                     height={1000}
                     className="h-full w-full object-cover"
@@ -726,19 +728,20 @@ export default function BarnetAreaPage() {
 
                   <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-md">
                     <Image
-                      src={BARNET_MAP_IMAGE}
-                      alt="Barnet approved projects map and borough coverage image"
+                      src={BARNET_STREET_IMAGE}
+                      alt="Typical Barnet residential street scene with family houses"
                       width={1600}
                       height={1000}
                       className="h-56 w-full object-cover"
                     />
                     <div className="space-y-2 p-5">
                       <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                        Real local coverage across the borough
+                        Real local streets and housing context
                       </h3>
                       <p className="text-[13px] leading-7 text-slate-700">
-                        We support homeowners across Barnet with measured surveys, design development and
-                        planning or building regulation drawing packs tailored to the property and proposal.
+                        Barnet homeowners want drawings that suit the kind of streets they actually live on. This page
+                        is shaped around real borough context, local housing types and the kinds of schemes that are
+                        most likely to generate enquiries and approvals.
                       </p>
                     </div>
                   </div>
@@ -854,7 +857,7 @@ export default function BarnetAreaPage() {
                   </h3>
                   <Image
                     src={BARNET_MAP_IMAGE}
-                    alt="Barnet streets and local housing across Finchley Hendon Mill Hill Whetstone and surrounding areas"
+                    alt="Barnet area map covering Finchley Hendon Mill Hill Whetstone High Barnet and surrounding areas"
                     width={1600}
                     height={1000}
                     className="mb-3 rounded-xl object-cover"
@@ -901,8 +904,8 @@ export default function BarnetAreaPage() {
                     </ul>
                   </div>
                   <Image
-                    src={HERO_IMAGE}
-                    alt="Premium Barnet extension and kitchen family space image"
+                    src={APPROVED_LOCATIONS_IMAGE}
+                    alt="Barnet approved project locations and proof of local planning work"
                     width={1600}
                     height={1000}
                     className="mt-2 rounded-xl object-cover"
