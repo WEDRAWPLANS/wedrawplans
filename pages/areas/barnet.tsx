@@ -21,6 +21,9 @@ const LOFT_IMAGE = "/images/barnet-project-loft.jpg";
 const OUTBUILDING_IMAGE = "/images/barnet-project-outbuilding.jpg";
 const DRAWINGS_BOARD_IMAGE = "/images/barnet-project-drawings-board.jpg";
 const BARNET_MAP_IMAGE = "/images/barnet-area-map.jpg";
+const BEFORE_AFTER_IMAGE = "/images/barnet-project-before-after.jpg";
+const CONSTRUCTION_PROGRESS_IMAGE = "/images/barnet-construction-progress.jpg";
+const APPROVED_LOCATIONS_IMAGE = "/images/barnet-approved-locations.jpg";
 
 export default function BarnetAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -65,7 +68,7 @@ export default function BarnetAreaPage() {
         "Chipping Barnet",
       ],
       description:
-        "Architectural drawing services in Barnet for single storey and double storey extensions, loft conversions, outbuildings, planning applications and building regulation packs. Fixed fees, clear scope, initial survey within 48 hours and fast communication.",
+        "Architectural drawing services in Barnet for single storey and double storey extensions, loft conversions, outbuildings, planning applications, HMOs, new build developments and building regulation packs. Fixed fees, clear scope, initial survey within 48 hours and fast communication.",
       sameAs: ["https://twitter.com/WEDRAWPLANS", GOOGLE_BUSINESS_PROFILE_LINK],
     }),
     []
@@ -114,6 +117,15 @@ export default function BarnetAreaPage() {
         },
         {
           "@type": "Question",
+          name: "Can you help with HMOs, conversions and new build projects in Barnet",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text:
+              "Yes. WEDRAWPLANS also prepare drawings for HMOs, conversion schemes and new build residential projects in Barnet. Larger schemes are handled carefully so domestic homeowners and development clients both receive the right level of support.",
+          },
+        },
+        {
+          "@type": "Question",
           name: "How long does Barnet Council take to decide planning applications",
           acceptedAnswer: {
             "@type": "Answer",
@@ -157,15 +169,6 @@ export default function BarnetAreaPage() {
               "Yes. We cover the wider Barnet borough including Finchley, Hendon, Mill Hill, Whetstone, Totteridge, Golders Green, East Barnet, New Barnet and nearby areas.",
           },
         },
-        {
-          "@type": "Question",
-          name: "Do you also work on larger residential development and conversion schemes",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Yes. We also support larger residential developments and conversion schemes, but these are handled through separate development-focused pages so domestic homeowners can still find the right service quickly.",
-          },
-        },
       ],
     }),
     []
@@ -174,14 +177,14 @@ export default function BarnetAreaPage() {
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Barnet | Extensions, Lofts and Building Regs</title>
+        <title>Architectural Drawings in Barnet | Extensions, Lofts, Planning and Building Regs</title>
         <meta
           name="description"
-          content="Architectural drawings in Barnet for single storey and double storey extensions, loft conversions, outbuildings, planning applications and building regulation packs. Fixed fees, clear scope, initial survey within 48 hours and fast communication."
+          content="Architectural drawings in Barnet for single storey and double storey extensions, loft conversions, outbuildings, HMOs, planning applications, new build schemes and building regulation packs. Fixed fees, clear scope, initial survey within 48 hours and fast communication."
         />
         <meta
           name="keywords"
-          content="architectural drawings Barnet, extension drawings Barnet, loft conversion drawings Barnet, planning drawings Barnet, building regulation drawings Barnet, Finchley extension drawings, Hendon loft drawings, Mill Hill planning drawings"
+          content="architectural drawings Barnet, extension drawings Barnet, loft conversion drawings Barnet, planning drawings Barnet, building regulation drawings Barnet, Barnet side extension drawings, Finchley extension drawings, Hendon loft drawings, Mill Hill planning drawings, Barnet HMO drawings, Barnet new build drawings"
         />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/barnet" />
         <script
@@ -264,7 +267,7 @@ export default function BarnetAreaPage() {
                     </p>
 
                     <h1 className="mt-2 text-[22px] font-semibold uppercase leading-snug tracking-[0.14em] text-slate-900 sm:text-[27px]">
-                      Architectural Drawings in Barnet for Extensions, Lofts, Outbuildings and Building Regs
+                      Architectural Drawings in Barnet for Extensions, Lofts, Outbuildings, HMOs and Building Regs
                     </h1>
 
                     <p className="mt-3 text-[13px] font-semibold tracking-[0.08em] text-slate-800">
@@ -275,7 +278,7 @@ export default function BarnetAreaPage() {
                   <div className="overflow-hidden border border-slate-200 bg-white shadow-md">
                     <Image
                       src={HERO_IMAGE}
-                      alt="Premium rear extension and kitchen family space image for Barnet homeowners"
+                      alt="Premium Barnet side extension and kitchen family space image"
                       width={1600}
                       height={1000}
                       priority
@@ -299,9 +302,10 @@ export default function BarnetAreaPage() {
                   </p>
 
                   <p className="text-[13px] leading-7 text-slate-700">
-                    Barnet is one of the strongest boroughs in our portfolio. We have experience with single storey
-                    rear extensions, double storey rear extensions, loft conversions, outbuildings and approval-led
-                    drawing packages that move cleanly from concept through planning and into construction.
+                    WEDRAWPLANS have helped homeowners across Barnet secure planning approval for loft conversions,
+                    extensions, new build developments, HMOs and similar planning applications with a very strong
+                    approval track record. Our drawings are prepared with real planning understanding, helping
+                    proposals read clearly to planners while also working properly for buildability and day to day use.
                   </p>
 
                   <div className="grid gap-3 sm:grid-cols-3">
@@ -315,7 +319,7 @@ export default function BarnetAreaPage() {
                     <li>• Double storey rear and side extension layouts where suitable</li>
                     <li>• Loft conversions including dormers and hip to gable where suitable</li>
                     <li>• Outbuildings, garage conversions and internal remodelling</li>
-                    <li>• Planning drawings and Building Regulation packs</li>
+                    <li>• Planning drawings, Building Regulation packs, HMOs and new build schemes</li>
                     <li>• Covering Finchley, Hendon, Mill Hill, Whetstone and High Barnet</li>
                   </ul>
 
@@ -459,6 +463,7 @@ export default function BarnetAreaPage() {
                             <option value="Internal remodelling drawings">Internal remodelling drawings</option>
                             <option value="Planning drawings only">Planning drawings only</option>
                             <option value="Building regulation pack only">Building regulation pack only</option>
+                            <option value="HMO drawings">HMO drawings</option>
                             <option value="New build house drawings">New build house drawings</option>
                           </select>
                         </div>
@@ -485,7 +490,7 @@ export default function BarnetAreaPage() {
                         <div className="mt-2 space-y-1 text-[11px] text-slate-500">
                           <div>
                             Typical projects include single storey rear extensions, double storey extensions,
-                            loft conversions, garage conversions and garden rooms.
+                            loft conversions, garage conversions, garden rooms, HMOs and similar applications.
                           </div>
                           <div>
                             We reply with a clear scope, fixed fee, and the recommended planning route for your address.
@@ -522,13 +527,14 @@ export default function BarnetAreaPage() {
           <section className="border-b border-slate-200 bg-white py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6">
               <h2 className="text-center text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
-                Planning approved Barnet flagship project
+                Planning approved Barnet project
               </h2>
 
               <p className="mx-auto mt-3 max-w-3xl text-center text-[13px] leading-7 text-slate-700">
-                This Barnet flagship case study is designed to showcase a full approval journey. It is set up to
-                hold one strong project with extension, loft and outbuilding elements so homeowners can see a real
-                local example of what WEDRAWPLANS can achieve.
+                One from many of our Barnet projects showing how a full drawing package can move from concept stage,
+                through planning, and onward into build ready information. This section is designed to show local
+                proof that WEDRAWPLANS understand what Barnet homeowners and property clients need in order to secure
+                approval and move forward with confidence.
               </p>
 
               <div className="mt-6 grid items-stretch gap-6 md:grid-cols-2">
@@ -552,7 +558,7 @@ export default function BarnetAreaPage() {
                 >
                   <Image
                     src={DRAWINGS_BOARD_IMAGE}
-                    alt="Planning drawings for approved Barnet flagship project including plans elevations and sections"
+                    alt="Planning drawings for approved Barnet project including plans elevations and sections"
                     width={1600}
                     height={1000}
                     className="h-full w-full object-cover"
@@ -563,19 +569,19 @@ export default function BarnetAreaPage() {
               <div className="mt-6 grid gap-6 md:grid-cols-4">
                 <CaseMetric
                   title="Single storey"
-                  body="Rear extension element can be shown here once final Barnet material is added."
+                  body="Rear extension approvals are a core part of our Barnet portfolio and remain one of the most common homeowner enquiries."
                 />
                 <CaseMetric
                   title="Double storey"
-                  body="Double storey approved proposal can be shown as part of the same flagship scheme."
+                  body="Double storey extension work demonstrates our ability to handle stronger massing, proportions and planning strategy."
                 />
                 <CaseMetric
                   title="Loft conversion"
-                  body="Dormer or loft element can be integrated into the same Barnet case study."
+                  body="Loft conversion approvals show how additional living space can be achieved with careful roof design and clear planning drawings."
                 />
                 <CaseMetric
                   title="Outbuilding"
-                  body="Garden room or outbuilding approval can be shown as part of the wider transformation."
+                  body="Outbuilding and garden room schemes add another layer of flexibility for homeowners needing usable extra space."
                 />
               </div>
 
@@ -619,14 +625,16 @@ export default function BarnetAreaPage() {
                     WEDRAWPLANS deliver planning drawings and technical packs for Barnet homeowners and property
                     developers. We design and draw single storey and double storey house extensions, side return and
                     wraparound extensions, loft conversions, garage conversions, internal reconfiguration, outbuildings,
-                    and small residential schemes. Every package is structured to reduce delays, improve approval
+                    HMOs and small residential schemes. Every package is structured to reduce delays, improve approval
                     confidence, and give builders clear information to price and build accurately.
                   </p>
 
                   <p className="text-[13px] leading-7 text-slate-700">
-                    We work throughout Finchley, Hendon, Golders Green, Mill Hill, Whetstone, Totteridge, High Barnet,
-                    East Barnet, New Barnet, Friern Barnet and nearby streets. If you are in N20, NW4, EN5 or close by,
-                    we can advise quickly.
+                    If you are searching for architectural drawings in Barnet for a house extension, loft conversion,
+                    side extension, new build or planning application, WEDRAWPLANS provide a complete service from
+                    measured survey through to planning submission and Building Regulation drawings. Our work is
+                    tailored to Barnet planning expectations, increasing the likelihood of approval while delivering
+                    practical layouts for everyday living.
                   </p>
 
                   <div className="flex flex-wrap items-center gap-3">
@@ -726,12 +734,11 @@ export default function BarnetAreaPage() {
                     />
                     <div className="space-y-2 p-5">
                       <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                        Barnet approved locations and local coverage
+                        Real local coverage across the borough
                       </h3>
                       <p className="text-[13px] leading-7 text-slate-700">
-                        This section is reserved for a Barnet map showing approved project locations across the borough.
-                        Once postcode markers are added, it becomes a strong local proof block for homeowners comparing
-                        providers.
+                        We support homeowners across Barnet with measured surveys, design development and
+                        planning or building regulation drawing packs tailored to the property and proposal.
                       </p>
                     </div>
                   </div>
@@ -743,14 +750,14 @@ export default function BarnetAreaPage() {
                   title="Single storey rear extension"
                   image={SINGLE_STOREY_IMAGE}
                   alt="Single storey rear extension approved project showcase in Barnet"
-                  body="Use this section to showcase one strong Barnet single storey rear extension approval. It should show a practical family-home improvement that feels highly relevant to local homeowners."
+                  body="One from many of our Barnet projects showing how a carefully planned rear extension can create better kitchen family space, stronger garden connection and a clearer route to approval."
                   onClick={scrollToForm}
                 />
                 <ShowcaseCard
                   title="Double storey rear extension"
                   image={DOUBLE_STOREY_IMAGE}
                   alt="Double storey rear extension approved project showcase in Barnet"
-                  body="Use this section to showcase a Barnet double storey extension approval. This is a strong trust signal because it shows WEDRAWPLANS can handle more substantial domestic schemes, not just simple layouts."
+                  body="Double storey extension drawings require stronger control of massing, scale, overlooking and neighbour impact. Our Barnet work shows how these schemes can be handled professionally and clearly."
                   onClick={scrollToForm}
                 />
               </div>
@@ -760,15 +767,36 @@ export default function BarnetAreaPage() {
                   title="Loft conversion"
                   image={LOFT_IMAGE}
                   alt="Loft conversion approved project showcase in Barnet"
-                  body="Use this section to showcase a Barnet loft conversion approval. It should show clear roof design thinking, usable added space, and the kind of work local homeowners often search for first."
+                  body="Barnet loft conversion work often depends on roof form, street character and proportion. We prepare drawings that make the proposal understandable, practical and much easier to assess."
                   onClick={scrollToForm}
                 />
                 <ShowcaseCard
                   title="Outbuilding and garden room"
                   image={OUTBUILDING_IMAGE}
                   alt="Outbuilding approved project showcase in Barnet"
-                  body="Use this section to showcase a Barnet outbuilding or garden room approval. This helps capture homeowners searching for extra space outside the main house without moving."
+                  body="Garden rooms and outbuildings remain a strong search category for Barnet homeowners. We prepare drawings that suit real use, realistic scale and the correct planning route for the site."
                   onClick={scrollToForm}
+                />
+              </div>
+
+              <div className="grid gap-10 md:grid-cols-3">
+                <ImagePanel
+                  title="Before and after transformation"
+                  image={BEFORE_AFTER_IMAGE}
+                  alt="Before and after transformation showing approved Barnet extension project"
+                  body="One from many of our Barnet projects showing how careful design and well prepared drawings transform existing properties into fully approved extensions and improved living spaces."
+                />
+                <ImagePanel
+                  title="From approval to construction"
+                  image={CONSTRUCTION_PROGRESS_IMAGE}
+                  alt="Barnet extension project under construction following approved drawings"
+                  body="Our drawings are not only for planning approval. They carry through into construction, helping builders understand the design clearly and deliver the project as intended."
+                />
+                <ImagePanel
+                  title="Approved projects across Barnet"
+                  image={APPROVED_LOCATIONS_IMAGE}
+                  alt="Map showing multiple Barnet locations where WEDRAWPLANS secured planning approvals"
+                  body="We have successfully supported planning applications across Finchley, Hendon, Mill Hill, Whetstone, Totteridge, High Barnet and surrounding areas, building a strong track record of approvals across the borough."
                 />
               </div>
 
@@ -780,22 +808,22 @@ export default function BarnetAreaPage() {
                 <p className="text-[13px] text-slate-700">
                   Barnet is one of the boroughs where a real portfolio can do the heavy lifting for lead generation.
                   Instead of only talking about services, this page is designed to prove local capability through
-                  approved projects, different extension types, loft work, outbuildings and eventual postcode-based
-                  map markers across the borough.
+                  approved projects, different extension types, loft work, outbuildings, HMOs, new build schemes
+                  and postcode-based proof across the borough.
                 </p>
 
                 <div className="grid gap-6 md:grid-cols-3">
                   <ProofCard
                     title="Approved project range"
-                    body="Single storey rear, double storey rear, loft conversion and outbuilding work can all be shown within one strong Barnet proof system."
+                    body="Single storey rear, double storey rear, loft conversion, outbuilding, HMO and new build work all strengthen the Barnet page as a serious local proof page."
                   />
                   <ProofCard
                     title="Local homeowner confidence"
-                    body="Barnet homeowners are more likely to enquire when they can see approval history that looks relevant to their own house type and street condition."
+                    body="Barnet homeowners are more likely to enquire when they can see approval history that looks relevant to their own house type, budget level and street condition."
                   />
                   <ProofCard
-                    title="Separate larger-scheme route"
-                    body="Bigger multi-unit and development schemes can be linked discreetly so domestic homeowners still feel this page is designed for them."
+                    title="Higher value enquiries"
+                    body="By combining domestic project proof with planning and building regs clarity, the page is positioned to capture stronger quality enquiries instead of weak or uncertain traffic."
                   />
                 </div>
 
@@ -804,8 +832,9 @@ export default function BarnetAreaPage() {
                     Larger residential developments and conversion schemes
                   </h3>
                   <p className="mt-2 text-[13px] leading-7 text-slate-700">
-                    We also work on larger development and conversion projects. To keep this Barnet page focused on
-                    homeowners, we direct bigger schemes through a separate route.
+                    We also work on larger development and conversion projects across Barnet. Domestic homeowners can
+                    still use this page with confidence, while larger residential schemes, HMO work and development-led
+                    enquiries can move into the correct next stage with WEDRAWPLANS.
                   </p>
                   <div className="mt-4">
                     <Link
@@ -1078,8 +1107,9 @@ export default function BarnetAreaPage() {
                     Ready to start your project
                   </h2>
                   <p className="mt-2 text-[13px] text-slate-300">
-                    Send your postcode and a short description. We review and reply with fixed drawing fees and
-                    recommended next steps.
+                    Homeowners across Barnet choose WEDRAWPLANS for clear pricing, fast response and drawings that
+                    are prepared with approval and construction in mind. Send your postcode and project details to
+                    receive a fixed fee and the correct planning route for your property.
                   </p>
                 </div>
 
@@ -1130,7 +1160,7 @@ export default function BarnetAreaPage() {
 
               <p className="mt-3 text-[13px] text-slate-700">
                 Share a few details and WEDRAWPLANS will reply with a clear fixed fee and suggested next steps for
-                your Barnet extension, loft conversion, refurbishment, garage conversion, outbuilding or small
+                your Barnet extension, loft conversion, refurbishment, garage conversion, outbuilding, HMO or small
                 development project.
               </p>
 
@@ -1350,6 +1380,28 @@ function CaseMetric({ title, body }: { title: string; body: string }) {
     <div className="rounded-2xl border border-slate-200 bg-white p-4 text-center shadow-sm">
       <div className="text-[12px] font-semibold uppercase tracking-[0.16em] text-slate-900">{title}</div>
       <div className="mt-2 text-[12px] leading-6 text-slate-600">{body}</div>
+    </div>
+  );
+}
+
+function ImagePanel({
+  title,
+  image,
+  alt,
+  body,
+}: {
+  title: string;
+  image: string;
+  alt: string;
+  body: string;
+}) {
+  return (
+    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+      <Image src={image} alt={alt} width={1600} height={1000} className="h-64 w-full object-cover" />
+      <div className="p-5">
+        <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">{title}</h3>
+        <p className="mt-2 text-[13px] leading-7 text-slate-700">{body}</p>
+      </div>
     </div>
   );
 }
