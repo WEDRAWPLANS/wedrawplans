@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import { FormEvent, useMemo, useState } from "react";
+import SmartPlanningAssistant from "../components/SmartPlanningAssistant";
 import { submitBoroughLead } from "../lib/submitBoroughLead";
 
 declare global {
@@ -9,7 +10,10 @@ declare global {
   }
 }
 
-const GBP_LINK = "https://share.google/Dhc3KZyM5vjARGCmf";
+const GBP_LINK = "https://share.google/D3KId64vHtHSKPALr";
+const PHONE_DISPLAY = "020 3654 8508";
+const PHONE_TEL = "+442036548508";
+const EMAIL = "info@wedrawplans.com";
 const PAGE_URL = "https://www.wedrawplans.co.uk/building-regulation-drawings";
 const PAGE_TITLE =
   "Building Regulation Drawings London | Building Control Drawings & Technical Packs | WEDRAWPLANS";
@@ -44,6 +48,96 @@ function trackEvent(
   if (typeof window !== "undefined" && typeof window.gtag === "function") {
     window.gtag("event", eventName, params);
   }
+}
+
+const navLinks = [
+  { href: "/extension-plans", label: "Extensions" },
+  { href: "/loft-conversion-plans", label: "Lofts" },
+  { href: "/new-build-plans", label: "New Builds" },
+  { href: "/commercial/change-of-use", label: "Commercial" },
+  { href: "/areas", label: "Areas" },
+];
+
+const quickServices = [
+  {
+    href: "/extension-plans",
+    title: "Extension drawings",
+    text: "Planning and Building Regulation drawing support for rear, side return and wrap around extensions.",
+  },
+  {
+    href: "/loft-conversion-plans",
+    title: "Loft conversion drawings",
+    text: "Technical drawing support for dormers, mansards, hip to gable lofts and roof alterations.",
+  },
+  {
+    href: "/new-build-plans",
+    title: "New build drawings",
+    text: "Planning and technical drawing packages for new houses and small residential schemes.",
+  },
+  {
+    href: "/commercial/change-of-use",
+    title: "Change of use drawings",
+    text: "Commercial and mixed use drawing support for change of use, fit out and conversion projects.",
+  },
+];
+
+const technicalPackItems = [
+  "Existing and proposed technical plans where required",
+  "Detailed proposed floor plans and roof information",
+  "Sections showing wall, floor and roof build ups",
+  "Construction notes for Building Control review",
+  "Insulation, thermal and condensation related notes",
+  "Fire safety, escape and protection notes relevant to the scope",
+  "Ventilation, drainage and services coordination where applicable",
+  "Structural engineer coordination, beam references and opening notes",
+  "Junction information for walls, roofs, floors and structural openings",
+  "Technical drawing information suitable for pricing and construction coordination",
+];
+
+const projectTypes = [
+  {
+    title: "House extensions",
+    text: "Rear extensions, side returns, wrap around extensions, kitchen extensions and larger internal alterations that need technical build information.",
+  },
+  {
+    title: "Loft conversions",
+    text: "Dormers, mansards, hip to gable conversions, stairs, headroom checks, roof structure coordination and fire escape information.",
+  },
+  {
+    title: "New builds",
+    text: "Technical drawing packages for new houses and small developments, coordinated with structural and consultant information.",
+  },
+  {
+    title: "Conversions",
+    text: "Flat conversions, mixed use changes, internal reconfiguration and structural alteration projects requiring Building Control information.",
+  },
+  {
+    title: "Commercial works",
+    text: "Change of use, shop fit out, office alteration, restaurant, mixed use and small commercial technical drawing packages.",
+  },
+  {
+    title: "Structural alterations",
+    text: "New openings, steel beams, padstones, removed walls, roof changes and technical coordination with structural calculations.",
+  },
+];
+
+const boroughLinks = [
+  "Barnet",
+  "Bromley",
+  "Camden",
+  "Croydon",
+  "Ealing",
+  "Harrow",
+  "Lambeth",
+  "Merton",
+  "Richmond",
+  "Southwark",
+  "Wandsworth",
+  "Westminster",
+];
+
+function boroughHref(name: string) {
+  return `/areas/${name.toLowerCase().replace(/\s+/g, "-")}`;
 }
 
 export default function BuildingRegulationDrawingsPage() {
@@ -103,22 +197,51 @@ export default function BuildingRegulationDrawingsPage() {
     () => ({
       "@context": "https://schema.org",
       "@type": "Service",
-      name: "Building Regulation Drawings",
+      name: "Building Regulation Drawings London",
       provider: {
         "@type": "LocalBusiness",
         name: "WEDRAWPLANS",
         url: "https://www.wedrawplans.co.uk",
-        telephone: "+44 20 3654 8508",
-        email: "info@wedrawplans.com",
+        telephone: PHONE_TEL,
+        email: EMAIL,
+        image: LOGO_IMAGE,
       },
-      areaServed: {
-        "@type": "City",
-        name: "London",
-      },
+      areaServed: [
+        {
+          "@type": "City",
+          name: "London",
+        },
+        {
+          "@type": "AdministrativeArea",
+          name: "Greater London",
+        },
+      ],
       serviceType:
         "Building Regulation drawings, building control drawings, technical drawing packs and structural coordination for residential and commercial projects",
       url: PAGE_URL,
       description: PAGE_DESCRIPTION,
+    }),
+    []
+  );
+
+  const breadcrumbSchema = useMemo(
+    () => ({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: "https://www.wedrawplans.co.uk",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Building Regulation Drawings",
+          item: PAGE_URL,
+        },
+      ],
     }),
     []
   );
@@ -219,60 +342,113 @@ export default function BuildingRegulationDrawingsPage() {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        />
       </Head>
 
       <main className="min-h-screen bg-slate-50 text-slate-900">
-        <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur">
-          <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
-            <Link href="/" className="flex items-center gap-3">
+        <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 shadow-sm backdrop-blur">
+          <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
+            <Link href="/" className="flex items-center gap-3" aria-label="WEDRAWPLANS home">
               <img
                 src={LOGO_IMAGE}
                 alt="WEDRAWPLANS logo"
-                className="h-11 w-auto object-contain"
+                className="h-10 w-auto object-contain sm:h-12"
               />
             </Link>
 
-            <div className="hidden items-center gap-3 md:flex">
+            <nav className="hidden items-center gap-6 text-sm font-semibold text-slate-700 lg:flex">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="transition hover:text-red-700"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+
+            <div className="flex items-center gap-2">
               <a
-                href="tel:+442036548508"
-                className="inline-flex items-center justify-center rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-900 transition hover:border-slate-400 hover:bg-slate-50"
+                href={`tel:${PHONE_TEL}`}
+                className="hidden rounded-full border border-slate-300 px-4 py-2 text-sm font-bold text-slate-900 transition hover:border-red-700 hover:text-red-700 sm:inline-flex"
+                onClick={() =>
+                  trackEvent("phone_click", {
+                    event_category: "technical_cta",
+                    event_label: "header_phone_click",
+                    page_path: "/building-regulation-drawings",
+                  })
+                }
               >
-                020 3654 8508
+                {PHONE_DISPLAY}
               </a>
               <a
                 href="https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20need%20Building%20Regulation%20drawings."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-full bg-green-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-green-600"
+                className="inline-flex rounded-full bg-green-500 px-4 py-2 text-sm font-bold text-white transition hover:bg-green-600"
+                onClick={() =>
+                  trackEvent("whatsapp_click", {
+                    event_category: "technical_cta",
+                    event_label: "header_whatsapp_click",
+                    page_path: "/building-regulation-drawings",
+                  })
+                }
               >
-                WhatsApp us
+                WhatsApp
               </a>
             </div>
           </div>
         </header>
 
-        <section className="border-b border-slate-200 bg-slate-50">
-          <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-            <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+        <section className="relative overflow-hidden border-b border-slate-200 bg-white">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(220,38,38,0.10),transparent_36%),radial-gradient(circle_at_bottom_right,rgba(14,165,233,0.12),transparent_34%)]" />
+          <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+            <div className="grid gap-10 lg:grid-cols-[1.02fr_0.98fr] lg:items-start">
               <div>
-                <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-red-700">
-                  Technical Drawing Packages
-                </p>
-                <h1 className="max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">
+                <div className="mb-5 flex flex-wrap gap-3">
+                  <span className="rounded-full bg-red-50 px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] text-red-700 ring-1 ring-red-100">
+                    Building Control Technical Packs
+                  </span>
+                  <span className="rounded-full bg-slate-100 px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] text-slate-700 ring-1 ring-slate-200">
+                    London and M25
+                  </span>
+                </div>
+
+                <h1 className="max-w-4xl text-4xl font-black tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
                   Building Regulation Drawings in London
                 </h1>
-                <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-700">
-                  Detailed Building Regulation drawings for extensions, loft
-                  conversions, new builds, conversions and commercial projects.
-                  We prepare technical drawing packs for building control
-                  approval, construction pricing and on site delivery, with clear
-                  structural coordination and practical build information.
+
+                <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-700 sm:text-xl">
+                  Detailed technical drawing packs for extensions, loft conversions,
+                  new builds, conversions and commercial projects. WEDRAWPLANS
+                  prepares Building Regulation drawings for Building Control review,
+                  contractor pricing and the construction stage.
                 </p>
+
+                <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                  {[
+                    "Technical plans, sections and build ups",
+                    "Structural engineer coordination",
+                    "Building Control submission support",
+                    "Residential and commercial drawing packs",
+                  ].map((item) => (
+                    <div
+                      key={item}
+                      className="rounded-2xl border border-slate-200 bg-white/90 p-4 text-sm font-bold text-slate-700 shadow-sm"
+                    >
+                      {item}
+                    </div>
+                  ))}
+                </div>
 
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                   <a
                     href="#quote-form"
-                    className="inline-flex items-center justify-center rounded-xl bg-red-700 px-6 py-4 text-base font-semibold text-white shadow-sm transition hover:bg-red-800"
+                    className="inline-flex items-center justify-center rounded-2xl bg-red-700 px-6 py-4 text-base font-bold text-white shadow-lg shadow-red-700/20 transition hover:bg-red-800"
                     onClick={() =>
                       trackEvent("cta_click", {
                         event_category: "technical_cta",
@@ -285,8 +461,8 @@ export default function BuildingRegulationDrawingsPage() {
                   </a>
 
                   <a
-                    href="tel:+442036548508"
-                    className="inline-flex items-center justify-center rounded-xl border border-slate-300 px-6 py-4 text-base font-semibold text-slate-900 transition hover:border-slate-400 hover:bg-white"
+                    href={`tel:${PHONE_TEL}`}
+                    className="inline-flex items-center justify-center rounded-2xl border border-slate-300 bg-white px-6 py-4 text-base font-bold text-slate-900 transition hover:border-red-700 hover:text-red-700"
                     onClick={() =>
                       trackEvent("phone_click", {
                         event_category: "technical_cta",
@@ -295,44 +471,24 @@ export default function BuildingRegulationDrawingsPage() {
                       })
                     }
                   >
-                    Call 020 3654 8508
-                  </a>
-
-                  <a
-                    href="https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20need%20Building%20Regulation%20drawings."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center rounded-xl border border-slate-300 px-6 py-4 text-base font-semibold text-slate-900 transition hover:border-slate-400 hover:bg-white"
-                    onClick={() =>
-                      trackEvent("whatsapp_click", {
-                        event_category: "technical_cta",
-                        event_label: "hero_whatsapp_click",
-                        page_path: "/building-regulation-drawings",
-                      })
-                    }
-                  >
-                    WhatsApp us
+                    Call {PHONE_DISPLAY}
                   </a>
                 </div>
 
-                <ul className="mt-8 grid gap-3 sm:grid-cols-2">
-                  {[
-                    "Detailed plans, sections and construction notes",
-                    "Building control submission support",
-                    "Structural engineer coordination",
-                    "Residential and commercial technical packages",
-                  ].map((item) => (
-                    <li
-                      key={item}
-                      className="rounded-2xl border border-slate-200 bg-white px-4 py-4 text-sm font-medium text-slate-700 shadow-sm"
-                    >
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+                <div className="mt-8 rounded-3xl border border-slate-200 bg-slate-950 p-6 text-white shadow-xl">
+                  <p className="text-sm font-bold uppercase tracking-[0.22em] text-cyan-300">
+                    Technical stage clarity
+                  </p>
+                  <p className="mt-3 text-base leading-7 text-slate-200">
+                    Planning drawings show the approved design. Building Regulation
+                    drawings explain how the project is intended to be built, with
+                    clear construction notes, sections, build ups and coordination
+                    for approval and site delivery.
+                  </p>
+                </div>
               </div>
 
-              <aside className="rounded-3xl border border-slate-200 bg-white p-6 shadow-xl">
+              <aside className="rounded-3xl border border-slate-200 bg-white p-6 shadow-2xl shadow-slate-900/10">
                 <h2 className="text-2xl font-bold tracking-tight">
                   Building Regulation drawing enquiry
                 </h2>
@@ -502,48 +658,21 @@ export default function BuildingRegulationDrawingsPage() {
 
         <section className="border-b border-slate-200 bg-white">
           <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-            <div className="flex flex-wrap gap-3 text-sm font-medium">
+            <div className="flex flex-wrap gap-3 text-sm font-bold">
+              {quickServices.map((service) => (
+                <Link
+                  key={service.href}
+                  href={service.href}
+                  className="rounded-full bg-slate-100 px-4 py-2 text-slate-800 transition hover:bg-red-50 hover:text-red-700"
+                >
+                  {service.title}
+                </Link>
+              ))}
               <Link
-                href="/extension-plans"
-                className="rounded-full bg-slate-100 px-4 py-2 text-slate-800 transition hover:bg-slate-200"
+                href="/areas"
+                className="rounded-full bg-slate-900 px-4 py-2 text-white transition hover:bg-black"
               >
-                Extension drawings
-              </Link>
-              <Link
-                href="/loft-conversion-plans"
-                className="rounded-full bg-slate-100 px-4 py-2 text-slate-800 transition hover:bg-slate-200"
-              >
-                Loft conversion drawings
-              </Link>
-              <Link
-                href="/new-build-plans"
-                className="rounded-full bg-slate-100 px-4 py-2 text-slate-800 transition hover:bg-slate-200"
-              >
-                New build drawings
-              </Link>
-              <Link
-                href="/commercial/change-of-use"
-                className="rounded-full bg-slate-100 px-4 py-2 text-slate-800 transition hover:bg-slate-200"
-              >
-                Change of use drawings
-              </Link>
-              <Link
-                href="/commercial/mixed-use"
-                className="rounded-full bg-slate-100 px-4 py-2 text-slate-800 transition hover:bg-slate-200"
-              >
-                Mixed use drawings
-              </Link>
-              <Link
-                href="/commercial/fire-strategy"
-                className="rounded-full bg-slate-100 px-4 py-2 text-slate-800 transition hover:bg-slate-200"
-              >
-                Fire strategy drawings
-              </Link>
-              <Link
-                href="/commercial/basements"
-                className="rounded-full bg-slate-100 px-4 py-2 text-slate-800 transition hover:bg-slate-200"
-              >
-                Basement drawings
+                London borough coverage
               </Link>
             </div>
           </div>
@@ -553,39 +682,33 @@ export default function BuildingRegulationDrawingsPage() {
           <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
             <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
               <div>
-                <h2 className="text-3xl font-bold tracking-tight">
-                  Building Regulation drawings prepared for approval, pricing and the build stage
+                <p className="text-sm font-bold uppercase tracking-[0.24em] text-red-700">
+                  From planning approval to technical pack
+                </p>
+                <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+                  Building Regulation drawings prepared for approval, pricing and construction coordination
                 </h2>
 
                 <p className="mt-6 text-lg leading-8 text-slate-700">
-                  A Building Regulation package is where the project becomes
-                  technically real. Planning drawings often show what the project
-                  looks like in principle. Building Regulation drawings go much
-                  further by showing how the work is intended to be built, how
-                  key elements come together and how the proposal is expected to
-                  meet building control requirements.
+                  A Building Regulation package is where the design becomes a
+                  technical construction document. Planning drawings usually show
+                  the approved appearance and layout. Building Regulation drawings
+                  go further by setting out how the work is intended to be built,
+                  how key elements meet, and how the scheme is expected to satisfy
+                  Building Control requirements.
                 </p>
 
                 <p className="mt-6 text-lg leading-8 text-slate-700">
-                  WEDRAWPLANS prepares detailed technical drawing packs for
-                  residential and commercial projects across London. These packs
-                  are designed to help with building control approval, structural
-                  coordination, contractor pricing and construction on site. The
-                  aim is always to provide a clear, practical and professionally
-                  organised set of drawings that moves the project forward.
-                </p>
-
-                <p className="mt-6 text-lg leading-8 text-slate-700">
-                  This service is especially important for extensions, loft
-                  conversions, new builds, internal structural alterations,
-                  conversions and commercial schemes where the technical pack
-                  needs to coordinate with structural engineer input, fire
-                  safety, thermal performance, sound requirements, drainage or
-                  other construction details.
+                  WEDRAWPLANS prepares technical drawing packs for London projects
+                  where clients need clear information for Building Control,
+                  structural coordination, contractor pricing and site delivery.
+                  The aim is to provide a strong, practical and well organised
+                  drawing set that helps move the project from approval stage into
+                  the build stage.
                 </p>
               </div>
 
-              <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl">
+              <div className="overflow-hidden rounded-3xl border border-slate-200 bg-slate-100 shadow-xl">
                 <img
                   src={SECOND_IMAGE}
                   alt="Detailed Building Regulation construction drawings and technical details"
@@ -598,71 +721,78 @@ export default function BuildingRegulationDrawingsPage() {
 
         <section className="border-b border-slate-200 bg-slate-50">
           <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold tracking-tight">
-              What is included in a Building Regulation drawing pack
-            </h2>
+            <div className="max-w-4xl">
+              <p className="text-sm font-bold uppercase tracking-[0.24em] text-red-700">
+                Technical drawing content
+              </p>
+              <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+                What is usually included in a Building Regulation drawing pack
+              </h2>
+              <p className="mt-6 text-lg leading-8 text-slate-700">
+                The exact content depends on the project scope, existing building
+                and structural requirements. A strong technical pack usually
+                combines coordinated plans, sections, notes and construction
+                details so Building Control and the wider project team can
+                understand how the work is intended to be carried out.
+              </p>
+            </div>
 
-            <p className="mt-6 max-w-4xl text-lg leading-8 text-slate-700">
-              The exact content depends on the project, but a strong Building
-              Regulation pack will usually include a coordinated set of drawings
-              and notes that allow building control and the wider team to
-              understand how the work is intended to be constructed.
-            </p>
-
-            <div className="mt-10 grid gap-6 md:grid-cols-2">
-              <div className="rounded-2xl border border-slate-200 bg-white p-6">
-                <ul className="space-y-3 text-slate-700">
-                  <li>General arrangement plans at key levels</li>
-                  <li>Demolition and proposed construction information where needed</li>
-                  <li>Cross sections and long sections with build ups</li>
-                  <li>Wall, floor and roof build up notes</li>
-                  <li>Insulation, thermal and condensation risk related notes</li>
-                  <li>Fire protection and escape information relevant to the scope</li>
-                </ul>
-              </div>
-
-              <div className="rounded-2xl border border-slate-200 bg-white p-6">
-                <ul className="space-y-3 text-slate-700">
-                  <li>Structural engineer coordination and beam references</li>
-                  <li>Opening details, junction details and key construction notes</li>
-                  <li>Drainage and basic external works information where relevant</li>
-                  <li>Stair, headroom and guarding related notes where applicable</li>
-                  <li>Sound and ventilation related notes depending on the project</li>
-                  <li>Project-specific technical items that need build clarity</li>
-                </ul>
-              </div>
+            <div className="mt-10 grid gap-4 md:grid-cols-2">
+              {technicalPackItems.map((item) => (
+                <div
+                  key={item}
+                  className="rounded-2xl border border-slate-200 bg-white p-5 text-slate-700 shadow-sm"
+                >
+                  <span className="mr-3 inline-flex h-7 w-7 items-center justify-center rounded-full bg-red-50 text-sm font-black text-red-700">
+                    ✓
+                  </span>
+                  {item}
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
         <section className="border-b border-slate-200 bg-white">
           <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-            <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-center">
-              <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl">
+            <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+              <div className="overflow-hidden rounded-3xl border border-slate-200 bg-slate-100 shadow-xl">
                 <img
                   src={HERO_IMAGE}
-                  alt="Building Regulation project delivery and completed construction example"
+                  alt="Building Regulation project delivery and construction drawing package"
                   className="block h-auto w-full object-contain"
                 />
               </div>
 
               <div>
-                <h2 className="text-3xl font-bold tracking-tight">
-                  Why clients instruct WEDRAWPLANS for Building Regulation drawings
+                <p className="text-sm font-bold uppercase tracking-[0.24em] text-red-700">
+                  Why technical coordination matters
+                </p>
+                <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+                  Structural engineering coordination is central to a good Building Reg pack
                 </h2>
 
-                <div className="mt-8 grid gap-4">
+                <p className="mt-6 text-lg leading-8 text-slate-700">
+                  Many projects need to align closely with structural engineer
+                  information. This may include steel beams, padstones, new
+                  openings, roof alterations, floor strengthening, connection
+                  details and other structural elements. The technical drawing
+                  pack works best when the architectural drawings and structural
+                  design are clearly coordinated.
+                </p>
+
+                <div className="mt-8 grid gap-4 sm:grid-cols-2">
                   {[
-                    "They already have planning approval and need the technical package for building control",
-                    "They need a drawing set that builders and structural engineers can work from clearly",
-                    "They want a practical pack that deals with junctions, sections, build ups and structural coordination properly",
-                    "They need a more professional technical package before construction pricing starts",
-                    "They want a single team to help move the project from planning stage into technical stage",
-                    "They need clear information for extensions, lofts, conversions, new builds or commercial alterations",
+                    "Beam positions and opening layouts",
+                    "Padstone and support references",
+                    "Floor and roof structure changes",
+                    "Junction details around structural work",
+                    "Builder friendly technical clarity",
+                    "Clearer Building Control submission",
                   ].map((item) => (
                     <div
                       key={item}
-                      className="rounded-2xl border border-slate-200 p-5 text-slate-700"
+                      className="rounded-2xl border border-slate-200 bg-white p-5 text-sm font-bold text-slate-700 shadow-sm"
                     >
                       {item}
                     </div>
@@ -675,41 +805,115 @@ export default function BuildingRegulationDrawingsPage() {
 
         <section className="border-b border-slate-200 bg-slate-50">
           <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold tracking-tight">
-              Projects we cover
-            </h2>
+            <div className="max-w-4xl">
+              <p className="text-sm font-bold uppercase tracking-[0.24em] text-red-700">
+                Project types covered
+              </p>
+              <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+                Building Regulation drawings for residential, commercial and mixed use work
+              </h2>
+              <p className="mt-6 text-lg leading-8 text-slate-700">
+                We prepare technical drawing packages for a wide range of London
+                projects, from domestic extensions and loft conversions through
+                to commercial alterations, conversions and small developments.
+              </p>
+            </div>
 
-            <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-              <div className="rounded-2xl border border-slate-200 bg-white p-6">
-                <h3 className="text-xl font-semibold">House extensions</h3>
-                <p className="mt-3 text-slate-700">
-                  Rear extensions, side returns, wrap around extensions and
-                  larger alterations that need detailed technical coordination.
+            <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+              {projectTypes.map((item) => (
+                <div
+                  key={item.title}
+                  className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+                >
+                  <h3 className="text-xl font-black text-slate-950">{item.title}</h3>
+                  <p className="mt-4 leading-7 text-slate-700">{item.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="border-b border-slate-200 bg-white">
+          <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+            <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+              <div>
+                <p className="text-sm font-bold uppercase tracking-[0.24em] text-red-700">
+                  Related WEDRAWPLANS services
+                </p>
+                <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+                  Connect the technical package with the rest of the project
+                </h2>
+                <p className="mt-6 text-lg leading-8 text-slate-700">
+                  Clients often need Building Regulation drawings after planning,
+                  permitted development, lawful development or a design route has
+                  been agreed. These related pages help connect the technical
+                  stage with the wider WEDRAWPLANS service structure.
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-slate-200 bg-white p-6">
-                <h3 className="text-xl font-semibold">Loft conversions</h3>
-                <p className="mt-3 text-slate-700">
-                  Dormers, mansards, hip to gable conversions, stairs,
-                  headroom coordination and roof structure related detailing.
+              <div className="grid gap-4 md:grid-cols-2">
+                {quickServices.map((service) => (
+                  <Link
+                    key={service.href}
+                    href={service.href}
+                    className="rounded-3xl border border-slate-200 bg-slate-50 p-6 transition hover:border-red-200 hover:bg-red-50 hover:shadow-md"
+                  >
+                    <h3 className="text-lg font-black text-slate-950">
+                      {service.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-6 text-slate-700">
+                      {service.text}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="border-b border-slate-200 bg-slate-950 text-white">
+          <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+            <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+              <div>
+                <p className="text-sm font-bold uppercase tracking-[0.24em] text-cyan-300">
+                  London borough coverage
                 </p>
+                <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">
+                  Building Regulation drawing support across London and surrounding areas
+                </h2>
+                <p className="mt-6 text-lg leading-8 text-slate-300">
+                  WEDRAWPLANS supports homeowners, developers, landlords and
+                  commercial clients across London. If your project has reached
+                  technical stage, we can review the available information and
+                  advise what is needed for a clear Building Regulation package.
+                </p>
+
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                  <a
+                    href="#quote-form"
+                    className="inline-flex items-center justify-center rounded-2xl bg-cyan-500 px-6 py-4 text-base font-bold text-white transition hover:bg-cyan-400"
+                  >
+                    Request a technical drawing quote
+                  </a>
+                  <Link
+                    href="/areas"
+                    className="inline-flex items-center justify-center rounded-2xl border border-slate-700 px-6 py-4 text-base font-bold text-white transition hover:border-slate-400 hover:bg-slate-900"
+                  >
+                    View London areas
+                  </Link>
+                </div>
               </div>
 
-              <div className="rounded-2xl border border-slate-200 bg-white p-6">
-                <h3 className="text-xl font-semibold">New builds</h3>
-                <p className="mt-3 text-slate-700">
-                  Full technical drawing packs for new houses and small
-                  developments, coordinated with wider consultant information.
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-slate-200 bg-white p-6">
-                <h3 className="text-xl font-semibold">Commercial projects</h3>
-                <p className="mt-3 text-slate-700">
-                  Change of use projects, mixed use schemes, office fit outs,
-                  structural alterations and other technical commercial packages.
-                </p>
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+                {boroughLinks.map((borough) => (
+                  <Link
+                    key={borough}
+                    href={boroughHref(borough)}
+                    className="rounded-2xl border border-slate-800 bg-slate-900/70 p-4 text-sm font-bold text-slate-200 transition hover:border-cyan-400 hover:text-white"
+                  >
+                    {borough}
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
@@ -717,140 +921,56 @@ export default function BuildingRegulationDrawingsPage() {
 
         <section className="border-b border-slate-200 bg-white">
           <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold tracking-tight">
-              Structural engineering coordination matters
-            </h2>
-
-            <p className="mt-6 max-w-4xl text-lg leading-8 text-slate-700">
-              Many Building Regulation packages need to align closely with
-              structural engineer information. That may include steel beams,
-              padstones, new openings, roof alterations, floor strengthening,
-              connection details and other structural elements. A technical pack
-              works best when the drawings and structural design speak to each
-              other clearly. This is a major part of why clients instruct us.
-            </p>
-
-            <div className="mt-10 grid gap-6 sm:grid-cols-2">
-              <div className="rounded-2xl border border-slate-200 p-6">
-                <h3 className="text-xl font-semibold">Typical coordination items</h3>
-                <ul className="mt-4 space-y-3 text-slate-700">
-                  <li>Beam positions and opening layouts</li>
-                  <li>Padstone references and structural support logic</li>
-                  <li>Floor and roof structure changes</li>
-                  <li>Junction details around structural work</li>
-                  <li>Coordination between architectural and structural intent</li>
-                </ul>
-              </div>
-
-              <div className="rounded-2xl border border-slate-200 p-6">
-                <h3 className="text-xl font-semibold">Why that helps the project</h3>
-                <ul className="mt-4 space-y-3 text-slate-700">
-                  <li>Clearer building control submission</li>
-                  <li>Better understanding for builders on site</li>
-                  <li>Less confusion during pricing and construction</li>
-                  <li>Stronger technical consistency across the full package</li>
-                  <li>More confidence in the build stage information</li>
-                </ul>
-              </div>
+            <div className="max-w-4xl">
+              <p className="text-sm font-bold uppercase tracking-[0.24em] text-red-700">
+                FAQ
+              </p>
+              <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+                Building Regulation drawing questions
+              </h2>
             </div>
-          </div>
-        </section>
 
-        <section className="border-b border-slate-200 bg-slate-50">
-          <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold tracking-tight">
-              Related drawing services
-            </h2>
-
-            <p className="mt-6 max-w-4xl text-lg leading-8 text-slate-700">
-              Clients looking for Building Regulation drawings often also need
-              planning drawings, conversion drawings or commercial technical
-              support. WEDRAWPLANS provides a wide range of architectural
-              drawing services across London and surrounding areas.
-            </p>
-
-            <div className="mt-10 grid gap-4 md:grid-cols-3">
-              <Link
-                href="/extension-plans"
-                className="rounded-2xl border border-slate-200 bg-white p-6 transition hover:border-slate-300 hover:shadow-md"
-              >
-                <h3 className="text-lg font-semibold">Extension drawings</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-700">
-                  Planning drawings for rear extensions, side return layouts and
-                  wrap around extension schemes.
-                </p>
-              </Link>
-
-              <Link
-                href="/loft-conversion-plans"
-                className="rounded-2xl border border-slate-200 bg-white p-6 transition hover:border-slate-300 hover:shadow-md"
-              >
-                <h3 className="text-lg font-semibold">Loft conversion drawings</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-700">
-                  Planning drawings for dormers, mansards, hip to gable lofts
-                  and wider roof conversion schemes.
-                </p>
-              </Link>
-
-              <Link
-                href="/commercial/change-of-use"
-                className="rounded-2xl border border-slate-200 bg-white p-6 transition hover:border-slate-300 hover:shadow-md"
-              >
-                <h3 className="text-lg font-semibold">Change of use drawings</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-700">
-                  Commercial and mixed use planning drawings for reconfiguration,
-                  conversions and building improvement projects.
-                </p>
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        <section className="border-b border-slate-200 bg-white">
-          <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold tracking-tight">
-              Frequently asked questions
-            </h2>
-
-            <div className="mt-8 space-y-4">
-              <div className="rounded-2xl border border-slate-200 p-6">
-                <h3 className="text-lg font-semibold">
+            <div className="mt-10 space-y-4">
+              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
+                <h3 className="text-lg font-black text-slate-950">
                   Do I need planning approval before Building Regulation drawings?
                 </h3>
-                <p className="mt-3 text-slate-700">
-                  In many cases yes, the planning route comes first where it is
+                <p className="mt-3 leading-7 text-slate-700">
+                  In many cases the planning route comes first where it is
                   required. Once the planning position is clear, the technical
-                  package can then be prepared for building control and the build stage.
+                  package can be prepared for Building Control and the build stage.
+                  Some internal works may not need planning, but can still need
+                  Building Regulation approval.
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-slate-200 p-6">
-                <h3 className="text-lg font-semibold">
-                  Can you prepare Building Regulation drawings if another company did the planning drawings?
+              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
+                <h3 className="text-lg font-black text-slate-950">
+                  Can you prepare Building Regulation drawings if another company prepared the planning drawings?
                 </h3>
-                <p className="mt-3 text-slate-700">
+                <p className="mt-3 leading-7 text-slate-700">
                   Yes. We can review the approved planning information and prepare
-                  a separate Building Regulation package based on the agreed scheme,
-                  subject to the level of information available.
+                  a separate technical package based on the agreed scheme, subject
+                  to the quality and level of information available.
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-slate-200 p-6">
-                <h3 className="text-lg font-semibold">
-                  Are these drawings useful for builders as well as building control?
+              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
+                <h3 className="text-lg font-black text-slate-950">
+                  Are these drawings useful for builders as well as Building Control?
                 </h3>
-                <p className="mt-3 text-slate-700">
+                <p className="mt-3 leading-7 text-slate-700">
                   Yes. A good technical pack should help both the approval process
                   and the construction process by giving clearer information for
                   pricing, coordination and site work.
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-slate-200 p-6">
-                <h3 className="text-lg font-semibold">
+              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
+                <h3 className="text-lg font-black text-slate-950">
                   How quickly can you start?
                 </h3>
-                <p className="mt-3 text-slate-700">
+                <p className="mt-3 leading-7 text-slate-700">
                   We can usually review the project quickly and arrange an initial
                   survey within 48 hours in most cases, then move into the technical
                   drawing stage once the scope and starting information are confirmed.
@@ -860,80 +980,61 @@ export default function BuildingRegulationDrawingsPage() {
           </div>
         </section>
 
-        <section className="border-b border-slate-200 bg-slate-900 text-white">
+        <section className="border-b border-slate-200 bg-red-700 text-white">
           <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-            <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+            <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
               <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-cyan-300">
-                  Ready to move into the technical stage
+                <p className="text-sm font-bold uppercase tracking-[0.24em] text-red-100">
+                  Ready for Building Control stage
                 </p>
-                <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-                  Send your planning drawings and let us build the technical pack properly
+                <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">
+                  Send your planning drawings and we will review the technical scope
                 </h2>
-                <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-300">
-                  If your planning drawings are approved and you are ready to
-                  move toward building control, pricing or construction, send us
-                  the project details and we will review the technical scope and
-                  come back with a clear next step.
+                <p className="mt-5 max-w-3xl text-lg leading-8 text-red-50">
+                  If your project is approved, close to approval, or ready for
+                  technical coordination, send us the details. We will review what
+                  is available and confirm the next step for the Building Regulation
+                  drawing package.
                 </p>
-
-                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                  <a
-                    href="#quote-form"
-                    className="inline-flex items-center justify-center rounded-xl bg-cyan-500 px-6 py-4 text-base font-semibold text-white transition hover:bg-cyan-400"
-                  >
-                    Get my Building Reg quote
-                  </a>
-                  <a
-                    href="https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20need%20Building%20Regulation%20drawings."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center rounded-xl border border-slate-600 px-6 py-4 text-base font-semibold text-white transition hover:border-slate-400 hover:bg-slate-800"
-                  >
-                    Chat on WhatsApp
-                  </a>
-                </div>
               </div>
 
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div className="rounded-2xl border border-slate-800 bg-slate-800/70 p-5">
-                  <h3 className="text-lg font-semibold">Extensions</h3>
-                  <p className="mt-2 text-sm leading-6 text-slate-300">
-                    Rear extensions, side returns, wrap around extensions and structural openings.
-                  </p>
-                </div>
-                <div className="rounded-2xl border border-slate-800 bg-slate-800/70 p-5">
-                  <h3 className="text-lg font-semibold">Loft conversions</h3>
-                  <p className="mt-2 text-sm leading-6 text-slate-300">
-                    Dormers, mansards, stairs, roof alterations and technical junctions.
-                  </p>
-                </div>
-                <div className="rounded-2xl border border-slate-800 bg-slate-800/70 p-5">
-                  <h3 className="text-lg font-semibold">New builds</h3>
-                  <p className="mt-2 text-sm leading-6 text-slate-300">
-                    Full technical packs for houses and small development schemes.
-                  </p>
-                </div>
-                <div className="rounded-2xl border border-slate-800 bg-slate-800/70 p-5">
-                  <h3 className="text-lg font-semibold">Commercial works</h3>
-                  <p className="mt-2 text-sm leading-6 text-slate-300">
-                    Change of use, mixed use, fit outs and structural commercial packages.
-                  </p>
-                </div>
+              <div className="flex flex-col gap-3">
+                <a
+                  href="#quote-form"
+                  className="inline-flex items-center justify-center rounded-2xl bg-white px-6 py-4 text-base font-black text-red-700 transition hover:bg-red-50"
+                >
+                  Get my Building Reg quote
+                </a>
+                <a
+                  href="https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20need%20Building%20Regulation%20drawings."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-2xl border border-red-200 px-6 py-4 text-base font-black text-white transition hover:bg-red-800"
+                >
+                  Chat on WhatsApp
+                </a>
+                <a
+                  href={`tel:${PHONE_TEL}`}
+                  className="inline-flex items-center justify-center rounded-2xl border border-red-200 px-6 py-4 text-base font-black text-white transition hover:bg-red-800"
+                >
+                  Call {PHONE_DISPLAY}
+                </a>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="border-t border-slate-200 bg-slate-50">
+        <section className="border-b border-slate-200 bg-slate-50">
           <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
             <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
               <div>
-                <h2 className="text-2xl font-bold tracking-tight">
+                <h2 className="text-2xl font-black tracking-tight text-slate-950">
                   Check our Google Business Profile
                 </h2>
                 <p className="mt-3 max-w-3xl text-slate-700">
-                  View our business profile on Google.
+                  View the WEDRAWPLANS business profile on Google for company
+                  information and client confidence before instructing technical
+                  drawing work.
                 </p>
               </div>
 
@@ -941,7 +1042,7 @@ export default function BuildingRegulationDrawingsPage() {
                 href={GBP_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-xl bg-slate-900 px-6 py-4 text-base font-semibold text-white transition hover:bg-black"
+                className="inline-flex items-center justify-center rounded-2xl bg-slate-900 px-6 py-4 text-base font-black text-white transition hover:bg-black"
                 onClick={() =>
                   trackEvent("gbp_click", {
                     event_category: "technical_cta",
@@ -955,6 +1056,45 @@ export default function BuildingRegulationDrawingsPage() {
             </div>
           </div>
         </section>
+
+        <footer className="bg-slate-950 text-white">
+          <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+            <div className="grid gap-8 md:grid-cols-[1.1fr_0.9fr] md:items-center">
+              <div>
+                <img
+                  src={LOGO_IMAGE}
+                  alt="WEDRAWPLANS logo"
+                  className="h-11 w-auto object-contain brightness-0 invert"
+                />
+                <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-300">
+                  WEDRAWPLANS prepares planning drawings, Building Regulation
+                  drawings and technical drawing packages for residential and
+                  commercial projects across London and surrounding M25 areas.
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-3 md:items-end">
+                <a
+                  href={`tel:${PHONE_TEL}`}
+                  className="text-lg font-black text-white hover:text-cyan-300"
+                >
+                  {PHONE_DISPLAY}
+                </a>
+                <a
+                  href={`mailto:${EMAIL}`}
+                  className="text-sm font-bold text-slate-300 hover:text-white"
+                >
+                  {EMAIL}
+                </a>
+                <p className="text-xs text-slate-500">
+                  © {new Date().getFullYear()} WEDRAWPLANS. All rights reserved.
+                </p>
+              </div>
+            </div>
+          </div>
+        </footer>
+
+        <SmartPlanningAssistant boroughName="London" />
       </main>
     </>
   );
