@@ -221,7 +221,7 @@ function hasValidEmail(value: string) {
 function hasValidPhone(value: string) {
   const normalized = normalisePhone(value);
   const digitsOnly = normalized.replace(/[^\d]/g, "");
-  return digitsOnly.length >= 10;
+  return digitsOnly.length >= 10 && digitsOnly.length <= 15;
 }
 
 function normalizeService(value: string) {
@@ -258,6 +258,7 @@ function normalizeService(value: string) {
   if (
     lower.includes("flat conversion") ||
     lower.includes("conversion to flats") ||
+    lower.includes("self contained flats") ||
     lower.includes("hmo")
   ) {
     return "Flat conversion drawings";
@@ -289,6 +290,9 @@ function isObviousSpamMessage(message: string) {
     "domain authority",
     "dr 50+",
     "link building",
+    "whatsapp marketing",
+    "rank your website",
+    "increase traffic",
   ];
   return badPatterns.some((p) => v.includes(p));
 }
@@ -340,6 +344,75 @@ function looksLikeGibberishName(name: string) {
   return false;
 }
 
+function looksLikeRandomText(value: string) {
+  const v = value.trim();
+  if (!v) return false;
+
+  const compact = v.replace(/\s+/g, "");
+  const letters = compact.replace(/[^a-z]/gi, "");
+  const vowels = (letters.match(/[aeiou]/gi) || []).length;
+  const consonants = (letters.match(/[bcdfghjklmnpqrstvwxyz]/gi) || []).length;
+  const upperCount = (letters.match(/[A-Z]/g) || []).length;
+  const lowerCount = (letters.match(/[a-z]/g) || []).length;
+
+  if (v.length >= 10 && !/\s/.test(v) && upperCount >= 2 && lowerCount >= 2) return true;
+  if (letters.length >= 12 && vowels <= 2 && consonants >= 8) return true;
+  if (hasRepeatedConsonantRun(v)) return true;
+  if (/^[a-zA-Z0-9]{14,}$/.test(compact) && !/\s/.test(v)) return true;
+
+  return false;
+}
+
+function looksLikeNonsensePostcode(value: string) {
+  const v = normalisePostcode(value).replace(/\s+/g, "");
+  if (!v) return false;
+  if (UK_POSTCODE_REGEX.test(v)) return false;
+
+  if (v.length > 9 && /^[A-Z0-9]+$/i.test(v)) return true;
+  if (v.length > 12) return true;
+  if (looksLikeRandomText(v)) return true;
+
+  return false;
+}
+
+function looksLikeBotEmail(email: string) {
+  const v = email.toLowerCase().trim();
+  if (!EMAIL_REGEX.test(v)) return false;
+
+  const [local, domain] = v.split("@");
+  if (!local || !domain) return false;
+
+  const dotCount = (local.match(/\./g) || []).length;
+  const digits = (local.match(/\d/g) || []).length;
+
+  if (dotCount >= 4) return true;
+  if (local.length >= 14 && digits >= 3 && dotCount >= 2) return true;
+  if (/^[a-z](\.[a-z]){3,}\.\d+/i.test(local)) return true;
+  if (looksLikeRandomText(local.replace(/\./g, "")) && domain === "gmail.com") return true;
+
+  return false;
+}
+
+function looksLikeFakePhone(phone: string) {
+  const normalized = normalisePhone(phone);
+  const digits = normalized.replace(/[^\d]/g, "");
+
+  if (!digits) return false;
+  if (digits.length < 10 || digits.length > 15) return true;
+  if (/^(\d)\1{8,}$/.test(digits)) return true;
+
+  const isLikelyUk =
+    digits.startsWith("07") ||
+    digits.startsWith("01") ||
+    digits.startsWith("02") ||
+    digits.startsWith("03") ||
+    digits.startsWith("44");
+
+  if (digits.length === 10 && !isLikelyUk) return true;
+
+  return false;
+}
+
 function getOriginOrReferer(req: NextApiRequest) {
   const origin = toText(req.headers.origin);
   const referer = toText(req.headers.referer);
@@ -370,13 +443,13 @@ function scoreLead(input: {
 }) {
   let score = 0;
 
-  if (input.name.length >= 2) score += 15;
-  if (hasValidEmail(input.email)) score += 20;
-  if (hasValidPhone(input.phone)) score += 20;
+  if (input.name.length >= 2 && !looksLikeGibberishName(input.name)) score += 15;
+  if (hasValidEmail(input.email) && !looksLikeBotEmail(input.email)) score += 20;
+  if (hasValidPhone(input.phone) && !looksLikeFakePhone(input.phone)) score += 20;
   if (UK_POSTCODE_REGEX.test(input.postcode)) score += 15;
   if (input.service.length >= 3) score += 10;
   if (input.borough) score += 5;
-  if (input.message.length >= 10) score += 5;
+  if (input.message.length >= 10 && !looksLikeRandomText(input.message)) score += 5;
   if (typeof input.timeTakenMs === "number" && input.timeTakenMs >= 2500) score += 5;
   if (input.pagePath.startsWith("/")) score += 5;
 
@@ -459,15 +532,11 @@ export default async function handler(
   cleanupOldEntries(now);
 
   const windowMs = 10 * 60 * 1000;
-  const maxRequestsPerIp = 8;
+  const maxRequestsPerIp = 20;
 
   const recent = (rateStore.get(ip) || []).filter((ts) => now - ts < windowMs);
-  if (recent.length >= maxRequestsPerIp) {
-    return res.status(429).json({
-      success: false,
-      error: "Too many requests. Please try again later.",
-    });
-  }
+  const sameIpCountBeforeThisRequest = recent.length;
+
   recent.push(now);
   rateStore.set(ip, recent);
 
@@ -481,7 +550,7 @@ export default async function handler(
   const rawPostcode = toText(body.postcode);
   const rawPagePath = toText(body.pagePath);
   const rawUserAgent = toText(body.userAgent) || toText(req.headers["user-agent"]);
-  const hp = toText(body.hp || body.company || body.website);
+  const hp = toText(body.hp || body.company || body.website || body.url || body.business);
 
   const parsedTimeTaken =
     typeof body.timeTakenMs === "number"
@@ -524,6 +593,14 @@ export default async function handler(
 
   const hardBlockReasons: string[] = [];
   const softFlags: string[] = [];
+  const botSignals: string[] = [];
+
+  const gibberishName = rawName ? looksLikeGibberishName(rawName) : false;
+  const randomMessage = message ? looksLikeRandomText(message) : false;
+  const nonsensePostcode = postcode ? looksLikeNonsensePostcode(postcode) : false;
+  const botEmail = validEmail ? looksLikeBotEmail(email) : false;
+  const fakePhone = phone ? looksLikeFakePhone(phone) : false;
+  const ownSite = isLikelyFromOwnSite(req);
 
   if (!hasWorkingContact) {
     hardBlockReasons.push("No valid email or phone provided");
@@ -533,24 +610,33 @@ export default async function handler(
     hardBlockReasons.push("Message matched obvious spam keywords");
   }
 
-  if (rawName && looksLikeGibberishName(rawName)) {
+  if (gibberishName) {
+    botSignals.push("Random generated name");
     softFlags.push("Name looks unusual");
   }
 
-  if (email && !validEmail) {
-    softFlags.push("Email format looks invalid");
+  if (randomMessage) {
+    botSignals.push("Random generated message");
+    softFlags.push("Message looks random");
   }
 
-  if (validEmail && looksLikeDisposableEmail(email)) {
-    softFlags.push("Disposable email domain");
-  }
-
-  if (phone && !validPhone) {
-    softFlags.push("Phone number looks short");
-  }
-
-  if (postcode && !UK_POSTCODE_REGEX.test(normalisedPostcode)) {
+  if (nonsensePostcode) {
+    botSignals.push("Nonsense postcode");
     softFlags.push("Postcode format not standard");
+  } else if (postcode && !UK_POSTCODE_REGEX.test(normalisedPostcode)) {
+    softFlags.push("Postcode format not standard");
+  }
+
+  if (botEmail) {
+    botSignals.push("Bot style email");
+    softFlags.push("Email pattern looks automated");
+  }
+
+  if (fakePhone) {
+    botSignals.push("Fake phone pattern");
+    softFlags.push("Phone number looks unusual");
+  } else if (phone && !validPhone) {
+    softFlags.push("Phone number looks short");
   }
 
   if (!rawName) {
@@ -565,16 +651,53 @@ export default async function handler(
     softFlags.push("Message missing");
   }
 
-  if (typeof timeTakenMs === "number" && timeTakenMs > 0 && timeTakenMs < 2500) {
+  if (!timeTakenMs) {
+    softFlags.push("Time taken missing");
+  }
+
+  if (typeof timeTakenMs === "number" && timeTakenMs > 0 && timeTakenMs < 1800) {
+    botSignals.push("Submitted too quickly");
     softFlags.push("Submitted very quickly");
   }
 
-  if (!isLikelyFromOwnSite(req)) {
+  if (!ownSite) {
+    botSignals.push("Origin or referer unusual");
     softFlags.push("Origin or referer did not look like own site");
   }
 
   if (!rawUserAgent) {
+    botSignals.push("User agent missing");
     softFlags.push("User agent missing");
+  }
+
+  if (sameIpCountBeforeThisRequest >= 6) {
+    botSignals.push("Repeated submissions from same IP");
+    softFlags.push("Repeated submissions from same IP");
+  }
+
+  const obviousMachineRubbish =
+    botSignals.length >= 3 &&
+    (gibberishName || randomMessage) &&
+    (nonsensePostcode || botEmail || fakePhone || sameIpCountBeforeThisRequest >= 6);
+
+  const intenseRepeatedAttack =
+    sameIpCountBeforeThisRequest >= maxRequestsPerIp &&
+    (botSignals.length >= 1 || nonsensePostcode || randomMessage || gibberishName);
+
+  if (hardBlockReasons.length > 0 || obviousMachineRubbish || intenseRepeatedAttack) {
+    console.warn("Silently swallowed spam submission", {
+      ip,
+      hardBlockReasons,
+      botSignals,
+      sameIpCountBeforeThisRequest,
+      pagePath,
+      name: safeName,
+      email,
+      phone,
+      postcode: normalisedPostcode,
+    });
+
+    return res.status(200).json({ success: true });
   }
 
   const leadScore = scoreLead({
@@ -616,29 +739,14 @@ export default async function handler(
       postcode: normalisedPostcode,
       pagePath,
     });
-    return res.status(200).json({ success: true });
-  }
 
-  const probableBotAutoSwallow =
-    looksLikeGibberishName(safeName) &&
-    (!message || message.length < 6) &&
-    (!postcode || !UK_POSTCODE_REGEX.test(normalisedPostcode)) &&
-    typeof timeTakenMs === "number" &&
-    timeTakenMs < 2500;
-
-  if (hardBlockReasons.length > 0 || probableBotAutoSwallow) {
-    console.warn("Blocked spam submission", {
-      ip,
-      hardBlockReasons,
-      probableBotAutoSwallow,
-      body,
-    });
     return res.status(200).json({ success: true });
   }
 
   const needsReview =
     softFlags.length >= 2 ||
-    leadScore < 45 ||
+    botSignals.length >= 1 ||
+    leadScore < 55 ||
     (!rawName && !message) ||
     (!postcode && !message);
 
@@ -675,7 +783,7 @@ export default async function handler(
       `Time taken: ${typeof timeTakenMs === "number" ? `${timeTakenMs} ms` : "Unknown"}`,
       `IP: ${ip}`,
       `User agent: ${rawUserAgent || "Not available"}`,
-      `Origin/referer check: ${isLikelyFromOwnSite(req) ? "Looks normal" : "Unusual"}`,
+      `Origin/referer check: ${ownSite ? "Looks normal" : "Unusual"}`,
       "",
       `Name: ${safeName}`,
       `Email: ${email || "Not provided"}`,
@@ -690,6 +798,9 @@ export default async function handler(
       "",
       "Soft review flags:",
       softFlags.length ? softFlags.join(" | ") : "None",
+      "",
+      "Bot signals:",
+      botSignals.length ? botSignals.join(" | ") : "None",
       "",
       "All submitted form fields:",
       JSON.stringify(body, null, 2),
