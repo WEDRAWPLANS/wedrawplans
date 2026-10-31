@@ -532,6 +532,12 @@ export default function ExtensionPlansPage() {
                   Many homeowners choose a Lawful Development Certificate for
                   formal confirmation.
                 </div>
+                <a
+                  href="/lawful-development-certificate-drawings"
+                  className="mt-3 inline-block text-sm font-semibold text-blue-700 underline underline-offset-4"
+                >
+                  View permitted development and LDC drawings
+                </a>
               </div>
 
               <div className="rounded-2xl border bg-white p-6">
@@ -543,6 +549,12 @@ export default function ExtensionPlansPage() {
                   restrictions, full planning is required. We produce council
                   ready packs and guide you through submission requirements.
                 </div>
+                <a
+                  href="/planning-drawings"
+                  className="mt-3 inline-block text-sm font-semibold text-blue-700 underline underline-offset-4"
+                >
+                  View planning application drawings
+                </a>
               </div>
             </div>
 
