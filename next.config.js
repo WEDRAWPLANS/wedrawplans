@@ -4,9 +4,18 @@ const nextConfig = {
     return [
       // Service page redirects
       { source: "/loft-plans", destination: "/loft-conversion-plans", permanent: true },
+      { source: "/building-regulations", destination: "/building-regulation-drawings", permanent: true },
+      { source: "/building-control-drawings", destination: "/building-regulation-drawings", permanent: true },
+      { source: "/construction-drawings", destination: "/building-regulation-drawings", permanent: true },
 
       // Fix wrong /areas link (dropdown safety net)
       { source: "/areas/barking-dagenham", destination: "/areas/barking-and-dagenham", permanent: true },
+      { source: "/areas/hammersmith-fulham", destination: "/areas/hammersmith-and-fulham", permanent: true },
+      { source: "/areas/kensington-chelsea", destination: "/areas/kensington-and-chelsea", permanent: true },
+      { source: "/areas/kingston-upon-thames", destination: "/areas/kingston", permanent: true },
+      { source: "/areas/richmond-upon-thames", destination: "/areas/richmond", permanent: true },
+      { source: "/areas/westminster-city", destination: "/areas/westminster", permanent: true },
+      { source: "/areas/surrey-m25", destination: "/areas/surrey-borders-m25", permanent: true },
 
       // Borough redirects to /areas/<borough>
       { source: "/barking-and-dagenham", destination: "/areas/barking-and-dagenham", permanent: true },
@@ -40,7 +49,7 @@ const nextConfig = {
       { source: "/newham", destination: "/areas/newham", permanent: true },
       { source: "/redbridge", destination: "/areas/redbridge", permanent: true },
 
-      { source: "/richmond-upon-thames", destination: "/areas/richmond-upon-thames", permanent: true },
+      { source: "/richmond-upon-thames", destination: "/areas/richmond", permanent: true },
 
       { source: "/southwark", destination: "/areas/southwark", permanent: true },
       { source: "/sutton", destination: "/areas/sutton", permanent: true },

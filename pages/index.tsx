@@ -12,6 +12,33 @@ const GOOGLE_BUSINESS_PROFILE_LINK = "https://share.google/D3KId64vHtHSKPALr";
 const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20my%20project";
 
+const HOME_BUSINESS_JSONLD = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": "https://www.wedrawplans.co.uk/#business",
+  name: "WEDRAWPLANS",
+  legalName: "WEDRAWPLANS LTD",
+  url: "https://www.wedrawplans.co.uk/",
+  logo: "https://www.wedrawplans.co.uk/images/wedrawplans-logo.png",
+  telephone: "+44 20 3654 8508",
+  email: "info@wedrawplans.com",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "201 Borough High Street",
+    addressLocality: "London",
+    postalCode: "SE1 1JA",
+    addressCountry: "GB",
+  },
+  areaServed: [
+    { "@type": "City", name: "London" },
+    { "@type": "AdministrativeArea", name: "Greater London" },
+    { "@type": "Place", name: "M25 and surrounding areas" },
+  ],
+  sameAs: [GOOGLE_BUSINESS_PROFILE_LINK, "https://twitter.com/WEDRAWPLANS"],
+  description:
+    "Architectural drawing services for planning applications, house extensions, loft conversions, new builds, Building Regulations and commercial projects across London and surrounding areas.",
+};
+
 type LeadAction = "phone_click" | "email_click" | "whatsapp_click";
 
 type PostcodeIntel = {
@@ -70,7 +97,7 @@ const SERVICE_OPTIONS: ServiceOption[] = [
 ];
 
 const BOROUGHS: { label: string; slug: string }[] = [
-  { label: "Architectural drawings Barking and Dagenham", slug: "barking-dagenham" },
+  { label: "Architectural drawings Barking and Dagenham", slug: "barking-and-dagenham" },
   { label: "Architectural drawings Barnet", slug: "barnet" },
   { label: "Architectural drawings Bexley", slug: "bexley" },
   { label: "Architectural drawings Brent", slug: "brent" },
@@ -81,14 +108,14 @@ const BOROUGHS: { label: string; slug: string }[] = [
   { label: "Architectural drawings Enfield", slug: "enfield" },
   { label: "Architectural drawings Greenwich", slug: "greenwich" },
   { label: "Architectural drawings Hackney", slug: "hackney" },
-  { label: "Architectural drawings Hammersmith and Fulham", slug: "hammersmith-fulham" },
+  { label: "Architectural drawings Hammersmith and Fulham", slug: "hammersmith-and-fulham" },
   { label: "Architectural drawings Haringey", slug: "haringey" },
   { label: "Architectural drawings Harrow", slug: "harrow" },
   { label: "Architectural drawings Havering", slug: "havering" },
   { label: "Architectural drawings Hillingdon", slug: "hillingdon" },
   { label: "Architectural drawings Hounslow", slug: "hounslow" },
   { label: "Architectural drawings Islington", slug: "islington" },
-  { label: "Architectural drawings Kensington and Chelsea", slug: "kensington-chelsea" },
+  { label: "Architectural drawings Kensington and Chelsea", slug: "kensington-and-chelsea" },
   { label: "Architectural drawings Kingston upon Thames", slug: "kingston" },
   { label: "Architectural drawings Lambeth", slug: "lambeth" },
   { label: "Architectural drawings Lewisham", slug: "lewisham" },
@@ -101,8 +128,11 @@ const BOROUGHS: { label: string; slug: string }[] = [
   { label: "Architectural drawings Tower Hamlets", slug: "tower-hamlets" },
   { label: "Architectural drawings Waltham Forest", slug: "waltham-forest" },
   { label: "Architectural drawings Wandsworth", slug: "wandsworth" },
-  { label: "Architectural drawings Westminster and City of London", slug: "westminster-city" },
-  { label: "Architectural drawings Surrey borders and M25", slug: "surrey-m25" },
+  { label: "Architectural drawings Westminster", slug: "westminster" },
+  { label: "Architectural drawings City of London", slug: "city-of-london" },
+  { label: "Architectural drawings Surrey borders and M25", slug: "surrey-borders-m25" },
+  { label: "Architectural drawings Hertfordshire", slug: "hertfordshire" },
+  { label: "Architectural drawings Essex", slug: "essex" },
 ];
 
 const LOCAL_DESIGNERS_ITEMS: NavDropdownItem[] = [
@@ -116,18 +146,18 @@ const LOCAL_DESIGNERS_ITEMS: NavDropdownItem[] = [
   { label: "Bromley", href: "/areas/bromley" },
   { label: "Wandsworth", href: "/areas/wandsworth" },
   { label: "Camden", href: "/areas/camden" },
-  { label: "Barking and Dagenham", href: "/areas/barking-dagenham" },
+  { label: "Barking and Dagenham", href: "/areas/barking-and-dagenham" },
   { label: "Bexley", href: "/areas/bexley" },
   { label: "Brent", href: "/areas/brent" },
   { label: "City of London", href: "/areas/city-of-london" },
   { label: "Greenwich", href: "/areas/greenwich" },
   { label: "Hackney", href: "/areas/hackney" },
-  { label: "Hammersmith and Fulham", href: "/areas/hammersmith-fulham" },
+  { label: "Hammersmith and Fulham", href: "/areas/hammersmith-and-fulham" },
   { label: "Haringey", href: "/areas/haringey" },
   { label: "Havering", href: "/areas/havering" },
   { label: "Hounslow", href: "/areas/hounslow" },
   { label: "Islington", href: "/areas/islington" },
-  { label: "Kensington and Chelsea", href: "/areas/kensington-chelsea" },
+  { label: "Kensington and Chelsea", href: "/areas/kensington-and-chelsea" },
   { label: "Kingston upon Thames", href: "/areas/kingston" },
   { label: "Lambeth", href: "/areas/lambeth" },
   { label: "Lewisham", href: "/areas/lewisham" },
@@ -758,6 +788,18 @@ export default function IndexPage() {
           content="house extension drawings London, planning drawings London, loft conversion drawings London, building regulation drawings London, architectural drawings London"
         />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/" />
+        <meta name="robots" content="index,follow,max-image-preview:large" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="House Extension & Planning Drawings in London | WEDRAWPLANS" />
+        <meta
+          property="og:description"
+          content="House extension, loft conversion, planning and building regulation drawings across London. Fixed-fee architectural drawing services from WEDRAWPLANS."
+        />
+        <meta property="og:url" content="https://www.wedrawplans.co.uk/" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(HOME_BUSINESS_JSONLD) }}
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
