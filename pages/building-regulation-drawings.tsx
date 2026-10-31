@@ -132,6 +132,16 @@ const processSteps = [
 
 const relatedServices = [
   {
+    href: "/garden-room-outbuilding-plans",
+    title: "Garden room & outbuilding drawings",
+    text: "Planning, permitted development and technical drawing routes for garden rooms, studios, offices, gyms and domestic outbuildings.",
+  },
+  {
+    href: "/solar-panel-planning-drawings",
+    title: "Solar panel planning drawings",
+    text: "Roof plans, elevations, panel layouts and planning drawings for rooftop solar and PV installations.",
+  },
+  {
     href: "/planning-drawings",
     title: "Planning drawings",
     text: "Council-ready planning application drawings for extensions, lofts, conversions and residential projects across London.",

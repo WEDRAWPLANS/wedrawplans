@@ -14,6 +14,17 @@ const nextConfig = {
       { source: "/lawful-development-certificate", destination: "/lawful-development-certificate-drawings", permanent: true },
       { source: "/certificate-of-lawfulness-drawings", destination: "/lawful-development-certificate-drawings", permanent: true },
       { source: "/ldc-drawings", destination: "/lawful-development-certificate-drawings", permanent: true },
+      { source: "/garden-room-plans", destination: "/garden-room-outbuilding-plans", permanent: true },
+      { source: "/garden-studio-plans", destination: "/garden-room-outbuilding-plans", permanent: true },
+      { source: "/garden-office-plans", destination: "/garden-room-outbuilding-plans", permanent: true },
+      { source: "/outbuilding-plans", destination: "/garden-room-outbuilding-plans", permanent: true },
+      { source: "/outbuilding-planning-drawings", destination: "/garden-room-outbuilding-plans", permanent: true },
+      { source: "/garden-room-planning-drawings", destination: "/garden-room-outbuilding-plans", permanent: true },
+      { source: "/solar-panel-drawings", destination: "/solar-panel-planning-drawings", permanent: true },
+      { source: "/solar-planning-drawings", destination: "/solar-panel-planning-drawings", permanent: true },
+      { source: "/solar-pv-planning-drawings", destination: "/solar-panel-planning-drawings", permanent: true },
+      { source: "/solar-panel-plans", destination: "/solar-panel-planning-drawings", permanent: true },
+      { source: "/pv-planning-drawings", destination: "/solar-panel-planning-drawings", permanent: true },
 
       // Fix wrong /areas link (dropdown safety net)
       { source: "/areas/barking-dagenham", destination: "/areas/barking-and-dagenham", permanent: true },

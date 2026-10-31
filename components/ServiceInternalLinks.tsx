@@ -231,9 +231,9 @@ export default function ServiceInternalLinks({
         </h2>
 
         <p className="mt-3 max-w-3xl text-slate-700">
-          We provide full design and planning services for extensions, loft conversions
-          and new build developments. Each service page explains what is included,
-          how approvals work, and how to get a fixed quote.
+          We provide planning and technical drawing services for extensions, loft conversions,
+          garden rooms, outbuildings, solar panels and new build developments. Each service page explains
+          what is included, how approvals work, and how to get a fixed quote.
         </p>
 
         <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -249,6 +249,18 @@ export default function ServiceInternalLinks({
               title: "Permitted Development / LDC",
               body: `Existing and proposed drawings for Lawful Development Certificate and permitted development applications in ${boroughName}.`,
               cta: "View LDC Drawings",
+            },
+            {
+              href: "/garden-room-outbuilding-plans",
+              title: "Garden Room & Outbuilding Plans",
+              body: `Planning, permitted development and LDC drawings for garden rooms, studios, offices, gyms and outbuildings in ${boroughName}.`,
+              cta: "View Garden / Outbuilding Plans",
+            },
+            {
+              href: "/solar-panel-planning-drawings",
+              title: "Solar Panel Planning Drawings",
+              body: `Roof plans, elevations and planning drawings for rooftop solar and PV installations in ${boroughName}.`,
+              cta: "View Solar Planning Drawings",
             },
             {
               href: "/extension-plans",

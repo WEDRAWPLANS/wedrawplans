@@ -253,6 +253,8 @@ export default function LawfulDevelopmentCertificateDrawingsPage() {
             <h2 className="text-2xl font-extrabold">Related drawing services</h2>
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {[
+                ["Garden Room & Outbuilding Plans", "/garden-room-outbuilding-plans"],
+                ["Solar Panel Planning Drawings", "/solar-panel-planning-drawings"],
                 ["Planning Drawings", "/planning-drawings"],
                 ["Extension Plans", "/extension-plans"],
                 ["Loft Conversion Plans", "/loft-conversion-plans"],

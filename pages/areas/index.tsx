@@ -833,6 +833,18 @@ export default function AreasIndexPage() {
                   body="Existing and proposed drawings for permitted development and Lawful Development Certificate applications, including extensions and loft conversions."
                 />
                 <ServiceCard
+                  title="Garden Room & Outbuilding Plans"
+                  tag="Garden Projects"
+                  href="/garden-room-outbuilding-plans"
+                  body="Planning, permitted development, Lawful Development Certificate and retrospective drawing packages for garden rooms, studios, offices, gyms and outbuildings."
+                />
+                <ServiceCard
+                  title="Solar Panel Planning Drawings"
+                  tag="Solar / PV"
+                  href="/solar-panel-planning-drawings"
+                  body="Roof plans, elevations, panel layouts and planning drawings for rooftop solar and PV installations, including sensitive locations where required."
+                />
+                <ServiceCard
                   title="Extension Plans"
                   tag="Extensions"
                   href="/extension-plans"
