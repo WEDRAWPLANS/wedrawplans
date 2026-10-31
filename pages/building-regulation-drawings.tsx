@@ -132,6 +132,16 @@ const processSteps = [
 
 const relatedServices = [
   {
+    href: "/planning-drawings",
+    title: "Planning drawings",
+    text: "Council-ready planning application drawings for extensions, lofts, conversions and residential projects across London.",
+  },
+  {
+    href: "/lawful-development-certificate-drawings",
+    title: "Lawful Development Certificate drawings",
+    text: "Permitted development and Certificate of Lawfulness drawings for extensions, loft conversions and other homeowner projects.",
+  },
+  {
     href: "/extension-plans",
     title: "Extension drawings",
     text: "Planning and technical drawing support for rear extensions, side returns and wrap around extensions.",
