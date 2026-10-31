@@ -222,6 +222,7 @@ export default function ServiceInternalLinks({
   );
 
   const currentSlug = slugifyBorough(boroughName);
+  const currentHref = boroughName === "London" ? "/areas" : `/areas/${currentSlug}`;
 
   return (
     <section className="bg-white">
@@ -311,7 +312,7 @@ export default function ServiceInternalLinks({
 
           <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
             <a
-              href={`/areas/${currentSlug}`}
+              href={currentHref}
               aria-disabled="true"
               className="rounded-xl border bg-slate-900 p-4 text-white opacity-95"
             >

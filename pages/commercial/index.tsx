@@ -20,7 +20,7 @@ export default function ShopfrontsAndSignagePage() {
         />
         <link
           rel="canonical"
-          href="https://www.wedrawplans.co.uk/commercial/shopfronts-and-signage"
+          href="https://www.wedrawplans.co.uk/commercial/shopfronts"
         />
       </Head>
 

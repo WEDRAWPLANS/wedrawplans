@@ -8,14 +8,8 @@ const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20the%20Surrey%20Borders%20%2F%20M25%20area";
 
 export default function SurreyBordersM25AreaPage() {
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    console.log(Object.fromEntries(data.entries()));
-    alert(
-      "Thank you. In the live site this form will email WEDRAWPLANS with your Surrey Borders / M25 enquiry and trigger a same day call back."
-    );
-    e.currentTarget.reset();
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    await submitBoroughLead(e, { boroughName: "Surrey Borders / M25" });
   }
 
   function scrollToForm() {
@@ -33,6 +27,8 @@ export default function SurreyBordersM25AreaPage() {
           name="description"
           content="Architectural drawings for homes on the Surrey Borders and around the M25. Extensions, loft conversions, new builds and building regulation packs. Fixed fees with fast turnaround."
         />
+        <meta name="robots" content="index,follow,max-image-preview:large" />
+        <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/surrey-borders-m25" />
       </Head>
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">

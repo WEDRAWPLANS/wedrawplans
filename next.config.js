@@ -28,6 +28,7 @@ const nextConfig = {
       { source: "/solar-pv-planning-drawings", destination: "/solar-panel-planning-drawings", permanent: true },
       { source: "/solar-panel-plans", destination: "/solar-panel-planning-drawings", permanent: true },
       { source: "/pv-planning-drawings", destination: "/solar-panel-planning-drawings", permanent: true },
+      { source: "/commercial/shopfronts-and-signage", destination: "/commercial/shopfronts", permanent: true },
 
       // Fix wrong /areas link (dropdown safety net)
       { source: "/areas/barking-dagenham", destination: "/areas/barking-and-dagenham", permanent: true },
