@@ -75,6 +75,8 @@ const trackLeadEvent = (action: LeadAction) => {
 };
 
 const SERVICE_OPTIONS: ServiceOption[] = [
+  { label: "Planning Drawings", value: "Planning drawings", href: "/planning-drawings" },
+  { label: "Lawful Development Certificate", value: "Lawful development certificate drawings", href: "/lawful-development-certificate-drawings" },
   { label: "Extension Plans", value: "House extension drawings", href: "/extension-plans" },
   { label: "Loft Conversion Plans", value: "Loft conversion drawings", href: "/loft-conversion-plans" },
   { label: "Building Regulations Plans", value: "Building regulation drawings", href: "/building-regulation-drawings" },
@@ -88,7 +90,7 @@ const SERVICE_OPTIONS: ServiceOption[] = [
   { label: "Garden Studio Plans", value: "Garden studio drawings", href: "/extension-plans" },
   { label: "HMO Plans", value: "HMO plans", href: "/building-regulation-drawings" },
   { label: "Party Wall Services", value: "Party wall drawings", href: "/building-regulation-drawings" },
-  { label: "Planning Applications", value: "Planning drawings", href: "/extension-plans" },
+  { label: "Planning Applications", value: "Planning drawings", href: "/planning-drawings" },
   { label: "Property Conversion", value: "Property conversion drawings", href: "/new-build-plans" },
   { label: "Shop Plans", value: "Shop plans", href: "/commercial/shopfronts" },
   { label: "Structural Calculations", value: "Structural calculations", href: "/building-regulation-drawings" },

@@ -1,6 +1,12 @@
 import React from "react";
 
+const CANONICAL_BOROUGH_SLUGS: Record<string, string> = {
+  "Kingston upon Thames": "kingston",
+  "Richmond upon Thames": "richmond",
+};
+
 function slugifyBorough(name: string) {
+  if (CANONICAL_BOROUGH_SLUGS[name]) return CANONICAL_BOROUGH_SLUGS[name];
   return name
     .toLowerCase()
     .trim()
@@ -230,45 +236,57 @@ export default function ServiceInternalLinks({
           how approvals work, and how to get a fixed quote.
         </p>
 
-        <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
-          <a
-            href="/extension-plans"
-            className="rounded-2xl border bg-slate-50 p-6 transition hover:bg-white"
-          >
-            <div className="text-sm font-extrabold">Extension Plans</div>
-            <div className="mt-2 text-sm text-slate-700">
-              Planning drawings and Building Regulations packages for house extensions.
-            </div>
-            <div className="mt-4 text-sm font-semibold text-blue-600 underline underline-offset-4">
-              View Extension Plans
-            </div>
-          </a>
-
-          <a
-            href="/loft-conversion-plans"
-            className="rounded-2xl border bg-slate-50 p-6 transition hover:bg-white"
-          >
-            <div className="text-sm font-extrabold">Loft Conversion Plans</div>
-            <div className="mt-2 text-sm text-slate-700">
-              Dormer, mansard and hip to gable loft designs with structural engineering.
-            </div>
-            <div className="mt-4 text-sm font-semibold text-blue-600 underline underline-offset-4">
-              View Loft Plans
-            </div>
-          </a>
-
-          <a
-            href="/new-build-plans"
-            className="rounded-2xl border bg-slate-50 p-6 transition hover:bg-white"
-          >
-            <div className="text-sm font-extrabold">New Build Plans</div>
-            <div className="mt-2 text-sm text-slate-700">
-              New build planning drawings with structural engineering and town planning support.
-            </div>
-            <div className="mt-4 text-sm font-semibold text-blue-600 underline underline-offset-4">
-              View New Build Plans
-            </div>
-          </a>
+        <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {[
+            {
+              href: "/planning-drawings",
+              title: "Planning Drawings",
+              body: `Council-ready planning application drawings for extensions, lofts, conversions and residential projects in ${boroughName}.`,
+              cta: "View Planning Drawings",
+            },
+            {
+              href: "/lawful-development-certificate-drawings",
+              title: "Permitted Development / LDC",
+              body: `Existing and proposed drawings for Lawful Development Certificate and permitted development applications in ${boroughName}.`,
+              cta: "View LDC Drawings",
+            },
+            {
+              href: "/extension-plans",
+              title: "Extension Plans",
+              body: "Planning drawings and Building Regulations packages for rear, side return, wraparound and two-storey house extensions.",
+              cta: "View Extension Plans",
+            },
+            {
+              href: "/loft-conversion-plans",
+              title: "Loft Conversion Plans",
+              body: "Dormer, mansard, hip-to-gable and rooflight loft designs with planning and technical drawing support.",
+              cta: "View Loft Plans",
+            },
+            {
+              href: "/building-regulation-drawings",
+              title: "Building Regulation Drawings",
+              body: "Technical drawings, construction details and structural coordination for Building Control and construction.",
+              cta: "View Building Regulations",
+            },
+            {
+              href: "/new-build-plans",
+              title: "New Build Plans",
+              body: "New build planning drawings with structural engineering coordination and town planning support.",
+              cta: "View New Build Plans",
+            },
+          ].map((service) => (
+            <a
+              key={service.href}
+              href={service.href}
+              className="rounded-2xl border bg-slate-50 p-6 transition hover:bg-white"
+            >
+              <div className="text-sm font-extrabold">{service.title}</div>
+              <div className="mt-2 text-sm text-slate-700">{service.body}</div>
+              <div className="mt-4 text-sm font-semibold text-blue-600 underline underline-offset-4">
+                {service.cta}
+              </div>
+            </a>
+          ))}
         </div>
 
         <div className="mt-10">

@@ -479,6 +479,12 @@ export default function LoftConversionPlansPage() {
                   confirm the correct route before you spend money building the
                   wrong design.
                 </div>
+                <a
+                  href="/lawful-development-certificate-drawings"
+                  className="mt-3 inline-block text-sm font-semibold text-blue-700 underline underline-offset-4"
+                >
+                  View permitted development and LDC drawings
+                </a>
               </div>
 
               <div className="rounded-2xl border p-6">

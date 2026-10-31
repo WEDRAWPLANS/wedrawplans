@@ -19,7 +19,13 @@ type LinkItem = {
   href: string;
 };
 
+const CANONICAL_AREA_HREFS: Record<string, string> = {
+  "Kingston upon Thames": "/areas/kingston",
+  "Richmond upon Thames": "/areas/richmond",
+};
+
 function toAreaHref(name: string) {
+  if (CANONICAL_AREA_HREFS[name]) return CANONICAL_AREA_HREFS[name];
   return `/areas/${name
     .toLowerCase()
     .replace(/&/g, "and")
@@ -257,9 +263,7 @@ export default function AreasIndexPage() {
   const countyLinks: LinkItem[] = [
     { name: "Hertfordshire", href: "/areas/hertfordshire" },
     { name: "Essex", href: "/areas/essex" },
-    { name: "Surrey", href: "/areas/surrey" },
-    { name: "Kent", href: "/areas/kent" },
-    { name: "Buckinghamshire", href: "/areas/buckinghamshire" },
+    { name: "Surrey borders and M25", href: "/areas/surrey-borders-m25" },
   ];
 
   const localBusinessJson = useMemo(
@@ -361,7 +365,7 @@ export default function AreasIndexPage() {
           acceptedAnswer: {
             "@type": "Answer",
             text:
-              "Yes. We also support selected surrounding M25 locations including parts of Hertfordshire, Essex, Surrey, Kent and Buckinghamshire.",
+              "Yes. We also support selected surrounding M25 locations including parts of Hertfordshire, Essex and the Surrey borders.",
           },
         },
       ],
@@ -817,6 +821,18 @@ export default function AreasIndexPage() {
 
               <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
                 <ServiceCard
+                  title="Planning Drawings"
+                  tag="Planning"
+                  href="/planning-drawings"
+                  body="Council-ready planning application drawings for house extensions, loft conversions, outbuildings, conversions and residential projects across London."
+                />
+                <ServiceCard
+                  title="Lawful Development Certificate Drawings"
+                  tag="Permitted Development"
+                  href="/lawful-development-certificate-drawings"
+                  body="Existing and proposed drawings for permitted development and Lawful Development Certificate applications, including extensions and loft conversions."
+                />
+                <ServiceCard
                   title="Extension Plans"
                   tag="Extensions"
                   href="/extension-plans"
@@ -940,7 +956,7 @@ export default function AreasIndexPage() {
                 body="We also support selected surrounding locations outside Greater London where homeowner demand overlaps strongly with London planning and drawing work."
               />
 
-              <div className="mt-6 grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+              <div className="mt-6 grid gap-3 sm:grid-cols-2 md:grid-cols-3">
                 {countyLinks.map((county) => (
                   <OuterAreaCard key={county.name} name={county.name} href={county.href} />
                 ))}
