@@ -204,6 +204,8 @@ export default function GetDrawingsQuotePage() {
       "Building Regulation Drawings",
       "Loft Conversion Drawings",
       "Extension Plans",
+      "Garden Room and Outbuilding Planning Drawings",
+      "Solar Panel Planning Drawings",
       "Measured Building Surveys",
       "Planning Application Drawings",
       "Commercial Drawings",
