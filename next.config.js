@@ -2,6 +2,9 @@
 const nextConfig = {
   async redirects() {
     return [
+      // Retire an old SEO-only keyword page; send visitors to the useful Barnet guide.
+      { source: "/barnet-hidden", destination: "/areas/barnet", permanent: true },
+
       // Service page redirects
       { source: "/loft-plans", destination: "/loft-conversion-plans", permanent: true },
       { source: "/building-regulations", destination: "/building-regulation-drawings", permanent: true },
