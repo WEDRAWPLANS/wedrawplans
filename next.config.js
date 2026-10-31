@@ -7,6 +7,13 @@ const nextConfig = {
       { source: "/building-regulations", destination: "/building-regulation-drawings", permanent: true },
       { source: "/building-control-drawings", destination: "/building-regulation-drawings", permanent: true },
       { source: "/construction-drawings", destination: "/building-regulation-drawings", permanent: true },
+      { source: "/planning-drawings-london", destination: "/planning-drawings", permanent: true },
+      { source: "/planning-application-drawings", destination: "/planning-drawings", permanent: true },
+      { source: "/planning-plans", destination: "/planning-drawings", permanent: true },
+      { source: "/permitted-development-drawings", destination: "/lawful-development-certificate-drawings", permanent: true },
+      { source: "/lawful-development-certificate", destination: "/lawful-development-certificate-drawings", permanent: true },
+      { source: "/certificate-of-lawfulness-drawings", destination: "/lawful-development-certificate-drawings", permanent: true },
+      { source: "/ldc-drawings", destination: "/lawful-development-certificate-drawings", permanent: true },
 
       // Fix wrong /areas link (dropdown safety net)
       { source: "/areas/barking-dagenham", destination: "/areas/barking-and-dagenham", permanent: true },
