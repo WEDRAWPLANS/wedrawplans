@@ -234,7 +234,7 @@ export default function SolarPanelPlanningDrawingsPage() {
           <div className="mx-auto max-w-6xl px-4 py-10">
             <h2 className="text-2xl font-extrabold">Real WEDRAWPLANS solar-project experience</h2>
             <p className="mt-3 max-w-4xl text-sm leading-7 text-slate-700">
-              WEDRAWPLANS has recent London project experience involving rooftop solar planning drawings and associated external equipment.
+              WEDRAWPLANS has recent project experience involving rooftop solar planning drawings and associated external equipment in Greenwich and central London.
               Our role is the architectural and planning presentation: clear roof plans, elevations, locations and dimensions that can be assessed by the council.
               Electrical design, system performance and MCS installation design remain with the specialist solar installer.
             </p>
