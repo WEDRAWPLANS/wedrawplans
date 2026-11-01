@@ -76,6 +76,22 @@ export default function CaseStudiesHub() {
     () => ["All councils", ...Array.from(new Set(caseStudies.map((item) => item.authority))).sort()],
     []
   );
+  const listingSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Planning Approvals & Project Case Studies — WEDRAWPLANS",
+    url: "https://www.wedrawplans.co.uk/case-studies",
+    description: "Selected WEDRAWPLANS architectural drawing and planning projects across London and the surrounding areas.",
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: caseStudies.map((item, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: item.title,
+        url: "https://www.wedrawplans.co.uk/case-studies/" + item.slug
+      }))
+    }
+  };
   const filtered = useMemo(() => caseStudies.filter((item) => {
     const searchable = [item.title, item.shortTitle, item.location, item.authority, item.service, item.reference].join(" ").toLowerCase();
     return searchable.includes(query.trim().toLowerCase())
@@ -92,6 +108,7 @@ export default function CaseStudiesHub() {
         <meta name="description" content="Explore WEDRAWPLANS planning permissions, extensions, loft conversions and architectural drawing projects across London and Hertfordshire. Find a similar project and request a fixed-fee quotation." />
         <meta name="robots" content={process.env.VERCEL_ENV === "production" ? "index,follow,max-image-preview:large" : "noindex,nofollow"} />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/case-studies" />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(listingSchema) }} />
       </Head>
 
       <main className="min-h-screen bg-[#fafbf9] text-[#23383d]">
