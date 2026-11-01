@@ -54,15 +54,25 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
                   <Fact label="Planning authority" value={item.authority} />
                   <Fact label="Application" value={item.reference} />
                   <Fact label="Project type" value={item.service} />
+                  {item.decisionDate ? <Fact label="Decision issued" value={item.decisionDate} /> : null}
                 </div>
                 <div className="mt-6 flex flex-wrap gap-3">
                   <Link href="/get-drawings-quote" className="rounded-full bg-[#64b7c4] px-6 py-3 text-sm font-semibold text-white">Get your fixed-fee quote</Link>
                   <Link href={item.relatedService} className="rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold">Explore related service</Link>
                 </div>
               </div>
-              <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-md">
-                <Image src={item.heroImage} alt={"WEDRAWPLANS project - " + item.shortTitle} width={1500} height={1000} className="h-[360px] w-full object-cover lg:h-[470px]" priority />
-              </div>
+              {item.heroImage.startsWith("/images/case-studies/") ? (
+                <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-md">
+                  <Image src={item.heroImage} alt={"Architectural drawings for " + item.shortTitle} width={1500} height={1000} className="h-[360px] w-full object-contain lg:h-[470px]" priority />
+                </div>
+              ) : (
+                <div className="flex min-h-[360px] flex-col justify-center rounded-3xl border border-slate-200 bg-[#20243b] p-10 text-white shadow-md lg:min-h-[470px]">
+                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#9edce4]">WEDRAWPLANS project archive</p>
+                  <h2 className="mt-5 text-3xl font-semibold">{item.shortTitle}</h2>
+                  <p className="mt-4 max-w-md text-sm leading-7 text-slate-200">{item.service}</p>
+                  <p className="mt-7 border-t border-white/20 pt-5 text-xs text-slate-300">Project-specific drawing imagery is being prepared for the approval preview.</p>
+                </div>
+              )}
             </div>
           </div>
         </section>
@@ -74,12 +84,23 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
                 <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-red-700">The project</p>
                 <h2 className="mt-2 text-2xl font-semibold">What WEDRAWPLANS helped demonstrate</h2>
                 <p className="mt-4 text-[14px] leading-7 text-slate-700">{item.proof}</p>
+                {item.approvedDrawings ? (
+                  <div className="mt-5 rounded-2xl border border-slate-200 bg-[#f8f4f0] p-5">
+                    <h3 className="font-semibold">Documents referenced in the decision</h3>
+                    <p className="mt-2 text-sm leading-7 text-slate-700">{item.approvedDrawings}</p>
+                    {item.keyConditions?.length ? (
+                      <ul className="mt-3 list-disc space-y-1 pl-5 text-sm leading-6 text-slate-700">
+                        {item.keyConditions.map((condition) => <li key={condition}>{condition}</li>)}
+                      </ul>
+                    ) : null}
+                  </div>
+                ) : null}
                 <p className="mt-4 text-[14px] leading-7 text-slate-700">
                   The purpose of this case study is to show the type of planning and drawing work WEDRAWPLANS has handled.
                   Every property is different, so the correct route, design and supporting information should be checked for the specific site.
                 </p>
               </div>
-              {item.secondaryImage ? (
+              {item.secondaryImage?.startsWith("/images/case-studies/") ? (
                 <div className="overflow-hidden rounded-2xl border border-slate-200 bg-[#f8f4f0]">
                   <Image src={item.secondaryImage} alt={"Architectural drawing evidence - " + item.shortTitle} width={1200} height={800} className="h-[300px] w-full object-cover" />
                 </div>
@@ -88,7 +109,9 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
                   <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-red-700">Approved drawing package</p>
                   <h3 className="mt-2 text-xl font-semibold">Plans, elevations and 3D design evidence</h3>
                   <p className="mt-3 text-[13px] leading-6 text-slate-700">
-                    The main project image above combines selected sheets from the approved WEDRAWPLANS drawing set so homeowners can see the design clearly without repeating the same image twice.
+                    {item.heroImage.startsWith("/images/case-studies/")
+                      ? "The main visual above uses a project-specific WEDRAWPLANS drawing presentation. Further drawing sheets will be added to this case study as they are prepared for publication."
+                      : "Project-specific plans, elevations and visual evidence will be added to this preview only after their content and approval references are checked."}
                   </p>
                 </div>
               )}
