@@ -2,11 +2,33 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { GetStaticPaths, GetStaticProps } from "next";
-import { caseStudies, caseStudyBySlug, CaseStudy } from "../../data/caseStudies";
+import { caseStudies, caseStudyBySlug, categoryForCaseStudy, CaseStudy } from "../../data/caseStudies";
 
 export default function CaseStudyPage({ item }: { item: CaseStudy }) {
-  const related = caseStudies.filter((x) => x.slug !== item.slug && (x.authority === item.authority || x.service.includes("extension"))).slice(0, 3);
+  const category = categoryForCaseStudy(item);
+  const related = caseStudies
+    .filter((x) => x.slug !== item.slug)
+    .map((x) => ({
+      item: x,
+      score: (categoryForCaseStudy(x) === category ? 6 : 0)
+        + (x.authority === item.authority ? 5 : 0)
+        + (x.relatedArea === item.relatedArea ? 3 : 0)
+        + (x.relatedService === item.relatedService ? 2 : 0),
+    }))
+    .filter((x) => x.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 3)
+    .map((x) => x.item);
   const canonical = "https://www.wedrawplans.co.uk/case-studies/" + item.slug;
+  const breadcrumbJson = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.wedrawplans.co.uk/" },
+      { "@type": "ListItem", position: 2, name: "Planning Approvals & Case Studies", item: "https://www.wedrawplans.co.uk/case-studies" },
+      { "@type": "ListItem", position: 3, name: item.shortTitle, item: canonical },
+    ],
+  };
   const articleJson = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -15,6 +37,7 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
     author: { "@type": "Organization", name: "WEDRAWPLANS" },
     publisher: { "@type": "Organization", name: "WEDRAWPLANS", url: "https://www.wedrawplans.co.uk" },
     mainEntityOfPage: canonical,
+    about: [item.service, item.authority, item.location],
   };
 
   return (
@@ -22,12 +45,20 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
       <Head>
         <title>{item.shortTitle} | WEDRAWPLANS Case Study</title>
         <meta name="description" content={item.summary + " Get a fixed-fee quote for a similar WEDRAWPLANS project."} />
-        <meta name="robots" content="index,follow,max-image-preview:large" />
+        <meta name="robots" content="noindex,nofollow" />
         <link rel="canonical" href={canonical} />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={item.title + " | WEDRAWPLANS"} />
+        <meta property="og:description" content={item.summary} />
+        <meta property="og:url" content={canonical} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJson) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJson) }} />
       </Head>
 
       <main className="min-h-screen bg-[#f8f4f0] text-slate-900">
+        <div className="border-b border-amber-200 bg-amber-50 px-4 py-2 text-center text-xs font-semibold text-amber-900">
+          WEDRAWPLANS approval preview — not published on the live website
+        </div>
         <header className="border-b border-slate-200 bg-[#fdf8f3]">
           <div className="mx-auto max-w-6xl px-4 py-5 lg:px-6">
             <div className="flex flex-wrap items-center justify-between gap-4">
@@ -42,6 +73,11 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
 
         <section className="border-b border-slate-200 bg-[#fdf8f3]">
           <div className="mx-auto max-w-6xl px-4 py-10 lg:px-6">
+            <nav aria-label="Breadcrumb" className="mb-7 flex flex-wrap gap-2 text-xs font-medium text-slate-600">
+              <Link href="/">Home</Link><span aria-hidden="true">/</span>
+              <Link href="/case-studies">Planning approvals</Link><span aria-hidden="true">/</span>
+              <span className="text-slate-900">{item.shortTitle}</span>
+            </nav>
             <div className="grid gap-8 lg:grid-cols-[1.02fr_.98fr] lg:items-center">
               <div>
                 <div className={"inline-flex rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] " + (item.approved ? "bg-emerald-50 text-emerald-800" : "bg-amber-50 text-amber-800")}>
