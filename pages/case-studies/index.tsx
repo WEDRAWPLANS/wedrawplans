@@ -51,8 +51,9 @@ function ProjectCard({ item }: { item: CaseStudy }) {
         <h3 className="mt-3 text-lg font-semibold leading-snug text-[#19363a]">
           <Link href={PROJECT_BASE + item.slug} className="hover:text-[#1c7880]">{item.shortTitle}</Link>
         </h3>
-        <p className="mt-2 text-[13px] leading-6 text-[#526268]">{item.service}</p>
-        <p className="mt-3 text-[12px] leading-5 text-[#687a7c]">{item.authority} · {item.reference}</p>
+        <p className="mt-2 text-[12px] font-medium text-[#526268]">{item.service}</p>
+        <p className="mt-3 line-clamp-3 text-[13px] leading-6 text-[#4c666a]">{item.summary}</p>
+        <p className="mt-4 text-[12px] leading-5 text-[#687a7c]">{item.authority} · {item.reference}</p>
         <Link href={PROJECT_BASE + item.slug} className="mt-auto inline-flex w-fit items-center gap-1.5 pt-5 text-[13px] font-semibold text-[#126d78] underline-offset-4 hover:underline">
           View project <span aria-hidden="true">→</span>
         </Link>
