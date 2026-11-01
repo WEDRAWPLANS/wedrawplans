@@ -1266,7 +1266,12 @@ export default function NewBuildPlansPage() {
               </div>
             </div>
           </section>
-        </main>
+                <ApprovalEvidenceStrip
+          slugs={["the-hyde-colindale-major-residential-development","700-woolwich-road-greenwich-two-new-flats"]}
+          title="Approved residential development projects"
+          intro="The Hyde and Woolwich Road projects illustrate different approaches to residential development, including multiple dwellings and additional floors."
+        />
+      </main>
 
         <footer className="border-t border-[#2a3050] bg-[#20243b]">
           <div className="mx-auto max-w-6xl px-4 py-10 lg:px-6">
