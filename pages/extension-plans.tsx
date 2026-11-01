@@ -2,6 +2,7 @@ import React from "react";
 import Head from "next/head";
 import { submitBoroughLead } from "../lib/submitBoroughLead";
 
+import ApprovalEvidenceStrip from "../components/ApprovalEvidenceStrip";
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const WHATSAPP_LINK =
@@ -305,6 +306,12 @@ export default function ExtensionPlansPage() {
         </section>
 
         {/* QUICK NAV */}
+
+<ApprovalEvidenceStrip
+  slugs={["sistova-road-wandsworth-extension-basement","allum-lane-elstree-major-house-extension","sunbury-avenue-mill-hill-side-rear-extension"]}
+  title="Approved extension projects from the WEDRAWPLANS portfolio"
+  intro="See real extension projects we have handled across London and the M25. Planning something similar? Get your fixed-fee quote."
+/>
         <section className="bg-white">
           <div className="mx-auto max-w-6xl px-4 py-6">
             <div className="flex flex-wrap gap-2">
