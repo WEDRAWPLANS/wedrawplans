@@ -303,8 +303,8 @@ export default function TowerHamletsAreaPage() {
 
 <ApprovalEvidenceStrip
   slugs={["mile-end-road-listed-building-heritage"]}
-  title="Approved planning and listed-building project in Tower Hamlets"
-  intro="A Mile End heritage project showing WEDRAWPLANS experience with detailed design, planning permission and listed-building consent."
+  title="Planning and listed-building approvals in Mile End"
+  intro="The Mile End Road case study covers heritage-sensitive alterations supported by architectural drawings and the relevant consents."
 />
 
           <section className="bg-white border-b border-slate-200 py-10">
