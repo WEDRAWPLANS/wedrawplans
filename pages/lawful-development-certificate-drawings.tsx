@@ -284,6 +284,11 @@ export default function LawfulDevelopmentCertificateDrawingsPage() {
             </div>
           </div>
         </section>
+              <ApprovalEvidenceStrip
+          slugs={["warbeck-road-hammersmith-fulham-loft-certificate","reddings-close-mill-hill-lawful-loft","alnwick-road-eltham-lawful-loft"]}
+          title="Granted lawful-development certificates across London"
+          intro="Browse roof-extension and loft-conversion certificates in Shepherd's Bush, Mill Hill and Eltham to understand how these applications differ from planning permission."
+        />
       </main>
     </>
   );
