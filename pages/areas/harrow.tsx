@@ -5,6 +5,7 @@ import Link from "next/link";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
 import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 
+import ApprovalEvidenceStrip from "../../components/ApprovalEvidenceStrip";
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const EMAIL = "info@wedrawplans.com";
@@ -721,6 +722,12 @@ export default function HarrowAreaPage() {
           </section>
 
           <ServiceInternalLinks boroughName="Harrow" />
+
+<ApprovalEvidenceStrip
+  slugs={["burnt-oak-broadway-harrow-retail-flats"]}
+  title="Approved mixed-use project in Harrow"
+  intro="A Burnt Oak approval combining retail and residential works, with design revisions and planning-officer engagement."
+/>
 
           <section className="border-b border-slate-200 bg-white py-10">
             <div className="mx-auto max-w-5xl space-y-10 px-4 lg:px-6">
