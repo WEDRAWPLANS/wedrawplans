@@ -4,6 +4,7 @@ import Image from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
 import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 
+import ApprovalEvidenceStrip from "../../components/ApprovalEvidenceStrip";
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const WHATSAPP_LINK =
@@ -327,6 +328,12 @@ export default function LambethAreaPage() {
           </section>
 
           <ServiceInternalLinks boroughName="Lambeth" />
+
+<ApprovalEvidenceStrip
+  slugs={["electric-avenue-brixton-shopfront"]}
+  title="Approved WEDRAWPLANS project in Brixton"
+  intro="A conservation-area commercial approval demonstrating our shopfront and frontage planning experience in Lambeth."
+/>
 
           <section className="bg-white border-b border-slate-200 py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
