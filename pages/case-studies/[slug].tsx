@@ -4,22 +4,45 @@ import Link from "next/link";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { caseStudies, caseStudyBySlug, categoryForCaseStudy, CaseStudy } from "../../data/caseStudies";
 
+const QUOTE = "/get-drawings-quote";
+
+function Detail({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="border-t border-[#e4ebe7] py-3.5 first:border-t-0">
+      <dt className="text-[11px] font-medium uppercase tracking-[0.1em] text-[#66797b]">{label}</dt>
+      <dd className="mt-1 text-[14px] font-semibold leading-6 text-[#253f41]">{value}</dd>
+    </div>
+  );
+}
+
 export default function CaseStudyPage({ item }: { item: CaseStudy }) {
+  const canonical = "https://www.wedrawplans.co.uk/case-studies/" + item.slug;
   const category = categoryForCaseStudy(item);
   const related = caseStudies
-    .filter((x) => x.slug !== item.slug)
-    .map((x) => ({
-      item: x,
-      score: (categoryForCaseStudy(x) === category ? 6 : 0)
-        + (x.authority === item.authority ? 5 : 0)
-        + (x.relatedArea === item.relatedArea ? 3 : 0)
-        + (x.relatedService === item.relatedService ? 2 : 0),
+    .filter((project) => project.slug !== item.slug)
+    .map((project) => ({
+      project,
+      score:
+        (categoryForCaseStudy(project) === category ? 6 : 0)
+        + (project.authority === item.authority ? 5 : 0)
+        + (project.relatedArea === item.relatedArea ? 3 : 0)
+        + (project.relatedService === item.relatedService ? 2 : 0),
     }))
-    .filter((x) => x.score > 0)
+    .filter(({ score }) => score > 0)
     .sort((a, b) => b.score - a.score)
     .slice(0, 3)
-    .map((x) => x.item);
-  const canonical = "https://www.wedrawplans.co.uk/case-studies/" + item.slug;
+    .map(({ project }) => project);
+
+  const articleJson = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: item.title,
+    description: item.summary,
+    author: { "@type": "Organization", name: "WEDRAWPLANS", url: "https://www.wedrawplans.co.uk/" },
+    publisher: { "@type": "Organization", name: "WEDRAWPLANS", url: "https://www.wedrawplans.co.uk/" },
+    mainEntityOfPage: canonical,
+    about: [item.service, item.authority, item.location],
+  };
   const breadcrumbJson = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -29,23 +52,13 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
       { "@type": "ListItem", position: 3, name: item.shortTitle, item: canonical },
     ],
   };
-  const articleJson = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: item.title,
-    description: item.summary,
-    author: { "@type": "Organization", name: "WEDRAWPLANS" },
-    publisher: { "@type": "Organization", name: "WEDRAWPLANS", url: "https://www.wedrawplans.co.uk" },
-    mainEntityOfPage: canonical,
-    about: [item.service, item.authority, item.location],
-  };
 
   return (
     <>
       <Head>
-        <title>{item.shortTitle} | WEDRAWPLANS Case Study</title>
-        <meta name="description" content={item.summary + " Get a fixed-fee quote for a similar WEDRAWPLANS project."} />
-        <meta name="robots" content="noindex,nofollow" />
+        <title>{item.title} | WEDRAWPLANS</title>
+        <meta name="description" content={item.summary + " See the project details and request a fixed-fee drawing quote from WEDRAWPLANS."} />
+        <meta name="robots" content={process.env.VERCEL_ENV === "production" ? "index,follow,max-image-preview:large" : "noindex,nofollow"} />
         <link rel="canonical" href={canonical} />
         <meta property="og:type" content="article" />
         <meta property="og:title" content={item.title + " | WEDRAWPLANS"} />
@@ -55,157 +68,181 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJson) }} />
       </Head>
 
-      <main className="min-h-screen bg-[#f8f4f0] text-slate-900">
-        <div className="border-b border-amber-200 bg-amber-50 px-4 py-2 text-center text-xs font-semibold text-amber-900">
-          WEDRAWPLANS approval preview — not published on the live website
-        </div>
-        <header className="border-b border-slate-200 bg-[#fdf8f3]">
-          <div className="mx-auto max-w-6xl px-4 py-5 lg:px-6">
-            <div className="flex flex-wrap items-center justify-between gap-4">
-              <Link href="/"><img src="/images/wedrawplans-logo.png" alt="WEDRAWPLANS" className="h-16 w-auto" /></Link>
-              <div className="flex gap-3">
-                <Link href="/case-studies" className="rounded-full border border-slate-300 bg-white px-4 py-2 text-xs font-semibold">All case studies</Link>
-                <Link href="/get-drawings-quote" className="rounded-full bg-[#64b7c4] px-4 py-2 text-xs font-semibold text-white">Get your fixed-fee quote</Link>
-              </div>
-            </div>
+      <main className="min-h-screen bg-[#fafbf9] text-[#23383d]">
+        <header className="border-b border-[#e4e9e6] bg-white">
+          <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-5 py-4 sm:px-8">
+            <Link href="/" aria-label="WEDRAWPLANS home">
+              <img src="/images/wedrawplans-logo.png" alt="WEDRAWPLANS" className="h-14 w-auto object-contain sm:h-16" />
+            </Link>
+            <nav aria-label="Main navigation" className="flex flex-wrap items-center gap-x-5 gap-y-3 text-[13px] font-semibold">
+              <Link href="/extension-plans" className="hover:text-[#147c86]">Extensions</Link>
+              <Link href="/planning-drawings" className="hover:text-[#147c86]">Planning drawings</Link>
+              <Link href="/case-studies" className="hover:text-[#147c86]">Projects</Link>
+              <Link href={QUOTE} className="rounded-full bg-[#51aab8] px-5 py-2.5 text-white hover:bg-[#318e9c]">Get a fixed-fee quote</Link>
+            </nav>
           </div>
         </header>
 
-        <section className="border-b border-slate-200 bg-[#fdf8f3]">
-          <div className="mx-auto max-w-6xl px-4 py-10 lg:px-6">
-            <nav aria-label="Breadcrumb" className="mb-7 flex flex-wrap gap-2 text-xs font-medium text-slate-600">
-              <Link href="/">Home</Link><span aria-hidden="true">/</span>
-              <Link href="/case-studies">Planning approvals</Link><span aria-hidden="true">/</span>
-              <span className="text-slate-900">{item.shortTitle}</span>
+        <div className="border-b border-[#e5eae7] bg-white">
+          <div className="mx-auto max-w-7xl px-5 py-5 sm:px-8">
+            <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2 text-[12px] text-[#637578]">
+              <Link href="/" className="hover:text-[#217a82]">Home</Link>
+              <span aria-hidden="true">/</span>
+              <Link href="/case-studies" className="hover:text-[#217a82]">Planning approvals &amp; projects</Link>
+              <span aria-hidden="true">/</span>
+              <span className="font-semibold text-[#36565a]">{item.shortTitle}</span>
             </nav>
-            <div className="grid gap-8 lg:grid-cols-[1.02fr_.98fr] lg:items-center">
-              <div>
-                <div className={"inline-flex rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] " + (item.approved ? "bg-emerald-50 text-emerald-800" : "bg-amber-50 text-amber-800")}>
-                  {item.outcome}
-                </div>
-                <h1 className="mt-4 text-3xl font-semibold leading-tight sm:text-5xl">{item.title}</h1>
-                <p className="mt-5 text-[14px] leading-7 text-slate-700">{item.summary}</p>
-                <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                  <Fact label="Location" value={item.location} />
-                  <Fact label="Planning authority" value={item.authority} />
-                  <Fact label="Application" value={item.reference} />
-                  <Fact label="Project type" value={item.service} />
-                  {item.decisionDate ? <Fact label="Decision issued" value={item.decisionDate} /> : null}
-                </div>
-                <div className="mt-6 flex flex-wrap gap-3">
-                  <Link href="/get-drawings-quote" className="rounded-full bg-[#64b7c4] px-6 py-3 text-sm font-semibold text-white">Get your fixed-fee quote</Link>
-                  <Link href={item.relatedService} className="rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold">Explore related service</Link>
-                </div>
+          </div>
+        </div>
+
+        <section className="bg-white">
+          <div className="mx-auto grid max-w-7xl gap-9 px-5 pb-12 pt-10 sm:px-8 sm:pb-16 sm:pt-14 lg:grid-cols-[1.25fr_.75fr] lg:gap-16">
+            <div>
+              <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-[#257b83]">{category} · {item.year}</p>
+              <h1 className="mt-4 max-w-3xl text-3xl font-semibold leading-[1.17] tracking-tight text-[#223b3e] sm:text-4xl lg:text-[46px]">{item.title}</h1>
+              <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-[#cbded7] bg-[#f2f8f4] px-3.5 py-1.5 text-[12px] font-semibold text-[#2d7155]">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#57a382]" aria-hidden="true" />{item.outcome}
               </div>
-              {item.heroImage.startsWith("/images/case-studies/") ? (
-                <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-md">
-                  <Image src={item.heroImage} alt={"Architectural drawings for " + item.shortTitle} width={1500} height={1000} className="h-[360px] w-full object-contain lg:h-[470px]" priority />
-                </div>
-              ) : (
-                <div className="flex min-h-[360px] flex-col justify-center rounded-3xl border border-slate-200 bg-[#20243b] p-10 text-white shadow-md lg:min-h-[470px]">
-                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#9edce4]">WEDRAWPLANS project archive</p>
-                  <h2 className="mt-5 text-3xl font-semibold">{item.shortTitle}</h2>
-                  <p className="mt-4 max-w-md text-sm leading-7 text-slate-200">{item.service}</p>
-                  <p className="mt-7 border-t border-white/20 pt-5 text-xs text-slate-300">Project-specific drawing imagery is being prepared for the approval preview.</p>
-                </div>
-              )}
+              <p className="mt-6 max-w-3xl text-[16px] leading-8 text-[#52666b]">{item.summary}</p>
+              <div className="mt-7 flex flex-wrap items-center gap-3">
+                <Link href={QUOTE} className="rounded-full bg-[#51aab8] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#318e9c]">
+                  Get your fixed-fee quote
+                </Link>
+                <Link href={item.relatedService} className="rounded-full border border-[#cbdad7] bg-white px-6 py-3.5 text-sm font-semibold text-[#2f646a] hover:bg-[#f0f7f6]">
+                  Explore {category === "Extensions" ? "extension" : "related"} services
+                </Link>
+              </div>
             </div>
+            <aside className="self-start rounded-[20px] border border-[#dbe7e2] bg-[#f5f9f7] p-6 sm:p-7" aria-label="Project information">
+              <h2 className="text-lg font-semibold">Project information</h2>
+              <dl className="mt-4">
+                <Detail label="Location" value={item.location} />
+                <Detail label="Planning authority" value={item.authority} />
+                <Detail label="Application reference" value={item.reference} />
+                <Detail label="Project type" value={item.service} />
+                {item.decisionDate ? <Detail label="Decision date" value={item.decisionDate} /> : null}
+                <Detail label="Planning outcome" value={item.outcome} />
+              </dl>
+            </aside>
           </div>
         </section>
 
-        <section className="bg-white py-12">
-          <div className="mx-auto max-w-5xl px-4 lg:px-6">
-            <div className="grid gap-8 lg:grid-cols-[1fr_.9fr]">
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-red-700">The project</p>
-                <h2 className="mt-2 text-2xl font-semibold">What WEDRAWPLANS helped demonstrate</h2>
-                <p className="mt-4 text-[14px] leading-7 text-slate-700">{item.proof}</p>
-                {item.approvedDrawings ? (
-                  <div className="mt-5 rounded-2xl border border-slate-200 bg-[#f8f4f0] p-5">
-                    <h3 className="font-semibold">Documents referenced in the decision</h3>
-                    <p className="mt-2 text-sm leading-7 text-slate-700">{item.approvedDrawings}</p>
-                    {item.keyConditions?.length ? (
-                      <ul className="mt-3 list-disc space-y-1 pl-5 text-sm leading-6 text-slate-700">
-                        {item.keyConditions.map((condition) => <li key={condition}>{condition}</li>)}
-                      </ul>
-                    ) : null}
-                  </div>
-                ) : null}
-                <p className="mt-4 text-[14px] leading-7 text-slate-700">
-                  The purpose of this case study is to show the type of planning and drawing work WEDRAWPLANS has handled.
-                  Every property is different, so the correct route, design and supporting information should be checked for the specific site.
-                </p>
+        {item.heroImage.startsWith("/images/case-studies/") ? (
+          <section className="border-y border-[#e2e9e5] bg-[#f5f8f6]" aria-labelledby="drawings-heading">
+            <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-14">
+              <div className="mb-5 flex flex-wrap items-end justify-between gap-4">
+                <div>
+                  <p className="text-[12px] font-semibold uppercase tracking-[0.15em] text-[#347c81]">Architectural drawings</p>
+                  <h2 id="drawings-heading" className="mt-2 text-2xl font-semibold sm:text-3xl">Project drawing presentation</h2>
+                </div>
+                <span className="text-[12px] text-[#587274]">Prepared by WEDRAWPLANS</span>
               </div>
-              {item.secondaryImage?.startsWith("/images/case-studies/") ? (
-                <div className="overflow-hidden rounded-2xl border border-slate-200 bg-[#f8f4f0]">
-                  <Image src={item.secondaryImage} alt={"Architectural drawing evidence - " + item.shortTitle} width={1200} height={800} className="h-[300px] w-full object-cover" />
-                </div>
-              ) : (
-                <div className="rounded-2xl border border-slate-200 bg-[#f8f4f0] p-6">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-red-700">Approved drawing package</p>
-                  <h3 className="mt-2 text-xl font-semibold">Plans, elevations and 3D design evidence</h3>
-                  <p className="mt-3 text-[13px] leading-6 text-slate-700">
-                    {item.heroImage.startsWith("/images/case-studies/")
-                      ? "The main visual above uses a project-specific WEDRAWPLANS drawing presentation. Further drawing sheets will be added to this case study as they are prepared for publication."
-                      : "Project-specific plans, elevations and visual evidence will be added to this preview only after their content and approval references are checked."}
-                  </p>
-                </div>
-              )}
-            </div>
-          </div>
-        </section>
-
-        {item.review ? (
-          <section className="border-y border-slate-200 bg-[#f8f4f0] py-10">
-            <div className="mx-auto max-w-5xl px-4 lg:px-6">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-red-700">Client trust</p>
-              <h2 className="mt-2 text-2xl font-semibold">A project backed by genuine client feedback</h2>
-              <p className="mt-4 max-w-3xl text-[14px] leading-7 text-slate-700">{item.review}</p>
+              <figure className="overflow-hidden rounded-[18px] border border-[#dee5e1] bg-white p-3 shadow-[0_8px_34px_rgba(32,70,73,0.035)] sm:p-5">
+                <Image
+                  src={item.heroImage}
+                  alt={"WEDRAWPLANS architectural project drawing presentation for " + item.shortTitle}
+                  width={1500}
+                  height={1020}
+                  priority
+                  sizes="(max-width: 768px) 100vw, 85vw"
+                  className="mx-auto h-auto max-h-[780px] w-full object-contain"
+                />
+                <figcaption className="mt-3 border-t border-[#edf0ee] px-1 pt-3 text-[12px] leading-5 text-[#617579]">
+                  {item.shortTitle} — architectural project drawings. Refer to the council decision for the exact approved drawing revisions.
+                </figcaption>
+              </figure>
+              {item.secondaryImage?.startsWith("/images/case-studies/") && item.secondaryImage !== item.heroImage ? (
+                <figure className="mt-5 overflow-hidden rounded-[18px] border border-[#dee5e1] bg-white p-5">
+                  <Image src={item.secondaryImage} alt={"Additional WEDRAWPLANS drawings for " + item.shortTitle} width={1400} height={950} className="h-auto w-full object-contain" />
+                </figure>
+              ) : null}
             </div>
           </section>
         ) : null}
 
-        <section className="bg-white py-12">
-          <div className="mx-auto max-w-5xl px-4 lg:px-6">
-            <div className="rounded-3xl border border-slate-200 bg-[#20243b] p-7 text-white sm:p-10">
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#9edce4]">{item.leadAngle}</p>
-              <h2 className="mt-3 text-3xl font-semibold">Get your fixed-fee quote from WEDRAWPLANS.</h2>
-              <p className="mt-4 max-w-3xl text-[14px] leading-7 text-slate-200">
-                Send us your postcode and a short description of what you want to build. We will review the likely drawing and planning route and confirm the next steps.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Link href="/get-drawings-quote" className="rounded-full bg-[#64b7c4] px-6 py-3 text-sm font-semibold text-white">Get your fixed-fee quote</Link>
-                <Link href={item.relatedArea} className="rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white">See local drawing services</Link>
+        <section className="bg-white">
+          <div className="mx-auto grid max-w-7xl gap-9 px-5 py-12 sm:px-8 sm:py-16 lg:grid-cols-2 lg:gap-20">
+            <div>
+              <p className="text-[12px] font-semibold uppercase tracking-[0.15em] text-[#357d81]">The proposal</p>
+              <h2 className="mt-3 text-2xl font-semibold sm:text-3xl">Project overview</h2>
+              <p className="mt-5 text-[15px] leading-8 text-[#51676b]">{item.summary}</p>
+              <div className="mt-7 border-l-[3px] border-[#64aeb5] bg-[#f3f8f6] px-5 py-4">
+                <p className="text-[13px] font-semibold text-[#2b6269]">Considering a similar project?</p>
+                <p className="mt-2 text-[13px] leading-6 text-[#5c7274]">We can help assess the appropriate planning route, prepare architectural drawings and coordinate the application documents required for your property.</p>
+                <Link href={QUOTE} className="mt-3 inline-block text-[13px] font-semibold text-[#17717b] underline-offset-4 hover:underline">Request a quotation →</Link>
+              </div>
+            </div>
+            <div>
+              <p className="text-[12px] font-semibold uppercase tracking-[0.15em] text-[#357d81]">The decision</p>
+              <h2 className="mt-3 text-2xl font-semibold sm:text-3xl">Planning outcome &amp; drawing work</h2>
+              <p className="mt-5 text-[15px] leading-8 text-[#51676b]">{item.proof}</p>
+              {item.approvedDrawings ? (
+                <div className="mt-6 rounded-[16px] border border-[#e2e8e4] bg-[#fafbf9] p-5">
+                  <h3 className="text-[14px] font-semibold">Approved documents referenced by the council</h3>
+                  <p className="mt-2 text-[13px] leading-7 text-[#586f73]">{item.approvedDrawings}</p>
+                </div>
+              ) : null}
+            </div>
+          </div>
+        </section>
+
+        {item.keyConditions?.length ? (
+          <section className="border-y border-[#e5eae7] bg-[#f6f9f7]">
+            <div className="mx-auto max-w-7xl px-5 py-10 sm:px-8 sm:py-12">
+              <h2 className="text-xl font-semibold sm:text-2xl">Relevant planning conditions</h2>
+              <ul className="mt-5 grid gap-3 text-[14px] leading-7 text-[#51656a] md:grid-cols-2">
+                {item.keyConditions.map((condition) => (
+                  <li key={condition} className="rounded-xl border border-[#e1e9e4] bg-white px-5 py-4">{condition}</li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        ) : null}
+
+        <section className="bg-white">
+          <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-16">
+            <div className="grid items-center gap-8 rounded-[22px] border border-[#dae7e2] bg-[#eef6f3] p-7 sm:p-10 lg:grid-cols-[1.3fr_.7fr]">
+              <div>
+                <p className="text-[12px] font-semibold uppercase tracking-[0.15em] text-[#36747c]">Your next project</p>
+                <h2 className="mt-3 text-2xl font-semibold leading-tight sm:text-3xl">Planning similar work at your property?</h2>
+                <p className="mt-4 max-w-2xl text-[14px] leading-7 text-[#566c70]">
+                  Tell us the property postcode and what you would like to build. WEDRAWPLANS can advise on the drawing and planning requirements and provide a fixed-fee quotation.
+                </p>
+              </div>
+              <div className="flex flex-col items-start gap-3 lg:items-end">
+                <Link href={QUOTE} className="rounded-full bg-[#51aab8] px-7 py-3.5 text-sm font-semibold text-white hover:bg-[#318e9c]">Get your fixed-fee quote</Link>
+                <Link href={item.relatedArea} className="text-[13px] font-semibold text-[#236d76] underline-offset-4 hover:underline">See local drawing services →</Link>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="border-t border-slate-200 bg-[#f8f4f0] py-10">
-          <div className="mx-auto max-w-5xl px-4 lg:px-6">
-            <h2 className="text-xl font-semibold">Related WEDRAWPLANS project evidence</h2>
-            <div className="mt-5 grid gap-4 md:grid-cols-3">
-              {related.map((x) => (
-                <Link key={x.slug} href={"/case-studies/" + x.slug} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-                  <div className="text-[10px] font-semibold uppercase tracking-[0.16em] text-emerald-700">{x.outcome}</div>
-                  <div className="mt-2 font-semibold">{x.shortTitle}</div>
-                  <div className="mt-2 text-[12px] leading-5 text-slate-600">{x.service}</div>
-                </Link>
-              ))}
+        {related.length > 0 ? (
+          <section className="border-y border-[#e5eae7] bg-[#f6f9f7]">
+            <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-16">
+              <div className="flex flex-wrap items-center justify-between gap-4">
+                <h2 className="text-2xl font-semibold sm:text-3xl">Related planning projects</h2>
+                <Link href="/case-studies" className="text-[13px] font-semibold text-[#23727b] underline-offset-4 hover:underline">View all projects →</Link>
+              </div>
+              <div className="mt-7 grid gap-4 md:grid-cols-3">
+                {related.map((project) => (
+                  <Link key={project.slug} href={"/case-studies/" + project.slug} className="group rounded-[16px] border border-[#dfe7e3] bg-white p-6 hover:border-[#a9c6c7] hover:shadow-sm">
+                    <p className="text-[11px] font-semibold text-[#2a7880]">{project.outcome}</p>
+                    <h3 className="mt-3 text-[17px] font-semibold leading-snug text-[#274145] group-hover:text-[#197582]">{project.shortTitle}</h3>
+                    <p className="mt-2 text-[13px] leading-6 text-[#65777a]">{project.service}</p>
+                    <p className="mt-4 text-[12px] font-semibold text-[#2b747d]">View project →</p>
+                  </Link>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        ) : null}
+        <footer className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-5 py-8 text-[12px] text-[#64777b] sm:px-8">
+          <span>WEDRAWPLANS · Architectural drawings, planning &amp; Building Regulations</span>
+          <Link href="/case-studies" className="font-semibold text-[#27717b] hover:underline">All planning projects</Link>
+        </footer>
       </main>
     </>
-  );
-}
-
-function Fact({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-4">
-      <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500">{label}</div>
-      <div className="mt-1 text-[13px] font-semibold text-slate-900">{value}</div>
-    </div>
   );
 }
 
