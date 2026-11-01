@@ -6,6 +6,7 @@ import { submitBoroughLead } from "../../lib/submitBoroughLead";
 import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 import SmartPlanningAssistant from "../../components/SmartPlanningAssistant";
 
+import ApprovalEvidenceStrip from "../../components/ApprovalEvidenceStrip";
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const EMAIL = "info@wedrawplans.com";
@@ -594,6 +595,12 @@ export default function WandsworthAreaPage() {
           </section>
 
           <ServiceInternalLinks boroughName="Wandsworth" />
+
+<ApprovalEvidenceStrip
+  slugs={["sistova-road-wandsworth-extension-basement"]}
+  title="One of our approved Wandsworth projects"
+  intro="34A Sistova Road is one of our approved residential projects in Wandsworth. Planning something similar? Get your fixed-fee quote."
+/>
 
           <section className="border-b border-slate-200 bg-white py-10">
             <div className="mx-auto max-w-5xl space-y-10 px-4 lg:px-6">
