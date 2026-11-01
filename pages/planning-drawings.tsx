@@ -302,6 +302,11 @@ export default function PlanningDrawingsPage() {
             </div>
           </div>
         </section>
+              <ApprovalEvidenceStrip
+          slugs={["sistova-road-wandsworth-extension-basement","cromwell-road-hounslow-rear-extension","700-woolwich-road-greenwich-two-new-flats"]}
+          title="Selected planning permissions and architectural drawing projects"
+          intro="See WEDRAWPLANS drawing packages for approved extensions and residential projects across Wandsworth, Hounslow and Greenwich."
+        />
       </main>
     </>
   );
