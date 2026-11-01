@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { caseStudies, caseStudyBySlug, categoryForCaseStudy, CaseStudy } from "../../data/caseStudies";
+import { CaseStudyHeader, CaseStudyBottom, CaseStudyFooter } from "../../components/CaseStudyChrome";
 
 const QUOTE = "/get-drawings-quote";
 
@@ -69,20 +70,13 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
       </Head>
 
       <main className="min-h-screen bg-[#fafbf9] text-[#23383d]">
-        <header className="border-b border-[#e4e9e6] bg-white">
-          <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-5 py-4 sm:px-8">
-            <Link href="/" aria-label="WEDRAWPLANS home">
-              <img src="/images/wedrawplans-logo.png" alt="WEDRAWPLANS" className="h-14 w-auto object-contain sm:h-16" />
-            </Link>
-            <nav aria-label="Main navigation" className="flex flex-wrap items-center gap-x-5 gap-y-3 text-[13px] font-semibold">
-              <Link href="/extension-plans" className="hover:text-[#147c86]">Extensions</Link>
-              <Link href="/planning-drawings" className="hover:text-[#147c86]">Planning drawings</Link>
-              <Link href="/case-studies" className="hover:text-[#147c86]">Projects</Link>
-              <Link href={QUOTE} className="rounded-full bg-[#51aab8] px-5 py-2.5 text-white hover:bg-[#318e9c]">Get a fixed-fee quote</Link>
-            </nav>
-          </div>
-        </header>
+        <CaseStudyHeader />
 
+        <div className="border-b border-[#edcfca] bg-[#fbeae6]">
+          <div className="mx-auto max-w-7xl px-5 py-2.5 text-center text-[11px] font-semibold uppercase tracking-[0.15em] text-[#98584f] sm:px-8">
+            Selected WEDRAWPLANS planning projects
+          </div>
+        </div>
         <div className="border-b border-[#e5eae7] bg-white">
           <div className="mx-auto max-w-7xl px-5 py-5 sm:px-8">
             <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2 text-[12px] text-[#637578]">
@@ -100,8 +94,8 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
             <div>
               <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-[#257b83]">{category} · {item.year}</p>
               <h1 className="mt-4 max-w-3xl text-3xl font-semibold leading-[1.17] tracking-tight text-[#223b3e] sm:text-4xl lg:text-[46px]">{item.title}</h1>
-              <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-[#cbded7] bg-[#f2f8f4] px-3.5 py-1.5 text-[12px] font-semibold text-[#2d7155]">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#57a382]" aria-hidden="true" />{item.outcome}
+              <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-[#efcbc4] bg-[#fff0ed] px-3.5 py-1.5 text-[12px] font-semibold text-[#97594f]">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#c78175]" aria-hidden="true" />{item.outcome}
               </div>
               <p className="mt-6 max-w-3xl text-[16px] leading-8 text-[#52666b]">{item.summary}</p>
               <div className="mt-7 flex flex-wrap items-center gap-3">
@@ -246,10 +240,8 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
             </div>
           </section>
         ) : null}
-        <footer className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-5 py-8 text-[12px] text-[#64777b] sm:px-8">
-          <span>WEDRAWPLANS · Architectural drawings, planning &amp; Building Regulations</span>
-          <Link href="/case-studies" className="font-semibold text-[#27717b] hover:underline">All planning projects</Link>
-        </footer>
+        <CaseStudyBottom projectType={category === "Extensions" ? "house extension" : category === "Loft conversions" ? "loft conversion" : "residential or commercial project"} />
+        <CaseStudyFooter />
       </main>
     </>
   );
