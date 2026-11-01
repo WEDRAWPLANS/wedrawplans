@@ -379,8 +379,8 @@ export default function WalthamForestAreaPage() {
 
 <ApprovalEvidenceStrip
   slugs={["hall-lane-chingford-dropped-kerb"]}
-  title="Recent approved project in Chingford"
-  intro="A 2026 dropped-kerb and vehicle-crossover approval supported by WEDRAWPLANS site, elevation and drainage drawings."
+  title="Approved vehicle crossover in Chingford"
+  intro="Planning permission granted in July 2026 for a dropped kerb and crossover, supported by site, elevation and permeable-drainage details."
 />
 
           <section className="bg-white border-b border-slate-200 py-10">
