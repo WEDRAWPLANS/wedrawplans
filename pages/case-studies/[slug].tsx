@@ -18,6 +18,7 @@ function Detail({ label, value }: { label: string; value: string }) {
 
 export default function CaseStudyPage({ item }: { item: CaseStudy }) {
   const canonical = "https://www.wedrawplans.co.uk/case-studies/" + item.slug;
+  const quoteHref = "/get-drawings-quote?source=case-study&project=" + encodeURIComponent(item.slug);
   const category = categoryForCaseStudy(item);
   const related = caseStudies
     .filter((project) => project.slug !== item.slug)
@@ -99,7 +100,7 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
               </div>
               <p className="mt-6 max-w-3xl text-[16px] leading-8 text-[#52666b]">{item.summary}</p>
               <div className="mt-7 flex flex-wrap items-center gap-3">
-                <Link href={QUOTE} className="rounded-full bg-[#51aab8] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#318e9c]">
+                <Link href={quoteHref} className="rounded-full bg-[#51aab8] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#318e9c]">
                   Get your fixed-fee quote
                 </Link>
                 <Link href={item.relatedService} className="rounded-full border border-[#cbdad7] bg-white px-6 py-3.5 text-sm font-semibold text-[#2f646a] hover:bg-[#f0f7f6]">
@@ -207,7 +208,7 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
               <div className="mt-7 border-l-[3px] border-[#64aeb5] bg-[#f3f8f6] px-5 py-4">
                 <p className="text-[13px] font-semibold text-[#2b6269]">Considering a similar project?</p>
                 <p className="mt-2 text-[13px] leading-6 text-[#5c7274]">We can help assess the appropriate planning route, prepare architectural drawings and coordinate the application documents required for your property.</p>
-                <Link href={QUOTE} className="mt-3 inline-block text-[13px] font-semibold text-[#17717b] underline-offset-4 hover:underline">Request a quotation →</Link>
+                <Link href={quoteHref} className="mt-3 inline-block text-[13px] font-semibold text-[#17717b] underline-offset-4 hover:underline">Request a quotation →</Link>
               </div>
             </div>
             <div>
@@ -249,7 +250,7 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
               <h3 className="text-lg font-semibold text-[#294c50]">Planning a similar project?</h3>
               <p className="mt-3 text-[14px] leading-7 text-[#596f72]">{item.homeownerGuidance}</p>
               <p className="mt-4 text-[13px] leading-6 text-[#667a7d]">Tell us the property postcode and what you would like to achieve. We will explain the next drawing and planning steps.</p>
-              <Link href={`/get-drawings-quote?source=case-study&project=${encodeURIComponent(item.slug)}`} className="mt-5 inline-flex rounded-full bg-[#64b7c4] px-6 py-3 text-[13px] font-semibold text-white hover:bg-[#4da4b4]">Get your fixed-fee quote</Link>
+              <Link href={quoteHref} className="mt-5 inline-flex rounded-full bg-[#64b7c4] px-6 py-3 text-[13px] font-semibold text-white hover:bg-[#4da4b4]">Get your fixed-fee quote</Link>
             </aside>
           </div>
         </section>
@@ -278,7 +279,7 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
                 </p>
               </div>
               <div className="flex flex-col items-start gap-3 lg:items-end">
-                <Link href={QUOTE} className="rounded-full bg-[#51aab8] px-7 py-3.5 text-sm font-semibold text-white hover:bg-[#318e9c]">Get your fixed-fee quote</Link>
+                <Link href={quoteHref} className="rounded-full bg-[#51aab8] px-7 py-3.5 text-sm font-semibold text-white hover:bg-[#318e9c]">Get your fixed-fee quote</Link>
                 <Link href={item.relatedArea} className="text-[13px] font-semibold text-[#236d76] underline-offset-4 hover:underline">See local drawing services →</Link>
               </div>
             </div>
