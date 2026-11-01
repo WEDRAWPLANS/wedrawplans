@@ -164,8 +164,17 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
           <div className="mx-auto grid max-w-7xl gap-9 px-5 py-12 sm:px-8 sm:py-16 lg:grid-cols-2 lg:gap-20">
             <div>
               <p className="text-[12px] font-semibold uppercase tracking-[0.15em] text-[#357d81]">The proposal</p>
-              <h2 className="mt-3 text-2xl font-semibold sm:text-3xl">Project overview</h2>
-              <p className="mt-5 text-[15px] leading-8 text-[#51676b]">{item.summary}</p>
+              <h2 className="mt-3 text-2xl font-semibold sm:text-3xl">Scope of work</h2>
+              {item.highlights?.length ? (
+                <ul className="mt-5 space-y-4">
+                  {item.highlights.map((highlight) => (
+                    <li key={highlight} className="flex items-start gap-3 text-[15px] leading-7 text-[#51676b]">
+                      <span className="mt-[10px] h-1.5 w-1.5 shrink-0 rounded-full bg-[#56a9b2]" aria-hidden="true" />
+                      <span>{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
               <div className="mt-7 border-l-[3px] border-[#64aeb5] bg-[#f3f8f6] px-5 py-4">
                 <p className="text-[13px] font-semibold text-[#2b6269]">Considering a similar project?</p>
                 <p className="mt-2 text-[13px] leading-6 text-[#5c7274]">We can help assess the appropriate planning route, prepare architectural drawings and coordinate the application documents required for your property.</p>
