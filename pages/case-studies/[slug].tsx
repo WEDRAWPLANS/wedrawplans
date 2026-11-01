@@ -143,14 +143,23 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
                   <rect x="15" y="9" width="90" height="72" rx="2" fill="none" stroke="currentColor" strokeWidth="2"/>
                   <path d="M22 67H98M22 72H98M38 20V62M78 20V62M38 20H78V62H38zM49 33h19v29H49zM22 42h16M78 42h20" fill="none" stroke="currentColor" strokeWidth="1.5"/>
                 </svg>
-                <p className="mt-4 text-[17px] font-semibold text-[#3b5e61]">Architectural drawing presentation</p>
-                <p className="mt-2 max-w-lg text-[13px] leading-6 text-[#738689]">Image space reserved for the approved project drawings or design visualisation.</p>
+                <p className="mt-4 text-[17px] font-semibold text-[#3b5e61]">Project drawings to be added</p>
+                <p className="mt-2 max-w-lg text-[13px] leading-6 text-[#738689]">This space is ready for the approved architectural drawings, plans or 3D design views.</p>
               </div>
             )}
             {item.secondaryImage && (item.secondaryImage.startsWith("/images/case-studies/") || item.secondaryImage.startsWith("/images/hyde-")) && item.secondaryImage !== item.heroImage ? (
               <figure className="mt-5 overflow-hidden rounded-[18px] border border-[#dee5e1] bg-white p-5">
                 <Image src={item.secondaryImage} alt={"Additional architectural illustration for " + item.shortTitle} width={1450} height={900} className="h-auto w-full object-contain"/>
               </figure>
+            ) : null}
+            {item.projectVideoUrl ? (
+              <div className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-[16px] border border-[#d7e7e1] bg-white px-5 py-4">
+                <div>
+                  <p className="text-[14px] font-semibold text-[#264d51]">WEDRAWPLANS project video</p>
+                  <p className="mt-1 text-[12px] leading-6 text-[#60797b]">Explore the design presentation for this approved project.</p>
+                </div>
+                <a href={item.projectVideoUrl} target="_blank" rel="noopener noreferrer" className="inline-flex rounded-full border border-[#b7d6d0] px-5 py-2.5 text-[13px] font-semibold text-[#26737c] hover:bg-[#eaf6f2]">View project video ↗</a>
+              </div>
             ) : null}
             {item.animationSlot ? (
               <div className="mt-5 grid gap-5 lg:grid-cols-2">
@@ -225,6 +234,23 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
                 </div>
               ) : null}
             </div>
+          </div>
+        </section>
+
+        <section className="border-t border-[#e2e9e5] bg-[#f9fbf9]" aria-labelledby="wedrawplans-service-heading">
+          <div className="mx-auto grid max-w-7xl gap-8 px-5 py-12 sm:px-8 sm:py-14 lg:grid-cols-[1.16fr_.84fr] lg:gap-16">
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.17em] text-[#a5675f]">Architectural drawing service</p>
+              <h2 id="wedrawplans-service-heading" className="mt-3 text-2xl font-semibold leading-snug text-[#233f42] sm:text-3xl">How WEDRAWPLANS supported this approval</h2>
+              <p className="mt-5 text-[15px] leading-8 text-[#526a6e]">{item.wdpService}</p>
+              <Link href={item.relatedService} className="mt-4 inline-flex text-[13px] font-semibold text-[#1e727e] underline-offset-4 hover:underline">Explore our related architectural drawing service →</Link>
+            </div>
+            <aside className="self-start rounded-[18px] border border-[#deebe6] bg-white p-6 sm:p-7">
+              <h3 className="text-lg font-semibold text-[#294c50]">Planning a similar project?</h3>
+              <p className="mt-3 text-[14px] leading-7 text-[#596f72]">{item.homeownerGuidance}</p>
+              <p className="mt-4 text-[13px] leading-6 text-[#667a7d]">Tell us the property postcode and what you would like to achieve. We will explain the next drawing and planning steps.</p>
+              <Link href={`/get-drawings-quote?source=case-study&project=${encodeURIComponent(item.slug)}`} className="mt-5 inline-flex rounded-full bg-[#64b7c4] px-6 py-3 text-[13px] font-semibold text-white hover:bg-[#4da4b4]">Get your fixed-fee quote</Link>
+            </aside>
           </div>
         </section>
 
