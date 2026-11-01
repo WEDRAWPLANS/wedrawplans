@@ -347,8 +347,8 @@ export default function HertfordshireAreaPage() {
 
 <ApprovalEvidenceStrip
   slugs={["allum-lane-elstree-major-house-extension","cranbourne-drive-hoddesdon-planning-project"]}
-  title="Approved WEDRAWPLANS projects around Hertfordshire and the M25"
-  intro="Our Hertfordshire evidence includes substantial residential work in Elstree and Hoddesdon, giving homeowners local proof before they enquire."
+  title="Approved residential extensions in Hertfordshire"
+  intro="Planning approvals for substantial residential extension work in Elstree and retrospective rear-extension work in Hoddesdon."
 />
 
           <section className="bg-white border-b border-slate-200 py-10">
