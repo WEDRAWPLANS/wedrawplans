@@ -39,7 +39,7 @@ export const caseStudies: CaseStudy[] = [
     relatedArea: "/areas/wandsworth",
     heroImage: "/images/case-studies/sistova-approved-project.webp",
     secondaryImage: "",
-    review: "A genuine client review was received following this project and will be used only in the verified form already published by the client.",
+    review: "This approved Wandsworth project is also supported by genuine client feedback published following the WEDRAWPLANS service.",
     featured: true
   },
   {
