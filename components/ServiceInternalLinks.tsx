@@ -287,6 +287,12 @@ export default function ServiceInternalLinks({
               body: "New build planning drawings with structural engineering coordination and town planning support.",
               cta: "View New Build Plans",
             },
+            {
+              href: "/case-studies",
+              title: "Planning Approvals & Case Studies",
+              body: "See selected WEDRAWPLANS approvals and project evidence across extensions, lofts, conversions, heritage, mixed-use and specialist homeowner projects.",
+              cta: "View Approved Projects",
+            },
           ].map((service) => (
             <a
               key={service.href}
