@@ -209,7 +209,7 @@ function BoroughCard({
 }
 
 const BOROUGH_APPROVED_CASES: Record<string, string[]> = {
-  Barnet: ["sunbury-avenue-mill-hill-side-rear-extension", "the-hyde-colindale-major-residential-development", "reddings-close-mill-hill-lawful-loft"],
+  Barnet: ["sunbury-avenue-mill-hill-side-rear-extension", "the-reddings-mill-hill-extension-basement-loft", "the-hyde-colindale-major-residential-development", "reddings-close-mill-hill-lawful-loft"],
   Wandsworth: ["sistova-road-wandsworth-extension-basement"],
   Hounslow: ["cromwell-road-hounslow-rear-extension"],
   Hertfordshire: ["allum-lane-elstree-major-house-extension", "cranbourne-drive-hoddesdon-planning-project"],
