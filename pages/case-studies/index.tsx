@@ -3,6 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { caseStudies, categoryForCaseStudy, CaseStudy } from "../../data/caseStudies";
+import { CaseStudyHeader, CaseStudyBottom, CaseStudyFooter } from "../../components/CaseStudyChrome";
 
 const QUOTE = "/get-drawings-quote";
 const PROJECT_BASE = "/case-studies/";
@@ -43,7 +44,7 @@ function ProjectCard({ item }: { item: CaseStudy }) {
       </Link>
       <div className="flex flex-1 flex-col px-5 pb-5 pt-5 sm:px-6">
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-[#547074]">
-          <span className="font-semibold text-[#1e6f73]">{item.outcome}</span>
+          <span className="rounded-full border border-[#efcbc4] bg-[#fff1ee] px-2.5 py-1 font-semibold text-[#97594f]">{item.outcome}</span>
           <span aria-hidden="true">·</span>
           <span>{item.year}</span>
         </div>
@@ -93,20 +94,11 @@ export default function CaseStudiesHub() {
       </Head>
 
       <main className="min-h-screen bg-[#fafbf9] text-[#23383d]">
-        <header className="border-b border-[#e4e9e6] bg-white">
-          <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-5 py-4 sm:px-8">
-            <Link href="/" aria-label="WEDRAWPLANS home">
-              <img src="/images/wedrawplans-logo.png" alt="WEDRAWPLANS" className="h-14 w-auto object-contain sm:h-16" />
-            </Link>
-            <nav aria-label="Main navigation" className="flex flex-wrap items-center gap-x-5 gap-y-3 text-[13px] font-semibold">
-              <Link href="/extension-plans" className="hover:text-[#147c86]">Extensions</Link>
-              <Link href="/planning-drawings" className="hover:text-[#147c86]">Planning drawings</Link>
-              <Link href="/case-studies" aria-current="page" className="text-[#147c86]">Projects</Link>
-              <Link href={QUOTE} className="rounded-full bg-[#51aab8] px-5 py-2.5 text-white transition hover:bg-[#318e9c]">Get a fixed-fee quote</Link>
-            </nav>
-          </div>
-        </header>
+        <CaseStudyHeader />
 
+        <div className="border-b border-[#edcfca] bg-[#fbeae6] px-5 py-2.5 text-center text-[11px] font-semibold uppercase tracking-[0.15em] text-[#98584f]">
+          Selected planning approvals &amp; architectural projects
+        </div>
         <section className="border-b border-[#e7ebe8] bg-white">
           <div className="mx-auto max-w-7xl px-5 pb-12 pt-12 sm:px-8 sm:pb-16 sm:pt-16">
             <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-[#247b82]">WEDRAWPLANS · Selected projects</p>
@@ -215,6 +207,8 @@ export default function CaseStudiesHub() {
             <Link href="/" className="font-semibold text-[#2c727b] hover:underline">WEDRAWPLANS homepage</Link>
           </div>
         </section>
+        <CaseStudyBottom projectType="house extension" />
+        <CaseStudyFooter />
       </main>
     </>
   );
