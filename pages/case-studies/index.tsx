@@ -188,25 +188,6 @@ export default function CaseStudiesHub() {
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-16">
-          <div className="grid items-start gap-8 rounded-[22px] border border-[#dce8e4] bg-[#eef5f3] p-7 sm:p-10 lg:grid-cols-[1.3fr_.7fr]">
-            <div>
-              <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-[#37757c]">Planning a project?</p>
-              <h2 className="mt-3 text-3xl font-semibold leading-tight">Let us help with your architectural drawings.</h2>
-              <p className="mt-4 max-w-2xl text-[14px] leading-7 text-[#52676b]">
-                Whether you are considering a rear extension, loft conversion, permitted-development application or something more specialist, send us your postcode and a short description of the work. We can outline the next steps and provide a fixed-fee quotation.
-              </p>
-            </div>
-            <div className="flex flex-col items-start gap-3 lg:items-end">
-              <Link href={QUOTE} className="rounded-full bg-[#51aab8] px-7 py-3.5 text-sm font-semibold text-white hover:bg-[#318e9c]">Get your fixed-fee quote</Link>
-              <Link href="/extension-plans" className="px-2 py-2 text-sm font-semibold text-[#216f78] underline-offset-4 hover:underline">Explore house extension services →</Link>
-            </div>
-          </div>
-          <div className="mt-9 flex flex-wrap items-center justify-between gap-4 border-t border-[#e3e9e6] pt-6 text-[12px] text-[#68797d]">
-            <span>WEDRAWPLANS · Architectural drawings, planning applications &amp; Building Regulations</span>
-            <Link href="/" className="font-semibold text-[#2c727b] hover:underline">WEDRAWPLANS homepage</Link>
-          </div>
-        </section>
         <CaseStudyBottom projectType="house extension" />
         <CaseStudyFooter />
       </main>
