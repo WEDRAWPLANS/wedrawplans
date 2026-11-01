@@ -645,8 +645,8 @@ export default function BarnetAreaPage() {
 
 <ApprovalEvidenceStrip
   slugs={["sunbury-avenue-mill-hill-side-rear-extension","13-reddings-close-mill-hill-first-floor-extension","northolm-edgware-two-storey-extension"]}
-  title="Selected WEDRAWPLANS approvals in Barnet"
-  intro="A small selection from our long-running Barnet portfolio, including Mill Hill and Edgware extension approvals. See the full case studies or get your fixed-fee quote for a similar project."
+  title="Approved house-extension projects in Barnet"
+  intro="Selected planning permissions for side, rear and first-floor extensions in Mill Hill and Edgware, with details of the approved proposals and drawings."
 />
 
           <section className="border-b border-slate-200 bg-white py-10">
