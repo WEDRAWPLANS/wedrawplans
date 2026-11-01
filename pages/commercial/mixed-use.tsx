@@ -9,6 +9,7 @@ declare global {
   }
 }
 
+import ApprovalEvidenceStrip from "../../components/ApprovalEvidenceStrip";
 const GBP_LINK = "https://share.google/ehN4CchP9EPaKSq5p";
 const PAGE_URL = "https://www.wedrawplans.co.uk/commercial/mixed-use";
 const PAGE_TITLE =
