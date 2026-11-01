@@ -1,10 +1,32 @@
+import { useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { caseStudies } from "../../data/caseStudies";
+import { caseStudies, CaseStudy } from "../../data/caseStudies";
+
+function categoryFor(item: CaseStudy): string {
+  const service = item.service.toLowerCase();
+  if (/loft|dormer|gable/.test(service)) return "Loft conversions";
+  if (/kerb|crossover/.test(service)) return "Dropped kerbs";
+  if (/heritage|listed|shopfront|mixed-use/.test(service)) return "Heritage & commercial";
+  if (/flat conversion|residential conversion|multi-unit|additional floor|major residential/.test(service)) return "Residential development";
+  if (/extension|prior approval/.test(service)) return "Extensions";
+  return "Other projects";
+}
 
 export default function CaseStudiesHub() {
   const featured = caseStudies.find((item) => item.featured)!;
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("All project types");
+  const [authority, setAuthority] = useState("All planning authorities");
+  const categories = ["All project types", ...Array.from(new Set(caseStudies.map(categoryFor))).sort()];
+  const authorities = ["All planning authorities", ...Array.from(new Set(caseStudies.map((item) => item.authority))).sort()];
+  const results = caseStudies.filter((item) => {
+    const text = [item.title, item.location, item.authority, item.service, item.reference].join(" ").toLowerCase();
+    return text.includes(search.trim().toLowerCase())
+      && (category === "All project types" || categoryFor(item) === category)
+      && (authority === "All planning authorities" || item.authority === authority);
+  });
   return (
     <>
       <Head>
@@ -79,15 +101,36 @@ export default function CaseStudiesHub() {
               </Link>
             </div>
 
-            <div className="mt-7 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-              {caseStudies.map((item, index) => (
+            <div className="mt-7 grid gap-3 rounded-2xl border border-slate-200 bg-white p-4 md:grid-cols-3">
+              <input aria-label="Search projects" type="search" value={search} onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search town, street or project" className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm text-slate-900" />
+              <select aria-label="Filter by project type" value={category} onChange={(e) => setCategory(e.target.value)}
+                className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm text-slate-900">
+                {categories.map((name) => <option key={name} value={name}>{name}</option>)}
+              </select>
+              <select aria-label="Filter by planning authority" value={authority} onChange={(e) => setAuthority(e.target.value)}
+                className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm text-slate-900">
+                {authorities.map((name) => <option key={name} value={name}>{name}</option>)}
+              </select>
+            </div>
+            <p className="mt-4 text-sm text-slate-600">Showing {results.length} of {caseStudies.length} projects.</p>
+            <div className="mt-5 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+              {results.map((item) => (
                 <article key={item.slug} className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-                  <div className="relative h-48 bg-slate-100">
-                    <Image src={item.heroImage} alt={item.shortTitle} fill className="object-cover" />
-                  </div>
+                  {item.heroImage.startsWith("/images/case-studies/") ? (
+                    <div className="relative h-48 bg-slate-100">
+                      <Image src={item.heroImage} alt={"Architectural drawings — " + item.shortTitle} fill className="object-contain" />
+                    </div>
+                  ) : (
+                    <div className="flex h-48 flex-col justify-center bg-[#20243b] p-6 text-white">
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#9edce4]">WEDRAWPLANS project archive</p>
+                      <p className="mt-4 text-xl font-semibold">{item.shortTitle}</p>
+                      <p className="mt-2 text-xs text-slate-200">{item.service}</p>
+                    </div>
+                  )}
                   <div className="p-5">
                     <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-emerald-700">
-                      {index + 1}. {item.approved ? item.outcome : item.outcome}
+                      {item.outcome}
                     </div>
                     <h3 className="mt-2 text-lg font-semibold">{item.shortTitle}</h3>
                     <p className="mt-2 text-[13px] leading-6 text-slate-600">{item.service}</p>
@@ -99,6 +142,11 @@ export default function CaseStudiesHub() {
                 </article>
               ))}
             </div>
+            {results.length === 0 ? (
+              <div className="mt-6 rounded-xl border border-slate-200 bg-white p-6 text-sm text-slate-600">
+                No matching cases in this selection. Try clearing one of the filters.
+              </div>
+            ) : null}
           </div>
         </section>
 
