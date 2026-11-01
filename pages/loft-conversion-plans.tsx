@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import ApprovalEvidenceStrip from "../components/ApprovalEvidenceStrip";
 import { submitBoroughLead } from "../lib/submitBoroughLead";
 
 const PHONE_DISPLAY = "020 3654 8508";
@@ -775,6 +776,11 @@ export default function LoftConversionPlansPage() {
             </div>
           </div>
         </section>
+              <ApprovalEvidenceStrip
+          slugs={["warbeck-road-hammersmith-fulham-loft-certificate","deans-way-edgware-lawful-loft","alnwick-road-eltham-lawful-loft"]}
+          title="Selected loft conversion and roof-extension certificates"
+          intro="Examples of approved lawful-development applications for dormers, gable alterations and rooflights, from West to South East London."
+        />
       </main>
     </>
   );
