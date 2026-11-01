@@ -18,6 +18,9 @@ export type CaseStudy = {
   secondaryImage: string;
   review?: string;
   featured?: boolean;
+  decisionDate?: string;
+  approvedDrawings?: string;
+  keyConditions?: string[];
 };
 
 export const caseStudies: CaseStudy[] = [
@@ -32,8 +35,11 @@ export const caseStudies: CaseStudy[] = [
     service: "Side and rear extension, basement lightwell and access works",
     outcome: "Planning permission granted",
     approved: true,
-    summary: "An approved single-storey side and rear extension with excavation to form a lightwell serving the existing basement, a new rear access gate to Rossiter Road, boundary-gate changes, a replacement side window and associated internal alterations.",
-    proof: "WEDRAWPLANS prepared the architectural package and supporting information for this approved Wandsworth project, including the fire-safety statement referenced in the approved document set.",
+    summary: "Wandsworth granted permission for a single-storey side/rear extension, excavation to enlarge the existing basement and form a rear lightwell, and a replacement side window at 34A Sistova Road.",
+    proof: "The Wandsworth Council decision dated 15 October 2026 (application 2026/1748) confirms planning permission and expressly includes the WEDRAWPLANS Fire Safety Statement and revised architectural plans among the approved documents. The consent records conditions concerning matching external materials and obscure glazing to protect neighbouring privacy.",
+    decisionDate: "15 October 2026",
+    approvedDrawings: "Location plan dated 07/05/2026; ID-07 dated 28/09/2026; ID-04, ID-05 and ID-06 Revision R1-A; WEDRAWPLANS Fire Safety Statement; email dated 23/09/2026.",
+    keyConditions: ["External materials must match the existing building.", "The rear extension window must be obscure-glazed and non-opening, subject to the approved high-level opening exception."],
     leadAngle: "Planning a side, rear or basement extension in Wandsworth or South West London?",
     relatedService: "/extension-plans",
     relatedArea: "/areas/wandsworth",
@@ -405,17 +411,17 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "cranbourne-drive-hoddesdon-planning-project",
-    title: "Hoddesdon Rear Extension Planning Project",
+    title: "Hoddesdon Rear Extension Planning Application",
     shortTitle: "Cranbourne Drive, Hoddesdon",
     location: "7 Cranbourne Drive, Hoddesdon EN11",
     authority: "Borough of Broxbourne Council",
     reference: "PP-15133068 / current project record",
     year: "2026",
     service: "Retrospective rear-extension planning",
-    outcome: "Planning approval secured",
-    approved: true,
-    summary: "A retrospective householder-planning project for retention of a 3.4m single-storey rear extension following demolition of the former conservatory, with rooflights and rear glazing.",
-    proof: "The approved WEDRAWPLANS project package includes the planning drawings and Design & Access Statement for the Hoddesdon rear-extension scheme.",
+    outcome: "Planning application — decision to be confirmed",
+    approved: false,
+    summary: "A householder planning application seeking to retain an existing single-storey rear extension following demolition of the former conservatory, with rooflights and rear glazing.",
+    proof: "WEDRAWPLANS prepared the application drawings and supporting documents. This is an active planning-work case study; a grant of permission must not be claimed until the decision notice has been verified.",
     leadAngle: "Need help regularising an existing extension or responding to planning concerns in Broxbourne?",
     relatedService: "/planning-drawings",
     relatedArea: "/areas/hertfordshire",
