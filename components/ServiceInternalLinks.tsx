@@ -1,4 +1,6 @@
 import React from "react";
+import Link from "next/link";
+import { caseStudies } from "../data/caseStudies";
 
 const CANONICAL_BOROUGH_SLUGS: Record<string, string> = {
   "Kingston upon Thames": "kingston",
@@ -184,7 +186,7 @@ function BoroughCard({
       <a
         href={`/areas/${slug}`}
         aria-disabled="true"
-        className="rounded-xl border bg-slate-900 p-4 text-white opacity-95"
+        className="rounded-xl border border-[#e5cbc7] bg-[#fff0ed] p-4 text-[#613e3b]"
       >
         <div className="text-[12px] font-extrabold uppercase tracking-[0.14em]">Current</div>
         <div className="mt-1 text-sm font-semibold">{borough}</div>
@@ -206,6 +208,21 @@ function BoroughCard({
   );
 }
 
+const BOROUGH_APPROVED_CASES: Record<string, string[]> = {
+  Barnet: ["sunbury-avenue-mill-hill-side-rear-extension", "the-hyde-colindale-major-residential-development", "reddings-close-mill-hill-lawful-loft"],
+  Wandsworth: ["sistova-road-wandsworth-extension-basement"],
+  Hounslow: ["cromwell-road-hounslow-rear-extension"],
+  Hertfordshire: ["allum-lane-elstree-major-house-extension", "cranbourne-drive-hoddesdon-planning-project"],
+  Greenwich: ["700-woolwich-road-greenwich-two-new-flats", "alnwick-road-eltham-lawful-loft"],
+  Lewisham: ["brockley-road-lewisham-two-flat-conversion"],
+  Harrow: ["burnt-oak-broadway-harrow-retail-flats"],
+  "Hammersmith and Fulham": ["warbeck-road-hammersmith-fulham-loft-certificate"],
+  "Hammersmith & Fulham": ["warbeck-road-hammersmith-fulham-loft-certificate"],
+  Lambeth: ["electric-avenue-brixton-shopfront"],
+  "Tower Hamlets": ["mile-end-road-listed-building-heritage"],
+  "Waltham Forest": ["hall-lane-chingford-dropped-kerb"],
+};
+
 export default function ServiceInternalLinks({
   boroughName,
 }: {
@@ -223,6 +240,9 @@ export default function ServiceInternalLinks({
 
   const currentSlug = slugifyBorough(boroughName);
   const currentHref = boroughName === "London" ? "/areas" : `/areas/${currentSlug}`;
+  const localCases = (BOROUGH_APPROVED_CASES[boroughName] || [])
+    .map((slug) => caseStudies.find((item) => item.slug === slug))
+    .filter((item): item is (typeof caseStudies)[number] => Boolean(item));
 
   return (
     <section className="bg-white">
@@ -308,6 +328,35 @@ export default function ServiceInternalLinks({
           ))}
         </div>
 
+        {localCases.length ? (
+          <div className="mt-10 border-t border-[#e3e9e6] pt-8">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-[#ad6961]">Selected WEDRAWPLANS projects</p>
+            <h3 className="mt-2 text-xl font-semibold text-[#203f43]">Planning approvals relevant to {boroughName}</h3>
+            <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-700">
+              These approved projects illustrate the type of drawings, design coordination and planning applications we undertake.
+              Compare the proposals and see what may be appropriate for your property.
+            </p>
+            <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {localCases.map((item) => (
+                <Link key={item.slug} href={"/case-studies/" + item.slug} className="block rounded-2xl border border-[#dce5e0] bg-[#f7faf8] p-5 hover:border-[#9dbfc3]">
+                  <span className="text-[11px] font-semibold text-[#a36a62]">{item.outcome}</span>
+                  <span className="mt-2 block text-[15px] font-semibold text-[#294448]">{item.shortTitle}</span>
+                  <span className="mt-2 block text-[12px] leading-6 text-[#617479]">{item.service}</span>
+                  <span className="mt-3 block text-[12px] font-semibold text-[#26747c]">View the approved project →</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="mt-10 rounded-2xl border border-[#e1e7e3] bg-[#f8faf8] p-6">
+            <h3 className="text-lg font-semibold text-[#253f42]">Planning approvals and drawings across London</h3>
+            <p className="mt-2 text-sm leading-7 text-slate-700">
+              Explore selected WEDRAWPLANS planning decisions for extensions, loft conversions and residential projects in other London boroughs.
+            </p>
+            <Link href="/case-studies" className="mt-3 inline-flex text-sm font-semibold text-[#287680] underline-offset-4 hover:underline">Explore approved project examples →</Link>
+          </div>
+        )}
+
         <div className="mt-10">
           <h3 className="text-lg font-extrabold tracking-tight">Nearby borough pages</h3>
 
@@ -320,7 +369,7 @@ export default function ServiceInternalLinks({
             <a
               href={currentHref}
               aria-disabled="true"
-              className="rounded-xl border bg-slate-900 p-4 text-white opacity-95"
+              className="rounded-xl border border-[#e5cbc7] bg-[#fff0ed] p-4 text-[#613e3b]"
             >
               <div className="text-[12px] font-extrabold uppercase tracking-[0.14em]">
                 Current
