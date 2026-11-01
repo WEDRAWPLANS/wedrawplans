@@ -364,7 +364,10 @@ export const caseStudies: CaseStudy[] = [
     outcome: "Planning permission granted",
     approved: true,
     summary: "A vehicle crossover and dropped-kerb proposal supported by WEDRAWPLANS site, elevation and drainage details.",
-    proof: "The 2026 decision approved the submitted WEDRAWPLANS drawings PP01-PP05.",
+    proof: "Waltham Forest granted planning permission on 28 July 2026 for a dropped kerb and vehicle crossover at 135 Hall Lane, Chingford. The decision expressly refers to WEDRAWPLANS drawings PP01–PP05 and requires the front parking area to retain its approved permeable surfacing. Permission for planning purposes is distinct from the separate Highways application needed for construction of the crossover.",
+    decisionDate: "28 July 2026",
+    approvedDrawings: "PP01, PP02, PP03, PP04 and PP05, dated May 2026.",
+    keyConditions: ["The front garden and parking area must retain the permeable surfacing shown on PP05.", "Construction of the crossover requires a separate Highways application and compliance with the authority's requirements."],
     leadAngle: "Need drawings for a dropped kerb, crossover or front-garden parking proposal?",
     relatedService: "/planning-drawings",
     relatedArea: "/areas/waltham-forest",
@@ -448,5 +451,15 @@ export const caseStudies: CaseStudy[] = [
     secondaryImage: "/images/barnet-project-drawings-board.jpg"
   }
 ];
+
+export function categoryForCaseStudy(item: CaseStudy): string {
+  const service = item.service.toLowerCase();
+  if (/loft|dormer|gable/.test(service)) return "Loft conversions";
+  if (/kerb|crossover/.test(service)) return "Dropped kerbs";
+  if (/heritage|listed|shopfront|mixed-use/.test(service)) return "Heritage & commercial";
+  if (/flat conversion|residential conversion|multi-unit|additional floor|major residential|two new flats/.test(service)) return "Residential development";
+  if (/extension|prior approval/.test(service)) return "Extensions";
+  return "Other projects";
+}
 
 export const caseStudyBySlug = Object.fromEntries(caseStudies.map((item) => [item.slug, item]));
