@@ -598,8 +598,8 @@ export default function WandsworthAreaPage() {
 
 <ApprovalEvidenceStrip
   slugs={["sistova-road-wandsworth-extension-basement"]}
-  title="One of our approved Wandsworth projects"
-  intro="34A Sistova Road is one of our approved residential projects in Wandsworth. Planning something similar? Get your fixed-fee quote."
+  title="Approved side and rear extension in Wandsworth"
+  intro="The Sistova Road project includes a single-storey side/rear extension, basement enlargement and a rear lightwell. Explore the approved scheme and WEDRAWPLANS drawing package."
 />
 
           <section className="border-b border-slate-200 bg-white py-10">
