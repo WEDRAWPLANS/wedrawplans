@@ -1,6 +1,6 @@
 # WEDRAWPLANS — Case-Study Editorial, Design and Lead Standard
 Updated: 1 November 2026
-Scope: 22 planning-approval case-study pages, approvals hub, relevant borough/town/service integrations. Preview branch only until client approval.
+Scope: 24 approved-project case-study pages, approvals hub, relevant borough/town/service integrations. Preview branch only until client approval.
 
 ## Business objective
 Make WEDRAWPLANS a trusted, easy-to-contact architectural drawing and planning consultancy for London and the surrounding M25 areas. Target at least 10 qualified enquiries per week; measure enquiry source, conversion and follow-up rather than promise ranking outcomes.
@@ -28,7 +28,7 @@ Make WEDRAWPLANS a trusted, easy-to-contact architectural drawing and planning c
 
 ## Approvals-hub architecture
 - Central /case-studies page searchable by town, council and project type.
-- Show 22 selected approvals with descriptive titles and succinct scope information.
+- Show 24 selected approved projects with descriptive titles and succinct scope information.
 - Use user-friendly filters and light project cards.
 - Prioritise extensions without obscuring loft conversions, Lawful Development Certificates, flat conversions, mixed use, heritage, new residential schemes, solar/PV-related design evidence or dropped-kerb work.
 - Acknowledge that an approval does not guarantee approval of a similar future proposal.
@@ -62,8 +62,8 @@ Make WEDRAWPLANS a trusted, easy-to-contact architectural drawing and planning c
 34A Sistova Road, Wandsworth: application 2026/1748 approved 15 October 2026. Use the approved drawings and precise council conditions, not assumed construction completion.
 
 ## Project ordering and evidence update — 1 November 2026
-- Editorial order at the top of the central hub: Sistova Road, Allum Lane, Sunbury Avenue, Cromwell Road, The Hyde, Woolwich Road, then the remaining projects by portfolio priority.
-- Twenty-three approved decision/certificate cases are now represented after adding Warbeck Road W12 (2019/01824/CLP, certificate issued 12 August 2019). Do not remove any of the original 22 without client instruction.
+- Editorial order at the top of the central hub: Sistova Road, Allum Lane, Sunbury Avenue, Cromwell Road, The Reddings (48), The Hyde, Woolwich Road, then the remaining 17 projects.
+- Twenty-four approved decision/certificate cases are now represented, including Warbeck Road W12 (2019/01824/CLP) and The Reddings, Mill Hill (18/7533/HSE and 18/4693/192). Do not remove any of the original 22 without client instruction.
 - Allum Lane: reserve the principal architectural drawing canvas and dedicated animation slot until the client supplies the animation and related drawings.
 - Sunbury Avenue, Mill Hill: special multi-approval history, including 20/3400/HSE, 20/5459/HSE, 20/5460/HSE, 21/2335/HSE and 22/3075/HSE. The 2020–21 consents were granted but later expired; present as historical approvals. Separate those decisions from construction progress and reserve three photo spaces.
 - Cromwell Road Hounslow: permission P/2026/2306 granted 1 October 2026; approved ID-01 through ID-05 with site plan and fire strategy. User-supplied original PDFs have been converted into selected web images, pending addition to repository media.
@@ -73,3 +73,12 @@ Make WEDRAWPLANS a trusted, easy-to-contact architectural drawing and planning c
 - Every case study must show a project-specific drawing/visualisation or a clean reserved drawing canvas. Do not substitute unrelated stock or generic images.
 - The most important acceptance criterion is a coherent enquiry journey: relevant project → clear proposal/outcome → nearby service/locality → "Get your fixed-fee quote".
 - Avoid paid automation/browser credits or Work; use the preview branch only unless separately authorised.
+
+## Final 24-case-study preview brief — 1 November 2026
+- Client explicitly approved exactly 24 case studies and the order Sistova, Allum, Sunbury, Cromwell, The Reddings, The Hyde, Woolwich, followed by the remaining projects.
+- Every case contains a professionally written WEDRAWPLANS drawing/submission/case-officer liaison narrative, plus site-specific homeowner guidance and the accurate application outcome.
+- All 24 outcomes are represented as approved/granted or the equivalent certificate/prior-approval determination; these are not claims that construction is complete.
+- The Reddings, NW7 4JR: Barnet planning approval 18/7533/HSE (2019) for part single/part two-storey front, side and rear extensions with basement following garage demolition; associated loft certificate reference 18/4693/192. WEDRAWPLANS' public project video is at https://vimeo.com/443886303. The published presentation uses street name and postcode, omitting house number.
+- An original drawing or 3D visual is preferred. If unavailable, leave a neat labelled 'Project drawings to be added' canvas. Allum retains an animation slot, Sunbury three construction stages. Clients may add visuals after publication.
+- All case-study-specific quote links carry source and project parameters. The existing quote form writes the originating project to its submission metadata; this is a first step towards source-by-source conversion measurement.
+- Share a preview link and obtain explicit approval before any production merge.
