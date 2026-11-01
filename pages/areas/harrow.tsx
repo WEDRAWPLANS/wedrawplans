@@ -726,7 +726,7 @@ export default function HarrowAreaPage() {
 <ApprovalEvidenceStrip
   slugs={["burnt-oak-broadway-harrow-retail-flats"]}
   title="Approved mixed-use project in Harrow"
-  intro="A Burnt Oak approval combining retail and residential works, with design revisions and planning-officer engagement."
+  intro="A retail and residential project on Burnt Oak Broadway involving architectural design revisions and planning coordination."
 />
 
           <section className="border-b border-slate-200 bg-white py-10">
