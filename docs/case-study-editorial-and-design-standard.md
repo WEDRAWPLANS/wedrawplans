@@ -60,3 +60,16 @@ Make WEDRAWPLANS a trusted, easy-to-contact architectural drawing and planning c
 ## Evidence note
 7 Cranbourne Drive, Hoddesdon: planning approval is CONFIRMED by the client; do not call it pending. The formal decision notice and council reference can be added when retrieved.
 34A Sistova Road, Wandsworth: application 2026/1748 approved 15 October 2026. Use the approved drawings and precise council conditions, not assumed construction completion.
+
+## Project ordering and evidence update — 1 November 2026
+- Editorial order at the top of the central hub: Sistova Road, Allum Lane, Sunbury Avenue, Cromwell Road, The Hyde, Woolwich Road, then the remaining projects by portfolio priority.
+- Twenty-three approved decision/certificate cases are now represented after adding Warbeck Road W12 (2019/01824/CLP, certificate issued 12 August 2019). Do not remove any of the original 22 without client instruction.
+- Allum Lane: reserve the principal architectural drawing canvas and dedicated animation slot until the client supplies the animation and related drawings.
+- Sunbury Avenue, Mill Hill: special multi-approval history, including 20/3400/HSE, 20/5459/HSE, 20/5460/HSE, 21/2335/HSE and 22/3075/HSE. The 2020–21 consents were granted but later expired; present as historical approvals. Separate those decisions from construction progress and reserve three photo spaces.
+- Cromwell Road Hounslow: permission P/2026/2306 granted 1 October 2026; approved ID-01 through ID-05 with site plan and fire strategy. User-supplied original PDFs have been converted into selected web images, pending addition to repository media.
+- Warbeck Road Shepherd's Bush: certificate of lawfulness 2019/01824/CLP issued 12 August 2019, WEDRAWPLANS drawings P04 and P05 Rev A for rear roof extension and three front rooflights. Web-ready source images prepared.
+- The Hyde Halt Parade: publicly identified approved permission 17/0660/FUL, varied under 18/0927/S73. Approval documentation describes 18 flats plus 40 sq m B1 space. Previous website draft said 19; do not claim 19 without supporting later decision notice. A separate 2026 application about site reuse is not the referenced residential permission.
+- Only street names and postcodes should appear in public case-study headings and locations; omit individual door numbers.
+- Every case study must show a project-specific drawing/visualisation or a clean reserved drawing canvas. Do not substitute unrelated stock or generic images.
+- The most important acceptance criterion is a coherent enquiry journey: relevant project → clear proposal/outcome → nearby service/locality → "Get your fixed-fee quote".
+- Avoid paid automation/browser credits or Work; use the preview branch only unless separately authorised.
