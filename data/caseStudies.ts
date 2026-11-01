@@ -173,9 +173,7 @@ export const caseStudies: CaseStudy[] = [
     decisions: [
       { reference: "18/7533/HSE", description: "Front, side and rear extensions, replacement of garage and creation of basement level", outcome: "Planning permission granted, 2019" },
       { reference: "18/4693/192", description: "Hip-to-gable roof alteration, rear dormer with Juliette balcony and three front rooflights", outcome: "Lawful-development certificate secured" }
-    ],
-    wdpService: "WEDRAWPLANS prepared the architectural plans, elevations and application drawings for the property alterations, coordinated the separate planning and lawful-development submissions and liaised with the appointed Barnet case officer during assessment. The successful decisions demonstrate the value of planning the house and roof proposals together while presenting the correct consent route for each.",
-    homeownerGuidance: "Where a homeowner proposes a combination of side, rear and roof changes, the planning and permitted-development routes can differ. We can review the property, map out the application strategy and prepare coordinated drawings for the appropriate submissions."
+    ]
   },
   {
     slug: "the-hyde-colindale-major-residential-development",
