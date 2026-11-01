@@ -1157,7 +1157,7 @@ export default function IndexPage() {
                   <div className="mt-6 grid gap-4 text-[13px] md:grid-cols-3">
                     <MiniTrustCard title="Fixed price" body="Clear quoting with no vague pricing." />
                     <MiniTrustCard title="Fast turnaround" body="Quick response and fast survey booking." />
-                    <MiniTrustCard title="London experts" body="Borough-aware drawings prepared for real approvals." />
+                    <MiniTrustCard title="London experts" body="Planning drawings informed by local council requirements." />
                   </div>
 
                   <div className="mt-6 flex flex-wrap gap-3">
