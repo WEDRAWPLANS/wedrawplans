@@ -308,7 +308,7 @@ export default function ExtensionPlansPage() {
         {/* QUICK NAV */}
 
 <ApprovalEvidenceStrip
-  slugs={["sistova-road-wandsworth-extension-basement","allum-lane-elstree-major-house-extension","sunbury-avenue-mill-hill-side-rear-extension"]}
+  slugs={["sistova-road-wandsworth-extension-basement","allum-lane-elstree-major-house-extension","sunbury-avenue-mill-hill-side-rear-extension","cromwell-road-hounslow-rear-extension","the-reddings-mill-hill-extension-basement-loft"]}
   title="Approved house-extension projects"
   intro="Explore selected side, rear and two-storey extension projects across London and Hertfordshire, with details of the proposed works and planning decisions."
 />
