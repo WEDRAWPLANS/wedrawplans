@@ -177,7 +177,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "the-hyde-colindale-major-residential-development",
-    wdpService: "WEDRAWPLANS contributed architectural drawings and planning coordination for the six-storey mixed-use development at Halt Parade. The project documentation presents the residential and commercial components, with the approved Barnet scheme providing the planning framework.",
+    wdpService: "WEDRAWPLANS prepared architectural design drawings and coordinated the planning submission for the six-storey residential and commercial scheme at Halt Parade. The practice supported communication with Barnet's case officer through assessment of the proposals and the subsequent planning outcome.",
     homeownerGuidance: "Mixed-use residential projects require a different level of coordination from a home extension. Plans should clearly explain entrances, unit layouts, access and the relationship between residential and commercial uses.",
     highlights: ["Six-storey approved development at Halt Parade","18 residential flats within the approved scheme","Approximately 40 sq m of commercial floorspace","Mixed-use planning and architectural design"],
     title: "Approved Six-Storey Residential Scheme at The Hyde, Colindale",
@@ -353,7 +353,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "reddings-close-mill-hill-lawful-loft",
-    wdpService: "WEDRAWPLANS prepared the roof-extension drawings showing the hip-to-gable alteration, rear dormer and front rooflights. The lawful-development documentation was submitted to Barnet and followed through to the certificate decision.",
+    wdpService: "WEDRAWPLANS prepared the roof-extension drawings showing the hip-to-gable alteration, rear dormer and front rooflights. The practice submitted the lawful-development documentation, corresponded with Barnet's case officer and followed the application through to the council's certificate decision.",
     homeownerGuidance: "The permitted-development route can be appropriate for certain loft conversions, but the proposal must meet the relevant roof-volume, positioning and other criteria for the individual property.",
     highlights: ["Hip-to-gable roof extension","Rear dormer","Three front rooflights","Lawful-development certificate"],
     title: "Lawful Hip-to-Gable, Dormer & Rooflight Loft in Mill Hill",
@@ -397,7 +397,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "alnwick-road-eltham-lawful-loft",
-    wdpService: "WEDRAWPLANS prepared the drawings for a gable-end roof alteration, rear dormer and three front rooflights. The practice managed the lawful-development submission with Greenwich and secured formal certification of the proposed roof works.",
+    wdpService: "WEDRAWPLANS prepared the drawings for a gable-end roof alteration, rear dormer and three front rooflights. The practice submitted the lawful-development documentation, liaised with Greenwich's appointed officer and secured formal certification of the proposed roof works.",
     homeownerGuidance: "Loft proposals in Eltham and wider Greenwich may need a certificate or planning permission depending on the site and design. A site-specific review identifies the correct route before drawings are finalised.",
     highlights: ["Gable-end roof alteration","Rear dormer","Three front rooflights","Lawful-development certificate"],
     title: "Lawful Gable-End & Rear Dormer Loft in Eltham",
@@ -463,7 +463,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "sefton-avenue-mill-hill-prior-approval",
-    wdpService: "WEDRAWPLANS measured and drew the proposed larger-home rear extension, showing the five-metre depth and height information for Barnet's prior-approval procedure. The practice submitted the notification and dealt with the authority through its formal determination.",
+    wdpService: "WEDRAWPLANS measured and drew the proposed larger-home rear extension, showing the five-metre depth and height information for Barnet's prior-approval procedure. The practice submitted the notification, liaised with the appointed officer and continued correspondence through the formal decision.",
     homeownerGuidance: "The larger-home-extension procedure differs from a standard householder planning application. Accurate dimensions and a clear understanding of eligibility help prevent a proposal following the wrong route.",
     highlights: ["Single-storey rear extension","Five-metre projection from the original rear wall","Larger-home-extension prior-approval process"],
     title: "Prior Approval for a 5m Rear Extension in Mill Hill",
