@@ -21,11 +21,13 @@ export type CaseStudy = {
   decisionDate?: string;
   approvedDrawings?: string;
   keyConditions?: string[];
+  highlights?: string[];
 };
 
 export const caseStudies: CaseStudy[] = [
   {
     slug: "sistova-road-wandsworth-extension-basement",
+    highlights: ["Single-storey side and rear extension","Basement enlargement and formation of a rear lightwell","Replacement side window and associated access alterations","Revised drawings and fire-safety information referenced by the council"],
     title: "Approved Side & Rear Extension with Basement Lightwell in Wandsworth",
     shortTitle: "Sistova Road, Wandsworth",
     location: "34A Sistova Road, Wandsworth, SW12",
@@ -50,6 +52,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "the-hyde-colindale-major-residential-development",
+    highlights: ["Major residential development in Colindale","Multi-unit residential design work","Historic project record forming part of the Barnet portfolio"],
     title: "Major Residential Development at The Hyde, Colindale",
     shortTitle: "The Hyde, Colindale",
     location: "The Hyde / Colindale, London NW9",
@@ -69,6 +72,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "700-woolwich-road-greenwich-two-new-flats",
+    highlights: ["Additional storey to create two two-bedroom flats","Ground-floor parking and access alterations","Coordinated planning drawings and supporting statements"],
     title: "Approved Additional Floor Creating Two New Flats in Greenwich",
     shortTitle: "700 Woolwich Road, Greenwich",
     location: "700 Woolwich Road, Charlton, London SE7 8LQ",
@@ -88,6 +92,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "allum-lane-elstree-major-house-extension",
+    highlights: ["Front and side extension elements","First-floor and rear additions","Roof and glazing alterations to the dwelling"],
     title: "Approved Major House Extension in Elstree / Borehamwood",
     shortTitle: "Allum Lane, Elstree",
     location: "27 Allum Lane, Elstree, Hertfordshire WD6",
@@ -107,6 +112,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "brockley-road-lewisham-two-flat-conversion",
+    highlights: ["Conversion of the first and second floors","Two self-contained residential flats","Retrospective planning application and supporting drawings"],
     title: "Approved Conversion to Two Self-Contained Flats in Brockley",
     shortTitle: "Brockley Road, Lewisham",
     location: "368 Brockley Road, London SE4",
@@ -126,6 +132,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "mile-end-road-listed-building-heritage",
+    highlights: ["Alterations to the front entrance","Planning and listed-building applications","Heritage-sensitive drawings and specification"],
     title: "Approved Planning & Listed Building Works in Mile End",
     shortTitle: "Mile End Road, Tower Hamlets",
     location: "124 Mile End Road, London E1",
@@ -145,6 +152,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "burnt-oak-broadway-harrow-retail-flats",
+    highlights: ["Rear extension to the retail premises","Residential conversion above the shop","Associated dormer, bin storage and cycle storage proposals","Design changes during officer review"],
     title: "Approved Retail Extension & Residential Conversion in Burnt Oak",
     shortTitle: "Burnt Oak Broadway, Harrow",
     location: "299A Burnt Oak Broadway, Edgware HA8",
@@ -164,6 +172,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "sunbury-avenue-mill-hill-side-rear-extension",
+    highlights: ["Part single-storey and part two-storey additions","Side and rear extension layout","Approved architectural drawing package"],
     title: "Approved Part Single / Part Two-Storey Extension in Mill Hill",
     shortTitle: "Sunbury Avenue, Mill Hill",
     location: "50 Sunbury Avenue, Mill Hill NW7",
@@ -183,6 +192,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "tithe-walk-mill-hill-loft-conversion",
+    highlights: ["Roof-space accommodation","Lawful-development certificate route","Barnet loft conversion drawings"],
     title: "Approved Loft Conversion in Mill Hill",
     shortTitle: "Tithe Walk, Mill Hill",
     location: "1 Tithe Walk, London NW7",
@@ -202,6 +212,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "northolm-edgware-two-storey-extension",
+    highlights: ["Two-storey side and rear extension","Proposed floor plans and elevations","Barnet planning permission"],
     title: "Approved Two-Storey Side & Rear Extension in Edgware",
     shortTitle: "Northolm, Edgware",
     location: "17 Northolm, Edgware HA8",
@@ -221,6 +232,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "deans-way-edgware-lawful-loft",
+    highlights: ["Hip-to-gable alteration","Rear dormer roof extension","Side window to the loft","Lawful-development certificate"],
     title: "Lawful Hip-to-Gable & Rear Dormer Loft in Edgware",
     shortTitle: "Deans Way, Edgware",
     location: "34 Deans Way, Edgware HA8",
@@ -240,6 +252,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "reddings-close-mill-hill-lawful-loft",
+    highlights: ["Hip-to-gable roof extension","Rear dormer","Three front rooflights","Lawful-development certificate"],
     title: "Lawful Hip-to-Gable, Dormer & Rooflight Loft in Mill Hill",
     shortTitle: "12 Reddings Close, Mill Hill",
     location: "12 Reddings Close, London NW7",
@@ -259,6 +272,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "13-reddings-close-mill-hill-first-floor-extension",
+    highlights: ["First-floor side extension","Plans, elevations and roof drawings","Approved drawing series P01–P06"],
     title: "Approved First-Floor Side Extension in Mill Hill",
     shortTitle: "13 Reddings Close, Mill Hill",
     location: "13 Reddings Close, London NW7",
@@ -278,6 +292,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "alnwick-road-eltham-lawful-loft",
+    highlights: ["Gable-end roof alteration","Rear dormer","Three front rooflights","Lawful-development certificate"],
     title: "Lawful Gable-End & Rear Dormer Loft in Eltham",
     shortTitle: "Alnwick Road, Eltham",
     location: "49 Alnwick Road, Eltham SE12",
@@ -297,6 +312,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "electric-avenue-brixton-shopfront",
+    highlights: ["Removal of existing roller shutters","Reinstatement of a timber-framed shopfront","Design within the Brixton Conservation Area"],
     title: "Approved Timber Shopfront Reinstatement in Brixton",
     shortTitle: "Electric Avenue, Brixton",
     location: "28 Electric Avenue, Brixton SW9",
@@ -316,6 +332,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "station-road-hendon-side-extension",
+    highlights: ["Removal of existing side conservatory","Single-storey side extension","Architectural plans and elevations"],
     title: "Approved Single-Storey Side Extension in Hendon",
     shortTitle: "Station Road, Hendon",
     location: "102 Station Road, London NW4",
@@ -335,6 +352,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "sefton-avenue-mill-hill-prior-approval",
+    highlights: ["Single-storey rear extension","Five-metre projection from the original rear wall","Larger-home-extension prior-approval process"],
     title: "Prior Approval for a 5m Rear Extension in Mill Hill",
     shortTitle: "Sefton Avenue, Mill Hill",
     location: "33 Sefton Avenue, London NW7",
@@ -354,6 +372,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "hall-lane-chingford-dropped-kerb",
+    highlights: ["Vehicle crossover and dropped-kerb proposal","Permeable front-garden parking surface","Drainage arrangement to prevent surface-water runoff to the highway","Separate Highways process needed for construction"],
     title: "Approved Dropped Kerb & Vehicle Crossover in Chingford",
     shortTitle: "Hall Lane, Chingford",
     location: "135 Hall Lane, Chingford E4",
@@ -376,6 +395,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "cromwell-road-hounslow-rear-extension",
+    highlights: ["Single-storey rear extension","Residential planning drawings","Coordinated Building Regulations and structural design stages"],
     title: "Approved Rear Extension in Hounslow",
     shortTitle: "Cromwell Road, Hounslow",
     location: "90 Cromwell Road, Hounslow TW3",
@@ -395,6 +415,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "leicester-road-barnet-4m-rear-extension",
+    highlights: ["Four-metre rear projection","Three-metre eaves and 3.2-metre maximum height","Larger-home-extension prior approval"],
     title: "Approved 4m Rear Extension Prior Approval in Barnet",
     shortTitle: "Leicester Road, Barnet",
     location: "96 Leicester Road, Barnet EN5",
@@ -414,6 +435,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "cranbourne-drive-hoddesdon-planning-project",
+    highlights: ["Retention of an existing single-storey rear extension","Replacement of the former conservatory","Rooflights and rear glazing","Retrospective householder planning approval"],
     title: "Approved Rear Extension in Hoddesdon",
     shortTitle: "Cranbourne Drive, Hoddesdon",
     location: "7 Cranbourne Drive, Hoddesdon EN11",
@@ -433,6 +455,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "dryfield-road-edgware-conservation-extension",
+    highlights: ["Rear extension in the Watling Estate Conservation Area","Design amendments during the planning process","Consideration of sensitive local context"],
     title: "Approved Rear Extension in the Watling Estate Conservation Area",
     shortTitle: "Dryfield Road, Edgware",
     location: "101 Dryfield Road, Edgware HA8",
