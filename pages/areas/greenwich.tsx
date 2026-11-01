@@ -337,8 +337,8 @@ export default function GreenwichAreaPage() {
 
 <ApprovalEvidenceStrip
   slugs={["700-woolwich-road-greenwich-two-new-flats","alnwick-road-eltham-lawful-loft"]}
-  title="Selected WEDRAWPLANS approvals in Greenwich"
-  intro="From additional residential floors and new flats to lawful loft conversions, these projects show real WEDRAWPLANS planning experience across Greenwich and Eltham."
+  title="Planning approvals in Greenwich and Eltham"
+  intro="Examples include the addition of two flats at Woolwich Road and a lawful loft conversion in Eltham, illustrating different planning routes and drawing requirements."
 />
 
           <section className="bg-white border-b border-slate-200 py-10">
