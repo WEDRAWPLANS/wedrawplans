@@ -857,7 +857,7 @@ export default function NewBuildPlansPage() {
               </div>
 
               <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-4">
-                {["Approved scheme", "19 residential flats", "6 storeys", "40 sqm B1/commercial space"].map(
+                {["Approved scheme", "18 residential flats", "6 storeys", "40 sqm B1/commercial space"].map(
                   (item) => (
                     <div
                       key={item}
@@ -879,7 +879,7 @@ export default function NewBuildPlansPage() {
                   <p className="mt-4 text-sm leading-7 text-slate-700">
                     Project Colindale – The Hyde showcases WEDRAWPLANS capability in preparing planning-led design work
                     for a modern apartment development in a changing urban context. The approved scheme at 1–5 Halt
-                    Parade, The Hyde, London NW9 5AH was designed as a six-storey building providing 19 residential
+                    Parade, The Hyde, London NW9 5AH was designed as a six-storey building providing 18 residential
                     flats together with 40 sqm of B1/commercial space at ground floor level.
                   </p>
                   <p className="mt-4 text-sm leading-7 text-slate-700">
