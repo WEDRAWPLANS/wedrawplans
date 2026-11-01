@@ -331,8 +331,8 @@ export default function LambethAreaPage() {
 
 <ApprovalEvidenceStrip
   slugs={["electric-avenue-brixton-shopfront"]}
-  title="Approved WEDRAWPLANS project in Brixton"
-  intro="A conservation-area commercial approval demonstrating our shopfront and frontage planning experience in Lambeth."
+  title="Approved conservation-area shopfront in Brixton"
+  intro="The Electric Avenue project involved the reinstatement of a timber shopfront in the Brixton Conservation Area."
 />
 
           <section className="bg-white border-b border-slate-200 py-10">
