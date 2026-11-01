@@ -79,9 +79,19 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
                   Every property is different, so the correct route, design and supporting information should be checked for the specific site.
                 </p>
               </div>
-              <div className="overflow-hidden rounded-2xl border border-slate-200 bg-[#f8f4f0]">
-                <Image src={item.secondaryImage} alt={"Architectural drawing evidence - " + item.shortTitle} width={1200} height={800} className="h-[300px] w-full object-cover" />
-              </div>
+              {item.secondaryImage ? (
+                <div className="overflow-hidden rounded-2xl border border-slate-200 bg-[#f8f4f0]">
+                  <Image src={item.secondaryImage} alt={"Architectural drawing evidence - " + item.shortTitle} width={1200} height={800} className="h-[300px] w-full object-cover" />
+                </div>
+              ) : (
+                <div className="rounded-2xl border border-slate-200 bg-[#f8f4f0] p-6">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-red-700">Approved drawing package</p>
+                  <h3 className="mt-2 text-xl font-semibold">Plans, elevations and 3D design evidence</h3>
+                  <p className="mt-3 text-[13px] leading-6 text-slate-700">
+                    The main project image above combines selected sheets from the approved WEDRAWPLANS drawing set so homeowners can see the design clearly without repeating the same image twice.
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </section>
