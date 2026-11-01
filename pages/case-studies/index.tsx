@@ -9,13 +9,13 @@ const QUOTE = "/get-drawings-quote";
 const PROJECT_BASE = "/case-studies/";
 
 function ProjectVisual({ item, featured = false }: { item: CaseStudy; featured?: boolean }) {
-  const hasProjectDrawing = item.heroImage.startsWith("/images/case-studies/");
+  const hasProjectDrawing = Boolean(item.heroImage) && (item.heroImage.startsWith("/images/case-studies/") || item.heroImage.startsWith("/images/hyde-"));
   if (hasProjectDrawing) {
     return (
       <div className={"relative overflow-hidden bg-[#f5f6f4] " + (featured ? "min-h-[280px] sm:min-h-[380px]" : "h-44")}>
         <Image
           src={item.heroImage}
-          alt={"WEDRAWPLANS architectural drawing presentation for " + item.shortTitle}
+          alt={"WEDRAWPLANS architectural drawing or design illustration for " + item.shortTitle}
           fill
           priority={featured}
           sizes={featured ? "(max-width: 900px) 100vw, 55vw" : "(max-width: 768px) 100vw, 33vw"}
@@ -25,13 +25,13 @@ function ProjectVisual({ item, featured = false }: { item: CaseStudy; featured?:
     );
   }
   return (
-    <div className={"flex flex-col justify-between border-b border-[#e5e9e7] bg-[#f1f5f3] p-6 " + (featured ? "min-h-[280px]" : "h-44")}>
-      <span className="text-[11px] font-medium uppercase tracking-[0.13em] text-[#426d71]">{categoryForCaseStudy(item)}</span>
-      <div>
-        <div className="mb-2 h-px w-12 bg-[#88aeb0]" />
-        <p className="max-w-xs text-xl font-medium leading-snug text-[#24383b]">{item.shortTitle}</p>
-        <p className="mt-2 text-xs text-[#577075]">{item.authority}</p>
-      </div>
+    <div className={"flex flex-col items-center justify-center border-b border-[#e5e9e7] bg-[#f7faf8] p-6 text-center " + (featured ? "min-h-[280px] sm:min-h-[380px]" : "h-44")}>
+      <svg viewBox="0 0 96 70" width="80" height="58" role="img" aria-label="Architectural drawing sheet illustration">
+        <rect x="11" y="7" width="74" height="56" fill="#ffffff" stroke="#bed2ce" strokeWidth="2"/>
+        <path d="M18 53H78M18 57H78M31 17H65V49H31zM41 30h17v19H41z" fill="none" stroke="#a1bab8" strokeWidth="1.5"/>
+      </svg>
+      <p className="mt-3 text-[13px] font-semibold text-[#3b5d61]">{item.shortTitle}</p>
+      <p className="mt-1 text-[11px] text-[#718489]">Architectural drawing presentation</p>
     </div>
   );
 }
