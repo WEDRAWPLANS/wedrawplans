@@ -22,6 +22,11 @@ export type CaseStudy = {
   approvedDrawings?: string;
   keyConditions?: string[];
   highlights?: string[];
+  mediaNote?: string;
+  animationSlot?: boolean;
+  constructionSlot?: boolean;
+  decisions?: { reference: string; description: string; outcome: string }[];
+  projectNote?: string;
 };
 
 export const caseStudies: CaseStudy[] = [
@@ -51,24 +56,93 @@ export const caseStudies: CaseStudy[] = [
     featured: true
   },
   {
+    slug: "allum-lane-elstree-major-house-extension",
+    highlights: ["Front and side extension elements","First-floor and rear additions","Roof and glazing alterations to the dwelling"],
+    animationSlot: true,
+    mediaNote: "Architectural plans, 3D renders and animation to be included in the project presentation.",
+    title: "Approved Major House Extension in Elstree / Borehamwood",
+    shortTitle: "Allum Lane, Elstree",
+    location: "Allum Lane, Elstree, Hertfordshire WD6",
+    authority: "Hertsmere Borough Council",
+    reference: "20/0662/HSE",
+    year: "2020",
+    service: "Front, side and rear house extensions",
+    outcome: "Planning permission granted",
+    approved: true,
+    summary: "A substantial householder scheme involving front, first-floor side and rear additions with associated glazing and roof alterations.",
+    proof: "Hertsmere's approved householder scheme illustrates how coordinated architectural drawings can support an extensive combination of front, side and rear additions, together with roof, façade and glazing design work.",
+    leadAngle: "Planning a major home extension in Hertsmere or around the M25?",
+    relatedService: "/extension-plans",
+    relatedArea: "/areas/hertfordshire",
+    heroImage: "",
+    secondaryImage: ""
+  },
+  {
+    slug: "sunbury-avenue-mill-hill-side-rear-extension",
+    highlights: ["Two-storey side extension following demolition of the former garage","Further part single/part two-storey side and rear extensions","Multiple approved applications at one property","Construction work currently in progress"],
+    constructionSlot: true,
+    decisions: [{ reference: "21/2335/HSE", description: "Two-storey side extension following demolition of existing garage", outcome: "Planning approval confirmed by project records" }, { reference: "22/3075/HSE", description: "Part single/part two-storey side and rear extension", outcome: "Planning approval confirmed by project records" }],
+    mediaNote: "Approved drawings, separate decision notices and construction-progress photographs will be presented in this gallery.",
+    title: "Approved Part Single / Part Two-Storey Extension in Mill Hill",
+    shortTitle: "Sunbury Avenue, Mill Hill",
+    location: "Sunbury Avenue, Mill Hill, London NW7 3SJ",
+    authority: "London Borough of Barnet",
+    reference: "22/3075/HSE; 21/2335/HSE",
+    year: "2022",
+    service: "Multiple approved house extensions and construction progress",
+    outcome: "Planning permission granted",
+    approved: true,
+    summary: "A Mill Hill family home with successive approved extension proposals, including a two-storey side extension following garage demolition and later part single/part two-storey side and rear additions. Building work is now under way.",
+    proof: "The planning history at Sunbury Avenue demonstrates how a family home can be improved through several separate approvals. WEDRAWPLANS coordinated the architectural drawings at different stages. This case will also include construction-progress photographs once they are supplied.",
+    leadAngle: "Planning a side, rear or two-storey extension in Mill Hill?",
+    relatedService: "/extension-plans",
+    relatedArea: "/areas/barnet",
+    heroImage: "",
+    secondaryImage: ""
+  },
+  {
+    slug: "cromwell-road-hounslow-rear-extension",
+    highlights: ["Approximately 6.62m-long side-return/rear infill extension","Rooflight and glazed doors opening towards the rear garden","Side passage retained beside the extension","Existing/proposed plans, elevations, sections and 3D views","Planning-stage fire safety strategy"],
+    decisionDate: "1 October 2026",
+    approvedDrawings: "ID-01, ID-02, ID-03, ID-04 and ID-05, location plan and fire safety strategy; drawings received 7 August 2026.",
+    keyConditions: ["The approved external materials must match the existing building unless otherwise shown on the drawings."],
+    mediaNote: "The approved drawing pack includes a strong 3D before-and-after sheet, existing/proposed elevations and plans.",
+    title: "Approved Rear Extension in Hounslow",
+    shortTitle: "Cromwell Road, Hounslow",
+    location: "Cromwell Road, Hounslow, TW3 3QJ",
+    authority: "London Borough of Hounslow",
+    reference: "P/2026/2306",
+    year: "2026",
+    service: "Single-storey side-return and rear infill extension",
+    outcome: "Planning permission granted",
+    approved: true,
+    summary: "Hounslow Council approved a single-storey side-return/rear infill extension with a rooflight and glazed rear doors, creating improved kitchen and living accommodation while retaining a side access passage.",
+    proof: "Planning permission P/2026/2306 was granted on 1 October 2026. Hounslow's decision lists WEDRAWPLANS drawings ID-01 to ID-05, the location plan and the fire safety strategy. The architectural pack includes existing and proposed elevations, sections, floor plans and comparative 3D views.",
+    leadAngle: "Planning a rear extension in Hounslow or nearby West London?",
+    relatedService: "/extension-plans",
+    relatedArea: "/areas/hounslow",
+    heroImage: "",
+    secondaryImage: ""
+  },
+  {
     slug: "the-hyde-colindale-major-residential-development",
-    highlights: ["Major residential development in Colindale","Multi-unit residential design work","Historic project record forming part of the Barnet portfolio"],
-    title: "Major Residential Development at The Hyde, Colindale",
+    highlights: ["Six-storey approved development at Halt Parade","19 residential flats within the approved scheme","Approximately 40 sq m of commercial floorspace","Mixed-use planning and architectural design"],
+    title: "Approved Residential Development at The Hyde, Colindale",
     shortTitle: "The Hyde, Colindale",
-    location: "The Hyde / Colindale, London NW9",
+    location: "Halt Parade, The Hyde, Colindale, London NW9 5AH",
     authority: "London Borough of Barnet",
     reference: "WEDRAWPLANS project archive",
     year: "Historic project",
     service: "Major residential development",
     outcome: "Planning approval secured",
     approved: true,
-    summary: "A large residential project forming part of WEDRAWPLANS' wider multi-unit development experience in North London.",
-    proof: "This major approved residential project forms part of WEDRAWPLANS wider multi-unit development experience in North London. The production version will use the exact retained decision wording and final unit count from the project record.",
+    summary: "An approved six-storey development at Halt Parade, The Hyde, providing 19 residential flats together with approximately 40 sq m of commercial floorspace.",
+    proof: "The approved development combines residential accommodation with commercial space, illustrating the drawing coordination and planning work associated with multi-unit projects in Barnet.",
     leadAngle: "Considering a larger residential conversion, redevelopment or multi-unit scheme?",
     relatedService: "/new-build-plans",
     relatedArea: "/areas/barnet",
-    heroImage: "/images/barnet-project-drawings-board.jpg",
-    secondaryImage: "/images/barnet-project-double-storey.jpg"
+    heroImage: "/images/hyde-cgi-main.jpg",
+    secondaryImage: "/images/hyde-slide-1.jpg"
   },
   {
     slug: "700-woolwich-road-greenwich-two-new-flats",
@@ -89,26 +163,6 @@ export const caseStudies: CaseStudy[] = [
     relatedArea: "/areas/greenwich",
     heroImage: "/images/barnet-project-drawings-board.jpg",
     secondaryImage: "/images/drawings.jpg"
-  },
-  {
-    slug: "allum-lane-elstree-major-house-extension",
-    highlights: ["Front and side extension elements","First-floor and rear additions","Roof and glazing alterations to the dwelling"],
-    title: "Approved Major House Extension in Elstree / Borehamwood",
-    shortTitle: "Allum Lane, Elstree",
-    location: "Allum Lane, Elstree, Hertfordshire WD6",
-    authority: "Hertsmere Borough Council",
-    reference: "20/0662/HSE",
-    year: "2020",
-    service: "Front, side and rear house extensions",
-    outcome: "Planning permission granted",
-    approved: true,
-    summary: "A substantial householder scheme involving front, first-floor side and rear additions with associated glazing and roof alterations.",
-    proof: "This is an important Hertfordshire proof project supporting WEDRAWPLANS coverage in Elstree, Borehamwood, Radlett and neighbouring M25 homeowner areas.",
-    leadAngle: "Planning a major home extension in Hertsmere or around the M25?",
-    relatedService: "/extension-plans",
-    relatedArea: "/areas/hertfordshire",
-    heroImage: "/images/barnet-project-double-storey.jpg",
-    secondaryImage: "/images/barnet-project-drawings-board.jpg"
   },
   {
     slug: "brockley-road-lewisham-two-flat-conversion",
@@ -168,26 +222,6 @@ export const caseStudies: CaseStudy[] = [
     relatedService: "/commercial/mixed-use",
     relatedArea: "/areas/harrow",
     heroImage: "/images/drawings.jpg",
-    secondaryImage: "/images/barnet-project-drawings-board.jpg"
-  },
-  {
-    slug: "sunbury-avenue-mill-hill-side-rear-extension",
-    highlights: ["Part single-storey and part two-storey additions","Side and rear extension layout","Approved architectural drawing package"],
-    title: "Approved Part Single / Part Two-Storey Extension in Mill Hill",
-    shortTitle: "Sunbury Avenue, Mill Hill",
-    location: "Sunbury Avenue, Mill Hill NW7",
-    authority: "London Borough of Barnet",
-    reference: "22/3075/HSE",
-    year: "2022",
-    service: "Side and rear house extension",
-    outcome: "Planning permission granted",
-    approved: true,
-    summary: "Planning permission for a part single, part two-storey side and rear extension following a longer planning history at the property.",
-    proof: "The approved WEDRAWPLANS drawings provide strong evidence for substantial family-home extension work in Mill Hill.",
-    leadAngle: "Planning a side, rear or two-storey extension in Mill Hill?",
-    relatedService: "/extension-plans",
-    relatedArea: "/areas/barnet",
-    heroImage: "/images/barnet-project-double-storey.jpg",
     secondaryImage: "/images/barnet-project-drawings-board.jpg"
   },
   {
@@ -394,26 +428,6 @@ export const caseStudies: CaseStudy[] = [
     secondaryImage: "/images/barnet-project-drawings-board.jpg"
   },
   {
-    slug: "cromwell-road-hounslow-rear-extension",
-    highlights: ["Single-storey rear extension","Residential planning drawings","Coordinated Building Regulations and structural design stages"],
-    title: "Approved Rear Extension in Hounslow",
-    shortTitle: "Cromwell Road, Hounslow",
-    location: "Cromwell Road, Hounslow TW3",
-    authority: "London Borough of Hounslow",
-    reference: "P/2026/2306",
-    year: "2026",
-    service: "Single-storey rear extension",
-    outcome: "Planning permission granted",
-    approved: true,
-    summary: "A recent single-storey rear extension approval supported by a coordinated drawing and fire-safety package.",
-    proof: "This case provides current 2026 approval evidence for WEDRAWPLANS in Hounslow and West London.",
-    leadAngle: "Planning a rear extension in Hounslow or nearby West London?",
-    relatedService: "/extension-plans",
-    relatedArea: "/areas/hounslow",
-    heroImage: "/images/barnet-project-single-storey.jpg",
-    secondaryImage: "/images/drawings.jpg"
-  },
-  {
     slug: "leicester-road-barnet-4m-rear-extension",
     highlights: ["Four-metre rear projection","Three-metre eaves and 3.2-metre maximum height","Larger-home-extension prior approval"],
     title: "Approved 4m Rear Extension Prior Approval in Barnet",
@@ -472,8 +486,31 @@ export const caseStudies: CaseStudy[] = [
     relatedArea: "/areas/barnet",
     heroImage: "/images/barnet-project-single-storey.jpg",
     secondaryImage: "/images/barnet-project-drawings-board.jpg"
+  },
+  {
+    slug: "warbeck-road-hammersmith-fulham-loft-certificate",
+    highlights: ["Rear roof extension under permitted-development rights","Three front rooflights","Proposed floor, roof and elevation drawings","Council-issued certificate under Classes B and C"],
+    title: "Granted Lawful Development Certificate for a Loft Conversion in Shepherd's Bush",
+    shortTitle: "Warbeck Road, Shepherd's Bush",
+    location: "Warbeck Road, London W12 8NT",
+    authority: "London Borough of Hammersmith & Fulham",
+    reference: "2019/01824/CLP",
+    year: "2019",
+    service: "Loft conversion, rear roof extension and front rooflights",
+    outcome: "Certificate of lawfulness granted",
+    approved: true,
+    decisionDate: "12 August 2019",
+    approvedDrawings: "WEDRAWPLANS drawings P04 and P05 Revision A, received 12 August 2019.",
+    summary: "Hammersmith & Fulham Council issued a certificate confirming that the proposed rear roof extension and three front rooflights would be lawful under the permitted-development rules.",
+    proof: "The council's decision dated 12 August 2019 confirms that the rear roof extension meets Class B and the front rooflights meet Class C criteria. This project shows how additional roof-space accommodation can be pursued through a lawful-development certificate rather than a householder planning application.",
+    leadAngle: "Considering a loft conversion in Shepherd's Bush, Hammersmith or West London?",
+    relatedService: "/loft-conversion-plans",
+    relatedArea: "/areas/hammersmith-and-fulham",
+    heroImage: "",
+    secondaryImage: "",
+    mediaNote: "Architectural drawings and council certificate available in the WEDRAWPLANS project archive."
   }
-];
+]
 
 export function categoryForCaseStudy(item: CaseStudy): string {
   const service = item.service.toLowerCase();
