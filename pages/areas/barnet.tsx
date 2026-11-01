@@ -6,6 +6,7 @@ import { submitBoroughLead } from "../../lib/submitBoroughLead";
 import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 import SmartPlanningAssistant from "../../components/SmartPlanningAssistant";
 
+import ApprovalEvidenceStrip from "../../components/ApprovalEvidenceStrip";
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const EMAIL = "info@wedrawplans.com";
@@ -641,6 +642,12 @@ export default function BarnetAreaPage() {
           </section>
 
           <ServiceInternalLinks boroughName="Barnet" />
+
+<ApprovalEvidenceStrip
+  slugs={["sunbury-avenue-mill-hill-side-rear-extension","13-reddings-close-mill-hill-first-floor-extension","northolm-edgware-two-storey-extension"]}
+  title="Selected WEDRAWPLANS approvals in Barnet"
+  intro="A small selection from our long-running Barnet portfolio, including Mill Hill and Edgware extension approvals. See the full case studies or get your fixed-fee quote for a similar project."
+/>
 
           <section className="border-b border-slate-200 bg-white py-10">
             <div className="mx-auto max-w-5xl space-y-10 px-4 lg:px-6">
