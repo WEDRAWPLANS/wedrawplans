@@ -722,8 +722,8 @@ export default function HounslowAreaPage() {
 
 <ApprovalEvidenceStrip
   slugs={["cromwell-road-hounslow-rear-extension"]}
-  title="Recent WEDRAWPLANS approval in Hounslow"
-  intro="A recent rear-extension approval demonstrating the type of homeowner planning work we handle in Hounslow and West London."
+  title="Approved rear extension in Hounslow"
+  intro="A residential rear-extension planning approval at Cromwell Road, demonstrating the drawing and application work we undertake for local homeowners."
 />
 
           <section className="bg-white border-b border-slate-200 py-10">
