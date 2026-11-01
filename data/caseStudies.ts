@@ -79,7 +79,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "sunbury-avenue-mill-hill-side-rear-extension",
-    highlights: ["Two-storey side extension following demolition of the former garage","Further part single/part two-storey side and rear extensions","Six recorded planning decisions connected with one property","Construction work currently in progress"],
+    highlights: ["Two-storey side extension following demolition of the former garage","Further part single/part two-storey side and rear extensions","Five recorded planning decisions connected with one property","Construction work currently in progress"],
     constructionSlot: true,
     decisions: [
       { reference: "20/3400/HSE", description: "Single-storey rear extension replacing the earlier kitchen", outcome: "Granted 12 October 2020 — historic permission" },
