@@ -35,6 +35,8 @@ export type CaseStudy = {
 export const caseStudies: CaseStudy[] = [
   {
     slug: "sistova-road-wandsworth-extension-basement",
+    wdpService: "WEDRAWPLANS surveyed and developed the existing and proposed plans, elevations and sections for the side/rear extension and basement works. The practice prepared the application drawing revisions and fire-safety information, submitted the planning material and maintained communication with Wandsworth's case officer until permission was granted.",
+    homeownerGuidance: "For basement and rear extension proposals in Wandsworth, the drawings need to demonstrate existing and proposed levels, neighbour relationships, glazing and external finishes. WEDRAWPLANS can assess the site and prepare a coordinated submission.",
     highlights: ["Single-storey side and rear extension","Basement enlargement and formation of a rear lightwell","Replacement side window and associated access alterations","Revised drawings and fire-safety information referenced by the council"],
     title: "Approved Side & Rear Extension with Basement Lightwell in Wandsworth",
     shortTitle: "Sistova Road, Wandsworth",
@@ -60,6 +62,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "allum-lane-elstree-major-house-extension",
+    wdpService: "For this substantial Hertsmere scheme, WEDRAWPLANS prepared the proposed floor layouts, architectural elevations and roof design information covering the interconnected front, side and rear alterations. The practice coordinated the householder application and communicated with the case officer through the approval process.",
+    homeownerGuidance: "Major home extensions often alter several elevations at once. Coherent plans and 3D design views help homeowners and the council understand how the new accommodation fits the existing house.",
     highlights: ["Front and side extension elements","First-floor and rear additions","Roof and glazing alterations to the dwelling"],
     animationSlot: true,
     mediaNote: "Architectural plans, 3D renders and animation to be included in the project presentation.",
@@ -82,6 +86,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "sunbury-avenue-mill-hill-side-rear-extension",
+    wdpService: "WEDRAWPLANS developed successive architectural drawing packages for this Mill Hill property, preparing plans and elevations for the different side and rear extension proposals. The practice supported the associated Barnet applications and case-officer correspondence as the design and approvals evolved.",
+    homeownerGuidance: "Where a property has several earlier permissions, it is sensible to review which drawings and consents apply to the work now being built. WEDRAWPLANS can help coordinate a fresh application or revised drawings where required.",
     highlights: ["Two-storey side extension following demolition of the former garage","Further part single/part two-storey side and rear extensions","Five recorded planning decisions connected with one property","Construction work currently in progress"],
     constructionSlot: true,
     decisions: [
@@ -111,6 +117,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "cromwell-road-hounslow-rear-extension",
+    wdpService: "WEDRAWPLANS prepared existing and proposed plans, elevations, sections and 3D design views for the side-return infill, together with supporting planning-stage fire-safety information. The drawings were lodged with Hounslow and the application was followed through to the permission issued in October 2026.",
+    homeownerGuidance: "A side-return extension can make better use of the ground floor while preserving outdoor access. Accurate boundary, rooflight and glazing information helps the council assess the proposal.",
     highlights: ["Approximately 6.62m-long side-return/rear infill extension","Rooflight and glazed doors opening towards the rear garden","Side passage retained beside the extension","Existing/proposed plans, elevations, sections and 3D views","Planning-stage fire safety strategy"],
     decisionDate: "1 October 2026",
     approvedDrawings: "ID-01, ID-02, ID-03, ID-04 and ID-05, location plan and fire safety strategy; drawings received 7 August 2026.",
@@ -135,6 +143,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "the-reddings-mill-hill-extension-basement-loft",
+    wdpService: "WEDRAWPLANS prepared architectural design drawings for the house extensions, basement and roof enlargement. The practice coordinated the householder application and separate lawful-development certificate, working with Barnet's planning officers to secure the recorded outcomes.",
+    homeownerGuidance: "Front, side, rear, basement and loft alterations may call for different consent routes. A combined design strategy can reduce contradictory details across drawings while preserving the distinct approval requirements.",
     title: "Approved House Extension, Basement and Loft Scheme in Mill Hill",
     shortTitle: "The Reddings, Mill Hill",
     location: "The Reddings, Mill Hill, London NW7 4JR",
@@ -169,6 +179,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "the-hyde-colindale-major-residential-development",
+    wdpService: "WEDRAWPLANS contributed architectural drawings and planning coordination for the six-storey mixed-use development at Halt Parade. The project documentation presents the residential and commercial components, with the approved Barnet scheme providing the planning framework.",
+    homeownerGuidance: "Mixed-use residential projects require a different level of coordination from a home extension. Plans should clearly explain entrances, unit layouts, access and the relationship between residential and commercial uses.",
     highlights: ["Six-storey approved development at Halt Parade","18 residential flats within the approved scheme","Approximately 40 sq m of commercial floorspace","Mixed-use planning and architectural design"],
     title: "Approved Six-Storey Residential Scheme at The Hyde, Colindale",
     shortTitle: "The Hyde, Colindale",
@@ -189,6 +201,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "700-woolwich-road-greenwich-two-new-flats",
+    wdpService: "WEDRAWPLANS prepared the detailed architectural drawing set supporting the additional residential floor, including plans, elevations and associated access and parking changes. The practice coordinated submission information and liaised with Greenwich's planning officers through the determination process.",
+    homeownerGuidance: "Creating new flats above an existing building involves more than drawing the additional storey. Access, parking, internal layouts and supporting planning information must be addressed together.",
     highlights: ["Additional storey to create two two-bedroom flats","Ground-floor parking and access alterations","Coordinated planning drawings and supporting statements"],
     title: "Approved Additional Floor Creating Two New Flats in Greenwich",
     shortTitle: "Woolwich Road, Greenwich",
@@ -209,6 +223,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "brockley-road-lewisham-two-flat-conversion",
+    wdpService: "WEDRAWPLANS prepared existing and proposed architectural drawings for the two-flat conversion, submitted the retrospective planning material and dealt with the council's requests for clarification during determination. Lewisham subsequently granted permission.",
+    homeownerGuidance: "Converting upper floors to flats can involve planning, circulation and technical compliance issues. A carefully prepared drawing package helps clarify both the existing arrangement and the proposed independent dwellings.",
     highlights: ["Conversion of the first and second floors","Two self-contained residential flats","Retrospective planning application and supporting drawings"],
     title: "Approved Conversion to Two Self-Contained Flats in Brockley",
     shortTitle: "Brockley Road, Lewisham",
@@ -229,6 +245,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "mile-end-road-listed-building-heritage",
+    wdpService: "For the Mile End Road entrance alteration, WEDRAWPLANS prepared detailed architectural drawings and coordinated the supporting heritage information. The practice progressed the linked planning and listed-building applications through correspondence with Tower Hamlets until consent was granted.",
+    homeownerGuidance: "Where a building is listed, even modest entrance alterations may need carefully specified drawings and consent. The design must respect the building's historic character and materials.",
     highlights: ["Alterations to the front entrance","Planning and listed-building applications","Heritage-sensitive drawings and specification"],
     title: "Approved Planning & Listed Building Works in Mile End",
     shortTitle: "Mile End Road, Tower Hamlets",
@@ -249,6 +267,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "burnt-oak-broadway-harrow-retail-flats",
+    wdpService: "WEDRAWPLANS produced the architectural drawing package for the retail extension and accommodation above, coordinating the proposed dormer, refuse storage and cycle arrangements. Drawings and responses were developed in discussion with Harrow's appointed case officer before approval.",
+    homeownerGuidance: "Mixed retail and residential projects must explain access, servicing and separate residential use clearly. Well-organised plans can make a complex application easier to assess.",
     highlights: ["Rear extension to the retail premises","Residential conversion above the shop","Associated dormer, bin storage and cycle storage proposals","Design changes during officer review"],
     title: "Approved Retail Extension & Residential Conversion in Burnt Oak",
     shortTitle: "Burnt Oak Broadway, Harrow",
@@ -269,6 +289,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "tithe-walk-mill-hill-loft-conversion",
+    wdpService: "WEDRAWPLANS prepared the loft-conversion plans and elevations and assembled the lawful-development submission for Barnet. The practice managed application correspondence and obtained the council's certificate for the proposed roof alterations.",
+    homeownerGuidance: "A lawful-development certificate provides formal confirmation of a proposal's lawful status at the date of assessment. It is different from householder planning permission, and precise roof dimensions are important.",
     highlights: ["Roof-space accommodation","Lawful-development certificate route","Barnet loft conversion drawings"],
     title: "Approved Loft Conversion in Mill Hill",
     shortTitle: "Tithe Walk, Mill Hill",
@@ -289,6 +311,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "northolm-edgware-two-storey-extension",
+    wdpService: "WEDRAWPLANS prepared existing and proposed floor plans, elevations and the supporting householder-planning drawings for the side and rear extension. The practice submitted the material and coordinated with Barnet's case officer through the approval process.",
+    homeownerGuidance: "Two-storey additions affect the roof, external appearance and relationship with neighbours. Clear elevations and sections can explain how the proposal remains integrated with the original home.",
     highlights: ["Two-storey side and rear extension","Proposed floor plans and elevations","Barnet planning permission"],
     title: "Approved Two-Storey Side & Rear Extension in Edgware",
     shortTitle: "Northolm, Edgware",
@@ -309,6 +333,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "deans-way-edgware-lawful-loft",
+    wdpService: "WEDRAWPLANS designed the hip-to-gable and rear dormer arrangement and produced the existing and proposed roof and elevation drawings. The practice submitted the lawful-development application and liaised with Barnet until the certificate was issued.",
+    homeownerGuidance: "Dormer and hip-to-gable schemes are frequently assessed against permitted-development limitations. Measured drawings are needed to demonstrate the roof changes and the location of openings.",
     highlights: ["Hip-to-gable alteration","Rear dormer roof extension","Side window to the loft","Lawful-development certificate"],
     title: "Lawful Hip-to-Gable & Rear Dormer Loft in Edgware",
     shortTitle: "Deans Way, Edgware",
@@ -329,6 +355,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "reddings-close-mill-hill-lawful-loft",
+    wdpService: "WEDRAWPLANS prepared the roof-extension drawings showing the hip-to-gable alteration, rear dormer and front rooflights. The lawful-development documentation was submitted to Barnet and followed through to the certificate decision.",
+    homeownerGuidance: "The permitted-development route can be appropriate for certain loft conversions, but the proposal must meet the relevant roof-volume, positioning and other criteria for the individual property.",
     highlights: ["Hip-to-gable roof extension","Rear dormer","Three front rooflights","Lawful-development certificate"],
     title: "Lawful Hip-to-Gable, Dormer & Rooflight Loft in Mill Hill",
     shortTitle: "Reddings Close — Loft, Mill Hill",
@@ -349,6 +377,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "13-reddings-close-mill-hill-first-floor-extension",
+    wdpService: "WEDRAWPLANS produced the site plan, proposed floor plan, roof plan and elevation series for the first-floor side extension. The application material was submitted and progressed with the Barnet case officer, resulting in an approval identifying the P01–P06 drawings.",
+    homeownerGuidance: "First-floor side extensions can provide additional accommodation without enlarging the full ground-floor footprint. The roof junction and side elevation should be especially clear in the planning drawings.",
     highlights: ["First-floor side extension","Plans, elevations and roof drawings","Approved drawing series P01–P06"],
     title: "Approved First-Floor Side Extension in Mill Hill",
     shortTitle: "Reddings Close — Extension, Mill Hill",
@@ -369,6 +399,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "alnwick-road-eltham-lawful-loft",
+    wdpService: "WEDRAWPLANS prepared the drawings for a gable-end roof alteration, rear dormer and three front rooflights. The practice managed the lawful-development submission with Greenwich and secured formal certification of the proposed roof works.",
+    homeownerGuidance: "Loft proposals in Eltham and wider Greenwich may need a certificate or planning permission depending on the site and design. A site-specific review identifies the correct route before drawings are finalised.",
     highlights: ["Gable-end roof alteration","Rear dormer","Three front rooflights","Lawful-development certificate"],
     title: "Lawful Gable-End & Rear Dormer Loft in Eltham",
     shortTitle: "Alnwick Road, Eltham",
@@ -389,6 +421,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "electric-avenue-brixton-shopfront",
+    wdpService: "WEDRAWPLANS documented the existing shopfront and prepared the proposed timber-framed design, with careful attention to the conservation-area frontage. The practice submitted the drawings and liaised with Lambeth planning officers during the approval process.",
+    homeownerGuidance: "Shopfront proposals in conservation areas should explain proportions, materials, signage and security measures. Architectural drawings help demonstrate that the new frontage suits its street context.",
     highlights: ["Removal of existing roller shutters","Reinstatement of a timber-framed shopfront","Design within the Brixton Conservation Area"],
     title: "Approved Timber Shopfront Reinstatement in Brixton",
     shortTitle: "Electric Avenue, Brixton",
@@ -409,6 +443,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "station-road-hendon-side-extension",
+    wdpService: "WEDRAWPLANS prepared the architectural plans and elevations illustrating removal of the old side conservatory and construction of the replacement extension. The householder application was submitted to Barnet and supported through case-officer review until permission was granted.",
+    homeownerGuidance: "Replacing an older conservatory with an extension may improve the usability of the side space. Plans should explain its size, roof form, materials and relationship to neighbouring buildings.",
     highlights: ["Removal of existing side conservatory","Single-storey side extension","Architectural plans and elevations"],
     title: "Approved Single-Storey Side Extension in Hendon",
     shortTitle: "Station Road, Hendon",
@@ -429,6 +465,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "sefton-avenue-mill-hill-prior-approval",
+    wdpService: "WEDRAWPLANS measured and drew the proposed larger-home rear extension, showing the five-metre depth and height information for Barnet's prior-approval procedure. The practice submitted the notification and dealt with the authority through its formal determination.",
+    homeownerGuidance: "The larger-home-extension procedure differs from a standard householder planning application. Accurate dimensions and a clear understanding of eligibility help prevent a proposal following the wrong route.",
     highlights: ["Single-storey rear extension","Five-metre projection from the original rear wall","Larger-home-extension prior-approval process"],
     title: "Prior Approval for a 5m Rear Extension in Mill Hill",
     shortTitle: "Sefton Avenue, Mill Hill",
@@ -449,6 +487,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "hall-lane-chingford-dropped-kerb",
+    wdpService: "WEDRAWPLANS prepared the crossover and front-garden arrangement drawings, including the proposed permeable paving and drainage information. The practice submitted the planning application and dealt with Waltham Forest's assessment, leading to the July 2026 permission.",
+    homeownerGuidance: "A planning permission for a dropped kerb does not itself authorise construction on the public highway. The separate highway consent and technical requirements still need to be addressed.",
     highlights: ["Vehicle crossover and dropped-kerb proposal","Permeable front-garden parking surface","Drainage arrangement to prevent surface-water runoff to the highway","Separate Highways process needed for construction"],
     title: "Approved Dropped Kerb & Vehicle Crossover in Chingford",
     shortTitle: "Hall Lane, Chingford",
@@ -472,6 +512,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "leicester-road-barnet-4m-rear-extension",
+    wdpService: "WEDRAWPLANS prepared the proposed rear-extension dimensions and drawings for the larger-home-extension notification, submitted the application to Barnet and followed the officer's consideration through to the prior-approval decision.",
+    homeownerGuidance: "A four-metre rear extension may fall within a prior-approval route depending on the property and constraints. We can assess the planning history and prepare the appropriate scaled drawings.",
     highlights: ["Four-metre rear projection","Three-metre eaves and 3.2-metre maximum height","Larger-home-extension prior approval"],
     title: "Approved 4m Rear Extension Prior Approval in Barnet",
     shortTitle: "Leicester Road, Barnet",
@@ -492,6 +534,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "cranbourne-drive-hoddesdon-planning-project",
+    wdpService: "WEDRAWPLANS prepared the measured existing and proposed drawings for retention of the single-storey rear extension, together with the supporting retrospective application documents. The practice coordinated with Broxbourne officers through the planning process, and the project has been confirmed as approved.",
+    homeownerGuidance: "Retrospective applications require accurate drawings of the structure already on site and a clear description of what is being retained. WEDRAWPLANS can prepare the drawings and handle the planning submission.",
     highlights: ["Retention of an existing single-storey rear extension","Replacement of the former conservatory","Rooflights and rear glazing","Retrospective householder planning approval"],
     title: "Approved Rear Extension in Hoddesdon",
     shortTitle: "Cranbourne Drive, Hoddesdon",
@@ -512,6 +556,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "dryfield-road-edgware-conservation-extension",
+    wdpService: "WEDRAWPLANS drew the proposed rear extension and its relationship to the Watling Estate Conservation Area, responding to case-officer design feedback through amended architectural drawings. The revised householder application proceeded to approval.",
+    homeownerGuidance: "Within conservation areas, carefully judged scale, materials and appearance are especially important. Design revisions may be needed to address the character of the local streetscape.",
     highlights: ["Rear extension in the Watling Estate Conservation Area","Design amendments during the planning process","Consideration of sensitive local context"],
     title: "Approved Rear Extension in the Watling Estate Conservation Area",
     shortTitle: "Dryfield Road, Edgware",
@@ -532,6 +578,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "warbeck-road-hammersmith-fulham-loft-certificate",
+    wdpService: "WEDRAWPLANS prepared the proposed loft plans and elevations, including the revised P04 and P05 drawings identified by the council. The practice submitted the lawful-development application and liaised with Hammersmith & Fulham until the certificate was granted on 12 August 2019.",
+    homeownerGuidance: "The certificate route can establish whether a proposed dormer and rooflights fall within permitted-development rights. Dimensions, materials and roof projection are among the details to document accurately.",
     highlights: ["Rear roof extension under permitted-development rights","Three front rooflights","Proposed floor, roof and elevation drawings","Council-issued certificate under Classes B and C"],
     title: "Granted Lawful Development Certificate for a Loft Conversion in Shepherd's Bush",
     shortTitle: "Warbeck Road, Shepherd's Bush",
