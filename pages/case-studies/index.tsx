@@ -2,29 +2,19 @@ import { useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { caseStudies, CaseStudy } from "../../data/caseStudies";
-
-function categoryFor(item: CaseStudy): string {
-  const service = item.service.toLowerCase();
-  if (/loft|dormer|gable/.test(service)) return "Loft conversions";
-  if (/kerb|crossover/.test(service)) return "Dropped kerbs";
-  if (/heritage|listed|shopfront|mixed-use/.test(service)) return "Heritage & commercial";
-  if (/flat conversion|residential conversion|multi-unit|additional floor|major residential/.test(service)) return "Residential development";
-  if (/extension|prior approval/.test(service)) return "Extensions";
-  return "Other projects";
-}
+import { caseStudies, categoryForCaseStudy } from "../../data/caseStudies";
 
 export default function CaseStudiesHub() {
   const featured = caseStudies.find((item) => item.featured)!;
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All project types");
   const [authority, setAuthority] = useState("All planning authorities");
-  const categories = ["All project types", ...Array.from(new Set(caseStudies.map(categoryFor))).sort()];
+  const categories = ["All project types", ...Array.from(new Set(caseStudies.map(categoryForCaseStudy))).sort()];
   const authorities = ["All planning authorities", ...Array.from(new Set(caseStudies.map((item) => item.authority))).sort()];
   const results = caseStudies.filter((item) => {
     const text = [item.title, item.location, item.authority, item.service, item.reference].join(" ").toLowerCase();
     return text.includes(search.trim().toLowerCase())
-      && (category === "All project types" || categoryFor(item) === category)
+      && (category === "All project types" || categoryForCaseStudy(item) === category)
       && (authority === "All planning authorities" || item.authority === authority);
   });
   return (
@@ -35,11 +25,14 @@ export default function CaseStudiesHub() {
           name="description"
           content="Explore selected WEDRAWPLANS planning approvals and project case studies across London and surrounding M25 areas. Extensions, lofts, flats, heritage, mixed-use, prior approval and more."
         />
-        <meta name="robots" content="index,follow,max-image-preview:large" />
+        <meta name="robots" content="noindex,nofollow" />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/case-studies" />
       </Head>
 
       <main className="min-h-screen bg-[#f8f4f0] text-slate-900">
+        <div className="border-b border-amber-200 bg-amber-50 px-4 py-2 text-center text-xs font-semibold text-amber-900">
+          WEDRAWPLANS approval preview — not published on the live website
+        </div>
         <section className="border-b border-slate-200 bg-[#fdf8f3]">
           <div className="mx-auto max-w-6xl px-4 py-8 lg:px-6 lg:py-12">
             <Link href="/" className="inline-block">
