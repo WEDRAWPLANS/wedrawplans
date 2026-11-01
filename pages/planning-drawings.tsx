@@ -4,6 +4,7 @@ import Link from "next/link";
 import LondonAreaLinks from "../components/LondonAreaLinks";
 import { submitBoroughLead } from "../lib/submitBoroughLead";
 
+import ApprovalEvidenceStrip from "../components/ApprovalEvidenceStrip";
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const PAGE_URL = "https://www.wedrawplans.co.uk/planning-drawings";
