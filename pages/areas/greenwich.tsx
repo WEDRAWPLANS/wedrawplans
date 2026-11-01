@@ -5,6 +5,7 @@ import { submitBoroughLead } from "../../lib/submitBoroughLead";
 import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 import AreaTopHeader from "../../components/AreaTopHeader";
 
+import ApprovalEvidenceStrip from "../../components/ApprovalEvidenceStrip";
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const WHATSAPP_LINK =
@@ -333,6 +334,12 @@ export default function GreenwichAreaPage() {
           </section>
 
           <ServiceInternalLinks boroughName="Greenwich" />
+
+<ApprovalEvidenceStrip
+  slugs={["700-woolwich-road-greenwich-two-new-flats","alnwick-road-eltham-lawful-loft"]}
+  title="Selected WEDRAWPLANS approvals in Greenwich"
+  intro="From additional residential floors and new flats to lawful loft conversions, these projects show real WEDRAWPLANS planning experience across Greenwich and Eltham."
+/>
 
           <section className="bg-white border-b border-slate-200 py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
