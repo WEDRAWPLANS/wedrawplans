@@ -37,8 +37,8 @@ export const caseStudies: CaseStudy[] = [
     status: "Approved",
     category: "Extensions",
     service: "House extension, basement and planning drawings",
-    hero: "/images/case-studies/sistova-elevation.png",
-    gallery: ["/images/case-studies/sistova-plan.png", "/images/wandsworth-area.jpg"],
+    hero: "/images/wandsworth-area.jpg",
+    gallery: ["/images/rear-extension-planning-building-reg-drawings.jpg", "/images/building-regulation-technical-drawing-packs.jpg"],
     eyebrow: "FLAGSHIP WANDSWORTH APPROVAL",
     summary: "One of our strongest recent residential case studies: a coordinated side and rear extension with basement enlargement, rear lightwell and associated alterations. The drawing package demonstrates how a complex home-improvement brief can be made clear, proportionate and easy to assess.",
     challenge: [
@@ -470,8 +470,8 @@ export const caseStudies: CaseStudy[] = [
     status: "Approved",
     category: "Dropped kerb",
     service: "Vehicle crossover and dropped-kerb planning drawings",
-    hero: "/images/case-studies/dropkerb-hero.png",
-    gallery: ["/images/case-studies/dropkerb-tech.png", "/images/waltham-forest-hero.jpg"],
+    hero: "/images/waltham-forest-drawings.jpg",
+    gallery: ["/images/waltham-forest-project.jpg", "/images/waltham-forest-hero.jpg"],
     eyebrow: "RECENT WALTHAM FOREST APPROVAL",
     summary: "A recent vehicle-crossover approval supported by a full WEDRAWPLANS drawing set, including the proposed kerb layout, elevations and drainage detail.",
     challenge: [
