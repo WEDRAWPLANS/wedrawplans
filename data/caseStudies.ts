@@ -27,6 +27,9 @@ export type CaseStudy = {
   constructionSlot?: boolean;
   decisions?: { reference: string; description: string; outcome: string }[];
   projectNote?: string;
+  wdpService?: string;
+  homeownerGuidance?: string;
+  projectVideoUrl?: string;
 };
 
 export const caseStudies: CaseStudy[] = [
@@ -129,6 +132,40 @@ export const caseStudies: CaseStudy[] = [
     relatedArea: "/areas/hounslow",
     heroImage: "",
     secondaryImage: ""
+  },
+  {
+    slug: "the-reddings-mill-hill-extension-basement-loft",
+    title: "Approved House Extension, Basement and Loft Scheme in Mill Hill",
+    shortTitle: "The Reddings, Mill Hill",
+    location: "The Reddings, Mill Hill, London NW7 4JR",
+    authority: "London Borough of Barnet",
+    reference: "18/7533/HSE; 18/4693/192",
+    year: "2019",
+    service: "Part single and two-storey house extensions, basement and roof extension",
+    outcome: "Planning permission and lawful-development certificate secured",
+    approved: true,
+    highlights: [
+      "Part single and part two-storey front, side and rear additions",
+      "Replacement of the original garage and creation of basement accommodation",
+      "Hip-to-gable roof alteration and rear dormer",
+      "Juliette balcony and three front-facing rooflights",
+      "Separate householder planning and lawful-development applications"
+    ],
+    summary: "An ambitious Mill Hill house-improvement project combining front, side and rear extensions with basement accommodation, alongside a separately certified loft and roof enlargement.",
+    proof: "Barnet's planning history records approval in 2019 under 18/7533/HSE for part single and part two-storey extensions with a basement level. WEDRAWPLANS' published project archive also identifies the associated roof proposal under lawful-development reference 18/4693/192.",
+    leadAngle: "Thinking about extending several levels of your Mill Hill home?",
+    relatedService: "/extension-plans",
+    relatedArea: "/areas/barnet",
+    heroImage: "",
+    secondaryImage: "",
+    projectVideoUrl: "https://vimeo.com/443886303",
+    mediaNote: "Project-specific extension and loft drawing presentation to be added. The original WEDRAWPLANS project video is available to view separately.",
+    decisions: [
+      { reference: "18/7533/HSE", description: "Front, side and rear extensions, replacement of garage and creation of basement level", outcome: "Planning permission granted, 2019" },
+      { reference: "18/4693/192", description: "Hip-to-gable roof alteration, rear dormer with Juliette balcony and three front rooflights", outcome: "Lawful-development certificate secured" }
+    ],
+    wdpService: "WEDRAWPLANS prepared the architectural plans, elevations and application drawings for the property alterations, coordinated the separate planning and lawful-development submissions and liaised with the appointed Barnet case officer during assessment. The successful decisions demonstrate the value of planning the house and roof proposals together while presenting the correct consent route for each.",
+    homeownerGuidance: "Where a homeowner proposes a combination of side, rear and roof changes, the planning and permitted-development routes can differ. We can review the property, map out the application strategy and prepare coordinated drawings for the appropriate submissions."
   },
   {
     slug: "the-hyde-colindale-major-residential-development",
