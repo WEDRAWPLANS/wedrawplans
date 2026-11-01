@@ -309,8 +309,8 @@ export default function ExtensionPlansPage() {
 
 <ApprovalEvidenceStrip
   slugs={["sistova-road-wandsworth-extension-basement","allum-lane-elstree-major-house-extension","sunbury-avenue-mill-hill-side-rear-extension"]}
-  title="Approved extension projects from the WEDRAWPLANS portfolio"
-  intro="See real extension projects we have handled across London and the M25. Planning something similar? Get your fixed-fee quote."
+  title="Approved house-extension projects"
+  intro="Explore selected side, rear and two-storey extension projects across London and Hertfordshire, with details of the proposed works and planning decisions."
 />
         <section className="bg-white">
           <div className="mx-auto max-w-6xl px-4 py-6">
