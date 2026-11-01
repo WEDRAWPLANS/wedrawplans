@@ -777,7 +777,7 @@ export default function LoftConversionPlansPage() {
           </div>
         </section>
               <ApprovalEvidenceStrip
-          slugs={["warbeck-road-hammersmith-fulham-loft-certificate","deans-way-edgware-lawful-loft","alnwick-road-eltham-lawful-loft"]}
+          slugs={["the-reddings-mill-hill-extension-basement-loft","warbeck-road-hammersmith-fulham-loft-certificate","deans-way-edgware-lawful-loft","alnwick-road-eltham-lawful-loft"]}
           title="Selected loft conversion and roof-extension certificates"
           intro="Examples of approved lawful-development applications for dormers, gable alterations and rooflights, from West to South East London."
         />
