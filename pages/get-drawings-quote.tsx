@@ -3,6 +3,8 @@ import Link from "next/link";
 import type { FormEvent } from "react";
 import React, { useMemo, useState } from "react";
 import { submitBoroughLead } from "../lib/submitBoroughLead";
+import { useRouter } from "next/router";
+import { caseStudyBySlug } from "../data/caseStudies";
 import ServiceInternalLinks from "../components/ServiceInternalLinks";
 
 type FormState = {
@@ -87,6 +89,10 @@ function getBoroughFromPostcode(postcode: string) {
 }
 
 export default function GetDrawingsQuotePage() {
+  const router = useRouter();
+  const incomingProject = typeof router.query.project === "string" ? router.query.project : "";
+  const referringProject = Object.prototype.hasOwnProperty.call(caseStudyBySlug, incomingProject) ? incomingProject : "";
+  const source = router.query.source === "case-study" && referringProject ? "case-study" : "get-drawings-quote-page";
   const [form, setForm] = useState<FormState>(initialForm);
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState("");
@@ -150,7 +156,9 @@ export default function GetDrawingsQuotePage() {
           cleanedMessage ||
           `New architectural drawings quote request for ${form.projectType}. Postcode: ${cleanedPostcode}.`,
         raw: {
-          source: "get-drawings-quote-page",
+          source,
+          referringCaseStudy: referringProject || undefined,
+          referringPage: referringProject ? `/case-studies/${referringProject}` : "/get-drawings-quote",
           page: "/get-drawings-quote",
           projectType: form.projectType,
           inferredBorough,

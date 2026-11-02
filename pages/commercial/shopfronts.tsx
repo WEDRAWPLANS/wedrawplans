@@ -9,6 +9,7 @@ declare global {
   }
 }
 
+import ApprovalEvidenceStrip from "../../components/ApprovalEvidenceStrip";
 const GBP_LINK = "https://share.google/xOwhyM90bNTj0iWf9";
 const PAGE_URL = "https://www.wedrawplans.co.uk/commercial/shopfronts";
 const PAGE_TITLE =

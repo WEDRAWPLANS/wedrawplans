@@ -2,6 +2,7 @@ import React from "react";
 import Head from "next/head";
 import { submitBoroughLead } from "../lib/submitBoroughLead";
 
+import ApprovalEvidenceStrip from "../components/ApprovalEvidenceStrip";
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const WHATSAPP_LINK =
@@ -305,6 +306,12 @@ export default function ExtensionPlansPage() {
         </section>
 
         {/* QUICK NAV */}
+
+<ApprovalEvidenceStrip
+  slugs={["sistova-road-wandsworth-extension-basement","allum-lane-elstree-major-house-extension","sunbury-avenue-mill-hill-side-rear-extension","cromwell-road-hounslow-rear-extension","the-reddings-mill-hill-extension-basement-loft"]}
+  title="Approved house-extension projects"
+  intro="Explore selected side, rear and two-storey extension projects across London and Hertfordshire, with details of the proposed works and planning decisions."
+/>
         <section className="bg-white">
           <div className="mx-auto max-w-6xl px-4 py-6">
             <div className="flex flex-wrap gap-2">

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
 import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 
+import ApprovalEvidenceStrip from "../../components/ApprovalEvidenceStrip";
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const WHATSAPP_LINK =
@@ -718,6 +719,12 @@ export default function HounslowAreaPage() {
           </section>
 
           <ServiceInternalLinks boroughName="Hounslow" />
+
+<ApprovalEvidenceStrip
+  slugs={["cromwell-road-hounslow-rear-extension"]}
+  title="Approved rear extension in Hounslow"
+  intro="A residential rear-extension planning approval at Cromwell Road, demonstrating the drawing and application work we undertake for local homeowners."
+/>
 
           <section className="bg-white border-b border-slate-200 py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">

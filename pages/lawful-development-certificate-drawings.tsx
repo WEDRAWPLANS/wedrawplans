@@ -4,6 +4,7 @@ import Link from "next/link";
 import LondonAreaLinks from "../components/LondonAreaLinks";
 import { submitBoroughLead } from "../lib/submitBoroughLead";
 
+import ApprovalEvidenceStrip from "../components/ApprovalEvidenceStrip";
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const PAGE_URL = "https://www.wedrawplans.co.uk/lawful-development-certificate-drawings";
@@ -283,6 +284,11 @@ export default function LawfulDevelopmentCertificateDrawingsPage() {
             </div>
           </div>
         </section>
+              <ApprovalEvidenceStrip
+          slugs={["warbeck-road-hammersmith-fulham-loft-certificate","reddings-close-mill-hill-lawful-loft","alnwick-road-eltham-lawful-loft"]}
+          title="Granted lawful-development certificates across London"
+          intro="Browse roof-extension and loft-conversion certificates in Shepherd's Bush, Mill Hill and Eltham to understand how these applications differ from planning permission."
+        />
       </main>
     </>
   );

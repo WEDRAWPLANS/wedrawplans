@@ -4,6 +4,7 @@ import Link from "next/link";
 import HeroSlider from "../components/HeroSlider";
 import { submitBoroughLead } from "../lib/submitBoroughLead";
 
+import ApprovalEvidenceStrip from "../components/ApprovalEvidenceStrip";
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const EMAIL = "info@wedrawplans.com";
@@ -856,7 +857,7 @@ export default function NewBuildPlansPage() {
               </div>
 
               <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-4">
-                {["Approved scheme", "19 residential flats", "6 storeys", "40 sqm B1/commercial space"].map(
+                {["Approved scheme", "18 residential flats", "6 storeys", "40 sqm B1/commercial space"].map(
                   (item) => (
                     <div
                       key={item}
@@ -878,7 +879,7 @@ export default function NewBuildPlansPage() {
                   <p className="mt-4 text-sm leading-7 text-slate-700">
                     Project Colindale – The Hyde showcases WEDRAWPLANS capability in preparing planning-led design work
                     for a modern apartment development in a changing urban context. The approved scheme at 1–5 Halt
-                    Parade, The Hyde, London NW9 5AH was designed as a six-storey building providing 19 residential
+                    Parade, The Hyde, London NW9 5AH was designed as a six-storey building providing 18 residential
                     flats together with 40 sqm of B1/commercial space at ground floor level.
                   </p>
                   <p className="mt-4 text-sm leading-7 text-slate-700">
@@ -1265,7 +1266,12 @@ export default function NewBuildPlansPage() {
               </div>
             </div>
           </section>
-        </main>
+                <ApprovalEvidenceStrip
+          slugs={["the-hyde-colindale-major-residential-development","700-woolwich-road-greenwich-two-new-flats"]}
+          title="Approved residential development projects"
+          intro="The Hyde and Woolwich Road projects illustrate different approaches to residential development, including multiple dwellings and additional floors."
+        />
+      </main>
 
         <footer className="border-t border-[#2a3050] bg-[#20243b]">
           <div className="mx-auto max-w-6xl px-4 py-10 lg:px-6">
