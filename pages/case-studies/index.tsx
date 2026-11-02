@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { caseStudies, categoryForCaseStudy, CaseStudy } from "../../data/caseStudies";
 import { CaseStudyHeader, CaseStudyBottom, CaseStudyFooter } from "../../components/CaseStudyChrome";
+import CaseStudyGalleryQuote from "../../components/CaseStudyGalleryQuote";
 
 const QUOTE = "/get-drawings-quote";
 const PROJECT_BASE = "/case-studies/";
@@ -63,7 +64,6 @@ function ProjectCard({ item }: { item: CaseStudy }) {
 }
 
 export default function CaseStudiesHub() {
-  const featured = caseStudies.find((item) => item.featured) || caseStudies[0];
   const [query, setQuery] = useState("");
   const [type, setType] = useState("All project types");
   const [council, setCouncil] = useState("All councils");
@@ -133,29 +133,7 @@ export default function CaseStudiesHub() {
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-16" aria-labelledby="featured-heading">
-          <div className="mb-6 flex items-center justify-between gap-4">
-            <div>
-              <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-[#347b80]">Featured project</p>
-              <h2 id="featured-heading" className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">Recent planning approval in Wandsworth</h2>
-            </div>
-          </div>
-          <div className="grid overflow-hidden rounded-[22px] border border-[#e0e7e4] bg-white lg:grid-cols-[1.12fr_.88fr]">
-            <ProjectVisual item={featured} featured />
-            <div className="flex flex-col justify-center px-6 py-9 sm:px-10">
-              <p className="text-[12px] font-semibold text-[#217782]">{featured.outcome} · {featured.year}</p>
-              <h3 className="mt-3 text-2xl font-semibold leading-tight text-[#21393d] sm:text-3xl">{featured.shortTitle}</h3>
-              <p className="mt-4 text-[14px] leading-7 text-[#53676b]">{featured.summary}</p>
-              <dl className="mt-5 grid grid-cols-2 gap-x-4 gap-y-4 border-t border-[#e4eae7] pt-5 text-[12px]">
-                <div><dt className="text-[#6b7b80]">Planning authority</dt><dd className="mt-1 font-semibold">{featured.authority}</dd></div>
-                <div><dt className="text-[#6b7b80]">Reference</dt><dd className="mt-1 font-semibold">{featured.reference}</dd></div>
-              </dl>
-              <Link href={PROJECT_BASE + featured.slug} className="mt-6 inline-flex w-fit items-center gap-2 text-sm font-semibold text-[#146d77] underline-offset-4 hover:underline">
-                View project details <span aria-hidden="true">→</span>
-              </Link>
-            </div>
-          </div>
-        </section>
+        <CaseStudyGalleryQuote projects={caseStudies.slice(0, 7)} context="hub" />
 
         <section id="browse-projects" className="border-y border-[#e3e9e6] bg-[#f4f7f5]" aria-labelledby="browse-heading">
           <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-16">
