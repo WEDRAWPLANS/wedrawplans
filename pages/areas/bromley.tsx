@@ -93,7 +93,7 @@ export default function BromleyAreaPage() {
           acceptedAnswer: {
             "@type": "Answer",
             text:
-              "Householder planning applications are normally decided within 6 to 8 weeks after validation. Lawful Development Certificates are often around 4 to 6 weeks depending on workload.",
+              "For a valid householder planning application, the normal statutory decision period is eight weeks from validation. Standard Lawful Development Certificate applications also normally have an eight-week determination period. Decisions may take longer where an extension of time is agreed.",
           },
         },
         {
@@ -972,6 +972,11 @@ export default function BromleyAreaPage() {
                   <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
                     <h3 className="font-semibold text-slate-900">Do you submit to Bromley Council</h3>
                     <p>Yes. We handle submission, monitor progress and respond to planning officer queries.</p>
+                  </div>
+
+                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
+                    <h3 className="font-semibold text-slate-900">How long does Bromley Council take to decide planning applications?</h3>
+                    <p>For a valid householder planning application, the normal statutory decision period is eight weeks from validation. Standard Lawful Development Certificate applications also normally have an eight-week determination period. Decisions may take longer where an extension of time is agreed.</p>
                   </div>
 
                   <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
