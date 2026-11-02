@@ -102,7 +102,7 @@ export default function ProjectQuickQuotePanel({
         return;
       }
       setSuccess(true);
-      fireEvent("generate_lead", { form_name: source, referring_project: projectSlug || "hub", service });
+      fireEvent("case_study_quote_submitted", { form_name: source, referring_project: projectSlug || "hub", service });
     } catch {
       setError("There was a connection problem. Please try again or call us.");
     } finally {
