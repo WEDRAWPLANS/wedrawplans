@@ -255,7 +255,7 @@ export default function ServiceInternalLinks({
             <p className="mt-3 max-w-3xl text-sm leading-7 text-[#536e72]">See how WEDRAWPLANS supported a complex residential scheme with coordinated architectural plans, extensions across several levels and a separately certified loft design. This project is in Mill Hill, not {boroughName}; our drawing services are also available in {boroughName}.</p>
             <div className="mt-6 grid items-start gap-5 lg:grid-cols-[minmax(0,1.28fr)_minmax(330px,.72fr)]">
               <div>
-                <video controls playsInline preload="metadata" poster="/images/video-main-poster.jpg" className="aspect-video w-full rounded-xl bg-[#15252b]" aria-label="Original WEDRAWPLANS Reddings architectural animation"><source src="/videos/barnet-planning-project.mp4" type="video/mp4" /></video>
+                <p className="rounded-xl border border-[#dce8e4] bg-white px-5 py-5 text-sm leading-7 text-[#536e72]">Explore this approved Mill Hill project and its architectural drawings in the dedicated case study. Project photography and drawing imagery will be displayed here once the approved website assets are in place.</p>
                 <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
                   <span className="text-xs font-semibold text-[#427279]">The Reddings · Barnet planning approval</span>
                   <Link href="/case-studies/the-reddings-mill-hill-extension-basement-loft" className="text-sm font-bold text-[#24757f] underline underline-offset-4">Explore the full project →</Link>
