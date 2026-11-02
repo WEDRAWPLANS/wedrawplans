@@ -244,9 +244,45 @@ export default function ServiceInternalLinks({
     .map((slug) => caseStudies.find((item) => item.slug === slug))
     .filter((item): item is (typeof caseStudies)[number] => Boolean(item));
 
+  const extensionCases = localCases.filter((item) => /extension/i.test(item.service));
+
   return (
     <section className="bg-white">
       <div className="mx-auto max-w-6xl px-4 py-10">
+        <div className="mb-10 rounded-[18px] border border-[#e1e9e5] bg-[#f8faf9] p-6 sm:p-8">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#a36962]">House extension drawings &amp; planning support</p>
+          <h2 className="mt-3 text-[22px] font-semibold leading-snug text-[#233f43] sm:text-[26px]">
+            Who can prepare house-extension plans in {boroughName}?
+          </h2>
+          <p className="mt-4 max-w-4xl text-[14px] leading-7 text-[#50676c]">
+            WEDRAWPLANS provides architectural drawing services for homeowners in {boroughName}.
+            We prepare measured existing and proposed floor plans, elevations, roof plans and sections
+            for rear, side and two-storey extensions. Where appointed, we prepare the application
+            documents, coordinate submission and respond to the council&apos;s case-officer queries.
+            The appropriate route depends on the property and may be householder planning permission,
+            permitted development, prior approval or a lawful-development certificate.
+          </p>
+          {extensionCases.length ? (
+            <p className="mt-3 max-w-4xl text-[13px] leading-7 text-[#526a6f]">
+              Examples of our approved extension work relevant to this area include{" "}
+              {extensionCases.slice(0, 2).map((project, index) => (
+                <React.Fragment key={project.slug}>
+                  {index ? " and " : ""}
+                  <Link href={"/case-studies/" + project.slug} className="font-semibold text-[#206e7a] underline underline-offset-2 hover:text-[#105d68]">{project.shortTitle}</Link>
+                </React.Fragment>
+              ))}. The approved schemes illustrate drawing services, not a guarantee of consent for another property.
+            </p>
+          ) : (
+            <p className="mt-3 max-w-4xl text-[13px] leading-6 text-[#526a6f]">
+              You can review <Link href="/case-studies" className="font-semibold text-[#206e7a] underline underline-offset-2">selected WEDRAWPLANS planning projects</Link> from across London and nearby areas before requesting a quotation.
+            </p>
+          )}
+          <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3">
+            <Link href="/extension-plans" className="text-[13px] font-semibold text-[#246b75] underline underline-offset-4 hover:text-[#15565e]">House extension drawing services</Link>
+            <Link href="/get-drawings-quote" className="inline-flex rounded-full bg-[#65b5c2] px-6 py-2.5 text-[13px] font-semibold text-white hover:bg-[#4e9dac]">Get your fixed-fee quote</Link>
+          </div>
+        </div>
+
         <h2 className="text-2xl font-extrabold tracking-tight">
           Popular services in {boroughName}
         </h2>
