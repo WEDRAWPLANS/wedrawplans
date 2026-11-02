@@ -462,10 +462,10 @@ export default function LambethAreaPage() {
                   <div>
                     <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">Rear extensions</h3>
                     <ul className="list-disc pl-4 space-y-1">
-                      <li>Up to 3 m deep on terrace houses</li>
-                      <li>Up to 4 m on semi detached houses</li>
-                      <li>Up to 6 to 8 m with Prior Approval</li>
-                      <li>Maximum 4 m high for single storey</li>
+                      <li>Standard single-storey rear extension: up to 3 m beyond the original rear wall for terraced or semi-detached houses</li>
+                      <li>Up to 4 m beyond the original rear wall for detached houses, subject to all other permitted-development conditions</li>
+                      <li>Eligible larger rear extensions may reach 6 m (attached) or 8 m (detached) through the prior approval / neighbour consultation process before work starts</li>
+                      <li>Overall height must not exceed 4 m; eaves within 2 m of a boundary must not exceed 3 m</li>
                     </ul>
                   </div>
                   <div>
