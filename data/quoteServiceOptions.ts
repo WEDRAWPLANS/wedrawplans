@@ -1,0 +1,27 @@
+export type ServiceOption = { label: string; value: string; href: string };
+
+export const SERVICE_OPTIONS: ServiceOption[] = [
+  { label: "Planning Drawings", value: "Planning drawings", href: "/planning-drawings" },
+  { label: "Lawful Development Certificate", value: "Lawful development certificate drawings", href: "/lawful-development-certificate-drawings" },
+  { label: "Extension Plans", value: "House extension drawings", href: "/extension-plans" },
+  { label: "Loft Conversion Plans", value: "Loft conversion drawings", href: "/loft-conversion-plans" },
+  { label: "Building Regulations Plans", value: "Building regulation drawings", href: "/building-regulation-drawings" },
+  { label: "Design Plans", value: "Design plans", href: "/building-regulation-drawings" },
+  { label: "Detailed Sections", value: "Detailed sections", href: "/building-regulation-drawings" },
+  { label: "Dropped Kerb Plans", value: "Dropped kerb plans", href: "/building-regulation-drawings" },
+  { label: "Elevation Plans", value: "Elevation plans", href: "/building-regulation-drawings" },
+  { label: "Floor Plans", value: "Floor plans", href: "/building-regulation-drawings" },
+  { label: "Garage Conversion Plans", value: "Garage conversion drawings", href: "/extension-plans" },
+  { label: "Garage Plans", value: "Garage plans", href: "/extension-plans" },
+  { label: "Garden Studio Plans", value: "Garden studio drawings", href: "/garden-room-outbuilding-plans" },
+  { label: "Garden Room / Outbuilding Plans", value: "Garden room or outbuilding drawings", href: "/garden-room-outbuilding-plans" },
+  { label: "Solar Panel Planning Drawings", value: "Solar panel planning drawings", href: "/solar-panel-planning-drawings" },
+  { label: "HMO Plans", value: "HMO plans", href: "/building-regulation-drawings" },
+  { label: "Party Wall Services", value: "Party wall drawings", href: "/building-regulation-drawings" },
+  { label: "Planning Applications", value: "Planning drawings", href: "/planning-drawings" },
+  { label: "Property Conversion", value: "Property conversion drawings", href: "/new-build-plans" },
+  { label: "Shop Plans", value: "Shop plans", href: "/commercial/shopfronts" },
+  { label: "Structural Calculations", value: "Structural calculations", href: "/building-regulation-drawings" },
+  { label: "New Build Plans", value: "New build drawings", href: "/new-build-plans" },
+  { label: "Other", value: "Other drawings", href: "/contact" },
+];
