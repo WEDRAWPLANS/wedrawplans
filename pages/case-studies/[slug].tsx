@@ -4,6 +4,7 @@ import Link from "next/link";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { caseStudies, caseStudyBySlug, categoryForCaseStudy, CaseStudy } from "../../data/caseStudies";
 import { CaseStudyHeader, CaseStudyBottom, CaseStudyFooter } from "../../components/CaseStudyChrome";
+import CaseStudyGalleryQuote from "../../components/CaseStudyGalleryQuote";
 
 const QUOTE = "/get-drawings-quote";
 
@@ -17,6 +18,7 @@ function Detail({ label, value }: { label: string; value: string }) {
 }
 
 export default function CaseStudyPage({ item }: { item: CaseStudy }) {
+  const useOriginalDrawingGallery = item.slug === "sistova-road-wandsworth-extension-basement" || item.slug === "cromwell-road-hounslow-rear-extension";
   const isProduction = process.env.VERCEL_ENV === "production";
   const hasApprovedVisual = [item.heroImage, item.secondaryImage].some(src => Boolean(src) && (src.startsWith("/images/case-studies/") || src.startsWith("/images/hyde-")));
   const showGallery = !isProduction || hasApprovedVisual || Boolean(item.projectVideoUrl);
@@ -125,7 +127,8 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
           </div>
         </section>
 
-        {showGallery ? (
+        {useOriginalDrawingGallery ? <CaseStudyGalleryQuote projects={[item]} context="project" /> : null}
+        {showGallery && !useOriginalDrawingGallery ? (
         <section id="project-drawings" className="border-y border-[#e2e9e5] bg-[#f5f8f6]" aria-labelledby="drawing-heading">
           <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-14">
             <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
