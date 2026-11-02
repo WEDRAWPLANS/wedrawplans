@@ -17,7 +17,10 @@ function Detail({ label, value }: { label: string; value: string }) {
 }
 
 export default function CaseStudyPage({ item }: { item: CaseStudy }) {
-  const canonical = "https://www.wedrawplans.co.uk/case-studies/" + item.slug;
+  const isProduction = process.env.VERCEL_ENV === "production";
+  const hasApprovedVisual = [item.heroImage, item.secondaryImage].some(src => Boolean(src) && (src.startsWith("/images/case-studies/") || src.startsWith("/images/hyde-")));
+  const showGallery = !isProduction || hasApprovedVisual || Boolean(item.projectVideoUrl);
+    const canonical = "https://www.wedrawplans.co.uk/case-studies/" + item.slug;
   const quoteHref = "/get-drawings-quote?source=case-study&project=" + encodeURIComponent(item.slug);
   const category = categoryForCaseStudy(item);
   const related = caseStudies
@@ -122,6 +125,7 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
           </div>
         </section>
 
+        {showGallery ? (
         <section id="project-drawings" className="border-y border-[#e2e9e5] bg-[#f5f8f6]" aria-labelledby="drawing-heading">
           <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-14">
             <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
@@ -138,7 +142,7 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
                   WEDRAWPLANS architectural project presentation. The planning decision confirms the approved drawing references.
                 </figcaption>
               </figure>
-            ) : (
+            ) : !isProduction ? (
               <div className="flex min-h-[320px] flex-col items-center justify-center rounded-[18px] border border-dashed border-[#bfd3d0] bg-white p-8 text-center sm:min-h-[450px]" aria-label="Drawing presentation space reserved">
                 <svg viewBox="0 0 120 90" width="110" height="84" role="img" aria-label="Drawing sheet icon" className="text-[#92aeb0]">
                   <rect x="15" y="9" width="90" height="72" rx="2" fill="none" stroke="currentColor" strokeWidth="2"/>
@@ -147,7 +151,7 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
                 <p className="mt-4 text-[17px] font-semibold text-[#3b5e61]">Project drawings to be added</p>
                 <p className="mt-2 max-w-lg text-[13px] leading-6 text-[#738689]">This space is ready for the approved architectural drawings, plans or 3D design views.</p>
               </div>
-            )}
+            ) : null}
             {item.secondaryImage && (item.secondaryImage.startsWith("/images/case-studies/") || item.secondaryImage.startsWith("/images/hyde-")) && item.secondaryImage !== item.heroImage ? (
               <figure className="mt-5 overflow-hidden rounded-[18px] border border-[#dee5e1] bg-white p-5">
                 <Image src={item.secondaryImage} alt={"Additional architectural illustration for " + item.shortTitle} width={1450} height={900} className="h-auto w-full object-contain"/>
@@ -162,7 +166,7 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
                 <a href={item.projectVideoUrl} target="_blank" rel="noopener noreferrer" className="inline-flex rounded-full border border-[#b7d6d0] px-5 py-2.5 text-[13px] font-semibold text-[#26737c] hover:bg-[#eaf6f2]">View project video ↗</a>
               </div>
             ) : null}
-            {item.animationSlot ? (
+            {item.animationSlot && !isProduction ? (
               <div className="mt-5 grid gap-5 lg:grid-cols-2">
                 <div className="flex aspect-video flex-col items-center justify-center rounded-[18px] border border-dashed border-[#c5d5d3] bg-white p-6 text-center">
                   <span className="text-[32px] text-[#9ab5b5]" aria-hidden="true">▷</span>
@@ -175,7 +179,7 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
                 </div>
               </div>
             ) : null}
-            {item.constructionSlot ? (
+            {item.constructionSlot && !isProduction ? (
               <div className="mt-5">
                 <h3 className="text-xl font-semibold">Construction progress</h3>
                 <p className="mt-2 max-w-2xl text-[13px] leading-6 text-[#607679]">Works are currently in progress at this property. The construction photographs will illustrate how the approved extension design is being delivered on site.</p>
@@ -186,9 +190,10 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
                 </div>
               </div>
             ) : null}
-            {item.mediaNote ? <p className="mt-4 text-[12px] leading-6 text-[#657a7c]">{item.mediaNote}</p> : null}
+            {item.mediaNote && !isProduction ? <p className="mt-4 text-[12px] leading-6 text-[#657a7c]">{item.mediaNote}</p> : null}
           </div>
         </section>
+        ) : null}
 
         <section className="bg-white">
           <div className="mx-auto grid max-w-7xl gap-9 px-5 py-12 sm:px-8 sm:py-16 lg:grid-cols-2 lg:gap-20">
