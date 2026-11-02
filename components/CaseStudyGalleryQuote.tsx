@@ -27,7 +27,7 @@ type ReddingsProject = CaseStudy;
 function RealProjectShowcase({ project }: { project: ReddingsProject }) {
   const [selected, setSelected] = useState(0);
   const media = project.galleryImages || [];
-  const before = media.find((image) => image.src.endsWith("/before.jpg"));
+  const before = media.find((image) => image.src.endsWith("/before-20261102.jpg") || image.src.endsWith("/before.jpg"));
   const after = media.find((image) => image.src.endsWith("/after.jpg"));
   const visuals = media.filter((image) => /\/3d-[^/]+\.(jpg|jpeg|webp|png)$/i.test(image.src));
   const drawings = media.filter((image) => /\/drawing-\d+\.(jpg|jpeg|webp|png)$/i.test(image.src));
