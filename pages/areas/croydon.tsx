@@ -874,10 +874,10 @@ export default function CroydonAreaPage() {
                   <div>
                     <h3 className="mb-2 font-semibold uppercase tracking-[0.14em] text-slate-900">Rear extensions</h3>
                     <ul className="list-disc space-y-1 pl-4">
-                      <li>Up to 3 m deep on terrace houses</li>
-                      <li>Up to 4 m on semi detached houses</li>
-                      <li>Up to 6 to 8 m with prior approval</li>
-                      <li>Maximum 4 m high for single storey</li>
+                      <li>Standard rear depth: up to 3 m beyond the original rear wall for terraced or semi-detached houses</li>
+                      <li>Standard rear depth: up to 4 m beyond the original rear wall for detached houses</li>
+                      <li>Eligible larger single-storey rear extensions: up to 6 m for attached houses or 8 m for detached houses, subject to the prior approval/neighbour consultation process before work starts</li>
+                      <li>Maximum overall height 4 m; eaves no higher than 3 m within 2 m of a boundary. Other permitted development conditions and local restrictions still apply.</li>
                     </ul>
                   </div>
                   <div>
