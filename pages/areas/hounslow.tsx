@@ -853,17 +853,17 @@ export default function HounslowAreaPage() {
                   Permitted development limits in Hounslow
                 </h2>
                 <p className="text-[13px] text-slate-700">
-                  This is a simplified guide to common permitted development limits. Final confirmation depends on your house type, location and any Article 4 directions or constraints.
+                  This is a simplified guide for eligible houses, not an automatic right to build. We check the original house, previous extensions, conservation or other restrictions, and the appropriate planning, prior approval or lawful development certificate route before advising.
                 </p>
 
                 <div className="grid md:grid-cols-3 gap-8 text-[13px] text-slate-700">
                   <div>
                     <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">Rear extensions</h3>
                     <ul className="list-disc pl-4 space-y-1">
-                      <li>Up to 3m deep on terrace houses</li>
-                      <li>Up to 4m on semi detached houses</li>
-                      <li>Up to 6 to 8m with Prior Approval</li>
-                      <li>Maximum 4m high for single storey</li>
+                      <li>Standard single-storey rear depth: up to 3m beyond the original rear wall for terraced and semi-detached houses.</li>
+                      <li>Standard single-storey rear depth: up to 4m for detached houses.</li>
+                      <li>Larger-home-extension prior approval route: up to 6m for attached houses or 8m for detached houses, where eligible. Apply before starting work.</li>
+                      <li>Maximum overall height is generally 4m; eaves within 2m of a boundary must not exceed 3m. Other conditions apply.</li>
                     </ul>
                   </div>
                   <div>
