@@ -19,7 +19,7 @@ function ProjectVisual({ item, featured = false }: { item: CaseStudy; featured?:
           fill
           priority={featured}
           sizes={featured ? "(max-width: 900px) 100vw, 55vw" : "(max-width: 768px) 100vw, 33vw"}
-          className="object-contain p-3 sm:p-5"
+          className={item.slug === "the-reddings-mill-hill-extension-basement-loft" ? "object-cover" : "object-contain p-3 sm:p-5"}
         />
       </div>
     );
