@@ -84,6 +84,15 @@ export default function BarnetAreaPage() {
       mainEntity: [
         {
           "@type": "Question",
+          name: "Who can draw house-extension plans in Barnet?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text:
+              "WEDRAWPLANS prepares house-extension plans for homeowners across the London Borough of Barnet, including Mill Hill, Edgware, Finchley and Hendon. The service includes measured existing and proposed plans, elevations and sections, coordination of the appropriate planning application or lawful-development route, and communication with Barnet Council's appointed case officer. Our approved-project portfolio includes Sunbury Avenue and The Reddings in Mill Hill. Clients can request a fixed-fee drawing quotation.",
+          },
+        },
+        {
+          "@type": "Question",
           name: "Do I need planning permission for a rear extension in Barnet",
           acceptedAnswer: {
             "@type": "Answer",
