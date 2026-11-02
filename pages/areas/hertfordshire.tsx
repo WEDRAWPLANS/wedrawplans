@@ -96,6 +96,15 @@ export default function HertfordshireAreaPage() {
       },
       {
         "@type": "Question",
+        name: "Which council handles extensions in Elstree, Borehamwood and Hoddesdon",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "Elstree and Borehamwood are in Hertsmere Borough Council's planning area, while Hoddesdon is in the Borough of Broxbourne. Other Hertfordshire towns can have different planning authorities. We check the property address and restrictions before advising whether householder permission, a Lawful Development Certificate or prior approval is the appropriate route.",
+        },
+      },
+      {
+        "@type": "Question",
         name: "How do you get the measurements for my property",
         acceptedAnswer: {
           "@type": "Answer",
@@ -551,7 +560,13 @@ export default function HertfordshireAreaPage() {
                   Local planning awareness for Hertfordshire projects
                 </h2>
                 <p className="text-[13px] text-emerald-900">
-                  Many Hertfordshire areas include conservation zones, design guides and street scene expectations, especially around period homes and prominent road frontages. We shape each scheme to fit context and produce a clear drawing package that supports a smooth decision.
+                  The relevant planning council depends on your property address: Elstree and Borehamwood are in Hertsmere, while Hoddesdon is in Broxbourne. Local validation requirements and restrictions, including conservation areas or Article 4 directions, may differ. We check these before advising on householder planning permission, a Lawful Development Certificate or the larger-home-extension prior approval route.
+                </p>
+                <p className="text-[13px] text-emerald-900">
+                  Check the official{" "}
+                  <a href="https://www.hertsmere.gov.uk/planning-building-control/planning-applications" target="_blank" rel="noopener noreferrer" className="font-semibold underline underline-offset-2">Hertsmere planning guidance</a>
+                  {" "}or{" "}
+                  <a href="https://www.broxbourne.gov.uk/planning/planning-application-forms/2" target="_blank" rel="noopener noreferrer" className="font-semibold underline underline-offset-2">Broxbourne application guidance</a>.
                 </p>
               </div>
 
@@ -582,6 +597,14 @@ export default function HertfordshireAreaPage() {
                     </h3>
                     <p>
                       Yes. We can prepare drawings and support the submission route, including responding to questions during review.
+                    </p>
+                  </div>
+                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                    <h3 className="font-semibold text-slate-900">
+                      Which council handles Elstree, Borehamwood or Hoddesdon extensions?
+                    </h3>
+                    <p>
+                      Hertsmere Borough Council covers Elstree and Borehamwood; Broxbourne covers Hoddesdon. Tell us your postcode so we can check the right council, site restrictions and planning route before preparing drawings.
                     </p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
