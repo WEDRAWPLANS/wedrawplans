@@ -1,9 +1,9 @@
 import Head from "next/head";
-import Image from "next/image";
 import Link from "next/link";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { caseStudies, caseStudyBySlug, categoryForCaseStudy, CaseStudy } from "../../data/caseStudies";
 import { CaseStudyHeader, CaseStudyBottom, CaseStudyFooter } from "../../components/CaseStudyChrome";
+import CaseStudyGalleryQuote from "../../components/CaseStudyGalleryQuote";
 
 const QUOTE = "/get-drawings-quote";
 
@@ -17,10 +17,7 @@ function Detail({ label, value }: { label: string; value: string }) {
 }
 
 export default function CaseStudyPage({ item }: { item: CaseStudy }) {
-  const isProduction = process.env.VERCEL_ENV === "production";
-  const hasApprovedVisual = [item.heroImage, item.secondaryImage].some(src => Boolean(src) && (src.startsWith("/images/case-studies/") || src.startsWith("/images/hyde-")));
-  const showGallery = !isProduction || hasApprovedVisual || Boolean(item.projectVideoUrl);
-    const canonical = "https://www.wedrawplans.co.uk/case-studies/" + item.slug;
+  const canonical = "https://www.wedrawplans.co.uk/case-studies/" + item.slug;
   const quoteHref = "/get-drawings-quote?source=case-study&project=" + encodeURIComponent(item.slug);
   const category = categoryForCaseStudy(item);
   const related = caseStudies
@@ -125,75 +122,7 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
           </div>
         </section>
 
-        {showGallery ? (
-        <section id="project-drawings" className="border-y border-[#e2e9e5] bg-[#f5f8f6]" aria-labelledby="drawing-heading">
-          <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-14">
-            <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
-              <div>
-                <p className="text-[12px] font-semibold uppercase tracking-[0.15em] text-[#347c81]">WEDRAWPLANS architectural drawings</p>
-                <h2 id="drawing-heading" className="mt-2 text-2xl font-semibold sm:text-3xl">Project drawings &amp; design</h2>
-              </div>
-              <span className="text-[12px] text-[#587274]">{item.shortTitle}</span>
-            </div>
-            {item.heroImage && (item.heroImage.startsWith("/images/case-studies/") || item.heroImage.startsWith("/images/hyde-")) ? (
-              <figure className="overflow-hidden rounded-[18px] border border-[#dee5e1] bg-white p-3 shadow-[0_8px_34px_rgba(32,70,73,0.035)] sm:p-5">
-                <Image src={item.heroImage} alt={"WEDRAWPLANS project drawing or architectural visualisation — " + item.shortTitle} width={1500} height={1000} priority sizes="(max-width: 768px) 100vw, 85vw" className="mx-auto h-auto max-h-[780px] w-full object-contain"/>
-                <figcaption className="mt-3 border-t border-[#edf0ee] px-1 pt-3 text-[12px] leading-5 text-[#617579]">
-                  WEDRAWPLANS architectural project presentation. The planning decision confirms the approved drawing references.
-                </figcaption>
-              </figure>
-            ) : !isProduction ? (
-              <div className="flex min-h-[320px] flex-col items-center justify-center rounded-[18px] border border-dashed border-[#bfd3d0] bg-white p-8 text-center sm:min-h-[450px]" aria-label="Drawing presentation space reserved">
-                <svg viewBox="0 0 120 90" width="110" height="84" role="img" aria-label="Drawing sheet icon" className="text-[#92aeb0]">
-                  <rect x="15" y="9" width="90" height="72" rx="2" fill="none" stroke="currentColor" strokeWidth="2"/>
-                  <path d="M22 67H98M22 72H98M38 20V62M78 20V62M38 20H78V62H38zM49 33h19v29H49zM22 42h16M78 42h20" fill="none" stroke="currentColor" strokeWidth="1.5"/>
-                </svg>
-                <p className="mt-4 text-[17px] font-semibold text-[#3b5e61]">Project drawings to be added</p>
-                <p className="mt-2 max-w-lg text-[13px] leading-6 text-[#738689]">This space is ready for the approved architectural drawings, plans or 3D design views.</p>
-              </div>
-            ) : null}
-            {item.secondaryImage && (item.secondaryImage.startsWith("/images/case-studies/") || item.secondaryImage.startsWith("/images/hyde-")) && item.secondaryImage !== item.heroImage ? (
-              <figure className="mt-5 overflow-hidden rounded-[18px] border border-[#dee5e1] bg-white p-5">
-                <Image src={item.secondaryImage} alt={"Additional architectural illustration for " + item.shortTitle} width={1450} height={900} className="h-auto w-full object-contain"/>
-              </figure>
-            ) : null}
-            {item.projectVideoUrl ? (
-              <div className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-[16px] border border-[#d7e7e1] bg-white px-5 py-4">
-                <div>
-                  <p className="text-[14px] font-semibold text-[#264d51]">WEDRAWPLANS project video</p>
-                  <p className="mt-1 text-[12px] leading-6 text-[#60797b]">Explore the design presentation for this approved project.</p>
-                </div>
-                <a href={item.projectVideoUrl} target="_blank" rel="noopener noreferrer" className="inline-flex rounded-full border border-[#b7d6d0] px-5 py-2.5 text-[13px] font-semibold text-[#26737c] hover:bg-[#eaf6f2]">View project video ↗</a>
-              </div>
-            ) : null}
-            {item.animationSlot && !isProduction ? (
-              <div className="mt-5 grid gap-5 lg:grid-cols-2">
-                <div className="flex aspect-video flex-col items-center justify-center rounded-[18px] border border-dashed border-[#c5d5d3] bg-white p-6 text-center">
-                  <span className="text-[32px] text-[#9ab5b5]" aria-hidden="true">▷</span>
-                  <h3 className="mt-2 text-[15px] font-semibold">Architectural animation</h3>
-                  <p className="mt-2 text-[12px] text-[#708287]">Space prepared for the Allum Lane project animation</p>
-                </div>
-                <div className="flex aspect-video flex-col items-center justify-center rounded-[18px] border border-dashed border-[#c5d5d3] bg-white p-6 text-center">
-                  <h3 className="text-[15px] font-semibold">Additional drawings &amp; 3D views</h3>
-                  <p className="mt-2 text-[12px] text-[#708287]">Space prepared for the approved drawing set</p>
-                </div>
-              </div>
-            ) : null}
-            {item.constructionSlot && !isProduction ? (
-              <div className="mt-5">
-                <h3 className="text-xl font-semibold">Construction progress</h3>
-                <p className="mt-2 max-w-2xl text-[13px] leading-6 text-[#607679]">Works are currently in progress at this property. The construction photographs will illustrate how the approved extension design is being delivered on site.</p>
-                <div className="mt-4 grid gap-4 sm:grid-cols-3">
-                  {["Early works","Structural progress","Current progress"].map(label => (
-                    <div key={label} className="flex aspect-[4/3] items-center justify-center rounded-[15px] border border-dashed border-[#c8d8d4] bg-white p-5 text-center text-[13px] font-medium text-[#809194]">{label} — photo space</div>
-                  ))}
-                </div>
-              </div>
-            ) : null}
-            {item.mediaNote && !isProduction ? <p className="mt-4 text-[12px] leading-6 text-[#657a7c]">{item.mediaNote}</p> : null}
-          </div>
-        </section>
-        ) : null}
+        <CaseStudyGalleryQuote projects={[item]} context="project" />
 
         <section className="bg-white">
           <div className="mx-auto grid max-w-7xl gap-9 px-5 py-12 sm:px-8 sm:py-16 lg:grid-cols-2 lg:gap-20">
