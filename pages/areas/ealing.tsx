@@ -162,7 +162,7 @@ function PlanningAssistant({
 
     if (hasTimelineIntent) {
       return [
-        "Typical times: a householder planning application is often decided about 6 to 8 weeks after validation. A Lawful Development Certificate is often about 4 to 6 weeks after validation.",
+        "The normal determination period for a valid householder planning application and a standard Lawful Development Certificate is 8 weeks. Ealing Council may take longer where an extension of time is agreed in writing.",
         "To avoid delays, we focus on a clean submission with the right drawings and supporting info where needed.",
         "Tell me your postcode and what you want to build and I will suggest the best route.",
       ];
@@ -394,7 +394,7 @@ export default function EalingAreaPage() {
           acceptedAnswer: {
             "@type": "Answer",
             text:
-              "Householder planning applications normally take 6 to 8 weeks after validation. Lawful Development Certificates often take about 4 to 6 weeks, depending on workload and submission quality.",
+              "The normal determination period for a valid householder planning application and a standard Lawful Development Certificate is 8 weeks. A longer period may apply where agreed in writing with Ealing Council.",
           },
         },
         {
