@@ -82,7 +82,7 @@ export default function SouthwarkAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Householder planning applications usually take six to eight weeks after validation. Lawful Development Certificates are often around four to six weeks, depending on workload and the completeness of the submission.",
+            "The normal statutory determination period for a valid householder planning application is eight weeks. A standard Lawful Development Certificate application also has an eight-week determination period. The council may take longer where an extension of time is agreed; validation and requests for further information can affect the overall timetable.",
         },
       },
       {
@@ -432,10 +432,11 @@ export default function SouthwarkAreaPage() {
                   <div>
                     <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">Rear extensions</h3>
                     <ul className="list-disc pl-4 space-y-1">
-                      <li>Up to 3 m deep on terrace houses</li>
-                      <li>Up to 4 m on semi detached houses</li>
-                      <li>Up to 6 to 8 m with Prior Approval</li>
-                      <li>Maximum 4 m high for single storey</li>
+                      <li>Standard single-storey rear depth: up to 3 m for terraced and semi-detached houses</li>
+                      <li>Standard single-storey rear depth: up to 4 m for detached houses</li>
+                      <li>Larger-home-extension route: up to 6 m for attached houses or 8 m for detached houses, where eligible and subject to prior approval / neighbour consultation</li>
+                      <li>Single-storey extensions must not exceed 4 m overall height; eaves within 2 m of a boundary must not exceed 3 m</li>
+                      <li>Measure from the original rear wall and check conservation-area restrictions, Article 4 Directions and other Class A conditions</li>
                     </ul>
                   </div>
                   <div>
@@ -524,7 +525,7 @@ export default function SouthwarkAreaPage() {
                       How long does Southwark Council take to decide
                     </h3>
                     <p>
-                      Householder planning applications usually take six to eight weeks after validation. Lawful Development Certificates are often around four to six weeks, depending on workload and the completeness of the submission.
+                      The normal statutory determination period for a valid householder planning application is eight weeks. A standard Lawful Development Certificate application also has an eight-week determination period. The council may take longer where an extension of time is agreed; validation and requests for further information can affect the overall timetable.
                     </p>
                   </div>
                   <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
