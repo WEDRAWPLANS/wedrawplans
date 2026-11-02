@@ -456,10 +456,11 @@ export default function LewishamAreaPage() {
                       Rear extensions
                     </h3>
                     <ul className="list-disc pl-4 space-y-1">
-                      <li>Up to 3 m deep on terraces</li>
-                      <li>Up to 4 m on semi detached houses</li>
-                      <li>Up to 6 to 8 m with Prior Approval</li>
-                      <li>Maximum 4 m high for single storey</li>
+                      <li>Standard single-storey rear extension: up to 3 m beyond the original rear wall for terraced and semi-detached houses.</li>
+                      <li>For detached houses, the standard rear projection limit is 4 m.</li>
+                      <li>Eligible larger single-storey extensions may reach 6 m (terraced/semi-detached) or 8 m (detached), subject to the larger-home-extension prior approval process and other conditions.</li>
+                      <li>Maximum overall height is 4 m; eaves must not exceed 3 m where the extension is within 2 m of a boundary.</li>
+                      <li>These householder rights do not apply to flats. Conservation-area and property-specific restrictions must be checked before choosing the application route.</li>
                     </ul>
                   </div>
                   <div>
