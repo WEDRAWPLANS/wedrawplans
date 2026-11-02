@@ -1,0 +1,32 @@
+name: Import Reddings approved gallery images
+on:
+  push:
+    branches:
+      - preview-reddings-flagship-20261102
+    paths:
+      - .github/workflows/import-reddings-gallery.yml
+permissions:
+  contents: write
+jobs:
+  import-images:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out preview branch
+        uses: actions/checkout@v4
+        with:
+          ref: preview-reddings-flagship-20261102
+      - name: Download approved photo and drawings archive
+        run: |
+          python -m pip install --quiet gdown
+          python -m gdown --id 1pycxh5L-6eeZfTCb6f1VqjcwI4GDoo37 -O /tmp/reddings-gallery.zip
+          unzip -t /tmp/reddings-gallery.zip
+      - name: Add images to preview branch
+        run: |
+          mkdir -p public/images/case-studies/the-reddings
+          unzip -o -j /tmp/reddings-gallery.zip '*.jpg' -d public/images/case-studies/the-reddings
+          test "$(find public/images/case-studies/the-reddings -maxdepth 1 -name '*.jpg' | wc -l)" -eq 16
+          git config user.name "WEDRAWPLANS gallery import"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/images/case-studies/the-reddings
+          git diff --cached --quiet || git commit -m "Add 16 authentic Reddings project gallery images"
+          git push origin HEAD:preview-reddings-flagship-20261102
