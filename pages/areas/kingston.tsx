@@ -162,7 +162,7 @@ function PlanningAssistant({
 
     if (hasTimelineIntent) {
       return [
-        "Typical times: a householder planning application is often decided about 6 to 8 weeks after validation. A Lawful Development Certificate is often about 4 to 6 weeks after validation.",
+        "For a valid householder planning application, the normal determination period is 8 weeks. A standard Lawful Development Certificate application also normally has an 8-week decision period, unless a longer period is agreed in writing. The timescale starts when the council receives a valid application.",
         "We focus on getting the submission correct first time so validation is not delayed.",
         "Tell me your postcode and what you want to build and I will suggest the best route.",
       ];
@@ -396,7 +396,7 @@ export default function KingstonAreaPage() {
           acceptedAnswer: {
             "@type": "Answer",
             text:
-              "Householder planning applications often take around six to eight weeks after validation. Lawful Development Certificates often take around four to six weeks depending on workload.",
+              "The normal determination period for a valid householder planning application is 8 weeks. A standard Lawful Development Certificate application also normally has an 8-week decision period, unless an extension is agreed in writing. Timescales begin when the council receives a valid application.",
           },
         },
         {
