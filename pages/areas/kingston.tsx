@@ -827,9 +827,9 @@ export default function KingstonAreaPage() {
                     <div>
                       <h3 className="font-semibold mb-2 uppercase tracking-[0.14em] text-slate-900">Rear extensions</h3>
                       <ul className="list-disc pl-4 space-y-1">
-                        <li>Up to 3 m deep on terraces</li>
-                        <li>Up to 4 m on semi detached houses</li>
-                        <li>Up to 6 to 8 m with prior approval</li>
+                        <li>Standard permitted development: up to 3 m beyond the original rear wall for terraced and semi-detached houses</li>
+                        <li>Standard permitted development: up to 4 m beyond the original rear wall for detached houses</li>
+                        <li>Where eligible, larger rear extensions may reach 6 m for terraced/semi-detached houses or 8 m for detached houses, subject to the prior approval process</li>
                         <li>Maximum 4 m high for single storey</li>
                       </ul>
                     </div>
