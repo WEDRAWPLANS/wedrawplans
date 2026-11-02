@@ -118,11 +118,16 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
               <dl className="mt-4">
                 <Detail label="Location" value={item.location} />
                 <Detail label="Planning authority" value={item.authority} />
-                <Detail label="Application reference" value={item.reference} />
+                <Detail label={item.reference.startsWith("PP-") ? "Planning Portal submission ID" : "Council application reference"} value={item.reference} />
                 <Detail label="Project type" value={item.service} />
                 {item.decisionDate ? <Detail label="Decision date" value={item.decisionDate} /> : null}
                 <Detail label="Planning outcome" value={item.outcome} />
               </dl>
+              {item.reference.startsWith("PP-") ? (
+                <p className="mt-3 text-[12px] leading-5 text-[#586f73]">
+                  This is the Planning Portal submission identifier, not the council decision reference. Planning approval has been confirmed; the formal council reference will be added when verified.
+                </p>
+              ) : null}
             </aside>
           </div>
         </section>
