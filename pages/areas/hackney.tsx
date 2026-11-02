@@ -58,46 +58,42 @@ export default function HackneyAreaPage() {
   };
 
   const faqJson = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Do I need planning permission for a rear extension in Hackney",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Not always. Many rear extensions in Hackney can be carried out under permitted development. We confirm the correct route once we review your address and house type.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Is Hackney strict with loft conversions and extensions",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Hackney can be strict in conservation areas and streets with strong character. Careful drawings and a strong planning case help.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "How long does Hackney Council take to decide",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Householder planning applications normally take six to eight weeks after validation. Lawful Development Certificates often take around four to six weeks.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Do you manage the full application to Hackney Council",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Yes. We prepare drawings, complete forms, upload documents, submit to Hackney Council and respond to planning officer queries.",
-        },
-      },
-    ],
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+          {
+              "@type": "Question",
+              "name": "Do I need planning permission for a rear extension in Hackney?",
+              "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Not always. Some extensions to single houses can qualify as permitted development, subject to size limits, previous extensions and property-specific restrictions. Flats do not have the same householder permitted development rights. We check the property before advising whether householder planning permission, a Lawful Development Certificate or larger-home-extension prior approval is the appropriate route."
+              }
+          },
+          {
+              "@type": "Question",
+              "name": "Do conservation areas and Article 4 directions affect Hackney home improvements?",
+              "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "They can. Hackney has conservation areas and Article 4 directions, including in De Beauvoir, that restrict certain normally permitted works. The applicable controls depend on the exact property and proposed changes, so check the council's property-specific planning information before relying on permitted development."
+              }
+          },
+          {
+              "@type": "Question",
+              "name": "How long does Hackney Council normally take to decide a householder application or Lawful Development Certificate?",
+              "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The normal determination period is eight weeks for a valid householder planning application or standard Lawful Development Certificate application. A longer period may be agreed in writing, and validation or additional information can affect the overall timetable. Eight weeks is not a guaranteed decision date."
+              }
+          },
+          {
+              "@type": "Question",
+              "name": "Can WEDRAWPLANS prepare and submit my Hackney planning application?",
+              "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. When appointed for application services, we can prepare existing and proposed drawings, submit the appropriate application and liaise with the case officer. The written quotation will confirm the drawing and submission scope, council fees and any separate specialist reports."
+              }
+          }
+      ]
   };
 
   return (
@@ -395,6 +391,31 @@ export default function HackneyAreaPage() {
 
               <p className="mt-5 text-[13px] max-w-3xl text-slate-700">
                 We can work remotely or arrange a measured survey when accurate existing drawings are needed.
+              </p>
+            </div>
+          </section>
+
+          <section aria-labelledby="hackney-planning-questions" className="border-b border-slate-200 bg-[#fdf8f3] py-10">
+            <div className="mx-auto max-w-5xl px-4 lg:px-6">
+              <h2 id="hackney-planning-questions" className="text-[18px] font-semibold uppercase tracking-[0.12em] text-slate-900">
+                Hackney planning questions, answered
+              </h2>
+              <p className="mt-3 max-w-3xl text-[13px] leading-relaxed text-slate-700">
+                The right application depends on whether your property is a house or flat, what has already been built and any conservation-area controls.
+              </p>
+              <div className="mt-5 grid gap-3 md:grid-cols-2">
+                {faqJson.mainEntity.map((item) => (
+                  <div key={item.name} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                    <h3 className="text-[14px] font-semibold leading-snug text-slate-900">{item.name}</h3>
+                    <p className="mt-3 text-[13px] leading-relaxed text-slate-700">{item.acceptedAnswer.text}</p>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-4 text-[12px] leading-relaxed text-slate-600">
+                For property-specific restrictions, see{" "}
+                <a href="https://www.hackney.gov.uk/planning-and-building/make-planning-application/check-planning-policy-your-area" target="_blank" rel="noopener noreferrer" className="font-medium underline underline-offset-2 hover:text-slate-900">
+                  Hackney Council's planning policy and constraints checker
+                </a>.
               </p>
             </div>
           </section>
