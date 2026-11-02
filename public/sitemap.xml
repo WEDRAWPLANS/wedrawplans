@@ -281,17 +281,32 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.wedrawplans.co.uk/case-studies/allum-lane-elstree-major-house-extension</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.wedrawplans.co.uk/case-studies/sunbury-avenue-mill-hill-side-rear-extension</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.wedrawplans.co.uk/case-studies/cromwell-road-hounslow-rear-extension</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.wedrawplans.co.uk/case-studies/the-reddings-mill-hill-extension-basement-loft</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.wedrawplans.co.uk/case-studies/the-hyde-colindale-major-residential-development</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.wedrawplans.co.uk/case-studies/700-woolwich-road-greenwich-two-new-flats</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.wedrawplans.co.uk/case-studies/allum-lane-elstree-major-house-extension</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -307,11 +322,6 @@
   </url>
   <url>
     <loc>https://www.wedrawplans.co.uk/case-studies/burnt-oak-broadway-harrow-retail-flats</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.wedrawplans.co.uk/case-studies/sunbury-avenue-mill-hill-side-rear-extension</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -366,11 +376,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.wedrawplans.co.uk/case-studies/cromwell-road-hounslow-rear-extension</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://www.wedrawplans.co.uk/case-studies/leicester-road-barnet-4m-rear-extension</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -382,6 +387,11 @@
   </url>
   <url>
     <loc>https://www.wedrawplans.co.uk/case-studies/dryfield-road-edgware-conservation-extension</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.wedrawplans.co.uk/case-studies/warbeck-road-hammersmith-fulham-loft-certificate</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
