@@ -314,6 +314,30 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
             </div>
           </section>
         ) : null}
+        {item.slug === "the-reddings-mill-hill-extension-basement-loft" ? (
+          <section className="bg-[#f4f8f7] border-y border-[#d9e8e4]">
+            <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-16">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#9c6a62]">Flagship completed home transformation · Mill Hill NW7</p>
+              <h2 className="mt-3 text-3xl font-bold text-[#263f44]">The Reddings: from original home to multi-level extension</h2>
+              <p className="mt-4 max-w-4xl text-[#567075] leading-8">A substantial completed residential project with front, side and rear extensions, basement accommodation and a separately certified loft conversion. WEDRAWPLANS prepared coordinated architectural drawings and 3D design visuals for the scheme.</p>
+              <div className="mt-7 grid gap-4 md:grid-cols-3">
+                {["Front, side & rear extensions", "Basement / lower-ground accommodation", "Loft conversion & roof enlargement"].map(label => (
+                  <div key={label} className="rounded-2xl border border-[#dce7e4] bg-white p-6 font-semibold text-[#315b61]">{label}</div>
+                ))}
+              </div>
+              <div className="mt-9 overflow-hidden rounded-2xl bg-white shadow-sm">
+                <div className="aspect-video"><iframe src="https://player.vimeo.com/video/443886303" title="Original WEDRAWPLANS animation - The Reddings" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen className="h-full w-full border-0" /></div>
+                <div className="p-5 text-sm text-[#567075]">Original WEDRAWPLANS architectural project animation</div>
+              </div>
+              <div className="mt-8 rounded-2xl bg-white border border-[#dce7e4] p-6">
+                <h3 className="text-xl font-semibold">Verified council approvals</h3>
+                <p className="mt-2 text-sm leading-7 text-[#597277]">Barnet planning reference 18/7533/HSE (2019) for the extension and basement scheme; associated loft lawful-development reference 18/4693/192.</p>
+              </div>
+              <p className="mt-5 text-sm text-[#71858a]">The uploaded before-and-after photographs, 3D perspective images and 13 technical drawing sheets are being prepared as web gallery assets. They are not yet included in this online preview.</p>
+              <Link href={quoteHref} className="mt-7 inline-block rounded-full bg-[#51aab8] px-7 py-3.5 text-sm font-semibold text-white">Get your fixed-fee quote</Link>
+            </div>
+          </section>
+        ) : null}
         <CaseStudyBottom projectType={category === "Extensions" ? "house extension" : category === "Loft conversions" ? "loft conversion" : "residential or commercial project"} />
         <CaseStudyFooter />
       </main>
