@@ -18,7 +18,7 @@ jobs:
       - name: Download approved photo and drawings archive
         run: |
           python -m pip install --quiet gdown
-          python -m gdown --id 1pycxh5L-6eeZfTCb6f1VqjcwI4GDoo37 -O /tmp/reddings-gallery.zip
+          python -m gdown 'https://drive.google.com/uc?id=1pycxh5L-6eeZfTCb6f1VqjcwI4GDoo37' -O /tmp/reddings-gallery.zip
           unzip -t /tmp/reddings-gallery.zip
       - name: Add images to preview branch
         run: |
