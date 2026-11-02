@@ -152,11 +152,11 @@ export default function BexleyAreaPage() {
                 </p>
 
                 <p className="mt-3 text-[13px] leading-7 text-slate-700">
-                  We regularly work near Sidcup Station, Bexleyheath Station, Welling Station and Abbey Wood, covering surrounding residential streets across the borough. Many local enquiries involve rear extensions, side returns, loft dormers, garage conversions and open plan internal remodelling.
+                  We provide drawing services for homeowners in Sidcup, Bexleyheath, Welling, Abbey Wood and nearby residential areas. For rear extensions, loft dormers, garage conversions and internal remodelling, we can explain the drawings and application route appropriate to the property.
                 </p>
 
                 <p className="mt-3 text-[13px] leading-7 text-slate-700">
-                  Recent projects in Bexley include rear extensions, side returns and loft conversions across DA5, DA6, DA7, DA8, DA14, DA15 and DA16.
+                  For homes in DA5, DA6, DA7, DA8, DA14, DA15 and DA16, share your postcode and proposed works to request a fixed-fee quote. We check the site's planning context before advising whether householder permission, a Lawful Development Certificate or another route may be appropriate.
                 </p>
 
                 <div className="mt-5 grid gap-3 sm:grid-cols-3">
