@@ -87,6 +87,15 @@ export default function ProjectMediaSlider({ projects, mode }: Props) {
         </>}
       </div>
 
+      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 border-t border-[#d6e8dd] bg-[#f0f7f2] px-4 py-2.5 sm:px-5" aria-label="Council decision status">
+        <span className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.07em] text-[#245b41] sm:text-[12px]">
+          <span aria-hidden="true" className="text-[16px] leading-none">✓</span>
+          {current.project.outcome}
+        </span>
+        <span className="text-[11px] font-medium text-[#557366]">
+          {current.project.authority} · {current.project.reference}
+        </span>
+      </div>
       <div className="flex flex-wrap items-center justify-between gap-3 border-t border-[#e5eeeb] bg-white px-5 py-4">
         <div className="min-w-0 flex-1">
           <p className="truncate text-[12px] font-semibold text-[#375c62]">{current.project.shortTitle}</p>
