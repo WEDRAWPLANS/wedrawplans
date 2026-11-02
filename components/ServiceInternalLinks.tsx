@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { caseStudies } from "../data/caseStudies";
+import ProjectQuickQuotePanel from "./ProjectQuickQuotePanel";
 
 const CANONICAL_BOROUGH_SLUGS: Record<string, string> = {
   "Kingston upon Thames": "kingston",
@@ -247,6 +248,25 @@ export default function ServiceInternalLinks({
   return (
     <section className="bg-white">
       <div className="mx-auto max-w-6xl px-4 py-10">
+        {localCases.length === 0 && boroughName !== "London" ? (
+          <div className="mb-12 rounded-[22px] border border-[#dce8e4] bg-[#f4f9f7] p-5 sm:p-7">
+            <p className="text-[11px] font-bold uppercase tracking-[.18em] text-[#9b665d]">An example of our completed work · Mill Hill, London</p>
+            <h2 className="mt-2 text-2xl font-semibold text-[#254247]">From design to completion: a major home extension, basement & loft conversion</h2>
+            <p className="mt-3 max-w-3xl text-sm leading-7 text-[#536e72]">See how WEDRAWPLANS supported a complex residential scheme with coordinated architectural plans, extensions across several levels and a separately certified loft design. This project is in Mill Hill, not {boroughName}; our drawing services are also available in {boroughName}.</p>
+            <div className="mt-6 grid items-start gap-5 lg:grid-cols-[minmax(0,1.28fr)_minmax(330px,.72fr)]">
+              <div>
+                <video controls playsInline preload="metadata" poster="/images/video-main-poster.jpg" className="aspect-video w-full rounded-xl bg-[#15252b]" aria-label="Original WEDRAWPLANS Reddings architectural animation"><source src="/videos/barnet-planning-project.mp4" type="video/mp4" /></video>
+                <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
+                  <span className="text-xs font-semibold text-[#427279]">The Reddings · Barnet planning approval</span>
+                  <Link href="/case-studies/the-reddings-mill-hill-extension-basement-loft" className="text-sm font-bold text-[#24757f] underline underline-offset-4">Explore the full project →</Link>
+                </div>
+              </div>
+              <div className="lg:sticky lg:top-4">
+                <ProjectQuickQuotePanel source="case-study-gallery" projectSlug="the-reddings-mill-hill-extension-basement-loft" projectTitle="The Reddings flagship project" suggestedService="House extension drawings" />
+              </div>
+            </div>
+          </div>
+        ) : null}
         <h2 className="text-2xl font-extrabold tracking-tight">
           Popular services in {boroughName}
         </h2>
