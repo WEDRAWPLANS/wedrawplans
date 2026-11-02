@@ -184,8 +184,8 @@ export const caseStudies: CaseStudy[] = [
     relatedArea: "/areas/barnet",
     heroImage: "",
     secondaryImage: "",
-    projectVideoUrl: "https://vimeo.com/443886303",
-    mediaNote: "Project-specific extension and loft drawing presentation to be added. The original WEDRAWPLANS project video is available to view separately.",
+    projectVideoUrl: "",
+    mediaNote: "Completed project with original WEDRAWPLANS video, before-and-after images, 3D visuals and a comprehensive thirteen-sheet architectural and Building Regulations drawing pack. Preview assets being assembled.",
     decisions: [
       { reference: "18/7533/HSE", description: "Front, side and rear extensions, replacement of garage and creation of basement level", outcome: "Planning permission granted, 2019" },
       { reference: "18/4693/192", description: "Hip-to-gable roof alteration, rear dormer with Juliette balcony and three front rooflights", outcome: "Lawful-development certificate secured" }
