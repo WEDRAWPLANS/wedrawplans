@@ -31,7 +31,7 @@ function ProjectVisual({ item, featured = false }: { item: CaseStudy; featured?:
         <path d="M18 53H78M18 57H78M31 17H65V49H31zM41 30h17v19H41z" fill="none" stroke="#a1bab8" strokeWidth="1.5"/>
       </svg>
       <p className="mt-3 text-[13px] font-semibold text-[#3b5d61]">{item.shortTitle}</p>
-      <p className="mt-1 text-[11px] text-[#718489]">Architectural drawing presentation</p>
+      <p className="mt-1 text-[11px] text-[#718489]">{process.env.VERCEL_ENV === "production" ? "Approved planning project" : "Architectural drawing presentation to be added"}</p>
     </div>
   );
 }
