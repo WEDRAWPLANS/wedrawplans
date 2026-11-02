@@ -30,7 +30,7 @@ function RealProjectShowcase({ project }: { project: ReddingsProject }) {
   const before = media.find((image) => image.src.endsWith("/before-20261102.jpg") || image.src.endsWith("/before.jpg"));
   const after = media.find((image) => image.src.endsWith("/after.jpg"));
   const visuals = media.filter((image) => /\/3d-[^/]+\.(jpg|jpeg|webp|png)$/i.test(image.src));
-  const drawings = media.filter((image) => /\/drawing-\d+\.(jpg|jpeg|webp|png)$/i.test(image.src));
+  const drawings = media.filter((image) => /\/(?:full-sheet|drawing)-\d+\.(jpg|jpeg|webp|png)$/i.test(image.src));
   const chosen = drawings[Math.min(selected, drawings.length - 1)];
   const photoPair = [
     { image: before, label: "BEFORE", title: "The original house", note: "Existing property before the works" },
