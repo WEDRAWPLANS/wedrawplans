@@ -70,42 +70,46 @@ function RealProjectShowcase({ project }: { project: ReddingsProject }) {
         <header className="border-b border-[#e1eae6] bg-[#edf5f1] px-4 py-5 sm:px-6">
           <p className="text-[11px] font-bold uppercase tracking-[.18em] text-[#a56b62]">The real architectural drawing package</p>
           <h3 id="real-drawing-examples" className="mt-1.5 text-[24px] font-semibold leading-tight tracking-tight text-[#23484b] sm:text-[29px]">Real Drawing Examples</h3>
-          <p className="mt-2 max-w-[550px] text-[12px] leading-6 text-[#526d70] sm:text-[13px]">Explore all 12 genuine WEDRAWPLANS presentation sheets. The full drawing sheet and its original border are shown together, exactly as a professional portfolio should present them.</p>
+          <p className="mt-2 max-w-[550px] text-[12px] leading-6 text-[#526d70] sm:text-[13px]">Explore the original architectural drawings prepared for this approved project, including proposed floor plans, elevations, structural layouts and Building Regulations details.</p>
         </header>
         {chosen ? (
           <>
             <div className="flex flex-wrap items-center justify-between gap-3 px-4 pb-2 pt-4 sm:px-6">
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-[.13em] text-[#8b7772]">Original drawing sheet {Math.min(selected, drawings.length - 1) + 1} of {drawings.length}</p>
+                <p className="text-[10px] font-bold uppercase tracking-[.13em] text-[#8b7772]">Drawing {Math.min(selected, drawings.length - 1) + 1} of {drawings.length}</p>
                 <h4 className="mt-1 text-[14px] font-semibold leading-5 text-[#25494e] sm:text-[16px]">{chosen.caption.replace(/^Architectural drawing \d+\s*[—–-]\s*/, "")}</h4>
               </div>
               <div className="flex shrink-0 gap-2">
-                <button type="button" aria-label="Previous drawing sheet" onClick={() => setSelected((n) => (n + drawings.length - 1) % drawings.length)} className="flex h-9 w-9 items-center justify-center rounded-full border border-[#bdd5ce] bg-white text-[#245b60] transition hover:bg-[#eff7f3] focus-visible:ring-2 focus-visible:ring-[#2e9eaa]">‹</button>
-                <button type="button" aria-label="Next drawing sheet" onClick={() => setSelected((n) => (n + 1) % drawings.length)} className="flex h-9 w-9 items-center justify-center rounded-full border border-[#bdd5ce] bg-white text-[#245b60] transition hover:bg-[#eff7f3] focus-visible:ring-2 focus-visible:ring-[#2e9eaa]">›</button>
+                <button type="button" aria-label="Previous drawing" onClick={() => setSelected((n) => (n + drawings.length - 1) % drawings.length)} className="flex h-9 w-9 items-center justify-center rounded-full border border-[#bdd5ce] bg-white text-[#245b60] transition hover:bg-[#eff7f3] focus-visible:ring-2 focus-visible:ring-[#2e9eaa]">‹</button>
+                <button type="button" aria-label="Next drawing" onClick={() => setSelected((n) => (n + 1) % drawings.length)} className="flex h-9 w-9 items-center justify-center rounded-full border border-[#bdd5ce] bg-white text-[#245b60] transition hover:bg-[#eff7f3] focus-visible:ring-2 focus-visible:ring-[#2e9eaa]">›</button>
               </div>
             </div>
             <figure className="mx-3 mb-4 rounded-[12px] border border-[#dce7e2] bg-[#f5f7f5] p-2 sm:mx-5 sm:p-4">
               <div className="relative mx-auto h-[320px] w-full sm:h-[440px] lg:h-[485px]">
-                <Image key={chosen.src} src={chosen.src} alt={chosen.alt + " — complete architectural presentation sheet"} fill sizes="(max-width: 1024px) 96vw, 62vw" className="pointer-events-none object-contain" draggable={false} />
+                <Image key={chosen.src} src={chosen.src} alt={chosen.alt + " — original WEDRAWPLANS architectural drawing"} fill sizes="(max-width: 1024px) 96vw, 62vw" className="pointer-events-none object-contain" draggable={false} />
               </div>
-              <figcaption className="mt-2 border-t border-[#e2e7e3] pt-2 text-center text-[10px] font-medium text-[#617579] sm:text-[11px]">Complete original sheet · full border preserved · no cropped drawings</figcaption>
+              
             </figure>
             <div className="border-t border-[#e5ece8] px-3 py-4 sm:px-5">
-              <p className="mb-3 text-[11px] font-semibold text-[#426468]">Select a sheet to see the complete drawing:</p>
-              <div className="flex snap-x snap-mandatory gap-2.5 overflow-x-auto pb-2" aria-label="Select drawing sheet">
+              <p className="mb-3 text-[11px] font-semibold text-[#426468]">Explore the approved architectural drawings:</p>
+              <div className="flex snap-x snap-mandatory gap-2.5 overflow-x-auto pb-2" aria-label="Select architectural drawing">
                 {drawings.map((drawing, index) => (
-                  <button key={drawing.src} type="button" onClick={() => setSelected(index)} aria-current={selected === index ? "true" : undefined} aria-label={"Show drawing " + (index + 1) + ": " + drawing.alt} className={"w-[102px] shrink-0 snap-start rounded-xl border p-1.5 text-left transition focus-visible:ring-2 focus-visible:ring-[#2a97a3] sm:w-[117px] " + (selected === index ? "border-[#3e9d9c] bg-[#e9f5f1] shadow-[0_3px_12px_rgba(26,91,86,.12)]" : "border-[#dfebe6] bg-white hover:border-[#9bc6bc]")}>
+                  <button key={drawing.src} type="button" onClick={() => setSelected(index)} aria-current={selected === index ? "true" : undefined} aria-label={"View drawing " + (index + 1) + ": " + drawing.alt} className={"w-[102px] shrink-0 snap-start rounded-xl border p-1.5 text-left transition focus-visible:ring-2 focus-visible:ring-[#2a97a3] sm:w-[117px] " + (selected === index ? "border-[#3e9d9c] bg-[#e9f5f1] shadow-[0_3px_12px_rgba(26,91,86,.12)]" : "border-[#dfebe6] bg-white hover:border-[#9bc6bc]")}>
                     <div className="relative h-[82px] rounded-md bg-[#f3f5f3] sm:h-[92px]">
                       <Image src={drawing.src} alt="" fill sizes="117px" className="pointer-events-none object-contain" draggable={false} />
                     </div>
-                    <span className="mt-1.5 block text-center text-[10px] font-bold text-[#41656a]">Sheet {String(index + 1).padStart(2, "0")}</span>
+                    <span className="mt-1.5 block text-center text-[10px] font-bold text-[#41656a]">Drawing {index + 1}</span>
                   </button>
                 ))}
               </div>
             </div>
           </>
         ) : null}
-        <div className="border-t border-[#d9e8e1] bg-[#f1f8f3] px-4 py-3 text-[11px] font-semibold leading-5 text-[#28634d] sm:px-6">✓ Planning permission and lawful-development certificate secured · Barnet 18/7533/HSE &amp; 18/4693/192</div>
+        <div className="border-t border-[#d9e8e1] bg-[#f1f8f3] px-4 py-5 sm:px-6">
+          <p className="text-[11px] font-bold uppercase tracking-[.15em] text-[#28765b]">Planning approval · London Borough of Barnet</p>
+          <p className="mt-2 text-[13px] leading-6 text-[#365d58]">Planning permission was granted in 2019 for part single- and part two-storey front, side and rear extensions, following demolition of the existing garage and creation of a basement level. A separate lawful-development certificate covered the hip-to-gable roof enlargement, rear dormer with Juliette balcony and three front-facing rooflights.</p>
+          <p className="mt-2 text-[11px] font-semibold text-[#28705b]">Planning reference: 18/7533/HSE · Lawful-development reference: 18/4693/192</p>
+        </div>
       </section>
 
       {visuals.length > 0 ? (
@@ -127,7 +131,7 @@ function RealProjectShowcase({ project }: { project: ReddingsProject }) {
         </section>
       ) : null}
 
-      <p className="rounded-xl border border-[#dce9e2] bg-[#eff7f3] px-4 py-3 text-[12px] leading-6 text-[#4e7070]">Real project photography, original WEDRAWPLANS 3D design, and an authentic 12-sheet architectural drawing package — presented together as one completed project.</p>
+      <p className="rounded-xl border border-[#dce9e2] bg-[#eff7f3] px-4 py-3 text-[12px] leading-6 text-[#4e7070]">This completed Mill Hill project demonstrates how carefully coordinated planning drawings, detailed architectural design and Building Regulations information can support complex alterations to an existing home. WEDRAWPLANS prepared the drawings for the extensions, basement and loft proposals, with the relevant planning approvals secured through Barnet Council.</p>
     </div>
   );
 }
