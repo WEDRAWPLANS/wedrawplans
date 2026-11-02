@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import Link from "next/link";
 import { submitBoroughLead } from "../lib/submitBoroughLead";
 
 import ApprovalEvidenceStrip from "../components/ApprovalEvidenceStrip";
@@ -120,7 +121,7 @@ export default function ExtensionPlansPage() {
   const pageTitle =
     "House Extension Plans London | Fixed Fee Planning Drawings – WEDRAWPLANS";
   const pageDescription =
-    "House extension planning drawings in London with clear fixed fees. Rear extensions, side return, wrap around and double storey extensions. Measured survey where required. Covering all London boroughs and the M25.";
+    "House extension plans and planning drawings across London. View WEDRAWPLANS' approved Wandsworth and Hounslow projects, then request a fixed-fee quote for your extension.";
 
   return (
     <>
@@ -160,6 +161,23 @@ export default function ExtensionPlansPage() {
                 and double storey extensions. WEDRAWPLANS produces council ready
                 drawings with strong planning logic and clear communication.
               </p>
+
+              <div className="mt-5 rounded-2xl border border-[#ecdcd2] bg-[#fff9f5] px-5 py-4" aria-label="Recent approved extension examples">
+                <p className="text-[12px] font-semibold uppercase tracking-[0.12em] text-[#955f55]">
+                  See our actual planning approvals
+                </p>
+                <p className="mt-2 text-[13px] leading-6 text-[#566d70]">
+                  Our recent extension drawing work includes permission granted by{" "}
+                  <Link href="/case-studies/sistova-road-wandsworth-extension-basement" className="font-semibold text-[#206f7d] underline underline-offset-2 hover:text-[#155762]">
+                    Wandsworth Council (2026/1748)
+                  </Link>{" "}
+                  and{" "}
+                  <Link href="/case-studies/cromwell-road-hounslow-rear-extension" className="font-semibold text-[#206f7d] underline underline-offset-2 hover:text-[#155762]">
+                    Hounslow Council (P/2026/2306)
+                  </Link>.
+                  The individual project pages explain the consent and drawings involved.
+                </p>
+              </div>
 
               <ul className="mt-6 space-y-2 text-slate-800">
                 <li className="flex gap-3">
