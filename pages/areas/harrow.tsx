@@ -902,10 +902,10 @@ export default function HarrowAreaPage() {
                   <div>
                     <h3 className="mb-2 font-semibold uppercase tracking-[0.14em] text-slate-900">Rear extensions</h3>
                     <ul className="list-disc space-y-1 pl-4">
-                      <li>Up to 3m deep on terrace houses</li>
-                      <li>Up to 4m on semi detached houses</li>
-                      <li>Up to 6m to 8m with prior approval where eligible</li>
-                      <li>Maximum 4m high for many single storey cases</li>
+                      <li>Standard rear depth: up to 3m from the original rear wall for terraced or semi-detached houses, or 4m for detached houses, where all permitted-development conditions are met.</li>
+                      <li>Eligible larger single-storey rear extensions may reach 6m for terraced or semi-detached houses, or 8m for detached houses, through the prior approval process before work starts.</li>
+                      <li>Single-storey extensions must not exceed 4m overall height; eaves within 2m of a boundary must not exceed 3m.</li>
+                      <li>Check conservation-area restrictions, planning conditions, previous extensions and the property-specific rules before relying on permitted development.</li>
                     </ul>
                   </div>
                   <div>
