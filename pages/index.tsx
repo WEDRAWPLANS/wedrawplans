@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import Head from "next/head";
 import HeroSlider from "../components/HeroSlider";
 import Link from "next/link";
+import HomeGoogleReviews from "../components/HomeGoogleReviews";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
@@ -883,6 +884,12 @@ export default function IndexPage() {
                   items={TECHNICAL_ITEMS}
                 />
                 <Link
+                  href="/case-studies"
+                  className="whitespace-nowrap text-[14px] font-medium text-slate-900 hover:text-[#29788a]"
+                >
+                  Our Projects
+                </Link>
+                <Link
                   href="/areas"
                   className="whitespace-nowrap text-[14px] font-medium text-slate-900 hover:text-black"
                 >
@@ -931,6 +938,20 @@ export default function IndexPage() {
                 >
                   Areas We Cover
                 </Link>
+                <Link
+                  href="/case-studies"
+                  className="block py-2 text-[18px] font-medium text-slate-900"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Our Projects &amp; Approvals
+                </Link>
+                <a
+                  href="#google-reviews"
+                  className="block py-2 text-[18px] font-medium text-slate-900"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Google Reviews
+                </a>
                 <a
                   href="#price-guide"
                   className="block py-2 text-[18px] font-medium text-slate-900"
@@ -1673,6 +1694,8 @@ export default function IndexPage() {
           </div>
         </section>
 
+        <HomeGoogleReviews googleProfileUrl={GOOGLE_BUSINESS_PROFILE_LINK} googleReviewsUrl="https://search.google.com/local/reviews?placeid=ChIJ1YtyjfQXdkgR8A8NeJLecA8" />
+
         <footer className="border-t border-slate-800 bg-[#20243b]">
           <div className="mx-auto max-w-6xl px-4 py-10 lg:px-6">
             <div className="grid gap-8 lg:grid-cols-[1.25fr_0.9fr_0.9fr_0.9fr]">
@@ -1745,6 +1768,12 @@ export default function IndexPage() {
                   <Link href="/areas" className="block hover:text-white">
                     Areas We Cover
                   </Link>
+                  <Link href="/case-studies" className="block hover:text-white">
+                    Our Projects &amp; Approvals
+                  </Link>
+                  <a href="#google-reviews" className="block hover:text-white">
+                    Google Reviews
+                  </a>
                   <a href="#price-guide" className="block hover:text-white">
                     Price Guide
                   </a>
