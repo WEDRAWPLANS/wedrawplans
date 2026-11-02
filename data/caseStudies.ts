@@ -15,6 +15,7 @@ export type CaseStudy = {
   relatedService: string;
   relatedArea: string;
   heroImage: string;
+  galleryImages?: { src: string; alt: string; caption: string }[];
   secondaryImage: string;
   review?: string;
   featured?: boolean;
