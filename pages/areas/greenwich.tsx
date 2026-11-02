@@ -83,7 +83,7 @@ export default function GreenwichAreaPage() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Householder planning applications normally take six to eight weeks after validation. Lawful Development Certificates usually take around four to six weeks.",
+            "Householder planning applications normally have an eight-week decision period after validation. Lawful Development Certificate applications also have an eight-week decision period from receipt of a valid application, unless a longer period is agreed in writing. Actual times can vary.",
         },
       },
       {
@@ -109,7 +109,7 @@ export default function GreenwichAreaPage() {
     },
     {
       q: "How long does Greenwich Council take to decide",
-      a: "Householder planning applications normally take six to eight weeks after validation. Lawful Development Certificates usually take around four to six weeks.",
+      a: "Householder planning applications normally have an eight-week decision period after validation. Lawful Development Certificate applications also have an eight-week decision period from receipt of a valid application, unless a longer period is agreed in writing. Actual times can vary.",
     },
     {
       q: "Do you manage the full application to Greenwich Council",
