@@ -223,6 +223,22 @@ const BOROUGH_APPROVED_CASES: Record<string, string[]> = {
   "Waltham Forest": ["hall-lane-chingford-dropped-kerb"],
 };
 
+const BOROUGH_HOMEOWNER_CONTEXT: Record<string, string> = {
+  Barnet: "Our Barnet planning work includes Sunbury Avenue and The Reddings in Mill Hill, with separate consent routes and coordinated design drawings. We can advise homeowners across Finchley, Hendon, Edgware, Colindale and High Barnet on the drawings needed for a rear, side or two-storey extension.",
+  Wandsworth: "At Sistova Road, WEDRAWPLANS prepared the side/rear extension and basement drawing package for the scheme approved by Wandsworth. We can assess similar householder proposals in Balham, Battersea, Putney, Earlsfield and Tooting against the property's planning constraints.",
+  Hounslow: "The Cromwell Road approval involved a side-return and rear infill extension supported by plans, elevations, sections and design views. We can prepare extension drawings for properties in Hounslow, Isleworth, Chiswick, Brentford and Feltham and coordinate the appropriate submission.",
+  Hertfordshire: "The Allum Lane project in Elstree and Cranbourne Drive project in Hoddesdon illustrate different Hertfordshire house-extension applications. The local authority and property constraints vary by location, so we assess each proposal before recommending drawings and a planning route.",
+  Greenwich: "Our Greenwich-area planning portfolio includes the Woolwich Road residential project and roof-alteration certificates in Eltham. For a homeowner's house extension, we can prepare the existing and proposed drawing set and check the planning route for the specific property.",
+  Lewisham: "Our Brockley Road planning work demonstrates residential conversion drawing experience in Lewisham. For rear or side extensions in Brockley, Catford, Forest Hill and surrounding areas, we can assess the property and prepare householder plans tailored to the proposal.",
+  Harrow: "The Burnt Oak Broadway approval illustrates our mixed-use planning and drawing work in the wider Harrow area. Homeowners planning an extension in Harrow or nearby Stanmore, Pinner and North Harrow can request a property-specific drawing and application quotation.",
+  "Hammersmith and Fulham": "The Warbeck Road lawful-development certificate demonstrates our roof-extension drawings and liaison with Hammersmith & Fulham. We also prepare the measured plans, elevations and sections needed when homeowners consider a rear or side extension.",
+  "Hammersmith & Fulham": "The Warbeck Road lawful-development certificate demonstrates our roof-extension drawings and liaison with Hammersmith & Fulham. We also prepare the measured plans, elevations and sections needed when homeowners consider a rear or side extension.",
+  Lambeth: "At Electric Avenue, our drawings supported a conservation-area shopfront. Homeowners planning extensions in Brixton, Streatham, Clapham or other Lambeth neighbourhoods can ask WEDRAWPLANS to assess the design, conservation constraints and appropriate application route.",
+  "Tower Hamlets": "Our Mile End Road project involved consent-sensitive drawing work. For extensions to houses in Tower Hamlets, we assess the specific property and provide architectural drawings that address the proposed size, neighbours and any local planning restrictions.",
+  "Waltham Forest": "Our Hall Lane planning permission demonstrates the architectural drawings and drainage details used for a Chingford crossover. We also provide house-extension drawing services across Waltham Forest, including Walthamstow, Leyton and Chingford.",
+  London: "Our selected planning approvals include house extensions in Wandsworth, Hounslow, Barnet and Hertfordshire. We support homeowners throughout London with survey-based plans, planning submissions and technical drawing services tailored to their property."
+};
+
 export default function ServiceInternalLinks({
   boroughName,
 }: {
@@ -245,10 +261,12 @@ export default function ServiceInternalLinks({
     .filter((item): item is (typeof caseStudies)[number] => Boolean(item));
 
   const extensionCases = localCases.filter((item) => /extension/i.test(item.service));
+  const boroughHomeownerContext = BOROUGH_HOMEOWNER_CONTEXT[boroughName];
 
   return (
     <section className="bg-white">
       <div className="mx-auto max-w-6xl px-4 py-10">
+        {boroughHomeownerContext ? (
         <div className="mb-10 rounded-[18px] border border-[#e1e9e5] bg-[#f8faf9] p-6 sm:p-8">
           <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#a36962]">House extension drawings &amp; planning support</p>
           <h2 className="mt-3 text-[22px] font-semibold leading-snug text-[#233f43] sm:text-[26px]">
@@ -262,6 +280,7 @@ export default function ServiceInternalLinks({
             The appropriate route depends on the property and may be householder planning permission,
             permitted development, prior approval or a lawful-development certificate.
           </p>
+          <p className="mt-3 max-w-4xl text-[13px] leading-7 text-[#526a6f]">{boroughHomeownerContext}</p>
           {extensionCases.length ? (
             <p className="mt-3 max-w-4xl text-[13px] leading-7 text-[#526a6f]">
               Examples of our approved extension work relevant to this area include{" "}
@@ -282,6 +301,7 @@ export default function ServiceInternalLinks({
             <Link href="/get-drawings-quote" className="inline-flex rounded-full bg-[#65b5c2] px-6 py-2.5 text-[13px] font-semibold text-white hover:bg-[#4e9dac]">Get your fixed-fee quote</Link>
           </div>
         </div>
+        ) : null}
 
         <h2 className="text-2xl font-extrabold tracking-tight">
           Popular services in {boroughName}
