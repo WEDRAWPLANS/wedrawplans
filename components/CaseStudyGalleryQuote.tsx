@@ -40,10 +40,16 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
           </div>
           {isHub ? <Link href="#browse-projects" className="text-[13px] font-semibold text-[#27757e] underline-offset-4 hover:underline">Browse all 24 projects →</Link> : <span className="text-[12px] text-[#667f81]">{project.shortTitle}</span>}
         </div>
-        <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1.25fr)_minmax(330px,.75fr)] lg:gap-7">
+        <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1.3fr)_minmax(330px,.7fr)] lg:gap-7">
           <div className="min-w-0">
+            {!isHub && project.slug === "the-reddings-mill-hill-extension-basement-loft" ? (
+              <div className="mb-5 overflow-hidden rounded-2xl border border-[#dce7e4] bg-white">
+                <video controls playsInline preload="metadata" poster="/images/video-main-poster.jpg" className="aspect-video w-full object-contain bg-[#17252b]" aria-label="The Reddings original architectural design animation"><source src="/videos/barnet-planning-project.mp4" type="video/mp4" /></video>
+                <div className="px-4 py-3 text-xs font-semibold text-[#517077]">Original WEDRAWPLANS architectural animation · The Reddings, Mill Hill</div>
+              </div>
+            ) : null}
             <ProjectMediaSlider projects={projects} mode={context} />
-            {!isHub && project.projectVideoUrl ? (
+            {!isHub && project.projectVideoUrl && project.slug !== "the-reddings-mill-hill-extension-basement-loft" ? (
               <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-[15px] border border-[#dce7e4] bg-white px-5 py-4">
                 <div>
                   <p className="text-[14px] font-semibold text-[#36595e]">Architectural project video</p>
@@ -59,7 +65,7 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
               <div className="mt-4 rounded-[15px] border border-dashed border-[#b7ceca] bg-white px-5 py-5 text-[13px] text-[#687d7e]">Construction-progress photographs can be added to this project's gallery.</div>
             ) : null}
           </div>
-          <ProjectQuickQuotePanel source={isHub ? "case-studies-hub" : "case-study-gallery"} projectSlug={isHub ? "" : project.slug} projectTitle={isHub ? "" : project.shortTitle} suggestedService={isHub ? "" : serviceFor(project)} />
+          <div className="lg:sticky lg:top-4 lg:self-start"><ProjectQuickQuotePanel source={isHub ? "case-studies-hub" : "case-study-gallery"} projectSlug={isHub ? "" : project.slug} projectTitle={isHub ? "" : project.shortTitle} suggestedService={isHub ? "" : serviceFor(project)} /></div>
         </div>
       </div>
     </section>
