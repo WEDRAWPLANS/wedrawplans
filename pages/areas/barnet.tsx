@@ -311,6 +311,10 @@ export default function BarnetAreaPage() {
                     proposals read clearly to planners while also working properly for buildability and day to day use.
                   </p>
 
+                  <Link href="#barnet-reddings-feature" className="inline-flex w-fit items-center gap-2 rounded-full border border-[#bcd6c9] bg-[#eef8f1] px-4 py-2.5 text-[12px] font-bold text-[#296b59] hover:bg-[#e3f2e7]">
+                    See our real completed Barnet project, original animation &amp; drawings →
+                  </Link>
+
                   <div className="grid gap-3 sm:grid-cols-3">
                     <TrustPill title="Fixed drawing fees" body="Clear written pricing before work starts." />
                     <TrustPill title="Fast response" body="Same day replies on many enquiries." />
@@ -517,89 +521,147 @@ export default function BarnetAreaPage() {
             </div>
           </section>
 
-          <section className="border-b border-slate-200 bg-white py-10">
-            <div className="mx-auto max-w-5xl px-4 lg:px-6">
-              <h2 className="text-center text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
-                Planning approved Barnet project
+          <section id="barnet-reddings-feature" aria-labelledby="barnet-reddings-heading" className="scroll-mt-24 border-y border-[#d8e5df] bg-[#f3f8f5] py-10 sm:py-14">
+            <div className="mx-auto max-w-6xl px-4 lg:px-6">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#ab655b]">
+                  WEDRAWPLANS · Real completed project in Barnet
+                </p>
+                <span className="rounded-full border border-[#bddac8] bg-[#e4f4e9] px-3 py-1.5 text-[11px] font-bold text-[#236447]">
+                  ✓ Planning permission &amp; lawful-development certificate secured
+                </span>
+              </div>
+              <h2 id="barnet-reddings-heading" className="mt-3 max-w-4xl text-[26px] font-semibold leading-tight tracking-tight text-[#203f44] sm:text-[34px]">
+                The Reddings, Mill Hill — a real house transformation
               </h2>
-
-              <p className="mx-auto mt-3 max-w-3xl text-center text-[13px] leading-7 text-slate-700">
-                One from many of our Barnet projects showing how a full drawing package can move from concept stage,
-                through planning, and onward into build ready information. This section is designed to show Barnet
-                homeowners and property clients how WEDRAWPLANS support projects from the early stage through to
-                approval and delivery.
+              <p className="mt-3 max-w-4xl text-[14px] leading-7 text-[#506a6f] sm:text-[15px]">
+                A major Barnet home-improvement project combining front, side and rear extensions with basement accommodation,
+                alongside a separately certified hip-to-gable roof enlargement and rear dormer.
+                Explore the original WEDRAWPLANS animation, before-and-after photography and architectural drawing examples.
               </p>
 
-              <div className="mt-6 grid items-stretch gap-6 md:grid-cols-2">
-                <div className="overflow-hidden rounded-2xl border border-slate-200 bg-black shadow-lg">
+              <div className="mt-7 grid items-stretch gap-4 lg:grid-cols-[minmax(0,1.13fr)_minmax(0,.87fr)] lg:gap-6">
+                <div className="overflow-hidden rounded-[18px] border border-[#d9e4df] bg-white shadow-[0_12px_30px_rgba(31,68,71,.06)]">
+                  <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#e8eeea] px-4 py-3">
+                    <h3 className="text-[13px] font-semibold text-[#2b5359]">Original architectural design animation</h3>
+                    <span className="text-[10px] font-semibold uppercase tracking-[.12em] text-[#718386]">The Reddings · NW7</span>
+                  </div>
                   <video
                     controls
                     playsInline
                     preload="metadata"
+                    controlsList="nodownload noremoteplayback"
+                    disablePictureInPicture
                     poster="/images/video-main-poster.jpg"
-                    className="h-full w-full object-cover"
+                    onContextMenu={(event) => event.preventDefault()}
+                    className="aspect-video w-full bg-[#13282c] object-contain"
+                    aria-label="Original WEDRAWPLANS design animation for The Reddings, Mill Hill"
                   >
                     <source src="/videos/barnet-planning-project.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
+                  <p className="px-4 py-3 text-[12px] leading-6 text-[#60777b]">
+                    A visual introduction to this Barnet project, followed by the real completed photographs and architectural drawings below.
+                  </p>
                 </div>
 
-                <button
-                  type="button"
-                  onClick={scrollToForm}
-                  className="overflow-hidden rounded-2xl border border-slate-200 bg-white text-left shadow-lg transition hover:-translate-y-0.5"
-                >
-                  <Image
-                    src={BEFORE_AFTER_IMAGE}
-                    alt="Before and after transformation showing approved Barnet extension project"
-                    width={1600}
-                    height={1000}
-                    className="h-full w-full object-cover"
-                  />
-                </button>
+                <div className="flex flex-col justify-between rounded-[18px] border border-[#d9e4df] bg-white p-5 shadow-[0_12px_30px_rgba(31,68,71,.06)] sm:p-6">
+                  <div>
+                    <p className="text-[11px] font-bold uppercase tracking-[.15em] text-[#a36e61]">Approved project · 2019</p>
+                    <h3 className="mt-2 text-[22px] font-semibold leading-snug text-[#25464a]">
+                      From an existing home to a multi-level extension scheme
+                    </h3>
+                    <p className="mt-3 text-[13px] leading-7 text-[#536d72]">
+                      Barnet granted permission for part single- and part two-storey front, side and rear extensions,
+                      replacement of the existing garage and creation of a basement level. The separate lawful-development
+                      certificate covers the loft and roof alterations, including a rear dormer and Juliette balcony.
+                    </p>
+                    <div className="mt-4 flex flex-wrap gap-2 text-[11px] font-semibold text-[#345f64]">
+                      {["House extensions", "Basement", "Loft enlargement", "Real drawing examples"].map((label) => (
+                        <span key={label} className="rounded-full border border-[#dceae2] bg-[#f3f8f5] px-3 py-1.5">{label}</span>
+                      ))}
+                    </div>
+                    <p className="mt-4 text-[11px] leading-5 text-[#6b7c80]">
+                      London Borough of Barnet · 18/7533/HSE · 18/4693/192
+                    </p>
+                  </div>
+                  <div className="mt-6 flex flex-wrap gap-3">
+                    <Link href="/case-studies/the-reddings-mill-hill-extension-basement-loft" className="rounded-full bg-[#246b76] px-5 py-3 text-center text-[13px] font-bold text-white transition hover:bg-[#18515a]">
+                      Explore the complete project →
+                    </Link>
+                    <button type="button" onClick={scrollToForm} className="rounded-full border border-[#a9cbc8] bg-white px-5 py-3 text-center text-[13px] font-bold text-[#286c74] hover:bg-[#f0f7f4]">
+                      Get your fixed-fee quote
+                    </button>
+                  </div>
+                </div>
               </div>
 
-              <div className="mt-6 grid gap-6 md:grid-cols-4">
-                <CaseMetric
-                  title="Single storey"
-                  body="Rear extension approvals are a core part of our Barnet portfolio and remain one of the most common homeowner enquiries."
-                />
-                <CaseMetric
-                  title="Double storey"
-                  body="Double storey extension work demonstrates our ability to handle stronger massing, proportions and planning strategy."
-                />
-                <CaseMetric
-                  title="Loft conversion"
-                  body="Loft conversion approvals show how additional living space can be achieved with careful roof design and clear planning drawings."
-                />
-                <CaseMetric
-                  title="Outbuilding"
-                  body="Outbuilding and garden room schemes add another layer of flexibility for homeowners needing usable extra space."
-                />
+              <div className="mt-8">
+                <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
+                  <div>
+                    <p className="text-[11px] font-bold uppercase tracking-[.16em] text-[#a16d62]">The completed transformation</p>
+                    <h3 className="mt-1 text-[22px] font-semibold text-[#274b4f] sm:text-[26px]">Before &amp; after — The Reddings</h3>
+                  </div>
+                  <span className="text-[11px] font-medium text-[#638084]">Real project photography · Mill Hill</span>
+                </div>
+                <div className="grid grid-cols-2 gap-3 sm:gap-5">
+                  {[
+                    { label: "BEFORE", title: "The original house", src: "/images/case-studies/the-reddings/before-20261102.jpg", alt: "The Reddings in Mill Hill before the extension and alterations" },
+                    { label: "AFTER", title: "The completed transformation", src: "/images/case-studies/the-reddings/after.jpg", alt: "The Reddings completed house project in Mill Hill" },
+                  ].map((photo) => (
+                    <figure key={photo.label} className="overflow-hidden rounded-[17px] border border-[#d9e5e0] bg-white shadow-[0_10px_25px_rgba(26,64,66,.055)]">
+                      <div className="flex items-center justify-between gap-2 border-b border-[#e7eeeb] px-3 py-2.5 sm:px-5">
+                        <span className={"rounded-md px-2.5 py-1 text-[10px] font-extrabold tracking-[.13em] " + (photo.label === "AFTER" ? "bg-[#dcf0e5] text-[#206c4a]" : "bg-[#e7edef] text-[#42646d]")}>{photo.label}</span>
+                        <span className="hidden text-[11px] font-semibold text-[#6c8487] sm:inline">THE REDDINGS · NW7</span>
+                      </div>
+                      <div className="relative aspect-[4/3] bg-[#e8efeb]">
+                        <Image src={photo.src} alt={photo.alt} fill sizes="(max-width: 768px) 48vw, 45vw" className="pointer-events-none object-cover" draggable={false} />
+                      </div>
+                      <figcaption className="px-3 py-3 text-[12px] font-semibold text-[#385a5d] sm:px-5 sm:text-[14px]">{photo.title}</figcaption>
+                    </figure>
+                  ))}
+                </div>
               </div>
 
-              <p className="mx-auto mt-4 max-w-3xl text-center text-[13px] leading-7 text-slate-700">
-                A complete drawing package prepared clearly, professionally, and ready for the next stage of approval.
-              </p>
-
-              <div className="mt-5 flex flex-wrap justify-center gap-3">
-                <button
-                  type="button"
-                  onClick={scrollToForm}
-                  className="rounded-full bg-[#64b7c4] px-5 py-2.5 text-[13px] font-semibold uppercase tracking-[0.16em] text-white shadow-sm hover:bg-[#4da4b4]"
-                >
-                  Request drawing fees instantly
-                </button>
-
-                <a
-                  href={GOOGLE_BUSINESS_PROFILE_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2.5 text-[13px] font-semibold text-slate-800 shadow-sm hover:bg-slate-900 hover:text-white"
-                >
-                  <span>⭐</span>
-                  <span>Google Profile</span>
-                </a>
+              <div className="mt-8 overflow-hidden rounded-[19px] border border-[#d9e5df] bg-white px-4 py-5 shadow-[0_10px_28px_rgba(25,64,67,.045)] sm:px-6">
+                <div className="flex flex-wrap items-end justify-between gap-3">
+                  <div>
+                    <p className="text-[11px] font-bold uppercase tracking-[.16em] text-[#a16d62]">Real WEDRAWPLANS technical drawing examples</p>
+                    <h3 className="mt-1 text-[22px] font-semibold text-[#274b4f] sm:text-[27px]">Original plans &amp; elevations</h3>
+                    <p className="mt-2 max-w-2xl text-[13px] leading-6 text-[#657a7e]">
+                      Selected complete drawing sheets from the approved project's architectural package.
+                      View the full portfolio to browse all 12 drawings and the original 3D design views.
+                    </p>
+                  </div>
+                  <Link href="/case-studies/the-reddings-mill-hill-extension-basement-loft#project-drawings" className="rounded-full border border-[#a8cdc9] px-4 py-2.5 text-[12px] font-bold text-[#2b7079] hover:bg-[#edf7f2]">
+                    View all 12 drawings →
+                  </Link>
+                </div>
+                <div className="mt-5 grid grid-cols-3 gap-2.5 sm:gap-4">
+                  {[
+                    { src: "/images/case-studies/the-reddings/full-sheet-02.jpg", title: "Drawing 1", desc: "Proposed ground floor" },
+                    { src: "/images/case-studies/the-reddings/full-sheet-07.jpg", title: "Drawing 2", desc: "Proposed elevations" },
+                    { src: "/images/case-studies/the-reddings/full-sheet-06.jpg", title: "Drawing 3", desc: "Roof plan & section" },
+                  ].map((drawing) => (
+                    <Link href="/case-studies/the-reddings-mill-hill-extension-basement-loft#project-drawings" key={drawing.src} className="group overflow-hidden rounded-[12px] border border-[#dfe9e5] bg-[#f8faf8] transition hover:border-[#91bbb5]">
+                      <div className="relative aspect-[4/3] bg-white p-2">
+                        <Image src={drawing.src} alt={"Complete original WEDRAWPLANS drawing: " + drawing.desc} fill sizes="(max-width: 768px) 32vw, 22vw" className="pointer-events-none object-contain p-2 sm:p-3" draggable={false} />
+                      </div>
+                      <div className="border-t border-[#e4ece8] px-2 py-2 sm:px-4 sm:py-3">
+                        <p className="text-[11px] font-bold text-[#2a5e63] sm:text-[13px]">{drawing.title}</p>
+                        <p className="mt-1 hidden text-[11px] text-[#6b8084] sm:block">{drawing.desc}</p>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+                <div className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-xl bg-[#edf6f0] px-4 py-3">
+                  <p className="text-[12px] font-semibold leading-5 text-[#376958]">
+                    Planning approval and lawful-development certificate secured in Barnet.
+                  </p>
+                  <Link href="/case-studies/the-reddings-mill-hill-extension-basement-loft" className="text-[12px] font-bold text-[#1e7178] underline underline-offset-4">
+                    Explore the full flagship showcase →
+                  </Link>
+                </div>
               </div>
             </div>
           </section>
