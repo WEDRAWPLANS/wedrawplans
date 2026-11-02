@@ -534,10 +534,10 @@ export default function WalthamForestAreaPage() {
                       Rear extensions
                     </h3>
                     <ul className="list-disc pl-4 space-y-1">
-                      <li>Up to 3 m deep on terrace houses</li>
-                      <li>Up to 4 m on semi detached houses</li>
-                      <li>Up to 6 to 8 m with Prior Approval</li>
-                      <li>Maximum 4 m high for single storey</li>
+                      <li>Standard single-storey rear extension: up to 3 m beyond the original rear wall for terraced and semi-detached houses, or 4 m for detached houses.</li>
+                      <li>Larger single-storey rear extensions: up to 6 m for terraced/semi-detached houses or 8 m for detached houses may qualify through the larger home extension prior approval process, where eligible.</li>
+                      <li>Maximum overall height is generally 4 m; eaves must not exceed 3 m where the extension is within 2 m of a boundary.</li>
+                      <li>These limits are not an automatic entitlement: house type, existing extensions, designated land, planning conditions and other Class A restrictions must be checked.</li>
                     </ul>
                   </div>
                   <div>
