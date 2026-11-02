@@ -44,7 +44,7 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
           <div className="min-w-0">
             {!isHub && project.slug === "the-reddings-mill-hill-extension-basement-loft" ? (
               <div className="mb-5 overflow-hidden rounded-2xl border border-[#dce7e4] bg-white">
-                <video controls playsInline preload="metadata" poster="/images/video-main-poster.jpg" className="aspect-video w-full object-contain bg-[#17252b]" aria-label="The Reddings original architectural design animation"><source src="/videos/barnet-planning-project.mp4" type="video/mp4" /></video>
+                <video controls controlsList="nodownload noremoteplayback" disablePictureInPicture onContextMenu={(event) => event.preventDefault()} playsInline preload="metadata" poster="/images/video-main-poster.jpg" className="aspect-video w-full object-contain bg-[#17252b]" aria-label="The Reddings original architectural design animation"><source src="/videos/barnet-planning-project.mp4" type="video/mp4" /></video>
                 <div className="px-4 py-3 text-xs font-semibold text-[#517077]">Original WEDRAWPLANS architectural animation · The Reddings, Mill Hill</div>
               </div>
             ) : null}
