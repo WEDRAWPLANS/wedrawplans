@@ -18,7 +18,8 @@ function Detail({ label, value }: { label: string; value: string }) {
 }
 
 export default function CaseStudyPage({ item }: { item: CaseStudy }) {
-  const useOriginalDrawingGallery = item.slug === "sistova-road-wandsworth-extension-basement" || item.slug === "cromwell-road-hounslow-rear-extension";
+  const isReddings = item.slug === "the-reddings-mill-hill-extension-basement-loft";
+  const useOriginalDrawingGallery = item.slug === "sistova-road-wandsworth-extension-basement" || item.slug === "cromwell-road-hounslow-rear-extension" || isReddings;
   const isProduction = process.env.VERCEL_ENV === "production";
   const hasApprovedVisual = [item.heroImage, item.secondaryImage].some(src => Boolean(src) && (src.startsWith("/images/case-studies/") || src.startsWith("/images/hyde-")));
   const showGallery = !isProduction || hasApprovedVisual || Boolean(item.projectVideoUrl);
@@ -96,16 +97,16 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
         </div>
 
         <section className="bg-white">
-          <div className="mx-auto grid max-w-7xl gap-9 px-5 pb-12 pt-10 sm:px-8 sm:pb-16 sm:pt-14 lg:grid-cols-[1.25fr_.75fr] lg:gap-16">
+          <div className={isReddings ? "mx-auto grid max-w-7xl gap-5 px-5 pb-8 pt-8 sm:px-8 sm:pb-9 sm:pt-10" : "mx-auto grid max-w-7xl gap-9 px-5 pb-12 pt-10 sm:px-8 sm:pb-16 sm:pt-14 lg:grid-cols-[1.25fr_.75fr] lg:gap-16"}>
             <div>
               <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-[#257b83]">{category} · {item.year}</p>
-              <h1 className="mt-4 max-w-3xl text-3xl font-semibold leading-[1.17] tracking-tight text-[#223b3e] sm:text-4xl lg:text-[46px]">{item.title}</h1>
+              <h1 className={isReddings ? "mt-2 max-w-5xl text-3xl font-semibold leading-[1.17] tracking-tight text-[#223b3e] sm:text-4xl" : "mt-4 max-w-3xl text-3xl font-semibold leading-[1.17] tracking-tight text-[#223b3e] sm:text-4xl lg:text-[46px]"}>{item.title}</h1>
               <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-[#efcbc4] bg-[#fff0ed] px-3.5 py-1.5 text-[12px] font-semibold text-[#97594f]">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#c78175]" aria-hidden="true" />{item.outcome}
               </div>
-              <p className="mt-6 max-w-3xl text-[16px] leading-8 text-[#52666b]">{item.summary}</p>
-              <div className="mt-7 flex flex-wrap items-center gap-3">
-                <Link href={quoteHref} className="rounded-full bg-[#51aab8] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#318e9c]">
+              <p className={isReddings ? "mt-4 max-w-4xl text-[15px] leading-7 text-[#52666b]" : "mt-6 max-w-3xl text-[16px] leading-8 text-[#52666b]"}>{item.summary}</p>
+              <div className={isReddings ? "mt-5 flex flex-wrap items-center gap-3" : "mt-7 flex flex-wrap items-center gap-3"}>
+                <Link href={isReddings ? "#case-study-quote" : quoteHref} className="rounded-full bg-[#51aab8] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#318e9c]">
                   Get your fixed-fee quote
                 </Link>
                 <Link href={item.relatedService} className="rounded-full border border-[#cbdad7] bg-white px-6 py-3.5 text-sm font-semibold text-[#2f646a] hover:bg-[#f0f7f6]">
@@ -113,9 +114,9 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
                 </Link>
               </div>
             </div>
-            <aside className="self-start rounded-[20px] border border-[#dbe7e2] bg-[#f5f9f7] p-6 sm:p-7" aria-label="Project information">
-              <h2 className="text-lg font-semibold">Project information</h2>
-              <dl className="mt-4">
+            <aside className={isReddings ? "self-start rounded-[17px] border border-[#dbe7e2] bg-[#f5f9f7] px-5 py-3 sm:px-6" : "self-start rounded-[20px] border border-[#dbe7e2] bg-[#f5f9f7] p-6 sm:p-7"} aria-label="Project information">
+              <h2 className={isReddings ? "sr-only" : "text-lg font-semibold"}>Project information</h2>
+              <dl className={isReddings ? "grid gap-x-5 sm:grid-cols-2 lg:grid-cols-3" : "mt-4"}>
                 <Detail label="Location" value={item.location} />
                 <Detail label="Planning authority" value={item.authority} />
                 <Detail label="Application reference" value={item.reference} />
