@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import Head from "next/head";
 import Link from "next/link";
+import AllumLaneSiteFeature from "../components/AllumLaneSiteFeature";
 import HeroSlider from "../components/HeroSlider";
 import { submitBoroughLead } from "../lib/submitBoroughLead";
 
@@ -1271,6 +1272,7 @@ export default function NewBuildPlansPage() {
           title="Approved residential development projects"
           intro="The Hyde and Woolwich Road projects illustrate different approaches to residential development, including multiple dwellings and additional floors."
         />
+        <AllumLaneSiteFeature placement="service" title="Explore our residential architectural 3D design work" intro="Allum Lane is an approved extension and remodelling project, not a new-build dwelling. Its original architectural drawings and 3D visualisations demonstrate how we communicate roof forms, elevations, glazing and layouts on substantial residential projects." />
       </main>
 
         <footer className="border-t border-[#2a3050] bg-[#20243b]">
