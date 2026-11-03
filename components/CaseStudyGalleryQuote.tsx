@@ -266,10 +266,9 @@ function AllumLaneShowcase({ project, quoteHeight }: { project: CaseStudy; quote
 
 export default function CaseStudyGalleryQuote({ projects, context }: Props) {
   const project = projects[0];
-  if (!project) return null;
   const isHub = context === "hub";
-  const isReddings = !isHub && project.slug === "the-reddings-mill-hill-extension-basement-loft";
-  const isAllum = !isHub && project.slug === "allum-lane-elstree-major-house-extension";
+  const isReddings = !isHub && project?.slug === "the-reddings-mill-hill-extension-basement-loft";
+  const isAllum = !isHub && project?.slug === "allum-lane-elstree-major-house-extension";
   const quotePanelRef = useRef<HTMLDivElement>(null);
   const [quoteHeight, setQuoteHeight] = useState<number | undefined>(undefined);
 
@@ -283,6 +282,7 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
     observer.observe(panel);
     return () => observer.disconnect();
   }, [isAllum]);
+  if (!project) return null;
   return (
     <section id="project-drawings" aria-labelledby="project-gallery-heading" className="border-y border-[#e3e9e6] bg-[#f4f8f7]">
       <div className="mx-auto max-w-7xl px-5 py-8 pb-24 sm:px-8 sm:py-11 lg:pb-12">
