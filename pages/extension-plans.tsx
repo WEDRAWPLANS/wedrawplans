@@ -1,4 +1,5 @@
 import React from "react";
+import AllumLaneSiteFeature from "../components/AllumLaneSiteFeature";
 import Head from "next/head";
 import { submitBoroughLead } from "../lib/submitBoroughLead";
 
@@ -304,6 +305,8 @@ export default function ExtensionPlansPage() {
             </div>
           </div>
         </section>
+
+        <AllumLaneSiteFeature placement="service" title="Real approved extension drawings — Allum Lane, Elstree" intro="See how front, side and rear additions, integrated glazing, a new roof design and a 45-degree right-of-light study were presented in a coordinated Hertsmere householder planning package." />
 
         {/* QUICK NAV */}
 
