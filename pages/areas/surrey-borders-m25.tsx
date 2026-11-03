@@ -1,4 +1,5 @@
 import React from "react";
+import AllumLaneSiteFeature from "../../components/AllumLaneSiteFeature";
 import Head from "next/head";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
 
@@ -358,6 +359,8 @@ export default function SurreyBordersM25AreaPage() {
               </div>
             </div>
           </section>
+
+          <AllumLaneSiteFeature placement="regional" title="Architectural design and planning drawing example from the M25 region" intro="Explore the Allum Lane approved house-extension project in Elstree, Hertfordshire. This example illustrates WEDRAWPLANS design and planning drawing experience; it is not presented as a planning approval in Surrey." />
 
           {/* PRICING */}
           <section className="border-b border-slate-200 bg-white py-10">
