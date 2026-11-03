@@ -1,6 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import Link from "next/link";
+import AllumLaneSiteFeature from "../components/AllumLaneSiteFeature";
 import LondonAreaLinks from "../components/LondonAreaLinks";
 import { submitBoroughLead } from "../lib/submitBoroughLead";
 
@@ -307,6 +308,7 @@ export default function PlanningDrawingsPage() {
           title="Selected planning permissions and architectural drawing projects"
           intro="See WEDRAWPLANS drawing packages for approved extensions and residential projects across Wandsworth, Hounslow and Greenwich."
         />
+        <AllumLaneSiteFeature placement="service" title="Real planning drawing examples — Allum Lane, Hertsmere" intro="Explore nine full existing and proposed architectural drawings, including proposed elevations, floor plans and a 45-degree right-of-light study, alongside the original 3D design for an approved householder application." />
       </main>
     </>
   );
