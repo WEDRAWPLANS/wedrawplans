@@ -377,7 +377,7 @@ export default function ServiceInternalLinks({
           </div>
         )}
 
-        {boroughName !== "Hertfordshire" && boroughName !== "London" ? (
+        {["Barnet", "Harrow", "Brent", "Enfield", "Hillingdon", "Camden", "Ealing", "Haringey"].includes(boroughName) ? (
           <aside className="mt-10 grid overflow-hidden rounded-[18px] border border-[#dbe7e2] bg-[#f4f9f6] sm:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)]" aria-label="Further original architectural design example">
             <Link href="/case-studies/allum-lane-elstree-major-house-extension" className="group block">
               <div className="flex h-full min-h-[190px] items-center justify-center bg-[#edf3ee] p-3">
