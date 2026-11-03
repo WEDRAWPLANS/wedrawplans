@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import AllumLaneSiteFeature from "../../components/AllumLaneSiteFeature";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
 import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 import SmartPlanningAssistant from "../../components/SmartPlanningAssistant";
@@ -749,6 +750,8 @@ export default function AreasIndexPage() {
               </div>
             </div>
           </section>
+
+          <AllumLaneSiteFeature placement="regional" title="Approved architectural drawing experience beyond London — Elstree &amp; the M25" intro="Our Allum Lane project in Elstree, Hertfordshire shows the original 3D design, architectural animation and nine existing and proposed planning drawings for a substantial approved extension. We also provide drawing services across London and the M25." />
 
           <ServiceInternalLinks boroughName="London" />
 
