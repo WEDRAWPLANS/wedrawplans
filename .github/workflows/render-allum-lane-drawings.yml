@@ -1,0 +1,43 @@
+name: Render Allum Lane original drawing sheets
+on:
+  push:
+    branches:
+      - preview-allum-lane-flagship-20261102
+    paths:
+      - "public/images/case-studies/allum-lane/original-pdf.part*"
+      - ".github/workflows/render-allum-lane-drawings.yml"
+permissions:
+  contents: write
+jobs:
+  render-original-sheets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Render complete original A3 drawings, without cropping
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="public/images/case-studies/allum-lane"
+          test -f "$base/original-pdf.part01" || exit 0
+          sudo apt-get -qq update
+          sudo apt-get -qq install -y poppler-utils
+          cat "$base"/original-pdf.part0* > "$RUNNER_TEMP/allum-lane-original.pdf"
+          test "$(pdfinfo "$RUNNER_TEMP/allum-lane-original.pdf" | awk '/^Pages:/ { print $2 }')" = "9"
+          pdftoppm -r 140 -f 1 -l 9 -jpeg -jpegopt quality=83,optimize=y "$RUNNER_TEMP/allum-lane-original.pdf" "$base/drawing"
+          for n in $(seq 1 9); do
+            printf -v nn '%02d' "$n"
+            test -f "$base/drawing-$n.jpg"
+            mv "$base/drawing-$n.jpg" "$base/drawing-$nn.jpg"
+          done
+          test "$(find "$base" -name 'drawing-??.jpg' | wc -l)" -eq 9
+      - name: Commit complete drawing pages to preview branch
+        run: |
+          git config user.name "WEDRAWPLANS Website"
+          git config user.email "website@users.noreply.github.com"
+          git add public/images/case-studies/allum-lane/drawing-*.jpg
+          if ! git diff --cached --quiet; then
+            git commit -m "Add Allum Lane nine complete original drawing images"
+            git push
+          fi
