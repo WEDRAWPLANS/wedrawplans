@@ -120,7 +120,7 @@ export default function CommercialRestaurantsPage() {
     setIsSubmitting(true);
     setSubmitState({ type: "idle", message: "" });
 
-    trackEvent("generate_lead", {
+    trackEvent("lead_submit_attempt", {
       event_category: "commercial_lead",
       event_label: "restaurants_page_submit_attempt",
       service: "Restaurant Planning Drawings",
@@ -129,7 +129,7 @@ export default function CommercialRestaurantsPage() {
     });
 
     try {
-      await submitBoroughLead({
+      const wasSubmitted = await submitBoroughLead({
         name: form.name,
         email: form.email,
         phone: form.phone,
@@ -149,6 +149,9 @@ export default function CommercialRestaurantsPage() {
           businessName: form.businessName,
         },
       });
+      if (!wasSubmitted) {
+        throw new Error("Contact form submission failed.");
+      }
 
       trackEvent("generate_lead_success", {
         event_category: "commercial_lead",

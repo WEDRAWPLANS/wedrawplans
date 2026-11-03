@@ -2,6 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { FormEvent, useMemo, useState } from "react";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
+import ApprovalEvidenceStrip from "../../components/ApprovalEvidenceStrip";
 
 declare global {
   interface Window {
@@ -120,7 +121,7 @@ export default function CommercialChangeOfUsePage() {
     setIsSubmitting(true);
     setSubmitState({ type: "idle", message: "" });
 
-    trackEvent("generate_lead", {
+    trackEvent("lead_submit_attempt", {
       event_category: "commercial_lead",
       event_label: "change_of_use_page_submit_attempt",
       service: "Change of Use Drawings",
@@ -129,7 +130,7 @@ export default function CommercialChangeOfUsePage() {
     });
 
     try {
-      await submitBoroughLead({
+      const wasSubmitted = await submitBoroughLead({
         name: form.name,
         email: form.email,
         phone: form.phone,
@@ -149,6 +150,9 @@ export default function CommercialChangeOfUsePage() {
           businessName: form.businessName,
         },
       });
+      if (!wasSubmitted) {
+        throw new Error("Contact form submission failed.");
+      }
 
       trackEvent("generate_lead_success", {
         event_category: "commercial_lead",
@@ -749,6 +753,12 @@ export default function CommercialChangeOfUsePage() {
             </aside>
           </div>
         </section>
+
+        <ApprovalEvidenceStrip
+          slugs={["brockley-road-lewisham-two-flat-conversion","burnt-oak-broadway-harrow-retail-flats"]}
+          title="Real conversion and retail planning examples"
+          intro="See approved planning drawings for London property conversions and retail alterations. These examples illustrate our work, not a guarantee of consent for a new change-of-use proposal."
+        />
 
         <section className="border-t border-slate-200 bg-slate-50">
           <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">

@@ -121,7 +121,7 @@ export default function CommercialMixedUsePage() {
     setIsSubmitting(true);
     setSubmitState({ type: "idle", message: "" });
 
-    trackEvent("generate_lead", {
+    trackEvent("lead_submit_attempt", {
       event_category: "commercial_lead",
       event_label: "mixed_use_page_submit_attempt",
       service: "Mixed Use Drawings",
@@ -130,7 +130,7 @@ export default function CommercialMixedUsePage() {
     });
 
     try {
-      await submitBoroughLead({
+      const wasSubmitted = await submitBoroughLead({
         name: form.name,
         email: form.email,
         phone: form.phone,
@@ -149,6 +149,9 @@ export default function CommercialMixedUsePage() {
           businessName: form.businessName,
         },
       });
+      if (!wasSubmitted) {
+        throw new Error("Contact form submission failed.");
+      }
 
       trackEvent("generate_lead_success", {
         event_category: "commercial_lead",
@@ -815,6 +818,12 @@ export default function CommercialMixedUsePage() {
             </aside>
           </div>
         </section>
+
+        <ApprovalEvidenceStrip
+          slugs={["burnt-oak-broadway-harrow-retail-flats","brockley-road-lewisham-two-flat-conversion"]}
+          title="Approved retail and residential conversion examples"
+          intro="Explore original WEDRAWPLANS planning projects involving retail alterations and residential conversions. Each application is assessed on its own planning merits."
+        />
 
         <section className="border-t border-slate-200 bg-slate-50">
           <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
