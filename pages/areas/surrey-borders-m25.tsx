@@ -2,6 +2,32 @@ import React from "react";
 import Head from "next/head";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
 
+const SURREY_PAGE_URL = "https://www.wedrawplans.co.uk/areas/surrey-borders-m25";
+const surreyServiceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": SURREY_PAGE_URL + "#service",
+  name: "Architectural Drawings for Surrey Borders and M25",
+  serviceType: ["House extension drawings", "Loft conversion plans", "Building Regulations drawings", "New build planning drawings"],
+  url: SURREY_PAGE_URL,
+  description: "WEDRAWPLANS prepares architectural drawings for planning applications and Building Regulations across Surrey-border towns and the southern M25 corridor.",
+  provider: { "@type": "ProfessionalService", "@id": "https://www.wedrawplans.co.uk/#business", name: "WEDRAWPLANS", url: "https://www.wedrawplans.co.uk/" },
+  areaServed: [
+    { "@type": "Place", name: "Surrey borders and M25 corridor" },
+    { "@type": "Place", name: "Epsom and Ewell" },
+    { "@type": "Place", name: "Banstead and Coulsdon" }
+  ]
+};
+const surreyBreadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.wedrawplans.co.uk/" },
+    { "@type": "ListItem", position: 2, name: "Areas Covered", item: "https://www.wedrawplans.co.uk/areas" },
+    { "@type": "ListItem", position: 3, name: "Surrey Borders & M25", item: SURREY_PAGE_URL }
+  ]
+};
+
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const WHATSAPP_LINK =
@@ -28,7 +54,9 @@ export default function SurreyBordersM25AreaPage() {
           content="Architectural drawings for homes on the Surrey Borders and around the M25. Extensions, loft conversions, new builds and building regulation packs. Fixed fees with fast turnaround."
         />
         <meta name="robots" content="index,follow,max-image-preview:large" />
-        <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/surrey-borders-m25" />
+        <link rel="canonical" href={SURREY_PAGE_URL} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(surreyServiceSchema) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(surreyBreadcrumbSchema) }} />
       </Head>
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
@@ -85,7 +113,7 @@ export default function SurreyBordersM25AreaPage() {
                 <p className="mt-3 text-[13px] text-slate-700">
                   WEDRAWPLANS prepare planning and building regulation drawings for homes
                   across the Surrey Borders and wider M25 corridor. Fixed fees, fast
-                  turnaround and clear communication from start to approval.
+                  turnaround and clear communication from initial brief through drawings and submission.
                 </p>
                 <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
                   <li>• House extensions and open plan remodelling</li>
@@ -304,6 +332,30 @@ export default function SurreyBordersM25AreaPage() {
                 Projects can be fully managed online with drawings issued by email, or combined
                 with on-site measured surveys where required.
               </p>
+            </div>
+          </section>
+
+          {/* REAL PLANNING EVIDENCE AND SERVICE LINKS */}
+          <section aria-label="Drawing services and approved project evidence" className="border-b border-slate-200 bg-white py-10">
+            <div className="mx-auto max-w-5xl px-4 lg:px-6">
+              <h2 className="text-[18px] font-semibold uppercase tracking-[0.12em] text-slate-900">
+                See WEDRAWPLANS drawing services and real planning projects
+              </h2>
+              <p className="mt-3 max-w-3xl text-[13px] leading-6 text-slate-700">
+                Your Surrey-border property will need a site-specific review of its local authority, planning constraints and proposed work.
+                Explore our <a className="font-semibold text-[#22727c] underline" href="/planning-drawings">planning drawing services</a>,
+                {" "}<a className="font-semibold text-[#22727c] underline" href="/extension-plans">extension plans</a> and
+                {" "}<a className="font-semibold text-[#22727c] underline" href="/building-regulation-drawings">Building Regulations drawing packs</a>.
+              </p>
+              <p className="mt-3 max-w-3xl text-[13px] leading-6 text-slate-700">
+                You can also inspect genuine approved examples from Wandsworth and Hounslow, outside Surrey.
+                These demonstrate our drawing and submission experience but are not claims of Surrey planning approvals.
+              </p>
+              <div className="mt-4 flex flex-wrap gap-3 text-[13px]">
+                <a href="/case-studies/sistova-road-wandsworth-extension-basement" className="rounded-lg border border-slate-300 px-4 py-2 font-semibold text-[#22727c] hover:bg-slate-50">Wandsworth extension example</a>
+                <a href="/case-studies/cromwell-road-hounslow-rear-extension" className="rounded-lg border border-slate-300 px-4 py-2 font-semibold text-[#22727c] hover:bg-slate-50">Hounslow extension example</a>
+                <a href="/case-studies" className="rounded-lg border border-slate-300 px-4 py-2 font-semibold text-[#22727c] hover:bg-slate-50">Browse approved drawings</a>
+              </div>
             </div>
           </section>
 

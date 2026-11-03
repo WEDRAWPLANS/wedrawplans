@@ -285,7 +285,7 @@ export async function submitBoroughLead(
     fireGenerateLeadOnce({
       borough: boroughName || "London",
       project_type: coerceToString(payload.service),
-      postcode: coerceToString(payload.postcode),
+      // Do not send full customer postcodes to analytics.
       has_phone: !!payload.phone,
       has_email: !!payload.email,
       page_path: coerceToString(payload.pagePath),

@@ -121,7 +121,7 @@ export default function CommercialShopfrontDrawingsPage() {
     setIsSubmitting(true);
     setSubmitState({ type: "idle", message: "" });
 
-    trackEvent("generate_lead", {
+    trackEvent("lead_submit_attempt", {
       event_category: "commercial_lead",
       event_label: "shopfront_page_submit_attempt",
       service: "Commercial Shopfront Drawings",
@@ -130,7 +130,7 @@ export default function CommercialShopfrontDrawingsPage() {
     });
 
     try {
-      await submitBoroughLead({
+      const wasSubmitted = await submitBoroughLead({
         name: form.name,
         email: form.email,
         phone: form.phone,
@@ -150,6 +150,9 @@ export default function CommercialShopfrontDrawingsPage() {
           businessName: form.businessName,
         },
       });
+      if (!wasSubmitted) {
+        throw new Error("Contact form submission failed.");
+      }
 
       trackEvent("generate_lead_success", {
         event_category: "commercial_lead",
@@ -814,6 +817,12 @@ export default function CommercialShopfrontDrawingsPage() {
             </aside>
           </div>
         </section>
+
+        <ApprovalEvidenceStrip
+          slugs={["electric-avenue-brixton-shopfront","burnt-oak-broadway-harrow-retail-flats"]}
+          title="Approved shopfront and retail drawing examples"
+          intro="These approved London projects demonstrate shopfront reinstatement and retail planning drawings. The correct drawings and consent route depend on each property."
+        />
 
         <section className="border-t border-slate-200 bg-slate-50">
           <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
