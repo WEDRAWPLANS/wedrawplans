@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import Head from "next/head";
 import HeroSlider from "../components/HeroSlider";
 import Link from "next/link";
+import AllumLaneSiteFeature from "../components/AllumLaneSiteFeature";
 import HomeGoogleReviews from "../components/HomeGoogleReviews";
 
 const PHONE_DISPLAY = "020 3654 8508";
@@ -1443,6 +1444,8 @@ export default function IndexPage() {
   ]}
 />
         </div>
+
+        <AllumLaneSiteFeature placement="home" title="See the drawings behind a real approved house transformation" intro="Allum Lane in Elstree is an approved Hertsmere house-extension design, brought to life with a full architectural animation, seven 3D visuals and nine original planning drawings. See how professional drawings develop into a convincing architectural design." />
 
         <section className="border-b border-slate-200 bg-white py-10">
           <div className="mx-auto max-w-6xl px-4 lg:px-6">
