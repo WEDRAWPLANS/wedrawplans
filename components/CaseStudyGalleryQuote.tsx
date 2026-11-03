@@ -136,11 +136,139 @@ function RealProjectShowcase({ project }: { project: ReddingsProject }) {
   );
 }
 
+
+function AllumLaneShowcase({ project }: { project: CaseStudy }) {
+  const [designIndex, setDesignIndex] = useState(0);
+  const [drawingIndex, setDrawingIndex] = useState(0);
+  const media = project.galleryImages || [];
+  const designs = media.filter((image) => /\/3d-\d+\.(webp|jpg|jpeg|png)$/i.test(image.src));
+  const drawings = media.filter((image) => /\/full-drawing-\d+\.(webp|jpg|jpeg|png)$/i.test(image.src));
+  const featured = designs[Math.min(designIndex, designs.length - 1)];
+  const selectedDrawing = drawings[Math.min(drawingIndex, drawings.length - 1)];
+
+  return (
+    <div className="space-y-8 select-none" onContextMenu={(event) => event.preventDefault()} onDragStart={(event) => event.preventDefault()}>
+      <section aria-labelledby="allum-design-animation" className="overflow-hidden rounded-[20px] border border-[#d9e7e2] bg-white shadow-[0_14px_32px_rgba(22,68,70,.055)]">
+        <div className="border-b border-[#e4ebe6] bg-[#eef6f1] px-4 py-5 sm:px-6">
+          <p className="text-[11px] font-bold uppercase tracking-[.18em] text-[#a96b60]">See the approved architectural design in motion</p>
+          <h3 id="allum-design-animation" className="mt-1.5 text-[22px] font-semibold tracking-tight text-[#234448] sm:text-[28px]">Allum Lane · 3D architectural animation</h3>
+          <p className="mt-2 max-w-[600px] text-[13px] leading-6 text-[#5a7275]">Explore the proposed Elstree house extension through the original 80-second WEDRAWPLANS design walkthrough, showing the roof, brick-and-render elevations, glazing and landscaped setting.</p>
+        </div>
+        <div className="bg-[#142b2f]">
+          <video
+            controls
+            preload="metadata"
+            playsInline
+            controlsList="nodownload noremoteplayback"
+            disablePictureInPicture
+            poster="/images/case-studies/allum-lane/3d-03.webp"
+            className="aspect-video w-full object-contain"
+            aria-label="WEDRAWPLANS Allum Lane approved house extension 3D design animation"
+          >
+            <source src="/videos/allum-lane-architectural-animation.mp4" type="video/mp4" />
+            Your browser does not support video playback.
+          </video>
+        </div>
+        <div className="flex flex-wrap items-center justify-between gap-2 px-4 py-3 sm:px-6">
+          <span className="text-[11px] font-semibold text-[#5b787b]">Original WEDRAWPLANS architectural presentation · 1 min 20 sec</span>
+          <span className="text-[11px] text-[#71888a]">Concept design illustration, not built-project footage</span>
+        </div>
+      </section>
+
+      <section aria-labelledby="allum-architectural-visuals" className="overflow-hidden rounded-[20px] border border-[#d9e7e2] bg-white shadow-[0_14px_32px_rgba(22,68,70,.055)]">
+        <header className="border-b border-[#e3ebe6] px-4 py-5 sm:px-6">
+          <p className="text-[11px] font-bold uppercase tracking-[.18em] text-[#a56b62]">Original proposed 3D architectural design</p>
+          <h3 id="allum-architectural-visuals" className="mt-1 text-[23px] font-semibold text-[#26494d] sm:text-[29px]">Architectural 3D Visuals</h3>
+          <p className="mt-2 max-w-[610px] text-[13px] leading-6 text-[#61777b]">Seven original views show the architectural treatment from the front, garden, side and above. Select any view to explore the proposed design.</p>
+        </header>
+        {featured ? (
+          <>
+            <div className="flex flex-wrap items-center justify-between gap-2 px-4 pb-2 pt-4 sm:px-6">
+              <p className="text-[11px] font-bold uppercase tracking-[.12em] text-[#55767a]">3D visual {designIndex + 1} of {designs.length}</p>
+              <div className="flex gap-2">
+                <button type="button" aria-label="Previous 3D design visual" onClick={() => setDesignIndex((i) => (i + designs.length - 1) % designs.length)} className="flex h-9 w-9 items-center justify-center rounded-full border border-[#bad3cc] bg-white text-[#245b60] hover:bg-[#edf7f2]">‹</button>
+                <button type="button" aria-label="Next 3D design visual" onClick={() => setDesignIndex((i) => (i + 1) % designs.length)} className="flex h-9 w-9 items-center justify-center rounded-full border border-[#bad3cc] bg-white text-[#245b60] hover:bg-[#edf7f2]">›</button>
+              </div>
+            </div>
+            <figure className="mx-3 mb-3 overflow-hidden rounded-[13px] border border-[#dce6e2] bg-[#eef2ef] sm:mx-5">
+              <div className="relative aspect-[16/9] w-full">
+                <Image key={featured.src} src={featured.src} alt={featured.alt} fill sizes="(max-width: 1024px) 96vw, 62vw" className="pointer-events-none object-contain" draggable={false} priority={false} />
+              </div>
+              <figcaption className="border-t border-[#e1e9e4] bg-white px-4 py-3 text-[12px] font-semibold leading-5 text-[#41696e]">{featured.caption.replace(/^3D design \d+\s*[—–-]\s*/, "")}</figcaption>
+            </figure>
+            <div className="flex gap-2.5 overflow-x-auto px-3 pb-4 pt-1 sm:px-5" aria-label="Choose architectural 3D visual">
+              {designs.map((image, i) => (
+                <button key={image.src} type="button" onClick={() => setDesignIndex(i)} aria-label={"View 3D design " + (i + 1)} aria-current={i === designIndex ? "true" : undefined} className={"w-[112px] shrink-0 rounded-lg border p-1.5 transition sm:w-[130px] " + (i === designIndex ? "border-[#399699] bg-[#e9f5f1]" : "border-[#dce7e2] bg-white hover:border-[#9cc6bf]")}>
+                  <div className="relative aspect-[16/9] overflow-hidden rounded-md bg-[#eff3f1]">
+                    <Image src={image.src} alt="" fill sizes="130px" className="pointer-events-none object-contain" draggable={false} />
+                  </div>
+                  <span className="mt-1.5 block text-[10px] font-bold text-[#426970]">3D View {i + 1}</span>
+                </button>
+              ))}
+            </div>
+          </>
+        ) : null}
+      </section>
+
+      <section aria-labelledby="allum-full-architectural-drawings" className="overflow-hidden rounded-[20px] border border-[#d9e7e2] bg-white shadow-[0_14px_32px_rgba(22,68,70,.055)]">
+        <header className="border-b border-[#dfe9e3] bg-[#edf6f1] px-4 py-5 sm:px-6">
+          <p className="text-[11px] font-bold uppercase tracking-[.18em] text-[#ab6a60]">Genuine WEDRAWPLANS approved project documents</p>
+          <h3 id="allum-full-architectural-drawings" className="mt-1.5 text-[24px] font-semibold text-[#23474b] sm:text-[29px]">Real Drawing Examples</h3>
+          <p className="mt-2 max-w-[640px] text-[13px] leading-6 text-[#567278]">Browse nine original A3 architectural drawings: existing plans and elevations, the proposed layout, right-of-light study and detailed elevations. Each complete drawing is displayed within its original WEDRAWPLANS border and title block.</p>
+        </header>
+        {selectedDrawing ? (
+          <>
+            <div className="flex flex-wrap items-center justify-between gap-3 px-4 pb-2 pt-4 sm:px-6">
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-[.14em] text-[#86766f]">Drawing {drawingIndex + 1} of {drawings.length}</p>
+                <h4 className="mt-1 text-[14px] font-semibold leading-5 text-[#2b5154] sm:text-[16px]">{selectedDrawing.caption.replace(/^Drawing \d+\s*[—–-]\s*/, "")}</h4>
+              </div>
+              <div className="flex shrink-0 gap-2">
+                <button type="button" aria-label="Previous drawing" onClick={() => setDrawingIndex((i) => (i + drawings.length - 1) % drawings.length)} className="flex h-9 w-9 items-center justify-center rounded-full border border-[#bdd6ce] bg-white text-[#245d63] hover:bg-[#eff7f3]">‹</button>
+                <button type="button" aria-label="Next drawing" onClick={() => setDrawingIndex((i) => (i + 1) % drawings.length)} className="flex h-9 w-9 items-center justify-center rounded-full border border-[#bdd6ce] bg-white text-[#245d63] hover:bg-[#eff7f3]">›</button>
+              </div>
+            </div>
+            <figure className="mx-3 mb-4 rounded-[12px] border border-[#e0e8e3] bg-[#f7f8f6] p-2 sm:mx-5 sm:p-4">
+              <div className="relative mx-auto h-[280px] w-full sm:h-[410px] lg:h-[470px]">
+                <Image key={selectedDrawing.src} src={selectedDrawing.src} alt={selectedDrawing.alt} fill sizes="(max-width: 1024px) 96vw, 62vw" className="pointer-events-none object-contain" draggable={false} />
+              </div>
+            </figure>
+            <div className="border-t border-[#e6ece7] px-3 py-4 sm:px-5">
+              <p className="mb-3 text-[11px] font-semibold text-[#476a6e]">Explore the architectural drawing package:</p>
+              <div className="flex gap-2.5 overflow-x-auto pb-2" aria-label="Select architectural drawing">
+                {drawings.map((image, i) => (
+                  <button key={image.src} type="button" onClick={() => setDrawingIndex(i)} aria-label={"View drawing " + (i + 1) + ": " + image.alt} aria-current={i === drawingIndex ? "true" : undefined} className={"w-[105px] shrink-0 rounded-xl border p-1.5 transition sm:w-[120px] " + (i === drawingIndex ? "border-[#379b9a] bg-[#eaf5f0]" : "border-[#dce8e2] bg-white hover:border-[#a1c8bc]")}>
+                    <div className="relative h-[78px] rounded-md bg-[#f5f7f4] sm:h-[92px]">
+                      <Image src={image.src} alt="" fill sizes="120px" className="pointer-events-none object-contain" draggable={false} />
+                    </div>
+                    <span className="mt-2 block text-center text-[10px] font-bold text-[#3d666b]">Drawing {i + 1}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </>
+        ) : null}
+        <div className="border-t border-[#dce9e3] bg-[#f0f8f3] px-4 py-5 sm:px-6">
+          <p className="text-[11px] font-bold uppercase tracking-[.15em] text-[#31735a]">Planning permission · Hertsmere Borough Council</p>
+          <p className="mt-2 text-[13px] leading-6 text-[#3b645a]">This Elstree design illustrates how existing floor plans, comprehensive proposed layouts, architectural elevations and a 45-degree right-of-light study can work together to support a substantial householder extension proposal.</p>
+          <p className="mt-2 text-[11px] font-semibold text-[#28725b]">Recorded planning reference: 20/0662/HSE</p>
+        </div>
+      </section>
+      <section className="rounded-[16px] border border-[#dce8e2] bg-[#f3f9f5] p-5 sm:p-6">
+        <h3 className="text-[17px] font-semibold text-[#2a4f51]">Planning a similar extension in Elstree or Hertsmere?</h3>
+        <p className="mt-2 text-[13px] leading-7 text-[#577577]">Whether your project involves larger front and rear extensions, altered rooflines, contemporary glazing or additional family accommodation, WEDRAWPLANS can prepare coordinated planning drawings, 3D design visuals and technical drawing packages tailored to your property.</p>
+        <a href="#case-study-quote" className="mt-3 inline-flex rounded-full bg-[#2b7a83] px-5 py-2.5 text-[12px] font-bold text-white hover:bg-[#22636a]">Get your fixed-fee drawing quote →</a>
+      </section>
+    </div>
+  );
+}
+
 export default function CaseStudyGalleryQuote({ projects, context }: Props) {
   const project = projects[0];
   if (!project) return null;
   const isHub = context === "hub";
   const isReddings = !isHub && project.slug === "the-reddings-mill-hill-extension-basement-loft";
+  const isAllum = !isHub && project.slug === "allum-lane-elstree-major-house-extension";
   return (
     <section id="project-drawings" aria-labelledby="project-gallery-heading" className="border-y border-[#e3e9e6] bg-[#f4f8f7]">
       <div className="mx-auto max-w-7xl px-5 py-8 pb-24 sm:px-8 sm:py-11 lg:pb-12">
@@ -148,7 +276,7 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
           <div>
             <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-[#a36a63]">WEDRAWPLANS architectural drawings</p>
             <h2 id="project-gallery-heading" className="mt-2 text-2xl font-semibold tracking-tight text-[#284549] sm:text-3xl">
-              {isHub ? "Explore our approved planning projects" : isReddings ? "A real project, from before to after" : "Project drawings & design"}
+              {isHub ? "Explore our approved planning projects" : isReddings ? "A real project, from before to after" : isAllum ? "A real approved project, from plans to 3D design" : "Project drawings & design"}
             </h2>
             <p className="mt-3 max-w-3xl text-[14px] leading-7 text-[#61777b]">
               {isHub
@@ -160,7 +288,7 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
         </div>
         <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1.3fr)_minmax(330px,.7fr)] lg:gap-7">
           <div className="min-w-0">
-            {isReddings ? <RealProjectShowcase project={project} /> : <ProjectMediaSlider projects={projects} mode={context} />}
+            {isReddings ? <RealProjectShowcase project={project} /> : isAllum ? <AllumLaneShowcase project={project} /> : <ProjectMediaSlider projects={projects} mode={context} />}
             {!isHub && project.projectVideoUrl && project.slug !== "the-reddings-mill-hill-extension-basement-loft" ? (
               <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-[15px] border border-[#dce7e4] bg-white px-5 py-4">
                 <div>
@@ -180,7 +308,7 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
           <div id="case-study-quote" className="scroll-mt-24 lg:sticky lg:top-5 lg:self-start"><ProjectQuickQuotePanel source={isHub ? "case-studies-hub" : "case-study-gallery"} projectSlug={isHub ? "" : project.slug} projectTitle={isHub ? "" : project.shortTitle} suggestedService={isHub ? "" : serviceFor(project)} /></div>
         </div>
       </div>
-      {isReddings ? <a href="#case-study-quote" className="fixed inset-x-0 bottom-0 z-40 flex min-h-[60px] items-center justify-center border-t border-[#bcd5d0] bg-[#224b4e] px-5 py-3 text-[14px] font-bold text-white shadow-[0_-10px_30px_rgba(0,0,0,.13)] lg:hidden">Get your fixed-fee drawing quote →</a> : null}
+      {(isReddings || isAllum) ? <a href="#case-study-quote" className="fixed inset-x-0 bottom-0 z-40 flex min-h-[60px] items-center justify-center border-t border-[#bcd5d0] bg-[#224b4e] px-5 py-3 text-[14px] font-bold text-white shadow-[0_-10px_30px_rgba(0,0,0,.13)] lg:hidden">Get your fixed-fee drawing quote →</a> : null}
     </section>
   );
 }

@@ -377,6 +377,36 @@ export default function ServiceInternalLinks({
           </div>
         )}
 
+        {boroughName !== "Hertfordshire" && boroughName !== "London" ? (
+          <aside className="mt-10 grid overflow-hidden rounded-[18px] border border-[#dbe7e2] bg-[#f4f9f6] sm:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)]" aria-label="Further original architectural design example">
+            <Link href="/case-studies/allum-lane-elstree-major-house-extension" className="group block">
+              <div className="flex h-full min-h-[190px] items-center justify-center bg-[#edf3ee] p-3">
+                <img
+                  src="/images/case-studies/allum-lane/3d-03.webp"
+                  alt="Original WEDRAWPLANS 3D design for an approved major house extension in Allum Lane, Elstree"
+                  loading="lazy"
+                  draggable={false}
+                  onContextMenu={(event) => event.preventDefault()}
+                  className="aspect-video w-full rounded-xl object-contain transition-transform duration-300 group-hover:scale-[1.01]"
+                />
+              </div>
+            </Link>
+            <div className="flex flex-col justify-center px-5 py-6 sm:px-7">
+              <p className="text-[11px] font-bold uppercase tracking-[.15em] text-[#a56d62]">More original WEDRAWPLANS architectural design</p>
+              <h3 className="mt-2 text-[18px] font-semibold leading-snug text-[#234548] sm:text-[21px]">
+                Allum Lane, Elstree — approved house extension &amp; 3D design
+              </h3>
+              <p className="mt-2 text-[12px] leading-6 text-[#577276]">
+                Explore a substantial approved Hertsmere house-extension scheme with seven 3D visuals, a design animation and nine complete architectural drawings.
+                This example is in Elstree, Hertfordshire; WEDRAWPLANS also provides extension drawings and planning support for properties in {boroughName}.
+              </p>
+              <Link href="/case-studies/allum-lane-elstree-major-house-extension" className="mt-3 inline-flex w-fit items-center gap-1 text-[12px] font-bold text-[#26737b] underline-offset-4 hover:underline">
+                Explore the original designs and approved drawings →
+              </Link>
+            </div>
+          </aside>
+        ) : null}
+
         <div className="mt-10">
           <h3 className="text-lg font-extrabold tracking-tight">Nearby borough pages</h3>
 

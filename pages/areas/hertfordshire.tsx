@@ -343,12 +343,70 @@ export default function HertfordshireAreaPage() {
             </div>
           </section>
 
+          <section id="allum-lane-elstree-showcase" aria-labelledby="allum-lane-herts-heading" className="scroll-mt-24 border-y border-[#dce6e2] bg-[#f3f8f5] py-11 sm:py-14">
+            <div className="mx-auto max-w-6xl px-4 lg:px-6">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <p className="text-[11px] font-bold uppercase tracking-[.18em] text-[#9b645d]">WEDRAWPLANS real approved projects · Hertsmere</p>
+                <span className="rounded-full border border-[#b9d9c8] bg-[#e6f4e9] px-3 py-1.5 text-[11px] font-bold text-[#28664d]">Planning permission granted · 2020</span>
+              </div>
+              <h2 id="allum-lane-herts-heading" className="mt-3 max-w-4xl text-[27px] font-semibold leading-tight tracking-tight text-[#224448] sm:text-[35px]">Allum Lane, Elstree — a real approved architectural design</h2>
+              <p className="mt-3 max-w-4xl text-[14px] leading-7 text-[#526e73]">
+                Discover an original WEDRAWPLANS house-extension scheme in Elstree, Borehamwood, with seven architectural
+                3D views, a design animation and nine existing and proposed A3 drawings. The proposal reimagines the
+                roof, front and rear elevations, garden-facing glazing and internal arrangement as part of a coordinated
+                householder planning application to Hertsmere Borough Council.
+              </p>
+              <div className="mt-6 grid items-stretch gap-5 lg:grid-cols-[minmax(0,1.15fr)_minmax(310px,.85fr)]">
+                <a href="/case-studies/allum-lane-elstree-major-house-extension" className="group block overflow-hidden rounded-[18px] border border-[#d8e5e0] bg-white shadow-[0_14px_32px_rgba(24,61,68,.06)]">
+                  <div className="relative aspect-video overflow-hidden bg-[#eef4f0]">
+                    <Image src="/images/case-studies/allum-lane/3d-03.webp" alt="Allum Lane Elstree approved architectural design showing the rear gabled glazing, terrace and garden" fill sizes="(max-width: 1024px) 100vw, 60vw" className="pointer-events-none object-contain transition-transform duration-300 group-hover:scale-[1.02]" draggable={false} />
+                  </div>
+                  <div className="flex flex-wrap items-center justify-between gap-2 px-4 py-3 sm:px-5">
+                    <strong className="text-[12px] text-[#315f63] sm:text-[14px]">Original architectural 3D design · Rear elevation</strong>
+                    <span className="text-[12px] font-semibold text-[#277784]">View complete project →</span>
+                  </div>
+                </a>
+                <div className="flex flex-col justify-between rounded-[18px] border border-[#d8e5e0] bg-white px-5 py-6 shadow-[0_14px_32px_rgba(24,61,68,.06)] sm:px-6">
+                  <div>
+                    <p className="text-[11px] font-bold uppercase tracking-[.15em] text-[#a06b61]">Approved major house extension</p>
+                    <h3 className="mt-2 text-[20px] font-semibold leading-snug text-[#24484d]">From architectural plans to a complete 3D design</h3>
+                    <p className="mt-3 text-[13px] leading-7 text-[#5a7478]">
+                      Front, side and rear alterations with pitched gables, contemporary windows, extensive rear glazing,
+                      a recessed terrace and carefully coordinated existing and proposed elevations.
+                      The original drawings also include a 45-degree right-of-light study.
+                    </p>
+                    <p className="mt-3 text-[11px] font-semibold text-[#31745b]">Hertsmere planning reference: 20/0662/HSE</p>
+                  </div>
+                  <div className="mt-6 flex flex-wrap gap-2.5">
+                    <a href="/case-studies/allum-lane-elstree-major-house-extension#project-drawings" className="rounded-full bg-[#246e78] px-5 py-3 text-[12px] font-bold text-white hover:bg-[#195861]">Explore 3D design &amp; all 9 drawings →</a>
+                    <button onClick={scrollToForm} type="button" className="rounded-full border border-[#b4d3cb] bg-white px-5 py-3 text-[12px] font-bold text-[#286a71] hover:bg-[#f0f8f3]">Get your fixed-fee quote</button>
+                  </div>
+                </div>
+              </div>
+              <div className="mt-5 grid grid-cols-3 gap-2.5 sm:gap-4">
+                {[
+                  { src: "/images/case-studies/allum-lane/3d-05.webp", title: "Front architectural design" },
+                  { src: "/images/case-studies/allum-lane/full-drawing-05.webp", title: "Proposed ground-floor drawing" },
+                  { src: "/images/case-studies/allum-lane/full-drawing-08.webp", title: "Proposed elevations" }
+                ].map((image) => (
+                  <a key={image.src} href="/case-studies/allum-lane-elstree-major-house-extension#project-drawings" className="group overflow-hidden rounded-[12px] border border-[#dfe9e4] bg-white hover:border-[#98c3b7]">
+                    <div className="relative aspect-[4/3] bg-[#f7faf7]">
+                      <Image src={image.src} alt={"Original WEDRAWPLANS Allum Lane project illustration: " + image.title} fill sizes="(max-width: 768px) 32vw, 27vw" className="pointer-events-none object-contain p-2 sm:p-3" draggable={false} />
+                    </div>
+                    <p className="border-t border-[#e2ebe5] px-2 py-2 text-[10px] font-semibold text-[#385f64] sm:px-3 sm:text-[12px]">{image.title}</p>
+                  </a>
+                ))}
+              </div>
+              <p className="mt-4 text-[12px] leading-6 text-[#70848a]">These are architectural design illustrations and approval drawings, not construction-completion photographs.</p>
+            </div>
+          </section>
+
           <ServiceInternalLinks boroughName="Hertfordshire" />
 
 <ApprovalEvidenceStrip
-  slugs={["allum-lane-elstree-major-house-extension","cranbourne-drive-hoddesdon-planning-project"]}
-  title="Approved residential extensions in Hertfordshire"
-  intro="Planning approvals for substantial residential extension work in Elstree and retrospective rear-extension work in Hoddesdon."
+  slugs={["cranbourne-drive-hoddesdon-planning-project"]}
+  title="Another approved Hertfordshire project"
+  intro="Alongside the Allum Lane flagship above, explore our approved Cranbourne Drive extension in Hoddesdon."
 />
 
           <section className="bg-white border-b border-slate-200 py-10">
