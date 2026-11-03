@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
+import AllumLaneSiteFeature from "../components/AllumLaneSiteFeature";
 import { FormEvent, useMemo, useState } from "react";
 import SmartPlanningAssistant from "../components/SmartPlanningAssistant";
 import { submitBoroughLead } from "../lib/submitBoroughLead";
@@ -1233,6 +1234,8 @@ export default function BuildingRegulationDrawingsPage() {
               </div>
             </div>
           </section>
+
+          <AllumLaneSiteFeature placement="service" title="See the design drawings that precede technical detailing" intro="Our approved Allum Lane house-extension design includes coordinated existing and proposed plans and elevations. These are planning-stage drawings, not a Building Regulations approval; they illustrate the architectural information that can inform later technical drawing work." />
 
           <footer className="bg-[#20243b] py-10 text-white">
             <div className="mx-auto max-w-6xl px-4 lg:px-6">
