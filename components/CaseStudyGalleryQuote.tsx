@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import type { CSSProperties } from "react";
 import type { CaseStudy } from "../data/caseStudies";
 import { categoryForCaseStudy } from "../data/caseStudies";
 import ProjectMediaSlider from "./ProjectMediaSlider";
@@ -137,7 +138,7 @@ function RealProjectShowcase({ project }: { project: ReddingsProject }) {
 }
 
 
-function AllumLaneShowcase({ project }: { project: CaseStudy }) {
+function AllumLaneShowcase({ project, quoteHeight }: { project: CaseStudy; quoteHeight?: number }) {
   const [designIndex, setDesignIndex] = useState(0);
   const [drawingIndex, setDrawingIndex] = useState(0);
   const media = project.galleryImages || [];
@@ -148,13 +149,13 @@ function AllumLaneShowcase({ project }: { project: CaseStudy }) {
 
   return (
     <div className="space-y-8 select-none" onContextMenu={(event) => event.preventDefault()} onDragStart={(event) => event.preventDefault()}>
-      <section aria-labelledby="allum-design-animation" className="overflow-hidden rounded-[20px] border border-[#d9e7e2] bg-white shadow-[0_14px_32px_rgba(22,68,70,.055)]">
-        <div className="border-b border-[#e4ebe6] bg-[#eef6f1] px-4 py-5 sm:px-6">
+      <section aria-labelledby="allum-design-animation" className="flex flex-col overflow-hidden rounded-[20px] border border-[#d9e7e2] bg-white shadow-[0_14px_32px_rgba(22,68,70,.055)] lg:h-[var(--allum-quote-height)]" style={{ "--allum-quote-height": quoteHeight ? `${quoteHeight}px` : undefined } as CSSProperties}>
+        <div className="shrink-0 border-b border-[#e4ebe6] bg-[#eef6f1] px-4 py-3 sm:px-6 sm:py-4">
           <p className="text-[11px] font-bold uppercase tracking-[.18em] text-[#a96b60]">See the approved architectural design in motion</p>
-          <h3 id="allum-design-animation" className="mt-1.5 text-[22px] font-semibold tracking-tight text-[#234448] sm:text-[28px]">Allum Lane · 3D architectural animation</h3>
-          <p className="mt-2 max-w-[600px] text-[13px] leading-6 text-[#5a7275]">Explore the proposed Elstree house extension through the original 80-second WEDRAWPLANS design walkthrough, showing the roof, brick-and-render elevations, glazing and landscaped setting.</p>
+          <h3 id="allum-design-animation" className="mt-1.5 text-[21px] font-semibold tracking-tight text-[#234448] sm:text-[25px]">Allum Lane · 3D architectural animation</h3>
+          <p className="mt-1.5 max-w-[600px] text-[12px] leading-5 text-[#5a7275] sm:text-[13px]">Watch the original 80-second architectural walkthrough of the approved Allum Lane extension, its roof design, glazing and landscaped setting.</p>
         </div>
-        <div className="bg-[#142b2f]">
+        <div className="relative bg-[#142b2f] lg:min-h-0 lg:flex-1">
           <video
             controls
             preload="metadata"
@@ -162,14 +163,14 @@ function AllumLaneShowcase({ project }: { project: CaseStudy }) {
             controlsList="nodownload noremoteplayback"
             disablePictureInPicture
             poster="/images/case-studies/allum-lane/3d-03.webp"
-            className="aspect-video w-full object-contain"
+            className="aspect-video w-full object-contain lg:absolute lg:inset-0 lg:h-full lg:aspect-auto"
             aria-label="WEDRAWPLANS Allum Lane approved house extension 3D design animation"
           >
             <source src="/videos/allum-lane-architectural-animation.mp4" type="video/mp4" />
             Your browser does not support video playback.
           </video>
         </div>
-        <div className="flex flex-wrap items-center justify-between gap-2 px-4 py-3 sm:px-6">
+        <div className="flex shrink-0 flex-wrap items-center justify-between gap-2 px-4 py-2.5 sm:px-6">
           <span className="text-[11px] font-semibold text-[#5b787b]">Original WEDRAWPLANS architectural presentation · 1 min 20 sec</span>
           <span className="text-[11px] text-[#71888a]">Concept design illustration, not built-project footage</span>
         </div>
@@ -191,7 +192,7 @@ function AllumLaneShowcase({ project }: { project: CaseStudy }) {
               </div>
             </div>
             <figure className="mx-3 mb-3 overflow-hidden rounded-[13px] border border-[#dce6e2] bg-[#eef2ef] sm:mx-5">
-              <div className="relative aspect-[16/9] w-full">
+              <div className="relative aspect-[4/3] w-full">
                 <Image key={featured.src} src={featured.src} alt={featured.alt} fill sizes="(max-width: 1024px) 96vw, 62vw" className="pointer-events-none object-contain" draggable={false} priority={false} />
               </div>
               <figcaption className="border-t border-[#e1e9e4] bg-white px-4 py-3 text-[12px] font-semibold leading-5 text-[#41696e]">{featured.caption.replace(/^3D design \d+\s*[—–-]\s*/, "")}</figcaption>
@@ -199,7 +200,7 @@ function AllumLaneShowcase({ project }: { project: CaseStudy }) {
             <div className="flex gap-2.5 overflow-x-auto px-3 pb-4 pt-1 sm:px-5" aria-label="Choose architectural 3D visual">
               {designs.map((image, i) => (
                 <button key={image.src} type="button" onClick={() => setDesignIndex(i)} aria-label={"View 3D design " + (i + 1)} aria-current={i === designIndex ? "true" : undefined} className={"w-[112px] shrink-0 rounded-lg border p-1.5 transition sm:w-[130px] " + (i === designIndex ? "border-[#399699] bg-[#e9f5f1]" : "border-[#dce7e2] bg-white hover:border-[#9cc6bf]")}>
-                  <div className="relative aspect-[16/9] overflow-hidden rounded-md bg-[#eff3f1]">
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-md bg-[#eff3f1]">
                     <Image src={image.src} alt="" fill sizes="130px" className="pointer-events-none object-contain" draggable={false} />
                   </div>
                   <span className="mt-1.5 block text-[10px] font-bold text-[#426970]">3D View {i + 1}</span>
@@ -229,7 +230,7 @@ function AllumLaneShowcase({ project }: { project: CaseStudy }) {
               </div>
             </div>
             <figure className="mx-3 mb-4 rounded-[12px] border border-[#e0e8e3] bg-[#f7f8f6] p-2 sm:mx-5 sm:p-4">
-              <div className="relative mx-auto h-[280px] w-full sm:h-[410px] lg:h-[470px]">
+              <div className="relative mx-auto h-[320px] w-full sm:h-[440px] lg:h-[485px]">
                 <Image key={selectedDrawing.src} src={selectedDrawing.src} alt={selectedDrawing.alt} fill sizes="(max-width: 1024px) 96vw, 62vw" className="pointer-events-none object-contain" draggable={false} />
               </div>
             </figure>
@@ -237,9 +238,9 @@ function AllumLaneShowcase({ project }: { project: CaseStudy }) {
               <p className="mb-3 text-[11px] font-semibold text-[#476a6e]">Explore the architectural drawing package:</p>
               <div className="flex gap-2.5 overflow-x-auto pb-2" aria-label="Select architectural drawing">
                 {drawings.map((image, i) => (
-                  <button key={image.src} type="button" onClick={() => setDrawingIndex(i)} aria-label={"View drawing " + (i + 1) + ": " + image.alt} aria-current={i === drawingIndex ? "true" : undefined} className={"w-[105px] shrink-0 rounded-xl border p-1.5 transition sm:w-[120px] " + (i === drawingIndex ? "border-[#379b9a] bg-[#eaf5f0]" : "border-[#dce8e2] bg-white hover:border-[#a1c8bc]")}>
-                    <div className="relative h-[78px] rounded-md bg-[#f5f7f4] sm:h-[92px]">
-                      <Image src={image.src} alt="" fill sizes="120px" className="pointer-events-none object-contain" draggable={false} />
+                  <button key={image.src} type="button" onClick={() => setDrawingIndex(i)} aria-label={"View drawing " + (i + 1) + ": " + image.alt} aria-current={i === drawingIndex ? "true" : undefined} className={"w-[102px] shrink-0 rounded-xl border p-1.5 transition sm:w-[117px] " + (i === drawingIndex ? "border-[#379b9a] bg-[#eaf5f0]" : "border-[#dce8e2] bg-white hover:border-[#a1c8bc]")}>
+                    <div className="relative h-[82px] rounded-md bg-[#f5f7f4] sm:h-[92px]">
+                      <Image src={image.src} alt="" fill sizes="117px" className="pointer-events-none object-contain" draggable={false} />
                     </div>
                     <span className="mt-2 block text-center text-[10px] font-bold text-[#3d666b]">Drawing {i + 1}</span>
                   </button>
@@ -269,6 +270,19 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
   const isHub = context === "hub";
   const isReddings = !isHub && project.slug === "the-reddings-mill-hill-extension-basement-loft";
   const isAllum = !isHub && project.slug === "allum-lane-elstree-major-house-extension";
+  const quotePanelRef = useRef<HTMLDivElement>(null);
+  const [quoteHeight, setQuoteHeight] = useState<number | undefined>(undefined);
+
+  useEffect(() => {
+    if (!isAllum || !quotePanelRef.current) return;
+    const panel = quotePanelRef.current;
+    const measure = () => setQuoteHeight(Math.ceil(panel.getBoundingClientRect().height));
+    measure();
+    if (typeof ResizeObserver === "undefined") return;
+    const observer = new ResizeObserver(measure);
+    observer.observe(panel);
+    return () => observer.disconnect();
+  }, [isAllum]);
   return (
     <section id="project-drawings" aria-labelledby="project-gallery-heading" className="border-y border-[#e3e9e6] bg-[#f4f8f7]">
       <div className="mx-auto max-w-7xl px-5 py-8 pb-24 sm:px-8 sm:py-11 lg:pb-12">
@@ -288,7 +302,7 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
         </div>
         <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1.3fr)_minmax(330px,.7fr)] lg:gap-7">
           <div className="min-w-0">
-            {isReddings ? <RealProjectShowcase project={project} /> : isAllum ? <AllumLaneShowcase project={project} /> : <ProjectMediaSlider projects={projects} mode={context} />}
+            {isReddings ? <RealProjectShowcase project={project} /> : isAllum ? <AllumLaneShowcase project={project} quoteHeight={quoteHeight} /> : <ProjectMediaSlider projects={projects} mode={context} />}
             {!isHub && project.projectVideoUrl && project.slug !== "the-reddings-mill-hill-extension-basement-loft" ? (
               <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-[15px] border border-[#dce7e4] bg-white px-5 py-4">
                 <div>
@@ -305,7 +319,7 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
               <div className="mt-4 rounded-[15px] border border-dashed border-[#b7ceca] bg-white px-5 py-5 text-[13px] text-[#687d7e]">Construction-progress photographs can be added to this project's gallery.</div>
             ) : null}
           </div>
-          <div id="case-study-quote" className="scroll-mt-24 lg:sticky lg:top-5 lg:self-start"><ProjectQuickQuotePanel source={isHub ? "case-studies-hub" : "case-study-gallery"} projectSlug={isHub ? "" : project.slug} projectTitle={isHub ? "" : project.shortTitle} suggestedService={isHub ? "" : serviceFor(project)} /></div>
+          <div id="case-study-quote" ref={quotePanelRef} className="scroll-mt-24 lg:sticky lg:top-5 lg:self-start"><ProjectQuickQuotePanel source={isHub ? "case-studies-hub" : "case-study-gallery"} projectSlug={isHub ? "" : project.slug} projectTitle={isHub ? "" : project.shortTitle} suggestedService={isHub ? "" : serviceFor(project)} /></div>
         </div>
       </div>
       {(isReddings || isAllum) ? <a href="#case-study-quote" className="fixed inset-x-0 bottom-0 z-40 flex min-h-[60px] items-center justify-center border-t border-[#bcd5d0] bg-[#224b4e] px-5 py-3 text-[14px] font-bold text-white shadow-[0_-10px_30px_rgba(0,0,0,.13)] lg:hidden">Get your fixed-fee drawing quote →</a> : null}
