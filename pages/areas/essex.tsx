@@ -1,4 +1,5 @@
 import React from "react";
+import AllumLaneSiteFeature from "../../components/AllumLaneSiteFeature";
 import Head from "next/head";
 import Image from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
@@ -348,6 +349,8 @@ export default function EssexAreaPage() {
               </div>
             </div>
           </section>
+
+          <AllumLaneSiteFeature placement="regional" title="WEDRAWPLANS architectural design example from Elstree, Hertfordshire" intro="View the Allum Lane approved major house-extension drawings, seven 3D visuals and an original animation. This Hertsmere project is an example of our wider M25-area experience, not an Essex planning approval." />
 
           <ServiceInternalLinks boroughName="Essex" />
 
