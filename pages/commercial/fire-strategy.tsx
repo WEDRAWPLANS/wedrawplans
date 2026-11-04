@@ -1,3 +1,4 @@
+import PortfolioJourneyLinks from "../../components/PortfolioJourneyLinks";
 import Head from "next/head";
 import Link from "next/link";
 import { FormEvent, useMemo, useState } from "react";
@@ -845,6 +846,7 @@ export default function CommercialFireStrategyPage() {
             </div>
           </div>
         </section>
+        <PortfolioJourneyLinks serviceLabel="commercial fire strategy" />
       </main>
     </>
   );

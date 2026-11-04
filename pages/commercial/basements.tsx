@@ -1,3 +1,4 @@
+import PortfolioJourneyLinks from "../../components/PortfolioJourneyLinks";
 import Head from "next/head";
 import Link from "next/link";
 import { FormEvent, useMemo, useState } from "react";
@@ -849,6 +850,7 @@ export default function CommercialBasementsPage() {
             </div>
           </div>
         </section>
+        <PortfolioJourneyLinks serviceLabel="commercial basement" />
       </main>
     </>
   );

@@ -1,3 +1,4 @@
+import PortfolioJourneyLinks from "../components/PortfolioJourneyLinks";
 import React from "react";
 import Head from "next/head";
 import Image from "next/image";
@@ -291,6 +292,7 @@ export default function GardenRoomOutbuildingPlansPage() {
             </div>
           </div>
         </section>
+        <PortfolioJourneyLinks serviceLabel="garden room or outbuilding" />
       </main>
     </>
   );

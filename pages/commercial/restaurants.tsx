@@ -1,3 +1,4 @@
+import PortfolioJourneyLinks from "../../components/PortfolioJourneyLinks";
 import Head from "next/head";
 import Link from "next/link";
 import { FormEvent, useMemo, useState } from "react";
@@ -771,6 +772,7 @@ export default function CommercialRestaurantsPage() {
             </div>
           </div>
         </section>
+        <PortfolioJourneyLinks serviceLabel="restaurant or café" />
       </main>
     </>
   );
