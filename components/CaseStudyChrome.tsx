@@ -17,9 +17,9 @@ export function CaseStudyHeader() {
           <div className="mt-2 text-[11px] uppercase tracking-[0.18em] text-slate-600">Architectural Drawing Consultants</div>
           <nav aria-label="Main navigation" className="mt-4 flex flex-wrap items-center justify-center gap-x-7 gap-y-2 text-[13px] text-slate-900">
             <Link href="/" className="hover:text-black">Home</Link>
-            <Link href="/extensions" className="hover:text-black">Extension Drawings</Link>
-            <Link href="/loft-conversion" className="hover:text-black">Loft Drawings</Link>
-            <Link href="/new-build" className="hover:text-black">New Build Drawings</Link>
+            <Link href="/extension-plans" className="hover:text-black">Extension Drawings</Link>
+            <Link href="/loft-conversion-plans" className="hover:text-black">Loft Drawings</Link>
+            <Link href="/new-build-plans" className="hover:text-black">New Build Drawings</Link>
             <Link href="/building-regulation-drawings" className="hover:text-black">Building Regulations</Link>
             <Link href="/areas" className="hover:text-black">Areas We Cover</Link>
           </nav>
@@ -100,8 +100,8 @@ export function CaseStudyFooter() {
               <div>
                 <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/85">Services</div>
                 <div className="mt-2 flex flex-col gap-1 text-[12px] text-white/65">
-                  <Link href="/extensions" className="hover:text-white">Extension Drawings</Link>
-                  <Link href="/loft-conversion" className="hover:text-white">Loft Drawings</Link>
+                  <Link href="/extension-plans" className="hover:text-white">Extension Drawings</Link>
+                  <Link href="/loft-conversion-plans" className="hover:text-white">Loft Drawings</Link>
                   <Link href="/building-regulation-drawings" className="hover:text-white">Building Regulations</Link>
                 </div>
               </div>
@@ -114,7 +114,7 @@ export function CaseStudyFooter() {
               <Link href="/" className="hover:text-white">Home</Link>
               <Link href="/areas" className="hover:text-white">Areas We Cover</Link>
               <Link href="/case-studies" className="hover:text-white">Planning Approvals &amp; Projects</Link>
-              <Link href="/new-build" className="hover:text-white">New Build</Link>
+              <Link href="/new-build-plans" className="hover:text-white">New Build</Link>
               <Link href="/commercial" className="hover:text-white">Commercial</Link>
             </nav>
             <div className="mt-6 text-[11px] text-white/45">Copyright {new Date().getFullYear()} WEDRAWPLANS. All rights reserved.</div>
