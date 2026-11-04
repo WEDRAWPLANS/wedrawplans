@@ -20,7 +20,9 @@ function Detail({ label, value }: { label: string; value: string }) {
 export default function CaseStudyPage({ item }: { item: CaseStudy }) {
   const isReddings = item.slug === "the-reddings-mill-hill-extension-basement-loft";
   const isAllum = item.slug === "allum-lane-elstree-major-house-extension";
-  const isFlagship = isReddings || isAllum;
+  const isSistova = item.slug === "sistova-road-wandsworth-extension-basement";
+  const isCromwell = item.slug === "cromwell-road-hounslow-rear-extension";
+  const isFlagship = isReddings || isAllum || isSistova || isCromwell;
   const useOriginalDrawingGallery = item.slug === "sistova-road-wandsworth-extension-basement" || item.slug === "cromwell-road-hounslow-rear-extension" || isFlagship;
   const isProduction = process.env.VERCEL_ENV === "production";
   const hasApprovedVisual = [item.heroImage, item.secondaryImage].some(src => Boolean(src) && (src.startsWith("/images/case-studies/") || src.startsWith("/images/hyde-")));
