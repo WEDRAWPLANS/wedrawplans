@@ -64,7 +64,7 @@ export const caseStudies: CaseStudy[] = [
       { src: "/images/case-studies/sistova-road-wandsworth-extension-basement/05-existing-floor-roof-plans.webp", caption: "Existing floor and roof plans", alt: "WEDRAWPLANS existing floor plans and roof plan for Sistova Road" },
       { src: "/images/case-studies/sistova-road-wandsworth-extension-basement/06-existing-elevations-section.webp", caption: "Existing elevations and section", alt: "WEDRAWPLANS existing building elevations and sectional drawing for Sistova Road" },
     ],
-    heroImage: "/images/case-studies/sistova-approved-project.webp",
+    heroImage: "/images/case-studies/sistova-road-wandsworth-extension-basement/01-before-after-3d-design-views.webp",
     secondaryImage: "",
     review: "This approved Wandsworth project is also supported by genuine client feedback published following the WEDRAWPLANS service.",
     featured: true
@@ -251,7 +251,7 @@ export const caseStudies: CaseStudy[] = [
       { src: "/images/case-studies/cromwell-road-hounslow-rear-extension/04-existing-proposed-sections.webp", caption: "Existing and proposed sections", alt: "WEDRAWPLANS side-by-side existing and proposed architectural building sections at Cromwell Road" },
       { src: "/images/case-studies/cromwell-road-hounslow-rear-extension/05-existing-elevations-section.webp", caption: "Existing elevations and section", alt: "WEDRAWPLANS existing elevations and building section for the Hounslow property" },
     ],
-    heroImage: "",
+    heroImage: "/images/case-studies/cromwell-road-hounslow-rear-extension/01-before-after-3d-design-views.webp",
     secondaryImage: ""
   },
   {
