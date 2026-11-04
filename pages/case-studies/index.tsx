@@ -12,20 +12,20 @@ function ProjectVisual({ item, featured = false }: { item: CaseStudy; featured?:
   const hasProjectDrawing = Boolean(item.heroImage) && (item.heroImage.startsWith("/images/case-studies/") || item.heroImage.startsWith("/images/hyde-"));
   if (hasProjectDrawing) {
     return (
-      <div className={"relative overflow-hidden bg-[#f5f6f4] " + (featured ? "min-h-[280px] sm:min-h-[380px]" : "h-44")}>
+      <div className={"relative overflow-hidden bg-[#f5f6f4] " + (featured ? "min-h-[280px] sm:min-h-[380px]" : "aspect-[3/2] w-full")}>
         <Image
           src={item.heroImage}
           alt={"WEDRAWPLANS architectural drawing or design illustration for " + item.shortTitle}
           fill
           priority={featured}
           sizes={featured ? "(max-width: 900px) 100vw, 55vw" : "(max-width: 768px) 100vw, 33vw"}
-          className={item.slug === "the-reddings-mill-hill-extension-basement-loft" ? "object-cover" : "object-contain p-3 sm:p-5"}
+          className={item.slug === "the-reddings-mill-hill-extension-basement-loft" ? "object-cover" : "object-contain"}
         />
       </div>
     );
   }
   return (
-    <div className={"flex flex-col items-center justify-center border-b border-[#e5e9e7] bg-[#f7faf8] p-6 text-center " + (featured ? "min-h-[280px] sm:min-h-[380px]" : "h-44")}>
+    <div className={"flex flex-col items-center justify-center border-b border-[#e5e9e7] bg-[#f7faf8] p-6 text-center " + (featured ? "min-h-[280px] sm:min-h-[380px]" : "aspect-[3/2] w-full")}>
       <svg viewBox="0 0 96 70" width="80" height="58" role="img" aria-label="Architectural drawing sheet illustration">
         <rect x="11" y="7" width="74" height="56" fill="#ffffff" stroke="#bed2ce" strokeWidth="2"/>
         <path d="M18 53H78M18 57H78M31 17H65V49H31zM41 30h17v19H41z" fill="none" stroke="#a1bab8" strokeWidth="1.5"/>
