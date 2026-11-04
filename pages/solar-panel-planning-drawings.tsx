@@ -1,3 +1,4 @@
+import PortfolioJourneyLinks from "../components/PortfolioJourneyLinks";
 import React from "react";
 import Head from "next/head";
 import Link from "next/link";
@@ -274,6 +275,7 @@ export default function SolarPanelPlanningDrawingsPage() {
             </div>
           </div>
         </section>
+        <PortfolioJourneyLinks serviceLabel="solar PV planning" />
       </main>
     </>
   );
