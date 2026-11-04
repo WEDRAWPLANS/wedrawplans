@@ -6,6 +6,11 @@ const nextConfig = {
       { source: "/barnet-hidden", destination: "/areas/barnet", permanent: true },
 
       // Service page redirects
+      // Redirect older case-study navigation URLs to the canonical service pages.
+      { source: "/extensions", destination: "/extension-plans", permanent: true },
+      { source: "/loft-conversion", destination: "/loft-conversion-plans", permanent: true },
+      { source: "/new-build", destination: "/new-build-plans", permanent: true },
+
       { source: "/loft-plans", destination: "/loft-conversion-plans", permanent: true },
       { source: "/building-regulations", destination: "/building-regulation-drawings", permanent: true },
       { source: "/building-control-drawings", destination: "/building-regulation-drawings", permanent: true },
