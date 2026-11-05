@@ -490,7 +490,7 @@ export default function BexleyAreaPage() {
               <div className="mt-5 grid gap-4 text-[13px] md:grid-cols-3">
                 <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
                   <h3 className="text-[13px] font-semibold text-slate-900">Planning drawings</h3>
-                  <div className="mt-1 text-[13px] font-semibold text-slate-900">from £750 + VAT</div>
+                  <div className="mt-1 text-[13px] font-semibold text-slate-900">from £750</div>
                   <p className="mt-2 text-[12px] text-slate-600">
                     Existing and proposed plans and elevations for extensions and lofts to houses in Bexleyheath, Welling, Sidcup, Crayford and nearby streets.
                   </p>
@@ -498,7 +498,7 @@ export default function BexleyAreaPage() {
 
                 <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
                   <h3 className="text-[13px] font-semibold text-slate-900">Measured surveys</h3>
-                  <div className="mt-1 text-[13px] font-semibold text-slate-900">from £150 + VAT</div>
+                  <div className="mt-1 text-[13px] font-semibold text-slate-900">Fixed fee on request</div>
                   <p className="mt-2 text-[12px] text-slate-600">
                     On site measured surveys where required so existing drawings accurately reflect your property before design and engineering.
                   </p>
@@ -506,7 +506,7 @@ export default function BexleyAreaPage() {
 
                 <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
                   <h3 className="text-[13px] font-semibold text-slate-900">Building regulation packs</h3>
-                  <div className="mt-1 text-[13px] font-semibold text-slate-900">from £950 + VAT</div>
+                  <div className="mt-1 text-[13px] font-semibold text-slate-900">Fixed fee on request</div>
                   <p className="mt-2 text-[12px] text-slate-600">
                     Detailed technical drawings, sections and notes coordinated with structural engineers for building control and contractors.
                   </p>

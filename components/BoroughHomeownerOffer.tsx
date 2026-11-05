@@ -97,7 +97,7 @@ const boroughDetails: Record<string, {
     "areas": "Acton, Hanwell, Southall and Northfields",
     "focus": "rear kitchen extensions, roof conversions and side-return infills",
     "question": "How much does it cost to have Ealing house extension plans drawn?",
-    "answer": "For suitable straightforward schemes, planning drawing packages start from £750 + VAT. We can separately quote a measured survey, council submission and Building Control construction details depending on the project.",
+    "answer": "For suitable straightforward schemes, planning drawing packages start from £750. We can separately quote a measured survey, council submission and Building Control construction details depending on the project.",
     "watch": "In terraces and older houses, consider party walls, existing extensions and any conservation restrictions when planning the design.",
     "service": "/extension-plans",
     "proof": "sistova-road-wandsworth-extension-basement"
@@ -381,7 +381,7 @@ export default function BoroughHomeownerOffer({ slug }: { slug: string }) {
           </div>
           <div className="rounded-xl border border-[#cdded8] bg-[#eaf4f0] p-5 sm:p-6">
             <p className="text-[11px] font-bold uppercase tracking-wider text-[#276d72]">Straightforward extension & loft projects</p>
-            <p className="mt-3 text-[27px] font-extrabold">Planning drawings from £750 + VAT</p>
+            <p className="mt-3 text-[27px] font-extrabold">Planning drawings from £750</p>
             <p className="mt-2 text-[12px] leading-6 text-[#4a6264]">For qualifying straightforward projects. The fixed quote confirms drawings and revisions. Surveys, council application fees, submission services, structural calculations and Building Regulations drawings are separately scoped unless included in your written quotation.</p>
             <Link href="/get-drawings-quote" className="mt-5 inline-flex rounded-full bg-[#246f7d] px-5 py-3 text-[13px] font-bold text-white transition hover:bg-[#175363]">Get your fixed-fee quote</Link>
           </div>

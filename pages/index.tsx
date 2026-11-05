@@ -1645,12 +1645,12 @@ export default function IndexPage() {
             <div className="mt-5 grid gap-4 text-[13px] md:grid-cols-2 lg:grid-cols-3">
               <PriceCard
                 title="House extension planning drawings"
-                price="from £750 + VAT"
+                price="from £750"
                 body="Existing and proposed floor plans and elevations set out for planning or lawful development applications."
               />
               <PriceCard
                 title="Loft conversion planning drawings"
-                price="from £750 + VAT"
+                price="from £750"
                 body="Plans, elevations and key sections tailored to the roof form and staircase position."
               />
               <PriceCard

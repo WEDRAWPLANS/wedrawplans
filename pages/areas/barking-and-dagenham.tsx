@@ -421,7 +421,7 @@ export default function BarkingAndDagenhamAreaPage() {
                     Planning drawings
                   </h3>
                   <p className="mt-1 text-[13px] font-semibold text-slate-900">
-                    from £750 + VAT
+                    from £750
                   </p>
                   <p className="mt-2 text-[12px] text-slate-600">
                     Existing and proposed plans and elevations ready for
@@ -434,7 +434,7 @@ export default function BarkingAndDagenhamAreaPage() {
                     Measured surveys
                   </h3>
                   <p className="mt-1 text-[13px] font-semibold text-slate-900">
-                    from £150 + VAT
+                    Fixed fee on request
                   </p>
                   <p className="mt-2 text-[12px] text-slate-600">
                     On site measured surveys so existing drawings reflect the
@@ -447,7 +447,7 @@ export default function BarkingAndDagenhamAreaPage() {
                     Building regulation packs
                   </h3>
                   <p className="mt-1 text-[13px] font-semibold text-slate-900">
-                    from £950 + VAT
+                    Fixed fee on request
                   </p>
                   <p className="mt-2 text-[12px] text-slate-600">
                     Technical sections, details and notes coordinated with
