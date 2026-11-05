@@ -1,3 +1,4 @@
+import BoroughHeroPrice from "../../components/BoroughHeroPrice";
 import BoroughHomeownerOffer from "../../components/BoroughHomeownerOffer";
 import React, { useMemo } from "react";
 import Head from "next/head";
@@ -260,6 +261,7 @@ export default function BromleyAreaPage() {
                     <h1 className="mt-2 text-[22px] font-semibold uppercase leading-snug tracking-[0.14em] text-slate-900 sm:text-[27px]">
                       Architectural Drawings in Bromley for Extensions, Lofts and Building Regs
                     </h1>
+                  <BoroughHeroPrice slug="bromley" />
 
                     <p className="mt-3 text-[13px] font-semibold tracking-[0.08em] text-slate-800">
                       Fixed fees • Initial survey within 48 hours • Planning and Building Regulation drawings

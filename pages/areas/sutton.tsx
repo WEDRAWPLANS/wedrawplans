@@ -1,3 +1,4 @@
+import BoroughHeroPrice from "../../components/BoroughHeroPrice";
 import BoroughHomeownerOffer from "../../components/BoroughHomeownerOffer";
 import React from "react";
 import Head from "next/head";
@@ -129,6 +130,7 @@ export default function SuttonAreaPage() {
                 <h1 className="mt-2 text-[22px] sm:text-[26px] font-semibold uppercase leading-snug tracking-[0.14em]">
                   Plans for extensions, lofts and new builds in Sutton
                 </h1>
+                  <BoroughHeroPrice slug="sutton" />
 
                 <p className="mt-3 text-[13px] text-slate-700">
                   WEDRAWPLANS prepare planning and technical drawings for house extensions, loft conversions, new builds

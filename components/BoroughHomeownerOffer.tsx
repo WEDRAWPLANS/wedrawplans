@@ -2,7 +2,7 @@ import Link from "next/link";
 import { caseStudyBySlug } from "../data/caseStudies";
 
 /** Original, homeowner-facing borough guidance. Local evidence is explicitly identified. */
-const boroughDetails: Record<string, {
+export const boroughDetails: Record<string, {
   name: string;
   areas: string;
   focus: string;

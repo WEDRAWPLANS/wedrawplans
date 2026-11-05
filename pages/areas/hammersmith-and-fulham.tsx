@@ -1,3 +1,4 @@
+import BoroughHeroPrice from "../../components/BoroughHeroPrice";
 import BoroughHomeownerOffer from "../../components/BoroughHomeownerOffer";
 import React from "react";
 import Head from "next/head";
@@ -192,6 +193,7 @@ export default function HammersmithAndFulhamAreaPage() {
                 <h1 className="mt-2 text-[22px] sm:text-[26px] font-semibold uppercase leading-snug tracking-[0.14em]">
                   Plans for extensions, lofts and conversions in Hammersmith and Fulham
                 </h1>
+                  <BoroughHeroPrice slug="hammersmith-and-fulham" />
 
                 <p className="mt-3 text-[13px] text-slate-700">
                   WEDRAWPLANS prepare planning and building regulation drawing packages across the borough,

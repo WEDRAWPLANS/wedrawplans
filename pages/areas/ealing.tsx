@@ -1,3 +1,4 @@
+import BoroughHeroPrice from "../../components/BoroughHeroPrice";
 import BoroughHomeownerOffer from "../../components/BoroughHomeownerOffer";
 import Head from "next/head";
 import React, { useMemo, useRef, useState } from "react";
@@ -495,6 +496,7 @@ export default function EalingAreaPage() {
                 <h1 className="mt-2 text-[22px] sm:text-[26px] font-semibold uppercase leading-snug tracking-[0.14em]">
                   Plans for extensions, lofts and new builds in Ealing
                 </h1>
+                  <BoroughHeroPrice slug="ealing" />
 
                 <p className="mt-2 text-[12px] text-slate-700">
                   Get a fixed fee quote today and book an initial survey within 48 hours

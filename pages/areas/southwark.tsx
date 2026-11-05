@@ -1,3 +1,4 @@
+import BoroughHeroPrice from "../../components/BoroughHeroPrice";
 import BoroughHomeownerOffer from "../../components/BoroughHomeownerOffer";
 import React from "react";
 import Head from "next/head";
@@ -131,6 +132,7 @@ export default function SouthwarkAreaPage() {
                 <h1 className="mt-2 text-[22px] sm:text-[26px] font-semibold uppercase leading-snug tracking-[0.14em]">
                   Plans for extensions, lofts and new builds in Southwark
                 </h1>
+                  <BoroughHeroPrice slug="southwark" />
 
                 <p className="mt-2 text-[12px] font-medium text-slate-700">
                   Local London designers • Fixed fee guaranteed • Council-ready drawings

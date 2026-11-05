@@ -1,3 +1,4 @@
+import BoroughHeroPrice from "../../components/BoroughHeroPrice";
 import BoroughHomeownerOffer from "../../components/BoroughHomeownerOffer";
 import React from "react";
 import Head from "next/head";
@@ -149,6 +150,7 @@ export default function CamdenAreaPage() {
                 <h1 className="mt-2 text-[22px] sm:text-[26px] font-semibold uppercase leading-snug tracking-[0.14em]">
                   Plans for extensions, lofts and conversions in Camden
                 </h1>
+                  <BoroughHeroPrice slug="camden" />
 
                 <p className="mt-2 text-[12px] font-semibold text-slate-800">
                   Local London designers • Fixed fee guaranteed • Council-ready drawings
