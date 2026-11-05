@@ -1,3 +1,4 @@
+import BoroughHomeownerOffer from "../../components/BoroughHomeownerOffer";
 import React from "react";
 import Head from "next/head";
 import Image from "next/image";
@@ -578,6 +579,7 @@ export default function RedbridgeAreaPage() {
               </div>
             </div>
           </section>
+        <BoroughHomeownerOffer slug="redbridge" />
         </main>
       </div>
     </>

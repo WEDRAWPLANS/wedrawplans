@@ -1,3 +1,4 @@
+import BoroughHomeownerOffer from "../../components/BoroughHomeownerOffer";
 import Head from "next/head";
 import React, { useMemo, useRef, useState } from "react";
 import Image from "next/image";
@@ -940,6 +941,7 @@ export default function EalingAreaPage() {
           </section>
 
           <PlanningAssistant boroughName="Ealing" onGetQuote={scrollToForm} />
+        <BoroughHomeownerOffer slug="ealing" />
         </main>
       </div>
     </>

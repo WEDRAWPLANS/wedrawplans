@@ -1,3 +1,4 @@
+import BoroughHomeownerOffer from "../../components/BoroughHomeownerOffer";
 import Head from "next/head";
 import React, { useMemo, useRef, useState } from "react";
 import Image from "next/image";
@@ -961,6 +962,7 @@ export default function KingstonAreaPage() {
           </section>
 
           <PlanningAssistant boroughName="Kingston upon Thames" onGetQuote={scrollToForm} />
+        <BoroughHomeownerOffer slug="kingston" />
         </main>
       </div>
     </>

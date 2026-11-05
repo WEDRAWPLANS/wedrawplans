@@ -1,3 +1,4 @@
+import BoroughHomeownerOffer from "../../components/BoroughHomeownerOffer";
 import React, { useMemo } from "react";
 import Head from "next/head";
 import Image from "next/image";
@@ -1100,6 +1101,7 @@ export default function MertonAreaPage() {
           </section>
 
           <SmartPlanningAssistant boroughName="Merton" />
+        <BoroughHomeownerOffer slug="merton" />
         </main>
 
         <footer className="border-t border-[#2a3050] bg-[#20243b]">

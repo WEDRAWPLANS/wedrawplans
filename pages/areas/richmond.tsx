@@ -1,3 +1,4 @@
+import BoroughHomeownerOffer from "../../components/BoroughHomeownerOffer";
 import React, { useMemo } from "react";
 import Head from "next/head";
 import Image from "next/image";
@@ -1124,6 +1125,7 @@ export default function RichmondAreaPage() {
           </section>
 
           <SmartPlanningAssistant boroughName="Richmond upon Thames" />
+        <BoroughHomeownerOffer slug="richmond" />
         </main>
 
         <footer className="border-t border-[#2a3050] bg-[#20243b]">

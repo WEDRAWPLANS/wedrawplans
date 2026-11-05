@@ -1,3 +1,4 @@
+import BoroughHomeownerOffer from "../../components/BoroughHomeownerOffer";
 import React, { useMemo } from "react";
 import Head from "next/head";
 import Image from "next/image";
@@ -1298,6 +1299,7 @@ export default function BarnetAreaPage() {
           </section>
 
           <SmartPlanningAssistant boroughName="Barnet" />
+        <BoroughHomeownerOffer slug="barnet" />
         </main>
 
         <footer className="border-t border-[#2a3050] bg-[#20243b]">

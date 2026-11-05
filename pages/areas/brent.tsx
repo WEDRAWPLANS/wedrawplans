@@ -1,3 +1,4 @@
+import BoroughHomeownerOffer from "../../components/BoroughHomeownerOffer";
 import React from "react";
 import Head from "next/head";
 import Image from "next/image";
@@ -556,6 +557,7 @@ export default function BrentAreaPage() {
               </div>
             </div>
           </section>
+        <BoroughHomeownerOffer slug="brent" />
         </main>
       </div>
     </>

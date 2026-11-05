@@ -1,3 +1,4 @@
+import BoroughHomeownerOffer from "../../components/BoroughHomeownerOffer";
 import React from "react";
 import Head from "next/head";
 import Image from "next/image";
@@ -583,6 +584,7 @@ export default function BexleyAreaPage() {
               <p className="mt-5 text-[13px] font-medium text-slate-800">Prefer to speak. Call {PHONE_DISPLAY}</p>
             </div>
           </section>
+        <BoroughHomeownerOffer slug="bexley" />
         </main>
 
         <footer className="border-t border-[#2a3050] bg-[#20243b]">
