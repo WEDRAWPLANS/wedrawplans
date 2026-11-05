@@ -784,10 +784,10 @@ export default function IndexPage() {
   return (
     <>
       <Head>
-        <title>House Extension & Planning Drawings in London | WEDRAWPLANS</title>
+        <title>WEDRAWPLANS | Planning Drawings &amp; House Extension Plans in London</title>
         <meta
           name="description"
-          content="House extension, loft conversion, planning and building regulation drawings across London. Get a fixed quote today from WEDRAWPLANS."
+          content="WEDRAWPLANS LTD provides planning drawings, house extension plans, loft conversion and Building Regulations drawings across London. Get a fixed-fee quote."
         />
         <meta
           name="keywords"
@@ -796,10 +796,10 @@ export default function IndexPage() {
         <link rel="canonical" href="https://www.wedrawplans.co.uk/" />
         <meta name="robots" content="index,follow,max-image-preview:large" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="House Extension & Planning Drawings in London | WEDRAWPLANS" />
+        <meta property="og:title" content="WEDRAWPLANS | Planning Drawings &amp; House Extension Plans in London" />
         <meta
           property="og:description"
-          content="House extension, loft conversion, planning and building regulation drawings across London. Fixed-fee architectural drawing services from WEDRAWPLANS."
+          content="WEDRAWPLANS provides planning and Building Regulations drawings for house extensions, loft conversions and new builds across London. Request your fixed-fee quote."
         />
         <meta property="og:url" content="https://www.wedrawplans.co.uk/" />
         <script
