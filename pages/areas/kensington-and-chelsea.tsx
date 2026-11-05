@@ -1,3 +1,5 @@
+import BoroughHeroPrice from "../../components/BoroughHeroPrice";
+import BoroughHomeownerOffer from "../../components/BoroughHomeownerOffer";
 import React from "react";
 import Head from "next/head";
 import Image from "next/image";
@@ -135,6 +137,7 @@ export default function KensingtonAndChelseaAreaPage() {
                 <h1 className="mt-2 text-[22px] sm:text-[26px] font-semibold uppercase leading-snug tracking-[0.14em]">
                   Plans for extensions, lofts and new builds in Kensington and Chelsea
                 </h1>
+                  <BoroughHeroPrice slug="kensington-and-chelsea" />
 
                 <p className="mt-3 text-[13px] text-slate-700">
                   WEDRAWPLANS prepare planning and technical drawings for house extensions,
@@ -562,6 +565,7 @@ export default function KensingtonAndChelseaAreaPage() {
               </div>
             </div>
           </section>
+        <BoroughHomeownerOffer slug="kensington-and-chelsea" />
         </main>
       </div>
     </>

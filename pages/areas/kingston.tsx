@@ -1,3 +1,5 @@
+import BoroughHeroPrice from "../../components/BoroughHeroPrice";
+import BoroughHomeownerOffer from "../../components/BoroughHomeownerOffer";
 import Head from "next/head";
 import React, { useMemo, useRef, useState } from "react";
 import Image from "next/image";
@@ -496,6 +498,7 @@ export default function KingstonAreaPage() {
                 <h1 className="mt-2 text-[22px] sm:text-[26px] font-semibold uppercase leading-snug tracking-[0.14em]">
                   Plans for extensions, lofts and new builds in Kingston
                 </h1>
+                  <BoroughHeroPrice slug="kingston" />
 
                 <p className="mt-2 text-[12px] text-slate-700">
                   Get a fixed fee quote today and book an initial survey within 48 hours
@@ -961,6 +964,7 @@ export default function KingstonAreaPage() {
           </section>
 
           <PlanningAssistant boroughName="Kingston upon Thames" onGetQuote={scrollToForm} />
+        <BoroughHomeownerOffer slug="kingston" />
         </main>
       </div>
     </>

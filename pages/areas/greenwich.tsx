@@ -1,3 +1,5 @@
+import BoroughHeroPrice from "../../components/BoroughHeroPrice";
+import BoroughHomeownerOffer from "../../components/BoroughHomeownerOffer";
 import React from "react";
 import Head from "next/head";
 import Image from "next/image";
@@ -156,6 +158,7 @@ export default function GreenwichAreaPage() {
                 <h1 className="mt-2 text-[22px] sm:text-[26px] font-semibold uppercase leading-snug tracking-[0.14em]">
                   Plans for extensions, lofts and refurbishments in Greenwich
                 </h1>
+                  <BoroughHeroPrice slug="greenwich" />
 
                 <p className="mt-2 text-[12px] font-semibold text-slate-800">
                   Local London designers • Fixed fee guaranteed • Council-ready
@@ -548,6 +551,7 @@ export default function GreenwichAreaPage() {
               </div>
             </div>
           </section>
+        <BoroughHomeownerOffer slug="greenwich" />
         </main>
       </div>
     </>

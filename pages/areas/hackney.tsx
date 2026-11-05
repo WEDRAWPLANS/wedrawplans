@@ -1,3 +1,5 @@
+import BoroughHeroPrice from "../../components/BoroughHeroPrice";
+import BoroughHomeownerOffer from "../../components/BoroughHomeownerOffer";
 import React from "react";
 import Head from "next/head";
 import Image from "next/image";
@@ -198,6 +200,7 @@ export default function HackneyAreaPage() {
                 <h1 className="mt-2 text-[22px] sm:text-[26px] font-semibold uppercase leading-snug tracking-[0.14em]">
                   Plans for extensions, lofts and conversions in Hackney
                 </h1>
+                  <BoroughHeroPrice slug="hackney" />
 
                 <p className="mt-3 text-[13px] text-slate-700">
                   WEDRAWPLANS prepare planning and building regulation drawing packages across Hackney,
@@ -428,6 +431,7 @@ export default function HackneyAreaPage() {
               </div>
             </div>
           </section>
+        <BoroughHomeownerOffer slug="hackney" />
         </main>
       </div>
     </>

@@ -1,3 +1,5 @@
+import BoroughHeroPrice from "../../components/BoroughHeroPrice";
+import BoroughHomeownerOffer from "../../components/BoroughHomeownerOffer";
 import React from "react";
 import Head from "next/head";
 import Image from "next/image";
@@ -178,6 +180,7 @@ export default function LewishamAreaPage() {
                 <h1 className="mt-2 text-[22px] sm:text-[26px] font-semibold uppercase leading-snug tracking-[0.14em]">
                   Plans for extensions, lofts and conversions in Lewisham
                 </h1>
+                  <BoroughHeroPrice slug="lewisham" />
 
                 <p className="mt-2 text-[12px] font-medium text-slate-700">
                   Local London designers • Fixed fee guaranteed • Council-ready drawings
@@ -595,6 +598,7 @@ export default function LewishamAreaPage() {
               </div>
             </div>
           </section>
+        <BoroughHomeownerOffer slug="lewisham" />
         </main>
       </div>
     </>

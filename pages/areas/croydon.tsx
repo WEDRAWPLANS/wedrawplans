@@ -1,3 +1,5 @@
+import BoroughHeroPrice from "../../components/BoroughHeroPrice";
+import BoroughHomeownerOffer from "../../components/BoroughHomeownerOffer";
 import React, { useMemo, useRef, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
@@ -549,6 +551,7 @@ export default function CroydonAreaPage() {
                 <h1 className="mt-2 text-[22px] font-semibold uppercase leading-snug tracking-[0.14em] sm:text-[26px]">
                   Plans for extensions, lofts and building regs in Croydon
                 </h1>
+                  <BoroughHeroPrice slug="croydon" />
 
                 <p className="mt-2 text-[12px] font-semibold text-slate-800">
                   Local London designers • Fixed fee guaranteed • Council ready drawings
@@ -1011,6 +1014,7 @@ export default function CroydonAreaPage() {
           </section>
 
           <PlanningAssistant boroughName="Croydon" onGetQuote={scrollToForm} />
+        <BoroughHomeownerOffer slug="croydon" />
         </main>
       </div>
     </>

@@ -1,3 +1,5 @@
+import BoroughHeroPrice from "../../components/BoroughHeroPrice";
+import BoroughHomeownerOffer from "../../components/BoroughHomeownerOffer";
 import Head from "next/head";
 import React, { useMemo, useRef, useState } from "react";
 import Image from "next/image";
@@ -540,6 +542,7 @@ export default function HounslowAreaPage() {
                 <h1 className="mt-2 text-[22px] sm:text-[26px] font-semibold uppercase leading-snug tracking-[0.14em]">
                   Plans for extensions, lofts and building regs in Hounslow
                 </h1>
+                  <BoroughHeroPrice slug="hounslow" />
 
                 <p className="mt-2 text-[12px] text-slate-700">
                   Get a fixed fee quote today and book an initial survey within 48 hours
@@ -994,6 +997,7 @@ export default function HounslowAreaPage() {
           </section>
 
           <PlanningAssistant boroughName="Hounslow" onGetQuote={scrollToForm} />
+        <BoroughHomeownerOffer slug="hounslow" />
         </main>
       </div>
     </>

@@ -1,3 +1,5 @@
+import BoroughHeroPrice from "../../components/BoroughHeroPrice";
+import BoroughHomeownerOffer from "../../components/BoroughHomeownerOffer";
 import React from "react";
 import Head from "next/head";
 import Image from "next/image";
@@ -142,6 +144,7 @@ export default function BexleyAreaPage() {
                 <h1 className="mt-2 text-[22px] font-semibold uppercase leading-snug tracking-[0.14em] text-slate-900 sm:text-[27px]">
                   Architectural Drawings in Bexleyheath & Bexley for Extensions, Lofts and New Builds
                 </h1>
+                  <BoroughHeroPrice slug="bexley" />
 
                 <p className="mt-3 text-[13px] font-semibold tracking-[0.08em] text-slate-800">
                   Fixed price • Initial survey within 48 hours • Planning and Building Regulation drawings
@@ -489,7 +492,7 @@ export default function BexleyAreaPage() {
               <div className="mt-5 grid gap-4 text-[13px] md:grid-cols-3">
                 <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
                   <h3 className="text-[13px] font-semibold text-slate-900">Planning drawings</h3>
-                  <div className="mt-1 text-[13px] font-semibold text-slate-900">from £750 + VAT</div>
+                  <div className="mt-1 text-[13px] font-semibold text-slate-900">from £750</div>
                   <p className="mt-2 text-[12px] text-slate-600">
                     Existing and proposed plans and elevations for extensions and lofts to houses in Bexleyheath, Welling, Sidcup, Crayford and nearby streets.
                   </p>
@@ -497,7 +500,7 @@ export default function BexleyAreaPage() {
 
                 <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
                   <h3 className="text-[13px] font-semibold text-slate-900">Measured surveys</h3>
-                  <div className="mt-1 text-[13px] font-semibold text-slate-900">from £150 + VAT</div>
+                  <div className="mt-1 text-[13px] font-semibold text-slate-900">Fixed fee on request</div>
                   <p className="mt-2 text-[12px] text-slate-600">
                     On site measured surveys where required so existing drawings accurately reflect your property before design and engineering.
                   </p>
@@ -505,7 +508,7 @@ export default function BexleyAreaPage() {
 
                 <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
                   <h3 className="text-[13px] font-semibold text-slate-900">Building regulation packs</h3>
-                  <div className="mt-1 text-[13px] font-semibold text-slate-900">from £950 + VAT</div>
+                  <div className="mt-1 text-[13px] font-semibold text-slate-900">Fixed fee on request</div>
                   <p className="mt-2 text-[12px] text-slate-600">
                     Detailed technical drawings, sections and notes coordinated with structural engineers for building control and contractors.
                   </p>
@@ -583,6 +586,7 @@ export default function BexleyAreaPage() {
               <p className="mt-5 text-[13px] font-medium text-slate-800">Prefer to speak. Call {PHONE_DISPLAY}</p>
             </div>
           </section>
+        <BoroughHomeownerOffer slug="bexley" />
         </main>
 
         <footer className="border-t border-[#2a3050] bg-[#20243b]">
