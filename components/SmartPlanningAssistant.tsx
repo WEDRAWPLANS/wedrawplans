@@ -3,6 +3,7 @@ import { submitBoroughLead } from "../lib/submitBoroughLead";
 
 interface Props {
   boroughName?: string;
+  compactMobile?: boolean;
 }
 
 const SERVICES = [
@@ -45,7 +46,7 @@ function sanitizeText(input: string) {
   return input.replace(/\s+/g, " ").trim();
 }
 
-export default function SmartPlanningAssistant({ boroughName }: Props) {
+export default function SmartPlanningAssistant({ boroughName, compactMobile = false }: Props) {
   const area = boroughName || "London";
 
   const [open, setOpen] = useState(false);
@@ -162,13 +163,17 @@ export default function SmartPlanningAssistant({ boroughName }: Props) {
             <button
               type="button"
               onClick={() => setOpen(true)}
-              className="flex items-center gap-2 rounded-full border border-[#16213b] bg-[#0f172a] px-4 py-3 text-[12px] font-semibold text-white shadow-2xl"
+              className={compactMobile ? "flex h-12 w-12 items-center justify-center rounded-full border border-[#16213b] bg-[#0f172a] text-[19px] text-white shadow-xl" : "flex items-center gap-2 rounded-full border border-[#16213b] bg-[#0f172a] px-4 py-3 text-[12px] font-semibold text-white shadow-2xl"}
               aria-label="Open planning assistant"
             >
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#e31c23]">
-                <span className="block h-3 w-3 rounded-full bg-white" />
-              </span>
-              Need help with your plans?
+              {compactMobile ? <span aria-hidden="true">?</span> : (
+                <>
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#e31c23]">
+                    <span className="block h-3 w-3 rounded-full bg-white" />
+                  </span>
+                  Need help with your plans?
+                </>
+              )}
             </button>
           </div>
 
