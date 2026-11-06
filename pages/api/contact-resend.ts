@@ -747,9 +747,23 @@ export default async function handler(
     const fromAddress = "WeDrawPlans <onboarding@resend.dev>";
     const toAddresses = ["architectabbey@gmail.com"];
 
-    const subjectPrefix = needsReview ? "[Needs Review] " : "";
+    // These are screening indicators, not proof that a person is genuine or spam.
+    // Every accepted enquiry is emailed, including those flagged for owner review.
+    const highRisk =
+      Boolean(hp) ||
+      !hasWorkingContact ||
+      obviousMachineRubbish ||
+      intenseRepeatedAttack ||
+      (message.length > 0 && isObviousSpamMessage(message));
+    const leadIcon = highRisk ? "🔴" : needsReview ? "🟠" : "🟢";
+    const screeningLabel = highRisk
+      ? "WARNING - review carefully"
+      : needsReview
+        ? "SUSPICIOUS - needs review"
+        : "LIKELY GENUINE";
+    const safeSubjectName = safeName.replace(/[\r\n\t]/g, " ").slice(0, 80);
     const subject =
-      `${subjectPrefix}New enquiry from ${safeName} via wedrawplans.co.uk` +
+      `${leadIcon} [${screeningLabel}] WEDRAWPLANS enquiry from ${safeSubjectName}` +
       `${borough ? ` (${borough})` : ""}` +
       ` [${leadBand} Lead ${leadScore}/100]`;
 
@@ -759,6 +773,7 @@ export default async function handler(
       `Lead score: ${leadScore}/100`,
       `Lead quality: ${leadBand}`,
       `Needs review: ${needsReview ? "Yes" : "No"}`,
+      `Screening: ${leadIcon} ${screeningLabel}`,
       `Detected borough: ${borough || "Not detected"}`,
       `Detected outward code: ${outwardCode || "Not detected"}`,
       `Coverage message: ${coverageLabel || "Not available"}`,
