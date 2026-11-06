@@ -37,6 +37,10 @@ function ProjectVisual({ item, featured = false }: { item: CaseStudy; featured?:
 }
 
 function ProjectCard({ item }: { item: CaseStudy }) {
+  const areaLabel = (item.relatedArea.split("/").pop() || "london")
+    .split("-")
+    .map((word) => word === "and" ? "&" : word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-[18px] border border-[#e2e7e4] bg-white transition hover:border-[#a9c7c7] hover:shadow-[0_12px_35px_rgba(20,55,61,0.07)]">
       <Link href={PROJECT_BASE + item.slug} aria-label={"View " + item.shortTitle + " case study"}>
@@ -56,6 +60,9 @@ function ProjectCard({ item }: { item: CaseStudy }) {
         <p className="mt-4 text-[12px] leading-5 text-[#687a7c]">{item.authority} · {item.reference}</p>
         <Link href={PROJECT_BASE + item.slug} className="mt-auto inline-flex w-fit items-center gap-1.5 pt-5 text-[13px] font-semibold text-[#126d78] underline-offset-4 hover:underline">
           View project <span aria-hidden="true">→</span>
+        </Link>
+        <Link href={item.relatedArea} className="mt-3 inline-flex w-fit text-[12px] font-medium text-[#41666b] underline-offset-4 hover:text-[#126d78] hover:underline">
+          Architectural drawing services in {areaLabel} →
         </Link>
       </div>
     </article>
@@ -129,6 +136,7 @@ export default function CaseStudiesHub() {
             <div className="mt-7 flex flex-wrap gap-3">
               <Link href="#browse-projects" className="rounded-full border border-[#86b5b9] bg-white px-6 py-3 text-sm font-semibold text-[#236c73] hover:bg-[#eef7f6]">Browse approved projects</Link>
               <Link href={QUOTE} className="rounded-full bg-[#51aab8] px-6 py-3 text-sm font-semibold text-white hover:bg-[#318e9c]">Get your fixed-fee quote</Link>
+              <Link href="/areas" className="inline-flex items-center text-[13px] font-semibold text-[#236c73] underline-offset-4 hover:underline">Find drawing services in your borough →</Link>
             </div>
           </div>
         </section>
