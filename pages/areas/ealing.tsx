@@ -499,10 +499,9 @@ export default function EalingAreaPage() {
                   <div className="h-1 bg-[#267b83]" />
                   <div className="p-4 sm:p-5">
                     <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#2b747c]">Planning drawing packages</p>
-                    <div className="mt-2 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                      <span className="text-[15px] font-semibold text-[#274047]">From</span>
-                      <span className="text-[32px] font-semibold leading-none tracking-tight text-[#173b46]">£750</span>
-                    </div>
+                    <p className="mt-2 text-[14px] font-normal leading-6 text-[#53666d]">
+                      Planning drawings from <span className="font-medium text-[#274047]">£750</span> for suitable projects
+                    </p>
                     <p className="mt-3 text-[13px] leading-6 text-[#53666d]">
                       For suitable straightforward house extension and loft conversion planning drawings.
                       Your written fixed-fee quote sets out the included work.
