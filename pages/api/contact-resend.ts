@@ -532,10 +532,15 @@ export default async function handler(
   cleanupOldEntries(now);
 
   const windowMs = 10 * 60 * 1000;
-  const maxRequestsPerIp = 20;
+  // Never silently acknowledge a dropped submission. Reserve a high emergency limit for floods.
+  const maxRequestsPerIp = 100;
 
   const recent = (rateStore.get(ip) || []).filter((ts) => now - ts < windowMs);
   const sameIpCountBeforeThisRequest = recent.length;
+
+  if (sameIpCountBeforeThisRequest >= maxRequestsPerIp) {
+    return res.status(429).json({ success: false, error: "Too many requests. Please try again shortly or call us." });
+  }
 
   recent.push(now);
   rateStore.set(ip, recent);
@@ -562,10 +567,6 @@ export default async function handler(
       ? parsedTimeTaken
       : null;
 
-  if (hp) {
-    return res.status(200).json({ success: true });
-  }
-
   const email = rawEmail;
   const phone = rawPhone;
   const message = rawMessage;
@@ -591,7 +592,7 @@ export default async function handler(
   const hasWorkingContact = validEmail || validPhone;
   const safeName = rawName || "Website visitor";
 
-  const hardBlockReasons: string[] = [];
+  const deliveryWarnings: string[] = hp ? ["Honeypot/autofill field populated"] : [];
   const softFlags: string[] = [];
   const botSignals: string[] = [];
 
@@ -603,11 +604,11 @@ export default async function handler(
   const ownSite = isLikelyFromOwnSite(req);
 
   if (!hasWorkingContact) {
-    hardBlockReasons.push("No valid email or phone provided");
+    deliveryWarnings.push("No valid email or phone provided");
   }
 
   if (message && isObviousSpamMessage(message)) {
-    hardBlockReasons.push("Message matched obvious spam keywords");
+    deliveryWarnings.push("Message matched suspicious keywords");
   }
 
   if (gibberishName) {
@@ -681,23 +682,14 @@ export default async function handler(
     (nonsensePostcode || botEmail || fakePhone || sameIpCountBeforeThisRequest >= 6);
 
   const intenseRepeatedAttack =
-    sameIpCountBeforeThisRequest >= maxRequestsPerIp &&
+    sameIpCountBeforeThisRequest >= 20 &&
     (botSignals.length >= 1 || nonsensePostcode || randomMessage || gibberishName);
 
-  if (hardBlockReasons.length > 0 || obviousMachineRubbish || intenseRepeatedAttack) {
-    console.warn("Silently swallowed spam submission", {
-      ip,
-      hardBlockReasons,
-      botSignals,
-      sameIpCountBeforeThisRequest,
-      pagePath,
-      name: safeName,
-      email,
-      phone,
-      postcode: normalisedPostcode,
-    });
-
-    return res.status(200).json({ success: true });
+  if (!rawName && !rawEmail && !rawPhone && !rawMessage && !rawPostcode && !rawService) {
+    return res.status(400).json({ success: false, error: "Please enter some enquiry details." });
+  }
+  if (obviousMachineRubbish || intenseRepeatedAttack) {
+    deliveryWarnings.push("Possible automated enquiry: please review");
   }
 
   const leadScore = scoreLead({
@@ -730,20 +722,11 @@ export default async function handler(
     typeof duplicateSeenAt === "number" && now - duplicateSeenAt < duplicateWindowMs;
 
   if (isDuplicate) {
-    console.warn("Duplicate submission swallowed", {
-      ip,
-      fingerprint,
-      name: safeName,
-      email,
-      phone,
-      postcode: normalisedPostcode,
-      pagePath,
-    });
-
-    return res.status(200).json({ success: true });
+    deliveryWarnings.push("Possible duplicate enquiry; delivered for review");
   }
 
   const needsReview =
+    deliveryWarnings.length > 0 ||
     softFlags.length >= 2 ||
     botSignals.length >= 1 ||
     leadScore < 55 ||
@@ -795,6 +778,9 @@ export default async function handler(
       "",
       "Main message / description:",
       message || "Quick quote from website form",
+      "",
+      "Delivery warnings:",
+      deliveryWarnings.length ? deliveryWarnings.join(" | ") : "None",
       "",
       "Soft review flags:",
       softFlags.length ? softFlags.join(" | ") : "None",
