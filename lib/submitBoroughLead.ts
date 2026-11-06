@@ -260,7 +260,9 @@ export async function submitBoroughLead(
       responseData = responseText || null;
     }
 
-    if (!res.ok) {
+    const acceptedByServer = res.ok && responseData?.success === true;
+
+    if (!acceptedByServer) {
       console.error("submitBoroughLead failed", {
         status: res.status,
         statusText: res.statusText,
