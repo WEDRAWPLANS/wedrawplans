@@ -601,11 +601,11 @@ export default function EalingAreaPage() {
               <div id="ealing-quote" className="scroll-mt-5 lg:w-1/2">
                 <div className="rounded-2xl border border-[#e0e7e3] bg-white p-5 shadow-md sm:p-6">
                   <h2 className="text-[14px] uppercase font-semibold tracking-[0.16em] text-slate-900">
-                    Request your Ealing fixed-fee quote
+                    Tell us your idea. Get a fixed-fee quote.
                   </h2>
 
                   <p className="mt-1 text-[12px] text-slate-600">
-                    Tell us a little about your property and what you plan to build. We will reply with a clear fixed fee for your drawings.
+                    Planning an extension or loft conversion in Ealing? Tell us a little below. We’ll reply with the right drawing package and a clear fixed fee.
                   </p>
 
                   <form
@@ -614,7 +614,7 @@ export default function EalingAreaPage() {
                       if (!formStartedRef.current) {
                         formStartedRef.current = true;
                         (window as typeof window & { gtag?: (...args: any[]) => void }).gtag?.("event", "form_start", {
-                          form_name: "ealing_direct_write_v1",
+                          form_name: "ealing_direct_write_v2",
                           page_path: "/areas/ealing",
                         });
                       }
@@ -622,26 +622,12 @@ export default function EalingAreaPage() {
                     className="mt-5 space-y-4"
                     aria-label="Ealing one-step fixed-fee quotation form"
                   >
-                    <input type="hidden" name="formVariant" value="ealing_direct_write_v1" />
+                    <input type="hidden" name="formVariant" value="ealing_direct_write_v2" />
                     <div className="rounded-xl border border-[#c7dedb] bg-[#f3faf7] px-4 py-3">
                       <p className="text-[12px] font-semibold text-[#236a65]">Tell us about your project</p>
                       <p className="mt-1 text-[12px] leading-5 text-[#526d69]">
-                        Start typing straight away. No account, no extra steps and no drawings needed.
+                        Your postcode and a few words about your plans are enough to start. No extra steps or drawings needed.
                       </p>
-                    </div>
-                    <div className="space-y-1.5">
-                      <label htmlFor="ealing-message" className="block text-[14px] font-semibold text-[#203f40]">
-                        What would you like to build?
-                      </label>
-                      <textarea
-                        id="ealing-message"
-                        name="projectDetails"
-                        required
-                        rows={4}
-                        placeholder="e.g. I need drawings for a rear kitchen extension in Ealing..."
-                        className="min-h-[130px] w-full resize-y rounded-xl border border-[#bed6d6] bg-white px-4 py-3 text-[16px] text-slate-900 shadow-sm outline-none transition focus:border-[#237f83] focus:ring-2 focus:ring-[#d1edeb]"
-                      />
-                      <p className="text-[12px] text-slate-500">A sentence or two is enough.</p>
                     </div>
                     <div className="space-y-1.5">
                       <label htmlFor="ealing-postcode" className="block text-[13px] font-semibold text-slate-800">
@@ -655,6 +641,19 @@ export default function EalingAreaPage() {
                         placeholder="e.g. W5 2AA"
                         className="min-h-[50px] w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-[16px] text-slate-900 outline-none transition focus:border-[#237f83] focus:ring-2 focus:ring-[#d1edeb]"
                       />
+                    </div>
+                    <div className="space-y-1.5">
+                      <label htmlFor="ealing-message" className="block text-[14px] font-semibold text-[#203f40]">
+                        Tell us what you have in mind
+                      </label>
+                      <textarea
+                        id="ealing-message"
+                        name="projectDetails"
+                        rows={4}
+                        placeholder="For example: I’d like a 4m rear kitchen extension. Could you quote for the planning drawings?"
+                        className="min-h-[130px] w-full resize-y rounded-xl border border-[#bed6d6] bg-white px-4 py-3 text-[16px] text-slate-900 shadow-sm outline-none transition focus:border-[#237f83] focus:ring-2 focus:ring-[#d1edeb]"
+                      />
+                      <p className="text-[12px] text-slate-500">A few words are helpful, but this can be left blank if you are not sure yet.</p>
                     </div>
                     <div className="space-y-1.5">
                       <label htmlFor="ealing-name" className="block text-[13px] font-semibold text-slate-800">
@@ -700,7 +699,7 @@ export default function EalingAreaPage() {
                     <p className="-mt-2 text-[12px] text-slate-500">Provide at least a phone number or an email address.</p>
                     <div className="space-y-1.5">
                       <label htmlFor="ealing-type" className="block text-[13px] font-semibold text-slate-800">
-                        Project type <span className="font-normal text-slate-500">(optional)</span>
+                        What are you planning? <span className="font-normal text-slate-500">(optional)</span>
                       </label>
                       <select
                         id="ealing-type"
@@ -708,16 +707,15 @@ export default function EalingAreaPage() {
                         defaultValue=""
                         className="min-h-[50px] w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-[16px] text-slate-900 outline-none transition focus:border-[#237f83] focus:ring-2 focus:ring-[#d1edeb]"
                       >
-                        <option value="">Choose a service, or just tell us above</option>
-                        <option value="House extension">House extension</option>
+                        <option value="">Choose a project type (optional)</option>
+                        <option value="House extension">House extension (rear, side or wraparound)</option>
                         <option value="Loft conversion">Loft conversion</option>
-                        <option value="Outbuilding or garden room">Garden room or outbuilding</option>
+                        <option value="Outbuilding or garden room">Garden room, studio or outbuilding</option>
                         <option value="Garage conversion">Garage conversion</option>
-                        <option value="Planning drawings">Planning drawings</option>
-                        <option value="Building regulation drawings">Building Regulations drawings</option>
-                        <option value="New build house">New build house</option>
-                        <option value="Conversion to flats">Conversion to flats</option>
-                        <option value="Other drawings">Other / not sure</option>
+                        <option value="Internal remodelling">Internal alterations / open-plan layout</option>
+                        <option value="New build house">New home / residential development</option>
+                        <option value="Conversion to flats">Property conversion / flats</option>
+                        <option value="Other drawings">Other / not sure yet</option>
                       </select>
                     </div>
                     <button
@@ -727,7 +725,7 @@ export default function EalingAreaPage() {
                       Get your fixed-fee quote →
                     </button>
                     <p className="text-center text-[11px] leading-5 text-slate-500">
-                      No obligation. We only use your details to respond to your enquiry.
+                      No obligation · No drawings required · We only use your details to reply.
                     </p>
                   </form>
 
