@@ -705,7 +705,8 @@ export default function IndexPage() {
         body: JSON.stringify(payload),
       });
 
-      if (res.ok) {
+      const serverResult = await res.json().catch(() => null);
+      if (res.ok && serverResult?.success === true) {
         gtagEvent("generate_lead", {
           form_name: formName,
           service,
@@ -1998,7 +1999,8 @@ function ContactForm() {
         body: JSON.stringify(payload),
       });
 
-      if (res.ok) {
+      const serverResult = await res.json().catch(() => null);
+      if (res.ok && serverResult?.success === true) {
         gtagEvent("generate_lead", {
           form_name: "homepage_contact",
           service: rawService,
