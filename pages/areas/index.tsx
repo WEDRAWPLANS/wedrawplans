@@ -1201,6 +1201,10 @@ export default function AreasIndexPage() {
                 <Link href="/commercial" className="underline">
                   commercial drawing services
                 </Link>
+                , and{" "}
+                <Link href="/case-studies" className="underline">
+                  approved WEDRAWPLANS planning projects across London
+                </Link>
                 .
               </div>
 
