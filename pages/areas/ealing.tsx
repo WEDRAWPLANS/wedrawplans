@@ -9,10 +9,10 @@ const PHONE_LINK = "tel:+442036548508";
 const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Ealing";
 
-const HERO_IMAGE = "/images/ealing-hero.jpg";
-const EALING_LOCAL_IMAGE = "/images/ealing-local.jpg";
-const PROJECT_IMAGE_1 = "/images/ealing-project-1.jpg";
-const PROJECT_IMAGE_2 = "/images/ealing-project-2.jpg";
+const HERO_IMAGE = "/images/case-studies/the-reddings/after.jpg";
+const EALING_LOCAL_IMAGE = "/images/drawings.jpg";
+const PROJECT_IMAGE_1 = "/images/case-studies/allum-lane/3d-01.webp";
+const PROJECT_IMAGE_2 = "/images/case-studies/allum-lane/3d-02.webp";
 
 type ChatRole = "assistant" | "user";
 type ChatMessage = { role: ChatRole; text: string };
@@ -433,7 +433,7 @@ export default function EalingAreaPage() {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }} />
       </Head>
 
-      <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
+      <div className="min-h-screen w-screen max-w-[100vw] min-w-0 overflow-x-clip bg-[#f8f4f0] text-slate-900">
         <header className="bg-[#fdf8f3]/95 backdrop-blur border-b border-slate-200">
           <div className="mx-auto max-w-6xl px-4 pt-3 pb-2 sm:pt-6 sm:pb-3 lg:px-6">
             <div className="flex flex-col items-center text-center">
@@ -551,7 +551,7 @@ export default function EalingAreaPage() {
                   <div className="relative h-[190px] w-full">
                     <Image
                       src={EALING_LOCAL_IMAGE}
-                      alt="Ealing local streets and home improvement area"
+                      alt="WEDRAWPLANS architectural drawing example for home improvement plans"
                       fill
                       sizes="(max-width: 1024px) 100vw, 520px"
                       className="object-cover"
@@ -572,7 +572,7 @@ export default function EalingAreaPage() {
                   <div className="relative h-[190px] w-full">
                     <Image
                       src={HERO_IMAGE}
-                      alt="Ealing planning support for extensions and lofts"
+                      alt="Completed WEDRAWPLANS extension project in Mill Hill, Barnet"
                       fill
                       sizes="(max-width: 1024px) 100vw, 520px"
                       className="object-cover"
@@ -691,7 +691,7 @@ export default function EalingAreaPage() {
                   <div className="mt-5 overflow-hidden rounded-xl border border-[#e0e8e4] bg-[#f7faf9] lg:hidden">
                     <Image
                       src={EALING_LOCAL_IMAGE}
-                      alt="Residential streets in the Ealing area"
+                      alt="WEDRAWPLANS architectural drawing example for extensions and loft plans"
                       width={800}
                       height={310}
                       className="h-[140px] w-full object-cover"
@@ -767,7 +767,7 @@ export default function EalingAreaPage() {
 
                   <Image
                     src={PROJECT_IMAGE_1}
-                    alt="Ealing area and typical home improvement projects"
+                    alt="WEDRAWPLANS original 3D architectural design for a house extension in Elstree"
                     width={800}
                     height={500}
                     className="rounded-xl object-cover mb-3"
@@ -817,7 +817,7 @@ export default function EalingAreaPage() {
 
                   <Image
                     src={PROJECT_IMAGE_2}
-                    alt="Completed extension and loft example in Ealing"
+                    alt="WEDRAWPLANS original 3D architectural extension design in Elstree"
                     width={800}
                     height={500}
                     className="rounded-xl object-cover mt-2"
