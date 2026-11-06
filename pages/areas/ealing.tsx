@@ -498,7 +498,7 @@ export default function EalingAreaPage() {
                 <div className="mt-5 overflow-hidden rounded-2xl border border-[#cbded9] bg-white shadow-[0_12px_35px_-26px_rgba(21,59,73,0.55)]">
                   <div className="h-1 bg-[#267b83]" />
                   <div className="p-4 sm:p-5">
-                    <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#2b747c]">Planning drawing packages</p>
+                    <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#2b747c]">Planning &amp; Building Regulations Drawing Packages</p>
                     <p className="mt-2 text-[14px] font-normal leading-6 text-[#53666d]">
                       Planning drawings from <span className="font-medium text-[#274047]">£750</span> for suitable projects
                     </p>
