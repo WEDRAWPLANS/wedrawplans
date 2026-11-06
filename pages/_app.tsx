@@ -23,7 +23,7 @@ export default function App({ Component, pageProps }: AppProps) {
       ) : null}
       <Component {...pageProps} />
       <FloatingLeadWidget />
-      <SmartPlanningAssistant />
+      <SmartPlanningAssistant compactMobile={router.pathname === "/areas/ealing"} />
     </>
   );
 }
