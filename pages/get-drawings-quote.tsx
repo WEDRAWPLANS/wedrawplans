@@ -145,7 +145,7 @@ export default function GetDrawingsQuotePage() {
     setSubmitting(true);
 
     try {
-      await submitBoroughLead({
+      const wasSubmitted = await submitBoroughLead({
         name: cleanedName,
         email: cleanedEmail,
         phone: cleanedPhone,
@@ -166,6 +166,11 @@ export default function GetDrawingsQuotePage() {
           originalMessage: cleanedMessage,
         },
       });
+
+      if (!wasSubmitted) {
+        setError("Your enquiry could not be sent. Please try again or call 020 3654 8508.");
+        return;
+      }
 
       setSuccess(
         "Thank you. Your request has been sent successfully. We will contact you shortly."
