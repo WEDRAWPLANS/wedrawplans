@@ -313,7 +313,7 @@ export default function BuildingRegulationDrawingsPage() {
     setIsSubmitting(true);
     setSubmitState({ type: "idle", message: "" });
 
-    trackEvent("generate_lead", {
+    trackEvent("lead_submit_attempt", {
       event_category: "technical_enquiry",
       event_label: "building_regulations_page_submit_attempt",
       service: "Building Regulation Drawings",
@@ -322,7 +322,7 @@ export default function BuildingRegulationDrawingsPage() {
     });
 
     try {
-      await submitBoroughLead({
+      const wasSubmitted = await submitBoroughLead({
         name: form.name,
         email: form.email,
         phone: form.phone,
@@ -339,6 +339,21 @@ export default function BuildingRegulationDrawingsPage() {
           projectType: form.projectType,
         },
       });
+
+      if (!wasSubmitted) {
+        trackEvent("lead_submit_error", {
+          event_category: "technical_enquiry",
+          event_label: "building_regulations_page_submit_error",
+          service: "Building Regulation Drawings",
+          page_path: "/building-regulation-drawings",
+          source: "building_regulations_page",
+        });
+        setSubmitState({
+          type: "error",
+          message: "Your enquiry could not be sent. Please try again or call 020 3654 8508.",
+        });
+        return;
+      }
 
       trackEvent("generate_lead_success", {
         event_category: "technical_enquiry",
