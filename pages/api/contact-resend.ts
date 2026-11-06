@@ -756,14 +756,9 @@ export default async function handler(
       intenseRepeatedAttack ||
       (message.length > 0 && isObviousSpamMessage(message));
     const leadIcon = highRisk ? "🔴" : needsReview ? "🟠" : "🟢";
-    const screeningLabel = highRisk
-      ? "WARNING - review carefully"
-      : needsReview
-        ? "SUSPICIOUS - needs review"
-        : "LIKELY GENUINE";
     const safeSubjectName = safeName.replace(/[\r\n\t]/g, " ").slice(0, 80);
     const subject =
-      `${leadIcon} [${screeningLabel}] WEDRAWPLANS enquiry from ${safeSubjectName}` +
+      `${leadIcon} WEDRAWPLANS enquiry from ${safeSubjectName}` +
       `${borough ? ` (${borough})` : ""}` +
       ` [${leadBand} Lead ${leadScore}/100]`;
 
@@ -773,7 +768,7 @@ export default async function handler(
       `Lead score: ${leadScore}/100`,
       `Lead quality: ${leadBand}`,
       `Needs review: ${needsReview ? "Yes" : "No"}`,
-      `Screening: ${leadIcon} ${screeningLabel}`,
+      `Screening icon: ${leadIcon}`,
       `Detected borough: ${borough || "Not detected"}`,
       `Detected outward code: ${outwardCode || "Not detected"}`,
       `Coverage message: ${coverageLabel || "Not available"}`,
