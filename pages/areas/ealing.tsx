@@ -501,7 +501,7 @@ export default function EalingAreaPage() {
                     <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#2b747c]">Planning drawing packages</p>
                     <div className="mt-2 flex flex-wrap items-baseline gap-x-3 gap-y-1">
                       <span className="text-[15px] font-semibold text-[#274047]">From</span>
-                      <span className="text-[42px] font-extrabold leading-none tracking-tight text-[#173b46]">£750</span>
+                      <span className="text-[32px] font-semibold leading-none tracking-tight text-[#173b46]">£750</span>
                     </div>
                     <p className="mt-3 text-[13px] leading-6 text-[#53666d]">
                       For suitable straightforward house extension and loft conversion planning drawings.
