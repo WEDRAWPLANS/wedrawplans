@@ -38,7 +38,7 @@ const HOME_BUSINESS_JSONLD = {
   ],
   sameAs: [GOOGLE_BUSINESS_PROFILE_LINK, "https://twitter.com/WEDRAWPLANS"],
   description:
-    "Architectural drawing services for planning applications, house extensions, loft conversions, new builds, Building Regulations and commercial projects across London and surrounding areas.",
+    "WEDRAWPLANS helps London homeowners with professional architectural and planning drawings for house extensions, loft conversions, garage conversions, garden rooms and new builds. Clear, competitive fixed-fee quotations, planning application preparation and submission, council liaison and Building Regulations drawing packages across London and the M25 area.",
 };
 
 type LeadAction = "phone_click" | "email_click" | "whatsapp_click";
@@ -788,7 +788,7 @@ export default function IndexPage() {
         <title>House Extension & Planning Drawings in London | WEDRAWPLANS</title>
         <meta
           name="description"
-          content="House extension, loft conversion, planning and building regulation drawings across London. Get a fixed quote today from WEDRAWPLANS."
+          content="Professional fixed-fee architectural drawings for London homeowners: extensions, lofts, planning applications and Building Regulations. Get a clear quote."
         />
         <meta
           name="keywords"
@@ -800,7 +800,7 @@ export default function IndexPage() {
         <meta property="og:title" content="House Extension & Planning Drawings in London | WEDRAWPLANS" />
         <meta
           property="og:description"
-          content="House extension, loft conversion, planning and building regulation drawings across London. Fixed-fee architectural drawing services from WEDRAWPLANS."
+          content="WEDRAWPLANS helps London homeowners with professional extension and loft drawings, clear fixed-fee quotes, planning applications and Building Regulations support."
         />
         <meta property="og:url" content="https://www.wedrawplans.co.uk/" />
         <script
@@ -1156,9 +1156,9 @@ export default function IndexPage() {
 
                   <div className="mt-5 max-w-[640px] text-[14px] leading-7 text-slate-700">
                     <p>
-                      WEDRAWPLANS prepare practical, buildable drawings for homeowners, developers and commercial clients
-                      across London and the M25 area. We keep the process clear, fast and focused on getting your project
-                      moving.
+                      WEDRAWPLANS helps London homeowners plan extensions, loft conversions and other improvements with
+                      professional architectural drawings, clear fixed-fee quotations and guidance through planning applications
+                      and local council requirements. We also support developers and commercial clients across London and the M25 area.
                     </p>
                     <p className="mt-3">
                       Send us your house photo on WhatsApp and we will advise instantly. Many quotes are turned around the
@@ -1641,6 +1641,18 @@ export default function IndexPage() {
             <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
               Every project is quoted once the scope and location are understood. These guide figures reflect common
               extension and loft projects.
+            </p>
+
+            <h3 className="mt-7 text-[16px] font-semibold text-slate-900">Why homeowners choose WEDRAWPLANS</h3>
+            <p className="mt-2 max-w-4xl text-[13px] leading-6 text-slate-700">
+              Homeowners receive professional architectural drawings, competitive fixed-fee quotations and clear advice
+              on the appropriate planning or lawful development route. We prepare applications for council submission,
+              liaise with planning officers where required, and offer Building Regulations drawing packages with
+              structural engineer coordination when needed. Our aim is to make the design and application process
+              easier to understand from the first enquiry onwards.{" "}
+              <Link href="/case-studies" className="font-semibold text-[#246d76] underline underline-offset-2">
+                Explore our approved project examples.
+              </Link>
             </p>
 
             <div className="mt-5 grid gap-4 text-[13px] md:grid-cols-2 lg:grid-cols-3">
