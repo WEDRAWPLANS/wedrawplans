@@ -12,7 +12,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       {isBoroughPage ? (
-        <nav aria-label="Borough page quick navigation" className="relative z-[70] border-b border-[#dae7e2] bg-[#f2f8f5] px-3 py-2.5 text-[#245963] sm:px-6">
+        <nav aria-label="Borough page quick navigation" className="relative z-[70] w-screen max-w-[100vw] overflow-x-clip border-b border-[#dae7e2] bg-[#f2f8f5] px-3 py-2.5 text-[#245963] sm:px-6">
           <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[12px] font-semibold sm:gap-x-6 sm:text-[13px]">
             <Link href="/" className="underline-offset-4 hover:underline focus-visible:underline">← Homepage</Link>
             <Link href="/areas" className="underline-offset-4 hover:underline focus-visible:underline">All London areas</Link>
@@ -23,7 +23,7 @@ export default function App({ Component, pageProps }: AppProps) {
       ) : null}
       <Component {...pageProps} />
       <FloatingLeadWidget />
-      <SmartPlanningAssistant />
+      <SmartPlanningAssistant compactMobile={router.pathname === "/areas/ealing"} />
     </>
   );
 }
