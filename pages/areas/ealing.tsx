@@ -320,8 +320,17 @@ function PlanningAssistant({
 }
 
 export default function EalingAreaPage() {
+  const formStartedRef = useRef(false);
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    await submitBoroughLead(e, { boroughName: "Ealing" });
+    const data = new FormData(e.currentTarget);
+    if (!String(data.get("phone") || "").trim() && !String(data.get("email") || "").trim()) {
+      e.preventDefault();
+      alert("Please enter a phone number or an email address so we can reply.");
+      return;
+    }
+    const ok = await submitBoroughLead(e, { boroughName: "Ealing" });
+    if (ok) formStartedRef.current = false;
   }
 
   function scrollToForm() {
@@ -599,92 +608,126 @@ export default function EalingAreaPage() {
                     Tell us a little about your property and what you plan to build. We will reply with a clear fixed fee for your drawings.
                   </p>
 
-                  <form onSubmit={handleSubmit} className="mt-3 space-y-3 text-[13px]">
-                    <div className="space-y-1">
-                      <label className="text-[11px] font-medium">Name</label>
+                  <form
+                    onSubmit={handleSubmit}
+                    onFocusCapture={() => {
+                      if (!formStartedRef.current) {
+                        formStartedRef.current = true;
+                        (window as typeof window & { gtag?: (...args: any[]) => void }).gtag?.("event", "form_start", {
+                          form_name: "ealing_direct_write_v1",
+                          page_path: "/areas/ealing",
+                        });
+                      }
+                    }}
+                    className="mt-5 space-y-4"
+                    aria-label="Ealing one-step fixed-fee quotation form"
+                  >
+                    <input type="hidden" name="formVariant" value="ealing_direct_write_v1" />
+                    <div className="rounded-xl border border-[#c7dedb] bg-[#f3faf7] px-4 py-3">
+                      <p className="text-[12px] font-semibold text-[#236a65]">Tell us about your project</p>
+                      <p className="mt-1 text-[12px] leading-5 text-[#526d69]">
+                        Start typing straight away. No account, no extra steps and no drawings needed.
+                      </p>
+                    </div>
+                    <div className="space-y-1.5">
+                      <label htmlFor="ealing-message" className="block text-[14px] font-semibold text-[#203f40]">
+                        What would you like to build?
+                      </label>
+                      <textarea
+                        id="ealing-message"
+                        name="projectDetails"
+                        required
+                        rows={4}
+                        placeholder="e.g. I need drawings for a rear kitchen extension in Ealing..."
+                        className="min-h-[130px] w-full resize-y rounded-xl border border-[#bed6d6] bg-white px-4 py-3 text-[16px] text-slate-900 shadow-sm outline-none transition focus:border-[#237f83] focus:ring-2 focus:ring-[#d1edeb]"
+                      />
+                      <p className="text-[12px] text-slate-500">A sentence or two is enough.</p>
+                    </div>
+                    <div className="space-y-1.5">
+                      <label htmlFor="ealing-postcode" className="block text-[13px] font-semibold text-slate-800">
+                        Property postcode
+                      </label>
                       <input
+                        id="ealing-postcode"
+                        name="postcode"
+                        autoComplete="postal-code"
+                        required
+                        placeholder="e.g. W5 2AA"
+                        className="min-h-[50px] w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-[16px] text-slate-900 outline-none transition focus:border-[#237f83] focus:ring-2 focus:ring-[#d1edeb]"
+                      />
+                    </div>
+                    <div className="space-y-1.5">
+                      <label htmlFor="ealing-name" className="block text-[13px] font-semibold text-slate-800">
+                        Your name
+                      </label>
+                      <input
+                        id="ealing-name"
                         name="name"
                         required
-                        className="w-full bg-transparent border-b border-slate-300 py-1.5 px-1 focus:border-[#64b7c4] outline-none"
+                        autoComplete="name"
+                        placeholder="Your name"
+                        className="min-h-[50px] w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-[16px] text-slate-900 outline-none transition focus:border-[#237f83] focus:ring-2 focus:ring-[#d1edeb]"
                       />
                     </div>
-
-                    <div className="grid sm:grid-cols-2 gap-3">
-                      <div className="space-y-1">
-                        <label className="text-[11px] font-medium">Telephone</label>
+                    <div className="grid gap-3 sm:grid-cols-2">
+                      <div className="space-y-1.5">
+                        <label htmlFor="ealing-phone" className="block text-[13px] font-semibold text-slate-800">
+                          Telephone
+                        </label>
                         <input
+                          id="ealing-phone"
                           name="phone"
-                          required
                           type="tel"
-                          className="w-full bg-transparent border-b border-slate-300 py-1.5 px-1 focus:border-[#64b7c4] outline-none"
+                          autoComplete="tel"
+                          placeholder="Your number"
+                          className="min-h-[50px] w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-[16px] text-slate-900 outline-none transition focus:border-[#237f83] focus:ring-2 focus:ring-[#d1edeb]"
                         />
                       </div>
-
-                      <div className="space-y-1">
-                        <label className="text-[11px] font-medium">Email</label>
+                      <div className="space-y-1.5">
+                        <label htmlFor="ealing-email" className="block text-[13px] font-semibold text-slate-800">
+                          Email
+                        </label>
                         <input
+                          id="ealing-email"
                           name="email"
-                          required
                           type="email"
-                          className="w-full bg-transparent border-b border-slate-300 py-1.5 px-1 focus:border-[#64b7c4] outline-none"
+                          autoComplete="email"
+                          placeholder="Your email"
+                          className="min-h-[50px] w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-[16px] text-slate-900 outline-none transition focus:border-[#237f83] focus:ring-2 focus:ring-[#d1edeb]"
                         />
                       </div>
                     </div>
-
-                    <div className="space-y-1">
-                      <label className="text-[11px] font-medium">Ealing postcode</label>
-                      <input
-                        name="postcode"
-                        required
-                        placeholder="W5 2AA"
-                        onFocus={(e) => (e.target.placeholder = "")}
-                        onBlur={(e) => !e.target.value && (e.target.placeholder = "W5 2AA")}
-                        className="w-full border-b border-slate-300 bg-transparent py-1.5 px-1 text-slate-500/70 focus:text-slate-900 focus:border-[#64b7c4] outline-none"
-                      />
-                    </div>
-
-                    <div className="space-y-1">
-                      <label className="text-[11px] font-medium">Project type</label>
+                    <p className="-mt-2 text-[12px] text-slate-500">Provide at least a phone number or an email address.</p>
+                    <div className="space-y-1.5">
+                      <label htmlFor="ealing-type" className="block text-[13px] font-semibold text-slate-800">
+                        Project type <span className="font-normal text-slate-500">(optional)</span>
+                      </label>
                       <select
+                        id="ealing-type"
                         name="projectType"
-                        required
                         defaultValue=""
-                        className="w-full border-b border-slate-300 bg-transparent py-1.5 px-1 focus:border-[#64b7c4] outline-none"
+                        className="min-h-[50px] w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-[16px] text-slate-900 outline-none transition focus:border-[#237f83] focus:ring-2 focus:ring-[#d1edeb]"
                       >
-                        <option value="" disabled>
-                          Select project type
-                        </option>
-                        <option>House extension</option>
-                        <option>Loft conversion</option>
-                        <option>Garage conversion</option>
-                        <option>Outbuilding or garden room</option>
-                        <option>Internal remodelling</option>
-                        <option>New build house</option>
-                        <option>Conversion to flats</option>
-                        <option>Building regulation pack only</option>
-                        <option>Other domestic project</option>
+                        <option value="">Choose a service, or just tell us above</option>
+                        <option value="House extension">House extension</option>
+                        <option value="Loft conversion">Loft conversion</option>
+                        <option value="Outbuilding or garden room">Garden room or outbuilding</option>
+                        <option value="Garage conversion">Garage conversion</option>
+                        <option value="Planning drawings">Planning drawings</option>
+                        <option value="Building regulation drawings">Building Regulations drawings</option>
+                        <option value="New build house">New build house</option>
+                        <option value="Conversion to flats">Conversion to flats</option>
+                        <option value="Other drawings">Other / not sure</option>
                       </select>
                     </div>
-
-                    <div className="space-y-1">
-                      <label className="text-[11px] font-medium">Brief description of your project</label>
-                      <textarea
-                        name="projectDetails"
-                        rows={4}
-                        placeholder="For example: rear extension to a terrace in Acton with new open plan kitchen."
-                        className="w-full border border-slate-300 rounded bg-white px-2 py-2 focus:border-[#64b7c4] outline-none"
-                      />
-                    </div>
-
                     <button
                       type="submit"
-                      className="w-full rounded-full bg-[#64b7c4] py-2.5 text-white text-[13px] font-semibold uppercase tracking-[0.2em] hover:bg-[#4da4b4]"
+                      className="min-h-[52px] w-full rounded-full bg-[#247786] px-4 py-3 text-[14px] font-bold uppercase tracking-[0.08em] text-white transition hover:bg-[#185b68] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#237f83]"
                     >
-                      Get a fixed fee quote
+                      Get your fixed-fee quote →
                     </button>
-
-                    <p className="text-[11px] text-slate-500 mt-2">
-                      Typical Ealing projects include rear extensions, wraparound extensions, loft conversions and refurbishments.
+                    <p className="text-center text-[11px] leading-5 text-slate-500">
+                      No obligation. We only use your details to respond to your enquiry.
                     </p>
                   </form>
 
