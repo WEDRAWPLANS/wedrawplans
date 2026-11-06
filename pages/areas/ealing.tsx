@@ -491,29 +491,27 @@ export default function EalingAreaPage() {
                   Ealing architectural drawings
                 </p>
 
-                <h1 className="mt-2 max-w-xl text-[27px] font-bold leading-[1.16] tracking-tight text-[#172b39] sm:text-[34px]">
+                <h1 className="mt-2 max-w-xl text-[23px] font-semibold leading-[1.22] tracking-tight text-[#172b39] sm:text-[30px]">
                   House Extension & Loft Conversion Plans in Ealing
                 </h1>
 
-                <div className="mt-5 overflow-hidden rounded-2xl border border-[#cbded9] bg-white shadow-[0_12px_35px_-26px_rgba(21,59,73,0.55)]">
-                  <div className="h-1 bg-[#267b83]" />
-                  <div className="p-4 sm:p-5">
-                    <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#2b747c]">Planning drawing packages</p>
-                    <div className="mt-2 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                      <span className="text-[15px] font-semibold text-[#274047]">From</span>
-                      <span className="text-[42px] font-extrabold leading-none tracking-tight text-[#173b46]">£750</span>
-                    </div>
-                    <p className="mt-3 text-[13px] leading-6 text-[#53666d]">
-                      For suitable straightforward house extension and loft conversion planning drawings.
-                      Your written fixed-fee quote sets out the included work.
-                    </p>
-                    <button type="button" onClick={scrollToForm} className="mt-4 flex min-h-[46px] w-full items-center justify-center rounded-full bg-[#236f7b] px-5 py-3 text-[14px] font-bold text-white transition hover:bg-[#194e5b] sm:w-auto">
-                      Get your fixed-fee quote
-                    </button>
-                    <p className="mt-3 text-[11px] leading-[1.65] text-[#667b80]">
-                      Council application fees, measured surveys, structural calculations and technical Building Regulations drawings are separate where required.
-                    </p>
+                <div className="mt-4 rounded-xl border border-[#d7e3e0] bg-white p-4 shadow-sm sm:p-5">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[#2b747c]">
+                    Planning drawing packages
+                  </p>
+                  <div className="mt-1 flex items-baseline gap-2">
+                    <span className="text-[13px] font-medium text-[#53666d]">From</span>
+                    <span className="text-[31px] font-bold leading-tight tracking-tight text-[#173b46]">£750</span>
                   </div>
+                  <p className="mt-2 text-[12px] leading-5 text-[#53666d]">
+                    For suitable house extensions and loft conversions. Your written quotation confirms the work included.
+                  </p>
+                  <button type="button" onClick={scrollToForm} className="mt-3 inline-flex min-h-[42px] w-full items-center justify-center rounded-lg bg-[#236f7b] px-4 py-2 text-[12px] font-semibold text-white transition hover:bg-[#194e5b] sm:w-auto">
+                    Get your fixed-fee quote
+                  </button>
+                  <p className="mt-2 text-[10px] leading-4 text-[#667b80]">
+                    Council fees, surveys, structural calculations and Building Regulations drawings are quoted separately.
+                  </p>
                 </div>
 
                 <p className="mt-4 text-[12px] font-medium text-slate-700">
