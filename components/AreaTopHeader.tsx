@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 type Props = {
   subtitle?: string;
@@ -11,6 +12,11 @@ export default function AreaTopHeader({
   subtitle = "Architectural Drawing Consultants",
   titleLine = "Architectural Drawings for Extensions, Lofts + New Builds at an Affordable Fixed Cost",
 }: Props) {
+  const router = useRouter();
+  // London borough pages now render their own shared Ealing-approved header.
+  // Keep this legacy header for non-borough services only, avoiding double logos.
+  const isBoroughPage = /^\/areas\/[^/]+\/?$/.test(router.pathname);
+  if (isBoroughPage) return null;
   return (
     <header className="bg-[#fdf8f3]/95 backdrop-blur relative z-[9999] border-b border-slate-200">
       <div className="mx-auto max-w-6xl px-4 pt-6 pb-3 lg:px-6">
