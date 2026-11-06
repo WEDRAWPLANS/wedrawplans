@@ -423,10 +423,10 @@ export default function EalingAreaPage() {
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Ealing | Extensions, Lofts, New Builds</title>
+        <title>House Extension & Loft Conversion Planning Drawings in Ealing | WEDRAWPLANS</title>
         <meta
           name="description"
-          content="Architectural drawings in Ealing for house extensions, loft conversions, refurbishments and building regulation packs. Fixed fees with clear scope and fast communication."
+          content="House extension and loft conversion planning drawings in Ealing from £750 for suitable projects. Existing and proposed plans, council application support and separate Building Regulations drawing packages. Request a fixed-fee quote."
         />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/ealing" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }} />
@@ -435,7 +435,7 @@ export default function EalingAreaPage() {
 
       <div className="min-h-screen bg-[#f8f4f0] text-slate-900">
         <header className="bg-[#fdf8f3]/95 backdrop-blur border-b border-slate-200">
-          <div className="mx-auto max-w-6xl px-4 pt-6 pb-3 lg:px-6">
+          <div className="mx-auto max-w-6xl px-4 pt-3 pb-2 sm:pt-6 sm:pb-3 lg:px-6">
             <div className="flex flex-col items-center text-center">
               <Image
                 src="/images/wedrawplans-logo.png"
@@ -443,15 +443,15 @@ export default function EalingAreaPage() {
                 width={420}
                 height={140}
                 priority
-                className="h-24 w-auto object-contain"
+                className="h-16 w-auto object-contain sm:h-24"
               />
 
-              <div className="mt-3 text-[11px] tracking-[0.18em] text-slate-600 uppercase">
+              <div className="mt-2 hidden text-[11px] tracking-[0.18em] text-slate-600 uppercase sm:block">
                 Architectural Drawing Consultants
               </div>
 
               <div className="mt-2 max-w-3xl text-[13px] font-medium text-slate-800">
-                Architectural Drawings for Extensions, Lofts + New Builds at an Affordable Fixed Cost
+                Professional Planning & Building Regulations Drawings · Clear Fixed Fees
               </div>
             </div>
 
@@ -459,7 +459,7 @@ export default function EalingAreaPage() {
 
             <div className="mt-2 flex w-full items-center justify-between gap-3">
               <div className="text-[12px] text-slate-700">
-                <span className="font-semibold text-slate-900">Ealing</span> borough page
+                <span className="font-semibold text-slate-900">Ealing</span> · Architectural drawing services
               </div>
 
               <div className="flex items-center gap-2">
@@ -485,18 +485,39 @@ export default function EalingAreaPage() {
 
         <main>
           <section className="border-b border-slate-200 bg-[#fdf8f3]">
-            <div className="mx-auto max-w-5xl flex flex-col lg:flex-row gap-6 px-4 py-8 lg:px-6 lg:py-10">
+            <div className="mx-auto max-w-5xl flex flex-col gap-5 px-4 py-6 lg:flex-row lg:gap-8 lg:px-6 lg:py-10">
               <div className="lg:w-1/2">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-red-700">
                   Ealing architectural drawings
                 </p>
 
-                <h1 className="mt-2 text-[22px] sm:text-[26px] font-semibold uppercase leading-snug tracking-[0.14em]">
-                  Plans for extensions, lofts and new builds in Ealing
+                <h1 className="mt-2 max-w-xl text-[27px] font-bold leading-[1.16] tracking-tight text-[#172b39] sm:text-[34px]">
+                  House Extension & Loft Conversion Plans in Ealing
                 </h1>
 
-                <p className="mt-2 text-[12px] text-slate-700">
-                  Get a fixed fee quote today and book an initial survey within 48 hours
+                <div className="mt-5 overflow-hidden rounded-2xl border border-[#cbded9] bg-white shadow-[0_12px_35px_-26px_rgba(21,59,73,0.55)]">
+                  <div className="h-1 bg-[#267b83]" />
+                  <div className="p-4 sm:p-5">
+                    <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#2b747c]">Planning drawing packages</p>
+                    <div className="mt-2 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                      <span className="text-[15px] font-semibold text-[#274047]">From</span>
+                      <span className="text-[42px] font-extrabold leading-none tracking-tight text-[#173b46]">£750</span>
+                    </div>
+                    <p className="mt-3 text-[13px] leading-6 text-[#53666d]">
+                      For suitable straightforward house extension and loft conversion planning drawings.
+                      Your written fixed-fee quote sets out the included work.
+                    </p>
+                    <button type="button" onClick={scrollToForm} className="mt-4 flex min-h-[46px] w-full items-center justify-center rounded-full bg-[#236f7b] px-5 py-3 text-[14px] font-bold text-white transition hover:bg-[#194e5b] sm:w-auto">
+                      Get your fixed-fee quote
+                    </button>
+                    <p className="mt-3 text-[11px] leading-[1.65] text-[#667b80]">
+                      Council application fees, measured surveys, structural calculations and technical Building Regulations drawings are separate where required.
+                    </p>
+                  </div>
+                </div>
+
+                <p className="mt-4 text-[12px] font-medium text-slate-700">
+                  Professional council drawing packages · Survey and submission options available
                 </p>
 
                 <p className="mt-3 text-[13px] text-slate-700">
@@ -504,7 +525,7 @@ export default function EalingAreaPage() {
                   Clear scope, fast communication and a smooth process from start to submission.
                 </p>
 
-                <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
+                <ul className="mt-4 hidden space-y-1 text-[13px] text-slate-800 lg:block">
                   <li>• Rear extensions, side extensions and wraparound layouts</li>
                   <li>• Loft conversions including dormers and hip to gable</li>
                   <li>• Refurbishments, internal replanning and structural openings</li>
@@ -513,7 +534,7 @@ export default function EalingAreaPage() {
                   <li>• Same day response on most enquiries</li>
                 </ul>
 
-                <div className="mt-5 flex flex-wrap gap-3 items-center">
+                <div className="mt-5 hidden flex-wrap gap-3 items-center lg:flex">
                   <button
                     onClick={scrollToForm}
                     type="button"
@@ -527,7 +548,7 @@ export default function EalingAreaPage() {
                   </a>
                 </div>
 
-                <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                <div className="mt-6 hidden overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm lg:block">
                   <div className="relative h-[190px] w-full">
                     <Image
                       src={EALING_LOCAL_IMAGE}
@@ -548,7 +569,7 @@ export default function EalingAreaPage() {
                   </div>
                 </div>
 
-                <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                <div className="mt-6 hidden overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm lg:block">
                   <div className="relative h-[190px] w-full">
                     <Image
                       src={HERO_IMAGE}
@@ -569,10 +590,10 @@ export default function EalingAreaPage() {
                 </div>
               </div>
 
-              <div id="ealing-quote" className="lg:w-1/2">
-                <div className="bg-white p-5 rounded-2xl shadow-md">
+              <div id="ealing-quote" className="scroll-mt-5 lg:w-1/2">
+                <div className="rounded-2xl border border-[#e0e7e3] bg-white p-5 shadow-md sm:p-6">
                   <h2 className="text-[14px] uppercase font-semibold tracking-[0.16em] text-slate-900">
-                    Free fixed fee quote
+                    Request your Ealing fixed-fee quote
                   </h2>
 
                   <p className="mt-1 text-[12px] text-slate-600">
@@ -667,6 +688,19 @@ export default function EalingAreaPage() {
                       Typical Ealing projects include rear extensions, wraparound extensions, loft conversions and refurbishments.
                     </p>
                   </form>
+
+                  <div className="mt-5 overflow-hidden rounded-xl border border-[#e0e8e4] bg-[#f7faf9] lg:hidden">
+                    <Image
+                      src={EALING_LOCAL_IMAGE}
+                      alt="Residential streets in the Ealing area"
+                      width={800}
+                      height={310}
+                      className="h-[140px] w-full object-cover"
+                    />
+                    <p className="p-3 text-[12px] leading-5 text-slate-600">
+                      House extension, loft and Building Control drawing advice for Ealing, Acton, Hanwell, Southall and surrounding areas.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -939,7 +973,7 @@ export default function EalingAreaPage() {
             </div>
           </section>
 
-          <PlanningAssistant boroughName="Ealing" onGetQuote={scrollToForm} />
+          {/* One compact site-wide planning assistant remains; avoid duplicate floating chat controls on mobile. */}
         </main>
       </div>
     </>
