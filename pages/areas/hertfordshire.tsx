@@ -346,13 +346,13 @@ export default function HertfordshireAreaPage() {
           <section id="allum-lane-elstree-showcase" aria-labelledby="allum-lane-herts-heading" className="scroll-mt-24 border-y border-[#dce6e2] bg-[#f3f8f5] py-11 sm:py-14">
             <div className="mx-auto max-w-6xl px-4 lg:px-6">
               <div className="flex flex-wrap items-center justify-between gap-3">
-                <p className="text-[11px] font-bold uppercase tracking-[.18em] text-[#9b645d]">WEDRAWPLANS real approved projects · Hertsmere</p>
+                <p className="text-[11px] font-bold uppercase tracking-[.18em] text-[#9b645d]">WEDRAWPLANS approved projects · Hertsmere</p>
                 <span className="rounded-full border border-[#b9d9c8] bg-[#e6f4e9] px-3 py-1.5 text-[11px] font-bold text-[#28664d]">Planning permission granted · 2020</span>
               </div>
-              <h2 id="allum-lane-herts-heading" className="mt-3 max-w-4xl text-[27px] font-semibold leading-tight tracking-tight text-[#224448] sm:text-[35px]">Allum Lane, Elstree — a real approved architectural design</h2>
+              <h2 id="allum-lane-herts-heading" className="mt-3 max-w-4xl text-[27px] font-semibold leading-tight tracking-tight text-[#224448] sm:text-[35px]">Allum Lane, Elstree — approved architectural design</h2>
               <p className="mt-3 max-w-4xl text-[14px] leading-7 text-[#526e73]">
-                Discover an original WEDRAWPLANS house-extension scheme in Elstree, Borehamwood, with seven architectural
-                3D views, a design animation and nine existing and proposed A3 drawings. The proposal reimagines the
+                Discover an original WEDRAWPLANS house-extension scheme in Elstree, Borehamwood, with three selected architectural
+                3D views and Drawings 5, 6 and 8 from the approved package. The proposal reimagines the
                 roof, front and rear elevations, garden-facing glazing and internal arrangement as part of a coordinated
                 householder planning application to Hertsmere Borough Council.
               </p>
@@ -385,7 +385,7 @@ export default function HertfordshireAreaPage() {
               </div>
               <div className="mt-5 grid grid-cols-3 gap-2.5 sm:gap-4">
                 {[
-                  { src: "/images/case-studies/allum-lane/3d-05.webp", title: "Front architectural design" },
+                  { src: "/images/case-studies/allum-lane/3d-01.webp", title: "Front architectural design" },
                   { src: "/images/case-studies/allum-lane/full-drawing-05.webp", title: "Proposed ground-floor drawing" },
                   { src: "/images/case-studies/allum-lane/full-drawing-08.webp", title: "Proposed elevations" }
                 ].map((image) => (
