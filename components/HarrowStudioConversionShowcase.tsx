@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import type { CaseStudy } from "../data/caseStudies";
 
 type Props = { project: CaseStudy };
@@ -27,6 +27,24 @@ export default function HarrowStudioConversionShowcase({ project }: Props) {
   const drawings = project.galleryImages || [];
   const [drawingIndex, setDrawingIndex] = useState(0);
   const [playingVideo, setPlayingVideo] = useState<number | null>(null);
+  const videoRefs = useRef<Array<HTMLVideoElement | null>>([]);
+
+  function playAnimation(index: number) {
+    // Play synchronously during the user's click gesture; mounting a video
+    // only after setState can make browsers reject or ignore autoplay.
+    videoRefs.current.forEach((player, i) => {
+      if (i !== index && player) player.pause();
+    });
+    const player = videoRefs.current[index];
+    setPlayingVideo(index);
+    if (player) {
+      player.muted = true;
+      if (player.ended) player.currentTime = 0;
+      void player.play().catch(() => {
+        // The native controls stay visible as a fallback on restrictive devices.
+      });
+    }
+  }
   const selected = drawings[Math.min(drawingIndex, drawings.length - 1)];
 
   return (
@@ -72,31 +90,29 @@ export default function HarrowStudioConversionShowcase({ project }: Props) {
           {ANIMATIONS.map((item, i) => (
             <article key={item.src} className="overflow-hidden rounded-[16px] border border-[#dae7df] bg-[#f6faf8]">
               <div className="relative aspect-video overflow-hidden bg-[#e8edeb]">
-                {playingVideo === i ? (
-                  <video
-                    key={item.src}
-                    controls
-                    autoPlay
-                    muted
-                    playsInline
-                    preload="metadata"
-                    poster={item.poster}
-                    controlsList="nodownload"
-                    disablePictureInPicture
-                    className="h-full w-full object-contain"
-                    aria-label={item.title}
-                    onEnded={() => setPlayingVideo(null)}
-                  >
-                    <source src={item.src} type="video/mp4" />
-                    Your browser does not support HTML video.
-                  </video>
-                ) : (
-                  <button type="button" onClick={() => setPlayingVideo(i)} className="group relative block h-full w-full cursor-pointer" aria-label={"Play the original animation: " + item.title}>
+                <video
+                  ref={(element) => { videoRefs.current[i] = element; }}
+                  controls={playingVideo === i}
+                  muted
+                  playsInline
+                  preload="none"
+                  poster={item.poster}
+                  controlsList="nodownload"
+                  disablePictureInPicture
+                  className={"absolute inset-0 h-full w-full object-contain " + (playingVideo === i ? "z-10" : "z-0")}
+                  aria-label={item.title}
+                  onEnded={() => setPlayingVideo(null)}
+                >
+                  <source src={item.src} type="video/mp4" />
+                  Your browser does not support HTML video.
+                </video>
+                {playingVideo !== i ? (
+                  <button type="button" onClick={() => playAnimation(i)} className="group absolute inset-0 z-20 block h-full w-full cursor-pointer" aria-label={"Play the original animation: " + item.title}>
                     <Image src={item.poster} alt={"Video preview showing " + item.title + " with the user's original faded WEDRAWPLANS corner logo"} fill sizes="(max-width: 640px) 100vw, 38vw" className="pointer-events-none object-cover transition-transform duration-200 group-hover:scale-[1.015]" draggable={false} />
                     <span className="absolute inset-0 ring-inset transition group-focus-visible:ring-4 group-focus-visible:ring-[#4b8f82]" />
                     <span className="sr-only">Play video</span>
                   </button>
-                )}
+                ) : null}
               </div>
               <div className="px-4 py-4">
                 <p className="text-[10px] font-extrabold uppercase tracking-[.14em] text-[#a06f61]">3D walkthrough · {item.duration}</p>
