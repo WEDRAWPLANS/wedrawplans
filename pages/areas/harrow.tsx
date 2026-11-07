@@ -468,9 +468,45 @@ export default function HarrowAreaPage() {
 
 <ApprovalEvidenceStrip
   slugs={["burnt-oak-broadway-harrow-retail-flats"]}
-  title="Approved Harrow project: three studio flats above a shop"
-  intro="Harrow Council granted planning permission in August 2021 for three studio flats above retained retail accommodation, a rear shop extension and a dormer on Burnt Oak Broadway. View the case-study evidence and request a fixed-fee quote."
+  title="Approved in Harrow: three studio flats above retained retail"
+  intro="Harrow Council granted permission for two first-floor studios and a third attic-level studio, while keeping the ground-floor shop. See four original approved drawing sheets and two WEDRAWPLANS 3D walkthroughs."
 />
+
+          <section aria-labelledby="harrow-studio-case-heading" className="border-b border-[#dce7e0] bg-[#edf6f1] py-11 sm:py-14">
+            <div className="mx-auto max-w-6xl px-4 lg:px-6">
+              <div className="max-w-3xl">
+                <p className="text-[11px] font-extrabold uppercase tracking-[.16em] text-[#28735d]">Harrow Council approval · P/0076/21 · Original architectural work</p>
+                <h2 id="harrow-studio-case-heading" className="mt-2 text-[27px] font-semibold leading-tight text-[#24494c] sm:text-[33px]">
+                  See how three studios were achieved above a retained shop
+                </h2>
+                <p className="mt-3 text-[14px] leading-7 text-[#536f73]">
+                  Our Burnt Oak Broadway case study features two first-floor flats, a third attic-level flat and a retained commercial unit on the ground floor.
+                  Explore the actual project animations and four selected council-approved architectural drawing sheets, all presented with discreet WEDRAWPLANS watermarks.
+                </p>
+              </div>
+              <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                {[
+                  { src: "/images/case-studies/burnt-oak-broadway-harrow-retail-flats/first-floor-video-poster.webp", title: "Two first-floor studio flats", label: "3D walkthrough 01" },
+                  { src: "/images/case-studies/burnt-oak-broadway-harrow-retail-flats/attic-floor-video-poster.webp", title: "One attic-floor studio flat", label: "3D walkthrough 02" }
+                ].map((video) => (
+                  <Link key={video.src} href="/case-studies/burnt-oak-broadway-harrow-retail-flats#harrow-3d-animations" className="group overflow-hidden rounded-[18px] border border-[#d5e5dd] bg-white shadow-[0_8px_30px_rgba(20,76,66,.06)]">
+                    <div className="relative aspect-video bg-[#e8efea]">
+                      <Image src={video.src} alt={video.title + " — genuine WEDRAWPLANS approved conversion 3D visual with faded original logo"} fill sizes="(max-width: 640px) 100vw, 46vw" className="pointer-events-none object-cover transition-transform duration-300 group-hover:scale-[1.015]" draggable={false} />
+                    </div>
+                    <div className="px-4 py-4">
+                      <p className="text-[10px] font-extrabold uppercase tracking-[.14em] text-[#9a6e5e]">{video.label}</p>
+                      <h3 className="mt-1 text-[15px] font-bold text-[#2b5558]">{video.title}</h3>
+                      <span className="mt-2 inline-block text-[12px] font-bold text-[#21727b]">Watch the approved project animation →</span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Link href="/case-studies/burnt-oak-broadway-harrow-retail-flats" className="inline-flex rounded-full bg-[#256e76] px-5 py-3 text-[12px] font-bold text-white hover:bg-[#1a5960]">See approved drawings &amp; the full case study</Link>
+                <button type="button" onClick={scrollToForm} className="rounded-full border border-[#bad8cd] bg-white px-5 py-3 text-[12px] font-bold text-[#296b70] hover:bg-[#e2f2e8]">Request a fixed-fee quote</button>
+              </div>
+            </div>
+          </section>
 
           <section className="border-b border-slate-200 bg-white py-10">
             <div className="mx-auto max-w-5xl space-y-10 px-4 lg:px-6">
