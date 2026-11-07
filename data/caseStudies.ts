@@ -131,7 +131,6 @@ export const caseStudies: CaseStudy[] = [
                 "caption": "Drawing 8 — Proposed front and rear elevations"
           }
     ],
-    projectVideoUrl: undefined,
     decisions: [
       {
         "reference": "20/0662/HSE",
