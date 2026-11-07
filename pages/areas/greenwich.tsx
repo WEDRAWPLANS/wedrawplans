@@ -158,6 +158,15 @@ export default function GreenwichAreaPage() {
   intro="Examples include the addition of two flats at Woolwich Road and a lawful loft conversion in Eltham, illustrating different planning routes and drawing requirements."
 />
 
+          <section aria-label="Related approved conversion in neighbouring Lewisham" className="border-b border-[#dce7e0] bg-[#f2f8f4] py-7">
+            <div className="mx-auto max-w-6xl px-4 lg:px-6">
+              <p className="text-[10px] font-extrabold uppercase tracking-[.16em] text-[#99685f]">Nearby project · Lewisham Council approval</p>
+              <h2 className="mt-2 text-[20px] font-semibold text-[#284b4f]">Approved two-flat conversion in Brockley</h2>
+              <p className="mt-2 max-w-4xl text-[13px] leading-6 text-[#587175]">Explore a neighbouring Lewisham approval for two self-contained upper-floor flats, with selected original WEDRAWPLANS architectural and technical design drawings. This is a Lewisham case study, not a Greenwich planning permission.</p>
+              <a href="/case-studies/brockley-road-lewisham-two-flat-conversion" className="mt-3 inline-flex text-[12px] font-bold text-[#226d76] underline underline-offset-4">View Brockley Road approval and drawings →</a>
+            </div>
+          </section>
+
           <section className="bg-white border-b border-slate-200 py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
               <div className="grid md:grid-cols-[1.7fr,1.3fr] gap-10 items-start">
