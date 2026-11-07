@@ -62,7 +62,7 @@ export default function HarrowStudioConversionShowcase({ project }: Props) {
         </p>
       </section>
 
-      <section className="rounded-[20px] border border-[#dbe7e1] bg-white px-4 py-6 shadow-[0_15px_40px_rgba(22,69,70,.06)] sm:px-6">
+      <section id="harrow-3d-animations" className="scroll-mt-24 rounded-[20px] border border-[#dbe7e1] bg-white px-4 py-6 shadow-[0_15px_40px_rgba(22,69,70,.06)] sm:px-6">
         <div className="mb-5">
           <p className="text-[11px] font-extrabold uppercase tracking-[.16em] text-[#28775e]">Original WEDRAWPLANS 3D design</p>
           <h2 className="mt-2 text-[24px] font-semibold text-[#24494d] sm:text-[29px]">Watch the three-flat conversion</h2>
