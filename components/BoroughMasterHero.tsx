@@ -11,7 +11,7 @@ type BoroughHeroProps = {
   formId: string;
   headline: string;
   /** Optional borough-specific illustration. Other boroughs keep their existing drawing preview. */
-  showcaseImage?: { src: string; alt: string };
+  showcaseImage?: { src: string; alt: string; fit?: "cover" | "contain"; watermarkEmbedded?: boolean; caption?: string };
 };
 
 const PHONE_DISPLAY = "020 3654 8508";
@@ -149,9 +149,9 @@ export default function BoroughMasterHero({ boroughName, formId, headline, showc
                 alt={showcaseImage?.alt || "Example of WEDRAWPLANS architectural planning drawings"}
                 fill
                 sizes="(max-width: 1024px) 100vw, 520px"
-                className={showcaseImage ? "object-cover" : "object-contain"}
+                className={showcaseImage?.fit === "contain" ? "object-contain" : showcaseImage ? "object-cover" : "object-contain"}
               />
-              {showcaseImage ? <span aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden"><span className="-rotate-[24deg] whitespace-nowrap text-[clamp(22px,4vw,44px)] font-extrabold tracking-[.10em] text-slate-500/5">WEDRAWPLANS</span></span> : null}
+              {showcaseImage && !showcaseImage.watermarkEmbedded ? <span aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden"><span className="-rotate-[24deg] whitespace-nowrap text-[clamp(22px,4vw,44px)] font-extrabold tracking-[.10em] text-slate-500/5">WEDRAWPLANS</span></span> : null}
             </div>
             <div className="p-4">
               <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-900">Our drawing packages</p>
@@ -214,18 +214,18 @@ export default function BoroughMasterHero({ boroughName, formId, headline, showc
               <p className="mt-2 text-[11px] text-slate-500">Your information is used only to reply to your enquiry.</p>
             </form>
             <div className="mt-5 overflow-hidden rounded-xl border border-[#e0e8e4] bg-[#f7faf9] lg:hidden">
-              <div className={showcaseImage ? "relative aspect-[16/10] max-h-[285px] w-full bg-[#f1f5f2]" : "relative h-[140px] w-full bg-[#f7faf9]"}>
+              <div className={showcaseImage ? (showcaseImage.fit === "contain" ? "relative aspect-[1.414/1] max-h-[285px] w-full bg-[#f1f5f2]" : "relative aspect-[16/10] max-h-[285px] w-full bg-[#f1f5f2]") : "relative h-[140px] w-full bg-[#f7faf9]"}>
                 <Image
                   src={showcaseImage?.src || "/images/drawings.jpg"}
                   alt={showcaseImage?.alt || "WEDRAWPLANS architectural drawing example"}
                   fill
                   sizes="(max-width: 1024px) 100vw, 520px"
-                  className={showcaseImage ? "object-cover" : "object-contain"}
+                  className={showcaseImage?.fit === "contain" ? "object-contain" : showcaseImage ? "object-cover" : "object-contain"}
                 />
-                {showcaseImage ? <span aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden"><span className="-rotate-[24deg] whitespace-nowrap text-[clamp(25px,5vw,50px)] font-extrabold tracking-[.10em] text-slate-500/5">WEDRAWPLANS</span></span> : null}
+                {showcaseImage && !showcaseImage.watermarkEmbedded ? <span aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden"><span className="-rotate-[24deg] whitespace-nowrap text-[clamp(25px,5vw,50px)] font-extrabold tracking-[.10em] text-slate-500/5">WEDRAWPLANS</span></span> : null}
               </div>
               <p className="p-3 text-[12px] leading-5 text-slate-600">
-                Planning, extension and Building Control drawing advice for {boroughName} and surrounding areas.
+                {showcaseImage?.caption || `Planning, extension and Building Control drawing advice for ${boroughName} and surrounding areas.`}
               </p>
             </div>
           </div>
