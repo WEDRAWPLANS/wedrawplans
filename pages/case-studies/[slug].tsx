@@ -70,7 +70,7 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
     <>
       <Head>
         <title>{item.title} | WEDRAWPLANS</title>
-        <meta name="description" content={item.summary + " See the project details and request a fixed-fee drawing quote from WEDRAWPLANS."} />
+        <meta name="description" content={item.seoDescription || (item.summary + " See the project details and request a fixed-fee drawing quote from WEDRAWPLANS.")} />
         <meta name="robots" content={process.env.VERCEL_ENV === "production" ? "index,follow,max-image-preview:large" : "noindex,nofollow"} />
         <link rel="canonical" href={canonical} />
         <meta property="og:type" content="article" />

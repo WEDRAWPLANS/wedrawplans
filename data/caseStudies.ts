@@ -2,6 +2,7 @@ export type CaseStudy = {
   slug: string;
   title: string;
   shortTitle: string;
+  seoDescription?: string;
   location: string;
   authority: string;
   reference: string;
@@ -309,6 +310,7 @@ export const caseStudies: CaseStudy[] = [
       "Council planning conditions for residential refuse/recycling storage and cycle parking"
     ],
     title: "Approved Two-Flat Conversion in Brockley, Lewisham",
+    seoDescription: "Approved two-flat conversion in Brockley, Lewisham. See WEDRAWPLANS architectural drawings, the planning outcome and request a fixed-fee quote.",
     shortTitle: "Brockley Road, Lewisham",
     location: "Brockley Road, London SE4",
     authority: "London Borough of Lewisham",
