@@ -10,6 +10,8 @@ type BoroughHeroProps = {
   boroughName: string;
   formId: string;
   headline: string;
+  /** Optional borough-specific illustration. Other boroughs keep their existing drawing preview. */
+  showcaseImage?: { src: string; alt: string };
 };
 
 const PHONE_DISPLAY = "020 3654 8508";
@@ -81,7 +83,7 @@ export function BoroughMasterHeader({ boroughName }: BoroughHeaderProps) {
  * composition. £750 applies ONLY to qualifying planning drawings,
  * never to an inclusive Building Regulations package.
  */
-export default function BoroughMasterHero({ boroughName, formId, headline }: BoroughHeroProps) {
+export default function BoroughMasterHero({ boroughName, formId, headline, showcaseImage }: BoroughHeroProps) {
   function scrollToForm() {
     document.getElementById(formId)?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
@@ -143,12 +145,13 @@ export default function BoroughMasterHero({ boroughName, formId, headline }: Bor
           <div className="mt-6 hidden overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm lg:block">
             <div className="relative h-[190px] w-full bg-[#f4f8f7]">
               <Image
-                src="/images/drawings.jpg"
-                alt="Example of WEDRAWPLANS architectural planning drawings"
+                src={showcaseImage?.src || "/images/drawings.jpg"}
+                alt={showcaseImage?.alt || "Example of WEDRAWPLANS architectural planning drawings"}
                 fill
                 sizes="(max-width: 1024px) 100vw, 520px"
-                className="object-contain"
+                className={showcaseImage ? "object-cover" : "object-contain"}
               />
+              {showcaseImage ? <span aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden"><span className="-rotate-[24deg] whitespace-nowrap text-[clamp(22px,4vw,44px)] font-extrabold tracking-[.10em] text-slate-500/5">WEDRAWPLANS</span></span> : null}
             </div>
             <div className="p-4">
               <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-900">Our drawing packages</p>
@@ -211,13 +214,16 @@ export default function BoroughMasterHero({ boroughName, formId, headline }: Bor
               <p className="mt-2 text-[11px] text-slate-500">Your information is used only to reply to your enquiry.</p>
             </form>
             <div className="mt-5 overflow-hidden rounded-xl border border-[#e0e8e4] bg-[#f7faf9] lg:hidden">
-              <Image
-                src="/images/drawings.jpg"
-                alt="WEDRAWPLANS architectural drawing example"
-                width={800}
-                height={310}
-                className="h-[140px] w-full object-contain"
-              />
+              <div className={showcaseImage ? "relative aspect-[16/10] max-h-[285px] w-full bg-[#f1f5f2]" : "relative h-[140px] w-full bg-[#f7faf9]"}>
+                <Image
+                  src={showcaseImage?.src || "/images/drawings.jpg"}
+                  alt={showcaseImage?.alt || "WEDRAWPLANS architectural drawing example"}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 520px"
+                  className={showcaseImage ? "object-cover" : "object-contain"}
+                />
+                {showcaseImage ? <span aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden"><span className="-rotate-[24deg] whitespace-nowrap text-[clamp(25px,5vw,50px)] font-extrabold tracking-[.10em] text-slate-500/5">WEDRAWPLANS</span></span> : null}
+              </div>
               <p className="p-3 text-[12px] leading-5 text-slate-600">
                 Planning, extension and Building Control drawing advice for {boroughName} and surrounding areas.
               </p>
