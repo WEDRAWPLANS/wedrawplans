@@ -368,7 +368,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "burnt-oak-broadway-harrow-retail-flats",
     title: "Approved Three Studio Flats & Retail Extension in Harrow",
     shortTitle: "Burnt Oak Broadway, Harrow",
-    seoDescription: "Harrow granted planning permission for three studio flats above a shop and a rear retail extension in Burnt Oak. View WEDRAWPLANS' approved project.",
+    seoDescription: "Harrow approved 3 studio flats above retained retail space in Burnt Oak. View original WEDRAWPLANS planning drawings, 3D walkthroughs and the council decision.",
     location: "Burnt Oak Broadway, Edgware HA8",
     authority: "London Borough of Harrow",
     reference: "P/0076/21",
@@ -377,9 +377,9 @@ export const caseStudies: CaseStudy[] = [
     service: "Retail extension and conversion to three studio flats",
     outcome: "Planning permission granted",
     approved: true,
-    summary: "Harrow Council granted planning permission in August 2021 for a ground-floor retail extension and conversion of the first- and second-floor accommodation into three studio flats, together with a rear dormer, external alterations and refuse and cycle storage.",
+    summary: "How WEDRAWPLANS helped achieve three studio flats over existing ground-floor retail: two independent first-floor studios and a third in the attic, while retaining the shop below. Harrow Council granted planning permission in August 2021 for the conversion, rear retail extension, dormer and associated works.",
     proof: "Harrow Council granted permission on 6 August 2021 under reference P/0076/21. The original decision notice identifies the rear ground-floor retail extension, three studio flats above, rear dormer and external works, and sets out the relevant approved drawing revisions and planning conditions. WEDRAWPLANS' 2021 correspondence with the planning officer documents the drawing revisions and fire-safety condition discussions leading up to the decision. This is a historic approved case study, not a statement that construction was completed or the permission remains available for a new start today.",
-    approvedDrawings: "Harrow Council's decision notice identifies plans P01–P07 Revision A, P08 Revision G, P09–P10 (Revisions E and F), P11 Revision B, P12–P14 Revision A, P25 Revision A and P30. The original sheet images are not yet displayed publicly; only selected, anonymised sheets will be uploaded following the WEDRAWPLANS 5%-watermark standard.",
+    approvedDrawings: "Four selected complete original planning sheets are shown: proposed ground-floor retail plan P08 Revision G, proposed first-floor plan P09 Revision E (two studios), proposed attic plan P10 Revision F (third studio) and proposed side elevation P14 Revision A. All four drawing references and revisions are listed on the Harrow Council decision notice dated 6 August 2021. Public images have identifying details obscured and a single very faint diagonal grey WEDRAWPLANS watermark.",
     keyConditions: [
       "A Fire Safety Statement was required to be submitted and approved before commencement (Condition 14).",
       "Before occupation, the council required approval of rear-courtyard landscaping proposals and details of cycle storage for at least three bicycles (Conditions 9 and 12).",
@@ -389,7 +389,7 @@ export const caseStudies: CaseStudy[] = [
     wdpService: "WEDRAWPLANS developed the architectural drawing submission for the shop-and-flats scheme, including layout, dormer, refuse and cycle-store coordination. Contemporary correspondence confirms revised drawings were sent to Harrow's case officer and the fire-safety wording was discussed immediately before the grant of permission.",
     homeownerGuidance: "Considering converting upper floors into separate homes, adapting a shop with accommodation above, or improving a residential property in Harrow? We assess the site-specific planning route, access, residential quality, fire and acoustic considerations and drawings required for the council. We also prepare fixed-fee drawing quotations for house extensions, loft conversions and lawful-development applications throughout Harrow.",
     highlights: [
-      "Three studio flats proposed across the first and second floors",
+      "Two first-floor studio flats and one attic-level studio flat approved",
       "Single-storey rear extension to the retained ground-floor retail unit",
       "Rear dormer and associated external alterations",
       "Refuse and cycle-storage coordination",
@@ -398,8 +398,16 @@ export const caseStudies: CaseStudy[] = [
     leadAngle: "Planning a flat conversion, loft conversion or house extension in Harrow?",
     relatedService: "/commercial/mixed-use",
     relatedArea: "/areas/harrow",
-    heroImage: "/images/drawings.jpg",
-    secondaryImage: "/images/barnet-project-drawings-board.jpg"
+    heroImage: "/images/case-studies/burnt-oak-broadway-harrow-retail-flats/first-floor-video-poster.webp",
+    secondaryImage: "/images/case-studies/burnt-oak-broadway-harrow-retail-flats/drawing-1-ground-floor-retail.webp",
+    galleryImages: [
+      { src: "/images/case-studies/burnt-oak-broadway-harrow-retail-flats/drawing-1-ground-floor-retail.webp", alt: "Full WEDRAWPLANS planning sheet P08 Revision G showing retained ground-floor retail and shop extension, approved under Harrow P/0076/21", caption: "Drawing 1 · Ground-floor retail retained · P08 G" },
+      { src: "/images/case-studies/burnt-oak-broadway-harrow-retail-flats/drawing-2-first-floor-two-studios.webp", alt: "Full architectural planning sheet P09 Revision E showing two self-contained first-floor studio flat layouts", caption: "Drawing 2 · Two first-floor studios · P09 E" },
+      { src: "/images/case-studies/burnt-oak-broadway-harrow-retail-flats/drawing-3-attic-floor-studio.webp", alt: "Full WEDRAWPLANS planning sheet P10 Revision F showing proposed third studio flat within the upper attic floor", caption: "Drawing 3 · Attic studio flat · P10 F" },
+      { src: "/images/case-studies/burnt-oak-broadway-harrow-retail-flats/drawing-4-side-elevation.webp", alt: "Full WEDRAWPLANS proposed side elevation planning sheet P14 Revision A for the three-flat Burnt Oak Broadway project", caption: "Drawing 4 · Proposed side elevation · P14 A" }
+    ],
+    mediaNote: "Two original project animations are shown in optimised playback format with the exact supplied WEDRAWPLANS red-and-white logo faded in the bottom-right corner. The four sheet images retain the original full drawing layouts with identifying information hidden and one 5%-style diagonal grey watermark. Images are not construction drawings.",
+    featured: true
   },
   {
     slug: "tithe-walk-mill-hill-loft-conversion",
