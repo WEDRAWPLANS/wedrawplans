@@ -23,7 +23,8 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
   const isSistova = item.slug === "sistova-road-wandsworth-extension-basement";
   const isCromwell = item.slug === "cromwell-road-hounslow-rear-extension";
   const isBrockley = item.slug === "brockley-road-lewisham-two-flat-conversion";
-  const isFlagship = isReddings || isAllum || isSistova || isCromwell || isBrockley;
+  const isHarrowStudios = item.slug === "burnt-oak-broadway-harrow-retail-flats";
+  const isFlagship = isReddings || isAllum || isSistova || isCromwell || isBrockley || isHarrowStudios;
   const useOriginalDrawingGallery = item.slug === "sistova-road-wandsworth-extension-basement" || item.slug === "cromwell-road-hounslow-rear-extension" || isFlagship;
   const isProduction = process.env.VERCEL_ENV === "production";
   const hasApprovedVisual = [item.heroImage, item.secondaryImage].some(src => Boolean(src) && (src.startsWith("/images/case-studies/") || src.startsWith("/images/hyde-")));
@@ -145,7 +146,7 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
               </div>
               <span className="text-[12px] text-[#587274]">{item.shortTitle}</span>
             </div>
-            {item.heroImage && (item.heroImage.startsWith("/images/case-studies/") || item.heroImage.startsWith("/images/hyde-")) ? (
+            {!isHarrowStudios && item.heroImage && (item.heroImage.startsWith("/images/case-studies/") || item.heroImage.startsWith("/images/hyde-")) ? (
               <figure className="overflow-hidden rounded-[18px] border border-[#dee5e1] bg-white p-3 shadow-[0_8px_34px_rgba(32,70,73,0.035)] sm:p-5">
                 <Image src={item.heroImage} alt={"WEDRAWPLANS project drawing or architectural visualisation — " + item.shortTitle} width={1500} height={1000} priority sizes="(max-width: 768px) 100vw, 85vw" className="mx-auto h-auto max-h-[780px] w-full object-contain"/>
                 <figcaption className="mt-3 border-t border-[#edf0ee] px-1 pt-3 text-[12px] leading-5 text-[#617579]">
@@ -162,7 +163,7 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
                 <p className="mt-2 max-w-lg text-[13px] leading-6 text-[#738689]">This space is ready for the approved architectural drawings, plans or 3D design views.</p>
               </div>
             ) : null}
-            {item.secondaryImage && (item.secondaryImage.startsWith("/images/case-studies/") || item.secondaryImage.startsWith("/images/hyde-")) && item.secondaryImage !== item.heroImage ? (
+            {!isHarrowStudios && item.secondaryImage && (item.secondaryImage.startsWith("/images/case-studies/") || item.secondaryImage.startsWith("/images/hyde-")) && item.secondaryImage !== item.heroImage ? (
               <figure className="mt-5 overflow-hidden rounded-[18px] border border-[#dee5e1] bg-white p-5">
                 <Image src={item.secondaryImage} alt={"Additional architectural illustration for " + item.shortTitle} width={1450} height={900} className="h-auto w-full object-contain"/>
               </figure>
