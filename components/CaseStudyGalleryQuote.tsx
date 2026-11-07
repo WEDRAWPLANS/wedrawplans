@@ -7,6 +7,7 @@ import { categoryForCaseStudy } from "../data/caseStudies";
 import ProjectMediaSlider from "./ProjectMediaSlider";
 import ProjectQuickQuotePanel from "./ProjectQuickQuotePanel";
 import ApprovedDrawingShowcase from "./ApprovedDrawingShowcase";
+import BrockleyCaseStudyShowcase from "./BrockleyCaseStudyShowcase";
 
 type Props = {
   projects: CaseStudy[];
@@ -249,6 +250,7 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
   const isAllum = !isHub && project?.slug === "allum-lane-elstree-major-house-extension";
   const isSistova = !isHub && project?.slug === "sistova-road-wandsworth-extension-basement";
   const isCromwell = !isHub && project?.slug === "cromwell-road-hounslow-rear-extension";
+  const isBrockley = !isHub && project?.slug === "brockley-road-lewisham-two-flat-conversion";
   const isApprovedDrawingShowcase = isSistova || isCromwell;
   const quotePanelRef = useRef<HTMLDivElement>(null);
   const [quoteHeight, setQuoteHeight] = useState<number | undefined>(undefined);
@@ -271,7 +273,7 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
           <div>
             <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-[#a36a63]">WEDRAWPLANS architectural drawings</p>
             <h2 id="project-gallery-heading" className="mt-2 text-2xl font-semibold tracking-tight text-[#284549] sm:text-3xl">
-              {isHub ? "Explore our approved planning projects" : isReddings ? "A real project, from before to after" : isAllum ? "A real approved project, from plans to 3D design" : isApprovedDrawingShowcase ? "Approved planning drawings & architectural 3D design" : "Project drawings & design"}
+              {isHub ? "Explore our approved planning projects" : isReddings ? "A real project, from before to after" : isAllum ? "A real approved project, from plans to 3D design" : isApprovedDrawingShowcase ? "Approved planning drawings & architectural 3D design" : isBrockley ? "Approved two-flat conversion · original architectural design" : "Project drawings & design"}
             </h2>
             <p className="mt-3 max-w-3xl text-[14px] leading-7 text-[#61777b]">
               {isHub
@@ -283,7 +285,7 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
         </div>
         <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1.3fr)_minmax(330px,.7fr)] lg:gap-7">
           <div className="min-w-0">
-            {isReddings ? <RealProjectShowcase project={project} /> : isAllum ? <AllumLaneShowcase project={project} quoteHeight={quoteHeight} /> : isApprovedDrawingShowcase ? <ApprovedDrawingShowcase project={project} kind={isSistova ? "sistova" : "cromwell"} /> : <ProjectMediaSlider projects={projects} mode={context} />}
+            {isReddings ? <RealProjectShowcase project={project} /> : isAllum ? <AllumLaneShowcase project={project} quoteHeight={quoteHeight} /> : isApprovedDrawingShowcase ? <ApprovedDrawingShowcase project={project} kind={isSistova ? "sistova" : "cromwell"} /> : isBrockley ? <BrockleyCaseStudyShowcase project={project} /> : <ProjectMediaSlider projects={projects} mode={context} />}
             {!isHub && project.projectVideoUrl && project.slug !== "the-reddings-mill-hill-extension-basement-loft" ? (
               <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-[15px] border border-[#dce7e4] bg-white px-5 py-4">
                 <div>
@@ -303,7 +305,7 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
           <div id="case-study-quote" ref={quotePanelRef} className="scroll-mt-24 lg:sticky lg:top-5 lg:self-start"><ProjectQuickQuotePanel source={isHub ? "case-studies-hub" : "case-study-gallery"} projectSlug={isHub ? "" : project.slug} projectTitle={isHub ? "" : project.shortTitle} suggestedService={isHub ? "" : serviceFor(project)} /></div>
         </div>
       </div>
-      {(isReddings || isAllum || isApprovedDrawingShowcase) ? <a href="#case-study-quote" className="fixed inset-x-0 bottom-0 z-40 flex min-h-[60px] items-center justify-center border-t border-[#bcd5d0] bg-[#224b4e] px-5 py-3 text-[14px] font-bold text-white shadow-[0_-10px_30px_rgba(0,0,0,.13)] lg:hidden">Get your fixed-fee drawing quote →</a> : null}
+      {(isReddings || isAllum || isApprovedDrawingShowcase || isBrockley) ? <a href="#case-study-quote" className="fixed inset-x-0 bottom-0 z-40 flex min-h-[60px] items-center justify-center border-t border-[#bcd5d0] bg-[#224b4e] px-5 py-3 text-[14px] font-bold text-white shadow-[0_-10px_30px_rgba(0,0,0,.13)] lg:hidden">Get your fixed-fee drawing quote →</a> : null}
     </section>
   );
 }
