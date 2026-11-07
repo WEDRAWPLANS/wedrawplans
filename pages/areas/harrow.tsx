@@ -441,7 +441,7 @@ export default function HarrowAreaPage() {
         <title>Architectural Drawings in Harrow | Extensions, Lofts & New Builds</title>
         <meta
           name="description"
-          content="Architectural drawings in Harrow for house extensions, loft conversions, garage conversions, refurbishments and new builds. Fixed fee planning and building regulation packs from WEDRAWPLANS."
+          content="Harrow architectural drawings for house extensions, loft conversions, flat conversions and Building Regulations. Explore genuine approvals and get a WEDRAWPLANS fixed-fee quote."
         />
         <meta
           name="keywords"
@@ -468,8 +468,8 @@ export default function HarrowAreaPage() {
 
 <ApprovalEvidenceStrip
   slugs={["burnt-oak-broadway-harrow-retail-flats"]}
-  title="Approved mixed-use project in Harrow"
-  intro="A retail and residential project on Burnt Oak Broadway involving architectural design revisions and planning coordination."
+  title="Approved Harrow project: three studio flats above a shop"
+  intro="Harrow Council granted planning permission in August 2021 for three studio flats above retained retail accommodation, a rear shop extension and a dormer on Burnt Oak Broadway. View the case-study evidence and request a fixed-fee quote."
 />
 
           <section className="border-b border-slate-200 bg-white py-10">
