@@ -204,7 +204,7 @@ function PlanningAssistant({
   }
 
   return (
-    <div className="fixed bottom-4 right-4 z-50">
+    <div className="fixed bottom-4 right-20 z-50 hidden lg:block">
       {open ? (
         <div className="w-[320px] sm:w-[360px] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl">
           <div className="flex items-center justify-between bg-slate-900 px-4 py-3 text-white">
@@ -462,7 +462,7 @@ export default function HarrowAreaPage() {
         <BoroughMasterHeader boroughName={"Harrow"} />
 
         <main>
-          <BoroughMasterHero boroughName={"Harrow"} formId={"harrow-quote"} headline={"Architectural Drawings in Harrow for Extensions, Lofts and New Builds"} />
+          <BoroughMasterHero boroughName={"Harrow"} formId={"harrow-quote"} headline={"Architectural Drawings in Harrow for Extensions, Lofts and New Builds"} showcaseImage={{ src: "/images/hero.jpg", alt: "Illustrative residential house-extension photograph showing brickwork, glazing and roof alterations" }} />
 
           <ServiceInternalLinks boroughName="Harrow" />
 
@@ -551,7 +551,7 @@ export default function HarrowAreaPage() {
                   <div className="grid gap-4 pt-2 sm:grid-cols-2">
                     <div className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
                       <div className="text-[12px] font-semibold uppercase tracking-[0.16em] text-slate-900">
-                        What you get
+                        Your drawing package
                       </div>
                       <ul className="mt-3 list-disc space-y-1 pl-5 text-[13px] text-slate-700">
                         <li>Measured survey and existing drawings</li>
@@ -564,7 +564,7 @@ export default function HarrowAreaPage() {
                     </div>
                     <div className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
                       <div className="text-[12px] font-semibold uppercase tracking-[0.16em] text-slate-900">
-                        Built for lead certainty
+                        What to expect from WEDRAWPLANS
                       </div>
                       <ul className="mt-3 list-disc space-y-1 pl-5 text-[13px] text-slate-700">
                         <li>Fixed fee quote with deliverables listed</li>
@@ -578,95 +578,43 @@ export default function HarrowAreaPage() {
                   </div>
                 </div>
 
-                <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-md">
-                  <Image
-                    src="/images/drawings.jpg"
-                    alt="Example of architectural drawings for a Harrow extension"
-                    width={800}
-                    height={500}
-                    className="h-48 w-full object-cover md:h-56"
-                  />
-                  <div className="space-y-2 p-5">
-                    <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                      Technical drawings builders can price from
-                    </h3>
-                    <p className="text-[13px] leading-7 text-slate-700">
-                      Clear floor plans, elevations, sections and notes, coordinated with structural design so builders, Building Control and inspectors have what they need for accurate pricing and site delivery.
-                    </p>
-                    <div className="pt-2">
-                      <button
-                        type="button"
-                        onClick={scrollToForm}
-                        className="w-full rounded-full bg-slate-900 px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.16em] text-white hover:bg-slate-800"
-                      >
-                        Get fixed drawing fees
-                      </button>
-                    </div>
+                <div className="flex flex-col justify-between rounded-2xl border border-[#d5e5db] bg-[#f3faf5] p-5 shadow-sm sm:p-6">
+                  <div>
+                    <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#28735e]">From survey to council-ready plans</p>
+                    <h3 className="mt-3 text-[20px] font-semibold leading-snug text-[#233c42]">Professional drawings for planning and Building Control</h3>
+                    <p className="mt-3 text-[13px] leading-7 text-[#536a6e]">We produce accurate existing and proposed plans, elevations and sections. Where included in the agreed scope, we coordinate technical information and structural engineer input.</p>
+                    <ul className="mt-4 space-y-2 text-[13px] leading-6 text-[#425d60]">
+                      <li>✓ Fixed fee and clearly defined drawing package</li>
+                      <li>✓ Appropriate planning route checked for your property</li>
+                      <li>✓ Building Regulations support where required</li>
+                    </ul>
                   </div>
+                  <button type="button" onClick={scrollToForm} className="mt-6 w-full rounded-full bg-[#236d75] px-5 py-3 text-[12px] font-bold text-white hover:bg-[#19555d]">Get your fixed-fee quote</button>
                 </div>
               </div>
 
-              <div className="grid gap-10 md:grid-cols-2">
-                <div className="space-y-4 rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
-                  <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                    Harrow areas we cover
-                  </h3>
-                  <Image
-                    src="/images/harrow-area-covered.jpg"
-                    alt="Harrow streets and local housing across Harrow on the Hill Wealdstone Kenton Rayners Lane and surrounding areas"
-                    width={800}
-                    height={500}
-                    className="mb-3 rounded-xl object-cover"
-                  />
-                  <p className="text-[13px] text-slate-700">Drawings for the whole borough of Harrow, including:</p>
-                  <div className="grid grid-cols-2 gap-2 text-[13px] text-slate-700">
-                    <ul className="list-disc space-y-1 pl-4">
-                      <li>Harrow on the Hill</li>
-                      <li>Harrow Weald</li>
-                      <li>North Harrow</li>
-                      <li>South Harrow</li>
-                      <li>West Harrow</li>
-                      <li>Wealdstone</li>
-                    </ul>
-                    <ul className="list-disc space-y-1 pl-4">
-                      <li>Kenton</li>
-                      <li>Rayners Lane</li>
-                      <li>Queensbury</li>
-                      <li>Pinner borders</li>
-                      <li>Stanmore borders</li>
-                      <li>Edgware borders</li>
-                    </ul>
+              <div className="grid gap-5 md:grid-cols-2">
+                <section aria-labelledby="harrow-area-cover-heading" className="rounded-2xl border border-[#dce7e1] bg-[#f5faf7] p-5 shadow-sm sm:p-6">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.13em] text-[#29715b]">Local drawing services</p>
+                  <h3 id="harrow-area-cover-heading" className="mt-2 text-[21px] font-semibold leading-snug text-[#233f45]">Harrow areas we cover</h3>
+                  <p className="mt-3 text-[13px] leading-6 text-[#526b71]">We prepare planning and technical drawings throughout Harrow, including these neighbourhoods and nearby borough borders.</p>
+                  <div className="mt-5 grid grid-cols-2 gap-2">
+                    {["Harrow on the Hill","Harrow Weald","North Harrow","South Harrow","West Harrow","Wealdstone","Kenton","Rayners Lane","Queensbury","Pinner borders","Stanmore borders","Edgware borders"].map((area) => (
+                      <span key={area} className="rounded-lg border border-[#dce8e0] bg-white px-3 py-2 text-[12px] leading-5 text-[#3d5960]">{area}</span>
+                    ))}
                   </div>
-                </div>
-
-                <div className="space-y-4 rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
-                  <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
-                    Popular projects in Harrow
-                  </h3>
-                  <div className="grid grid-cols-2 gap-3 text-[13px] text-slate-700">
-                    <ul className="list-disc space-y-1 pl-4">
-                      <li>Rear extensions</li>
-                      <li>Wraparound and L shaped extensions</li>
-                      <li>Side extensions and infill extensions</li>
-                      <li>Dormer loft conversions</li>
-                      <li>Hip to gable loft conversions</li>
-                    </ul>
-                    <ul className="list-disc space-y-1 pl-4">
-                      <li>Garage conversions</li>
-                      <li>Internal reconfiguration</li>
-                      <li>Outbuildings and studios</li>
-                      <li>Flats and change of use</li>
-                      <li>Small new build schemes</li>
-                    </ul>
+                </section>
+                <section aria-labelledby="harrow-homeowner-projects-heading" className="rounded-2xl border border-[#dce7e1] bg-white p-5 shadow-sm sm:p-6">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.13em] text-[#29715b]">For homeowners and landlords</p>
+                  <h3 id="harrow-homeowner-projects-heading" className="mt-2 text-[21px] font-semibold leading-snug text-[#233f45]">Popular Harrow projects</h3>
+                  <p className="mt-3 text-[13px] leading-6 text-[#526b71]">Choose the type of project you are considering and ask for a tailored, fixed-fee drawing quotation.</p>
+                  <div className="mt-5 grid grid-cols-2 gap-2">
+                    {["Rear extensions","Side and wraparound extensions","Loft and dormer conversions","Garage conversions","Outbuildings and studios","Internal remodelling","Flat conversions","New-build homes"].map((project) => (
+                      <span key={project} className="rounded-lg border border-[#e0e8e3] bg-[#f7faf8] px-3 py-3 text-[12px] leading-5 text-[#3d5960]">{project}</span>
+                    ))}
                   </div>
-                  <Image
-                    src="/images/hero.jpg"
-                    alt="Completed extension and loft project in Harrow"
-                    width={800}
-                    height={500}
-                    className="mt-2 rounded-xl object-cover"
-                  />
-                </div>
+                  <Link href="/case-studies/burnt-oak-broadway-harrow-retail-flats" className="mt-5 inline-flex text-[12px] font-bold text-[#226d76] underline underline-offset-4">See our approved Harrow project →</Link>
+                </section>
               </div>
 
               <div className="space-y-5">
@@ -749,7 +697,7 @@ export default function HarrowAreaPage() {
                   Local planning knowledge for Harrow projects
                 </h2>
                 <p className="text-[13px] leading-7 text-emerald-900">
-                  Harrow includes a broad mix of suburban streets, family houses and sites where design, scale and neighbour relationships matter. We shape each scheme to suit local context so approval confidence is as strong as possible while keeping layouts practical for build cost and space gain.
+                  Harrow includes varied suburban streets, conservation areas and individual property constraints. We assess the relevant planning context, neighbours, roof form and design requirements before recommending a suitable application route or drawing package. Planning permission is never guaranteed.
                 </p>
                 <div className="flex flex-wrap items-center gap-3 pt-2">
                   <button
@@ -839,15 +787,15 @@ export default function HarrowAreaPage() {
 
               <div className="pt-2 text-[12px] text-slate-600">
                 See also{" "}
-                <Link href="/extensions" className="underline">
+                <Link href="/extension-plans" className="underline">
                   extension drawings
                 </Link>
                 ,{" "}
-                <Link href="/loft-conversion" className="underline">
+                <Link href="/loft-conversion-plans" className="underline">
                   loft drawings
                 </Link>{" "}
                 and{" "}
-                <Link href="/new-build" className="underline">
+                <Link href="/new-build-plans" className="underline">
                   new build drawings
                 </Link>
                 .
@@ -993,13 +941,13 @@ export default function HarrowAreaPage() {
                 <Link href="/areas" className="hover:text-white">
                   Areas We Cover
                 </Link>
-                <Link href="/extensions" className="hover:text-white">
+                <Link href="/extension-plans" className="hover:text-white">
                   Extension Drawings
                 </Link>
-                <Link href="/loft-conversion" className="hover:text-white">
+                <Link href="/loft-conversion-plans" className="hover:text-white">
                   Loft Drawings
                 </Link>
-                <Link href="/new-build" className="hover:text-white">
+                <Link href="/new-build-plans" className="hover:text-white">
                   New Build
                 </Link>
                 <Link href="/building-regulation-drawings" className="hover:text-white">
