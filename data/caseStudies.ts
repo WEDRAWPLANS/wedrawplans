@@ -78,11 +78,11 @@ export const caseStudies: CaseStudy[] = [
       "Distinctive gabled elevations, brick and light-render exterior",
       "Double-height rear glazing, recessed balcony and garden terrace",
       "Reconfigured open-plan ground-floor living areas and first-floor bedrooms",
-      "Nine complete architectural drawing sheets and seven original 3D design visuals",
-      "Original 80-second design animation illustrating the proposed scheme"
+      "Three selected architectural drawing sheets and three original 3D design visuals",
+      "Discreetly watermarked project presentation"
     ],
     animationSlot: false,
-    mediaNote: "This is an architectural design and planning showcase based on original WEDRAWPLANS drawings, 3D visualisations and a computer animation. It is not a photographic record of a completed build.",
+    mediaNote: "This is an architectural design and planning showcase based on selected WEDRAWPLANS drawings and 3D visualisations. It is not a photographic record of a completed build.",
     title: "Approved House Extension & 3D Architectural Design in Allum Lane, Elstree",
     shortTitle: "Allum Lane, Elstree",
     location: "Allum Lane, Elstree, Hertfordshire WD6",
@@ -92,96 +92,46 @@ export const caseStudies: CaseStudy[] = [
     service: "Major front, side and rear house extensions with roof and glazing alterations",
     outcome: "Planning permission granted",
     approved: true,
-    summary: "Explore the approved Allum Lane house-extension design in Elstree: seven original architectural 3D views, an 80-second design animation and nine complete existing and proposed planning drawings. The scheme combines front, side and rear alterations, pitched rooflines and contemporary glazing.",
+    summary: "Explore the approved Allum Lane house-extension design in Elstree: three selected 3D views and Drawings 5, 6 and 8. The scheme combines front, side and rear alterations, pitched rooflines and contemporary glazing.",
     proof: "Hertsmere planning reference 20/0662/HSE records the planning approval for this WEDRAWPLANS project. The original drawing set illustrates the existing and proposed floor layouts, elevations, landscaping and a 45-degree right-of-light assessment.",
     leadAngle: "Planning a substantial house extension in Elstree, Borehamwood or Hertsmere?",
     relatedService: "/extension-plans",
     relatedArea: "/areas/hertfordshire",
     heroImage: "/images/case-studies/allum-lane/3d-03.webp",
-    secondaryImage: "/images/case-studies/allum-lane/3d-05.webp",
+    secondaryImage: "/images/case-studies/allum-lane/3d-02.webp",
     galleryImages: [
-      {
-        "src": "/images/case-studies/allum-lane/3d-03.webp",
-        "alt": "WEDRAWPLANS original 3D architectural design of approved Allum Lane Elstree house scheme: Rear elevation — contemporary double gable façade, upper terrace, glazing and garden landscaping",
-        "caption": "3D design 1 — Rear elevation — contemporary double gable façade, upper terrace, glazing and garden landscaping"
-      },
-      {
-        "src": "/images/case-studies/allum-lane/3d-05.webp",
-        "alt": "WEDRAWPLANS original 3D architectural design of approved Allum Lane Elstree house scheme: Front elevation — pitched roof design, glazed gable and integrated garage",
-        "caption": "3D design 2 — Front elevation — pitched roof design, glazed gable and integrated garage"
-      },
-      {
-        "src": "/images/case-studies/allum-lane/3d-02.webp",
-        "alt": "WEDRAWPLANS original 3D architectural design of approved Allum Lane Elstree house scheme: Rear aerial — roof form, gables, terrace and garden",
-        "caption": "3D design 3 — Rear aerial — roof form, gables, terrace and garden"
-      },
-      {
-        "src": "/images/case-studies/allum-lane/3d-01.webp",
-        "alt": "WEDRAWPLANS original 3D architectural design of approved Allum Lane Elstree house scheme: Front perspective — access, garden and main entrance",
-        "caption": "3D design 4 — Front perspective — access, garden and main entrance"
-      },
-      {
-        "src": "/images/case-studies/allum-lane/3d-04.webp",
-        "alt": "WEDRAWPLANS original 3D architectural design of approved Allum Lane Elstree house scheme: Side aerial — roofline, brick elevations and site landscaping",
-        "caption": "3D design 5 — Side aerial — roofline, brick elevations and site landscaping"
-      },
-      {
-        "src": "/images/case-studies/allum-lane/3d-06.webp",
-        "alt": "WEDRAWPLANS original 3D architectural design of approved Allum Lane Elstree house scheme: Front roof overview — glazing and main rooflights",
-        "caption": "3D design 6 — Front roof overview — glazing and main rooflights"
-      },
-      {
-        "src": "/images/case-studies/allum-lane/3d-07.webp",
-        "alt": "WEDRAWPLANS original 3D architectural design of approved Allum Lane Elstree house scheme: Rear roof overview — gables, terrace and landscape",
-        "caption": "3D design 7 — Rear roof overview — gables, terrace and landscape"
-      },
-      {
-        "src": "/images/case-studies/allum-lane/full-drawing-01.webp",
-        "alt": "Original Allum Lane architectural Drawing 1: Existing ground-floor and site plan; complete original page and title block",
-        "caption": "Drawing 1 — Existing ground-floor and site plan"
-      },
-      {
-        "src": "/images/case-studies/allum-lane/full-drawing-02.webp",
-        "alt": "Original Allum Lane architectural Drawing 2: Existing first-floor plan; complete original page and title block",
-        "caption": "Drawing 2 — Existing first-floor plan"
-      },
-      {
-        "src": "/images/case-studies/allum-lane/full-drawing-03.webp",
-        "alt": "Original Allum Lane architectural Drawing 3: Existing front and rear elevations; complete original page and title block",
-        "caption": "Drawing 3 — Existing front and rear elevations"
-      },
-      {
-        "src": "/images/case-studies/allum-lane/full-drawing-04.webp",
-        "alt": "Original Allum Lane architectural Drawing 4: Existing side elevations; complete original page and title block",
-        "caption": "Drawing 4 — Existing side elevations"
-      },
-      {
-        "src": "/images/case-studies/allum-lane/full-drawing-05.webp",
-        "alt": "Original Allum Lane architectural Drawing 5: Proposed ground-floor plan; complete original page and title block",
-        "caption": "Drawing 5 — Proposed ground-floor plan"
-      },
-      {
-        "src": "/images/case-studies/allum-lane/full-drawing-06.webp",
-        "alt": "Original Allum Lane architectural Drawing 6: Proposed first-floor plan; complete original page and title block",
-        "caption": "Drawing 6 — Proposed first-floor plan"
-      },
-      {
-        "src": "/images/case-studies/allum-lane/full-drawing-07.webp",
-        "alt": "Original Allum Lane architectural Drawing 7: 45-degree right-of-light study; complete original page and title block",
-        "caption": "Drawing 7 — 45-degree right-of-light study"
-      },
-      {
-        "src": "/images/case-studies/allum-lane/full-drawing-08.webp",
-        "alt": "Original Allum Lane architectural Drawing 8: Proposed front and rear elevations; complete original page and title block",
-        "caption": "Drawing 8 — Proposed front and rear elevations"
-      },
-      {
-        "src": "/images/case-studies/allum-lane/full-drawing-09.webp",
-        "alt": "Original Allum Lane architectural Drawing 9: Proposed side elevations; complete original page and title block",
-        "caption": "Drawing 9 — Proposed side elevations"
-      }
+          {
+                "src": "/images/case-studies/allum-lane/3d-01.webp",
+                "alt": "WEDRAWPLANS original 3D architectural design of approved Allum Lane Elstree house scheme: Front perspective — access, garden and main entrance",
+                "caption": "3D design 4 — Front perspective — access, garden and main entrance"
+          },
+          {
+                "src": "/images/case-studies/allum-lane/3d-02.webp",
+                "alt": "WEDRAWPLANS original 3D architectural design of approved Allum Lane Elstree house scheme: Rear aerial — roof form, gables, terrace and garden",
+                "caption": "3D design 3 — Rear aerial — roof form, gables, terrace and garden"
+          },
+          {
+                "src": "/images/case-studies/allum-lane/3d-03.webp",
+                "alt": "WEDRAWPLANS original 3D architectural design of approved Allum Lane Elstree house scheme: Rear elevation — contemporary double gable façade, upper terrace, glazing and garden landscaping",
+                "caption": "3D design 1 — Rear elevation — contemporary double gable façade, upper terrace, glazing and garden landscaping"
+          },
+          {
+                "src": "/images/case-studies/allum-lane/full-drawing-05.webp",
+                "alt": "Original Allum Lane architectural Drawing 5: Proposed ground-floor plan; complete original page and title block",
+                "caption": "Drawing 5 — Proposed ground-floor plan"
+          },
+          {
+                "src": "/images/case-studies/allum-lane/full-drawing-06.webp",
+                "alt": "Original Allum Lane architectural Drawing 6: Proposed first-floor plan; complete original page and title block",
+                "caption": "Drawing 6 — Proposed first-floor plan"
+          },
+          {
+                "src": "/images/case-studies/allum-lane/full-drawing-08.webp",
+                "alt": "Original Allum Lane architectural Drawing 8: Proposed front and rear elevations; complete original page and title block",
+                "caption": "Drawing 8 — Proposed front and rear elevations"
+          }
     ],
-    projectVideoUrl: "/videos/allum-lane-architectural-animation.mp4",
+    projectVideoUrl: undefined,
     decisions: [
       {
         "reference": "20/0662/HSE",
