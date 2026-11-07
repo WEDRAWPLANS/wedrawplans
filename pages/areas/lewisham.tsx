@@ -129,7 +129,7 @@ export default function LewishamAreaPage() {
 <ApprovalEvidenceStrip
   slugs={["brockley-road-lewisham-two-flat-conversion"]}
   title="Approved flat conversion in Brockley"
-  intro="The 368 Brockley Road permission concerns the conversion of upper floors into two self-contained flats. Explore the project and relevant planning services."
+  intro="An approved Brockley Road scheme converted the upper floors into two self-contained flats. Explore the documented planning outcome and our architectural drawing services."
 />
 
           <section className="bg-white border-b border-slate-200 py-10">
