@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "prebuild": "node scripts/prepare-allum-lane-video.cjs"
+    "lint": "next lint"
   },
   "dependencies": {
     "@builder.io/react": "^2.0.0",
