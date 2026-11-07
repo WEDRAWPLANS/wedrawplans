@@ -299,25 +299,46 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "brockley-road-lewisham-two-flat-conversion",
-    wdpService: "WEDRAWPLANS prepared existing and proposed architectural drawings for the two-flat conversion, submitted the retrospective planning material and dealt with the council's requests for clarification during determination. Lewisham subsequently granted permission.",
-    homeownerGuidance: "Converting upper floors to flats can involve planning, circulation and technical compliance issues. A carefully prepared drawing package helps clarify both the existing arrangement and the proposed independent dwellings.",
-    highlights: ["Conversion of the first and second floors","Two self-contained residential flats","Retrospective planning application and supporting drawings"],
-    title: "Approved Conversion to Two Self-Contained Flats in Brockley",
+    wdpService: "WEDRAWPLANS prepared existing and proposed architectural information for the retrospective conversion, coordinated planning submissions and subsequently developed the Building Control technical drawing pack. The later drawings demonstrate the proposed flats, protected access, building elevations, smoke ventilation and fire/acoustic separation, without representing those later sheets as the planning drawings approved in 2025.",
+    homeownerGuidance: "Considering converting a house, maisonette or upper floors above a shop into separate flats in Lewisham, Brockley, Forest Hill, New Cross or nearby South East London? Each property requires an individual assessment of the planning position, residential amenity, access, fire safety, acoustic separation, refuse storage and cycle parking. WEDRAWPLANS can prepare planning and Building Regulations drawing packages for a fixed-fee quotation.",
+    highlights: [
+      "Retrospective planning permission for two self-contained flats on the first and second floors",
+      "Ground-floor shop retained in the subsequent technical design",
+      "Selected original 3D architectural views and full-size second-floor, section and elevation drawings",
+      "Technical coordination of protected escape routes, smoke venting and fire/acoustic compartmentation",
+      "Council planning conditions for residential refuse/recycling storage and cycle parking"
+    ],
+    title: "Approved Two-Flat Conversion in Brockley, Lewisham",
     shortTitle: "Brockley Road, Lewisham",
-    location: "Brockley Road, London SE4 2BY",
+    location: "Brockley Road, London SE4",
     authority: "London Borough of Lewisham",
     reference: "DC/25/141346",
     year: "2025",
-    service: "Residential flat conversion",
+    decisionDate: "3 December 2025",
+    service: "Retrospective conversion to two self-contained flats",
     outcome: "Planning permission granted",
     approved: true,
-    summary: "Retrospective alteration and conversion of the first and second floors to provide two self-contained flats.",
-    proof: "The Lewisham approval records a full WEDRAWPLANS drawing set and provides recent evidence of conversion experience in Brockley and Lewisham.",
-    leadAngle: "Considering converting or regularising upper floors into flats?",
-    relatedService: "/planning-drawings",
+    summary: "Lewisham granted retrospective planning permission on 3 December 2025 for the alteration and conversion of the first and second floors into two self-contained flats on Brockley Road. See the original WEDRAWPLANS architectural 3D design and selected later technical drawings.",
+    proof: "Lewisham Council's decision notice dated 3 December 2025 (DC/25/141346) permits the retrospective conversion of the first and second floors into two self-contained flats, subject to the conditions in the notice. It requires refuse/recycling storage details to be approved before first occupation and the approved cycle parking to be provided before occupation. The WEDRAWPLANS sheets displayed on this page are later September–October 2026 Building Control / technical revisions, not the specific planning drawings named in the 2025 decision notice.",
+    approvedDrawings: "The 2025 planning decision lists the Site Location Plan, PP01 (Existing Ground Floor Plan), PRO 02B, PR06, ELEV 01, PRO E03, PR05, PP01 ELEV, PP01 (Proposed Ground Floor Plan), PROP-03 and PP03R. The four 2026 BC-series sheets shown in the gallery are subsequent technical design illustrations.",
+    keyConditions: [
+      "Refuse and recycling storage proposals for the residential units must be submitted to and approved in writing before first occupation, then provided and retained.",
+      "Cycle parking shown on the approved proposed ground-floor plan must be provided before occupation and retained.",
+      "The council's approval does not replace Building Regulations approval or compliance with other statutory requirements."
+    ],
+    leadAngle: "Planning a flat conversion or retrospective application in Lewisham or South East London?",
+    relatedService: "/commercial/change-of-use",
     relatedArea: "/areas/lewisham",
-    heroImage: "/images/drawings.jpg",
-    secondaryImage: "/images/barnet-project-drawings-board.jpg"
+    heroImage: "/images/case-studies/brockley-road-lewisham-two-flat-conversion/brockley-architectural-3d-views.webp",
+    secondaryImage: "/images/case-studies/brockley-road-lewisham-two-flat-conversion/brockley-proposed-second-floor.webp",
+    galleryImages: [
+      { src: "/images/case-studies/brockley-road-lewisham-two-flat-conversion/brockley-architectural-3d-views.webp", alt: "Original WEDRAWPLANS architectural 3D drawings and existing/proposed rear perspectives for the Brockley Road residential conversion, with full sheet preserved and property number removed", caption: "Architectural 3D design views" },
+      { src: "/images/case-studies/brockley-road-lewisham-two-flat-conversion/brockley-proposed-second-floor.webp", alt: "WEDRAWPLANS 2026 proposed second-floor residential plan, showing rooms, protected communal stair access and complete drawing title block", caption: "Proposed second-floor plan" },
+      { src: "/images/case-studies/brockley-road-lewisham-two-flat-conversion/brockley-proposed-section-a.webp", alt: "Full-sheet Brockley Road technical section showing fire and acoustic floor separation, stair access and smoke-vent provision", caption: "Building section & smoke-vent design" },
+      { src: "/images/case-studies/brockley-road-lewisham-two-flat-conversion/brockley-proposed-elevations.webp", alt: "Original WEDRAWPLANS proposed rear elevation, side elevation and sectional design, 2026 technical revision", caption: "Proposed elevations & section" }
+    ],
+    mediaNote: "The 2026 technical drawings show further design development and are not labelled as the approved planning drawings in the 2025 decision notice. Property door numbers and neighbour numbers are removed; one very faint diagonal WEDRAWPLANS watermark is embedded in each image.",
+    featured: true
   },
   {
     slug: "mile-end-road-listed-building-heritage",
