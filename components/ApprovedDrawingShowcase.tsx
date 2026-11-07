@@ -5,6 +5,14 @@ import type { CaseStudy } from "../data/caseStudies";
 
 type ProjectKind = "sistova" | "cromwell";
 
+function SistovaFaintWatermark({ small = false }: { small?: boolean }) {
+  return (
+    <span aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden">
+      <span className={"-rotate-[24deg] whitespace-nowrap font-extrabold tracking-[.10em] text-slate-500/5 " + (small ? "text-[9px]" : "text-[clamp(24px,5vw,67px)]")}>WEDRAWPLANS</span>
+    </span>
+  );
+}
+
 const PROJECTS: Record<ProjectKind, {
   eyebrow: string;
   heading: string;
@@ -21,7 +29,7 @@ const PROJECTS: Record<ProjectKind, {
     eyebrow: "Wandsworth · Approved house extension and basement",
     heading: "A coordinated design for a side and rear extension",
     visualIntro: "Compare the original building and the approved proposal through WEDRAWPLANS' own existing-and-proposed 3D architectural views. These are design drawings, not construction photographs.",
-    drawingIntro: "The presentation includes six complete WEDRAWPLANS architectural sheets, from the initial 3D comparison and existing layout to the proposed roof, floor plans, building elevations and sections. Every original sheet is shown in full, with its border and drawing title block.",
+    drawingIntro: "Only four selected WEDRAWPLANS drawing sheets are displayed: existing and proposed 3D views, proposed floor and roof plans, proposed elevations and a proposed section. Each original sheet retains its full drawing border and title block, with one extremely faint diagonal grey WEDRAWPLANS watermark.",
     methodHeading: "How the Wandsworth proposal was developed",
     method: [
       { title: "1 · Working with the existing house", body: "Existing floor and roof plans, elevations and 3D views establish the original building, its side passage and its relationship with neighbouring properties." },
@@ -58,7 +66,7 @@ export default function ApprovedDrawingShowcase({
   project: CaseStudy;
   kind: ProjectKind;
 }) {
-  const [drawingIndex, setDrawingIndex] = useState(1);
+  const [drawingIndex, setDrawingIndex] = useState(kind === "sistova" ? 0 : 1);
   const content = PROJECTS[kind];
   const drawings = project.galleryImages || [];
   const leadDrawing = drawings[0];
@@ -86,6 +94,7 @@ export default function ApprovedDrawingShowcase({
                 className="pointer-events-none object-contain"
                 draggable={false}
               />
+              {kind === "sistova" ? <SistovaFaintWatermark /> : null}
             </div>
             <figcaption className="flex flex-wrap justify-between gap-2 border-t border-[#e5ece8] px-4 py-3 text-[11px] font-semibold leading-5 text-[#43666b] sm:px-6 sm:text-[12px]">
               <span>Existing &amp; proposed 3D architectural drawings</span>
@@ -124,6 +133,7 @@ export default function ApprovedDrawingShowcase({
                   className="pointer-events-none object-contain"
                   draggable={false}
                 />
+                {kind === "sistova" ? <SistovaFaintWatermark /> : null}
               </div>
             </figure>
             <div className="border-t border-[#e5ece8] px-3 py-4 sm:px-5">
@@ -140,6 +150,7 @@ export default function ApprovedDrawingShowcase({
                   >
                     <div className="relative h-[82px] rounded-md bg-[#f3f5f3] sm:h-[92px]">
                       <Image src={drawing.src} alt="" fill sizes="117px" className="pointer-events-none object-contain" draggable={false} />
+                      {kind === "sistova" ? <SistovaFaintWatermark small /> : null}
                     </div>
                     <span className="mt-1.5 block text-center text-[10px] font-bold text-[#41656a]">Drawing {i + 1}</span>
                   </button>
