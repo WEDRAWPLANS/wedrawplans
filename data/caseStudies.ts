@@ -61,8 +61,6 @@ export const caseStudies: CaseStudy[] = [
       { src: "/images/case-studies/sistova-road-wandsworth-extension-basement/02-proposed-floor-roof-plans.webp", caption: "Proposed floor and roof plans", alt: "Full WEDRAWPLANS architectural drawing sheet with proposed floor plans and roof plan at Sistova Road" },
       { src: "/images/case-studies/sistova-road-wandsworth-extension-basement/03-proposed-elevations-section.webp", caption: "Proposed elevations and section", alt: "WEDRAWPLANS drawings showing proposed elevations and section for the Sistova Road extension" },
       { src: "/images/case-studies/sistova-road-wandsworth-extension-basement/04-proposed-sectional-design.webp", caption: "Proposed sectional design", alt: "WEDRAWPLANS proposed building section showing the extension and basement relationship" },
-      { src: "/images/case-studies/sistova-road-wandsworth-extension-basement/05-existing-floor-roof-plans.webp", caption: "Existing floor and roof plans", alt: "WEDRAWPLANS existing floor plans and roof plan for Sistova Road" },
-      { src: "/images/case-studies/sistova-road-wandsworth-extension-basement/06-existing-elevations-section.webp", caption: "Existing elevations and section", alt: "WEDRAWPLANS existing building elevations and sectional drawing for Sistova Road" },
     ],
     heroImage: "/images/case-studies/sistova-road-wandsworth-extension-basement/01-before-after-3d-design-views.webp",
     secondaryImage: "",
