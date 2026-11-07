@@ -168,7 +168,7 @@ function AllumLaneShowcase({ project, quoteHeight }: { project: CaseStudy; quote
             <figure className="mx-3 mb-3 overflow-hidden rounded-[13px] border border-[#dce6e2] bg-[#eef2ef] sm:mx-5">
               <div className="relative aspect-[4/3] w-full">
                 <Image key={featured.src} src={featured.src} alt={featured.alt} fill sizes="(max-width: 1024px) 96vw, 62vw" className="pointer-events-none object-contain" draggable={false} priority={false} />
-                <span aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden"><span className="-rotate-[24deg] whitespace-nowrap text-[clamp(24px,5vw,67px)] font-extrabold tracking-[.10em] text-slate-500/20">WEDRAWPLANS</span></span>
+                <span aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden"><span className="-rotate-[24deg] whitespace-nowrap text-[clamp(24px,5vw,67px)] font-extrabold tracking-[.10em] text-slate-500/10">WEDRAWPLANS</span></span>
               </div>
               <figcaption className="border-t border-[#e1e9e4] bg-white px-4 py-3 text-[12px] font-semibold leading-5 text-[#41696e]">{featured.caption.replace(/^3D design \d+\s*[—–-]\s*/, "")}</figcaption>
             </figure>
@@ -177,7 +177,7 @@ function AllumLaneShowcase({ project, quoteHeight }: { project: CaseStudy; quote
                 <button key={image.src} type="button" onClick={() => setDesignIndex(i)} aria-label={"View 3D design " + (i + 1)} aria-current={i === designIndex ? "true" : undefined} className={"w-[112px] shrink-0 rounded-lg border p-1.5 transition sm:w-[130px] " + (i === designIndex ? "border-[#399699] bg-[#e9f5f1]" : "border-[#dce7e2] bg-white hover:border-[#9cc6bf]")}>
                   <div className="relative aspect-[4/3] overflow-hidden rounded-md bg-[#eff3f1]">
                     <Image src={image.src} alt="" fill sizes="130px" className="pointer-events-none object-contain" draggable={false} />
-                    <span aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden"><span className="-rotate-[24deg] text-[10px] font-bold tracking-wide text-slate-500/20">WEDRAWPLANS</span></span>
+                    <span aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden"><span className="-rotate-[24deg] text-[10px] font-bold tracking-wide text-slate-500/10">WEDRAWPLANS</span></span>
                   </div>
                   <span className="mt-1.5 block text-[10px] font-bold text-[#426970]">3D View {i + 1}</span>
                 </button>
@@ -208,7 +208,7 @@ function AllumLaneShowcase({ project, quoteHeight }: { project: CaseStudy; quote
             <figure className="mx-3 mb-4 rounded-[12px] border border-[#e0e8e3] bg-[#f7f8f6] p-2 sm:mx-5 sm:p-4">
               <div className="relative mx-auto h-[320px] w-full sm:h-[440px] lg:h-[485px]">
                 <Image key={selectedDrawing.src} src={selectedDrawing.src} alt={selectedDrawing.alt} fill sizes="(max-width: 1024px) 96vw, 62vw" className="pointer-events-none object-contain" draggable={false} />
-                <span aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden"><span className="-rotate-[24deg] whitespace-nowrap text-[clamp(24px,5vw,67px)] font-extrabold tracking-[.10em] text-slate-500/20">WEDRAWPLANS</span></span>
+                <span aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden"><span className="-rotate-[24deg] whitespace-nowrap text-[clamp(24px,5vw,67px)] font-extrabold tracking-[.10em] text-slate-500/10">WEDRAWPLANS</span></span>
               </div>
             </figure>
             <div className="border-t border-[#e6ece7] px-3 py-4 sm:px-5">
@@ -218,7 +218,7 @@ function AllumLaneShowcase({ project, quoteHeight }: { project: CaseStudy; quote
                   <button key={image.src} type="button" onClick={() => setDrawingIndex(i)} aria-label={"View drawing " + (i + 1) + ": " + image.alt} aria-current={i === drawingIndex ? "true" : undefined} className={"w-[102px] shrink-0 rounded-xl border p-1.5 transition sm:w-[117px] " + (i === drawingIndex ? "border-[#379b9a] bg-[#eaf5f0]" : "border-[#dce8e2] bg-white hover:border-[#a1c8bc]")}>
                     <div className="relative h-[82px] rounded-md bg-[#f5f7f4] sm:h-[92px]">
                       <Image src={image.src} alt="" fill sizes="117px" className="pointer-events-none object-contain" draggable={false} />
-                      <span aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden"><span className="-rotate-[24deg] text-[9px] font-bold tracking-wide text-slate-500/20">WEDRAWPLANS</span></span>
+                      <span aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden"><span className="-rotate-[24deg] text-[9px] font-bold tracking-wide text-slate-500/10">WEDRAWPLANS</span></span>
                     </div>
                     <span className="mt-2 block text-center text-[10px] font-bold text-[#3d666b]">Drawing {[5, 6, 8][i]}</span>
                   </button>
