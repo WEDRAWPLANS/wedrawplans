@@ -323,7 +323,7 @@ export default function HarrowAreaPage() {
       url: "https://www.wedrawplans.co.uk/areas/harrow",
       telephone: "+44 20 3654 8508",
       email: "info@wedrawplans.com",
-      image: "https://www.wedrawplans.co.uk/images/drawings.jpg",
+      image: "https://www.wedrawplans.co.uk/images/harrow-building-regulations-drawing-watermarked.webp",
       address: {
         "@type": "PostalAddress",
         streetAddress: "201 Borough High Street",
@@ -447,6 +447,12 @@ export default function HarrowAreaPage() {
           name="keywords"
           content="architectural drawings Harrow, extension drawings Harrow, loft conversion drawings Harrow, planning drawings Harrow, building regulation drawings Harrow, architectural services Harrow"
         />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Architectural Drawings in Harrow | WEDRAWPLANS" />
+        <meta property="og:description" content="Harrow architectural drawings for extensions, loft conversions, flat conversions and Building Regulations. Explore our local approval and request a fixed-fee quote." />
+        <meta property="og:url" content="https://www.wedrawplans.co.uk/areas/harrow" />
+        <meta property="og:image" content="https://www.wedrawplans.co.uk/images/harrow-building-regulations-drawing-watermarked.webp" />
+        <meta name="twitter:card" content="summary_large_image" />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/harrow" />
         <script
           type="application/ld+json"
@@ -462,9 +468,7 @@ export default function HarrowAreaPage() {
         <BoroughMasterHeader boroughName={"Harrow"} />
 
         <main>
-          <BoroughMasterHero boroughName={"Harrow"} formId={"harrow-quote"} headline={"Architectural Drawings in Harrow for Extensions, Lofts and New Builds"} showcaseImage={{ src: "/images/hero.jpg", alt: "Illustrative residential house-extension photograph showing brickwork, glazing and roof alterations" }} />
-
-          <ServiceInternalLinks boroughName="Harrow" />
+          <BoroughMasterHero boroughName={"Harrow"} formId={"harrow-quote"} headline={"Architectural Drawings in Harrow for Extensions, Lofts and New Builds"} showcaseImage={{ src: "/images/harrow-building-regulations-drawing-watermarked.webp", alt: "Full architectural Building Regulations floor-plan sheet, with the client and property identifiers removed and one very faint diagonal WEDRAWPLANS watermark", fit: "contain", watermarkEmbedded: true, caption: "Example preliminary Building Regulations floor-plan sheet · identifying client and property details removed." }} />
 
 <ApprovalEvidenceStrip
   slugs={["burnt-oak-broadway-harrow-retail-flats"]}
@@ -507,6 +511,8 @@ export default function HarrowAreaPage() {
               </div>
             </div>
           </section>
+
+          <ServiceInternalLinks boroughName="Harrow" />
 
           <section className="border-b border-slate-200 bg-white py-10">
             <div className="mx-auto max-w-5xl space-y-10 px-4 lg:px-6">
@@ -598,8 +604,8 @@ export default function HarrowAreaPage() {
                   <p className="text-[11px] font-bold uppercase tracking-[0.13em] text-[#29715b]">Local drawing services</p>
                   <h3 id="harrow-area-cover-heading" className="mt-2 text-[21px] font-semibold leading-snug text-[#233f45]">Harrow areas we cover</h3>
                   <p className="mt-3 text-[13px] leading-6 text-[#526b71]">We prepare planning and technical drawings throughout Harrow, including these neighbourhoods and nearby borough borders.</p>
-                  <div className="mt-5 grid grid-cols-2 gap-2">
-                    {["Harrow on the Hill","Harrow Weald","North Harrow","South Harrow","West Harrow","Wealdstone","Kenton","Rayners Lane","Queensbury","Pinner borders","Stanmore borders","Edgware borders"].map((area) => (
+                  <div className="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-3">
+                    {["Harrow on the Hill","Harrow Weald","North Harrow","South Harrow","West Harrow","Wealdstone","Kenton","Rayners Lane","Queensbury","Pinner","Stanmore","Edgware","Hatch End","Northwick Park"].map((area) => (
                       <span key={area} className="rounded-lg border border-[#dce8e0] bg-white px-3 py-2 text-[12px] leading-5 text-[#3d5960]">{area}</span>
                     ))}
                   </div>
@@ -616,6 +622,36 @@ export default function HarrowAreaPage() {
                   <Link href="/case-studies/burnt-oak-broadway-harrow-retail-flats" className="mt-5 inline-flex text-[12px] font-bold text-[#226d76] underline underline-offset-4">See our approved Harrow project →</Link>
                 </section>
               </div>
+
+              <section aria-labelledby="harrow-technical-drawing-heading" className="overflow-hidden rounded-2xl border border-[#dce7e1] bg-white shadow-sm">
+                <div className="grid items-center gap-0 md:grid-cols-[minmax(0,1.12fr)_minmax(0,.88fr)]">
+                  <div className="bg-[#f5f8f6] p-3 sm:p-5">
+                    <div className="relative aspect-[1.414/1] w-full overflow-hidden rounded-xl bg-white">
+                      <Image
+                        src="/images/harrow-building-regulations-drawing-watermarked.webp"
+                        alt="Full sheet example of a preliminary Building Regulations drawing showing ground and first floor plans, with identifying project details removed and a faint WEDRAWPLANS watermark"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 58vw"
+                        className="object-contain"
+                        draggable={false}
+                      />
+                    </div>
+                  </div>
+                  <div className="p-5 sm:p-8">
+                    <p className="text-[11px] font-extrabold uppercase tracking-[.15em] text-[#9a6c60]">Example technical drawing · residential project</p>
+                    <h2 id="harrow-technical-drawing-heading" className="mt-2 text-[22px] font-semibold leading-tight text-[#233f45] sm:text-[27px]">Technical drawings builders can price from</h2>
+                    <p className="mt-3 text-[13px] leading-7 text-[#536b70]">
+                      Clear floor plans, dimensions and technical notes help builders understand the proposed layout and prepare more accurate prices. WEDRAWPLANS prepares project-specific Building Regulations drawing packs and coordinates structural information where included in the agreed scope.
+                    </p>
+                    <p className="mt-3 text-[11px] leading-6 text-[#718186]">
+                      The illustrated sheet is marked preliminary and is an example of technical drawing work. It is not presented as a planning approval or as part of the Burnt Oak Broadway case study.
+                    </p>
+                    <button type="button" onClick={scrollToForm} className="mt-5 w-full rounded-full bg-[#236d75] px-5 py-3 text-[12px] font-bold text-white hover:bg-[#19555d] sm:w-auto">
+                      Get a fixed-fee drawing quote
+                    </button>
+                  </div>
+                </div>
+              </section>
 
               <div className="space-y-5">
                 <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
