@@ -62,7 +62,7 @@ Make WEDRAWPLANS a trusted, easy-to-contact architectural drawing and planning c
 34A Sistova Road, Wandsworth: application 2026/1748 approved 15 October 2026. Use the approved drawings and precise council conditions, not assumed construction completion.
 
 ## Project ordering and evidence update — 1 November 2026
-- Editorial order at the top of the central hub: Sistova Road, Allum Lane, Sunbury Avenue, Cromwell Road, The Reddings (48), The Hyde, Woolwich Road, then the remaining 17 projects.
+- Editorial order at the top of the central hub: Sistova Road, Allum Lane, Sunbury Avenue, Cromwell Road, The Reddings, The Hyde, Woolwich Road, then the remaining 17 projects.
 - Twenty-four approved decision/certificate cases are now represented, including Warbeck Road W12 (2019/01824/CLP) and The Reddings, Mill Hill (18/7533/HSE and 18/4693/192). Do not remove any of the original 22 without client instruction.
 - Allum Lane: reserve the principal architectural drawing canvas and dedicated animation slot until the client supplies the animation and related drawings.
 - Sunbury Avenue, Mill Hill: special multi-approval history, including 20/3400/HSE, 20/5459/HSE, 20/5460/HSE, 21/2335/HSE and 22/3075/HSE. The 2020–21 consents were granted but later expired; present as historical approvals. Separate those decisions from construction progress and reserve three photo spaces.
