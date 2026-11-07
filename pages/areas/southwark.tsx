@@ -126,6 +126,15 @@ export default function SouthwarkAreaPage() {
 
           <ServiceInternalLinks boroughName="Southwark" />
 
+          <section aria-labelledby="southwark-nearby-conversion" className="border-b border-[#dce7e0] bg-[#f2f8f4] py-7">
+            <div className="mx-auto max-w-6xl px-4 lg:px-6">
+              <p className="text-[10px] font-extrabold uppercase tracking-[.16em] text-[#97675c]">Nearby approved project · London Borough of Lewisham</p>
+              <h2 id="southwark-nearby-conversion" className="mt-2 text-[20px] font-semibold leading-snug text-[#23484b]">Two-flat conversion in nearby Brockley</h2>
+              <p className="mt-2 max-w-4xl text-[13px] leading-6 text-[#567176]">Our Lewisham case study shows the planning approval and selected architectural drawings for converting upper floors into two self-contained flats. It is a Lewisham planning permission, not a Southwark approval, and offers a useful example for South East London property owners.</p>
+              <a href="/case-studies/brockley-road-lewisham-two-flat-conversion" className="mt-3 inline-flex text-[12px] font-bold text-[#226e77] underline underline-offset-4">Explore the approved Lewisham conversion →</a>
+            </div>
+          </section>
+
           <section className="bg-white border-b border-slate-200 py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
               <div className="grid md:grid-cols-[1.7fr,1.3fr] gap-10 items-start">
