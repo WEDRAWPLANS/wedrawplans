@@ -143,45 +143,18 @@ function AllumLaneShowcase({ project, quoteHeight }: { project: CaseStudy; quote
   const [designIndex, setDesignIndex] = useState(0);
   const [drawingIndex, setDrawingIndex] = useState(0);
   const media = project.galleryImages || [];
-  const designs = media.filter((image) => /\/3d-\d+\.(webp|jpg|jpeg|png)$/i.test(image.src));
-  const drawings = media.filter((image) => /\/full-drawing-\d+\.(webp|jpg|jpeg|png)$/i.test(image.src));
+  const designs = media.filter((image) => /\/3d-0[123]\.(webp|jpg|jpeg|png)$/i.test(image.src));
+  const drawings = media.filter((image) => /\/full-drawing-0[568]\.(webp|jpg|jpeg|png)$/i.test(image.src));
   const featured = designs[Math.min(designIndex, designs.length - 1)];
   const selectedDrawing = drawings[Math.min(drawingIndex, drawings.length - 1)];
 
   return (
     <div className="space-y-8 select-none" onContextMenu={(event) => event.preventDefault()} onDragStart={(event) => event.preventDefault()}>
-      <section aria-labelledby="allum-design-animation" className="flex flex-col overflow-hidden rounded-[20px] border border-[#d9e7e2] bg-white shadow-[0_14px_32px_rgba(22,68,70,.055)] lg:h-[var(--allum-quote-height)]" style={{ "--allum-quote-height": quoteHeight ? `${quoteHeight}px` : undefined } as CSSProperties}>
-        <div className="shrink-0 border-b border-[#e4ebe6] bg-[#eef6f1] px-4 py-3 sm:px-6 sm:py-4">
-          <p className="text-[11px] font-bold uppercase tracking-[.18em] text-[#a96b60]">See the approved architectural design in motion</p>
-          <h3 id="allum-design-animation" className="mt-1.5 text-[21px] font-semibold tracking-tight text-[#234448] sm:text-[25px]">Allum Lane · 3D architectural animation</h3>
-          <p className="mt-1.5 max-w-[600px] text-[12px] leading-5 text-[#5a7275] sm:text-[13px]">Watch the original 80-second architectural walkthrough of the approved Allum Lane extension, its roof design, glazing and landscaped setting.</p>
-        </div>
-        <div className="relative bg-[#142b2f] lg:min-h-0 lg:flex-1">
-          <video
-            controls
-            preload="metadata"
-            playsInline
-            controlsList="nodownload noremoteplayback"
-            disablePictureInPicture
-            poster="/images/case-studies/allum-lane/3d-03.webp"
-            className="aspect-video w-full object-contain lg:absolute lg:inset-0 lg:h-full lg:aspect-auto"
-            aria-label="WEDRAWPLANS Allum Lane approved house extension 3D design animation"
-          >
-            <source src="/videos/allum-lane-architectural-animation.mp4" type="video/mp4" />
-            Your browser does not support video playback.
-          </video>
-        </div>
-        <div className="flex shrink-0 flex-wrap items-center justify-between gap-2 px-4 py-2.5 sm:px-6">
-          <span className="text-[11px] font-semibold text-[#5b787b]">Original WEDRAWPLANS architectural presentation · 1 min 20 sec</span>
-          <span className="text-[11px] text-[#71888a]">Concept design illustration, not built-project footage</span>
-        </div>
-      </section>
-
       <section aria-labelledby="allum-architectural-visuals" className="overflow-hidden rounded-[20px] border border-[#d9e7e2] bg-white shadow-[0_14px_32px_rgba(22,68,70,.055)]">
         <header className="border-b border-[#e3ebe6] px-4 py-5 sm:px-6">
           <p className="text-[11px] font-bold uppercase tracking-[.18em] text-[#a56b62]">Original proposed 3D architectural design</p>
           <h3 id="allum-architectural-visuals" className="mt-1 text-[23px] font-semibold text-[#26494d] sm:text-[29px]">Architectural 3D Visuals</h3>
-          <p className="mt-2 max-w-[610px] text-[13px] leading-6 text-[#61777b]">Seven original views show the architectural treatment from the front, garden, side and above. Select any view to explore the proposed design.</p>
+          <p className="mt-2 max-w-[610px] text-[13px] leading-6 text-[#61777b]">Three selected views illustrate the approved architectural design. Select a view to explore.</p>
         </header>
         {featured ? (
           <>
@@ -195,6 +168,7 @@ function AllumLaneShowcase({ project, quoteHeight }: { project: CaseStudy; quote
             <figure className="mx-3 mb-3 overflow-hidden rounded-[13px] border border-[#dce6e2] bg-[#eef2ef] sm:mx-5">
               <div className="relative aspect-[4/3] w-full">
                 <Image key={featured.src} src={featured.src} alt={featured.alt} fill sizes="(max-width: 1024px) 96vw, 62vw" className="pointer-events-none object-contain" draggable={false} priority={false} />
+                <span aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden"><span className="-rotate-[24deg] whitespace-nowrap text-[clamp(24px,5vw,67px)] font-extrabold tracking-[.10em] text-slate-500/20">WEDRAWPLANS</span></span>
               </div>
               <figcaption className="border-t border-[#e1e9e4] bg-white px-4 py-3 text-[12px] font-semibold leading-5 text-[#41696e]">{featured.caption.replace(/^3D design \d+\s*[—–-]\s*/, "")}</figcaption>
             </figure>
@@ -203,6 +177,7 @@ function AllumLaneShowcase({ project, quoteHeight }: { project: CaseStudy; quote
                 <button key={image.src} type="button" onClick={() => setDesignIndex(i)} aria-label={"View 3D design " + (i + 1)} aria-current={i === designIndex ? "true" : undefined} className={"w-[112px] shrink-0 rounded-lg border p-1.5 transition sm:w-[130px] " + (i === designIndex ? "border-[#399699] bg-[#e9f5f1]" : "border-[#dce7e2] bg-white hover:border-[#9cc6bf]")}>
                   <div className="relative aspect-[4/3] overflow-hidden rounded-md bg-[#eff3f1]">
                     <Image src={image.src} alt="" fill sizes="130px" className="pointer-events-none object-contain" draggable={false} />
+                    <span aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden"><span className="-rotate-[24deg] text-[10px] font-bold tracking-wide text-slate-500/20">WEDRAWPLANS</span></span>
                   </div>
                   <span className="mt-1.5 block text-[10px] font-bold text-[#426970]">3D View {i + 1}</span>
                 </button>
@@ -216,13 +191,13 @@ function AllumLaneShowcase({ project, quoteHeight }: { project: CaseStudy; quote
         <header className="border-b border-[#dfe9e3] bg-[#edf6f1] px-4 py-5 sm:px-6">
           <p className="text-[11px] font-bold uppercase tracking-[.18em] text-[#ab6a60]">Genuine WEDRAWPLANS approved project documents</p>
           <h3 id="allum-full-architectural-drawings" className="mt-1.5 text-[24px] font-semibold text-[#23474b] sm:text-[29px]">Real Drawing Examples</h3>
-          <p className="mt-2 max-w-[640px] text-[13px] leading-6 text-[#567278]">Browse nine original A3 architectural drawings: existing plans and elevations, the proposed layout, right-of-light study and detailed elevations. Each complete drawing is displayed within its original WEDRAWPLANS border and title block.</p>
+          <p className="mt-2 max-w-[640px] text-[13px] leading-6 text-[#567278]">Explore selected approved architectural drawings: Drawings 5, 6 and 8 only. Each drawing is displayed in full with a discreet grey WEDRAWPLANS watermark.</p>
         </header>
         {selectedDrawing ? (
           <>
             <div className="flex flex-wrap items-center justify-between gap-3 px-4 pb-2 pt-4 sm:px-6">
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-[.14em] text-[#86766f]">Drawing {drawingIndex + 1} of {drawings.length}</p>
+                <p className="text-[10px] font-bold uppercase tracking-[.14em] text-[#86766f]">Drawing {[5, 6, 8][drawingIndex]} · {drawingIndex + 1} of {drawings.length}</p>
                 <h4 className="mt-1 text-[14px] font-semibold leading-5 text-[#2b5154] sm:text-[16px]">{selectedDrawing.caption.replace(/^Drawing \d+\s*[—–-]\s*/, "")}</h4>
               </div>
               <div className="flex shrink-0 gap-2">
@@ -233,6 +208,7 @@ function AllumLaneShowcase({ project, quoteHeight }: { project: CaseStudy; quote
             <figure className="mx-3 mb-4 rounded-[12px] border border-[#e0e8e3] bg-[#f7f8f6] p-2 sm:mx-5 sm:p-4">
               <div className="relative mx-auto h-[320px] w-full sm:h-[440px] lg:h-[485px]">
                 <Image key={selectedDrawing.src} src={selectedDrawing.src} alt={selectedDrawing.alt} fill sizes="(max-width: 1024px) 96vw, 62vw" className="pointer-events-none object-contain" draggable={false} />
+                <span aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden"><span className="-rotate-[24deg] whitespace-nowrap text-[clamp(24px,5vw,67px)] font-extrabold tracking-[.10em] text-slate-500/20">WEDRAWPLANS</span></span>
               </div>
             </figure>
             <div className="border-t border-[#e6ece7] px-3 py-4 sm:px-5">
@@ -242,8 +218,9 @@ function AllumLaneShowcase({ project, quoteHeight }: { project: CaseStudy; quote
                   <button key={image.src} type="button" onClick={() => setDrawingIndex(i)} aria-label={"View drawing " + (i + 1) + ": " + image.alt} aria-current={i === drawingIndex ? "true" : undefined} className={"w-[102px] shrink-0 rounded-xl border p-1.5 transition sm:w-[117px] " + (i === drawingIndex ? "border-[#379b9a] bg-[#eaf5f0]" : "border-[#dce8e2] bg-white hover:border-[#a1c8bc]")}>
                     <div className="relative h-[82px] rounded-md bg-[#f5f7f4] sm:h-[92px]">
                       <Image src={image.src} alt="" fill sizes="117px" className="pointer-events-none object-contain" draggable={false} />
+                      <span aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden"><span className="-rotate-[24deg] text-[9px] font-bold tracking-wide text-slate-500/20">WEDRAWPLANS</span></span>
                     </div>
-                    <span className="mt-2 block text-center text-[10px] font-bold text-[#3d666b]">Drawing {i + 1}</span>
+                    <span className="mt-2 block text-center text-[10px] font-bold text-[#3d666b]">Drawing {[5, 6, 8][i]}</span>
                   </button>
                 ))}
               </div>
