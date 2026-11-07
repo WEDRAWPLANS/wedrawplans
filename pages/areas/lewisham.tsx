@@ -128,9 +128,35 @@ export default function LewishamAreaPage() {
 
 <ApprovalEvidenceStrip
   slugs={["brockley-road-lewisham-two-flat-conversion"]}
-  title="Approved flat conversion in Brockley"
-  intro="An approved Brockley Road scheme converted the upper floors into two self-contained flats. Explore the documented planning outcome and our architectural drawing services."
+  title="Approved two-flat conversion in Brockley"
+  intro="Lewisham granted planning permission on 3 December 2025 for a retrospective upper-floor conversion into two self-contained homes. Explore the council outcome and original WEDRAWPLANS design examples."
 />
+
+          <section aria-labelledby="brockley-case-study-heading" className="border-b border-[#dce7e0] bg-[#f1f8f3] py-12 sm:py-16">
+            <div className="mx-auto grid max-w-6xl items-center gap-7 px-4 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,.92fr)] lg:px-6">
+              <a href="/case-studies/brockley-road-lewisham-two-flat-conversion" className="group block overflow-hidden rounded-[19px] border border-[#d8e6df] bg-white shadow-[0_16px_36px_rgba(28,68,70,.08)]" aria-label="View full Brockley Road approved conversion case study">
+                <div className="relative aspect-[1.414/1] bg-[#f6f9f6]">
+                  <Image src="/images/case-studies/brockley-road-lewisham-two-flat-conversion/brockley-architectural-3d-views.webp" alt="Original WEDRAWPLANS three-dimensional architectural design for Brockley Road, with the complete sheet and faint watermark" fill sizes="(max-width: 1024px) 100vw, 58vw" className="pointer-events-none object-contain transition-transform duration-300 group-hover:scale-[1.012]" draggable={false} />
+                </div>
+                <div className="flex items-center justify-between gap-3 border-t border-[#e0e9e4] px-4 py-3 sm:px-5">
+                  <span className="text-[12px] font-semibold text-[#42696c]">Original 3D design · Brockley Road</span>
+                  <span className="text-[12px] font-bold text-[#20737b]">Explore four sheets →</span>
+                </div>
+              </a>
+              <div>
+                <p className="text-[11px] font-extrabold uppercase tracking-[.18em] text-[#a16a5f]">Planning permission granted · Lewisham · December 2025</p>
+                <h2 id="brockley-case-study-heading" className="mt-3 text-[27px] font-semibold leading-tight tracking-tight text-[#21494c] sm:text-[34px]">From upper-floor space to two self-contained flats</h2>
+                <p className="mt-4 text-[14px] leading-7 text-[#557074]">
+                  Our Brockley Road case study illustrates a successful retrospective planning outcome for two homes on the first and second floors. See original 3D design, upper-floor plans, elevations and the technical coordination required where residential accommodation sits above an existing shop.
+                </p>
+                <p className="mt-3 text-[12px] leading-6 text-[#6a7d80]">Planning reference DC/25/141346. The displayed 2026 technical drawing revisions are separate from the drawings listed in the 2025 planning decision notice.</p>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <a href="/case-studies/brockley-road-lewisham-two-flat-conversion" className="inline-flex rounded-full bg-[#236c75] px-5 py-3 text-[12px] font-bold text-white hover:bg-[#19555d]">View approved conversion case study</a>
+                  <button type="button" onClick={scrollToForm} className="rounded-full border border-[#a9cac0] bg-white px-5 py-3 text-[12px] font-bold text-[#296a6e] hover:bg-[#e5f2eb]">Get your fixed-fee quote</button>
+                </div>
+              </div>
+            </div>
+          </section>
 
           <section className="bg-white border-b border-slate-200 py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
