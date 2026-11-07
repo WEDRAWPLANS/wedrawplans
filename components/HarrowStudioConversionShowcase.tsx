@@ -77,6 +77,7 @@ export default function HarrowStudioConversionShowcase({ project }: Props) {
                     key={item.src}
                     controls
                     autoPlay
+                    muted
                     playsInline
                     preload="metadata"
                     poster={item.poster}
