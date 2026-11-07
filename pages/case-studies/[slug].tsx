@@ -22,7 +22,8 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
   const isAllum = item.slug === "allum-lane-elstree-major-house-extension";
   const isSistova = item.slug === "sistova-road-wandsworth-extension-basement";
   const isCromwell = item.slug === "cromwell-road-hounslow-rear-extension";
-  const isFlagship = isReddings || isAllum || isSistova || isCromwell;
+  const isBrockley = item.slug === "brockley-road-lewisham-two-flat-conversion";
+  const isFlagship = isReddings || isAllum || isSistova || isCromwell || isBrockley;
   const useOriginalDrawingGallery = item.slug === "sistova-road-wandsworth-extension-basement" || item.slug === "cromwell-road-hounslow-rear-extension" || isFlagship;
   const isProduction = process.env.VERCEL_ENV === "production";
   const hasApprovedVisual = [item.heroImage, item.secondaryImage].some(src => Boolean(src) && (src.startsWith("/images/case-studies/") || src.startsWith("/images/hyde-")));
