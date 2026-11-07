@@ -14,6 +14,15 @@ Make WEDRAWPLANS a trusted, easy-to-contact architectural drawing and planning c
 - Use WEDRAWPLANS/Barnet design language, but refined: white and warm off-white surfaces, muted teal/turquoise accents, modest borders, readable type, ample white space. Avoid large black/dark background blocks, cluttered panels and excessive uppercase promotional copy.
 - Maintain clean hierarchy on desktop and mobile. Do not repeat the same descriptions within a page.
 
+## Case-study media privacy and showcase priority — 7 November 2026
+- Show only projects with granted planning permission, a lawful-development certificate or another verified positive planning outcome. Cross-check the decision reference, description, date and conditions before publishing new claims.
+- Use **one** unobtrusive diagonal grey WEDRAWPLANS overlay at **5% opacity** on each displayed project drawing, render and its gallery thumbnail (the approved current style uses `text-slate-500/5` and a -24 degree rotation).
+- Keep original approved sheets fully within the frame without cropping their drawing borders and title blocks. Before uploading, redact client names, personal contact details and door numbers from the image itself, not merely from captions. Avoid publishing unselected sheets under directly accessible website asset paths.
+- In all public prose, cards, alt text, Open Graph content and media, use street and locality **without the door number**. For the Barnet project, use only **The Reddings, Mill Hill**.
+- **Already live, do not ask the client to re-upload these:** Sistova Road, Wandsworth (selected Drawings 1–4); Cromwell Road, Hounslow; Allum Lane, Hertsmere (Drawings 5, 6 and 8 plus 3D Views 1–3); The Reddings, Mill Hill (Barnet).
+- **Next improvement priority:** Brockley Road, Lewisham — approved two self-contained upper-floor flats, case-study slug `brockley-road-lewisham-two-flat-conversion`, planning reference DC/25/141346. The existing case-study record must be enhanced with the client's actual approved drawings/decision notice, rather than creating a duplicate URL or pretending generic drawings depict this project.
+- Put one authoritative case study at its existing canonical URL. Link it contextually from Lewisham, relevant nearby local pages and flat-conversion/planning-drawing service pages. Preserve existing indexing, quote forms and links; do not imply guaranteed Google ranking.
+
 ## Standard case-study information architecture
 1. Professional navigation and breadcrumb.
 2. Clear, descriptive planning/project headline and locality.
