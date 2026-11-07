@@ -82,12 +82,20 @@ export function BoroughMasterHeader({ boroughName }: BoroughHeaderProps) {
  * never to an inclusive Building Regulations package.
  */
 export default function BoroughMasterHero({ boroughName, formId, headline }: BoroughHeroProps) {
+  const formStartedRef = React.useRef(false);
   function scrollToForm() {
     document.getElementById(formId)?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    await submitBoroughLead(e, { boroughName });
+    const data = new FormData(e.currentTarget);
+    if (!String(data.get("phone") || "").trim() && !String(data.get("email") || "").trim()) {
+      e.preventDefault();
+      alert("Please enter a phone number or an email address so we can reply.");
+      return;
+    }
+    const ok = await submitBoroughLead(e, { boroughName });
+    if (ok) formStartedRef.current = false;
   }
 
   return (
@@ -162,53 +170,130 @@ export default function BoroughMasterHero({ boroughName, formId, headline }: Bor
         <div id={formId} className="min-w-0 scroll-mt-5 lg:w-1/2">
           <div className="rounded-2xl border border-[#e0e7e3] bg-white p-5 shadow-md sm:p-6">
             <h2 className="text-[14px] font-semibold uppercase tracking-[0.16em] text-slate-900">
-              Request your {boroughName} fixed-fee quote
+              Tell us your idea. Get a fixed-fee quote.
             </h2>
             <p className="mt-1 text-[12px] text-slate-600">
-              Tell us a little about your property and what you plan to build. We will reply with a clear fixed fee for your drawings.
+              Planning an extension, loft or other project in {boroughName}? Share your postcode and a few words. We’ll reply with the right drawing package and a clear fixed fee.
             </p>
-            <form onSubmit={handleSubmit} className="mt-3 space-y-3 text-[13px]">
-              <div className="space-y-1">
-                <label htmlFor={formId + "-name"} className="text-[11px] font-medium">Name</label>
-                <input id={formId + "-name"} name="name" required autoComplete="name" className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 outline-none focus:border-[#64b7c4]" />
+            <form
+              onSubmit={handleSubmit}
+              onFocusCapture={() => {
+                if (!formStartedRef.current) {
+                  formStartedRef.current = true;
+                  (window as typeof window & { gtag?: (...args: any[]) => void }).gtag?.("event", "form_start", {
+                    form_name: "borough_direct_write_v2",
+                    page_path: window.location.pathname,
+                  });
+                }
+              }}
+              className="mt-5 space-y-4"
+              aria-label={`${boroughName} one-step fixed-fee quotation form`}
+            >
+              <input type="hidden" name="formVariant" value="borough_direct_write_v2" />
+              <div className="rounded-xl border border-[#c7dedb] bg-[#f3faf7] px-4 py-3">
+                <p className="text-[12px] font-semibold text-[#236a65]">Tell us about your project</p>
+                <p className="mt-1 text-[12px] leading-5 text-[#526d69]">
+                  Your postcode and a few words about your plans are enough to start. No extra steps or drawings needed.
+                </p>
+              </div>
+              <div className="space-y-1.5">
+                <label htmlFor="borough-postcode" className="block text-[13px] font-semibold text-slate-800">
+                  Property postcode
+                </label>
+                <input
+                  id="borough-postcode"
+                  name="postcode"
+                  autoComplete="postal-code"
+                  required
+                  placeholder="Enter your postcode"
+                  className="min-h-[50px] w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-[16px] text-slate-900 outline-none transition focus:border-[#237f83] focus:ring-2 focus:ring-[#d1edeb]"
+                />
+              </div>
+              <div className="space-y-1.5">
+                <label htmlFor="borough-message" className="block text-[14px] font-semibold text-[#203f40]">
+                  Tell us what you have in mind
+                </label>
+                <textarea
+                  id="borough-message"
+                  name="projectDetails"
+                  rows={4}
+                  placeholder="For example: I’d like a 4m rear kitchen extension. Could you quote for the planning drawings?"
+                  className="min-h-[130px] w-full resize-y rounded-xl border border-[#bed6d6] bg-white px-4 py-3 text-[16px] text-slate-900 shadow-sm outline-none transition focus:border-[#237f83] focus:ring-2 focus:ring-[#d1edeb]"
+                />
+                <p className="text-[12px] text-slate-500">A few words are helpful, but this can be left blank if you are not sure yet.</p>
+              </div>
+              <div className="space-y-1.5">
+                <label htmlFor="borough-name" className="block text-[13px] font-semibold text-slate-800">
+                  Your name
+                </label>
+                <input
+                  id="borough-name"
+                  name="name"
+                  required
+                  autoComplete="name"
+                  placeholder="Your name"
+                  className="min-h-[50px] w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-[16px] text-slate-900 outline-none transition focus:border-[#237f83] focus:ring-2 focus:ring-[#d1edeb]"
+                />
               </div>
               <div className="grid gap-3 sm:grid-cols-2">
-                <div className="space-y-1">
-                  <label htmlFor={formId + "-phone"} className="text-[11px] font-medium">Telephone</label>
-                  <input id={formId + "-phone"} name="phone" required type="tel" autoComplete="tel" className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 outline-none focus:border-[#64b7c4]" />
+                <div className="space-y-1.5">
+                  <label htmlFor="borough-phone" className="block text-[13px] font-semibold text-slate-800">
+                    Telephone
+                  </label>
+                  <input
+                    id="borough-phone"
+                    name="phone"
+                    type="tel"
+                    autoComplete="tel"
+                    placeholder="Your number"
+                    className="min-h-[50px] w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-[16px] text-slate-900 outline-none transition focus:border-[#237f83] focus:ring-2 focus:ring-[#d1edeb]"
+                  />
                 </div>
-                <div className="space-y-1">
-                  <label htmlFor={formId + "-email"} className="text-[11px] font-medium">Email</label>
-                  <input id={formId + "-email"} name="email" required type="email" autoComplete="email" className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 outline-none focus:border-[#64b7c4]" />
+                <div className="space-y-1.5">
+                  <label htmlFor="borough-email" className="block text-[13px] font-semibold text-slate-800">
+                    Email
+                  </label>
+                  <input
+                    id="borough-email"
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    placeholder="Your email"
+                    className="min-h-[50px] w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-[16px] text-slate-900 outline-none transition focus:border-[#237f83] focus:ring-2 focus:ring-[#d1edeb]"
+                  />
                 </div>
               </div>
-              <div className="space-y-1">
-                <label htmlFor={formId + "-postcode"} className="text-[11px] font-medium">Property postcode</label>
-                <input id={formId + "-postcode"} name="postcode" required autoComplete="postal-code" placeholder="Enter your postcode" className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 outline-none focus:border-[#64b7c4]" />
-              </div>
-              <div className="space-y-1">
-                <label htmlFor={formId + "-type"} className="text-[11px] font-medium">Project type</label>
-                <select id={formId + "-type"} name="projectType" required defaultValue="" className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 outline-none focus:border-[#64b7c4]">
-                  <option value="" disabled>Select project type</option>
-                  <option>House extension</option>
-                  <option>Loft conversion</option>
-                  <option>Garage conversion</option>
-                  <option>Outbuilding or garden room</option>
-                  <option>Internal remodelling</option>
-                  <option>New build house</option>
-                  <option>Conversion to flats</option>
-                  <option>Building regulation pack only</option>
-                  <option>Other domestic project</option>
+              <p className="-mt-2 text-[12px] text-slate-500">Provide at least a phone number or an email address.</p>
+              <div className="space-y-1.5">
+                <label htmlFor="borough-type" className="block text-[13px] font-semibold text-slate-800">
+                  What are you planning? <span className="font-normal text-slate-500">(optional)</span>
+                </label>
+                <select
+                  id="borough-type"
+                  name="projectType"
+                  defaultValue=""
+                  className="min-h-[50px] w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-[16px] text-slate-900 outline-none transition focus:border-[#237f83] focus:ring-2 focus:ring-[#d1edeb]"
+                >
+                  <option value="">Choose a project type (optional)</option>
+                  <option value="House extension">House extension (rear, side or wraparound)</option>
+                  <option value="Loft conversion">Loft conversion</option>
+                  <option value="Outbuilding or garden room">Garden room, studio or outbuilding</option>
+                  <option value="Garage conversion">Garage conversion</option>
+                  <option value="Internal remodelling">Internal alterations / open-plan layout</option>
+                  <option value="New build house">New home / residential development</option>
+                  <option value="Conversion to flats">Property conversion / flats</option>
+                  <option value="Other drawings">Other / not sure yet</option>
                 </select>
               </div>
-              <div className="space-y-1">
-                <label htmlFor={formId + "-details"} className="text-[11px] font-medium">Brief description of your project</label>
-                <textarea id={formId + "-details"} name="projectDetails" rows={4} placeholder="For example: a rear kitchen extension with a new open-plan layout." className="w-full rounded border border-slate-300 bg-white px-2 py-2 outline-none focus:border-[#64b7c4]" />
-              </div>
-              <button type="submit" className="w-full rounded-full bg-[#64b7c4] py-2.5 text-[13px] font-semibold uppercase tracking-[0.2em] text-white hover:bg-[#4da4b4]">
-                Get a fixed fee quote
+              <button
+                type="submit"
+                className="min-h-[52px] w-full rounded-full bg-[#247786] px-4 py-3 text-[14px] font-bold uppercase tracking-[0.08em] text-white transition hover:bg-[#185b68] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#237f83]"
+              >
+                Get your fixed-fee quote →
               </button>
-              <p className="mt-2 text-[11px] text-slate-500">Your information is used only to reply to your enquiry.</p>
+              <p className="text-center text-[11px] leading-5 text-slate-500">
+                No obligation · No drawings required · We only use your details to reply.
+              </p>
             </form>
             <div className="mt-5 overflow-hidden rounded-xl border border-[#e0e8e4] bg-[#f7faf9] lg:hidden">
               <Image
