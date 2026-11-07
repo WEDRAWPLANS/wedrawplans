@@ -16,6 +16,8 @@ type Props = {
 };
 
 function serviceFor(project: CaseStudy): string {
+  // Flat conversions should lead to the actual conversion enquiry category, not new-build drawings.
+  if (/flat conversion|conversion to.*flats|residential conversion|studio flats/i.test(project.service)) return "Property conversion drawings";
   const category = categoryForCaseStudy(project);
   if (category === "Extensions") return "House extension drawings";
   if (category === "Loft conversions") return "Loft conversion drawings";
