@@ -20,7 +20,7 @@ export default function SunburyCareOutbuildingShowcase({ project }: Props) {
             A thoughtfully designed garden building for accessible care
           </h2>
           <p className="mt-4 max-w-4xl text-[14px] leading-7 text-[#51696c]">
-            The brief called for an accessible, self-contained space for care activities—without creating a separate home.
+            The brief called for a dedicated accessible space for care activities—without creating a separate home.
             WEDRAWPLANS developed a low-profile garden outbuilding linked to the existing household, with level access,
             turning and circulation space, and a purpose-designed accessible wet room. Barnet Council confirmed the
             proposed development was lawful under Class E.
