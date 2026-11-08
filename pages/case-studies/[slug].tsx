@@ -25,7 +25,8 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
   const isBrockley = item.slug === "brockley-road-lewisham-two-flat-conversion";
   const isHarrowStudios = item.slug === "burnt-oak-broadway-harrow-retail-flats";
   const isCannon = item.slug === "cannon-lane-pinner-5-metre-rear-extension";
-  const isFlagship = isReddings || isAllum || isSistova || isCromwell || isBrockley || isHarrowStudios || isCannon;
+  const isCare = item.slug === "sunbury-avenue-mill-hill-ancillary-care-outbuilding-ldc";
+  const isFlagship = isReddings || isAllum || isSistova || isCromwell || isBrockley || isHarrowStudios || isCannon || isCare;
   const useOriginalDrawingGallery = item.slug === "sistova-road-wandsworth-extension-basement" || item.slug === "cromwell-road-hounslow-rear-extension" || isFlagship;
   const isProduction = process.env.VERCEL_ENV === "production";
   const hasApprovedVisual = [item.heroImage, item.secondaryImage].some(src => Boolean(src) && (src.startsWith("/images/case-studies/") || src.startsWith("/images/hyde-")));
@@ -275,7 +276,7 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
         {item.keyConditions?.length ? (
           <section className="border-y border-[#e5eae7] bg-[#f6f9f7]">
             <div className="mx-auto max-w-7xl px-5 py-10 sm:px-8 sm:py-12">
-              <h2 className="text-xl font-semibold sm:text-2xl">Relevant planning conditions</h2>
+              <h2 className="text-xl font-semibold sm:text-2xl">{isCare ? "Scope and limits of the Lawful Development Certificate" : "Relevant planning conditions"}</h2>
               <ul className="mt-5 grid gap-3 text-[14px] leading-7 text-[#51656a] md:grid-cols-2">
                 {item.keyConditions.map((condition) => (
                   <li key={condition} className="rounded-xl border border-[#e1e9e4] bg-white px-5 py-4">{condition}</li>

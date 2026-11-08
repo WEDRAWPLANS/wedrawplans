@@ -285,9 +285,9 @@ export default function LawfulDevelopmentCertificateDrawingsPage() {
           </div>
         </section>
               <ApprovalEvidenceStrip
-          slugs={["warbeck-road-hammersmith-fulham-loft-certificate","reddings-close-mill-hill-lawful-loft","alnwick-road-eltham-lawful-loft"]}
-          title="Granted lawful-development certificates across London"
-          intro="Browse roof-extension and loft-conversion certificates in Shepherd's Bush, Mill Hill and Eltham to understand how these applications differ from planning permission."
+          slugs={["sunbury-avenue-mill-hill-ancillary-care-outbuilding-ldc","warbeck-road-hammersmith-fulham-loft-certificate","reddings-close-mill-hill-lawful-loft","alnwick-road-eltham-lawful-loft"]}
+          title="Granted Lawful Development Certificates: outbuildings and lofts"
+          intro="Explore documented positive lawfulness decisions, including Barnet’s 2026 certificate for an ancillary garden care outbuilding and separate loft/roof examples in Hammersmith & Fulham, Barnet and Greenwich. A certificate establishes lawfulness for the specific proposed use or works, rather than granting a new standalone dwelling."
         />
       </main>
     </>

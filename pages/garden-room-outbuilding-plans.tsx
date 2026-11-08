@@ -277,6 +277,42 @@ export default function GardenRoomOutbuildingPlansPage() {
           </div>
         </section>
 
+        <section aria-labelledby="approved-outbuilding-case" className="border-y border-[#dbe6de] bg-[#f1f7f2]">
+          <div className="mx-auto grid max-w-6xl items-center gap-8 px-4 py-12 lg:grid-cols-[1.1fr_.9fr] lg:py-16">
+            <Link href="/case-studies/sunbury-avenue-mill-hill-ancillary-care-outbuilding-ldc" className="group overflow-hidden rounded-[19px] border border-[#d4e4d8] bg-white shadow-[0_12px_32px_rgba(34,70,58,.07)]">
+              <div className="relative aspect-[1.53/1]">
+                <Image src="/images/case-studies/sunbury-mill-hill-care-outbuilding/sunbury-care-3d-garden.webp" alt="Architectural 3D garden view of an accessible single-storey ancillary outbuilding in Mill Hill" fill sizes="(max-width: 1024px) 100vw, 55vw" className="pointer-events-none object-contain transition-transform duration-300 group-hover:scale-[1.015]" draggable={false}/>
+              </div>
+              <div className="border-t border-[#e2ebe3] px-5 py-3 text-[12px] font-semibold text-[#32685d]">
+                Original WEDRAWPLANS architectural design · Mill Hill
+              </div>
+            </Link>
+            <div>
+              <p className="text-[11px] font-extrabold uppercase tracking-[.17em] text-[#73835c]">Original case study · Certificate of Lawfulness granted</p>
+              <h2 id="approved-outbuilding-case" className="mt-3 text-[26px] font-bold leading-tight text-[#25484a] sm:text-[32px]">
+                When a garden outbuilding has a specific purpose, the details matter
+              </h2>
+              <p className="mt-4 text-[14px] leading-7 text-[#536a6e]">
+                Barnet Council certified a carefully designed ancillary care outbuilding lawful in March 2026.
+                Our drawings demonstrated its accessible interior, step-free entrance, modest garden scale and
+                direct relationship to the main home. It was not designed or certified as an independent dwelling.
+              </p>
+              <p className="mt-3 text-[13px] leading-7 text-[#536a6e]">
+                Considering garden studio plans, a garden office, therapy space or a rear outbuilding?
+                The intended use and permitted-development rules need to be assessed for your own property.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Link href="/case-studies/sunbury-avenue-mill-hill-ancillary-care-outbuilding-ldc" className="inline-flex rounded-full bg-[#246c70] px-5 py-3 text-[12px] font-bold text-white hover:bg-[#185a5f]">
+                  Explore the approved case study →
+                </Link>
+                <Link href="/get-drawings-quote?source=garden-outbuilding" className="inline-flex rounded-full border border-[#9dbdb1] bg-white px-5 py-3 text-[12px] font-bold text-[#296d64] hover:bg-[#e9f3eb]">
+                  Get a fixed-fee drawing quote
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <LondonAreaLinks heading="Garden room and outbuilding drawings across every London borough" />
 
         <section className="bg-slate-50">

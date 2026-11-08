@@ -169,6 +169,52 @@ export const caseStudies: CaseStudy[] = [
     secondaryImage: ""
   },
   {
+    slug: "sunbury-avenue-mill-hill-ancillary-care-outbuilding-ldc",
+    title: "Accessible Garden Care Outbuilding in Mill Hill – Certificate of Lawfulness Granted",
+    shortTitle: "Sunbury Avenue · Garden Outbuilding",
+    seoDescription: "Barnet granted a Lawful Development Certificate for an accessible garden care outbuilding in Mill Hill. Explore WEDRAWPLANS plans, elevations and 3D design.",
+    location: "Sunbury Avenue, Mill Hill, London NW7",
+    authority: "London Borough of Barnet",
+    reference: "26/0062/192",
+    year: "2026",
+    decisionDate: "30 March 2026",
+    service: "Accessible ancillary garden care outbuilding · Lawful Development Certificate",
+    outcome: "Certificate of Lawfulness granted",
+    approved: true,
+    summary: "A purpose-designed, accessible garden outbuilding proposed alongside a family home in Mill Hill. WEDRAWPLANS coordinated the layout, elevations and 3D views to explain its ancillary care function, wheelchair access and modest garden setting. Barnet Council confirmed the proposed development was lawful under Class E on 30 March 2026.",
+    proof: "Under Section 192 of the Town and Country Planning Act 1990, Barnet Council granted a Certificate of Lawfulness of Proposed Use or Development on 30 March 2026 for the erection of a rear outbuilding (reference 26/0062/192). The council specifically accepted the ancillary care purpose, wheelchair-user circulation and care equipment arrangement as reasonably required and incidental to the enjoyment of the host dwelling in this case. The decision identifies approved evidence sheets PP01-R, PP02-R, PP03-R and P01 Location and Block Plans and states the scheme meets relevant Class E limitations. This is a certificate of lawfulness, not ordinary householder planning permission or consent for a separate home.",
+    approvedDrawings: "The Barnet decision lists PP01-R (plans), PP02-R (elevations), PP03-R (3D schematic views) and P01 (location and block plans). The three selected WEDRAWPLANS drawing sheets illustrate the ancillary care layout, modest single-storey elevations and the step-free approach.",
+    highlights: [
+      "Single-storey rear garden outbuilding designed for ancillary care use",
+      "Step-free wheelchair approach and an accessible wet room",
+      "1500 mm wheelchair manoeuvring circles and clear door widths",
+      "Modest flat-roofed form within the 2.5 metre Class E height limit near the boundary",
+      "Original plans, elevations and 3D architectural illustrations",
+      "Certificate of Lawfulness of Proposed Development granted in March 2026"
+    ],
+    keyConditions: [
+      "The certificate confirms lawfulness only for the proposed ancillary outbuilding and use described in the submitted evidence; it does not authorise a separate dwelling or independent living accommodation.",
+      "The council's assessment was specific to this single-household property, the intended ancillary care use, the design and the submitted site information.",
+      "The Class E assessment recorded a single-storey building, flat roof and height no greater than 2.5 metres within two metres of the boundary.",
+      "A Certificate of Lawfulness is not Building Regulations approval. Any separate statutory requirements still need to be addressed."
+    ],
+    wdpService: "WEDRAWPLANS developed a coordinated architectural submission that explained both the physical building and why its use was ancillary to the main home. The floor plan demonstrated wheelchair access and turning space, treatment and storage areas and the accessible wet room. Elevations showed the low-profile massing and relationship to the house and boundary. The 3D images helped demonstrate the approach and garden setting. The decision expressly records that the revised care-equipment and wheelchair-use illustrations helped establish a lawful incidental use.",
+    homeownerGuidance: "A garden studio, garden office, therapy room or accessible care outbuilding can raise different planning questions depending on intended use, boundary position, height, site coverage and the property's permitted-development rights. This example is an ancillary care facility, not a garden dwelling or independent residential unit. WEDRAWPLANS can help homeowners across Barnet, Mill Hill, Edgware, Finchley and neighbouring London areas prepare drawings and assess whether a Lawful Development Certificate or planning application is appropriate.",
+    leadAngle: "Considering a garden studio, rear outbuilding or accessible care building?",
+    relatedService: "/garden-room-outbuilding-plans",
+    relatedArea: "/areas/barnet",
+    heroImage: "/images/case-studies/sunbury-mill-hill-care-outbuilding/sunbury-care-3d-garden.webp",
+    secondaryImage: "/images/case-studies/sunbury-mill-hill-care-outbuilding/sunbury-care-3d-entrance.webp",
+    galleryImages: [
+      { src: "/images/case-studies/sunbury-mill-hill-care-outbuilding/sunbury-care-3d-garden.webp", alt: "WEDRAWPLANS 3D view of a modest garden care outbuilding with accessible entrance and simple flat roof in Mill Hill", caption: "3D View 1 · Garden-side architectural design" },
+      { src: "/images/case-studies/sunbury-mill-hill-care-outbuilding/sunbury-care-3d-entrance.webp", alt: "WEDRAWPLANS 3D architectural illustration showing an accessible wheelchair entrance to an ancillary garden outbuilding", caption: "3D View 2 · Step-free entrance design" },
+      { src: "/images/case-studies/sunbury-mill-hill-care-outbuilding/sunbury-care-plan-full-sheet.webp", alt: "WEDRAWPLANS full sheet PP01-R showing the garden care building, accessible floor plan, wet room and relationship to the host dwelling", caption: "Drawing 1 · Accessible ancillary care layout · PP01-R" },
+      { src: "/images/case-studies/sunbury-mill-hill-care-outbuilding/sunbury-care-elevations-full-sheet.webp", alt: "Full WEDRAWPLANS PP02-R architectural elevations showing the outbuilding roofline, single-storey massing and site relationships", caption: "Drawing 2 · Proposed elevations · PP02-R" },
+      { src: "/images/case-studies/sunbury-mill-hill-care-outbuilding/sunbury-care-3d-full-sheet.webp", alt: "Full WEDRAWPLANS PP03-R architectural drawing sheet with 3D schematic design views and planning information for a garden outbuilding", caption: "Drawing 3 · Site and 3D design evidence · PP03-R" }
+    ],
+    featured: false
+  },
+  {
     slug: "cromwell-road-hounslow-rear-extension",
     wdpService: "WEDRAWPLANS prepared existing and proposed plans, elevations, sections and 3D design views for the side-return infill, together with supporting planning-stage fire-safety information. The drawings were lodged with Hounslow and the application was followed through to the permission issued in October 2026.",
     homeownerGuidance: "A side-return extension can make better use of the ground floor while preserving outdoor access. Accurate boundary, rooflight and glazing information helps the council assess the proposal.",
@@ -772,6 +818,7 @@ export function categoryForCaseStudy(item: CaseStudy): string {
   if (/kerb|crossover/.test(service)) return "Dropped kerbs";
   if (/heritage|listed|shopfront|mixed-use/.test(service)) return "Heritage & commercial";
   if (/flat conversion|residential conversion|conversion to.*flats|self-contained flats|multi-unit|additional floor|major residential|two new flats/.test(service)) return "Residential development";
+  if (/outbuilding|garden care|garden studio|garden room/.test(service)) return "Garden rooms & outbuildings";
   if (/extension|prior approval/.test(service)) return "Extensions";
   return "Other projects";
 }
