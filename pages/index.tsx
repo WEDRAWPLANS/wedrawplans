@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import Head from "next/head";
+import Image from "next/image";
 import HeroSlider from "../components/HeroSlider";
 import Link from "next/link";
 import AllumLaneSiteFeature from "../components/AllumLaneSiteFeature";
@@ -1446,7 +1447,30 @@ export default function IndexPage() {
 />
         </div>
 
-        <AllumLaneSiteFeature placement="home" title="See the drawings behind a real approved house transformation" intro="Allum Lane in Elstree is an approved Hertsmere house-extension design, brought to life with a full architectural animation, seven 3D visuals and nine original planning drawings. See how professional drawings develop into a convincing architectural design." />
+        <AllumLaneSiteFeature placement="home" title="Explore the drawings behind an approved house transformation" intro="Allum Lane in Elstree is an approved Hertsmere house-extension design. Explore the three selected architectural drawing sheets and three 3D visuals to see how professional plans explain a complex proposal." />
+
+        <section id="approved-barnet-garden-care-outbuilding" aria-labelledby="home-sunbury-garden-heading" className="border-b border-[#dbe7df] bg-[#f2f8f4] py-10 sm:py-14">
+          <div className="mx-auto grid max-w-6xl items-center gap-7 px-4 md:grid-cols-[minmax(0,1.12fr)_minmax(0,.88fr)] lg:px-6">
+            <Link href="/case-studies/sunbury-avenue-mill-hill-accessible-garden-care-outbuilding" className="block overflow-hidden rounded-[19px] border border-[#d0e0d6] bg-white shadow-[0_16px_38px_rgba(30,71,69,.08)]" aria-label="Explore the Barnet garden care outbuilding case study">
+              <div className="relative aspect-[16/9] w-full bg-[#eff6f1]">
+                <Image src="/images/case-studies/sunbury-avenue-barnet-accessible-garden-outbuilding/garden-care-visualisation.webp" alt="Architectural design visualisation of an accessible single-storey garden care outbuilding with a landscaped domestic garden" fill sizes="(max-width: 768px) 100vw, 55vw" className="pointer-events-none object-contain" draggable={false} />
+              </div>
+            </Link>
+            <div>
+              <p className="text-[11px] font-extrabold uppercase tracking-[.17em] text-[#29755b]">Latest approved project · Barnet · March 2026</p>
+              <h2 id="home-sunbury-garden-heading" className="mt-3 text-[25px] font-semibold leading-tight text-[#254a4f] sm:text-[32px]">An accessible garden care outbuilding with a lawful planning outcome</h2>
+              <p className="mt-4 text-[13px] leading-7 text-[#536f72]">
+                WEDRAWPLANS designed a single-storey ancillary garden building with an accessible wet room and wheelchair-friendly circulation.
+                Barnet Council granted a Certificate of Lawfulness after reviewing its intended use, size, garden position and architectural plans.
+                See the drawings behind the decision and learn how we approach garden studios, rooms and other outbuildings.
+              </p>
+              <div className="mt-5 flex flex-wrap gap-3">
+                <Link href="/case-studies/sunbury-avenue-mill-hill-accessible-garden-care-outbuilding" className="inline-flex rounded-full bg-[#246e74] px-5 py-3 text-[12px] font-bold text-white hover:bg-[#18575e]">Explore the approved garden outbuilding</Link>
+                <Link href="/garden-room-outbuilding-plans" className="inline-flex rounded-full border border-[#aacac0] bg-white px-5 py-3 text-[12px] font-semibold text-[#296b70]">Garden studio &amp; outbuilding drawings</Link>
+              </div>
+            </div>
+          </div>
+        </section>
 
         <section className="border-b border-slate-200 bg-white py-10">
           <div className="mx-auto max-w-6xl px-4 lg:px-6">
