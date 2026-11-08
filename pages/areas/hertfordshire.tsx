@@ -5,6 +5,7 @@ import { submitBoroughLead } from "../../lib/submitBoroughLead";
 import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 
 import ApprovalEvidenceStrip from "../../components/ApprovalEvidenceStrip";
+import CranbournePromo from "../../components/CranbournePromo";
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const WHATSAPP_LINK =
@@ -378,7 +379,7 @@ export default function HertfordshireAreaPage() {
                     <p className="mt-3 text-[11px] font-semibold text-[#31745b]">Hertsmere planning reference: 20/0662/HSE</p>
                   </div>
                   <div className="mt-6 flex flex-wrap gap-2.5">
-                    <a href="/case-studies/allum-lane-elstree-major-house-extension#project-drawings" className="rounded-full bg-[#246e78] px-5 py-3 text-[12px] font-bold text-white hover:bg-[#195861]">Explore 3D design &amp; all 9 drawings →</a>
+                    <a href="/case-studies/allum-lane-elstree-major-house-extension#project-drawings" className="rounded-full bg-[#246e78] px-5 py-3 text-[12px] font-bold text-white hover:bg-[#195861]">Explore selected drawings and 3D views →</a>
                     <button onClick={scrollToForm} type="button" className="rounded-full border border-[#b4d3cb] bg-white px-5 py-3 text-[12px] font-bold text-[#286a71] hover:bg-[#f0f8f3]">Get your fixed-fee quote</button>
                   </div>
                 </div>
@@ -401,12 +402,13 @@ export default function HertfordshireAreaPage() {
             </div>
           </section>
 
+          <CranbournePromo context="Hertfordshire" />
           <ServiceInternalLinks boroughName="Hertfordshire" />
 
 <ApprovalEvidenceStrip
   slugs={["cranbourne-drive-hoddesdon-planning-project"]}
-  title="Another approved Hertfordshire project"
-  intro="Alongside the Allum Lane flagship above, explore our approved Cranbourne Drive extension in Hoddesdon."
+  title="Hoddesdon rear-extension planning and technical drawing experience"
+  intro="See Broxbourne’s October 2026 rear-extension planning permission and the separate ground-floor and loft Building Regulations drawing pack prepared for this project."
 />
 
           <section className="bg-white border-b border-slate-200 py-10">

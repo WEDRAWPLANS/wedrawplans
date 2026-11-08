@@ -4,6 +4,7 @@ import React, { useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
 import ServiceInternalLinks from "../../components/ServiceInternalLinks";
+import CranbournePromo from "../../components/CranbournePromo";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
@@ -505,6 +506,7 @@ export default function EnfieldAreaPage() {
           <BoroughMasterHero boroughName={"Enfield"} formId={"enfield-quote"} headline={"Plans for extensions, lofts and building regs in Enfield"} />
 
           <ServiceInternalLinks boroughName="Enfield" />
+          <CranbournePromo context="Enfield" />
 
           <section className="bg-white border-b border-slate-200 py-10">
             <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">

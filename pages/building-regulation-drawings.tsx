@@ -1,4 +1,5 @@
 import Head from "next/head";
+import CranbournePromo from "../components/CranbournePromo";
 import Link from "next/link";
 import AllumLaneSiteFeature from "../components/AllumLaneSiteFeature";
 import { FormEvent, useMemo, useState } from "react";
@@ -1290,6 +1291,7 @@ export default function BuildingRegulationDrawingsPage() {
             </div>
           </footer>
 
+          <CranbournePromo context="Building Regulations" />
           <SmartPlanningAssistant boroughName="London" />
         </main>
       </div>
