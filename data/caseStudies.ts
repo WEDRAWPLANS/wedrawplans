@@ -319,6 +319,50 @@ export const caseStudies: CaseStudy[] = [
     secondaryImage: "/images/hyde-slide-1.jpg"
   },
   {
+    slug: "chestnut-rise-plumstead-greenwich-ten-flats-lawfulness",
+    title: "Ten Self-Contained Flats: Greenwich Lawfulness Certificate Secured",
+    shortTitle: "Chestnut Rise, Plumstead",
+    seoDescription: "See how WEDRAWPLANS supported an existing-use Certificate of Lawfulness for ten self-contained flats in Plumstead, Greenwich. Council evidence, drawings and outcome.",
+    location: "Chestnut Rise, Plumstead, London SE18",
+    authority: "Royal Borough of Greenwich",
+    reference: "19/4015/CE",
+    year: "2020",
+    decisionDate: "17 March 2020",
+    service: "Existing-use certificate for ten self-contained residential flats",
+    outcome: "Certificate of Lawfulness (existing use) granted",
+    approved: true,
+    featured: true,
+    summary: "After an earlier application was refused because the evidence was considered insufficient, a subsequent Greenwich submission established the longstanding use of a pair of terraced buildings in Plumstead as ten self-contained flats. With existing-layout architectural drawings and a detailed historical evidence record, the council accepted the case on the balance of probability and issued a Certificate of Lawfulness on 17 March 2020.",
+    proof: "The Royal Borough of Greenwich issued Certificate of Lawfulness (Existing Use) 19/4015/CE on 17 March 2020 under section 191 of the Town and Country Planning Act 1990, certifying that the use as ten self-contained flats was lawful on 22 November 2019. The delegated report records an earlier refusal under 19/0590/CE on 28 June 2019 for insufficient continuity evidence. For the subsequent application, individual tenancy agreements did not by themselves cover the full historic period, but council-tax correspondence, long-established registrations, housing-benefit records, floor plans and a previous site inspection provided corroboration. The officer reported ten self-contained units without shared facilities and concluded that the continuous-use evidence met the historical test on the balance of probability. This certificate is not permission to build ten new flats, nor evidence of subsequent construction.",
+    approvedDrawings: "Council certificate 19/4015/CE lists existing floor plans and elevations P01, P02, P03 Revision A and P04, together with a statutory declaration, accommodation history, council-tax correspondence and tenancy agreements. One selected original existing-floor sheet (P02) is displayed.",
+    keyConditions: [
+      "Existing-use certificate: section 191, certifying the described ten-flat use as lawful on 22 November 2019.",
+      "The council's 2020 assessment considered a historic four-year use period under the legislation then applicable; new applications require up-to-date legal assessment.",
+      "Tenancy agreements alone did not provide uninterrupted coverage. Council-tax and other occupation records corroborated the relevant history.",
+      "Council officers had inspected the property and noted ten self-contained flats with no shared facilities.",
+      "The certificate covers the specified use and property circumstances, not an independent approval of new building works or Building Regulations compliance."
+    ],
+    highlights: [
+      "Existing residential use as ten self-contained flats formally certified",
+      "Successful later application following an earlier evidence-based refusal",
+      "Architectural plans supporting the existing layout and property history",
+      "Tenancy, council-tax and other records considered together",
+      "Council inspection confirmed ten self-contained units without shared facilities",
+      "Section 191 Certificate of Lawfulness granted in March 2020"
+    ],
+    wdpService: "WEDRAWPLANS provided the architectural drawing and application-support service for this existing-use certificate case. As the named architectural correspondent on the council's decision, the practice contributed existing-layout plans explaining the residential arrangement. The council assessed those plans together with the applicant's occupancy history and documentary evidence. The successful outcome demonstrates the importance of clear drawings, sound documentation and responding to the specific evidential issue raised by the earlier refusal.",
+    homeownerGuidance: "Own or manage a property divided into flats, studios, HMOs or other residential units in Greenwich, Plumstead, Woolwich, Charlton, Eltham or surrounding South East London? The planning route may involve an existing-use Certificate of Lawfulness, a new planning application, a change-of-use proposal or retrospective consent. We can prepare measured existing layouts and architectural information, help organise a suitable application package and provide a fixed-fee drawing quotation. Historical planning rules should not be assumed to apply to a new application today.",
+    leadAngle: "Need help with an existing multi-flat property, HMO layout, residential conversion or lawful-use application?",
+    relatedService: "/commercial/change-of-use",
+    relatedArea: "/areas/greenwich",
+    heroImage: "/images/case-studies/greenwich-plumstead-ten-flats-lawfulness/existing-floor-plans.webp",
+    secondaryImage: "/images/case-studies/greenwich-plumstead-ten-flats-lawfulness/existing-floor-plans-detail.webp",
+    galleryImages: [
+      { src: "/images/case-studies/greenwich-plumstead-ten-flats-lawfulness/existing-floor-plans.webp", alt: "Full WEDRAWPLANS existing floor-plan sheet P02 from a historic multi-unit residential project on Chestnut Rise in Plumstead with property number omitted", caption: "One selected original existing-layout drawing · complete sheet P02" },
+      { src: "/images/case-studies/greenwich-plumstead-ten-flats-lawfulness/existing-floor-plans-detail.webp", alt: "Detail enlarged from the same existing ground and first-floor architectural drawing P02 in Plumstead", caption: "Larger plan detail from the same drawing" }
+    ]
+  },
+  {
     slug: "700-woolwich-road-greenwich-two-new-flats",
     wdpService: "WEDRAWPLANS prepared the detailed architectural drawing set supporting the additional residential floor, including plans, elevations and associated access and parking changes. The practice coordinated submission information and liaised with Greenwich's planning officers through the determination process.",
     homeownerGuidance: "Creating new flats above an existing building involves more than drawing the additional storey. Access, parking, internal layouts and supporting planning information must be addressed together.",

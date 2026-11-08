@@ -285,9 +285,9 @@ export default function LawfulDevelopmentCertificateDrawingsPage() {
           </div>
         </section>
               <ApprovalEvidenceStrip
-          slugs={["sunbury-avenue-mill-hill-accessible-garden-care-outbuilding","warbeck-road-hammersmith-fulham-loft-certificate","reddings-close-mill-hill-lawful-loft","alnwick-road-eltham-lawful-loft"]}
-          title="Granted lawful-development certificates across London"
-          intro="Explore a Barnet garden care outbuilding with a Certificate of Lawfulness granted in March 2026, alongside loft-conversion and roof-extension certificates elsewhere in London. Each illustrates how a legal planning route depends on the specific proposal."
+          slugs={["chestnut-rise-plumstead-greenwich-ten-flats-lawfulness","sunbury-avenue-mill-hill-accessible-garden-care-outbuilding","warbeck-road-hammersmith-fulham-loft-certificate","reddings-close-mill-hill-lawful-loft","alnwick-road-eltham-lawful-loft"]}
+          title="Examples of lawfulness certificates for existing uses and proposed development"
+          intro="Compare Greenwich certification of an established ten-flat residential use under section 191 with certificates for proposed ancillary garden buildings and roof works under section 192. Each application depends on its facts, documentation and the applicable law."
         />
       </main>
     </>
