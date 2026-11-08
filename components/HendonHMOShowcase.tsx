@@ -27,7 +27,7 @@ export default function HendonHMOShowcase({ project }: { project: CaseStudy }) {
   const drawing = views.find((v) => v.id === active) || views[0];
 
   return (
-    <div className="space-y-7 select-none" onContextMenu={(event) => event.preventDefault()} onDragStart={(event) => event.preventDefault()}>
+    <div className="min-w-0 max-w-full space-y-7 overflow-x-clip select-none" onContextMenu={(event) => event.preventDefault()} onDragStart={(event) => event.preventDefault()}>
       <section aria-labelledby="hmo-hendon-story" className="overflow-hidden rounded-[20px] border border-[#d6e4dd] bg-white shadow-[0_16px_38px_rgba(18,71,71,.06)]">
         <div className="bg-[#eef7f2] px-5 py-6 sm:px-8 sm:py-8">
           <p className="text-[11px] font-extrabold uppercase tracking-[.16em] text-[#2b795b]">Barnet Council · Full planning permission granted</p>
@@ -85,13 +85,13 @@ export default function HendonHMOShowcase({ project }: { project: CaseStudy }) {
         </p>
       </section>
 
-      <section aria-labelledby="hmo-drawings" className="overflow-hidden rounded-[20px] border border-[#d7e5de] bg-white shadow-[0_16px_36px_rgba(20,68,69,.04)]">
+      <section aria-labelledby="hmo-drawings" className="min-w-0 max-w-full overflow-hidden rounded-[20px] border border-[#d7e5de] bg-white shadow-[0_16px_36px_rgba(20,68,69,.04)]">
         <div className="bg-[#f0f7f3] px-5 py-5 sm:px-7">
           <p className="text-[11px] font-extrabold uppercase tracking-[.15em] text-[#26785d]">Architectural drawings · Original approved sheets</p>
           <h2 id="hmo-drawings" className="mt-2 text-[23px] font-semibold text-[#294c50] sm:text-[28px]">Explore the seven-bedroom HMO layout</h2>
           <p className="mt-3 text-[12px] leading-6 text-[#5b7477]">
             Compare the existing house with the approved proposed arrangement. For an easier phone view,
-            select a floor detail, or return to the complete original drawing sheet at any time.
+            select a floor detail, or return to the complete original drawing sheet at any time. All plans fit the screen, with enlarged floor views available for close inspection.
           </p>
         </div>
         <div className="grid grid-cols-2 gap-2 border-b border-[#e2eae4] px-4 py-4 sm:grid-cols-3 sm:px-6" role="group" aria-label="Architectural drawing views">
@@ -100,12 +100,12 @@ export default function HendonHMOShowcase({ project }: { project: CaseStudy }) {
               className={"min-h-[42px] rounded-xl px-3 py-2.5 text-center text-[11px] font-semibold leading-5 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#23777d] " + (active===v.id?"bg-[#256d74] text-white":"border border-[#d5e6dd] bg-white text-[#3c6669] hover:bg-[#f1f8f3]")}>{v.label}</button>
           ))}
         </div>
-        <figure className="mx-3 my-4 overflow-hidden rounded-xl border border-[#e3eae5] bg-[#fcfdfb] px-2 py-3 sm:mx-5 sm:px-4">
-          <div className={"relative mx-auto w-full " + (active==="ground"||active==="first"||active==="loft" ? "max-w-[520px]" : "")} style={{aspectRatio:drawing.ratio}}>
+        <figure className="mx-2 my-4 max-w-[calc(100%-1rem)] min-w-0 overflow-hidden rounded-xl border border-[#e3eae5] bg-[#fcfdfb] px-2 py-3 sm:mx-5 sm:max-w-[calc(100%-2.5rem)] sm:px-4">
+          <div className={"relative mx-auto block min-w-0 w-full max-w-full overflow-hidden " + (active==="ground"||active==="first"||active==="loft" ? "sm:max-w-[520px]" : "")} style={{aspectRatio:drawing.ratio, width:"100%", maxWidth:"100%"}}>
             <Image key={drawing.id} src={drawing.src} fill
               alt={drawing.alt}
-              sizes={active==="ground"||active==="first"||active==="loft"?"(max-width: 768px) 96vw, 520px":"(max-width: 1024px) 96vw, 65vw"}
-              className="pointer-events-none object-contain" draggable={false} />
+              sizes={active==="ground"||active==="first"||active==="loft"?"(max-width: 640px) calc(100vw - 52px), (max-width: 1024px) 60vw, 520px":"(max-width: 640px) calc(100vw - 52px), (max-width: 1024px) 96vw, 65vw"}
+              className="pointer-events-none block h-full max-h-full w-full max-w-full object-contain" draggable={false} />
           </div>
           <figcaption className="border-t border-[#e4ebe6] px-2 pt-3 text-[12px] leading-6 text-[#5c7778]">{drawing.caption}</figcaption>
         </figure>
