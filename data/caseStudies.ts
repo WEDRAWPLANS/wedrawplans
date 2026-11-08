@@ -78,7 +78,6 @@ export const caseStudies: CaseStudy[] = [
       "Double-height rear glazing, recessed balcony and garden terrace",
       "Reconfigured open-plan ground-floor living areas and first-floor bedrooms",
       "Three selected architectural drawing sheets and three original 3D design visuals",
-      "Discreetly watermarked project presentation"
     ],
     animationSlot: false,
     mediaNote: "This is an architectural design and planning showcase based on selected WEDRAWPLANS drawings and 3D visualisations. It is not a photographic record of a completed build.",
