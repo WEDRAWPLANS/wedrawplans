@@ -472,8 +472,8 @@ export default function HarrowAreaPage() {
 
 <ApprovalEvidenceStrip
   slugs={["burnt-oak-broadway-harrow-retail-flats"]}
-  title="Approved in Harrow: three studio flats above retained retail"
-  intro="Harrow Council granted permission for two first-floor studios and a third attic-level studio, while keeping the ground-floor shop. See four original approved drawing sheets and two WEDRAWPLANS 3D walkthroughs."
+  title="Harrow approval: three new studio flats above a retained shop"
+  intro="WEDRAWPLANS secured planning permission for two first-floor studios and a third at attic level, while retaining the commercial use below. Explore how an integrated design addressed the compact upper-floor layout, rear dormer and shop extension."
 />
 
           <section aria-labelledby="harrow-studio-case-heading" className="border-b border-[#dce7e0] bg-[#edf6f1] py-11 sm:py-14">
@@ -481,11 +481,11 @@ export default function HarrowAreaPage() {
               <div className="max-w-3xl">
                 <p className="text-[11px] font-extrabold uppercase tracking-[.16em] text-[#28735d]">Harrow Council approval · P/0076/21 · Original architectural work</p>
                 <h2 id="harrow-studio-case-heading" className="mt-2 text-[27px] font-semibold leading-tight text-[#24494c] sm:text-[33px]">
-                  See how three studios were achieved above a retained shop
+                  Three studio flats approved above an existing Harrow shop
                 </h2>
                 <p className="mt-3 text-[14px] leading-7 text-[#536f73]">
-                  Our Burnt Oak Broadway case study features two first-floor flats, a third attic-level flat and a retained commercial unit on the ground floor.
-                  Explore the actual project animations and four selected council-approved architectural drawing sheets, all presented with discreet WEDRAWPLANS watermarks.
+                  At Burnt Oak Broadway, WEDRAWPLANS helped turn a compact mixed-use building into an approved proposal for three self-contained studio flats—two on the first floor and one in the attic—without removing the ground-floor shop.
+                  The design incorporated a rear shop extension, dormer and supporting facilities, with planning permission granted by Harrow Council in August 2021. Explore the layouts and plans behind that result.
                 </p>
               </div>
               <div className="mt-6 grid gap-4 sm:grid-cols-2">
@@ -495,18 +495,18 @@ export default function HarrowAreaPage() {
                 ].map((video) => (
                   <Link key={video.src} href="/case-studies/burnt-oak-broadway-harrow-retail-flats#harrow-3d-animations" className="group overflow-hidden rounded-[18px] border border-[#d5e5dd] bg-white shadow-[0_8px_30px_rgba(20,76,66,.06)]">
                     <div className="relative aspect-video bg-[#e8efea]">
-                      <Image src={video.src} alt={video.title + " — genuine WEDRAWPLANS approved conversion 3D visual with faded original logo"} fill sizes="(max-width: 640px) 100vw, 46vw" className="pointer-events-none object-cover transition-transform duration-300 group-hover:scale-[1.015]" draggable={false} />
+                      <Image src={video.src} alt={video.title + " — architectural 3D design for the approved Burnt Oak Broadway studio-flat conversion"} fill sizes="(max-width: 640px) 100vw, 46vw" className="pointer-events-none object-cover transition-transform duration-300 group-hover:scale-[1.015]" draggable={false} />
                     </div>
                     <div className="px-4 py-4">
                       <p className="text-[10px] font-extrabold uppercase tracking-[.14em] text-[#9a6e5e]">{video.label}</p>
                       <h3 className="mt-1 text-[15px] font-bold text-[#2b5558]">{video.title}</h3>
-                      <span className="mt-2 inline-block text-[12px] font-bold text-[#21727b]">Watch the approved project animation →</span>
+                      <span className="mt-2 inline-block text-[12px] font-bold text-[#21727b]">Explore the studio layout in 3D →</span>
                     </div>
                   </Link>
                 ))}
               </div>
               <div className="mt-6 flex flex-wrap gap-3">
-                <Link href="/case-studies/burnt-oak-broadway-harrow-retail-flats" className="inline-flex rounded-full bg-[#256e76] px-5 py-3 text-[12px] font-bold text-white hover:bg-[#1a5960]">See approved drawings &amp; the full case study</Link>
+                <Link href="/case-studies/burnt-oak-broadway-harrow-retail-flats" className="inline-flex rounded-full bg-[#256e76] px-5 py-3 text-[12px] font-bold text-white hover:bg-[#1a5960]">See how WEDRAWPLANS secured planning approval</Link>
                 <button type="button" onClick={scrollToForm} className="rounded-full border border-[#bad8cd] bg-white px-5 py-3 text-[12px] font-bold text-[#296b70] hover:bg-[#e2f2e8]">Request a fixed-fee quote</button>
               </div>
             </div>

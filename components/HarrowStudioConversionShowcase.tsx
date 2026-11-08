@@ -8,15 +8,15 @@ const PROJECT_ROOT = "/images/case-studies/burnt-oak-broadway-harrow-retail-flat
 
 const ANIMATIONS = [
   {
-    title: "Two first-floor studio flats",
-    detail: "See the two independent studio layouts proposed above the existing ground-floor retail premises.",
+    title: "Two studio flats on the first floor",
+    detail: "Explore the proposed layouts of two separate homes on the first floor, directly above the retained shop.",
     poster: PROJECT_ROOT + "first-floor-video-poster.webp",
     src: PROJECT_ROOT + "first-floor-two-studios.mp4",
     duration: "28 seconds",
   },
   {
-    title: "One top-floor attic studio",
-    detail: "See how the upper roof accommodation was arranged as the third self-contained studio flat.",
+    title: "The third studio flat at attic level",
+    detail: "Discover how the attic layout and roof alterations accommodated another self-contained home.",
     poster: PROJECT_ROOT + "attic-floor-video-poster.webp",
     src: PROJECT_ROOT + "attic-floor-one-studio.mp4",
     duration: "24 seconds",
@@ -50,23 +50,28 @@ export default function HarrowStudioConversionShowcase({ project }: Props) {
   return (
     <div className="select-none space-y-7" onContextMenu={(event) => event.preventDefault()} onDragStart={(event) => event.preventDefault()}>
       <section className="overflow-hidden rounded-[20px] border border-[#d4e5dc] bg-white shadow-[0_15px_40px_rgba(22,69,70,.06)]">
-        <div className="bg-[#eaf6ef] px-5 py-6 sm:px-7">
-          <p className="text-[11px] font-extrabold uppercase tracking-[.16em] text-[#23775a]">Harrow Council · Planning permission granted · 6 August 2021</p>
-          <h2 className="mt-2 text-[25px] font-semibold leading-tight text-[#24494d] sm:text-[31px]">
-            Three studio flats achieved above a retained commercial unit
+        <div className="bg-[#eaf6ef] px-5 py-7 sm:px-8 sm:py-9">
+          <p className="text-[11px] font-extrabold uppercase tracking-[.16em] text-[#23775a]">Harrow Council planning approval · P/0076/21</p>
+          <h2 className="mt-3 max-w-4xl text-[26px] font-semibold leading-tight text-[#24494d] sm:text-[34px]">
+            Creating three studio homes above an existing shop
           </h2>
-          <p className="mt-3 max-w-3xl text-[14px] leading-7 text-[#526e72]">
-            This approved Burnt Oak Broadway scheme made more effective use of the existing upper-floor accommodation.
-            The ground-floor retail use was preserved, while the first floor was arranged as two separate studio flats
-            and the attic/top floor as a third studio. The proposal also included a rear retail extension, dormer,
-            bin storage and cycle provision.
+          <p className="mt-4 max-w-4xl text-[14px] leading-7 text-[#4c686d] sm:text-[15px]">
+            How do you create three independent homes within the upper floors of a relatively compact mixed-use property,
+            while keeping the shop below? That was the opportunity at Burnt Oak Broadway in Harrow.
+            WEDRAWPLANS developed an architectural proposal for two self-contained studio flats on the first floor
+            and a third within the attic, with the ground-floor retail use retained.
+          </p>
+          <p className="mt-3 max-w-4xl text-[14px] leading-7 text-[#4c686d]">
+            The scheme brought together the residential layouts, a rear dormer, a single-storey rear extension
+            to the shop and the associated refuse and cycle arrangements. Following design development
+            and coordination with the planning officer, <strong>Harrow Council granted planning permission on 6 August 2021.</strong>
           </p>
         </div>
         <div className="grid gap-3 px-4 py-5 sm:grid-cols-3 sm:px-6">
           {[
-            ["Ground floor", "Commercial retail retained"],
-            ["First floor", "2 independent studio flats"],
-            ["Attic / top floor", "1 independent studio flat"],
+            ["Ground floor", "Existing shop retained"],
+            ["First floor", "Two self-contained studio flats"],
+            ["Attic level", "A third self-contained studio flat"],
           ].map(([level, result]) => (
             <div key={level} className="rounded-xl border border-[#d8e5df] bg-[#f7faf8] px-4 py-4">
               <p className="text-[10px] font-extrabold uppercase tracking-[.13em] text-[#9a695f]">{level}</p>
@@ -74,17 +79,33 @@ export default function HarrowStudioConversionShowcase({ project }: Props) {
             </div>
           ))}
         </div>
-        <p className="border-t border-[#e4ede8] px-5 py-4 text-[12px] leading-6 text-[#60777a] sm:px-7">
-          The approval demonstrates what was achieved for this particular building, not a general maximum number of units
-          allowed above commercial premises. Every property requires its own planning, access, daylight, space-standard and fire-safety assessment.
-        </p>
+        <div className="grid gap-5 border-t border-[#e4ede8] px-5 py-6 sm:grid-cols-3 sm:px-7">
+          <div>
+            <h3 className="text-[14px] font-bold text-[#284c50]">The design challenge</h3>
+            <p className="mt-2 text-[13px] leading-6 text-[#5a7376]">
+              Make effective use of limited upper-floor accommodation without sacrificing the established commercial space.
+            </p>
+          </div>
+          <div>
+            <h3 className="text-[14px] font-bold text-[#284c50]">The architectural solution</h3>
+            <p className="mt-2 text-[13px] leading-6 text-[#5a7376]">
+              Coordinate the first-floor and attic layouts with the dormer, shop extension, access and supporting site arrangements.
+            </p>
+          </div>
+          <div>
+            <h3 className="text-[14px] font-bold text-[#284c50]">The planning result</h3>
+            <p className="mt-2 text-[13px] leading-6 text-[#5a7376]">
+              Approval for three studio flats above the shop, under application P/0076/21, following consultation and design revisions.
+            </p>
+          </div>
+        </div>
       </section>
 
       <section id="harrow-3d-animations" className="scroll-mt-24 rounded-[20px] border border-[#dbe7e1] bg-white px-4 py-6 shadow-[0_15px_40px_rgba(22,69,70,.06)] sm:px-6">
         <div className="mb-5">
-          <p className="text-[11px] font-extrabold uppercase tracking-[.16em] text-[#28775e]">Original WEDRAWPLANS 3D design</p>
-          <h2 className="mt-2 text-[24px] font-semibold text-[#24494d] sm:text-[29px]">Watch the three-flat conversion</h2>
-          <p className="mt-2 text-[13px] leading-6 text-[#597277]">Two original architectural walkthrough animations, with the supplied WEDRAWPLANS logo retained as a faded corner watermark. Videos load only when played.</p>
+          <p className="text-[11px] font-extrabold uppercase tracking-[.16em] text-[#28775e]">Explore the approved residential layout</p>
+          <h2 className="mt-2 text-[24px] font-semibold text-[#24494d] sm:text-[29px]">See how three homes fit above a single shop</h2>
+          <p className="mt-3 max-w-3xl text-[14px] leading-7 text-[#597277]">The first-floor and attic walkthroughs reveal the design thinking behind this successful planning application. Explore how two separate studios were accommodated on the first floor, with a third at roof level, while the shop remained below.</p>
         </div>
         <div className="grid gap-5 sm:grid-cols-2">
           {ANIMATIONS.map((item, i) => (
@@ -108,14 +129,14 @@ export default function HarrowStudioConversionShowcase({ project }: Props) {
                 </video>
                 {playingVideo !== i ? (
                   <button type="button" onClick={() => playAnimation(i)} className="group absolute inset-0 z-20 block h-full w-full cursor-pointer" aria-label={"Play the original animation: " + item.title}>
-                    <Image src={item.poster} alt={"Video preview showing " + item.title + " with the user's original faded WEDRAWPLANS corner logo"} fill sizes="(max-width: 640px) 100vw, 38vw" className="pointer-events-none object-cover transition-transform duration-200 group-hover:scale-[1.015]" draggable={false} />
+                    <Image src={item.poster} alt={"Architectural 3D visualisation of " + item.title + " at Burnt Oak Broadway, Harrow"} fill sizes="(max-width: 640px) 100vw, 38vw" className="pointer-events-none object-cover transition-transform duration-200 group-hover:scale-[1.015]" draggable={false} />
                     <span className="absolute inset-0 ring-inset transition group-focus-visible:ring-4 group-focus-visible:ring-[#4b8f82]" />
                     <span className="sr-only">Play video</span>
                   </button>
                 ) : null}
               </div>
               <div className="px-4 py-4">
-                <p className="text-[10px] font-extrabold uppercase tracking-[.14em] text-[#a06f61]">3D walkthrough · {item.duration}</p>
+                <p className="text-[10px] font-extrabold uppercase tracking-[.14em] text-[#a06f61]">Architectural 3D walkthrough</p>
                 <h3 className="mt-1 text-[16px] font-bold text-[#274e53]">{item.title}</h3>
                 <p className="mt-2 text-[12px] leading-6 text-[#61767a]">{item.detail}</p>
               </div>
@@ -126,12 +147,12 @@ export default function HarrowStudioConversionShowcase({ project }: Props) {
 
       <section className="overflow-hidden rounded-[20px] border border-[#dbe7e1] bg-white shadow-[0_15px_40px_rgba(22,69,70,.06)]">
         <div className="border-b border-[#dce9e2] bg-[#eff7f2] px-4 py-5 sm:px-6">
-          <p className="text-[11px] font-extrabold uppercase tracking-[.16em] text-[#28765d]">Planning-approved drawing references · Selected original sheets</p>
-          <h2 className="mt-2 text-[24px] font-semibold text-[#24494d] sm:text-[29px]">Four complete architectural drawings</h2>
+          <p className="text-[11px] font-extrabold uppercase tracking-[.16em] text-[#28765d]">The architectural plans behind the approval</p>
+          <h2 className="mt-2 text-[24px] font-semibold text-[#24494d] sm:text-[29px]">From shop floor to attic: the approved plans</h2>
           <p className="mt-2 text-[13px] leading-6 text-[#587277]">
-            Explore the retail arrangement, the two first-floor studios, the single attic studio and the proposed side elevation.
-            Original sheets are shown in full. Identifying details have been obscured and each image has one discreet
-            diagonal WEDRAWPLANS watermark.
+            Follow the design from the retained ground-floor shop and its proposed rear extension
+            through to the two first-floor homes and the third attic studio.
+            The four approved sheets also show how the exterior alterations support the overall scheme.
           </p>
         </div>
         {selected ? (
@@ -172,17 +193,17 @@ export default function HarrowStudioConversionShowcase({ project }: Props) {
       </section>
 
       <section className="rounded-[18px] border border-[#cddfd5] bg-[#eff7f2] px-5 py-6 sm:px-6">
-        <p className="text-[11px] font-extrabold uppercase tracking-[.17em] text-[#28745b]">What this approval demonstrates</p>
-        <h2 className="mt-2 text-[21px] font-semibold text-[#25484c]">Making better use of space above shops</h2>
+        <p className="text-[11px] font-extrabold uppercase tracking-[.17em] text-[#28745b]">Planning a similar conversion?</p>
+        <h2 className="mt-2 text-[21px] font-semibold text-[#25484c]">Could the space above your commercial property become new homes?</h2>
         <p className="mt-3 text-[13px] leading-7 text-[#506c70]">
-          The planning package carefully identified the existing commercial activity separately from the proposed homes.
-          It brought together first-floor living arrangements, the additional attic studio, rear dormer, refuse and cycle storage,
-          access and amenity considerations. The granted decision includes conditions relating to fire safety, landscaping
-          and cycle parking. Planning permission does not itself constitute Building Regulations approval.
+          This project demonstrates how an imaginative but carefully coordinated design can create additional
+          residential accommodation above an existing business. WEDRAWPLANS prepares architectural planning drawings,
+          coordinates the supporting application information and works with the council through the planning process.
+          Tell us about your property and we can discuss the suitable approach and a clear fixed-fee drawing quotation.
         </p>
         <p className="mt-3 text-[12px] leading-6 text-[#647c7f]">
-          Reference P/0076/21 · Harrow Council · granted 6 August 2021. This is a historical approval. Its implementation
-          and the present legal status of any uncommenced works have not been verified.
+          Planning permission P/0076/21 was granted on 6 August 2021. This case study describes the approved design,
+          not verified completed construction. All new proposals are assessed individually.
         </p>
         <a href="#case-study-quote" className="mt-5 inline-flex rounded-full bg-[#236e74] px-5 py-3 text-[12px] font-bold text-white transition hover:bg-[#1b5961]">
           Ask for your fixed-fee drawing quote →
