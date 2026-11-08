@@ -468,7 +468,7 @@ export default function HarrowAreaPage() {
         <BoroughMasterHeader boroughName={"Harrow"} />
 
         <main>
-          <BoroughMasterHero boroughName={"Harrow"} formId={"harrow-quote"} headline={"Architectural Drawings in Harrow for Extensions, Lofts and New Builds"} showcaseImage={{ src: "/images/harrow-building-regulations-drawing-watermarked.webp", alt: "Full architectural Building Regulations floor-plan sheet, with the client and property identifiers removed and one very faint diagonal WEDRAWPLANS watermark", fit: "contain", watermarkEmbedded: true, caption: "Example preliminary Building Regulations floor-plan sheet · identifying client and property details removed." }} />
+          <BoroughMasterHero boroughName={"Harrow"} formId={"harrow-quote"} headline={"Architectural Drawings in Harrow for Extensions, Lofts and New Builds"} showcaseImage={{ src: "/images/harrow-building-regulations-drawing-watermarked.webp", alt: "Example of full Building Regulations floor plans showing coordinated ground and first floor layouts", fit: "contain", watermarkEmbedded: true, caption: "Ground- and first-floor Building Regulations plans · an example of our detailed technical drawing work." }} />
 
 <ApprovalEvidenceStrip
   slugs={["burnt-oak-broadway-harrow-retail-flats"]}
@@ -629,7 +629,7 @@ export default function HarrowAreaPage() {
                     <div className="relative aspect-[1.414/1] w-full overflow-hidden rounded-xl bg-white">
                       <Image
                         src="/images/harrow-building-regulations-drawing-watermarked.webp"
-                        alt="Full sheet example of a preliminary Building Regulations drawing showing ground and first floor plans, with identifying project details removed and a faint WEDRAWPLANS watermark"
+                        alt="Full technical drawing sheet showing the ground-floor and first-floor plans of a residential project"
                         fill
                         sizes="(max-width: 768px) 100vw, 58vw"
                         className="object-contain"
@@ -644,7 +644,7 @@ export default function HarrowAreaPage() {
                       Clear floor plans, dimensions and technical notes help builders understand the proposed layout and prepare more accurate prices. WEDRAWPLANS prepares project-specific Building Regulations drawing packs and coordinates structural information where included in the agreed scope.
                     </p>
                     <p className="mt-3 text-[11px] leading-6 text-[#718186]">
-                      The illustrated sheet is marked preliminary and is an example of technical drawing work. It is not presented as a planning approval or as part of the Burnt Oak Broadway case study.
+                      This example Building Regulations sheet is from a separate residential project. The approved Burnt Oak Broadway flat-conversion design is showcased above.
                     </p>
                     <button type="button" onClick={scrollToForm} className="mt-5 w-full rounded-full bg-[#236d75] px-5 py-3 text-[12px] font-bold text-white hover:bg-[#19555d] sm:w-auto">
                       Get a fixed-fee drawing quote

@@ -282,7 +282,9 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
             <p className="mt-3 max-w-3xl text-[14px] leading-7 text-[#61777b]">
               {isHub
                 ? "Browse selected projects and planning outcomes. Request a fixed-fee quote while you explore."
-                : "Explore the architectural project presentation and ask us about drawings for your own property."}
+                : isHarrowStudios
+                  ? "See how WEDRAWPLANS developed a coordinated design for three studio homes above a retained shop, securing Harrow Council's planning approval. Explore the layouts, architectural drawings and design walkthroughs."
+                  : "Explore the architectural project presentation and ask us about drawings for your own property."}
             </p>
           </div>
           {isHub ? <Link href="#browse-projects" className="text-[13px] font-semibold text-[#27757e] underline-offset-4 hover:underline">Browse all 24 projects →</Link> : <span className="text-[12px] text-[#667f81]">{project.shortTitle}</span>}
