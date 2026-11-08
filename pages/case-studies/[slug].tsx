@@ -24,7 +24,8 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
   const isCromwell = item.slug === "cromwell-road-hounslow-rear-extension";
   const isBrockley = item.slug === "brockley-road-lewisham-two-flat-conversion";
   const isHarrowStudios = item.slug === "burnt-oak-broadway-harrow-retail-flats";
-  const isFlagship = isReddings || isAllum || isSistova || isCromwell || isBrockley || isHarrowStudios;
+  const isCannon = item.slug === "cannon-lane-pinner-5-metre-rear-extension";
+  const isFlagship = isReddings || isAllum || isSistova || isCromwell || isBrockley || isHarrowStudios || isCannon;
   const useOriginalDrawingGallery = item.slug === "sistova-road-wandsworth-extension-basement" || item.slug === "cromwell-road-hounslow-rear-extension" || isFlagship;
   const isProduction = process.env.VERCEL_ENV === "production";
   const hasApprovedVisual = [item.heroImage, item.secondaryImage].some(src => Boolean(src) && (src.startsWith("/images/case-studies/") || src.startsWith("/images/hyde-")));

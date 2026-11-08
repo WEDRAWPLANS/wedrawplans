@@ -720,7 +720,51 @@ export const caseStudies: CaseStudy[] = [
     heroImage: "",
     secondaryImage: "",
     mediaNote: "Architectural drawings and council certificate available in the WEDRAWPLANS project archive."
-  }
+  },
+  {
+    slug: "cannon-lane-pinner-5-metre-rear-extension",
+    title: "5 Metre Rear Extension Approved in Pinner, Harrow",
+    shortTitle: "Cannon Lane, Pinner",
+    seoDescription: "Approved 5 metre rear extension in Pinner, Harrow. Explore original WEDRAWPLANS planning drawings, an architectural 3D view and a fixed-fee quote.",
+    location: "Cannon Lane, Pinner HA5",
+    authority: "London Borough of Harrow",
+    reference: "P/4793/21",
+    year: "2022",
+    decisionDate: "8 March 2022",
+    service: "Single-storey 5 metre rear extension and house alterations",
+    outcome: "Householder planning permission granted",
+    approved: true,
+    summary: "Harrow Council granted planning permission for a substantial rear extension at a family home on Cannon Lane, Pinner. The 5 metre garden-facing addition was developed through coordinated floor and roof plans, elevations and an architectural design visual. The permission also covered a front porch, garage conversion to a study and associated alterations.",
+    proof: "Harrow Council's decision notice for P/4793/21, dated 8 March 2022, grants householder planning permission for a single-storey front extension incorporating a porch, single-storey rear extension, conversion of garage to a study and external alterations. Plans P01–P07 are specified in the council's approved drawing schedule. The 5,000 mm rear projection is shown in drawing P07. This is a full householder planning permission, not a separately evidenced larger-home-extension prior approval.",
+    approvedDrawings: "Harrow Council's approved schedule includes WEDRAWPLANS P01, P02, P03, P04, P05, P06 and P07. Selected full-sheet P05 (proposed floor and roof plans) and P07 (rear and side elevations/section) are displayed here, together with a 3D illustration of the design concept.",
+    keyConditions: [
+      "External extension materials must match the existing building.",
+      "Additional flank windows or doors not on the approved plans require the council's written permission.",
+      "The extension roof may not be used as a balcony, roof garden or similar amenity area without further specific permission.",
+      "A Fire Safety Statement must be approved before work progresses beyond damp-proof-course level."
+    ],
+    highlights: [
+      "5 metre single-storey rear extension",
+      "Coordinated kitchen-facing ground-floor and roof plans",
+      "Rear elevation and side section clearly dimensioned",
+      "Front porch and garage-to-study conversion within the wider approval",
+      "WEDRAWPLANS original planning drawings and an architectural 3D visual"
+    ],
+    wdpService: "WEDRAWPLANS prepared an integrated architectural planning package for the extension and related alterations. The design showed the proposed rear projection, openings, roof form and relationship to the existing property clearly across plans and elevations, enabling the local authority to assess the application. The project received householder planning permission from Harrow Council.",
+    homeownerGuidance: "A rear extension may be possible under permitted development, the larger-home-extension prior-approval procedure or a householder planning application, depending on the property and proposal. WEDRAWPLANS can assess the appropriate route in Pinner, Harrow, Northwood, Hatch End and neighbouring areas, then provide a fixed-fee architectural drawing quotation.",
+    leadAngle: "Thinking about a 5 metre rear extension in Pinner or Harrow?",
+    relatedService: "/extension-plans",
+    relatedArea: "/areas/harrow",
+    heroImage: "/images/case-studies/cannon-lane-pinner-5-metre-rear-extension/cannon-lane-rear-extension-3d.webp",
+    secondaryImage: "/images/case-studies/cannon-lane-pinner-5-metre-rear-extension/p05-proposed-floor-and-roof-plans.webp",
+    galleryImages: [
+      { src: "/images/case-studies/cannon-lane-pinner-5-metre-rear-extension/cannon-lane-rear-extension-3d.webp", alt: "Architectural 3D garden perspective showing the proposed rear addition at Cannon Lane, Pinner", caption: "3D garden perspective of the rear extension" },
+      { src: "/images/case-studies/cannon-lane-pinner-5-metre-rear-extension/p05-proposed-floor-and-roof-plans.webp", alt: "Original full WEDRAWPLANS drawing P05 showing the proposed ground-floor plan and roof arrangement for the Cannon Lane extension", caption: "Drawing 1 · Proposed floor and roof plans · P05" },
+      { src: "/images/case-studies/cannon-lane-pinner-5-metre-rear-extension/p07-proposed-elevations-and-section.webp", alt: "Original full WEDRAWPLANS drawing P07 showing the proposed rear elevation and side section with a 5,000 mm extension dimension", caption: "Drawing 2 · Proposed rear elevation and section · P07" }
+    ],
+    featured: true
+  },
+
 ]
 
 export function categoryForCaseStudy(item: CaseStudy): string {
