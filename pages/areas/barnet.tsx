@@ -414,6 +414,31 @@ export default function BarnetAreaPage() {
             </div>
           </section>
 
+          <section aria-labelledby="barnet-hmo-feature-heading" className="border-y border-[#d8e7de] bg-[#f0f8f3] py-10 sm:py-14">
+            <div className="mx-auto grid max-w-6xl items-center gap-7 px-4 md:grid-cols-[minmax(0,1.12fr)_minmax(0,.88fr)] lg:px-6">
+              <Link href="/case-studies/sevington-road-hendon-seven-bedroom-hmo-planning-approval" className="block overflow-hidden rounded-[18px] border border-[#dae5df] bg-white shadow-[0_15px_32px_rgba(24,69,64,.08)]" aria-label="View seven-bedroom HMO approval in Hendon">
+                <div className="relative aspect-[3309/2339]">
+                  <Image src="/images/case-studies/sevington-road-hendon-seven-bedroom-hmo/approved-proposed-p03-rev-c.webp" alt="Original approved floor plans from WEDRAWPLANS' seven-bedroom HMO conversion in Hendon" fill sizes="(max-width: 768px) 100vw, 54vw" className="pointer-events-none object-contain" draggable={false}/>
+                </div>
+              </Link>
+              <div>
+                <p className="text-[11px] font-bold uppercase tracking-[.16em] text-[#26755b]">Barnet planning decision · 6 December 2018</p>
+                <h2 id="barnet-hmo-feature-heading" className="mt-3 text-[25px] font-semibold leading-tight text-[#294c50] sm:text-[31px]">Seven-bedroom HMO approved in West Hendon</h2>
+                <p className="mt-4 text-[13px] leading-7 text-[#557174]">
+                  A former single-family home was granted full planning permission for conversion to a seven-bedroom
+                  House in Multiple Occupation. The council assessed the WEDRAWPLANS layouts alongside location,
+                  room standards, transport access, neighbours, parking and noise, imposing conditions including a
+                  maximum of 13 occupants.
+                </p>
+                <p className="mt-3 text-[12px] leading-6 text-[#657d7d]">Planning reference 18/5641/FUL · Historic planning consent, distinct from HMO licensing and Building Regulations approval.</p>
+                <div className="mt-5 flex flex-wrap gap-3">
+                  <Link href="/case-studies/sevington-road-hendon-seven-bedroom-hmo-planning-approval" className="inline-flex rounded-full bg-[#276f76] px-5 py-3 text-[12px] font-bold text-white hover:bg-[#195961]">Explore the HMO case study</Link>
+                  <Link href="/hmo-planning-drawings" className="inline-flex rounded-full border border-[#abd0c0] bg-white px-5 py-3 text-[12px] font-semibold text-[#246b6c]">HMO planning drawings &amp; quotes</Link>
+                </div>
+              </div>
+            </div>
+          </section>
+
           <ServiceInternalLinks boroughName="Barnet" />
 
 <ApprovalEvidenceStrip

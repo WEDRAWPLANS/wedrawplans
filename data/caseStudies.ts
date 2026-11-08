@@ -169,6 +169,50 @@ export const caseStudies: CaseStudy[] = [
     secondaryImage: ""
   },
   {
+    slug: "sevington-road-hendon-seven-bedroom-hmo-planning-approval",
+    title: "Seven-Bedroom HMO Planning Approval in Hendon, Barnet",
+    seoDescription: "Seven-bedroom HMO conversion granted planning permission in Hendon, Barnet. Explore WEDRAWPLANS' approved layouts and how the council assessed the key issues.",
+    shortTitle: "Sevington Road, Hendon",
+    location: "Sevington Road, West Hendon, London NW4",
+    authority: "London Borough of Barnet",
+    reference: "18/5641/FUL",
+    year: "2018",
+    decisionDate: "6 December 2018",
+    service: "Seven-bedroom HMO residential conversion and full planning application",
+    outcome: "Planning permission granted, subject to conditions",
+    approved: true,
+    featured: true,
+    summary: "A successful full planning application for conversion of an existing family dwelling in West Hendon into a seven-bedroom House in Multiple Occupation (HMO). WEDRAWPLANS' architectural plans supported Barnet's assessment of room layouts, accessibility, transport, parking, local character and neighbouring amenity. The council granted permission on 6 December 2018, limiting the approved occupation to a maximum of 13 people and setting protective conditions.",
+    proof: "Barnet Council full planning decision 18/5641/FUL dated 6 December 2018 approved conversion of an existing dwelling into a seven-bedroom HMO. The approved drawing schedule includes P01, P02 Revision A, P03 Revision C, P04, P05 and a Design and Access Statement. The delegated officer report describes the seven-bedroom proposal, six public objections, consultation with the HMO Licensing Officer, and assessment of location, room standards, access to public transport, parking, cycle storage, refuse and neighbour amenity. Officers considered the layout and 13-person maximum suitable, with requirements for sound-insulation testing, acoustic details and approved refuse storage. The planning grant does not by itself establish HMO licensing, Building Regulations compliance, actual occupation or lawful commencement within the original time limit.",
+    approvedDrawings: "P01 site and location plan; P02 Revision A existing plans; P03 Revision C proposed ground, first and loft floor plans; P04 elevations; P05 sections/roof information; and Design and Access Statement, as listed in the Barnet planning decision. Selected original P02 A and P03 C sheets are displayed here.",
+    highlights: [
+      "Planning permission granted for conversion to a seven-bedroom House in Multiple Occupation",
+      "Design assessed for up to 13 occupants, the planning condition's stated maximum",
+      "Proposed ground, first and loft-level accommodation clearly illustrated",
+      "Room sizes, natural light and layouts considered by the planning officer",
+      "Parking, transport, cycle accommodation, refuse and neighbourhood character assessed",
+      "Neighbour objections considered and protective conditions attached"
+    ],
+    keyConditions: [
+      "The approved layout and maximum of 13 occupants must be maintained.",
+      "Sound-insulation test certificates under the relevant Building Regulations requirements were required before occupation.",
+      "Acoustic walls, fencing and other barriers required approval and installation prior to first use.",
+      "Screened refuse and recycling storage and collection details required approval before first occupation.",
+      "The 2018 consent required the development to begin within three years; implementation and current status have not been established from these documents."
+    ],
+    wdpService: "WEDRAWPLANS prepared the architectural drawing material supporting the application for a seven-bedroom HMO. Clear existing and proposed floor plans demonstrated how the established dwelling could be arranged across three levels. The planning assessment took into account the council's housing standards, the surrounding area's mixed residential character, public-transport accessibility, off-street parking, the potential for cycle storage and likely effects on neighbours. The decision confirms planning permission subject to appropriate conditions; HMO licensing and construction matters require separate checks.",
+    homeownerGuidance: "If you own a house or investment property in Hendon, Colindale, West Hendon, Brent Cross or elsewhere in Barnet and are considering an HMO, shared house or residential conversion, WEDRAWPLANS can prepare existing and proposed architectural plans and support an appropriately scoped planning submission. A case-specific assessment is essential: permitted-development rights, Article 4 directions, HMO licensing, minimum room standards, fire safety and the current requirements must be checked separately. This historic project is an example of a granted 2018 planning decision, not a guarantee of approval.",
+    leadAngle: "Planning an HMO conversion or need professional drawings for a shared house in Barnet?",
+    relatedService: "/hmo-planning-drawings",
+    relatedArea: "/areas/barnet",
+    heroImage: "/images/case-studies/sevington-road-hendon-seven-bedroom-hmo/approved-proposed-p03-rev-c.webp",
+    secondaryImage: "/images/case-studies/sevington-road-hendon-seven-bedroom-hmo/approved-existing-p02-rev-a.webp",
+    galleryImages: [
+      { src: "/images/case-studies/sevington-road-hendon-seven-bedroom-hmo/approved-proposed-p03-rev-c.webp", caption: "Drawing 1 · Approved proposed floor plans · P03 Revision C", alt: "Original WEDRAWPLANS approved proposed ground, first and loft floor plans for a seven-bedroom HMO in Hendon" },
+      { src: "/images/case-studies/sevington-road-hendon-seven-bedroom-hmo/approved-existing-p02-rev-a.webp", caption: "Drawing 2 · Existing floor plans · P02 Revision A", alt: "Original WEDRAWPLANS existing floor plans before the seven-bedroom HMO conversion in Hendon" }
+    ]
+  },
+  {
     slug: "sunbury-avenue-mill-hill-accessible-garden-care-outbuilding",
     title: "Accessible Garden Care Outbuilding in Barnet | Lawfulness Confirmed",
     shortTitle: "Sunbury Avenue, Mill Hill",
@@ -859,7 +903,7 @@ export function categoryForCaseStudy(item: CaseStudy): string {
   if (/loft|dormer|gable/.test(service)) return "Loft conversions";
   if (/kerb|crossover/.test(service)) return "Dropped kerbs";
   if (/heritage|listed|shopfront|mixed-use/.test(service)) return "Heritage & commercial";
-  if (/flat conversion|residential conversion|conversion to.*flats|self-contained(?: residential)? flats|multi-unit|existing-use certificate|additional floor|major residential|two new flats/.test(service)) return "Residential development";
+  if (/flat conversion|residential conversion|conversion to.*flats|self-contained(?: residential)? flats|multi-unit|existing-use certificate|additional floor|major residential|two new flats|hmo/.test(service)) return "Residential development";
   if (/extension|prior approval/.test(service)) return "Extensions";
   return "Other projects";
 }

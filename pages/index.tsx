@@ -1492,6 +1492,29 @@ export default function IndexPage() {
           </div>
         </section>
 
+        <section aria-labelledby="home-hmo-example" className="border-b border-[#dce8e1] bg-[#f6faf7] py-8 sm:py-10">
+          <div className="mx-auto grid max-w-6xl items-center gap-6 px-4 sm:px-6 md:grid-cols-[minmax(0,.5fr)_minmax(0,1fr)] lg:px-6">
+            <Link href="/case-studies/sevington-road-hendon-seven-bedroom-hmo-planning-approval" className="block overflow-hidden rounded-[15px] border border-[#dce8df] bg-white shadow-sm" aria-label="View the Hendon seven-bedroom HMO planning case study">
+              <div className="relative aspect-[3309/2339]">
+                <Image src="/images/case-studies/sevington-road-hendon-seven-bedroom-hmo/approved-proposed-p03-rev-c.webp" alt="WEDRAWPLANS approved seven-bedroom HMO ground, first and loft-floor planning drawing" fill sizes="(max-width: 768px) 100vw, 38vw" className="pointer-events-none object-contain" draggable={false}/>
+              </div>
+            </Link>
+            <div>
+              <p className="text-[11px] font-bold uppercase tracking-[.16em] text-[#27745c]">Property conversion experience · West Hendon, Barnet</p>
+              <h2 id="home-hmo-example" className="mt-2 text-[23px] font-semibold leading-tight text-[#284d51] sm:text-[28px]">Seven-bedroom HMO planning approval — see how the proposal was assessed</h2>
+              <p className="mt-3 text-[13px] leading-7 text-[#587377]">
+                Barnet granted permission for a seven-bedroom House in Multiple Occupation after considering
+                the layout, room standards, transport, neighbourhood amenity and protective conditions.
+                Explore the original WEDRAWPLANS drawings, planning issues and successful decision.
+              </p>
+              <div className="mt-4 flex flex-wrap gap-3">
+                <Link href="/case-studies/sevington-road-hendon-seven-bedroom-hmo-planning-approval" className="inline-flex rounded-full bg-[#246d75] px-5 py-3 text-[12px] font-semibold text-white hover:bg-[#19585e]">View the approved HMO case study</Link>
+                <Link href="/hmo-planning-drawings" className="inline-flex rounded-full border border-[#b9d5ca] px-5 py-3 text-[12px] font-semibold text-[#286b70]">HMO drawing services</Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="border-b border-slate-200 bg-white py-10">
           <div className="mx-auto max-w-6xl px-4 lg:px-6">
             <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">

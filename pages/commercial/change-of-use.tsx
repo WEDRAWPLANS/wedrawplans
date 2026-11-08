@@ -756,9 +756,9 @@ export default function CommercialChangeOfUsePage() {
         </section>
 
         <ApprovalEvidenceStrip
-          slugs={["brockley-road-lewisham-two-flat-conversion","burnt-oak-broadway-harrow-retail-flats"]}
-          title="Real conversion and retail planning examples"
-          intro="See approved planning drawings for London property conversions and retail alterations. These examples illustrate our work, not a guarantee of consent for a new change-of-use proposal."
+          slugs={["sevington-road-hendon-seven-bedroom-hmo-planning-approval","brockley-road-lewisham-two-flat-conversion","burnt-oak-broadway-harrow-retail-flats"]}
+          title="Approved HMO, residential conversion and retail planning projects"
+          intro="See a Barnet seven-bedroom HMO permission, a Lewisham two-flat conversion and a Harrow retail-and-residential scheme. Each involved its own planning assessment and approved drawing package."
         />
 
         <section className="border-t border-slate-200 bg-slate-50">

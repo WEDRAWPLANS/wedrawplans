@@ -304,11 +304,11 @@ export default function PlanningDrawingsPage() {
           </div>
         </section>
               <ApprovalEvidenceStrip
-          slugs={["sistova-road-wandsworth-extension-basement","cromwell-road-hounslow-rear-extension","700-woolwich-road-greenwich-two-new-flats","brockley-road-lewisham-two-flat-conversion","cannon-lane-pinner-5-metre-rear-extension"]}
+          slugs={["sevington-road-hendon-seven-bedroom-hmo-planning-approval","sistova-road-wandsworth-extension-basement","cromwell-road-hounslow-rear-extension","700-woolwich-road-greenwich-two-new-flats","brockley-road-lewisham-two-flat-conversion","cannon-lane-pinner-5-metre-rear-extension"]}
           title="Selected planning permissions and architectural drawing projects"
-          intro="Explore verified approvals for home extensions and residential flat conversions across Wandsworth, Hounslow, Greenwich and Lewisham, each with a relevant local enquiry route."
+          intro="Explore planning permissions for house extensions, HMO conversions and residential developments across London, with original WEDRAWPLANS drawings and the project-specific planning outcome."
         />
-        <AllumLaneSiteFeature placement="service" title="Approved architectural drawing examples — Allum Lane, Hertsmere" intro="Explore the three selected architectural drawing sheets and three 3D views shown publicly for the approved Hertsmere extension, with discreet grey WEDRAWPLANS watermarks." />
+        <AllumLaneSiteFeature placement="service" title="Approved architectural drawing examples — Allum Lane, Hertsmere" intro="Explore selected planning drawings and architectural 3D views illustrating the approved house extension design and its relationship to the original property." />
       </main>
     </>
   );
