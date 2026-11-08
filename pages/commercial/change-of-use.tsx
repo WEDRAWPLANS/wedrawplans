@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
 import { FormEvent, useMemo, useState } from "react";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
 import ApprovalEvidenceStrip from "../../components/ApprovalEvidenceStrip";
@@ -790,6 +791,26 @@ export default function CommercialChangeOfUsePage() {
             </div>
           </div>
         </section>
+        <section aria-labelledby="greenwich-established-flat-use" className="border-y border-[#dae7de] bg-[#f0f7f2] py-10">
+          <div className="mx-auto grid max-w-6xl items-center gap-6 px-4 lg:grid-cols-[minmax(0,.8fr)_minmax(0,1.2fr)] lg:px-6">
+            <div>
+              <p className="text-[11px] font-bold uppercase tracking-[.16em] text-[#29735a]">Greenwich · Existing-use certificate</p>
+              <h2 id="greenwich-established-flat-use" className="mt-3 text-[23px] font-bold leading-tight text-[#274c51]">Ten existing flats — lawfulness established through evidence</h2>
+              <p className="mt-3 text-[13px] leading-7 text-[#587275]">
+                WEDRAWPLANS supported the architectural drawing package for a complex historic residential-use case in Plumstead.
+                Greenwich certified the existing use of ten self-contained flats after the council assessed the property's
+                layout, occupation records and corroborating evidence. This was not approval for a new ten-flat conversion.
+              </p>
+              <Link href="/case-studies/chestnut-rise-plumstead-greenwich-ten-flats-lawfulness" className="mt-5 inline-flex rounded-full bg-[#246e75] px-5 py-3 text-[12px] font-semibold text-white hover:bg-[#1a5a60]">Read the Greenwich ten-flat case study</Link>
+            </div>
+            <div className="overflow-hidden rounded-2xl border border-[#d9e7df] bg-white p-3">
+              <div className="relative aspect-[1240/770]">
+                <Image src="/images/case-studies/greenwich-plumstead-ten-flats-lawfulness/existing-floor-plans-detail.webp" alt="Anonymised existing-layout architectural drawing from the Greenwich ten-flat lawfulness case" fill sizes="(max-width: 1024px) 100vw, 50vw" className="pointer-events-none object-contain" draggable={false}/>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </main>
     </>
   );

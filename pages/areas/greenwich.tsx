@@ -153,10 +153,31 @@ export default function GreenwichAreaPage() {
           <ServiceInternalLinks boroughName="Greenwich" />
 
 <ApprovalEvidenceStrip
-  slugs={["700-woolwich-road-greenwich-two-new-flats","alnwick-road-eltham-lawful-loft"]}
-  title="Planning approvals in Greenwich and Eltham"
-  intro="Examples include the addition of two flats at Woolwich Road and a lawful loft conversion in Eltham, illustrating different planning routes and drawing requirements."
+  slugs={["chestnut-rise-plumstead-greenwich-ten-flats-lawfulness","700-woolwich-road-greenwich-two-new-flats","alnwick-road-eltham-lawful-loft"]}
+  title="Greenwich planning outcomes: ten established flats, two new flats and lawful loft works"
+  intro="Discover three distinct Greenwich outcomes: a Certificate of Lawfulness confirming ten established flats in Plumstead, planning permission for two additional flats in Charlton, and lawful-development certification for a loft project in Eltham."
 />
+
+          <section aria-labelledby="greenwich-tenflats-feature-heading" className="border-y border-[#d8e6df] bg-[#f2f8f4] py-9 sm:py-12">
+            <div className="mx-auto grid max-w-6xl items-center gap-6 px-4 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:px-6">
+              <a href="/case-studies/chestnut-rise-plumstead-greenwich-ten-flats-lawfulness" className="block overflow-hidden rounded-[17px] border border-[#d7e5de] bg-white shadow-sm" aria-label="Explore the Greenwich ten flats existing-use certificate project">
+                <div className="relative aspect-[1240/770] bg-[#fcfdfb]">
+                  <Image src="/images/case-studies/greenwich-plumstead-ten-flats-lawfulness/existing-floor-plans-detail.webp" alt="WEDRAWPLANS original ground- and first-floor plans for the Plumstead ten-flat lawfulness case" fill sizes="(max-width: 768px) 100vw, 47vw" className="pointer-events-none object-contain" draggable={false}/>
+                </div>
+              </a>
+              <div>
+                <p className="text-[11px] font-bold uppercase tracking-[.15em] text-[#26755b]">Greenwich Certificate of Lawfulness · granted March 2020</p>
+                <h2 id="greenwich-tenflats-feature-heading" className="mt-2 text-[23px] font-semibold leading-tight text-[#274b50] sm:text-[28px]">Ten self-contained flats: an established use successfully certified</h2>
+                <p className="mt-3 text-[13px] leading-7 text-[#5b7476]">
+                  A previous application was refused because the evidence was not sufficient. The later case combined
+                  detailed existing-layout drawings with occupancy histories, council-tax correspondence and inspection findings.
+                  Greenwich accepted that the ten-flat use had been continuous for the historic period relevant to the application,
+                  and issued a Section 191 certificate. This is a lawful-existing-use result, not permission for ten new flats.
+                </p>
+                <a href="/case-studies/chestnut-rise-plumstead-greenwich-ten-flats-lawfulness" className="mt-5 inline-flex rounded-full bg-[#246e74] px-5 py-3 text-[12px] font-bold text-white hover:bg-[#1b5960]">Explore the ten-flat project and drawing</a>
+              </div>
+            </div>
+          </section>
 
           <section aria-label="Related approved conversion in neighbouring Lewisham" className="border-b border-[#dce7e0] bg-[#f2f8f4] py-7">
             <div className="mx-auto max-w-6xl px-4 lg:px-6">

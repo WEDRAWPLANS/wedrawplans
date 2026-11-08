@@ -1472,6 +1472,26 @@ export default function IndexPage() {
           </div>
         </section>
 
+        <section aria-labelledby="home-greenwich-tenflats" className="border-b border-[#dce6df] bg-white py-9">
+          <div className="mx-auto grid max-w-6xl items-center gap-5 px-4 md:grid-cols-[minmax(0,.6fr)_minmax(0,1fr)] lg:px-6">
+            <Link href="/case-studies/chestnut-rise-plumstead-greenwich-ten-flats-lawfulness" className="block overflow-hidden rounded-xl border border-[#dbe7df] bg-[#f7faf7]" aria-label="See the Greenwich ten-flat Certificate of Lawfulness case study">
+              <div className="relative aspect-[1240/770]">
+                <Image src="/images/case-studies/greenwich-plumstead-ten-flats-lawfulness/existing-floor-plans-detail.webp" alt="Existing floor plan from the WEDRAWPLANS Greenwich ten-flat certificate case study" fill sizes="(max-width: 768px) 100vw, 42vw" className="pointer-events-none object-contain" draggable={false}/>
+              </div>
+            </Link>
+            <div>
+              <p className="text-[11px] font-bold uppercase tracking-[.15em] text-[#267458]">Greenwich · Ten self-contained flats · Certificate granted</p>
+              <h2 id="home-greenwich-tenflats" className="mt-2 text-[23px] font-semibold leading-tight text-[#264b50]">When drawings and evidence make the difference</h2>
+              <p className="mt-3 text-[13px] leading-7 text-[#557174]">
+                A complex existing-use case in Plumstead: an earlier refusal, a more compelling evidence record,
+                and Greenwich's 2020 certification of ten established independent flats. Explore how architectural
+                plans and documented occupation history supported the successful decision.
+              </p>
+              <Link href="/case-studies/chestnut-rise-plumstead-greenwich-ten-flats-lawfulness" className="mt-4 inline-flex rounded-full border border-[#9bc6bb] bg-[#edf7f1] px-5 py-3 text-[12px] font-bold text-[#296e71] hover:bg-[#e4f2e9]">Explore the Greenwich ten-flat case study</Link>
+            </div>
+          </div>
+        </section>
+
         <section className="border-b border-slate-200 bg-white py-10">
           <div className="mx-auto max-w-6xl px-4 lg:px-6">
             <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">

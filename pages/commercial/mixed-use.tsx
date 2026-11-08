@@ -825,6 +825,19 @@ export default function CommercialMixedUsePage() {
           intro="Explore original WEDRAWPLANS planning projects involving retail alterations and residential conversions. Each application is assessed on its own planning merits."
         />
 
+        <section aria-labelledby="mixeduse-greenwich-ten-flat" className="border-b border-[#e0eae4] bg-[#f3f9f5] py-8">
+          <div className="mx-auto max-w-6xl px-4">
+            <p className="text-[11px] font-semibold uppercase tracking-[.16em] text-[#277159]">Related Greenwich residential-use project</p>
+            <h2 id="mixeduse-greenwich-ten-flat" className="mt-2 text-[23px] font-semibold text-[#284d50]">Established use of ten flats — Certificate of Lawfulness granted</h2>
+            <p className="mt-3 max-w-3xl text-[13px] leading-7 text-[#577377]">
+              The Chestnut Rise project illustrates the evidence-led route for an existing residential use: architectural layouts,
+              tenancy information, council-tax records and a council inspection supported the successful 2020 decision.
+              A certificate confirming an existing use is legally distinct from planning permission for a new conversion.
+            </p>
+            <Link href="/case-studies/chestnut-rise-plumstead-greenwich-ten-flats-lawfulness" className="mt-4 inline-flex rounded-full bg-[#286d75] px-5 py-3 text-[12px] font-bold text-white hover:bg-[#19575e]">Explore the ten-flat Greenwich case study</Link>
+          </div>
+        </section>
+
         <section className="border-t border-slate-200 bg-slate-50">
           <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
             <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
