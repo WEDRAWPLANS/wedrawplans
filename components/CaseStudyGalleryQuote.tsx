@@ -10,6 +10,7 @@ import ApprovedDrawingShowcase from "./ApprovedDrawingShowcase";
 import BrockleyCaseStudyShowcase from "./BrockleyCaseStudyShowcase";
 import HarrowStudioConversionShowcase from "./HarrowStudioConversionShowcase";
 import CannonLaneShowcase from "./CannonLaneShowcase";
+import SunburyCareOutbuildingShowcase from "./SunburyCareOutbuildingShowcase";
 
 type Props = {
   projects: CaseStudy[];
@@ -19,6 +20,7 @@ type Props = {
 function serviceFor(project: CaseStudy): string {
   // Flat conversions should lead to the actual conversion enquiry category, not new-build drawings.
   if (/flat conversion|conversion to.*flats|residential conversion|studio flats/i.test(project.service)) return "Property conversion drawings";
+  if (/garden care|garden studio|garden room|outbuilding/i.test(project.service)) return "Garden room or outbuilding drawings";
   const category = categoryForCaseStudy(project);
   if (category === "Extensions") return "House extension drawings";
   if (category === "Loft conversions") return "Loft conversion drawings";
@@ -257,6 +259,7 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
   const isBrockley = !isHub && project?.slug === "brockley-road-lewisham-two-flat-conversion";
   const isHarrowStudios = !isHub && project?.slug === "burnt-oak-broadway-harrow-retail-flats";
   const isCannon = !isHub && project?.slug === "cannon-lane-pinner-5-metre-rear-extension";
+  const isSunburyCare = !isHub && project?.slug === "sunbury-avenue-mill-hill-accessible-garden-care-outbuilding";
   const isApprovedDrawingShowcase = isSistova || isCromwell;
   const quotePanelRef = useRef<HTMLDivElement>(null);
   const [quoteHeight, setQuoteHeight] = useState<number | undefined>(undefined);
@@ -279,7 +282,7 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
           <div>
             <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-[#a36a63]">WEDRAWPLANS architectural drawings</p>
             <h2 id="project-gallery-heading" className="mt-2 text-2xl font-semibold tracking-tight text-[#284549] sm:text-3xl">
-              {isHub ? "Explore our approved planning projects" : isReddings ? "A real project, from before to after" : isAllum ? "A real approved project, from plans to 3D design" : isApprovedDrawingShowcase ? "Approved planning drawings & architectural 3D design" : isBrockley ? "Approved two-flat conversion · original architectural design" : isHarrowStudios ? "Three studio flats approved above retail · drawings and 3D walkthroughs" : isCannon ? "5 metre rear extension · original design and approved drawings" : "Project drawings & design"}
+              {isHub ? "Explore our approved planning projects" : isReddings ? "A real project, from before to after" : isAllum ? "A real approved project, from plans to 3D design" : isApprovedDrawingShowcase ? "Approved planning drawings & architectural 3D design" : isBrockley ? "Approved two-flat conversion · original architectural design" : isHarrowStudios ? "Three studio flats approved above retail · drawings and 3D walkthroughs" : isCannon ? "5 metre rear extension · original design and approved drawings" : isSunburyCare ? "Accessible garden outbuilding · original architectural design" : "Project drawings & design"}
             </h2>
             <p className="mt-3 max-w-3xl text-[14px] leading-7 text-[#61777b]">
               {isHub
@@ -288,14 +291,16 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
                   ? "See how WEDRAWPLANS developed a coordinated design for three studio homes above a retained shop, securing Harrow Council's planning approval. Explore the layouts, architectural drawings and design walkthroughs."
                   : isCannon
                     ? "Explore the approved 5 metre rear extension in Pinner through its garden-facing 3D design and original council-listed planning drawings."
-                    : "Explore the architectural project presentation and ask us about drawings for your own property."}
+                    : isSunburyCare
+                      ? "Discover how accessible design and carefully prepared architectural drawings secured a Barnet Certificate of Lawfulness for this ancillary garden care building."
+                      : "Explore the architectural project presentation and ask us about drawings for your own property."}
             </p>
           </div>
           {isHub ? <Link href="#browse-projects" className="text-[13px] font-semibold text-[#27757e] underline-offset-4 hover:underline">Browse all approved projects →</Link> : <span className="text-[12px] text-[#667f81]">{project.shortTitle}</span>}
         </div>
         <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1.3fr)_minmax(330px,.7fr)] lg:gap-7">
           <div className="min-w-0">
-            {isReddings ? <RealProjectShowcase project={project} /> : isAllum ? <AllumLaneShowcase project={project} quoteHeight={quoteHeight} /> : isApprovedDrawingShowcase ? <ApprovedDrawingShowcase project={project} kind={isSistova ? "sistova" : "cromwell"} /> : isBrockley ? <BrockleyCaseStudyShowcase project={project} /> : isHarrowStudios ? <HarrowStudioConversionShowcase project={project} /> : isCannon ? <CannonLaneShowcase project={project} /> : <ProjectMediaSlider projects={projects} mode={context} />}
+            {isReddings ? <RealProjectShowcase project={project} /> : isAllum ? <AllumLaneShowcase project={project} quoteHeight={quoteHeight} /> : isApprovedDrawingShowcase ? <ApprovedDrawingShowcase project={project} kind={isSistova ? "sistova" : "cromwell"} /> : isBrockley ? <BrockleyCaseStudyShowcase project={project} /> : isHarrowStudios ? <HarrowStudioConversionShowcase project={project} /> : isCannon ? <CannonLaneShowcase project={project} /> : isSunburyCare ? <SunburyCareOutbuildingShowcase project={project} /> : <ProjectMediaSlider projects={projects} mode={context} />}
             {!isHub && project.projectVideoUrl && project.slug !== "the-reddings-mill-hill-extension-basement-loft" ? (
               <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-[15px] border border-[#dce7e4] bg-white px-5 py-4">
                 <div>
@@ -315,7 +320,7 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
           <div id="case-study-quote" ref={quotePanelRef} className="scroll-mt-24 lg:sticky lg:top-5 lg:self-start"><ProjectQuickQuotePanel source={isHub ? "case-studies-hub" : "case-study-gallery"} projectSlug={isHub ? "" : project.slug} projectTitle={isHub ? "" : project.shortTitle} suggestedService={isHub ? "" : serviceFor(project)} /></div>
         </div>
       </div>
-      {(isReddings || isAllum || isApprovedDrawingShowcase || isBrockley || isHarrowStudios || isCannon) ? <a href="#case-study-quote" className="fixed inset-x-0 bottom-0 z-40 flex min-h-[60px] items-center justify-center border-t border-[#bcd5d0] bg-[#224b4e] px-5 py-3 text-[14px] font-bold text-white shadow-[0_-10px_30px_rgba(0,0,0,.13)] lg:hidden">Get your fixed-fee drawing quote →</a> : null}
+      {(isReddings || isAllum || isApprovedDrawingShowcase || isBrockley || isHarrowStudios || isCannon || isSunburyCare) ? <a href="#case-study-quote" className="fixed inset-x-0 bottom-0 z-40 flex min-h-[60px] items-center justify-center border-t border-[#bcd5d0] bg-[#224b4e] px-5 py-3 text-[14px] font-bold text-white shadow-[0_-10px_30px_rgba(0,0,0,.13)] lg:hidden">Get your fixed-fee drawing quote →</a> : null}
     </section>
   );
 }

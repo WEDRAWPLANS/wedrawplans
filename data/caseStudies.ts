@@ -169,6 +169,49 @@ export const caseStudies: CaseStudy[] = [
     secondaryImage: ""
   },
   {
+    slug: "sunbury-avenue-mill-hill-accessible-garden-care-outbuilding",
+    title: "Accessible Garden Care Outbuilding in Barnet | Lawfulness Confirmed",
+    shortTitle: "Sunbury Avenue, Mill Hill",
+    seoDescription: "Barnet approved a 2026 Certificate of Lawfulness for an accessible ancillary garden outbuilding. See WEDRAWPLANS drawings, garden visual and planning outcome.",
+    location: "Sunbury Avenue, Mill Hill, London NW7",
+    authority: "London Borough of Barnet",
+    reference: "26/0062/192",
+    year: "2026",
+    decisionDate: "30 March 2026",
+    service: "Ancillary garden care outbuilding and Lawful Development Certificate",
+    outcome: "Certificate of Lawfulness granted",
+    approved: true,
+    featured: true,
+    summary: "WEDRAWPLANS designed a purposeful, single-storey rear garden care outbuilding with wheelchair-accessible circulation and a wet room, and secured a Certificate of Lawfulness from Barnet Council on 30 March 2026. The scheme demonstrates how careful architectural drawings can establish the appropriate Class E planning route for a building that remains ancillary to the main home.",
+    proof: "Barnet Council issued a Certificate of Lawful Use or Development (Proposed), reference 26/0062/192, on 30 March 2026 for the erection of a rear outbuilding. The decision references PP01-R Plans, PP02-R Elevations, PP03-R 3D schematic view and P01 location and block plans. The council considered the proposed 2.5-metre flat-roof height, boundary relationship, garden coverage and its specific incidental ancillary care use under Schedule 2 Part 1 Class E. The certificate relates to the proposed development and the information submitted; it is not full planning permission for an independent dwelling or approval under the Building Regulations.",
+    approvedDrawings: "PP01-R proposed garden care layout; PP02-R proposed elevations; PP03-R schematic architectural views; and P01 location and block plans, as identified in the council's decision notice.",
+    keyConditions: [
+      "The certificate concerns an outbuilding ancillary and incidental to the main dwelling, not a separate residential unit.",
+      "The proposed single-storey flat-roof structure is shown at 2.5 metres maximum height where close to a garden boundary.",
+      "Barnet considered the location within the residential garden and the curtilage coverage against Class E permitted-development rules.",
+      "A materially different proposal, use or change in relevant circumstances needs separate consideration; Building Regulations compliance is not established by the certificate."
+    ],
+    highlights: [
+      "2026 Barnet Council Certificate of Lawfulness for a proposed rear garden outbuilding",
+      "Accessible treatment and support space, wheelchair circulation and wet-room layout",
+      "Carefully coordinated 2.5-metre-high single-storey garden structure",
+      "Ancillary Class E use supported by clear proposed plans and elevations",
+      "Two selected complete original architectural sheets and a 3D exterior visualisation"
+    ],
+    wdpService: "WEDRAWPLANS developed the single-storey outbuilding concept and prepared the proposed internal plan, elevations, schematic architectural views and planning notes for a proposed Section 192 Certificate of Lawfulness. The drawing package demonstrated the intended ancillary use, accessible layout, building height, garden setting, boundary relationship and site coverage so Barnet could determine the appropriate Class E planning position.",
+    homeownerGuidance: "Considering a garden studio, home office, hobby room, accessible care building or rear outbuilding in Barnet or the wider London area? A proposal may fall under householder permitted development, require a Lawful Development Certificate or need planning permission depending on its use, dimensions and site circumstances. WEDRAWPLANS can assess the correct route and provide a clear fixed-fee quotation for the architectural drawings.",
+    leadAngle: "Planning a garden studio, rear outbuilding or accessible care building?",
+    relatedService: "/garden-room-outbuilding-plans",
+    relatedArea: "/areas/barnet",
+    heroImage: "/images/case-studies/sunbury-avenue-barnet-accessible-garden-outbuilding/garden-care-visualisation.webp",
+    secondaryImage: "/images/case-studies/sunbury-avenue-barnet-accessible-garden-outbuilding/approved-layout.webp",
+    galleryImages: [
+      { src: "/images/case-studies/sunbury-avenue-barnet-accessible-garden-outbuilding/garden-care-visualisation.webp", alt: "Architectural 3D visualisation of a proposed accessible garden care outbuilding with flat roof, step-free approach and landscaped domestic garden", caption: "Proposed garden care building · architectural 3D visual" },
+      { src: "/images/case-studies/sunbury-avenue-barnet-accessible-garden-outbuilding/approved-layout.webp", alt: "Complete WEDRAWPLANS PP01-R architectural floor-plan drawing showing the approved ancillary care outbuilding layout with accessible wet room and relationship to the main home", caption: "Drawing 1 · Proposed accessible floor plan · PP01-R" },
+      { src: "/images/case-studies/sunbury-avenue-barnet-accessible-garden-outbuilding/approved-elevations.webp", alt: "Complete WEDRAWPLANS PP02-R architectural elevation drawing showing the outbuilding's restrained flat-roof form and the 2.5 metre maximum height", caption: "Drawing 2 · Proposed building elevations · PP02-R" }
+    ]
+  },
+  {
     slug: "cromwell-road-hounslow-rear-extension",
     wdpService: "WEDRAWPLANS prepared existing and proposed plans, elevations, sections and 3D design views for the side-return infill, together with supporting planning-stage fire-safety information. The drawings were lodged with Hounslow and the application was followed through to the permission issued in October 2026.",
     homeownerGuidance: "A side-return extension can make better use of the ground floor while preserving outdoor access. Accurate boundary, rooflight and glazing information helps the council assess the proposal.",
@@ -768,6 +811,7 @@ export const caseStudies: CaseStudy[] = [
 
 export function categoryForCaseStudy(item: CaseStudy): string {
   const service = item.service.toLowerCase();
+  if (/garden room|outbuilding|garden studio|garden office|care building/.test(service)) return "Garden rooms & outbuildings";
   if (/loft|dormer|gable/.test(service)) return "Loft conversions";
   if (/kerb|crossover/.test(service)) return "Dropped kerbs";
   if (/heritage|listed|shopfront|mixed-use/.test(service)) return "Heritage & commercial";

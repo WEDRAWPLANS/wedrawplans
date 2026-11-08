@@ -20,7 +20,7 @@ const HERO_IMAGE = "/images/barnet-hero.jpg";
 const SINGLE_STOREY_IMAGE = "/images/barnet-project-single-storey.jpg";
 const DOUBLE_STOREY_IMAGE = "/images/barnet-project-double-storey.jpg";
 const LOFT_IMAGE = "/images/barnet-project-loft.jpg";
-const OUTBUILDING_IMAGE = "/images/barnet-project-outbuilding.jpg";
+const OUTBUILDING_IMAGE = "/images/case-studies/sunbury-avenue-barnet-accessible-garden-outbuilding/garden-care-visualisation.webp";
 const DRAWINGS_BOARD_IMAGE = "/images/barnet-project-drawings-board.jpg";
 const BARNET_MAP_IMAGE = "/images/barnet-area-map.jpg";
 const BEFORE_AFTER_IMAGE = "/images/barnet-6a-before-after.jpg";
@@ -389,6 +389,31 @@ export default function BarnetAreaPage() {
             </div>
           </section>
 
+          <section id="barnet-garden-care-outbuilding" aria-labelledby="barnet-garden-care-heading" className="border-y border-[#d7e7df] bg-[#f0f8f3] py-10 sm:py-14">
+            <div className="mx-auto grid max-w-6xl items-center gap-7 px-4 md:grid-cols-[minmax(0,1.12fr)_minmax(0,.88fr)] lg:px-6">
+              <Link href="/case-studies/sunbury-avenue-mill-hill-accessible-garden-care-outbuilding" className="block overflow-hidden rounded-[18px] border border-[#d3e3da] bg-white shadow-[0_15px_35px_rgba(28,75,73,.08)]" aria-label="Explore the Sunbury Avenue ancillary garden care outbuilding case study">
+                <div className="relative aspect-[16/9] w-full bg-[#f4f8f4]">
+                  <Image src="/images/case-studies/sunbury-avenue-barnet-accessible-garden-outbuilding/garden-care-visualisation.webp" alt="Architectural visualisation of an accessible single-storey garden care building in Mill Hill" fill sizes="(max-width: 768px) 100vw, 54vw" className="pointer-events-none object-contain" draggable={false} />
+                </div>
+              </Link>
+              <div>
+                <p className="text-[11px] font-extrabold uppercase tracking-[.16em] text-[#26745c]">Barnet Council · Certificate of Lawfulness granted · March 2026</p>
+                <h2 id="barnet-garden-care-heading" className="mt-3 text-[25px] font-semibold leading-tight text-[#23494e] sm:text-[30px]">An accessible garden outbuilding designed for everyday support</h2>
+                <p className="mt-4 text-[13px] leading-7 text-[#546f72]">
+                  This approved Mill Hill proposal demonstrates how a rear garden building can be carefully designed around
+                  wheelchair access, a treatment area and an accessible wet room while remaining ancillary to the main home.
+                  WEDRAWPLANS developed the architectural drawing package and secured a Section 192 Certificate of Lawfulness
+                  under Class E permitted development.
+                </p>
+                <p className="mt-3 text-[12px] leading-6 text-[#617b7b]">Reference 26/0062/192 · Maximum proposed height 2.5 m · A project-specific lawfulness determination, not permission for a separate dwelling.</p>
+                <div className="mt-5 flex flex-wrap gap-3">
+                  <Link href="/case-studies/sunbury-avenue-mill-hill-accessible-garden-care-outbuilding" className="inline-flex rounded-full bg-[#246e74] px-5 py-3 text-[12px] font-bold text-white hover:bg-[#195961]">View the garden outbuilding case study</Link>
+                  <Link href="/garden-room-outbuilding-plans" className="inline-flex rounded-full border border-[#a9cec0] bg-white px-5 py-3 text-[12px] font-semibold text-[#246b6f]">Garden studio &amp; outbuilding services</Link>
+                </div>
+              </div>
+            </div>
+          </section>
+
           <ServiceInternalLinks boroughName="Barnet" />
 
 <ApprovalEvidenceStrip
@@ -558,8 +583,8 @@ export default function BarnetAreaPage() {
                 <ShowcaseCard
                   title="Outbuilding and garden room"
                   image={OUTBUILDING_IMAGE}
-                  alt="Outbuilding approved project showcase in Barnet"
-                  body="Garden rooms and outbuildings remain a strong search category for Barnet homeowners. We prepare drawings that suit use, realistic scale and the correct planning route for the site."
+                  alt="Visualisation of the Barnet garden care outbuilding supported by a granted Certificate of Lawfulness"
+                  body="Our 2026 Sunbury Avenue project shows a carefully designed accessible garden care building, with Barnet confirming its ancillary Class E lawfulness following review of the architectural plans and elevations."
                   onClick={scrollToForm}
                 />
               </div>

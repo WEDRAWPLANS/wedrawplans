@@ -9,7 +9,7 @@ import { submitBoroughLead } from "../lib/submitBoroughLead";
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const PAGE_URL = "https://www.wedrawplans.co.uk/garden-room-outbuilding-plans";
-const HERO_IMAGE = "/images/barnet-project-outbuilding.jpg";
+const HERO_IMAGE = "/images/case-studies/sunbury-avenue-barnet-accessible-garden-outbuilding/garden-care-visualisation.webp";
 const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20need%20a%20quote%20for%20garden%20room%2C%20garden%20studio%20or%20outbuilding%20planning%20drawings.";
 
@@ -191,6 +191,7 @@ export default function GardenRoomOutbuildingPlansPage() {
                   <option>Garden room</option>
                   <option>Garden studio</option>
                   <option>Garden office</option>
+                  <option>Accessible ancillary garden care building</option>
                   <option>Home gym outbuilding</option>
                   <option>Summerhouse / ancillary outbuilding</option>
                   <option>Retrospective existing outbuilding</option>
@@ -211,23 +212,29 @@ export default function GardenRoomOutbuildingPlansPage() {
               <div className="overflow-hidden rounded-3xl border border-slate-200 bg-slate-100">
                 <Image
                   src={HERO_IMAGE}
-                  alt="Approved WEDRAWPLANS outbuilding and garden room project showcase in Barnet"
+                  alt="Architectural 3D illustration of the WEDRAWPLANS garden care building design supported by a Barnet Certificate of Lawfulness"
                   width={1200}
                   height={900}
-                  className="h-auto w-full object-cover"
+                  className="h-auto w-full object-contain"
                 />
               </div>
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-rose-700">REAL WEDRAWPLANS PROJECT EXPERIENCE</p>
-                <h2 className="mt-2 text-2xl font-extrabold">Approved outbuilding project experience in Barnet</h2>
+                <p className="text-xs font-semibold uppercase tracking-[0.17em] text-[#267459]">Barnet Council · Certificate of Lawfulness granted · March 2026</p>
+                <h2 className="mt-2 text-2xl font-extrabold">An accessible garden care building — lawful development confirmed</h2>
                 <p className="mt-4 text-sm leading-7 text-slate-700">
-                  Our Barnet area page already showcases a genuine approved outbuilding and garden room project.
-                  That experience now supports this dedicated London-wide service page, giving homeowners a direct route
-                  from searches such as garden studio plans, outbuilding planning drawings and garden room permitted development.
+                  WEDRAWPLANS designed a modest single-storey ancillary outbuilding with wheelchair-friendly circulation
+                  and an accessible wet room. Barnet Council issued a Section 192 Certificate of Lawfulness for the
+                  proposed rear garden building under Class E permitted development on 30 March 2026.
+                  The project illustrates why intended use, garden position, height and clear architectural drawings matter.
                 </p>
-                <Link href="/areas/barnet" className="mt-4 inline-block text-sm font-semibold text-blue-700 underline underline-offset-4">
-                  View our Barnet architectural drawing page
-                </Link>
+                <div className="mt-5 flex flex-wrap gap-3">
+                  <Link href="/case-studies/sunbury-avenue-mill-hill-accessible-garden-care-outbuilding" className="inline-flex rounded-full bg-[#246e74] px-5 py-3 text-[13px] font-bold text-white hover:bg-[#19555b]">
+                    Explore the approved garden-building case study
+                  </Link>
+                  <Link href="/areas/barnet" className="inline-flex rounded-full border border-[#a5c8bf] px-5 py-3 text-[13px] font-semibold text-[#226e73] hover:bg-[#eff7f2]">
+                    Barnet architectural drawings
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
@@ -245,6 +252,7 @@ export default function GardenRoomOutbuildingPlansPage() {
               {[
                 ["Garden rooms & studios", "Drawings for general leisure, hobby and ancillary domestic spaces, with the planning route checked against the property and proposal."],
                 ["Garden offices", "A home office can raise use questions depending on how it operates. We prepare drawings and help identify the appropriate planning route."],
+                ["Accessible care buildings", "Ancillary support facilities may need specialist accessible layouts, a careful assessment of the intended use and evidence that the building remains incidental to the home."],
                 ["Home gyms", "Popular rear-garden projects where dimensions, boundary relationships and use need to be presented clearly."],
                 ["Retrospective outbuildings", "Measured existing drawings for structures already built, with the correct retrospective planning or lawfulness route considered."],
                 ["LDC / permitted development", "Where the proposal relies on permitted development rights, clear drawings can support a Lawful Development Certificate application."],
