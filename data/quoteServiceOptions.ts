@@ -16,7 +16,7 @@ export const SERVICE_OPTIONS: ServiceOption[] = [
   { label: "Garden Studio Plans", value: "Garden studio drawings", href: "/garden-room-outbuilding-plans" },
   { label: "Garden Room / Outbuilding Plans", value: "Garden room or outbuilding drawings", href: "/garden-room-outbuilding-plans" },
   { label: "Solar Panel Planning Drawings", value: "Solar panel planning drawings", href: "/solar-panel-planning-drawings" },
-  { label: "HMO Plans", value: "HMO plans", href: "/building-regulation-drawings" },
+  { label: "HMO Plans", value: "HMO plans", href: "/hmo-planning-drawings" },
   { label: "Party Wall Services", value: "Party wall drawings", href: "/building-regulation-drawings" },
   { label: "Planning Applications", value: "Planning drawings", href: "/planning-drawings" },
   { label: "Property Conversion", value: "Property conversion drawings", href: "/new-build-plans" },

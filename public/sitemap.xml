@@ -16,6 +16,11 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://www.wedrawplans.co.uk/hmo-planning-drawings</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.wedrawplans.co.uk/lawful-development-certificate-drawings</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -287,6 +292,11 @@
   </url>
   <url>
     <loc>https://www.wedrawplans.co.uk/case-studies/sunbury-avenue-mill-hill-side-rear-extension</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.wedrawplans.co.uk/case-studies/sevington-road-hendon-seven-bedroom-hmo-planning-approval</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
