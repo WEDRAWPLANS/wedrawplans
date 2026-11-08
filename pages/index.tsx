@@ -214,7 +214,7 @@ const NEW_BUILD_ITEMS: NavDropdownItem[] = [
   { label: "New build house plans", href: "/new-build-plans" },
   { label: "Small residential developments", href: "/new-build-plans" },
   { label: "Backland and infill sites", href: "/new-build-plans" },
-  { label: "Conversion to self-contained flats", href: "/new-build-plans" },
+  { label: "Conversion to self-contained flats", href: "/commercial/change-of-use" },
   { label: "Basement and lower ground conversions", href: "/new-build-plans" },
 ];
 
@@ -224,7 +224,9 @@ const TECHNICAL_ITEMS: NavDropdownItem[] = [
   { label: "Measured surveys", href: "/building-regulation-drawings" },
   { label: "Structural engineer coordination", href: "/building-regulation-drawings" },
   { label: "Party wall plans and support", href: "/building-regulation-drawings" },
-  { label: "HMO layout and licensing drawings", href: "/building-regulation-drawings" },
+  { label: "HMO layout and licensing drawings", href: "/hmo-planning-drawings" },
+  { label: "HMO & flats conversion case studies", href: "/hmo-planning-drawings#approved-projects" },
+  { label: "Flats & established-use drawings", href: "/commercial/change-of-use" },
   { label: "Interior layouts and finishes", href: "/building-regulation-drawings" },
 ];
 

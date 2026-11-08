@@ -126,6 +126,8 @@ export default function GreenwichTenFlatsShowcase({ project }: { project: CaseSt
         <div className="mt-5 flex flex-wrap gap-3">
           <a href="#case-study-quote" className="inline-flex rounded-full bg-[#256e75] px-5 py-3 text-[12px] font-bold text-white hover:bg-[#1d565c]">Get your fixed-fee drawing quote</a>
           <Link href="/commercial/change-of-use" className="inline-flex rounded-full border border-[#a5cbbd] bg-white px-5 py-3 text-[12px] font-semibold text-[#286a6e]">Explore conversion drawing services</Link>
+          <Link href="/hmo-planning-drawings#approved-projects" className="inline-flex rounded-full border border-[#a5cbbd] bg-white px-5 py-3 text-[12px] font-semibold text-[#286a6e]">Compare our residential planning projects</Link>
+          <Link href="/case-studies/sevington-road-hendon-seven-bedroom-hmo-planning-approval" className="inline-flex rounded-full border border-[#a5cbbd] bg-white px-5 py-3 text-[12px] font-semibold text-[#286a6e]">Related: Hendon HMO permission</Link>
         </div>
       </section>
     </div>

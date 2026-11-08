@@ -135,7 +135,8 @@ export default function HendonHMOShowcase({ project }: { project: CaseStudy }) {
         </p>
         <div className="mt-5 flex flex-wrap gap-3">
           <a href="#case-study-quote" className="inline-flex rounded-full bg-[#256c74] px-5 py-3 text-[12px] font-bold text-white hover:bg-[#1c575d]">Request your fixed-fee drawing quote</a>
-          <Link href="/hmo-planning-drawings" className="inline-flex rounded-full border border-[#a8c9bc] bg-white px-5 py-3 text-[12px] font-semibold text-[#266b6f]">HMO planning &amp; drawing services</Link>
+          <Link href="/hmo-planning-drawings#approved-projects" className="inline-flex rounded-full border border-[#a8c9bc] bg-white px-5 py-3 text-[12px] font-semibold text-[#266b6f]">HMO &amp; flat-conversion experience</Link>
+          <Link href="/case-studies/chestnut-rise-plumstead-greenwich-ten-flats-lawfulness" className="inline-flex rounded-full border border-[#a8c9bc] bg-white px-5 py-3 text-[12px] font-semibold text-[#266b6f]">Related: Greenwich ten-flat certificate</Link>
         </div>
       </section>
     </div>
