@@ -88,7 +88,7 @@ export default function HmoPlanningDrawingsPage() {
               </div>
             </div>
             <div id="hmo-quote" className="scroll-mt-24 lg:sticky lg:top-5">
-              <ProjectQuickQuotePanel source="case-study-gallery" projectSlug="hmo-planning-drawings-service" projectTitle="HMO planning drawings" suggestedService="HMO plans"/>
+              <ProjectQuickQuotePanel source="case-study-gallery" projectSlug="sevington-road-hendon-seven-bedroom-hmo-planning-approval" projectTitle="HMO planning drawings" suggestedService="HMO plans"/>
             </div>
           </div>
         </section>
