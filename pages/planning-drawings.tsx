@@ -304,7 +304,7 @@ export default function PlanningDrawingsPage() {
           </div>
         </section>
               <ApprovalEvidenceStrip
-          slugs={["sistova-road-wandsworth-extension-basement","cromwell-road-hounslow-rear-extension","700-woolwich-road-greenwich-two-new-flats","brockley-road-lewisham-two-flat-conversion"]}
+          slugs={["sistova-road-wandsworth-extension-basement","cromwell-road-hounslow-rear-extension","700-woolwich-road-greenwich-two-new-flats","brockley-road-lewisham-two-flat-conversion","cannon-lane-pinner-5-metre-rear-extension"]}
           title="Selected planning permissions and architectural drawing projects"
           intro="Explore verified approvals for home extensions and residential flat conversions across Wandsworth, Hounslow, Greenwich and Lewisham, each with a relevant local enquiry route."
         />

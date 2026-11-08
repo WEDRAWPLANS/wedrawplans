@@ -323,7 +323,7 @@ export default function HarrowAreaPage() {
       url: "https://www.wedrawplans.co.uk/areas/harrow",
       telephone: "+44 20 3654 8508",
       email: "info@wedrawplans.com",
-      image: "https://www.wedrawplans.co.uk/images/harrow-building-regulations-drawing-watermarked.webp",
+      image: "https://www.wedrawplans.co.uk/images/case-studies/cannon-lane-pinner-5-metre-rear-extension/cannon-lane-rear-extension-3d.webp",
       address: {
         "@type": "PostalAddress",
         streetAddress: "201 Borough High Street",
@@ -451,7 +451,7 @@ export default function HarrowAreaPage() {
         <meta property="og:title" content="Architectural Drawings in Harrow | WEDRAWPLANS" />
         <meta property="og:description" content="Harrow architectural drawings for extensions, loft conversions, flat conversions and Building Regulations. Explore our local approval and request a fixed-fee quote." />
         <meta property="og:url" content="https://www.wedrawplans.co.uk/areas/harrow" />
-        <meta property="og:image" content="https://www.wedrawplans.co.uk/images/harrow-building-regulations-drawing-watermarked.webp" />
+        <meta property="og:image" content="https://www.wedrawplans.co.uk/images/case-studies/cannon-lane-pinner-5-metre-rear-extension/cannon-lane-rear-extension-3d.webp" />
         <meta name="twitter:card" content="summary_large_image" />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/harrow" />
         <script
@@ -468,12 +468,12 @@ export default function HarrowAreaPage() {
         <BoroughMasterHeader boroughName={"Harrow"} />
 
         <main>
-          <BoroughMasterHero boroughName={"Harrow"} formId={"harrow-quote"} headline={"Architectural Drawings in Harrow for Extensions, Lofts and New Builds"} showcaseImage={{ src: "/images/harrow-building-regulations-drawing-watermarked.webp", alt: "Example of full Building Regulations floor plans showing coordinated ground and first floor layouts", fit: "contain", watermarkEmbedded: true, caption: "Ground- and first-floor Building Regulations plans · an example of our detailed technical drawing work." }} />
+          <BoroughMasterHero boroughName={"Harrow"} formId={"harrow-quote"} headline={"Architectural Drawings in Harrow for Extensions, Lofts and New Builds"} showcaseImage={{ src: "/images/case-studies/cannon-lane-pinner-5-metre-rear-extension/cannon-lane-rear-extension-3d.webp", alt: "Architectural garden perspective of a 5 metre rear extension in Cannon Lane, Pinner", fit: "cover", watermarkEmbedded: true, caption: "Planning-approved 5 metre rear extension · Cannon Lane, Pinner · see the architectural drawing gallery below." }} />
 
 <ApprovalEvidenceStrip
-  slugs={["burnt-oak-broadway-harrow-retail-flats"]}
-  title="Harrow approval: three new studio flats above a retained shop"
-  intro="WEDRAWPLANS secured planning permission for two first-floor studios and a third at attic level, while retaining the commercial use below. Explore how an integrated design addressed the compact upper-floor layout, rear dormer and shop extension."
+  slugs={["cannon-lane-pinner-5-metre-rear-extension","burnt-oak-broadway-harrow-retail-flats"]}
+  title="Our Harrow approvals: 5 metre extension and three studio flats"
+  intro="Explore a 5 metre rear extension with original Pinner planning drawings and an approved Harrow scheme creating three studio homes above an existing shop. Both case studies include the council planning reference and original WEDRAWPLANS project work."
 />
 
           <section aria-labelledby="harrow-studio-case-heading" className="border-b border-[#dce7e0] bg-[#edf6f1] py-11 sm:py-14">
@@ -623,32 +623,42 @@ export default function HarrowAreaPage() {
                 </section>
               </div>
 
-              <section aria-labelledby="harrow-technical-drawing-heading" className="overflow-hidden rounded-2xl border border-[#dce7e1] bg-white shadow-sm">
-                <div className="grid items-center gap-0 md:grid-cols-[minmax(0,1.12fr)_minmax(0,.88fr)]">
-                  <div className="bg-[#f5f8f6] p-3 sm:p-5">
-                    <div className="relative aspect-[1.414/1] w-full overflow-hidden rounded-xl bg-white">
-                      <Image
-                        src="/images/harrow-building-regulations-drawing-watermarked.webp"
-                        alt="Full technical drawing sheet showing the ground-floor and first-floor plans of a residential project"
-                        fill
-                        sizes="(max-width: 768px) 100vw, 58vw"
-                        className="object-contain"
-                        draggable={false}
-                      />
+              <section id="harrow-approved-rear-extension" aria-labelledby="harrow-cannon-heading" className="overflow-hidden rounded-[22px] border border-[#cbded4] bg-white shadow-[0_14px_38px_rgba(25,75,61,.08)]">
+                <div className="border-b border-[#dbe9e1] bg-[#eaf5ec] px-5 py-6 sm:px-7">
+                  <p className="text-[11px] font-extrabold uppercase tracking-[.16em] text-[#34775b]">Featured Harrow approval · Cannon Lane, Pinner</p>
+                  <h2 id="harrow-cannon-heading" className="mt-2 text-[25px] font-semibold leading-tight text-[#23494c] sm:text-[32px]">5 metre rear extension · planning permission granted</h2>
+                  <p className="mt-3 max-w-3xl text-[14px] leading-7 text-[#546f72]">A substantial garden-facing extension for a Pinner family home, supported by clear architectural floor plans, roof design, elevations and a 3D perspective. Harrow Council granted householder planning permission under P/4793/21 on 8 March 2022.</p>
+                </div>
+                <div className="p-3 sm:p-5">
+                  <Link href="/case-studies/cannon-lane-pinner-5-metre-rear-extension" className="group block overflow-hidden rounded-[15px] border border-[#dce7e1] bg-[#f6faf7]">
+                    <div className="relative aspect-video">
+                      <Image src="/images/case-studies/cannon-lane-pinner-5-metre-rear-extension/cannon-lane-rear-extension-3d.webp" alt="Garden-side architectural design for the Cannon Lane five metre extension in Pinner" fill sizes="(max-width: 768px) 100vw, 850px" className="pointer-events-none object-cover transition-transform duration-300 group-hover:scale-[1.012]" draggable={false} />
                     </div>
+                    <div className="flex flex-wrap items-center justify-between gap-2 bg-white px-4 py-3">
+                      <span className="text-[12px] font-semibold text-[#3e6266]">Garden-facing architectural perspective</span>
+                      <span className="text-[12px] font-bold text-[#237780]">View case study →</span>
+                    </div>
+                  </Link>
+                  <p className="mt-5 text-[12px] font-bold uppercase tracking-[.13em] text-[#657b72]">Two original planning sheets · complete views</p>
+                  <div className="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    {[
+                      { src: "/images/case-studies/cannon-lane-pinner-5-metre-rear-extension/p05-proposed-floor-and-roof-plans.webp", title: "Drawing 1 · Proposed floor and roof plans", desc: "Ground-floor layout, kitchen connection and roof design" },
+                      { src: "/images/case-studies/cannon-lane-pinner-5-metre-rear-extension/p07-proposed-elevations-and-section.webp", title: "Drawing 2 · Elevations and section", desc: "Rear appearance and the 5,000 mm extension dimension" }
+                    ].map((drawing) => (
+                      <Link key={drawing.src} href="/case-studies/cannon-lane-pinner-5-metre-rear-extension#project-drawings" className="group min-w-0 overflow-hidden rounded-[14px] border border-[#dce7e2] bg-white hover:border-[#95c1b2]">
+                        <div className="relative aspect-[1.435/1] bg-[#fafcfa]">
+                          <Image src={drawing.src} alt={drawing.title} fill sizes="(max-width: 640px) 100vw, 400px" className="pointer-events-none object-contain" draggable={false} />
+                        </div>
+                        <div className="border-t border-[#e5ede8] px-3 py-3">
+                          <h3 className="text-[13px] font-bold text-[#2d5859]">{drawing.title}</h3>
+                          <p className="mt-1 text-[12px] leading-5 text-[#6c8081]">{drawing.desc}</p>
+                        </div>
+                      </Link>
+                    ))}
                   </div>
-                  <div className="p-5 sm:p-8">
-                    <p className="text-[11px] font-extrabold uppercase tracking-[.15em] text-[#9a6c60]">Example technical drawing · residential project</p>
-                    <h2 id="harrow-technical-drawing-heading" className="mt-2 text-[22px] font-semibold leading-tight text-[#233f45] sm:text-[27px]">Technical drawings builders can price from</h2>
-                    <p className="mt-3 text-[13px] leading-7 text-[#536b70]">
-                      Clear floor plans, dimensions and technical notes help builders understand the proposed layout and prepare more accurate prices. WEDRAWPLANS prepares project-specific Building Regulations drawing packs and coordinates structural information where included in the agreed scope.
-                    </p>
-                    <p className="mt-3 text-[11px] leading-6 text-[#718186]">
-                      This example Building Regulations sheet is from a separate residential project. The approved Burnt Oak Broadway flat-conversion design is showcased above.
-                    </p>
-                    <button type="button" onClick={scrollToForm} className="mt-5 w-full rounded-full bg-[#236d75] px-5 py-3 text-[12px] font-bold text-white hover:bg-[#19555d] sm:w-auto">
-                      Get a fixed-fee drawing quote
-                    </button>
+                  <div className="mt-5 flex flex-wrap items-center gap-3">
+                    <Link href="/case-studies/cannon-lane-pinner-5-metre-rear-extension" className="inline-flex rounded-full bg-[#246e76] px-5 py-3 text-[12px] font-bold text-white hover:bg-[#1d5962]">Explore all three views &amp; project details</Link>
+                    <button type="button" onClick={scrollToForm} className="inline-flex rounded-full border border-[#b4d4c8] bg-white px-5 py-3 text-[12px] font-bold text-[#286b69] hover:bg-[#f1f8f3]">Get a fixed-fee drawing quote</button>
                   </div>
                 </div>
               </section>
