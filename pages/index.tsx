@@ -1447,6 +1447,12 @@ export default function IndexPage() {
         </div>
 
         <AllumLaneSiteFeature placement="home" title="See the drawings behind a real approved house transformation" intro="Allum Lane in Elstree is an approved Hertsmere house-extension design, brought to life with a full architectural animation, seven 3D visuals and nine original planning drawings. See how professional drawings develop into a convincing architectural design." />
+          <div className="mx-auto mt-5 max-w-6xl px-4">
+            <Link href="/case-studies/sunbury-avenue-mill-hill-ancillary-care-outbuilding-ldc" className="flex flex-col gap-2 rounded-[15px] border border-[#d5e4d8] bg-[#edf6ef] px-5 py-4 text-[#2b5352] transition hover:border-[#94bba7] sm:flex-row sm:items-center sm:justify-between">
+              <span className="text-[13px] leading-6"><strong>Garden outbuilding success in Mill Hill:</strong> explore how WEDRAWPLANS secured Barnet’s 2026 Certificate of Lawfulness for a purpose-designed accessible ancillary care building.</span>
+              <span className="shrink-0 text-[12px] font-bold text-[#226c63]">View case study →</span>
+            </Link>
+          </div>
 
         <section className="border-b border-slate-200 bg-white py-10">
           <div className="mx-auto max-w-6xl px-4 lg:px-6">

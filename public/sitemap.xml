@@ -395,4 +395,9 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://www.wedrawplans.co.uk/case-studies/sunbury-avenue-mill-hill-ancillary-care-outbuilding-ldc</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

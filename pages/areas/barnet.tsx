@@ -392,9 +392,9 @@ export default function BarnetAreaPage() {
           <ServiceInternalLinks boroughName="Barnet" />
 
 <ApprovalEvidenceStrip
-  slugs={["sunbury-avenue-mill-hill-side-rear-extension","the-reddings-mill-hill-extension-basement-loft","13-reddings-close-mill-hill-first-floor-extension","northolm-edgware-two-storey-extension"]}
-  title="Approved house-extension projects in Barnet"
-  intro="Selected planning permissions for side, rear and first-floor extensions in Mill Hill and Edgware, with details of the approved proposals and drawings."
+  slugs={["sunbury-avenue-mill-hill-ancillary-care-outbuilding-ldc","sunbury-avenue-mill-hill-side-rear-extension","the-reddings-mill-hill-extension-basement-loft","13-reddings-close-mill-hill-first-floor-extension","northolm-edgware-two-storey-extension"]}
+  title="Barnet house-extension approvals & lawful garden outbuilding"
+  intro="See WEDRAWPLANS house-extension permissions in Mill Hill and Edgware, plus Barnet’s March 2026 Certificate of Lawfulness for a carefully designed ancillary care outbuilding. Each case links to its own planning evidence and original architectural design."
 />
 
           <section className="border-b border-slate-200 bg-white py-10">
