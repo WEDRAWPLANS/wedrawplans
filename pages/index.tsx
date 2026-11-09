@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import Head from "next/head";
+import CranbournePromo from "../components/CranbournePromo";
 import Image from "next/image";
 import HeroSlider from "../components/HeroSlider";
 import Link from "next/link";
@@ -1517,6 +1518,7 @@ export default function IndexPage() {
           </div>
         </section>
 
+        <CranbournePromo context="Homepage" />
         <section className="border-b border-slate-200 bg-white py-10">
           <div className="mx-auto max-w-6xl px-4 lg:px-6">
             <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">

@@ -28,7 +28,8 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
   const isSunburyCare = item.slug === "sunbury-avenue-mill-hill-accessible-garden-care-outbuilding";
   const isGreenwichTen = item.slug === "chestnut-rise-plumstead-greenwich-ten-flats-lawfulness";
   const isHendonHMO = item.slug === "sevington-road-hendon-seven-bedroom-hmo-planning-approval";
-  const isFlagship = isReddings || isAllum || isSistova || isCromwell || isBrockley || isHarrowStudios || isCannon || isSunburyCare || isGreenwichTen || isHendonHMO;
+  const isCranbourneCombined = item.slug === "cranbourne-drive-hoddesdon-planning-project";
+  const isFlagship = isReddings || isAllum || isSistova || isCromwell || isBrockley || isHarrowStudios || isCannon || isSunburyCare || isGreenwichTen || isHendonHMO || isCranbourneCombined;
   const useOriginalDrawingGallery = item.slug === "sistova-road-wandsworth-extension-basement" || item.slug === "cromwell-road-hounslow-rear-extension" || isFlagship;
   const isProduction = process.env.VERCEL_ENV === "production";
   const hasApprovedVisual = [item.heroImage, item.secondaryImage].some(src => Boolean(src) && (src.startsWith("/images/case-studies/") || src.startsWith("/images/hyde-")));

@@ -1,6 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import ApprovalEvidenceStrip from "../components/ApprovalEvidenceStrip";
+import CranbournePromo from "../components/CranbournePromo";
 import { submitBoroughLead } from "../lib/submitBoroughLead";
 
 const PHONE_DISPLAY = "020 3654 8508";
@@ -781,6 +782,7 @@ export default function LoftConversionPlansPage() {
           title="Selected loft conversion and roof-extension certificates"
           intro="Examples of approved lawful-development applications for dormers, gable alterations and rooflights, from West to South East London."
         />
+      <CranbournePromo context="Loft conversions" />
       </main>
     </>
   );

@@ -304,7 +304,7 @@ export default function PlanningDrawingsPage() {
           </div>
         </section>
               <ApprovalEvidenceStrip
-          slugs={["sevington-road-hendon-seven-bedroom-hmo-planning-approval","sistova-road-wandsworth-extension-basement","cromwell-road-hounslow-rear-extension","700-woolwich-road-greenwich-two-new-flats","brockley-road-lewisham-two-flat-conversion","cannon-lane-pinner-5-metre-rear-extension"]}
+          slugs={["cranbourne-drive-hoddesdon-planning-project","sevington-road-hendon-seven-bedroom-hmo-planning-approval","sistova-road-wandsworth-extension-basement","cromwell-road-hounslow-rear-extension","700-woolwich-road-greenwich-two-new-flats","brockley-road-lewisham-two-flat-conversion","cannon-lane-pinner-5-metre-rear-extension"]}
           title="Selected planning permissions and architectural drawing projects"
           intro="Explore planning permissions for house extensions, HMO conversions and residential developments across London, with original WEDRAWPLANS drawings and the project-specific planning outcome."
         />
