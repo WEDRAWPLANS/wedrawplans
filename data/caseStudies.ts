@@ -798,7 +798,7 @@ export const caseStudies: CaseStudy[] = [
     featured: true,
     summary: "A coordinated Hoddesdon home improvement case demonstrating WEDRAWPLANS' planning, architectural design and technical drawing work. Broxbourne granted partially retrospective householder planning permission on 16 October 2026 for the single-storey rear extension. Alongside the planning submission, our September 2026 technical drawings illustrate the wider kitchen, dining and ground-floor arrangement and the gable-loft conversion design, including the interfaces with structural engineering.",
     proof: "Borough of Broxbourne decision 07/26/0627/HF, dated 16 October 2026, granted permission for a partially retrospective single-storey rear extension. Conditions identify drawing numbers PP06FE-PRO, PP4S-AA, PP03 and PP02-PRO, and require matching external materials. WEDRAWPLANS' August 2026 Planning, Design and Access Statement described retention of a 3.4m rear extension following removal of a conservatory, with three rooflights, garden-facing glazing and a low flat roof. It examined the actual nearby rear building line, comparable local permissions, privacy, daylight and the Council's 60-degree amenity guidance. The five selected planning-phase illustrations published here come from an earlier April 2025 design set and show the evolution of the rear and roof designs; they are not labelled as the formal decision-listed 2026 plans. Four separate September 2026 Building Regulations/technical drawings illustrate the ground floor, loft and 3D coordination. No separate loft planning decision, Building Control approval certificate or signed structural calculations were supplied for this case study, and none is implied.",
-    approvedDrawings: "Broxbourne's decision refers to PP06FE-PRO, PP4S-AA, PP03 and PP02-PRO. Displayed earlier planning-phase illustrations are exclusively PDF pages 5, 8, 9, 10 and 11 (PP05, PP07, PP11, PP12 and PP13); displayed technical sheets are BC-10, BC-04, BC-05 and BC-12. Other pages from the original combined planning PDF are not displayed.",
+    approvedDrawings: "Broxbourne's decision refers to PP06FE-PRO, PP4S-AA, PP03 and PP02-PRO. Displayed earlier planning-phase illustrations are exclusively PDF pages 5, 8, 9, 10 and 11 (PP05, PP07, PP11, PP12 and PP13); displayed technical sheets are BC-10, BC-04, BC-05 and BC-12. The technical package illustrates construction detailing and engineering interfaces, subject to the required independent statutory checks.",
     highlights: [
       "Broxbourne planning approval dated 16 October 2026 for the partially retrospective rear extension",
       "3.4m garden-facing single-storey addition replacing an earlier conservatory",
@@ -807,7 +807,7 @@ export const caseStudies: CaseStudy[] = [
       "Separate ground-floor and gable-loft Building Regulations drawing stages",
       "Technical plans covering ventilation, drainage, fire precautions and material performance",
       "Architectural and structural engineering interfaces coordinated for the project team",
-      "Two individually selectable galleries with five planning and four technical sheets"
+      "Coordinated architectural plans and technical design views connecting the ground floor and gable loft"
     ],
     keyConditions: [
       "The 2026 householder planning permission relates to the partially retrospective rear extension only.",
@@ -820,15 +820,15 @@ export const caseStudies: CaseStudy[] = [
     leadAngle: "Planning a rear extension, gable loft conversion or combined planning and Building Regulations package?",
     relatedService: "/building-regulation-drawings",
     relatedArea: "/areas/hertfordshire",
-    heroImage: "/images/case-studies/cranbourne-drive-hoddesdon-combined/planning-11-proposed-3d-rear.webp",
-    secondaryImage: "/images/case-studies/cranbourne-drive-hoddesdon-combined/bc-3d-views.webp",
+    heroImage: "/images/case-studies/cranbourne-drive-hoddesdon-combined/bc-3d-views.webp",
+    secondaryImage: "/images/case-studies/cranbourne-drive-hoddesdon-combined/planning-11-proposed-3d-rear.webp",
     galleryImages: [
-      { src: "/images/case-studies/cranbourne-drive-hoddesdon-combined/planning-05-ground-floor.webp", caption: "Drawing 1 · Planning concept ground floor · PP05", alt: "Complete early planning-stage proposed ground-floor plan and roof plan" },
-      { src: "/images/case-studies/cranbourne-drive-hoddesdon-combined/planning-08-front-elevations.webp", caption: "Drawing 2 · Front elevations · PP07", alt: "Complete early planning-stage existing and proposed front elevations" },
-      { src: "/images/case-studies/cranbourne-drive-hoddesdon-combined/planning-09-existing-3d.webp", caption: "Drawing 3 · Existing 3D view · PP11", alt: "Complete existing 3D architectural illustration" },
-      { src: "/images/case-studies/cranbourne-drive-hoddesdon-combined/planning-10-proposed-3d-side.webp", caption: "Drawing 4 · Proposed 3D side · PP12", alt: "Complete proposed architectural side view showing roof concept" },
-      { src: "/images/case-studies/cranbourne-drive-hoddesdon-combined/planning-11-proposed-3d-rear.webp", caption: "Drawing 5 · Proposed 3D garden view · PP13", alt: "Complete proposed garden-facing house extension and loft design" },
-      { src: "/images/case-studies/cranbourne-drive-hoddesdon-combined/bc-3d-views.webp", caption: "Drawing 6 · Existing/proposed technical 3D views · BC-10", alt: "Complete technical design view set with existing and proposed house layouts" },
+      { src: "/images/case-studies/cranbourne-drive-hoddesdon-combined/bc-3d-views.webp", caption: "Drawing 1 · Existing and proposed house design · BC-10", alt: "Original complete WEDRAWPLANS BC-10 before-and-after architectural design sheet showing the rear extension and gable-loft conversion" },
+      { src: "/images/case-studies/cranbourne-drive-hoddesdon-combined/planning-05-ground-floor.webp", caption: "Drawing 2 · Planning concept ground floor · PP05", alt: "Complete early planning-stage proposed ground-floor plan and roof plan" },
+      { src: "/images/case-studies/cranbourne-drive-hoddesdon-combined/planning-08-front-elevations.webp", caption: "Drawing 3 · Front elevations · PP07", alt: "Complete early planning-stage existing and proposed front elevations" },
+      { src: "/images/case-studies/cranbourne-drive-hoddesdon-combined/planning-09-existing-3d.webp", caption: "Drawing 4 · Existing 3D view · PP11", alt: "Complete existing 3D architectural illustration" },
+      { src: "/images/case-studies/cranbourne-drive-hoddesdon-combined/planning-10-proposed-3d-side.webp", caption: "Drawing 5 · Proposed 3D side · PP12", alt: "Complete proposed architectural side view showing roof concept" },
+      { src: "/images/case-studies/cranbourne-drive-hoddesdon-combined/planning-11-proposed-3d-rear.webp", caption: "Drawing 6 · Proposed 3D garden view · PP13", alt: "Complete proposed garden-facing house extension and loft design" },
       { src: "/images/case-studies/cranbourne-drive-hoddesdon-combined/bc-ground-floor.webp", caption: "Drawing 7 · Ground-floor technical layout · BC-04", alt: "Complete ground-floor Building Regulations drawing with construction notes" },
       { src: "/images/case-studies/cranbourne-drive-hoddesdon-combined/bc-loft-floor.webp", caption: "Drawing 8 · Loft-floor technical layout · BC-05", alt: "Complete technical loft layout with dimensional and fire-related notes" },
       { src: "/images/case-studies/cranbourne-drive-hoddesdon-combined/bc-ground-loft-3d.webp", caption: "Drawing 9 · Ground and loft layout visual · BC-12", alt: "Complete 3D technical ground and loft floor drawing" }
