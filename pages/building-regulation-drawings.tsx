@@ -1,3 +1,4 @@
+import BarnetCombinedExtensionPromo from "../components/BarnetCombinedExtensionPromo";
 import Head from "next/head";
 import CranbournePromo from "../components/CranbournePromo";
 import Link from "next/link";
@@ -1293,6 +1294,7 @@ export default function BuildingRegulationDrawingsPage() {
 
           <CranbournePromo context="Building Regulations" />
           <SmartPlanningAssistant boroughName="London" />
+        <BarnetCombinedExtensionPromo context="service" />
         </main>
       </div>
     </>
