@@ -820,8 +820,8 @@ export default function CommercialMixedUsePage() {
         </section>
 
         <ApprovalEvidenceStrip
-          slugs={["burnt-oak-broadway-harrow-retail-flats","brockley-road-lewisham-two-flat-conversion"]}
-          title="Approved retail and residential conversion examples"
+          slugs={["finchley-mixed-use-ground-floor-residential-lawfulness","burnt-oak-broadway-harrow-retail-flats","brockley-road-lewisham-two-flat-conversion"]}
+          title="Mixed-use and residential planning case studies"
           intro="Explore original WEDRAWPLANS planning projects involving retail alterations and residential conversions. Each application is assessed on its own planning merits."
         />
 

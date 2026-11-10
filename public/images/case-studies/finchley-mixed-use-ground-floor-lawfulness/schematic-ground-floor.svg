@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="820" viewBox="0 0 1400 820" role="img" aria-labelledby="title desc">
+<title id="title">Finchley mixed-use ground floor, commercial unit and separate residential dwelling</title>
+<desc id="desc">Schematic illustrative diagram, not an architectural scale drawing. A front shop is separate from rear residential accommodation.</desc>
+<rect width="1400" height="820" fill="#f2f6f4"/>
+<rect x="38" y="38" width="1324" height="744" rx="22" fill="white" stroke="#d3e2df" stroke-width="2"/>
+<rect x="38" y="38" width="1324" height="110" rx="22" fill="#214c52"/>
+<rect x="38" y="112" width="1324" height="36" fill="#214c52"/>
+<text x="90" y="91" font-family="Arial,sans-serif" fill="#dbefeb" font-size="18" font-weight="bold" letter-spacing="3">WEDRAWPLANS  /  ARCHITECTURAL CASE STUDY</text>
+<text x="90" y="128" font-family="Arial,sans-serif" fill="#ffffff" font-size="29" font-weight="bold">Mixed-use ground floor · Finchley</text>
+<text x="90" y="191" font-family="Arial,sans-serif" fill="#526b70" font-size="18">Illustrative use arrangement · not to scale · not an approved or measured drawing</text>
+<rect x="135" y="242" width="1130" height="382" fill="#fff" stroke="#344d50" stroke-width="7"/>
+<rect x="139" y="246" width="705" height="374" fill="#eaf5ef"/>
+<rect x="848" y="246" width="413" height="374" fill="#eef2f7"/>
+<path d="M844 244V623" stroke="#344d50" stroke-width="9"/>
+<path d="M418 244V621M419 392H844M615 393V622" stroke="#79948f" stroke-width="4"/>
+<path d="M140 500H420" stroke="#79948f" stroke-width="4" stroke-dasharray="10 8"/>
+<text x="274" y="296" text-anchor="middle" font-family="Arial,sans-serif" fill="#2b7362" font-size="17" font-weight="bold">REAR RESIDENTIAL UNIT · CLASS C3</text>
+<text x="277" y="367" text-anchor="middle" font-family="Arial,sans-serif" fill="#315b59" font-size="24" font-weight="bold">Living / Kitchen</text>
+<text x="277" y="550" text-anchor="middle" font-family="Arial,sans-serif" fill="#315b59" font-size="22">Bedroom</text>
+<text x="524" y="520" text-anchor="middle" font-family="Arial,sans-serif" fill="#315b59" font-size="20">Shower / Utility</text>
+<text x="732" y="520" text-anchor="middle" font-family="Arial,sans-serif" fill="#315b59" font-size="20">Access</text>
+<text x="1051" y="401" text-anchor="middle" font-family="Arial,sans-serif" fill="#40566f" font-size="25" font-weight="bold">SHOP</text>
+<text x="1051" y="434" text-anchor="middle" font-family="Arial,sans-serif" fill="#40566f" font-size="18">Commercial unit retained</text>
+<path d="M1263 444h45" stroke="#5f7781" stroke-width="4"/><path d="M1294 433l14 11-14 11" fill="none" stroke="#5f7781" stroke-width="4"/>
+<text x="1315" y="422" text-anchor="middle" transform="rotate(90 1315 422)" font-family="Arial,sans-serif" fill="#526b70" font-size="16">STREET / FRONTAGE</text>
+<text x="700" y="475" text-anchor="middle" transform="rotate(-19 700 475)" font-family="Arial,sans-serif" fill="#617f78" fill-opacity=".10" font-size="76" font-weight="bold" letter-spacing="9">WEDRAWPLANS</text>
+<rect x="135" y="653" width="1130" height="76" rx="10" fill="#e9f4f0"/>
+<text x="165" y="686" font-family="Arial,sans-serif" fill="#2b6b60" font-size="18" font-weight="bold">CERTIFICATE OF LAWFUL EXISTING USE · GRANTED 8 AUGUST 2023</text>
+<text x="165" y="711" font-family="Arial,sans-serif" fill="#3f6766" font-size="15">Barnet Council · 23/2690/191 · Rear ground-floor dwelling confirmed lawful</text>
+</svg>
