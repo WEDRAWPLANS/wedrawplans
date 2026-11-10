@@ -1,3 +1,4 @@
+import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BarnetCombinedExtensionPromo from "../../components/BarnetCombinedExtensionPromo";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React, { useMemo } from "react";
@@ -182,11 +183,8 @@ export default function BarnetAreaPage() {
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Barnet | Extensions, Lofts, Planning and Building Regs</title>
-        <meta
-          name="description"
-          content="Architectural drawings in Barnet for single storey and double storey extensions, loft conversions, outbuildings, HMOs, planning applications, new build schemes and building regulation packs. Fixed fees, clear scope, initial survey within 48 hours and fast communication."
-        />
+        <title>Rear extension planning drawings in Barnet | WEDRAWPLANS</title>
+        <meta name="description" content="Rear extension planning drawings in Barnet. Planning and Building Regulation drawings in Barnet. Get a fixed-fee quotation." />
         <meta
           name="keywords"
           content="architectural drawings Barnet, extension drawings Barnet, loft conversion drawings Barnet, planning drawings Barnet, building regulation drawings Barnet, Barnet side extension drawings, Finchley extension drawings, Hendon loft drawings, Mill Hill planning drawings, Barnet HMO drawings, Barnet new build drawings"
@@ -1036,6 +1034,7 @@ export default function BarnetAreaPage() {
 
           <SmartPlanningAssistant boroughName="Barnet" />
         <BarnetCombinedExtensionPromo context="local" area="Barnet" />
+          <BoroughIntentCapture slug="barnet" />
         </main>
 
         <footer className="border-t border-[#2a3050] bg-[#20243b]">

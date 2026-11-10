@@ -1,3 +1,4 @@
+import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import Head from "next/head";
 import React, { useMemo, useRef, useState } from "react";
 import Image from "next/image";
@@ -423,11 +424,8 @@ export default function EalingAreaPage() {
   return (
     <>
       <Head>
-        <title>House Extension & Loft Conversion Planning Drawings in Ealing | WEDRAWPLANS</title>
-        <meta
-          name="description"
-          content="House extension and loft conversion planning drawings in Ealing from £750 for suitable projects. Existing and proposed plans, council application support and separate Building Regulations drawing packages. Request a fixed-fee quote."
-        />
+        <title>Extension plans and planning drawings in Ealing | WEDRAWPLANS</title>
+        <meta name="description" content="Extension plans and planning drawings in Ealing. Planning and Building Regulation drawings in Ealing. Get a fixed-fee quotation." />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/ealing" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }} />
@@ -973,6 +971,7 @@ export default function EalingAreaPage() {
           </section>
 
           {/* One compact site-wide planning assistant remains; avoid duplicate floating chat controls on mobile. */}
+          <BoroughIntentCapture slug="ealing" />
         </main>
       </div>
     </>

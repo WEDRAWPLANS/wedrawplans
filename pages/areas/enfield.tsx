@@ -1,3 +1,4 @@
+import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BarnetCombinedExtensionPromo from "../../components/BarnetCombinedExtensionPromo";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import Head from "next/head";
@@ -470,11 +471,8 @@ export default function EnfieldAreaPage() {
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Enfield | Extensions, Lofts, Building Regs</title>
-        <meta
-          name="description"
-          content="Architectural drawings in Enfield for extensions, loft conversions, refurbishments and building regulation packs. Measured survey within 48 hours, clear drawings, fixed quotes, and full planning submission support."
-        />
+        <title>Rear extension and loft conversion plans in Enfield | WEDRAWPLANS</title>
+        <meta name="description" content="Rear extension and loft conversion plans in Enfield. Planning and Building Regulation drawings in Enfield. Get a fixed-fee quotation." />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/enfield" />
 
         <meta property="og:title" content="Architectural Drawings Enfield | WEDRAWPLANS" />
@@ -715,6 +713,7 @@ export default function EnfieldAreaPage() {
 
           <PlanningAssistant boroughName="Enfield" onGetQuote={scrollToForm} />
         <BarnetCombinedExtensionPromo context="local" area="Enfield" />
+          <BoroughIntentCapture slug="enfield" />
         </main>
       </div>
     </>

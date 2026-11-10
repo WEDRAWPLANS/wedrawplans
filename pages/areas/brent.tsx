@@ -1,3 +1,4 @@
+import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React from "react";
 import Head from "next/head";
@@ -102,11 +103,8 @@ export default function BrentAreaPage() {
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Brent | Extensions, Lofts, New Builds</title>
-        <meta
-          name="description"
-          content="Architectural drawings in Brent for house extensions, loft conversions, new builds and building regulation packs. Fixed fees with clear scope and fast turnaround."
-        />
+        <title>Rear extension and loft conversion drawings in Brent | WEDRAWPLANS</title>
+        <meta name="description" content="Rear extension and loft conversion drawings in Brent. Planning and Building Regulation drawings in Brent. Get a fixed-fee quotation." />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/brent" />
 
         <script
@@ -400,6 +398,7 @@ export default function BrentAreaPage() {
               </div>
             </div>
           </section>
+          <BoroughIntentCapture slug="brent" />
         </main>
       </div>
     </>

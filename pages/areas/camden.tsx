@@ -1,3 +1,4 @@
+import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React from "react";
 import Head from "next/head";
@@ -119,11 +120,8 @@ export default function CamdenAreaPage() {
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Camden | Extensions, Lofts, Conversions</title>
-        <meta
-          name="description"
-          content="Architectural drawings in Camden for extensions, loft conversions, flat conversions and building regulation packs. Fixed fees with clear scope and fast communication."
-        />
+        <title>Planning drawings for extensions and alterations in Camden | WEDRAWPLANS</title>
+        <meta name="description" content="Planning drawings for extensions and alterations in Camden. Planning and Building Regulation drawings in Camden. Get a fixed-fee quotation." />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/camden" />
         <script
           type="application/ld+json"
@@ -339,6 +337,7 @@ export default function CamdenAreaPage() {
               </div>
             </div>
           </section>
+          <BoroughIntentCapture slug="camden" />
         </main>
       </div>
     </>
