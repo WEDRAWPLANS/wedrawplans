@@ -778,9 +778,9 @@ export default function LoftConversionPlansPage() {
           </div>
         </section>
               <ApprovalEvidenceStrip
-          slugs={["the-reddings-mill-hill-extension-basement-loft","warbeck-road-hammersmith-fulham-loft-certificate","deans-way-edgware-lawful-loft","alnwick-road-eltham-lawful-loft"]}
-          title="Selected loft conversion and roof-extension certificates"
-          intro="Examples of approved lawful-development applications for dormers, gable alterations and rooflights, from West to South East London."
+          slugs={["sutton-loft-conversion-planning-permission-wallington","the-reddings-mill-hill-extension-basement-loft","warbeck-road-hammersmith-fulham-loft-certificate","deans-way-edgware-lawful-loft","alnwick-road-eltham-lawful-loft"]}
+          title="Approved loft conversions, dormers and roof extensions"
+          intro="Explore original WEDRAWPLANS drawings and council outcomes, including our 2026 Sutton rear-dormer planning approval and other approved loft and rooflight projects."
         />
       <CranbournePromo context="Loft conversions" />
       </main>
