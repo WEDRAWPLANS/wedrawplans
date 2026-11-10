@@ -1,3 +1,4 @@
+import NearbySuttonLoftCaseStudy from "../../components/NearbySuttonLoftCaseStudy";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React, { useMemo, useRef, useState } from "react";
 import Head from "next/head";
@@ -839,6 +840,7 @@ export default function CroydonAreaPage() {
           </section>
 
           <PlanningAssistant boroughName="Croydon" onGetQuote={scrollToForm} />
+          <NearbySuttonLoftCaseStudy area="Croydon" />
         </main>
       </div>
     </>

@@ -70,7 +70,7 @@ function ProjectCard({ item }: { item: CaseStudy }) {
 }
 
 export default function CaseStudiesHub() {
-  const featured = caseStudies.find((item) => item.featured) || caseStudies[0];
+  const featured = caseStudies.find((item) => item.slug === "sistova-road-wandsworth-extension-basement") || caseStudies.find((item) => item.featured) || caseStudies[0];
   const [query, setQuery] = useState("");
   const [type, setType] = useState("All project types");
   const [council, setCouncil] = useState("All councils");
