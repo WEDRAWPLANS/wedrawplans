@@ -393,6 +393,19 @@ export default function SuttonAreaPage() {
               </div>
             </div>
           </section>
+                  <section aria-labelledby="sutton-loft-2026-approved" className="mx-auto mb-10 max-w-6xl overflow-hidden rounded-[22px] border border-[#dce8e2] bg-[#f0f8f3] shadow-[0_12px_28px_rgba(28,75,70,.045)]">
+            <div className="grid gap-4 p-5 sm:p-7 md:grid-cols-[minmax(0,1fr)_250px] md:items-center">
+              <div>
+                <p className="text-[11px] font-bold uppercase tracking-[.16em] text-[#28745e]">Sutton case study · Planning permission granted November 2026</p>
+                <h2 id="sutton-loft-2026-approved" className="mt-2 text-[23px] font-semibold leading-tight text-[#23484c]">Wallington rear dormer loft conversion approved</h2>
+                <p className="mt-3 max-w-2xl text-[13px] leading-7 text-[#547272]">A genuine WEDRAWPLANS project involving a rear dormer, side rooflights and a bedroom with en-suite. Sutton Council granted planning permission in an Area of Special Local Character. Explore the original architectural drawing sheets and design views.</p>
+                <a href="/case-studies/sutton-loft-conversion-planning-permission-wallington" className="mt-4 inline-flex rounded-full bg-[#2a7b80] px-5 py-3 text-[12px] font-bold text-white hover:bg-[#216368]">View the approved Wallington loft project →</a>
+              </div>
+              <a href="/case-studies/sutton-loft-conversion-planning-permission-wallington" className="block overflow-hidden rounded-[12px] border border-[#cfdfda] bg-white p-2">
+                <Image src="/images/case-studies/sutton-wallington-loft-conversion-2026/drawing-01-3d-before-after.webp" alt="Original WEDRAWPLANS existing and proposed Wallington loft 3D views" width={480} height={340} className="h-auto w-full object-contain" />
+              </a>
+            </div>
+          </section>
         </main>
       </div>
     </>
