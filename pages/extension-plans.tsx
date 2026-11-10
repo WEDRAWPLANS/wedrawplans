@@ -1,3 +1,4 @@
+import IntentAreaDirectory from "../components/IntentAreaDirectory";
 import BarnetCombinedExtensionPromo from "../components/BarnetCombinedExtensionPromo";
 import React from "react";
 import AllumLaneSiteFeature from "../components/AllumLaneSiteFeature";
@@ -757,7 +758,8 @@ export default function ExtensionPlansPage() {
           </div>
         </section>
       <BarnetCombinedExtensionPromo context="service" />
-        </main>
+          <IntentAreaDirectory context="extension" />
+      </main>
     </>
   );
 }

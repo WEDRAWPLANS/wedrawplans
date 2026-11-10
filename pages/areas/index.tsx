@@ -1,3 +1,4 @@
+import IntentAreaDirectory from "../../components/IntentAreaDirectory";
 import React, { useMemo } from "react";
 import Head from "next/head";
 import Image from "next/image";
@@ -1224,6 +1225,7 @@ export default function AreasIndexPage() {
           </section>
 
           <SmartPlanningAssistant boroughName="London" />
+          <IntentAreaDirectory context="areas" />
         </main>
 
         <footer className="border-t border-[#2a3050] bg-[#20243b]">
