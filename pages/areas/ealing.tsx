@@ -3,6 +3,7 @@ import Head from "next/head";
 import React, { useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
+import { hasOneReplyMethod } from "../../lib/hasOneReplyMethod";
 import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 
 const PHONE_DISPLAY = "020 3654 8508";
@@ -322,6 +323,10 @@ function PlanningAssistant({
 
 export default function EalingAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    if (!hasOneReplyMethod(e.currentTarget)) {
+      e.preventDefault();
+      return;
+    }
     await submitBoroughLead(e, { boroughName: "Ealing" });
   }
 
@@ -609,26 +614,25 @@ export default function EalingAreaPage() {
 
                     <div className="grid sm:grid-cols-2 gap-3">
                       <div className="space-y-1">
-                        <label className="text-[11px] font-medium">Telephone</label>
+                        <label className="text-[11px] font-medium">Telephone (or email)</label>
                         <input
                           name="phone"
-                          required
                           type="tel"
                           className="w-full bg-transparent border-b border-slate-300 py-1.5 px-1 focus:border-[#64b7c4] outline-none"
                         />
                       </div>
 
                       <div className="space-y-1">
-                        <label className="text-[11px] font-medium">Email</label>
+                        <label className="text-[11px] font-medium">Email (or telephone)</label>
                         <input
                           name="email"
-                          required
                           type="email"
                           className="w-full bg-transparent border-b border-slate-300 py-1.5 px-1 focus:border-[#64b7c4] outline-none"
                         />
                       </div>
                     </div>
 
+                    <p className="text-[11px] text-slate-600">One contact method is enough. Choose phone or email, whichever you prefer.</p>
                     <div className="space-y-1">
                       <label className="text-[11px] font-medium">Ealing postcode</label>
                       <input
