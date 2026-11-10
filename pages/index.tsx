@@ -668,8 +668,13 @@ export default function IndexPage() {
       return;
     }
 
-    if (!name || !phone || !email) {
-      alert("Please complete your name, phone number and email address.");
+    if (!name) {
+      alert("Please enter your name so we can address your quotation.");
+      return;
+    }
+    if (!phone && !email) {
+      gtagEvent("lead_contact_needed", { form_name: formName });
+      alert("Please enter a telephone number OR an email address so we can reply.");
       return;
     }
 
@@ -1098,7 +1103,7 @@ export default function IndexPage() {
                         value={heroPhone}
                         onChange={(e) => setHeroPhone(e.target.value)}
                         onFocus={() => trackHeroFormStart("mobile_phone")}
-                        placeholder="Phone number"
+                        placeholder="Phone number (or email)"
                         className="h-14 w-full rounded-[16px] border border-slate-200 bg-white px-4 text-[16px] text-slate-800 shadow-sm outline-none transition focus:border-[#64b7c4]"
                       />
 
@@ -1108,10 +1113,11 @@ export default function IndexPage() {
                         value={heroEmail}
                         onChange={(e) => setHeroEmail(e.target.value)}
                         onFocus={() => trackHeroFormStart("mobile_email")}
-                        placeholder="Email address"
+                        placeholder="Email address (or phone)"
                         className="h-14 w-full rounded-[16px] border border-slate-200 bg-white px-4 text-[16px] text-slate-800 shadow-sm outline-none transition focus:border-[#64b7c4]"
                       />
 
+                      <p className="text-left text-[12px] font-medium text-slate-600">Provide a phone number or email address; you do not need both.</p>
                       <textarea
                         name="message"
                         value={heroMessage}
@@ -1317,7 +1323,7 @@ export default function IndexPage() {
                               value={heroPhone}
                               onChange={(e) => setHeroPhone(e.target.value)}
                               onFocus={() => trackHeroFormStart("phone")}
-                              placeholder="Phone number"
+                              placeholder="Phone number (or email)"
                               className="h-14 w-full rounded-[16px] border border-slate-200 bg-white px-4 text-[16px] text-slate-800 shadow-sm outline-none transition focus:border-[#64b7c4]"
                             />
 
@@ -1327,9 +1333,10 @@ export default function IndexPage() {
                               value={heroEmail}
                               onChange={(e) => setHeroEmail(e.target.value)}
                               onFocus={() => trackHeroFormStart("email")}
-                              placeholder="Email address"
+                              placeholder="Email address (or phone)"
                               className="h-14 w-full rounded-[16px] border border-slate-200 bg-white px-4 text-[16px] text-slate-800 shadow-sm outline-none transition focus:border-[#64b7c4]"
                             />
+                            <p className="text-left text-[12px] font-medium text-slate-600">Phone or email is enough — you do not need both.</p>
                           </div>
                         )}
 

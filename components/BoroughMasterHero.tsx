@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { submitBoroughLead } from "../lib/submitBoroughLead";
+import { hasOneReplyMethod } from "../lib/hasOneReplyMethod";
 
 type BoroughHeaderProps = {
   boroughName: string;
@@ -89,6 +90,10 @@ export default function BoroughMasterHero({ boroughName, formId, headline, showc
   }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    if (!hasOneReplyMethod(e.currentTarget)) {
+      e.preventDefault();
+      return;
+    }
     await submitBoroughLead(e, { boroughName });
   }
 
@@ -177,14 +182,15 @@ export default function BoroughMasterHero({ boroughName, formId, headline, showc
               </div>
               <div className="grid gap-3 sm:grid-cols-2">
                 <div className="space-y-1">
-                  <label htmlFor={formId + "-phone"} className="text-[11px] font-medium">Telephone</label>
-                  <input id={formId + "-phone"} name="phone" required type="tel" autoComplete="tel" className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 outline-none focus:border-[#64b7c4]" />
+                  <label htmlFor={formId + "-phone"} className="text-[11px] font-medium">Telephone (or email)</label>
+                  <input id={formId + "-phone"} name="phone" type="tel" autoComplete="tel" className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 outline-none focus:border-[#64b7c4]" />
                 </div>
                 <div className="space-y-1">
-                  <label htmlFor={formId + "-email"} className="text-[11px] font-medium">Email</label>
-                  <input id={formId + "-email"} name="email" required type="email" autoComplete="email" className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 outline-none focus:border-[#64b7c4]" />
+                  <label htmlFor={formId + "-email"} className="text-[11px] font-medium">Email (or telephone)</label>
+                  <input id={formId + "-email"} name="email" type="email" autoComplete="email" className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 outline-none focus:border-[#64b7c4]" />
                 </div>
               </div>
+              <p className="text-[11px] text-slate-600">One contact method is enough; you may leave phone or email blank.</p>
               <div className="space-y-1">
                 <label htmlFor={formId + "-postcode"} className="text-[11px] font-medium">Property postcode</label>
                 <input id={formId + "-postcode"} name="postcode" required autoComplete="postal-code" placeholder="Enter your postcode" className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 outline-none focus:border-[#64b7c4]" />
