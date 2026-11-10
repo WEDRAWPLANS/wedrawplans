@@ -1,3 +1,4 @@
+import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import NearbySuttonLoftCaseStudy from "../../components/NearbySuttonLoftCaseStudy";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import Head from "next/head";
@@ -427,11 +428,8 @@ export default function KingstonAreaPage() {
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Kingston upon Thames | Extensions, Lofts, New Builds</title>
-        <meta
-          name="description"
-          content="Architectural drawings in Kingston upon Thames for house extensions, loft conversions, refurbishments, new builds and building regulation packs. Fixed fees with clear scope and fast communication."
-        />
+        <title>House extension plans and loft conversion drawings in Kingston | WEDRAWPLANS</title>
+        <meta name="description" content="House extension plans and loft conversion drawings in Kingston. Planning and Building Regulation drawings in Kingston upon Thames. Get a fixed-fee quotation." />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/kingston" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }} />
@@ -735,6 +733,7 @@ export default function KingstonAreaPage() {
 
           <PlanningAssistant boroughName="Kingston upon Thames" onGetQuote={scrollToForm} />
           <NearbySuttonLoftCaseStudy area="Kingston upon Thames" />
+          <BoroughIntentCapture slug="kingston" />
         </main>
       </div>
     </>

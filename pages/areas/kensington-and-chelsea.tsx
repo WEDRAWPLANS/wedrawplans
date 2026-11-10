@@ -1,3 +1,4 @@
+import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React from "react";
 import Head from "next/head";
@@ -101,13 +102,8 @@ export default function KensingtonAndChelseaAreaPage() {
   return (
     <>
       <Head>
-        <title>
-          Architectural Drawings in Kensington and Chelsea | Extensions, Lofts, New Builds
-        </title>
-        <meta
-          name="description"
-          content="Architectural drawings in Kensington and Chelsea for house extensions, loft conversions, refurbishments, basements, new builds and building regulation packs. Fixed fees with clear scope and fast turnaround."
-        />
+        <title>House alteration and basement planning drawings in Kensington and Chelsea | WEDRAWPLANS</title>
+        <meta name="description" content="House alteration and basement planning drawings in Kensington and Chelsea. Planning and Building Regulation drawings in Kensington and Chelsea. Get a fixed-fee quotation." />
         <link
           rel="canonical"
           href="https://www.wedrawplans.co.uk/areas/kensington-and-chelsea"
@@ -417,6 +413,7 @@ export default function KensingtonAndChelseaAreaPage() {
               </div>
             </div>
           </section>
+          <BoroughIntentCapture slug="kensington-and-chelsea" />
         </main>
       </div>
     </>

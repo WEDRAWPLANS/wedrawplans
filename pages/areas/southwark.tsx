@@ -1,3 +1,4 @@
+import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React from "react";
 import Head from "next/head";
@@ -101,11 +102,8 @@ export default function SouthwarkAreaPage() {
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Southwark | Extensions, Lofts, New Builds</title>
-        <meta
-          name="description"
-          content="Architectural drawings in Southwark for house extensions, loft conversions, flat conversions, new builds and building regulation packs. Fixed fees with clear scope and fast communication."
-        />
+        <title>Side return extension and planning drawings in Southwark | WEDRAWPLANS</title>
+        <meta name="description" content="Side return extension and planning drawings in Southwark. Planning and Building Regulation drawings in Southwark. Get a fixed-fee quotation." />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/southwark" />
         <script
           type="application/ld+json"
@@ -421,6 +419,7 @@ export default function SouthwarkAreaPage() {
               </div>
             </div>
           </section>
+          <BoroughIntentCapture slug="southwark" />
         </main>
       </div>
     </>
