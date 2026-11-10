@@ -1,3 +1,4 @@
+import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React from "react";
 import Head from "next/head";
@@ -104,11 +105,8 @@ export default function HackneyAreaPage() {
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Hackney – Extensions, Lofts and Conversions</title>
-        <meta
-          name="description"
-          content="Architectural drawing services in Hackney for extensions, loft conversions, flat conversions, outbuildings and building regulation plans. Initial survey within 48 hours, clear drawings and full planning support."
-        />
+        <title>Side return and rear extension plans in Hackney | WEDRAWPLANS</title>
+        <meta name="description" content="Side return and rear extension plans in Hackney. Planning and Building Regulation drawings in Hackney. Get a fixed-fee quotation." />
         <link rel="canonical" href={canonicalUrl} />
 
         <meta property="og:title" content="Architectural Drawings in Hackney | WEDRAWPLANS" />
@@ -242,6 +240,7 @@ export default function HackneyAreaPage() {
               </div>
             </div>
           </section>
+          <BoroughIntentCapture slug="hackney" />
         </main>
       </div>
     </>

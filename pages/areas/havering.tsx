@@ -1,3 +1,4 @@
+import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React, { useMemo } from "react";
 import Head from "next/head";
@@ -168,11 +169,8 @@ export default function HaveringAreaPage() {
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Havering | Planning and Building Regs Plans</title>
-        <meta
-          name="description"
-          content="Architectural drawings in Havering for extensions, loft conversions, planning applications and building regulation packs. Fixed fees, clear scope, initial survey within 48 hours and fast communication."
-        />
+        <title>House extension plans and Building Regulations drawings in Havering | WEDRAWPLANS</title>
+        <meta name="description" content="House extension plans and Building Regulations drawings in Havering. Planning and Building Regulation drawings in Havering. Get a fixed-fee quotation." />
         <meta
           name="keywords"
           content="architectural drawings Havering, extension drawings Havering, loft conversion drawings Havering, planning drawings Havering, building regulation drawings Havering, architectural plans Romford, Hornchurch, Upminster"
@@ -796,6 +794,7 @@ export default function HaveringAreaPage() {
           </section>
 
           <SmartPlanningAssistant boroughName="Havering" />
+          <BoroughIntentCapture slug="havering" />
         </main>
 
         <footer className="border-t border-[#2a3050] bg-[#20243b]">

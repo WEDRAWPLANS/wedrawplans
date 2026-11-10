@@ -1,3 +1,4 @@
+import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import Head from "next/head";
 import React, { useMemo, useRef, useState } from "react";
@@ -450,11 +451,8 @@ export default function HounslowAreaPage() {
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Hounslow | Extensions, Lofts, Building Regs</title>
-        <meta
-          name="description"
-          content="Architectural drawings in Hounslow for extensions, loft conversions, refurbishments and building regulation packs. Clear scope, fixed quotes, and full planning submission support."
-        />
+        <title>Rear extension planning and Building Regulations drawings in Hounslow | WEDRAWPLANS</title>
+        <meta name="description" content="Rear extension planning and Building Regulations drawings in Hounslow. Planning and Building Regulation drawings in Hounslow. Get a fixed-fee quotation." />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/hounslow" />
 
         <meta property="og:title" content="Architectural Drawings Hounslow | WEDRAWPLANS" />
@@ -762,6 +760,7 @@ export default function HounslowAreaPage() {
           </section>
 
           <PlanningAssistant boroughName="Hounslow" onGetQuote={scrollToForm} />
+          <BoroughIntentCapture slug="hounslow" />
         </main>
       </div>
     </>

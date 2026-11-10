@@ -1,3 +1,4 @@
+import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React from "react";
 import Head from "next/head";
@@ -121,13 +122,8 @@ export default function GreenwichAreaPage() {
   return (
     <>
       <Head>
-        <title>
-          Architectural Drawings in Greenwich | Extensions, Lofts, Building Regs
-        </title>
-        <meta
-          name="description"
-          content="Architectural drawings in Greenwich for extensions, loft conversions, refurbishments, outbuildings and building regulation packs. Fixed fees, clear scope, survey within 48 hours and full planning support."
-        />
+        <title>Planning drawings for lofts and extensions in Greenwich | WEDRAWPLANS</title>
+        <meta name="description" content="Planning drawings for lofts and extensions in Greenwich. Planning and Building Regulation drawings in Greenwich. Get a fixed-fee quotation." />
         <link
           rel="canonical"
           href="https://www.wedrawplans.co.uk/areas/greenwich"
@@ -395,6 +391,7 @@ export default function GreenwichAreaPage() {
               </div>
             </div>
           </section>
+          <BoroughIntentCapture slug="greenwich" />
         </main>
       </div>
     </>

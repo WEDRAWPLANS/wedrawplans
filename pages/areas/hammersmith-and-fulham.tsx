@@ -1,3 +1,4 @@
+import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React from "react";
 import Head from "next/head";
@@ -97,11 +98,8 @@ export default function HammersmithAndFulhamAreaPage() {
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Hammersmith and Fulham – Extensions, Lofts and Conversions</title>
-        <meta
-          name="description"
-          content="Architectural drawings in Hammersmith and Fulham for extensions, loft conversions, flat conversions, basements and building regulation packs. Initial survey within 48 hours, fixed fees and full planning support."
-        />
+        <title>Loft conversion and rear extension drawings in Hammersmith and Fulham | WEDRAWPLANS</title>
+        <meta name="description" content="Loft conversion and rear extension drawings in Hammersmith and Fulham. Planning and Building Regulation drawings in Hammersmith and Fulham. Get a fixed-fee quotation." />
         <link rel="canonical" href={canonicalUrl} />
 
         <meta property="og:title" content="Architectural Drawings in Hammersmith and Fulham | WEDRAWPLANS" />
@@ -234,6 +232,7 @@ export default function HammersmithAndFulhamAreaPage() {
               </div>
             </div>
           </section>
+          <BoroughIntentCapture slug="hammersmith-and-fulham" />
         </main>
       </div>
     </>
