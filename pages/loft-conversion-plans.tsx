@@ -1,3 +1,4 @@
+import IntentAreaDirectory from "../components/IntentAreaDirectory";
 import React from "react";
 import Head from "next/head";
 import ApprovalEvidenceStrip from "../components/ApprovalEvidenceStrip";
@@ -783,6 +784,7 @@ export default function LoftConversionPlansPage() {
           intro="Explore original WEDRAWPLANS drawings and council outcomes, including our 2026 Sutton rear-dormer planning approval and other approved loft and rooflight projects."
         />
       <CranbournePromo context="Loft conversions" />
+        <IntentAreaDirectory context="loft" />
       </main>
     </>
   );

@@ -1,3 +1,4 @@
+import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React from "react";
 import Head from "next/head";
@@ -101,11 +102,8 @@ export default function LewishamAreaPage() {
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Lewisham | Extensions, Lofts, New Builds</title>
-        <meta
-          name="description"
-          content="Architectural drawings in Lewisham for house extensions, loft conversions, outbuildings, flat conversions and building regulation packs. Fixed fees with clear scope and fast communication."
-        />
+        <title>Rear extension and property conversion drawings in Lewisham | WEDRAWPLANS</title>
+        <meta name="description" content="Rear extension and property conversion drawings in Lewisham. Planning and Building Regulation drawings in Lewisham. Get a fixed-fee quotation." />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/lewisham" />
 
         <script
@@ -431,6 +429,7 @@ export default function LewishamAreaPage() {
               </div>
             </div>
           </section>
+          <BoroughIntentCapture slug="lewisham" />
         </main>
       </div>
     </>

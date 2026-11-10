@@ -1,3 +1,4 @@
+import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React from "react";
 import Head from "next/head";
@@ -100,11 +101,8 @@ export default function LambethAreaPage() {
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Lambeth | Extensions, Lofts, New Builds</title>
-        <meta
-          name="description"
-          content="Architectural drawings in Lambeth for house extensions, loft conversions, flat conversions, refurbishments and building regulation packs. Fixed fees with clear scope and fast communication."
-        />
+        <title>Rear extension and loft conversion plans in Lambeth | WEDRAWPLANS</title>
+        <meta name="description" content="Rear extension and loft conversion plans in Lambeth. Planning and Building Regulation drawings in Lambeth. Get a fixed-fee quotation." />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/lambeth" />
         <script
           type="application/ld+json"
@@ -405,6 +403,7 @@ export default function LambethAreaPage() {
               </div>
             </div>
           </section>
+          <BoroughIntentCapture slug="lambeth" />
         </main>
       </div>
     </>

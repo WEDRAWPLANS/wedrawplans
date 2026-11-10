@@ -1,3 +1,4 @@
+import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React, { useMemo } from "react";
 import Head from "next/head";
@@ -178,11 +179,8 @@ export default function HillingdonAreaPage() {
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Hillingdon | Planning and Building Regs Plans</title>
-        <meta
-          name="description"
-          content="Architectural drawings in Hillingdon for extensions, loft conversions, planning applications and Building Regulation packs. Fixed fees, clear scope, initial survey within 48 hours and fast communication."
-        />
+        <title>Extension and loft planning drawings in Hillingdon | WEDRAWPLANS</title>
+        <meta name="description" content="Extension and loft planning drawings in Hillingdon. Planning and Building Regulation drawings in Hillingdon. Get a fixed-fee quotation." />
         <meta
           name="keywords"
           content="architectural drawings Hillingdon, extension drawings Hillingdon, loft conversion drawings Hillingdon, planning drawings Hillingdon, building regulation drawings Hillingdon, architectural plans Uxbridge, Hayes, Ruislip, West Drayton"
@@ -803,6 +801,7 @@ export default function HillingdonAreaPage() {
           </section>
 
           <SmartPlanningAssistant boroughName="Hillingdon" />
+          <BoroughIntentCapture slug="hillingdon" />
         </main>
 
         <footer className="border-t border-[#2a3050] bg-[#20243b]">

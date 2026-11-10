@@ -1,3 +1,4 @@
+import IntentAreaDirectory from "../components/IntentAreaDirectory";
 import React from "react";
 import Head from "next/head";
 import Link from "next/link";
@@ -309,6 +310,7 @@ export default function PlanningDrawingsPage() {
           intro="Explore planning permissions for house extensions, HMO conversions and residential developments across London, with original WEDRAWPLANS drawings and the project-specific planning outcome."
         />
         <AllumLaneSiteFeature placement="service" title="Approved architectural drawing examples — Allum Lane, Hertsmere" intro="Explore selected planning drawings and architectural 3D views illustrating the approved house extension design and its relationship to the original property." />
+        <IntentAreaDirectory context="planning" />
       </main>
     </>
   );

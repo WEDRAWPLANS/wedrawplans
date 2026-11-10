@@ -1,3 +1,4 @@
+import IntentAreaDirectory from "../components/IntentAreaDirectory";
 import BarnetCombinedExtensionPromo from "../components/BarnetCombinedExtensionPromo";
 import NearbySuttonLoftCaseStudy from "../components/NearbySuttonLoftCaseStudy";
 import React, { useEffect, useMemo, useRef, useState } from "react";
@@ -1787,6 +1788,7 @@ export default function IndexPage() {
 
         <HomeGoogleReviews googleProfileUrl={GOOGLE_BUSINESS_PROFILE_LINK} googleReviewsUrl="https://search.google.com/local/reviews?placeid=ChIJ1YtyjfQXdkgR8A8NeJLecA8" />
 
+        <IntentAreaDirectory context="home" />
         <footer className="border-t border-slate-800 bg-[#20243b]">
           <div className="mx-auto max-w-6xl px-4 py-10 lg:px-6">
             <div className="grid gap-8 lg:grid-cols-[1.25fr_0.9fr_0.9fr_0.9fr]">

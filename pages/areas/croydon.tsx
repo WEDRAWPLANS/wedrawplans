@@ -1,3 +1,4 @@
+import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import NearbySuttonLoftCaseStudy from "../../components/NearbySuttonLoftCaseStudy";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React, { useMemo, useRef, useState } from "react";
@@ -497,11 +498,8 @@ export default function CroydonAreaPage() {
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Croydon | Extensions, Lofts, Building Regs</title>
-        <meta
-          name="description"
-          content="Architectural drawings in Croydon for extensions, loft conversions, refurbishments and building regulation plans. Measured survey within 48 hours, clear drawings, fixed quotes, and full planning submission support."
-        />
+        <title>Rear extension and new home planning drawings in Croydon | WEDRAWPLANS</title>
+        <meta name="description" content="Rear extension and new home planning drawings in Croydon. Planning and Building Regulation drawings in Croydon. Get a fixed-fee quotation." />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/croydon" />
         <meta property="og:title" content="Architectural Drawings Croydon | WEDRAWPLANS" />
         <meta
@@ -841,6 +839,7 @@ export default function CroydonAreaPage() {
 
           <PlanningAssistant boroughName="Croydon" onGetQuote={scrollToForm} />
           <NearbySuttonLoftCaseStudy area="Croydon" />
+          <BoroughIntentCapture slug="croydon" />
         </main>
       </div>
     </>

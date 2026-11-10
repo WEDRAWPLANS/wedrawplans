@@ -1,3 +1,4 @@
+import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React, { useMemo } from "react";
 import Head from "next/head";
@@ -168,11 +169,8 @@ export default function BromleyAreaPage() {
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Bromley | Planning and Building Regs Plans</title>
-        <meta
-          name="description"
-          content="Architectural drawings in Bromley for extensions, loft conversions, planning applications and building regulation packs. Fixed fees, clear scope, initial survey within 48 hours and fast communication."
-        />
+        <title>House extension planning drawings in Bromley | WEDRAWPLANS</title>
+        <meta name="description" content="House extension planning drawings in Bromley. Planning and Building Regulation drawings in Bromley. Get a fixed-fee quotation." />
         <meta
           name="keywords"
           content="architectural drawings Bromley, extension drawings Bromley, loft conversion drawings Bromley, planning drawings Bromley, building regulation drawings Bromley, architectural plans Beckenham, Orpington, Chislehurst"
@@ -865,6 +863,7 @@ export default function BromleyAreaPage() {
           </section>
 
           <SmartPlanningAssistant boroughName="Bromley" />
+          <BoroughIntentCapture slug="bromley" />
         </main>
 
         <footer className="border-t border-[#2a3050] bg-[#20243b]">

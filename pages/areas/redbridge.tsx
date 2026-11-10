@@ -1,3 +1,4 @@
+import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React from "react";
 import Head from "next/head";
@@ -102,11 +103,8 @@ export default function RedbridgeAreaPage() {
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Redbridge | Extensions, Lofts, Conversions</title>
-        <meta
-          name="description"
-          content="Architectural drawings in Redbridge for extensions, loft conversions, refurbishments and building regulation packs. Fixed fees with clear scope and fast turnaround."
-        />
+        <title>Rear extension and loft plans in Redbridge | WEDRAWPLANS</title>
+        <meta name="description" content="Rear extension and loft plans in Redbridge. Planning and Building Regulation drawings in Redbridge. Get a fixed-fee quotation." />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/redbridge" />
         <script
           type="application/ld+json"
@@ -398,6 +396,7 @@ export default function RedbridgeAreaPage() {
               </div>
             </div>
           </section>
+          <BoroughIntentCapture slug="redbridge" />
         </main>
       </div>
     </>

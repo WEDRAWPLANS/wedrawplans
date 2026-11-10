@@ -1,3 +1,4 @@
+import IntentAreaDirectory from "../components/IntentAreaDirectory";
 import BarnetCombinedExtensionPromo from "../components/BarnetCombinedExtensionPromo";
 import Head from "next/head";
 import CranbournePromo from "../components/CranbournePromo";
@@ -1254,6 +1255,7 @@ export default function BuildingRegulationDrawingsPage() {
 
           <AllumLaneSiteFeature placement="service" title="See the design drawings that precede technical detailing" intro="Our approved Allum Lane house-extension design includes coordinated existing and proposed plans and elevations. These are planning-stage drawings, not a Building Regulations approval; they illustrate the architectural information that can inform later technical drawing work." />
 
+          <IntentAreaDirectory context="building" />
           <footer className="bg-[#20243b] py-10 text-white">
             <div className="mx-auto max-w-6xl px-4 lg:px-6">
               <div className="grid gap-8 md:grid-cols-[1.1fr,0.9fr] md:items-center">

@@ -1,3 +1,4 @@
+import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React from "react";
 import Head from "next/head";
@@ -57,11 +58,8 @@ export default function BexleyAreaPage() {
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Bexleyheath & Bexley | Extensions, Lofts & New Builds</title>
-        <meta
-          name="description"
-          content="Architectural drawings in Bexleyheath and across Bexley for house extensions, loft conversions, garage conversions, refurbishments and new builds. Fixed fee planning and building regulation packs from WEDRAWPLANS."
-        />
+        <title>House extension plans and planning drawings in Bexley | WEDRAWPLANS</title>
+        <meta name="description" content="House extension plans and planning drawings in Bexley. Planning and Building Regulation drawings in Bexley. Get a fixed-fee quotation." />
         <meta
           name="keywords"
           content="architectural drawings Bexley, architectural drawings Bexleyheath, extension drawings Bexley, loft conversion drawings Bexley, planning drawings Bexley, building regulation drawings Bexley"
@@ -331,6 +329,7 @@ export default function BexleyAreaPage() {
               <p className="mt-5 text-[13px] font-medium text-slate-800">Prefer to speak. Call {PHONE_DISPLAY}</p>
             </div>
           </section>
+          <BoroughIntentCapture slug="bexley" />
         </main>
 
         <footer className="border-t border-[#2a3050] bg-[#20243b]">

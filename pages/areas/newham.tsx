@@ -1,3 +1,4 @@
+import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React from "react";
 import Head from "next/head";
@@ -101,11 +102,8 @@ export default function NewhamAreaPage() {
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Newham | Extensions, Lofts, HMOs, Conversions</title>
-        <meta
-          name="description"
-          content="Architectural drawings in Newham for extensions, loft conversions, HMOs, flat conversions and building regulation packs. Fixed fees with clear scope and fast turnaround."
-        />
+        <title>House extension and loft drawings in Newham | WEDRAWPLANS</title>
+        <meta name="description" content="House extension and loft drawings in Newham. Planning and Building Regulation drawings in Newham. Get a fixed-fee quotation." />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/newham" />
         <script
           type="application/ld+json"
@@ -390,6 +388,7 @@ export default function NewhamAreaPage() {
               </div>
             </div>
           </section>
+          <BoroughIntentCapture slug="newham" />
         </main>
       </div>
     </>

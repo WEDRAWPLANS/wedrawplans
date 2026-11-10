@@ -1,3 +1,4 @@
+import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import NearbySuttonLoftCaseStudy from "../../components/NearbySuttonLoftCaseStudy";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React, { useMemo } from "react";
@@ -153,11 +154,8 @@ export default function MertonAreaPage() {
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Merton | Planning and Building Regs Plans</title>
-        <meta
-          name="description"
-          content="Architectural drawings in Merton for extensions, loft conversions, planning applications, internal remodelling and building regulation packs. Fixed fees, clear scope, initial survey within 48 hours and fast communication."
-        />
+        <title>Rear extension and loft planning drawings in Merton | WEDRAWPLANS</title>
+        <meta name="description" content="Rear extension and loft planning drawings in Merton. Planning and Building Regulation drawings in Merton. Get a fixed-fee quotation." />
         <meta
           name="keywords"
           content="architectural drawings Merton, extension drawings Wimbledon, loft conversion drawings Raynes Park, planning drawings Merton, building regulation drawings Morden, Mitcham architectural plans, Colliers Wood extension drawings"
@@ -789,6 +787,7 @@ export default function MertonAreaPage() {
 
           <SmartPlanningAssistant boroughName="Merton" />
           <NearbySuttonLoftCaseStudy area="Merton" />
+          <BoroughIntentCapture slug="merton" />
         </main>
 
         <footer className="border-t border-[#2a3050] bg-[#20243b]">

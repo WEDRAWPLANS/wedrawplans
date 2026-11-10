@@ -1,3 +1,4 @@
+import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import React from "react";
 import AllumLaneSiteFeature from "../../components/AllumLaneSiteFeature";
 import Head from "next/head";
@@ -47,13 +48,8 @@ export default function SurreyBordersM25AreaPage() {
   return (
     <>
       <Head>
-        <title>
-          Architectural Drawings – Surrey Borders & M25 | Extensions, Lofts, New Builds
-        </title>
-        <meta
-          name="description"
-          content="Architectural drawings for homes on the Surrey Borders and around the M25. Extensions, loft conversions, new builds and building regulation packs. Fixed fees with fast turnaround."
-        />
+        <title>House extension and loft plans around Surrey and the M25 | WEDRAWPLANS</title>
+        <meta name="description" content="House extension and loft plans around Surrey and the M25. Planning and Building Regulation drawings in Surrey borders and M25. Get a fixed-fee quotation." />
         <meta name="robots" content="index,follow,max-image-preview:large" />
         <link rel="canonical" href={SURREY_PAGE_URL} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(surreyServiceSchema) }} />
@@ -459,6 +455,7 @@ export default function SurreyBordersM25AreaPage() {
               </div>
             </div>
           </section>
+          <BoroughIntentCapture slug="surrey-borders-m25" />
         </main>
       </div>
     </>

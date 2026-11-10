@@ -1,3 +1,4 @@
+import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React from "react";
 import Head from "next/head";
@@ -123,13 +124,8 @@ export default function IslingtonAreaPage() {
   return (
     <>
       <Head>
-        <title>
-          Architectural Drawings in Islington | Extensions, Lofts, Building Regs
-        </title>
-        <meta
-          name="description"
-          content="Architectural drawings in Islington for extensions, loft conversions, refurbishments, flat conversions and building regulation packs. Fixed fees, clear scope, survey within 48 hours and full planning support."
-        />
+        <title>Side return extension and loft plans in Islington | WEDRAWPLANS</title>
+        <meta name="description" content="Side return extension and loft plans in Islington. Planning and Building Regulation drawings in Islington. Get a fixed-fee quotation." />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/islington" />
 
         <script
@@ -334,6 +330,7 @@ export default function IslingtonAreaPage() {
               </div>
             </div>
           </section>
+          <BoroughIntentCapture slug="islington" />
         </main>
       </div>
     </>

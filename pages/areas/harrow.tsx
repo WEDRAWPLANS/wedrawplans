@@ -1,3 +1,4 @@
+import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BarnetCombinedExtensionPromo from "../../components/BarnetCombinedExtensionPromo";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React, { useMemo, useRef, useState } from "react";
@@ -439,11 +440,8 @@ export default function HarrowAreaPage() {
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Harrow | Extensions, Lofts & New Builds</title>
-        <meta
-          name="description"
-          content="Harrow architectural drawings for house extensions, loft conversions, flat conversions and Building Regulations. Explore genuine approvals and get a WEDRAWPLANS fixed-fee quote."
-        />
+        <title>Rear extension planning drawings and loft plans in Harrow | WEDRAWPLANS</title>
+        <meta name="description" content="Rear extension planning drawings and loft plans in Harrow. Planning and Building Regulation drawings in Harrow. Get a fixed-fee quotation." />
         <meta
           name="keywords"
           content="architectural drawings Harrow, extension drawings Harrow, loft conversion drawings Harrow, planning drawings Harrow, building regulation drawings Harrow, architectural services Harrow"
@@ -896,6 +894,7 @@ export default function HarrowAreaPage() {
 
           <PlanningAssistant boroughName="Harrow" onGetQuote={scrollToForm} />
         <BarnetCombinedExtensionPromo context="local" area="Harrow" />
+          <BoroughIntentCapture slug="harrow" />
         </main>
 
         <footer className="border-t border-[#2a3050] bg-[#20243b]">

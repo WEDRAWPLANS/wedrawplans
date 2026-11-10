@@ -1,3 +1,4 @@
+import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BarnetCombinedExtensionPromo from "../../components/BarnetCombinedExtensionPromo";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React from "react";
@@ -100,13 +101,8 @@ export default function HaringeyAreaPage() {
   return (
     <>
       <Head>
-        <title>
-          Architectural Drawings in Haringey | Extensions, Lofts, New Builds
-        </title>
-        <meta
-          name="description"
-          content="Architectural drawings in Haringey for house extensions, loft conversions, new builds and building regulation packs. Fixed fees with clear scope and fast turnaround."
-        />
+        <title>Rear extension and loft conversion planning drawings in Haringey | WEDRAWPLANS</title>
+        <meta name="description" content="Rear extension and loft conversion planning drawings in Haringey. Planning and Building Regulation drawings in Haringey. Get a fixed-fee quotation." />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/haringey" />
 
         <script
@@ -438,6 +434,7 @@ export default function HaringeyAreaPage() {
             </div>
           </section>
         <BarnetCombinedExtensionPromo context="local" area="Haringey" />
+          <BoroughIntentCapture slug="haringey" />
         </main>
       </div>
     </>

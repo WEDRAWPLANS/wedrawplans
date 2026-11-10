@@ -1,3 +1,4 @@
+import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React from "react";
 import Head from "next/head";
@@ -98,14 +99,8 @@ export default function BarkingAndDagenhamAreaPage() {
   return (
     <>
       <Head>
-        <title>
-          Architectural Drawings in Barking and Dagenham – Extensions, Lofts and
-          New Homes
-        </title>
-        <meta
-          name="description"
-          content="Planning drawings, extension layouts, loft conversion plans and building regulation packs for homes in Barking, Dagenham, Becontree and the wider borough. Fixed fees with clear scope and fast response."
-        />
+        <title>Rear extension and planning drawings in Barking and Dagenham | WEDRAWPLANS</title>
+        <meta name="description" content="Rear extension and planning drawings in Barking and Dagenham. Planning and Building Regulation drawings in Barking and Dagenham. Get a fixed-fee quotation." />
         <link rel="canonical" href={canonicalUrl} />
         <script
           type="application/ld+json"
@@ -315,6 +310,7 @@ export default function BarkingAndDagenhamAreaPage() {
               </div>
             </div>
           </section>
+          <BoroughIntentCapture slug="barking-and-dagenham" />
         </main>
       </div>
     </>

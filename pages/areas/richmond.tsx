@@ -1,3 +1,4 @@
+import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React, { useMemo } from "react";
 import Head from "next/head";
@@ -174,11 +175,8 @@ export default function RichmondAreaPage() {
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Richmond upon Thames | Planning and Building Regs Plans</title>
-        <meta
-          name="description"
-          content="Architectural drawings in Richmond upon Thames for extensions, loft conversions, planning applications and building regulation packs. Fixed fees, clear scope, initial survey within 48 hours and fast communication."
-        />
+        <title>House extension planning drawings in Richmond upon Thames | WEDRAWPLANS</title>
+        <meta name="description" content="House extension planning drawings in Richmond upon Thames. Planning and Building Regulation drawings in Richmond upon Thames. Get a fixed-fee quotation." />
         <meta
           name="keywords"
           content="architectural drawings Richmond upon Thames, extension drawings Richmond, loft conversion drawings Richmond, planning drawings Richmond upon Thames, building regulation drawings Richmond, architectural plans Twickenham, Barnes, Kew, Teddington"
@@ -808,6 +806,7 @@ export default function RichmondAreaPage() {
           </section>
 
           <SmartPlanningAssistant boroughName="Richmond upon Thames" />
+          <BoroughIntentCapture slug="richmond" />
         </main>
 
         <footer className="border-t border-[#2a3050] bg-[#20243b]">

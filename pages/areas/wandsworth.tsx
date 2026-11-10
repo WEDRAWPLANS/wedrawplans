@@ -1,3 +1,4 @@
+import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React, { useMemo } from "react";
 import Head from "next/head";
@@ -170,11 +171,8 @@ export default function WandsworthAreaPage() {
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Wandsworth | Planning and Building Regs Plans</title>
-        <meta
-          name="description"
-          content="Architectural drawings in Wandsworth for extensions, loft conversions, planning applications, refurbishments and building regulation packs. Fixed fees, clear scope, initial survey within 48 hours and fast communication."
-        />
+        <title>Side return and rear extension planning drawings in Wandsworth | WEDRAWPLANS</title>
+        <meta name="description" content="Side return and rear extension planning drawings in Wandsworth. Planning and Building Regulation drawings in Wandsworth. Get a fixed-fee quotation." />
         <meta
           name="keywords"
           content="architectural drawings Wandsworth, extension drawings Wandsworth, loft conversion drawings Wandsworth, planning drawings Wandsworth, building regulation drawings Wandsworth, Battersea architectural plans, Balham drawings, Earlsfield extension plans"
@@ -824,6 +822,7 @@ export default function WandsworthAreaPage() {
           </section>
 
           <SmartPlanningAssistant boroughName="Wandsworth" />
+          <BoroughIntentCapture slug="wandsworth" />
         </main>
 
         <footer className="border-t border-[#2a3050] bg-[#20243b]">
