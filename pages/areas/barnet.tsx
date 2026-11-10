@@ -1,3 +1,4 @@
+import BarnetCombinedExtensionPromo from "../../components/BarnetCombinedExtensionPromo";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React, { useMemo } from "react";
 import Head from "next/head";
@@ -1034,6 +1035,7 @@ export default function BarnetAreaPage() {
           </section>
 
           <SmartPlanningAssistant boroughName="Barnet" />
+        <BarnetCombinedExtensionPromo context="local" area="Barnet" />
         </main>
 
         <footer className="border-t border-[#2a3050] bg-[#20243b]">
