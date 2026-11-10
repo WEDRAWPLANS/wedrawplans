@@ -1,3 +1,4 @@
+import BarnetCombinedExtensionPromo from "../../components/BarnetCombinedExtensionPromo";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import Head from "next/head";
 import React, { useMemo, useRef, useState } from "react";
@@ -713,6 +714,7 @@ export default function EnfieldAreaPage() {
           </section>
 
           <PlanningAssistant boroughName="Enfield" onGetQuote={scrollToForm} />
+        <BarnetCombinedExtensionPromo context="local" area="Enfield" />
         </main>
       </div>
     </>
