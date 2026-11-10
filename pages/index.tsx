@@ -589,11 +589,9 @@ function IconButton({
 export default function IndexPage() {
   const heroStartedRef = useRef(false);
   const heroPostcodeRef = useRef<null | HTMLInputElement>(null);
-  const heroNameRef = useRef<null | HTMLInputElement>(null);
   const heroStartTimeRef = useRef<number | null>(null);
 
   const [heroSubmitting, setHeroSubmitting] = useState(false);
-  const [heroExpanded, setHeroExpanded] = useState(false);
   const [heroPostcode, setHeroPostcode] = useState("");
   const [heroService, setHeroService] = useState("");
   const [heroName, setHeroName] = useState("");
@@ -604,18 +602,6 @@ export default function IndexPage() {
   const [mobileLeadOpen, setMobileLeadOpen] = useState(false);
 
   const postcodeIntel = detectPostcodeIntel(heroPostcode);
-
-  const selectedServiceHref = useMemo(() => {
-    return SERVICE_OPTIONS.find((option) => option.value === heroService)?.href || "";
-  }, [heroService]);
-
-  useEffect(() => {
-    if (!heroExpanded) return;
-    const timer = window.setTimeout(() => {
-      heroNameRef.current?.focus();
-    }, 40);
-    return () => window.clearTimeout(timer);
-  }, [heroExpanded]);
 
   useEffect(() => {
     if (!mobileMenuOpen && !mobileLeadOpen) {
@@ -657,14 +643,24 @@ export default function IndexPage() {
 
   async function submitLead(formName: "homepage_hero" | "mobile_floating_widget") {
     const postcode = postcodeIntel.normalized;
-    const service = heroService.trim();
+    // Keep the detailed service dropdown in the mobile modal and detailed quote page.
+    // Homepage visitors can simply describe their project in their own words.
+    const service = heroService.trim() || "Homeowner project enquiry";
     const name = heroName.trim();
     const phone = heroPhone.trim();
     const email = heroEmail.trim();
     const message = heroMessage.trim();
 
-    if (!postcode || !service) {
-      alert("Please enter your postcode and select the drawings you need.");
+    if (!postcode) {
+      alert("Please enter your property postcode.");
+      return;
+    }
+    if (formName === "mobile_floating_widget" && !heroService.trim()) {
+      alert("Please select the drawings you need.");
+      return;
+    }
+    if (formName === "homepage_hero" && !message) {
+      alert("Please describe what you would like to build or change.");
       return;
     }
 
@@ -734,7 +730,6 @@ export default function IndexPage() {
         setHeroPhone("");
         setHeroEmail("");
         setHeroMessage("");
-        setHeroExpanded(false);
         setMobileLeadOpen(false);
         heroStartedRef.current = false;
         heroStartTimeRef.current = null;
@@ -757,19 +752,7 @@ export default function IndexPage() {
       heroStartTimeRef.current = Date.now();
     }
 
-    if (!heroExpanded) {
-      setHeroExpanded(true);
-      gtagEvent("lead_step_continue", {
-        form_name: "homepage_hero",
-        step: "details_opened",
-        service: heroService || "unknown",
-        postcode: postcodeIntel.normalized || "unknown",
-        borough_detected: postcodeIntel.borough || "unknown",
-        outward_code: postcodeIntel.outward || "unknown",
-      });
-      return;
-    }
-
+    // One visible form and one submission step; no extra click to reveal fields.
     await submitLead("homepage_hero");
   }
 
@@ -790,7 +773,6 @@ export default function IndexPage() {
       heroStartedRef.current = true;
       heroStartTimeRef.current = Date.now();
     }
-    setHeroExpanded(true);
     setMobileLeadOpen(true);
   }
 
@@ -1237,120 +1219,108 @@ export default function IndexPage() {
                       Get your quick quote in minutes
                       </p>
                       <p className="mx-auto mt-2 max-w-[500px] text-[12px] leading-5 text-slate-600">
-                        Choose the service you need, tell us your postcode, then add your details and we will come back
-                        with a clear quote.
+                        Tell us what you would like to build, add your property postcode and your preferred contact details.
+                        We will review the project and provide a clear fixed-fee quotation.
                       </p>
                     </div>
 
                     <form onSubmit={handleHeroSubmit} className="mx-auto mt-4 max-w-[520px]">
                       <input type="text" name="company" autoComplete="off" tabIndex={-1} className="hidden" />
-
                       <div className="space-y-3">
-                        <div className="relative">
-                          <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[20px] text-[#2f6f8a]">
-                            ✎
-                          </span>
-                          <select
-                            name="service"
-                            value={heroService}
-                            onFocus={() => trackHeroFormStart("service")}
-                            onChange={(e) => {
-                              setHeroService(e.target.value);
-                              trackHeroServiceSelect(e.target.value);
-                            }}
-                            className="h-14 w-full appearance-none rounded-[16px] border border-slate-200 bg-white pl-14 pr-12 text-[16px] text-slate-800 shadow-sm outline-none transition focus:border-[#64b7c4]"
-                          >
-                            <option value="">Which service do you need?</option>
-                            {SERVICE_OPTIONS.map((option) => (
-                              <option key={option.value} value={option.value}>
-                                {option.label}
-                              </option>
-                            ))}
-                          </select>
-                          <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[18px] text-slate-700">
-                            ▾
-                          </span>
+                        <div className="space-y-1.5">
+                          <label htmlFor="home-project-brief" className="block text-left text-[12px] font-semibold text-[#203e4a]">
+                            What would you like to build or change?
+                          </label>
+                          <textarea
+                            id="home-project-brief"
+                            name="message"
+                            rows={3}
+                            required
+                            value={heroMessage}
+                            onChange={(e) => setHeroMessage(e.target.value)}
+                            onFocus={() => trackHeroFormStart("project_description")}
+                            placeholder="e.g. A 4-metre rear kitchen extension. I need advice about planning, Building Regulations and structural drawings."
+                            className="min-h-[108px] w-full resize-y rounded-[16px] border border-slate-200 bg-white px-4 py-3 text-[15px] leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-500 focus:border-[#64b7c4]"
+                          />
                         </div>
-
-                        {selectedServiceHref ? (
-                          <div className="px-1 text-center text-[12px] text-slate-600">
-                            Related page{" "}
-                            <Link
-                              href={selectedServiceHref}
-                              className="font-medium text-blue-700 underline underline-offset-4"
-                            >
-                              View service guidance
-                            </Link>
-                          </div>
-                        ) : null}
-
-                        <div className="relative">
-                          <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[20px] text-[#d85e56]">
-                            📍
-                          </span>
+                        <div className="space-y-1.5">
+                          <label htmlFor="home-postcode" className="block text-left text-[12px] font-semibold text-[#203e4a]">Property postcode</label>
                           <input
+                            id="home-postcode"
                             ref={heroPostcodeRef}
                             name="postcode"
+                            autoComplete="postal-code"
+                            required
                             value={heroPostcode}
                             onChange={(e) => setHeroPostcode(e.target.value)}
                             onFocus={() => trackHeroFormStart("postcode")}
-                            placeholder="Postcode"
-                            className="h-14 w-full rounded-[16px] border border-slate-200 bg-white pl-14 pr-4 text-[16px] text-slate-800 shadow-sm outline-none transition focus:border-[#64b7c4]"
+                            placeholder="e.g. NW7 3AA"
+                            className="h-12 w-full rounded-[14px] border border-slate-200 bg-white px-4 text-[15px] text-slate-800 outline-none transition focus:border-[#64b7c4]"
+                          />
+                          {postcodeIntel.coverageLabel ? (
+                            <p className="text-left text-[12px] font-medium text-[#2f7f4f]">✓ {postcodeIntel.coverageLabel}</p>
+                          ) : null}
+                        </div>
+                        <div className="space-y-1.5">
+                          <label htmlFor="home-contact-name" className="block text-left text-[12px] font-semibold text-[#203e4a]">Your name</label>
+                          <input
+                            id="home-contact-name"
+                            name="name"
+                            autoComplete="name"
+                            required
+                            value={heroName}
+                            onChange={(e) => setHeroName(e.target.value)}
+                            onFocus={() => trackHeroFormStart("name")}
+                            placeholder="Your name"
+                            className="h-12 w-full rounded-[14px] border border-slate-200 bg-white px-4 text-[15px] text-slate-800 outline-none transition focus:border-[#64b7c4]"
                           />
                         </div>
-
-                        {postcodeIntel.coverageLabel && (
-                          <div className="px-1 text-center text-[12px] font-medium text-[#2f7f4f]">
-                            ✓ {postcodeIntel.coverageLabel}
-                          </div>
-                        )}
-
-                        {heroExpanded && (
-                          <div className="space-y-3 pt-1">
+                        <div className="grid gap-3 sm:grid-cols-2">
+                          <div className="space-y-1.5">
+                            <label htmlFor="home-contact-email" className="block text-left text-[12px] font-semibold text-[#203e4a]">Email (preferred)</label>
                             <input
-                              ref={heroNameRef}
-                              name="name"
-                              value={heroName}
-                              onChange={(e) => setHeroName(e.target.value)}
-                              onFocus={() => trackHeroFormStart("name")}
-                              placeholder="Your name"
-                              className="h-14 w-full rounded-[16px] border border-slate-200 bg-white px-4 text-[16px] text-slate-800 shadow-sm outline-none transition focus:border-[#64b7c4]"
-                            />
-
-                            <input
-                              name="phone"
-                              type="tel"
-                              value={heroPhone}
-                              onChange={(e) => setHeroPhone(e.target.value)}
-                              onFocus={() => trackHeroFormStart("phone")}
-                              placeholder="Phone number (or email)"
-                              className="h-14 w-full rounded-[16px] border border-slate-200 bg-white px-4 text-[16px] text-slate-800 shadow-sm outline-none transition focus:border-[#64b7c4]"
-                            />
-
-                            <input
+                              id="home-contact-email"
                               name="email"
                               type="email"
+                              autoComplete="email"
                               value={heroEmail}
                               onChange={(e) => setHeroEmail(e.target.value)}
                               onFocus={() => trackHeroFormStart("email")}
-                              placeholder="Email address (or phone)"
-                              className="h-14 w-full rounded-[16px] border border-slate-200 bg-white px-4 text-[16px] text-slate-800 shadow-sm outline-none transition focus:border-[#64b7c4]"
+                              placeholder="Email address"
+                              className="h-12 w-full rounded-[14px] border border-slate-200 bg-white px-3 text-[15px] text-slate-800 outline-none transition focus:border-[#64b7c4]"
                             />
-                            <p className="text-left text-[12px] font-medium text-slate-600">Phone or email is enough — you do not need both.</p>
                           </div>
-                        )}
-
+                          <div className="space-y-1.5">
+                            <label htmlFor="home-contact-phone" className="block text-left text-[12px] font-semibold text-[#203e4a]">Phone (optional)</label>
+                            <input
+                              id="home-contact-phone"
+                              name="phone"
+                              type="tel"
+                              autoComplete="tel"
+                              value={heroPhone}
+                              onChange={(e) => setHeroPhone(e.target.value)}
+                              onFocus={() => trackHeroFormStart("phone")}
+                              placeholder="Telephone number"
+                              className="h-12 w-full rounded-[14px] border border-slate-200 bg-white px-3 text-[15px] text-slate-800 outline-none transition focus:border-[#64b7c4]"
+                            />
+                          </div>
+                        </div>
+                        <p className="text-left text-[12px] leading-5 text-slate-600">
+                          One way to contact you is enough — email or telephone. No drawings or plans are needed to enquire.
+                        </p>
                         <button
                           type="submit"
                           disabled={heroSubmitting}
-                          className="mt-1 flex h-14 w-full items-center justify-center rounded-full bg-[#67a8c7] px-5 text-center text-[14px] font-semibold uppercase tracking-[0.18em] text-white shadow-[0_8px_22px_rgba(56,111,142,0.28)] transition hover:bg-[#5a9bb9] disabled:cursor-not-allowed disabled:opacity-60 sm:text-[15px]"
+                          className="flex min-h-12 w-full items-center justify-center rounded-full bg-[#236f7b] px-5 py-3 text-center text-[14px] font-bold uppercase tracking-[0.10em] text-white shadow-[0_8px_22px_rgba(20,79,91,0.2)] transition hover:bg-[#194e5b] disabled:cursor-not-allowed disabled:opacity-60 sm:text-[15px]"
                         >
-                          {heroSubmitting
-                            ? "Submitting..."
-                            : heroExpanded
-? "SEND QUOTE REQUEST →"
-: "GET A QUICK QUOTE →"}
+                          {heroSubmitting ? "Submitting..." : "Get my fixed-fee quote →"}
                         </button>
+                        <p className="text-center text-[12px] leading-5 text-slate-600">
+                          Prefer to select a service from a list?{" "}
+                          <Link href="/get-drawings-quote" className="font-semibold text-teal-800 underline underline-offset-4 hover:text-teal-600">
+                            Use the detailed quote form
+                          </Link>
+                        </p>
                       </div>
                     </form>
 
