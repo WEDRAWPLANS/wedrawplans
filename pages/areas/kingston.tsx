@@ -1,3 +1,4 @@
+import NearbySuttonLoftCaseStudy from "../../components/NearbySuttonLoftCaseStudy";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import Head from "next/head";
 import React, { useMemo, useRef, useState } from "react";
@@ -733,6 +734,7 @@ export default function KingstonAreaPage() {
           </section>
 
           <PlanningAssistant boroughName="Kingston upon Thames" onGetQuote={scrollToForm} />
+          <NearbySuttonLoftCaseStudy area="Kingston upon Thames" />
         </main>
       </div>
     </>
