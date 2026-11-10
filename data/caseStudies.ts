@@ -51,7 +51,7 @@ export const caseStudies: CaseStudy[] = [
     featured: true,
     summary: "A Finchley high-street mixed-use property with a retained commercial shop at the front and a separate self-contained dwelling at the rear of the ground floor. Following an earlier refused retrospective application and a successfully challenged enforcement notice, Barnet issued a Certificate of Lawfulness for the established residential use on 8 August 2023.",
     proof: "Barnet's Section 191 decision (23/2690/191, 8 August 2023) certifies the use of the rear ground-floor unit as a self-contained Class C3 dwelling. Its delegated report explains that earlier retrospective planning permission had been refused and an enforcement notice later quashed on appeal; the Council accepted evidence of continuous residential occupation exceeding four years under the legislation applicable to the historic case. This was not a fresh grant of planning permission for a new conversion.",
-    approvedDrawings: "Existing architectural drawing P02A: ground-floor arrangement with retained shop and residential living/kitchen, bedroom, shower and access areas; also showing first-floor plan and rear elevation. The public diagram is deliberately simplified and not a replacement for the original measured drawing.",
+    approvedDrawings: "Existing architectural drawing P02A: ground-floor arrangement with retained shop and residential living/kitchen, bedroom, shower and access areas; also showing first-floor plan and rear elevation. The full original WEDRAWPLANS architectural sheet is displayed as supplied, retaining its title block and complete arrangement.",
     highlights: [
       "Front ground-floor shop retained alongside separate rear residential accommodation",
       "Existing self-contained Class C3 dwelling established as lawful",
@@ -61,15 +61,15 @@ export const caseStudies: CaseStudy[] = [
     ],
     wdpService: "The project archive includes an existing floor-plan and rear-elevation sheet carrying the WEDRAWPLANS title block, illustrating the distinction between the ground-floor commercial premises and residential unit. The subsequent council certificate records the lawful status of the established dwelling; the available decision documents do not establish that WEDRAWPLANS acted as the planning appeal or certificate agent.",
     homeownerGuidance: "Changing part of a shop or mixed-use property to a flat requires a case-specific check of the current planning position, use classes, permitted-development restrictions, access, fire separation, natural light, amenity, Building Regulations and any required consents. This historic Section 191 certificate confirms an existing lawful use, not a blanket right to create a new dwelling. WEDRAWPLANS can prepare architectural survey and drawing packages for proposed mixed-use layouts and lawful-development submissions.",
-    mediaNote: "The displayed plan is an anonymised schematic illustration of the use arrangement, not the original architectural sheet and not a drawing suitable for construction or planning submission. No residential conversion completion photographs are represented.",
+    mediaNote: "The displayed image is the original WEDRAWPLANS existing plans and rear elevation sheet supplied for this case study. It documents an existing arrangement, not a newly proposed conversion. No photographs of completed construction are claimed.",
     projectNote: "Historic planning outcome: Barnet certificate 23/2690/191 granted on 8 August 2023 for existing rear ground-floor Class C3 residential use. The historical four-year evidence period must not be read as general advice on current enforcement time limits.",
     leadAngle: "Considering a shop-to-flat conversion, mixed-use property layout or lawful residential-use application in Finchley or Barnet?",
     relatedService: "/commercial/mixed-use",
     relatedArea: "/areas/barnet",
-    heroImage: "/images/case-studies/finchley-mixed-use-ground-floor-lawfulness/schematic-ground-floor.svg",
+    heroImage: "/images/case-studies/finchley-mixed-use-ground-floor-lawfulness/original-existing-p02a.png",
     secondaryImage: "",
     galleryImages: [
-      { src: "/images/case-studies/finchley-mixed-use-ground-floor-lawfulness/schematic-ground-floor.svg", alt: "Anonymised schematic illustration of mixed-use Finchley building, retained shop at front and self-contained rear dwelling, not to scale", caption: "Drawing 1 · Mixed-use arrangement — illustrative schematic, not original measured plan" }
+      { src: "/images/case-studies/finchley-mixed-use-ground-floor-lawfulness/original-existing-p02a.png", alt: "Original full WEDRAWPLANS P02A architectural sheet showing existing first-floor plan, ground-floor shop and rear self-contained residence, and rear elevation", caption: "Drawing 1 · Original WEDRAWPLANS P02A — existing ground and first-floor plans and rear elevation" }
     ],
     decisions: [
       { reference: "21/6338/RCU", description: "Earlier retrospective application concerning the rear ground-floor dwelling", outcome: "Refused; subsequent planning appeal dismissed" },
