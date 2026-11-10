@@ -1,3 +1,4 @@
+import NearbySuttonLoftCaseStudy from "../../components/NearbySuttonLoftCaseStudy";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React, { useMemo } from "react";
 import Head from "next/head";
@@ -787,6 +788,7 @@ export default function MertonAreaPage() {
           </section>
 
           <SmartPlanningAssistant boroughName="Merton" />
+          <NearbySuttonLoftCaseStudy area="Merton" />
         </main>
 
         <footer className="border-t border-[#2a3050] bg-[#20243b]">
