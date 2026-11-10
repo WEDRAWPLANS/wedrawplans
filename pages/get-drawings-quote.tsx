@@ -6,6 +6,7 @@ import { submitBoroughLead } from "../lib/submitBoroughLead";
 import { useRouter } from "next/router";
 import { caseStudyBySlug } from "../data/caseStudies";
 import ServiceInternalLinks from "../components/ServiceInternalLinks";
+import { SERVICE_OPTIONS } from "../data/quoteServiceOptions";
 
 type FormState = {
   name: string;
@@ -13,7 +14,6 @@ type FormState = {
   phone: string;
   postcode: string;
   projectType: string;
-  service: string;
   borough: string;
   message: string;
 };
@@ -24,7 +24,6 @@ const initialForm: FormState = {
   phone: "",
   postcode: "",
   projectType: "",
-  service: "Planning Drawings",
   borough: "London and surrounding M25 areas",
   message: "",
 };
@@ -122,13 +121,13 @@ export default function GetDrawingsQuotePage() {
       return;
     }
 
-    if (!isValidEmail(cleanedEmail)) {
-      setError("Please enter a valid email address.");
+    if (cleanedEmail && !isValidEmail(cleanedEmail)) {
+      setError("Please enter a valid email address, or leave email blank and provide a phone number.");
       return;
     }
 
-    if (!cleanedPhone) {
-      setError("Please enter your phone number.");
+    if (!cleanedEmail && cleanedPhone.replace(/\D/g, "").length < 10) {
+      setError("Please enter an email address or a valid telephone number so we can reply.");
       return;
     }
 
@@ -138,7 +137,7 @@ export default function GetDrawingsQuotePage() {
     }
 
     if (!form.projectType.trim()) {
-      setError("Please select your project type.");
+      setError("Please select the drawings or service you need.");
       return;
     }
 
@@ -151,7 +150,7 @@ export default function GetDrawingsQuotePage() {
         phone: cleanedPhone,
         postcode: cleanedPostcode,
         borough: inferredBorough,
-        service: form.service,
+        service: form.projectType,
         message:
           cleanedMessage ||
           `New architectural drawings quote request for ${form.projectType}. Postcode: ${cleanedPostcode}.`,
@@ -162,7 +161,7 @@ export default function GetDrawingsQuotePage() {
           page: "/get-drawings-quote",
           projectType: form.projectType,
           inferredBorough,
-          service: form.service,
+          service: form.projectType,
           originalMessage: cleanedMessage,
         },
       });
@@ -487,7 +486,7 @@ export default function GetDrawingsQuotePage() {
                           htmlFor="email"
                           style={{ display: "block", marginBottom: 6, fontWeight: 700 }}
                         >
-                          Email
+                          Email (preferred)
                         </label>
                         <input
                           id="email"
@@ -504,7 +503,7 @@ export default function GetDrawingsQuotePage() {
                           htmlFor="phone"
                           style={{ display: "block", marginBottom: 6, fontWeight: 700 }}
                         >
-                          Phone
+                          Phone (optional if email provided)
                         </label>
                         <input
                           id="phone"
@@ -542,64 +541,31 @@ export default function GetDrawingsQuotePage() {
                           htmlFor="projectType"
                           style={{ display: "block", marginBottom: 6, fontWeight: 700 }}
                         >
-                          Project type
+                          Which drawings or service do you need?
                         </label>
                         <select
                           id="projectType"
+                          name="projectType"
                           value={form.projectType}
                           onChange={(e) =>
                             setForm((prev) => ({ ...prev, projectType: e.target.value }))
                           }
                           style={inputStyle}
                         >
-                          <option value="">Select project type</option>
-                          <option value="Rear extension">Rear extension</option>
-                          <option value="Side extension">Side extension</option>
-                          <option value="Wraparound extension">Wraparound extension</option>
-                          <option value="Loft conversion">Loft conversion</option>
-                          <option value="Garage conversion">Garage conversion</option>
-                          <option value="Internal alterations">Internal alterations</option>
-                          <option value="Building regulation drawings">
-                            Building regulation drawings
-                          </option>
-                          <option value="Measured survey">Measured survey</option>
-                          <option value="Commercial project">Commercial project</option>
-                          <option value="Other domestic project">Other domestic project</option>
+                          <option value="">Select from the full WEDRAWPLANS service list</option>
+                          {SERVICE_OPTIONS.map((option) => (
+                            <option key={option.label} value={option.value}>
+                              {option.label}
+                            </option>
+                          ))}
                         </select>
+                        <p style={{ margin: "6px 0 0", color: "#64748b", fontSize: 12, lineHeight: 1.6 }}>
+                          Not sure which you need? Select Other and explain your project below.
+                        </p>
                       </div>
                     </div>
 
-                    <div className="formTwoCol">
-                      <div>
-                        <label
-                          htmlFor="service"
-                          style={{ display: "block", marginBottom: 6, fontWeight: 700 }}
-                        >
-                          Service needed
-                        </label>
-                        <select
-                          id="service"
-                          value={form.service}
-                          onChange={(e) =>
-                            setForm((prev) => ({ ...prev, service: e.target.value }))
-                          }
-                          style={inputStyle}
-                        >
-                          <option value="Planning Drawings">Planning Drawings</option>
-                          <option value="Building Regulation Drawings">
-                            Building Regulation Drawings
-                          </option>
-                          <option value="Measured Building Survey">
-                            Measured Building Survey
-                          </option>
-                          <option value="Planning Application Support">
-                            Planning Application Support
-                          </option>
-                          <option value="Commercial Drawings">Commercial Drawings</option>
-                          <option value="Full Drawing Package">Full Drawing Package</option>
-                        </select>
-                      </div>
-
+                    <div style={{ display: "grid" }}>
                       <div>
                         <label
                           htmlFor="borough"
@@ -685,7 +651,7 @@ export default function GetDrawingsQuotePage() {
                     </button>
 
                     <div style={{ fontSize: 13, color: "#64748b", lineHeight: 1.6 }}>
-                      By submitting this form, you agree to be contacted by phone or email regarding
+                      By submitting this form, you agree to be contacted through your supplied email address or telephone number regarding
                       your drawings project.
                     </div>
 
