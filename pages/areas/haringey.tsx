@@ -1,3 +1,4 @@
+import BarnetCombinedExtensionPromo from "../../components/BarnetCombinedExtensionPromo";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React from "react";
 import Head from "next/head";
@@ -436,6 +437,7 @@ export default function HaringeyAreaPage() {
               </div>
             </div>
           </section>
+        <BarnetCombinedExtensionPromo context="local" area="Haringey" />
         </main>
       </div>
     </>
