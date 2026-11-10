@@ -1,3 +1,4 @@
+import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React from "react";
 import Head from "next/head";
@@ -102,11 +103,8 @@ export default function TowerHamletsAreaPage() {
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Tower Hamlets | Extensions, Lofts, New Builds</title>
-        <meta
-          name="description"
-          content="Architectural drawings in Tower Hamlets for house extensions, loft conversions, refurbishments, flat reconfigurations and building regulation packs. Fixed fees with clear scope and fast communication."
-        />
+        <title>Planning drawings for alterations and lofts in Tower Hamlets | WEDRAWPLANS</title>
+        <meta name="description" content="Planning drawings for alterations and lofts in Tower Hamlets. Planning and Building Regulation drawings in Tower Hamlets. Get a fixed-fee quotation." />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/tower-hamlets" />
         <script
           type="application/ld+json"
@@ -408,6 +406,7 @@ export default function TowerHamletsAreaPage() {
               </div>
             </div>
           </section>
+          <BoroughIntentCapture slug="tower-hamlets" />
         </main>
       </div>
     </>

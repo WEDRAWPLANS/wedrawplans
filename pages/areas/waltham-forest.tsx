@@ -1,3 +1,4 @@
+import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React from "react";
 import Head from "next/head";
@@ -105,11 +106,8 @@ export default function WalthamForestAreaPage() {
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Waltham Forest | Extensions, Lofts, Planning Drawings</title>
-        <meta
-          name="description"
-          content="Architectural drawings in Waltham Forest for house extensions, loft conversions, refurbishments, planning applications and building regulation packs. Fixed fees, clear scope and fast communication."
-        />
+        <title>Rear extension and loft planning drawings in Waltham Forest | WEDRAWPLANS</title>
+        <meta name="description" content="Rear extension and loft planning drawings in Waltham Forest. Planning and Building Regulation drawings in Waltham Forest. Get a fixed-fee quotation." />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/waltham-forest" />
         <meta property="og:title" content="Architectural Drawings in Waltham Forest | WEDRAWPLANS" />
         <meta
@@ -455,6 +453,7 @@ export default function WalthamForestAreaPage() {
               </div>
             </div>
           </section>
+          <BoroughIntentCapture slug="waltham-forest" />
         </main>
       </div>
     </>

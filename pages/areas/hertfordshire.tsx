@@ -1,3 +1,4 @@
+import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import React from "react";
 import Head from "next/head";
 import Image from "next/image";
@@ -110,13 +111,8 @@ export default function HertfordshireAreaPage() {
   return (
     <>
       <Head>
-        <title>
-          Architectural Drawings in Hertfordshire | Extensions, Lofts, New Builds
-        </title>
-        <meta
-          name="description"
-          content="Architectural drawings in Hertfordshire for house extensions, loft conversions, refurbishments and building regulation packs. Fixed fees with clear scope and fast turnaround."
-        />
+        <title>Rear extension planning and Building Regulation drawings in Hertfordshire | WEDRAWPLANS</title>
+        <meta name="description" content="Rear extension planning and Building Regulation drawings in Hertfordshire. Planning and Building Regulation drawings in Hertfordshire. Get a fixed-fee quotation." />
         <link
           rel="canonical"
           href="https://www.wedrawplans.co.uk/areas/hertfordshire"
@@ -710,6 +706,7 @@ export default function HertfordshireAreaPage() {
               </div>
             </div>
           </section>
+          <BoroughIntentCapture slug="hertfordshire" />
         </main>
       </div>
     </>

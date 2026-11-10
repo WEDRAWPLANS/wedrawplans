@@ -1,3 +1,4 @@
+import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React from "react";
 import Head from "next/head";
@@ -101,11 +102,8 @@ export default function SuttonAreaPage() {
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Sutton | Extensions, Lofts, New Builds</title>
-        <meta
-          name="description"
-          content="Architectural drawings in Sutton for house extensions, loft conversions, new builds and building regulation packs. Fixed fees with clear scope and fast turnaround."
-        />
+        <title>Loft conversion and rear extension plans in Sutton | WEDRAWPLANS</title>
+        <meta name="description" content="Loft conversion and rear extension plans in Sutton. Planning and Building Regulation drawings in Sutton. Get a fixed-fee quotation." />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/sutton" />
         <script
           type="application/ld+json"
@@ -406,6 +404,7 @@ export default function SuttonAreaPage() {
               </a>
             </div>
           </section>
+          <BoroughIntentCapture slug="sutton" />
         </main>
       </div>
     </>

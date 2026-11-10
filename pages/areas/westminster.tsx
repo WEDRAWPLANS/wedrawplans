@@ -1,3 +1,4 @@
+import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React from "react";
 import Head from "next/head";
@@ -163,14 +164,8 @@ export default function WestminsterAreaPage() {
   return (
     <>
       <Head>
-        <title>
-          Architectural Drawings in Westminster | Flats, Refurbishments, Building
-          Regs
-        </title>
-        <meta
-          name="description"
-          content="Architectural drawings in Westminster for flat refurbishments, internal remodelling, listed buildings, extensions, roof alterations and building regulation packs. Fixed fees, clear scope, survey within 48 hours and full planning support."
-        />
+        <title>Planning drawings for home alterations and flats in Westminster | WEDRAWPLANS</title>
+        <meta name="description" content="Planning drawings for home alterations and flats in Westminster. Planning and Building Regulation drawings in Westminster. Get a fixed-fee quotation." />
         <link
           rel="canonical"
           href="https://www.wedrawplans.co.uk/areas/westminster"
@@ -509,6 +504,7 @@ export default function WestminsterAreaPage() {
               </div>
             </div>
           </section>
+          <BoroughIntentCapture slug="westminster" />
         </main>
       </div>
     </>

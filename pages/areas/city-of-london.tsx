@@ -1,3 +1,4 @@
+import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React from "react";
 import Head from "next/head";
@@ -118,13 +119,8 @@ export default function CityOfLondonAreaPage() {
   return (
     <>
       <Head>
-        <title>
-          Architectural Drawings in City of London | Alterations, Conversions, Refurbishments
-        </title>
-        <meta
-          name="description"
-          content="Architectural drawings in the City of London for refurbishments, alterations, conversions and building regulation packs. Fixed fees with clear scope and fast communication."
-        />
+        <title>Planning and Building Regulation drawings in the City of London | WEDRAWPLANS</title>
+        <meta name="description" content="Planning and Building Regulation drawings in the City of London. Planning and Building Regulation drawings in City of London. Get a fixed-fee quotation." />
         <link
           rel="canonical"
           href="https://www.wedrawplans.co.uk/areas/city-of-london"
@@ -345,6 +341,7 @@ export default function CityOfLondonAreaPage() {
               </div>
             </div>
           </section>
+          <BoroughIntentCapture slug="city-of-london" />
         </main>
       </div>
     </>

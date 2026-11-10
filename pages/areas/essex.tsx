@@ -1,3 +1,4 @@
+import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import React from "react";
 import AllumLaneSiteFeature from "../../components/AllumLaneSiteFeature";
 import Head from "next/head";
@@ -114,11 +115,8 @@ export default function EssexAreaPage() {
   return (
     <>
       <Head>
-        <title>Architectural Drawings in Essex | Extensions, Lofts, New Builds</title>
-        <meta
-          name="description"
-          content="Architectural drawings in Essex for house extensions, loft conversions, refurbishments and building regulation packs. Fixed fees with clear scope and fast turnaround."
-        />
+        <title>Rear extension and loft planning drawings in Essex | WEDRAWPLANS</title>
+        <meta name="description" content="Rear extension and loft planning drawings in Essex. Planning and Building Regulation drawings in Essex. Get a fixed-fee quotation." />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/essex" />
         <script
           type="application/ld+json"
@@ -657,6 +655,7 @@ export default function EssexAreaPage() {
               </div>
             </div>
           </section>
+          <BoroughIntentCapture slug="essex" />
         </main>
       </div>
     </>
