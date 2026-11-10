@@ -1,3 +1,4 @@
+import BarnetCombinedExtensionPromo from "../components/BarnetCombinedExtensionPromo";
 import React from "react";
 import AllumLaneSiteFeature from "../components/AllumLaneSiteFeature";
 import Head from "next/head";
@@ -755,7 +756,8 @@ export default function ExtensionPlansPage() {
             </div>
           </div>
         </section>
-      </main>
+      <BarnetCombinedExtensionPromo context="service" />
+        </main>
     </>
   );
 }
