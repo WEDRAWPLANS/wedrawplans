@@ -135,7 +135,7 @@ const HeroSlider: React.FC<HeroSliderProps> = ({
 
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <a
-            href="#quote"
+            href="#home-quote"
             className="inline-flex items-center justify-center rounded-full bg-[#64b7c4] px-6 py-3 text-[13px] font-semibold uppercase tracking-[0.2em] text-white hover:bg-[#4da4b4]"
           >
             Get my fixed fee quote
