@@ -1244,7 +1244,7 @@ export default function IndexPage() {
                       </p>
                     </div>
 
-                    <form ref={heroFormRef} onSubmit={handleHeroSubmit} className="mx-auto mt-4 max-w-[520px]">
+                    <form id="home-quote" ref={heroFormRef} onSubmit={handleHeroSubmit} className="mx-auto mt-4 max-w-[520px] scroll-mt-36">
                       <input type="text" name="company" autoComplete="off" tabIndex={-1} className="hidden" />
                       <div className="space-y-3">
                         <div className="space-y-1.5">
@@ -1750,17 +1750,20 @@ export default function IndexPage() {
               <HelpCard
                 title="Phone consultation"
                 body="Arrange a telephone consultation to talk through ideas, budget and planning routes before making any commitments."
-                linkText="Schedule a call with a designer"
+                linkText="Request a call with a designer"
+                href="#contact"
               />
               <HelpCard
                 title="Give us a call now"
                 body={`Talk to WEDRAWPLANS today about an extension, loft or new build on ${PHONE_DISPLAY}.`}
                 linkText="Call now"
+                href={PHONE_LINK}
               />
               <HelpCard
                 title="Free quote"
                 body="Use the enquiry form to send a short description and WEDRAWPLANS will email a clear fixed fee for the drawings."
                 linkText="Use the enquiry form"
+                href="#home-quote"
               />
             </div>
           </div>
@@ -2005,21 +2008,17 @@ type HelpCardProps = {
   title: string;
   body: string;
   linkText: string;
+  href: string;
 };
 
-function HelpCard({ title, body, linkText }: HelpCardProps) {
-  function handleClick() {
-    const el = document.getElementById("contact");
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-
+function HelpCard({ title, body, linkText, href }: HelpCardProps) {
   return (
     <div className="rounded-md border border-slate-200 bg-[#fdf8f3] p-4">
       <h3 className="text-[13px] font-semibold uppercase tracking-[0.12em] text-slate-900">{title}</h3>
       <p className="mt-2 text-[12px] text-slate-600">{body}</p>
-      <button type="button" onClick={handleClick} className="mt-2 text-[12px] text-[#29788a] underline">
+      <a href={href} className="mt-2 inline-block text-[12px] text-[#29788a] underline underline-offset-2 hover:text-[#185464] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#29788a]">
         {linkText}
-      </button>
+      </a>
     </div>
   );
 }
