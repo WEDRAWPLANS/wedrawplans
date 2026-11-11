@@ -399,30 +399,21 @@ export default function GetDrawingsQuotePage() {
                   ))}
                 </div>
 
-                <div className="featureGridTwo" style={{ marginTop: 28 }}>
+                <nav className="featureGridTwo" style={{ marginTop: 28 }} aria-label="Explore architectural drawing services">
                   {[
-                    "Rear house extension drawings",
-                    "Loft conversion drawings",
-                    "Side and wraparound extension plans",
-                    "Measured building surveys",
-                    "Internal structural alteration drawings",
-                    "Commercial drawings and planning applications",
-                  ].map((item) => (
-                    <div
-                      key={item}
-                      style={{
-                        background: "rgba(255,255,255,0.08)",
-                        border: "1px solid rgba(255,255,255,0.12)",
-                        borderRadius: 18,
-                        padding: "14px 16px",
-                        fontWeight: 700,
-                        lineHeight: 1.5,
-                      }}
-                    >
-                      {item}
-                    </div>
+                    { label: "Rear house extension drawings", href: "/extension-plans" },
+                    { label: "Loft conversion drawings", href: "/loft-conversion-plans" },
+                    { label: "Side and wraparound extension plans", href: "/extension-plans" },
+                    { label: "Measured building surveys", href: "#measured-surveys" },
+                    { label: "Internal structural alteration drawings", href: "/building-regulation-drawings" },
+                    { label: "Commercial drawings and planning applications", href: "/commercial/change-of-use" },
+                  ].map(({ label, href }) => (
+                    <Link key={label} href={href} className="heroServiceLink">
+                      <span>{label}</span>
+                      <span className="serviceLinkArrow" aria-hidden="true">↗</span>
+                    </Link>
                   ))}
-                </div>
+                </nav>
               </div>
 
               <div
@@ -461,7 +452,7 @@ export default function GetDrawingsQuotePage() {
                   ))}
                 </div>
 
-                <form onSubmit={handleSubmit} noValidate>
+                <form id="request-quote" onSubmit={handleSubmit} noValidate>
                   <div style={{ display: "grid", gap: 14 }}>
                     <div>
                       <label
@@ -672,23 +663,27 @@ export default function GetDrawingsQuotePage() {
                 {[
                   {
                     title: "Planning drawings",
+                    href: "/planning-drawings",
                     text: "Clear proposed planning drawings for house extensions, loft conversions, commercial projects and home improvement works across London and surrounding M25 areas.",
                   },
                   {
                     title: "Measured surveys",
+                    href: "#request-quote",
                     text: "Accurate existing drawings and measured building surveys to support planning applications and building regulation packages.",
                   },
                   {
                     title: "Building regulation drawings",
+                    href: "/building-regulation-drawings",
                     text: "Professional drawing packages for building control, structural coordination and the technical stage of your project.",
                   },
                 ].map((item) => (
-                  <div key={item.title} className="whiteCard">
+                  <Link key={item.title} href={item.href} id={item.title === "Measured surveys" ? "measured-surveys" : undefined} className="whiteCard infoCardLink">
                     <h2 style={{ margin: 0, fontSize: 22 }}>{item.title}</h2>
                     <p style={{ margin: "10px 0 0", color: "#475569", lineHeight: 1.7 }}>
                       {item.text}
                     </p>
-                  </div>
+                    <span className="infoLinkCue" aria-hidden="true">Explore ↗</span>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -762,23 +757,24 @@ export default function GetDrawingsQuotePage() {
                   packages.
                 </p>
 
-                <div className="cardGridThree" style={{ marginTop: 24 }}>
+                <nav className="cardGridThree" style={{ marginTop: 24 }} aria-label="Browse drawing service pages">
                   {[
-                    "House extension drawings",
-                    "Rear extension drawings",
-                    "Side extension drawings",
-                    "Wraparound extension plans",
-                    "Loft conversion drawings",
-                    "Garage conversion drawings",
-                    "Planning application drawings",
-                    "Measured building surveys",
-                    "Commercial drawings",
-                  ].map((item) => (
-                    <div key={item} className="softCard">
-                      {item}
-                    </div>
+                    { label: "House extension drawings", href: "/extension-plans" },
+                    { label: "Rear extension drawings", href: "/extension-plans" },
+                    { label: "Side extension drawings", href: "/extension-plans" },
+                    { label: "Wraparound extension plans", href: "/extension-plans" },
+                    { label: "Loft conversion drawings", href: "/loft-conversion-plans" },
+                    { label: "Garage conversion drawings", href: "/planning-drawings" },
+                    { label: "Planning application drawings", href: "/planning-drawings" },
+                    { label: "Measured building surveys", href: "#measured-surveys" },
+                    { label: "Commercial drawings", href: "/commercial/change-of-use" },
+                  ].map(({ label, href }) => (
+                    <Link key={label} href={href} className="softCard serviceTileLink">
+                      <span>{label}</span>
+                      <span className="serviceLinkArrow" aria-hidden="true">↗</span>
+                    </Link>
                   ))}
-                </div>
+                </nav>
               </div>
             </div>
           </section>
@@ -804,7 +800,7 @@ export default function GetDrawingsQuotePage() {
                   Newham and Wandsworth, as well as nearby surrounding areas around the M25.
                 </p>
 
-                <div className="cardGridFive" style={{ marginTop: 24 }}>
+                <nav className="cardGridFive" style={{ marginTop: 24 }} aria-label="Explore London borough drawing services">
                   {[
                     "Barnet",
                     "Camden",
@@ -817,11 +813,11 @@ export default function GetDrawingsQuotePage() {
                     "Newham",
                     "Wandsworth",
                   ].map((item) => (
-                    <div key={item} className="softCard centerCard">
+                    <Link key={item} href={`/areas/${item.toLowerCase().replace(/\s+/g, "-")}`} className="softCard centerCard serviceTileLink">
                       {item}
-                    </div>
+                    </Link>
                   ))}
-                </div>
+                </nav>
               </div>
             </div>
           </section>
@@ -1106,6 +1102,85 @@ export default function GetDrawingsQuotePage() {
 
         .centerCard {
           text-align: center;
+        }
+
+        /* Real, crawlable internal links with clear mouse/keyboard affordances. */
+        .heroServiceLink {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 12px;
+          background: rgba(255,255,255,0.08);
+          border: 1px solid rgba(255,255,255,0.12);
+          border-radius: 18px;
+          padding: 14px 16px;
+          color: #ffffff;
+          text-decoration: none;
+          font-weight: 700;
+          line-height: 1.5;
+          cursor: pointer;
+          transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+        }
+
+        .heroServiceLink:hover {
+          background: rgba(255,255,255,0.17);
+          border-color: rgba(255,255,255,0.42);
+          transform: translateY(-1px);
+        }
+
+        .serviceLinkArrow {
+          flex-shrink: 0;
+          opacity: 0.72;
+        }
+
+        .serviceTileLink,
+        .infoCardLink {
+          color: #0f172a;
+          text-decoration: none;
+          cursor: pointer;
+          transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+        }
+
+        .serviceTileLink {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 12px;
+        }
+
+        .serviceTileLink.centerCard {
+          justify-content: center;
+        }
+
+        .infoCardLink {
+          display: block;
+        }
+
+        .infoLinkCue {
+          display: inline-block;
+          margin-top: 12px;
+          color: #0e7490;
+          font-size: 13px;
+          font-weight: 700;
+        }
+
+        .serviceTileLink:hover,
+        .infoCardLink:hover {
+          background: #eef9fc;
+          border-color: #6bbbc8;
+          transform: translateY(-1px);
+        }
+
+        .heroServiceLink:focus-visible,
+        .serviceTileLink:focus-visible,
+        .infoCardLink:focus-visible {
+          outline: 3px solid #38bdf8;
+          outline-offset: 3px;
+        }
+
+        #measured-surveys,
+        #request-quote {
+          scroll-margin-top: 120px;
         }
 
         .pillRow {
