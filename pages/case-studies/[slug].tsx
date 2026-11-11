@@ -8,6 +8,32 @@ import CaseStudyGalleryQuote from "../../components/CaseStudyGalleryQuote";
 
 const QUOTE = "/get-drawings-quote";
 
+// Official local-authority planning-register entry points. Where a verified
+// application-specific URL exists, it takes precedence over these search pages.
+// Never construct a presumed direct application URL from an application number.
+const COUNCIL_PLANNING_REGISTERS: Record<string, string> = {
+  "London Borough of Barnet": "https://www.barnet.gov.uk/planning-and-building-control/planning-applications-and-permissions/view-search-and-comment",
+  "London Borough of Wandsworth": "https://www.wandsworth.gov.uk/planningregister",
+  "London Borough of Sutton": "https://www.sutton.gov.uk/planning-and-building/building-control/property-history-historic-certificates/portal",
+  "Hertsmere Borough Council": "https://www.hertsmere.gov.uk/planning-building-control/planning-applications/search-and-comment-on-planning-applications",
+  "London Borough of Hounslow": "https://www.hounslow.gov.uk/planning-building/search-planning-applications",
+  "Borough of Broxbourne Council": "https://www.broxbourne.gov.uk/planning/planning-register/1",
+  "Royal Borough of Greenwich": "https://planning.royalgreenwich.gov.uk/online-applications/",
+  "London Borough of Lewisham": "https://lewisham.gov.uk/myservices/planning/",
+  "London Borough of Tower Hamlets": "https://www.towerhamlets.gov.uk/lgnl/planning_and_building_control/planning_applications/search_and_comment_planning_applications.aspx",
+  "London Borough of Harrow": "https://www.harrow.gov.uk/planning/",
+  "London Borough of Lambeth": "https://www.lambeth.gov.uk/planning-building-control/planning-applications/search-submit-comment-applications",
+  "London Borough of Waltham Forest": "https://www.walthamforest.gov.uk/planning-and-building-control/planning-applications/find-application",
+  "London Borough of Hammersmith & Fulham": "https://public-access.lbhf.gov.uk/online-applications/",
+};
+
+// Verified, public council application records; do not substitute a third-party
+// planning aggregator or mistake an unverified search URL for a decision notice.
+const DIRECT_COUNCIL_RECORDS: Record<string, string> = {
+  "sistova-road-wandsworth-extension-basement":
+    "https://planning.wandsworth.gov.uk/Northgate/PlanningExplorer/Generic/StdDetails.aspx?DAURI=PLANNING&FT=Planning+Application+Details&PARAM0=1242434&PT=Planning+Applications+On-Line&PUBLIC=Y&TYPE=PL%2FPlanningPK.xml&XMLSIDE=&XSLT=%2FNorthgate%2FPlanningExplorer%2FSiteFiles%2FSkins%2FWandsworth%2Fxslt%2FPL%2FPLDetails.xslt",
+};
+
 function Detail({ label, value }: { label: string; value: string }) {
   return (
     <div className="border-t border-[#e4ebe7] py-3.5 first:border-t-0">
@@ -39,6 +65,8 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
     const canonical = "https://www.wedrawplans.co.uk/case-studies/" + item.slug;
   const quoteHref = "/get-drawings-quote?source=case-study&project=" + encodeURIComponent(item.slug);
   const category = categoryForCaseStudy(item);
+  const verifiedDirectRecord = DIRECT_COUNCIL_RECORDS[item.slug];
+  const councilRegisterUrl = verifiedDirectRecord || COUNCIL_PLANNING_REGISTERS[item.authority];
   const related = caseStudies
     .filter((project) => project.slug !== item.slug)
     .map((project) => ({
@@ -138,6 +166,27 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
                 {item.decisionDate ? <Detail label="Decision date" value={item.decisionDate} /> : null}
                 <Detail label="Planning outcome" value={item.outcome} />
               </dl>
+              {councilRegisterUrl ? (
+                <div className="mt-4 border-t border-[#dbe7e2] pt-4">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#526f71]">
+                    Verify using the council's public register
+                  </p>
+                  <a
+                    href={councilRegisterUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-2 inline-flex items-center gap-2 rounded-full border border-[#a7d2c9] bg-white px-4 py-2.5 text-[12px] font-semibold text-[#1c6d76] underline-offset-4 transition hover:border-[#6caeb0] hover:bg-[#eaf6f4] hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1c6d76]"
+                  >
+                    {verifiedDirectRecord ? "View council application record ↗" : "Search official council planning register ↗"}
+                  </a>
+                  <p className="mt-2 text-[11px] leading-5 text-[#617779]">
+                    {verifiedDirectRecord
+                      ? "This opens the recorded application on the council's website in a new tab."
+                      : "Use the application reference shown above to locate the case. Where multiple references are listed, search them individually."}
+                    {" "}Council records may include full property addresses, applicant details and published documents.
+                  </p>
+                </div>
+              ) : null}
             </aside>
           </div>
         </section>
