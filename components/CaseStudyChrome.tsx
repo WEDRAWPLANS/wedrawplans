@@ -1,4 +1,5 @@
 import Link from "next/link";
+import WhatsAppIcon from "./WhatsAppIcon";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
@@ -28,7 +29,7 @@ export function CaseStudyHeader() {
               <span aria-hidden="true">📞</span><span>Call {PHONE_DISPLAY}</span>
             </a>
             <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-[#1ebe57]">
-              <span>WhatsApp us now</span>
+              <WhatsAppIcon size={18} /><span>WhatsApp us now</span>
             </a>
           </div>
         </div>
@@ -123,7 +124,7 @@ export function CaseStudyFooter() {
       </footer>
       <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp with WEDRAWPLANS"
         className="fixed bottom-4 right-4 z-[80] flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg ring-2 ring-white/70 hover:bg-[#1ebe57]">
-        <span className="text-xl" aria-hidden="true">💬</span>
+        <WhatsAppIcon size={26} />
       </a>
     </>
   );
