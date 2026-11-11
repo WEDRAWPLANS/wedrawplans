@@ -589,6 +589,7 @@ function IconButton({
 export default function IndexPage() {
   const heroStartedRef = useRef(false);
   const heroPostcodeRef = useRef<null | HTMLInputElement>(null);
+  const heroFormRef = useRef<HTMLFormElement | null>(null);
   const heroStartTimeRef = useRef<number | null>(null);
 
   const [heroSubmitting, setHeroSubmitting] = useState(false);
@@ -600,6 +601,7 @@ export default function IndexPage() {
   const [heroMessage, setHeroMessage] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileLeadOpen, setMobileLeadOpen] = useState(false);
+  const [showFloatingQuote, setShowFloatingQuote] = useState(false);
 
   const postcodeIntel = detectPostcodeIntel(heroPostcode);
 
@@ -616,6 +618,24 @@ export default function IndexPage() {
       document.body.style.overflow = previousOverflow;
     };
   }, [mobileMenuOpen, mobileLeadOpen]);
+
+  useEffect(() => {
+    // Do not cover homepage form fields with a second call to action on mobile.
+    // Offer the floating quote shortcut only after visitors scroll past the form.
+    const updateFloatingQuote = () => {
+      const form = heroFormRef.current;
+      setShowFloatingQuote(Boolean(form && form.getBoundingClientRect().bottom < 0));
+    };
+
+    updateFloatingQuote();
+    window.addEventListener("scroll", updateFloatingQuote, { passive: true });
+    window.addEventListener("resize", updateFloatingQuote);
+
+    return () => {
+      window.removeEventListener("scroll", updateFloatingQuote);
+      window.removeEventListener("resize", updateFloatingQuote);
+    };
+  }, []);
 
   useCloseOnEscape(mobileMenuOpen, () => setMobileMenuOpen(false));
   useCloseOnEscape(mobileLeadOpen, () => setMobileLeadOpen(false));
@@ -1224,7 +1244,7 @@ export default function IndexPage() {
                       </p>
                     </div>
 
-                    <form onSubmit={handleHeroSubmit} className="mx-auto mt-4 max-w-[520px]">
+                    <form ref={heroFormRef} onSubmit={handleHeroSubmit} className="mx-auto mt-4 max-w-[520px]">
                       <input type="text" name="company" autoComplete="off" tabIndex={-1} className="hidden" />
                       <div className="space-y-3">
                         <div className="space-y-1.5">
@@ -1239,8 +1259,8 @@ export default function IndexPage() {
                             value={heroMessage}
                             onChange={(e) => setHeroMessage(e.target.value)}
                             onFocus={() => trackHeroFormStart("project_description")}
-                            placeholder="e.g. A 4-metre rear kitchen extension. I need advice about planning, Building Regulations and structural drawings."
-                            className="min-h-[108px] w-full resize-y rounded-[16px] border border-slate-200 bg-white px-4 py-3 text-[15px] leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-500 focus:border-[#64b7c4]"
+                            placeholder="Briefly describe your project..."
+                            className="min-h-[96px] w-full resize-y rounded-[16px] border border-slate-200 bg-white px-4 py-3 text-[14px] leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-[#64b7c4]"
                           />
                         </div>
                         <div className="space-y-1.5">
@@ -1895,6 +1915,7 @@ export default function IndexPage() {
           </div>
         </footer>
 
+        {showFloatingQuote && !mobileLeadOpen && (
         <div
           className="fixed inset-x-0 bottom-0 z-[90] px-3 pb-[max(env(safe-area-inset-bottom),8px)] lg:hidden"
           style={{ paddingBottom: "max(env(safe-area-inset-bottom), 8px)" }}
@@ -1924,6 +1945,7 @@ export default function IndexPage() {
             </button>
           </div>
         </div>
+        )}
       </div>
     </>
   );
