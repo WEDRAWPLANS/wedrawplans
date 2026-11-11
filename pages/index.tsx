@@ -9,6 +9,7 @@ import HeroSlider from "../components/HeroSlider";
 import Link from "next/link";
 import AllumLaneSiteFeature from "../components/AllumLaneSiteFeature";
 import HomeGoogleReviews from "../components/HomeGoogleReviews";
+import WhatsAppIcon from "../components/WhatsAppIcon";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
@@ -566,12 +567,14 @@ function IconButton({
   symbol,
   onClick,
   className = "",
+  variant = "default",
 }: {
   href: string;
   label: string;
-  symbol: string;
+  symbol: React.ReactNode;
   onClick?: () => void;
   className?: string;
+  variant?: "default" | "whatsapp";
 }) {
   return (
     <a
@@ -579,7 +582,7 @@ function IconButton({
       aria-label={label}
       title={label}
       onClick={onClick}
-      className={`inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-300 bg-white text-[18px] text-slate-900 shadow-sm transition hover:border-slate-400 ${className}`}
+      className={`inline-flex h-11 w-11 items-center justify-center rounded-full border shadow-sm transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#168344] ${variant === "whatsapp" ? "border-[#25D366] bg-[#25D366] text-white hover:bg-[#1eb857]" : "border-slate-300 bg-white text-[18px] text-slate-900 hover:border-slate-400"} ${className}`}
     >
       <span aria-hidden="true">{symbol}</span>
     </a>
@@ -858,7 +861,7 @@ export default function IndexPage() {
                   onClick={() => trackLeadEvent("whatsapp_click")}
                   className="inline-flex items-center rounded-full bg-[#25D366] px-5 py-2 text-[13px] font-semibold text-white shadow-sm transition hover:bg-[#1ebe57]"
                 >
-                  <span className="mr-2" aria-hidden="true">💬</span>
+                  <span className="mr-2 inline-flex" aria-hidden="true"><WhatsAppIcon size={20} /></span>
                   <span>WhatsApp</span>
                 </a>
               </div>
@@ -872,8 +875,9 @@ export default function IndexPage() {
                 />
                 <IconButton
                   href={WHATSAPP_LINK}
-                  label="WhatsApp"
-                  symbol="💬"
+                  label="Chat with WEDRAWPLANS on WhatsApp"
+                  symbol={<WhatsAppIcon size={24} />}
+                  variant="whatsapp"
                   onClick={() => trackLeadEvent("whatsapp_click")}
                 />
                 <HamburgerButton
@@ -1006,8 +1010,9 @@ export default function IndexPage() {
                 />
                 <IconButton
                   href={WHATSAPP_LINK}
-                  label="Chat on WhatsApp"
-                  symbol="💬"
+                  label="Chat with WEDRAWPLANS on WhatsApp"
+                  symbol={<WhatsAppIcon size={24} />}
+                  variant="whatsapp"
                   onClick={() => trackLeadEvent("whatsapp_click")}
                 />
                 <a
@@ -1206,7 +1211,7 @@ export default function IndexPage() {
                       onClick={() => trackLeadEvent("whatsapp_click")}
                       className="inline-flex items-center rounded-full bg-[#25D366] px-6 py-3 text-[13px] font-semibold uppercase tracking-[0.12em] text-white shadow-sm hover:bg-[#1ebe57]"
                     >
-                      <span className="mr-2" aria-hidden="true">💬</span>
+                      <span className="mr-2 inline-flex" aria-hidden="true"><WhatsAppIcon size={20} /></span>
                       <span>WhatsApp us now</span>
                     </a>
                     <a
@@ -1373,7 +1378,7 @@ export default function IndexPage() {
                         onClick={() => trackLeadEvent("whatsapp_click")}
                         className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#58a45d] px-5 text-[15px] font-semibold text-white shadow-[0_8px_18px_rgba(34,197,94,0.18)]"
                       >
-                        <span className="mr-2" aria-hidden="true">💬</span>
+                        <span className="mr-2 inline-flex" aria-hidden="true"><WhatsAppIcon size={20} /></span>
                         <span>WhatsApp us now</span>
                       </a>
                     </div>
@@ -1828,7 +1833,7 @@ export default function IndexPage() {
                     className="inline-flex items-center justify-center rounded-full bg-[#25D366] px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.12em] text-white shadow-sm hover:bg-[#1ebe57]"
                     onClick={() => trackLeadEvent("whatsapp_click")}
                   >
-                    <span className="mr-2" aria-hidden="true">💬</span>
+                    <span className="mr-2 inline-flex" aria-hidden="true"><WhatsAppIcon size={20} /></span>
                     <span>WhatsApp</span>
                   </a>
                 </div>
