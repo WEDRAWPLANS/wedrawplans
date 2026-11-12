@@ -86,19 +86,20 @@ export default function WoolwichRoadCombinedShowcase() {
         <div className="bg-[#edf7f1] px-5 py-6 sm:px-8 sm:py-8">
           <p className="text-[11px] font-bold uppercase tracking-[.16em] text-[#27745d]">Greenwich, London · Planning permission secured</p>
           <h2 className="mt-3 max-w-3xl text-[26px] font-semibold leading-tight text-[#23474b] sm:text-[33px]">
-            Residential development: planning, technical design and construction
+            Woolwich Road: from planning approval to completed construction
           </h2>
           <p className="mt-4 max-w-4xl text-[14px] leading-7 text-[#567174]">
-            WEDRAWPLANS provided planning, Building Regulations drawings and structural coordination for
-            this residential development. Permission was secured during construction for an additional
-            upper storey containing two two-bedroom flats, increasing the approved residential provision to
-            16 apartments alongside two commercial units.
+            WEDRAWPLANS delivered a comprehensive architectural drawing and coordination service
+            for this mixed-use Greenwich development. During construction, we secured planning permission
+            for two additional two-bedroom apartments at roof level, increasing the scheme from 14 to
+            16 homes alongside two commercial units. Our detailed Building Regulations drawings, structural
+            engineering coordination and construction support helped bring the project through to completion.
           </p>
           <div className="mt-6 grid gap-3 sm:grid-cols-3">
             {[
-              ["Planning approved", "Two additional fourth-floor apartments"],
-              ["28 original images", "Planning, technical drawings and site photography"],
-              ["Project completed", "Construction coordination and Building Control completion"],
+              ["Two more homes", "Additional upper-floor planning approval"],
+              ["Complete design service", "Planning and Building Regulations drawings"],
+              ["Construction support", "Structural coordination and site delivery"],
             ].map(([value, label]) => (
               <div key={label} className="rounded-xl border border-[#d3e3d8] bg-white/80 px-4 py-4">
                 <p className="text-[17px] font-bold text-[#245f5b]">{value}</p>
@@ -117,8 +118,8 @@ export default function WoolwichRoadCombinedShowcase() {
           <p className="text-[11px] font-bold uppercase tracking-[.15em] text-[#a16d63]">Architecture, Building Regulations and structural design</p>
           <h2 id="woolwich-gallery-title" className="mt-2 text-[24px] font-semibold text-[#25484c] sm:text-[28px]">Explore the project drawing packages</h2>
           <p className="mt-3 max-w-3xl text-[12px] leading-6 text-[#617b7a]">
-            Select a category and browse each drawing or photograph using the small thumbnails.
-            Full drawing sheets fit the viewer without cropping, with closer inspection available.
+            Explore the project’s original planning and Building Regulations drawings and rooftop
+            construction photographs. Choose a stage and select a sheet below.
           </p>
         </div>
 
@@ -213,12 +214,14 @@ export default function WoolwichRoadCombinedShowcase() {
       </section>
 
       <section className="rounded-[18px] border border-[#c9e0d3] bg-[#edf7f1] p-5 sm:p-7">
-        <p className="text-[11px] font-bold uppercase tracking-[.15em] text-[#28765e]">WEDRAWPLANS · London planning and Building Regulations specialists</p>
-        <h2 className="mt-2 text-[23px] font-semibold leading-tight text-[#274e4e]">Planning a similar residential project?</h2>
+        <p className="text-[11px] font-bold uppercase tracking-[.15em] text-[#28765e]">Planning & Building Regulation drawing packages</p>
+        <h2 className="mt-2 text-[23px] font-semibold leading-tight text-[#274e4e]">Expert planning and Building Regulations drawing services</h2>
         <p className="mt-3 text-[13px] leading-7 text-[#597374]">
-          From domestic extensions and loft conversions to rooftop additions and residential developments,
-          WEDRAWPLANS prepares coordinated planning and Building Regulations drawing packages and works
-          with structural engineers. Ask for a fixed-fee quotation for your project.
+          WEDRAWPLANS delivers clearly scoped fixed-fee architectural drawing packages for house extensions,
+          loft conversions, residential conversions, new homes and larger developments. We provide
+          planning and Building Regulations drawings, coordinate structural engineering requirements
+          and support applications to the relevant authorities. Contact us for a quotation tailored to
+          your property and the services required.
         </p>
         <div className="mt-5 flex flex-wrap gap-3">
           <a href="#case-study-quote" className="inline-flex rounded-full bg-[#276f75] px-5 py-3 text-[12px] font-bold text-white hover:bg-[#1d575b]">Get your fixed-fee quote</a>
