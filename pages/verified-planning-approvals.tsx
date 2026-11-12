@@ -87,8 +87,8 @@ export default function VerifiedPlanningApprovals() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Sample WEDRAWPLANS planning projects with official council records",
-    description: "A selected sample of WEDRAWPLANS projects from a wider architectural drawing portfolio, with independently accessible council planning records.",
+    name: "Selected WEDRAWPLANS planning projects with official council records",
+    description: "Selected WEDRAWPLANS architectural drawing projects with independently accessible official council planning records.",
     url: SITE + PAGE,
     publisher: { "@type": "Organization", name: "WEDRAWPLANS", url: SITE },
     mainEntity: {
@@ -103,13 +103,13 @@ export default function VerifiedPlanningApprovals() {
   return (
     <>
       <Head>
-        <title>Sample Planning Projects & Official Council Records | WEDRAWPLANS</title>
-        <meta name="description" content="Explore a sample from the wider WEDRAWPLANS project portfolio. See selected extension, loft and planning drawings, with official council records for independent verification." />
+        <title>Selected Planning Projects & Official Council Records | WEDRAWPLANS</title>
+        <meta name="description" content="Explore selected WEDRAWPLANS extension, loft and planning projects with original drawings and official council records for independent verification." />
         <meta name="robots" content={process.env.VERCEL_ENV === "production" ? "index,follow,max-image-preview:large" : "noindex,nofollow"} />
         <link rel="canonical" href={SITE + PAGE} />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="A Sample of Our Planning Projects | Official Council Evidence | WEDRAWPLANS" />
-        <meta property="og:description" content="Explore selected examples from WEDRAWPLANS' wider portfolio, with drawings and links to official council planning records." />
+        <meta property="og:title" content="Selected Planning Projects | Official Council Evidence | WEDRAWPLANS" />
+        <meta property="og:description" content="Explore selected WEDRAWPLANS project examples, architectural drawings and official council planning records." />
         <meta property="og:url" content={SITE + PAGE} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       </Head>
@@ -120,14 +120,13 @@ export default function VerifiedPlanningApprovals() {
         </div>
         <section className="border-b border-[#e2e9e5] bg-white">
           <div className="mx-auto max-w-7xl px-5 pb-12 pt-12 sm:px-8 sm:pb-16 sm:pt-16">
-            <p className="text-[12px] font-semibold uppercase tracking-[.17em] text-[#2a7882]">A sample of the WEDRAWPLANS portfolio</p>
+            <p className="text-[12px] font-semibold uppercase tracking-[.17em] text-[#2a7882]">Selected WEDRAWPLANS planning projects</p>
             <h1 className="mt-4 max-w-5xl text-4xl font-semibold leading-[1.13] tracking-tight text-[#20383b] sm:text-5xl">
               A sample of our projects. <span className="text-[#237980]">Official council evidence.</span>
             </h1>
             <p className="mt-5 max-w-3xl text-[15px] leading-8 text-[#536b70]">
-              These are selected examples from WEDRAWPLANS' wider portfolio — not a complete list of our projects, planning applications or drawing packages.
-              Explore architectural drawings and planning outcomes with direct links to councils' public application documents.
-              From house extensions in Barnet to a basement extension in Wandsworth, the examples demonstrate our work and approach.
+              Explore a selection of WEDRAWPLANS architectural drawings and planning outcomes, supported by direct links to councils' public application documents.
+              From house extensions in Barnet to a basement extension in Wandsworth, these projects demonstrate our design and planning experience.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link href="#verified-projects" className="rounded-full bg-[#287780] px-6 py-3 text-sm font-semibold text-white hover:bg-[#175a63]">Explore verified projects</Link>
@@ -170,8 +169,8 @@ export default function VerifiedPlanningApprovals() {
             House extensions, lofts and outbuildings in Barnet
           </h2>
           <p className="mt-4 max-w-3xl text-[14px] leading-7 text-[#5b7174]">
-            These are illustrative examples of our wider domestic-project portfolio. Explore the drawings, planning approach and council documents for each.
-            Multiple records for one property are listed separately; they are not counted as separate projects.
+            Explore selected residential projects, their drawings, planning approach and official council documents.
+            Where a property has several applications, each is linked to its corresponding council record.
           </p>
           <div className="mt-8 grid gap-5 md:grid-cols-2">
             {homeownerProjects.map((project) => <EvidenceProject key={project.slug} project={project} />)}
@@ -182,7 +181,7 @@ export default function VerifiedPlanningApprovals() {
             <p className="text-[12px] font-semibold uppercase tracking-[.15em] text-[#2a7980]">Additional project types</p>
             <h2 className="mt-2 text-2xl font-semibold sm:text-3xl">Residential conversions and specialist planning cases</h2>
             <p className="mt-4 max-w-3xl text-[14px] leading-7 text-[#5b7174]">
-              These additional examples demonstrate other planning routes from our wider body of work. They are presented separately from domestic extensions, with relevant council decision histories.
+              These selected examples demonstrate other planning routes. They are presented separately from domestic extensions, with relevant council decision histories.
             </p>
             <div className="mt-7 grid gap-5 md:grid-cols-2">
               {otherProjects.map((project) => <EvidenceProject key={project.slug} project={project} />)}
