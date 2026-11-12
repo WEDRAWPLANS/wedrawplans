@@ -1,150 +1,186 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-type Media = { file: string; title: string; description: string };
+type Stage = "planning" | "technical" | "construction";
+type Media = { file: string; title: string; detail: string };
 const base = "/images/case-studies/700-woolwich-road-greenwich-two-new-flats/";
-const quote = "/get-drawings-quote?source=case-study&project=700-woolwich-road-greenwich-two-new-flats";
 const council = "https://planning.royalgreenwich.gov.uk/online-applications/applicationDetails.do?activeTab=documents&keyVal=_GRNW_DCAPR_102414";
+const quote = "/get-drawings-quote?source=case-study&project=700-woolwich-road-greenwich-two-new-flats";
 
-const planning: Media[] = [
-  { file: "planning-07-drawing", title: "Proposed fourth-floor plan — Flats 15 and 16", description: "The essential planning drawing: two new two-bedroom flats within the additional western rooftop storey, with the shared access arrangement." },
-  { file: "planning-02-approved-vs-proposed-section", title: "Approved versus proposed fourth floor and sections", description: "A direct comparison of the earlier rooftop arrangement with the design for Flats 15 and 16 and the building's revised section." },
-  { file: "planning-09-elevation", title: "Proposed front and rear elevations", description: "The full exterior elevations demonstrating how the new upper floor is integrated with the established brick and glazed façades." },
-  { file: "planning-03-proposed-elevations", title: "Proposed side elevations", description: "Two side elevations recording the height and appearance of the additional accommodation." },
-  { file: "planning-10-elevation", title: "Rear elevation and materials schedule", description: "The full rear elevation together with design references and external material proposals." },
-  { file: "planning-01-proposed-fourth-floor", title: "Proposed roof floor and communal green roof", description: "Roof plan showing the PV array, green roof and shared amenity area above the extra residential storey." },
-  { file: "planning-08-drawing", title: "Proposed ground-floor layout and parking", description: "Ground-floor layout recording parking, cycle and refuse facilities and associated changes to building access." },
-  { file: "planning-04-proposed-second-floor", title: "Proposed second-floor layout", description: "The wider residential plan, linked circulation and adjacent-site context below the additional-storey proposal." },
-  { file: "planning-06-comparative-layout", title: "Proposed first-floor residential plan", description: "Typical floor arrangement and relationship between the residential wings and central circulation core." },
-  { file: "planning-05-cover-perspective", title: "Architectural perspective of the mixed-use building", description: "Project-specific WEDRAWPLANS visual illustrating the street frontage and additional residential floor." },
-];
-const technical: Media[] = [
-  { file: "br-01-fourth-floor-services", title: "BR01 — fourth-floor Building Regulations and services plan", description: "Start here: the complete WEDRAWPLANS technical drawing identifies Flats 15 and 16, coordinated MVHR ducting, fire dampers, protected access, layout and services notes." },
-  { file: "br-02-fourth-floor-dimensions", title: "BR02 — dimensioned fourth-floor construction plan", description: "Detailed plan and setting-out dimensions for the two new flats and coordination of construction interfaces." },
-  { file: "br-03-roof-layout", title: "BR03 — roof and amenity layout", description: "Roof plan illustrating the upper amenity area, surface-water considerations, equipment and photovoltaic arrangement." },
-  { file: "br-04-elevation", title: "BR04 — technical elevation", description: "Building height, floor levels and fire-rated cavity-barrier considerations." },
-  { file: "br-05-elevation", title: "BR05 — external finishes and technical elevation", description: "External materials and technical interface details for the additional storey." },
-  { file: "br-06-elevation", title: "BR06 — further building elevation", description: "The technical elevation set and its relation to floor and structural levels." },
-  { file: "br-07-elevation", title: "BR07 — technical section / elevation", description: "Fire and thermal interface considerations presented in the original WEDRAWPLANS drawing set." },
-  { file: "br-08-structural-section", title: "BR08 — construction section and roof build-up", description: "Full building section showing upper-level construction, insulation, living-roof specification and floor build-ups." },
-  { file: "br-13-technical-section", title: "BR13 — stair, roof and section details", description: "Sections and component build-ups connecting the top-floor accommodation to the existing building." },
-  { file: "br-17-fourth-floor-technical-layout", title: "BR17 — additional fourth-floor technical details", description: "Coordinated plan and construction information for the additional residential units." },
-];
-const construction: Media[] = [
-  { file: "construction-01-street-elevation", title: "The additional storey under construction", description: "Woolwich Road street elevation with scaffolding protecting the works at the top of the existing residential building." },
-  { file: "construction-02-roof-steel-frame", title: "Roof steel structure — principal beams", description: "Photograph of the new steel beams and supporting columns for the two additional upper-floor homes." },
-  { file: "construction-03-steelwork-installation", title: "The superstructure takes shape", description: "The exposed roof-level steel framing during installation, showing spans and principal member positions." },
-  { file: "construction-04-street-view", title: "Street frontage during construction", description: "A second original streetscape photograph illustrating scaffold access, upper-level work and the occupied urban context." },
-  { file: "construction-05-active-rooftop-works", title: "Construction activity on the roof", description: "Workers and equipment during erection of the steel frame adjacent to the existing core." },
-  { file: "construction-06-structure-span", title: "Steel beam and column grid", description: "A further view of the structural steelwork across the existing roof slab." },
-  { file: "construction-07-base-plate-and-connection", title: "Structural steel connection detail", description: "Close-up photograph of steelwork support connections and bolted base plates near the edge of the roof structure." },
-  { file: "construction-08-rooftop-frame", title: "Additional steel-frame progress", description: "Roof-level steel members, supports and construction sequencing captured on site." },
-];
+const collections: Record<Stage, { label: string; shortLabel: string; heading: string; intro: string; items: Media[] }> = {
+  planning: {
+    label: "Planning approval", shortLabel: "Planning",
+    heading: "Planning permission for two additional flats",
+    intro: "The rooftop proposal added two two-bedroom apartments to the mixed-use development. Explore the floor plans, elevations, roof design and related access arrangements submitted to Royal Greenwich.",
+    items: [
+      { file: "planning-07-drawing", title: "Proposed fourth-floor plan", detail: "Floor plan for the additional two-bedroom apartments, Flats 15 and 16." },
+      { file: "planning-02-approved-vs-proposed-section", title: "Approved and proposed sections", detail: "Comparison of the roof-level accommodation and the revised building sections." },
+      { file: "planning-09-elevation", title: "Front and rear elevations", detail: "Appearance of the development with the additional upper floor." },
+      { file: "planning-03-proposed-elevations", title: "Side elevations", detail: "Side elevations showing the additional storey and overall building height." },
+      { file: "planning-10-elevation", title: "Rear elevation and external materials", detail: "Proposed rear elevation and external finish details." },
+      { file: "planning-01-proposed-fourth-floor", title: "Roof plan and amenity space", detail: "Roof arrangement, outdoor amenity space, green roof and solar panels." },
+      { file: "planning-08-drawing", title: "Ground-floor layout and parking", detail: "Parking, access, cycles and refuse provision associated with the proposal." },
+      { file: "planning-04-proposed-second-floor", title: "Second-floor plan", detail: "Existing residential arrangement and circulation below the additional storey." },
+      { file: "planning-06-comparative-layout", title: "First-floor residential plan", detail: "The typical residential floor layout and circulation." },
+      { file: "planning-05-cover-perspective", title: "Architectural perspective", detail: "Architectural view of the mixed-use development." },
+    ],
+  },
+  technical: {
+    label: "Building Regulations", shortLabel: "Building Regs",
+    heading: "Building Regulations and construction drawings",
+    intro: "A coordinated technical drawing package covering construction layout, protected circulation, ventilation, building fabric, roof details and structural interfaces. BR01 leads the collection.",
+    items: [
+      { file: "br-01-fourth-floor-services", title: "BR01 — fourth-floor plan and services", detail: "Fourth-floor accommodation, ventilation and services coordination, protected access and construction information." },
+      { file: "br-02-fourth-floor-dimensions", title: "BR02 — dimensioned floor plan", detail: "Setting-out dimensions and the detailed construction layout of the new apartments." },
+      { file: "br-03-roof-layout", title: "BR03 — roof layout", detail: "Roof arrangement, amenity space, drainage considerations and equipment positions." },
+      { file: "br-04-elevation", title: "BR04 — technical elevation", detail: "Building levels, elevations and fire-stopping interfaces." },
+      { file: "br-05-elevation", title: "BR05 — external finishes", detail: "Construction elevation and external-material interfaces." },
+      { file: "br-06-elevation", title: "BR06 — building elevation", detail: "Elevational information coordinated with construction and structural levels." },
+      { file: "br-07-elevation", title: "BR07 — construction elevation", detail: "Building-envelope detailing and junctions with the additional floor." },
+      { file: "br-08-structural-section", title: "BR08 — construction section", detail: "Roof construction, thermal build-ups and upper-floor structural interfaces." },
+      { file: "br-13-technical-section", title: "BR13 — stair and roof sections", detail: "Stair, roof and building section details for the upper-floor accommodation." },
+      { file: "br-17-fourth-floor-technical-layout", title: "BR17 — fourth-floor construction details", detail: "Further technical information and coordinated construction details." },
+    ],
+  },
+  construction: {
+    label: "Structural construction", shortLabel: "Site Photos",
+    heading: "Structural steelwork and site progress",
+    intro: "Construction photography documents the new rooftop structural frame, steel beam-and-column arrangement, connections and the progress of the additional storey.",
+    items: [
+      { file: "construction-01-street-elevation", title: "Additional storey under construction", detail: "Street elevation during construction of the rooftop extension." },
+      { file: "construction-02-roof-steel-frame", title: "Roof-level steel beams", detail: "Steel beams and supporting columns forming the new rooftop structure." },
+      { file: "construction-03-steelwork-installation", title: "Steel frame installation", detail: "Main steel framing erected over the existing roof." },
+      { file: "construction-04-street-view", title: "Street frontage and scaffolding", detail: "External works and scaffold access at roof level." },
+      { file: "construction-05-active-rooftop-works", title: "Rooftop construction", detail: "On-site steelwork installation and construction activity." },
+      { file: "construction-06-structure-span", title: "Steel beam and column grid", detail: "Principal steel spans and supporting members." },
+      { file: "construction-07-base-plate-and-connection", title: "Steel connection and base plate", detail: "Bolted connections and structural support details." },
+      { file: "construction-08-rooftop-frame", title: "Rooftop frame progress", detail: "Additional steel-frame members during construction." },
+    ],
+  },
+};
+const stages: Stage[] = ["planning", "technical", "construction"];
 
-function EvidenceGallery({ items, prefix, initial = 0 }: { items: Media[]; prefix: string; initial?: number }) {
-  const [selected, setSelected] = useState(initial);
-  const [zoom, setZoom] = useState(false);
-  const item = items[selected];
-  const url = base + item.file + ".webp";
+function asset(file: string) { return base + file + ".webp"; }
+
+export default function WoolwichRoadCombinedShowcase() {
+  const [stage, setStage] = useState<Stage>("planning");
+  const [active, setActive] = useState<number | null>(null);
+  const current = collections[stage];
+  const selected = active === null ? null : current.items[active];
+
+  function chooseStage(next: Stage) {
+    setActive(null);
+    setStage(next);
+  }
+  function navigate(direction: number) {
+    setActive(index => index === null ? null : (index + direction + current.items.length) % current.items.length);
+  }
+
+  useEffect(() => {
+    if (active === null) return;
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") setActive(null);
+      if (event.key === "ArrowRight") setActive(index => index === null ? null : (index + 1) % collections[stage].items.length);
+      if (event.key === "ArrowLeft") setActive(index => index === null ? null : (index - 1 + collections[stage].items.length) % collections[stage].items.length);
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [active, stage]);
+
   return (
-    <div className="space-y-4">
-      <figure className="overflow-hidden rounded-[18px] border border-[#dce8e3] bg-white shadow-[0_7px_25px_rgba(34,81,75,.05)]">
-        <button type="button" onClick={() => setZoom(true)} className="block w-full cursor-zoom-in bg-[#f7faf8] p-2 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#286f76] sm:p-4" aria-label={"Enlarge " + item.title}>
-          <Image src={url} alt={"Full original WEDRAWPLANS " + item.title + " for the Woolwich Road residential project"} width={2000} height={1450} className="mx-auto h-auto max-h-[720px] w-full object-contain" sizes="(max-width: 768px) 100vw, 850px" />
-        </button>
-        <figcaption className="px-4 py-4 sm:px-6">
-          <p className="text-[11px] font-bold uppercase tracking-[.12em] text-[#297969]">{prefix} {selected + 1} of {items.length}</p>
-          <h3 className="mt-1 text-[17px] font-semibold text-[#25494c]">{item.title}</h3>
-          <p className="mt-2 text-[13px] leading-6 text-[#5b7377]">{item.description}</p>
-          <p className="mt-2 text-[11px] text-[#778589]">Original WEDRAWPLANS project evidence. Full drawing sheets are shown without cropping; tap to enlarge.</p>
-        </figcaption>
-      </figure>
-      <div className="grid grid-cols-3 gap-2 sm:grid-cols-4" aria-label={"Select " + prefix.toLowerCase()}>
-        {items.map((candidate, index) => (
-          <button key={candidate.file} type="button" onClick={() => setSelected(index)} aria-current={index === selected ? "true" : undefined} aria-label={"Show " + candidate.title} className={"min-w-0 rounded-[12px] border bg-white p-2 text-left transition hover:border-[#78aaa5] " + (index === selected ? "border-[#26757a] ring-2 ring-[#beded7]" : "border-[#dbe5e0]")}>
-            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-md bg-[#f5f8f6]">
-              <Image src={base + candidate.file + ".webp"} alt="" fill sizes="(max-width: 640px) 28vw, 150px" className="object-contain" />
-            </div>
-            <span className="mt-2 block truncate text-[11px] font-semibold text-[#385e61]">{prefix} {index + 1}</span>
-          </button>
-        ))}
-      </div>
-      {zoom ? (
-        <div className="fixed inset-0 z-[100] flex flex-col bg-black/90 p-3 text-white sm:p-7" role="dialog" aria-modal="true" aria-label={item.title}>
-          <div className="mb-3 flex items-center justify-between gap-3">
-            <p className="truncate text-[13px] font-semibold">{item.title}</p>
-            <button type="button" onClick={() => setZoom(false)} className="min-h-11 rounded-full border border-white/40 px-5 text-[13px] font-semibold">Close ×</button>
+    <div className="min-w-0 space-y-7" aria-label="Woolwich Road planning, Building Regulations and construction">
+      <section className="overflow-hidden rounded-[20px] border border-[#d9e7e1] bg-white shadow-[0_10px_32px_rgba(24,72,67,.04)]">
+        <header className="bg-gradient-to-r from-[#edf7f2] to-[#f9fbf9] px-5 py-6 sm:px-7 sm:py-8">
+          <p className="text-[11px] font-semibold uppercase tracking-[.13em] text-[#28776f]">Woolwich Road · Greenwich</p>
+          <h2 className="mt-2 text-[23px] font-semibold leading-tight text-[#244b4e] sm:text-[29px]">An additional storey. Two new homes. One coordinated project.</h2>
+          <p className="mt-3 text-[13px] leading-7 text-[#567175]">
+            WEDRAWPLANS provided planning, Building Regulations construction drawings and structural engineering coordination for this mixed-use residential project. During construction, planning permission was secured for two further two-bedroom flats above the western wing, bringing the revised scheme to 16 residential apartments alongside two commercial units.
+          </p>
+          <p className="mt-3 text-[13px] leading-7 text-[#567175]">
+            The work also included construction-stage coordination and planning-condition submissions. The completed development received its final Building Control certificate.
+          </p>
+          <a href={council} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex min-h-11 items-center rounded-full border border-[#b6d7ce] bg-white px-5 py-3 text-[12px] font-semibold text-[#276d70] hover:bg-[#eaf7f1]">Royal Greenwich planning documents ↗</a>
+        </header>
+
+        <div className="px-5 pb-2 pt-6 sm:px-7">
+          <p className="text-[11px] font-bold uppercase tracking-[.13em] text-[#a46d62]">Project drawings and construction photography</p>
+          <h3 className="mt-2 text-[21px] font-semibold text-[#25494d] sm:text-[25px]">Explore the project</h3>
+          <p className="mt-2 text-[13px] leading-6 text-[#60777a]">Choose a category, then tap any thumbnail to view the drawing or photograph in detail.</p>
+        </div>
+
+        <div className="grid grid-cols-3 gap-2 px-3 py-4 sm:gap-3 sm:px-6" role="tablist" aria-label="Choose project gallery">
+          {stages.map((key, index) => (
+            <button key={key} type="button" role="tab" id={"woolwich-tab-" + key} aria-controls="woolwich-gallery" aria-selected={stage === key} onClick={() => chooseStage(key)}
+              className={"min-w-0 rounded-[13px] border px-2 py-3 text-center transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#26787b] sm:px-3 sm:py-4 " + (stage === key ? "border-[#26777b] bg-[#26777b] text-white shadow-sm" : "border-[#d6e6e0] bg-[#f9fcfa] text-[#376166] hover:border-[#94c0b6]")}>
+              <span className="block text-[10px] font-semibold uppercase opacity-80">0{index + 1}</span>
+              <span className="mt-1 block text-[11px] font-bold leading-4 sm:text-[13px]">{collections[key].shortLabel}</span>
+              <span className="mt-1 block text-[10px] opacity-80">{collections[key].items.length} images</span>
+            </button>
+          ))}
+        </div>
+
+        <div id="woolwich-gallery" role="tabpanel" aria-labelledby={"woolwich-tab-" + stage} className="border-t border-[#e3ece7] px-4 py-6 sm:px-7">
+          <h4 className="text-[18px] font-semibold leading-6 text-[#274b50] sm:text-[21px]">{current.heading}</h4>
+          <p className="mb-5 mt-2 text-[12px] leading-6 text-[#627a7d]">{current.intro}</p>
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4" aria-label={current.label + " thumbnail gallery"}>
+            {current.items.map((item, index) => (
+              <button key={item.file} type="button" onClick={() => setActive(index)}
+                className="group min-w-0 overflow-hidden rounded-[12px] border border-[#d9e7e0] bg-white p-2 text-left shadow-[0_3px_10px_rgba(24,72,67,.035)] transition hover:border-[#71aaa2] hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#26787b]"
+                aria-label={"Enlarge " + item.title}>
+                <span className="relative block aspect-[4/3] overflow-hidden rounded-[7px] bg-[#f6f9f7]">
+                  <Image src={asset(item.file)} alt={item.title} fill draggable={false} sizes="(max-width: 640px) 44vw, (max-width: 1024px) 25vw, 170px" className={"transition group-hover:scale-[1.03] " + (stage === "construction" ? "object-cover" : "object-contain")} />
+                </span>
+                <span className="mt-2 block text-[10px] font-bold uppercase tracking-[.03em] text-[#317770]">{stage === "technical" ? "BR" : stage === "planning" ? "Drawing" : "Photo"} {index + 1}</span>
+                <span className="mt-0.5 block min-h-[34px] text-[11px] font-medium leading-[17px] text-[#375d62]">{item.title}</span>
+                <span className="mt-1 inline-block text-[10px] font-semibold text-[#29787b] group-hover:underline">View larger +</span>
+              </button>
+            ))}
           </div>
-          <div className="relative min-h-0 flex-1">
-            <Image src={url} alt={item.title + " enlarged full original WEDRAWPLANS sheet"} fill sizes="100vw" className="object-contain" />
+        </div>
+      </section>
+
+      <section className="grid gap-3 sm:grid-cols-2" aria-label="Project services">
+        <div className="rounded-[17px] border border-[#d8e7e0] bg-white p-5">
+          <p className="text-[11px] font-semibold uppercase tracking-[.11em] text-[#a16e63]">Planning and additional homes</p>
+          <h3 className="mt-2 text-[17px] font-semibold text-[#294f52]">Permission secured during construction</h3>
+          <p className="mt-2 text-[12px] leading-6 text-[#60787a]">The additional-floor design was coordinated with the existing building, its access, parking and rooftop amenity arrangements. Royal Greenwich granted permission under reference 20/0899/F.</p>
+        </div>
+        <div className="rounded-[17px] border border-[#d8e7e0] bg-white p-5">
+          <p className="text-[11px] font-semibold uppercase tracking-[.11em] text-[#a16e63]">Detailed design and delivery</p>
+          <h3 className="mt-2 text-[17px] font-semibold text-[#294f52]">Building Regulations and structural coordination</h3>
+          <p className="mt-2 text-[12px] leading-6 text-[#60787a]">Construction drawings addressed building fabric, ventilation, fire and acoustic requirements, services and the interface between the rooftop steel frame and existing structure, with support through the construction programme.</p>
+        </div>
+      </section>
+
+      <section className="rounded-[18px] border border-[#cfe3da] bg-[#f3faf6] p-5 sm:p-7">
+        <h3 className="text-[20px] font-semibold text-[#25494e]">Planning an extension, rooftop addition or residential development?</h3>
+        <p className="mt-3 text-[13px] leading-7 text-[#59767a]">WEDRAWPLANS provides planning drawings, Building Regulations packages and structural coordination for homeowners and developers across London. Tell us what you would like to achieve and request a fixed-fee quotation.</p>
+        <div className="mt-5 flex flex-wrap gap-3">
+          <Link href={quote} className="inline-flex min-h-11 items-center rounded-full bg-[#26747a] px-5 py-3 text-[12px] font-bold text-white hover:bg-[#195960]">Get your fixed-fee quote</Link>
+          <Link href="/building-regulation-drawings" className="inline-flex min-h-11 items-center rounded-full border border-[#b5d5ca] bg-white px-5 py-3 text-[12px] font-semibold text-[#286d72]">Building Regulations services</Link>
+        </div>
+      </section>
+
+      {selected && active !== null ? (
+        <div className="fixed inset-0 z-[100] flex flex-col bg-[#101a1c]/95 px-2 pb-4 pt-3 text-white sm:px-6 sm:pb-6" role="dialog" aria-modal="true" aria-label={selected.title}>
+          <div className="mx-auto mb-3 flex w-full max-w-[1600px] items-center justify-between gap-3">
+            <div className="min-w-0">
+              <p className="text-[11px] font-medium uppercase tracking-[.12em] text-[#b7ddd4]">{current.label} · {active + 1} of {current.items.length}</p>
+              <h4 className="truncate text-[14px] font-semibold sm:text-[17px]">{selected.title}</h4>
+            </div>
+            <button autoFocus type="button" onClick={() => setActive(null)} className="min-h-11 shrink-0 rounded-full border border-white/60 bg-white/10 px-5 text-[12px] font-semibold hover:bg-white/20" aria-label="Close image viewer">Close ×</button>
+          </div>
+          <div className="relative mx-auto min-h-0 w-full max-w-[1600px] flex-1 overflow-hidden rounded-lg bg-white">
+            <Image src={asset(selected.file)} alt={selected.title} fill priority sizes="100vw" className="object-contain" draggable={false} />
+          </div>
+          <div className="mx-auto mt-3 flex w-full max-w-[1600px] items-center justify-between gap-3">
+            <button type="button" onClick={() => navigate(-1)} className="min-h-11 shrink-0 rounded-full border border-white/50 px-4 text-[12px] font-semibold hover:bg-white/15" aria-label="Previous image">‹ Previous</button>
+            <p className="max-w-[68%] text-center text-[11px] leading-5 text-[#d5e2df] sm:text-[12px]">{selected.detail}</p>
+            <button type="button" onClick={() => navigate(1)} className="min-h-11 shrink-0 rounded-full border border-white/50 px-4 text-[12px] font-semibold hover:bg-white/15" aria-label="Next image">Next ›</button>
           </div>
         </div>
       ) : null}
-    </div>
-  );
-}
-
-function SectionHeading({ number, heading, intro }: { number: string; heading: string; intro: string }) {
-  return (
-    <header className="mb-6">
-      <p className="text-[11px] font-bold uppercase tracking-[.16em] text-[#ac7064]">Part {number} of 3</p>
-      <h3 className="mt-2 text-[22px] font-semibold leading-tight text-[#23494f] sm:text-[27px]">{heading}</h3>
-      <p className="mt-3 text-[13px] leading-7 text-[#597478]">{intro}</p>
-    </header>
-  );
-}
-
-export default function WoolwichRoadCombinedShowcase() {
-  return (
-    <div className="space-y-10">
-      <section className="rounded-[18px] border border-[#d3e4db] bg-white p-5 sm:p-7">
-        <p className="text-[11px] font-bold uppercase tracking-[.15em] text-[#287868]">WEDRAWPLANS · a selected residential development project</p>
-        <h3 className="mt-3 text-[21px] font-semibold leading-tight text-[#24494c]">From original multi-unit technical design to two more homes above the building</h3>
-        <p className="mt-3 text-[13px] leading-7 text-[#526f72]">The original approved development contained 14 flats and two commercial units. During the construction programme, WEDRAWPLANS prepared and coordinated the additional-floor planning proposal for two further two-bedroom homes. Greenwich’s 2020 officer report assessed the proposal alongside parking, access, rooftop amenity space and conservation-area considerations, recommending approval. The submitted drawings identify the new dwellings as Flats 15 and 16.</p>
-        <p className="mt-3 text-[13px] leading-7 text-[#526f72]">WEDRAWPLANS also provided the Building Regulations construction drawing package, coordinated structural engineering requirements, construction information and planning-condition submissions. The developer confirms that the development is complete and the final Building Control certificate has been issued. The certificate itself is not reproduced in this gallery.</p>
-        <a className="mt-5 inline-flex min-h-11 items-center rounded-full border border-[#bdd7d1] bg-[#f1faf6] px-5 py-3 text-[12px] font-bold text-[#256e74] hover:bg-[#e3f3ec]" target="_blank" rel="noopener noreferrer" href={council}>View the Royal Greenwich application documents ↗</a>
-      </section>
-
-      <section id="woolwich-planning" className="scroll-mt-24">
-        <SectionHeading number="1" heading="Planning approval for two additional fourth-floor flats" intro="See how the original 14-flat planning permission was supplemented by a carefully coordinated proposal for two further two-bedroom flats, including the approved-versus-proposed layouts, elevations and building sections." />
-        <EvidenceGallery items={planning} prefix="Planning drawing" />
-      </section>
-
-      <section id="woolwich-building-regulations" className="scroll-mt-24 border-t border-[#d8e6df] pt-9">
-        <SectionHeading number="2" heading="Building Regulations and structural engineering coordination" intro="The technical showcase begins with BR01, then moves through the dimensioned plans, roof, external elevations, building sections, fire and acoustic considerations, floor build-ups, insulation and services interfaces. These are technical construction drawings, distinct from the council planning drawings." />
-        <EvidenceGallery items={technical} prefix="Building Regulations drawing" />
-        <div className="mt-6 grid gap-3 sm:grid-cols-2">
-          {[
-            ["Building Control design", "A detailed technical drawing package with services, fire and acoustic coordination, construction elements and protected circulation."],
-            ["Structural engineering interfaces", "Coordination of steel support positions, the existing slab, roof penetrations, floor levels and frame connections."],
-            ["Environmental performance", "Roof insulation, vapour control, green-roof build-up and mechanical ventilation information shown in the technical sheets."],
-            ["Site and statutory coordination", "Information to address construction-stage requirements and the relevant planning-condition process."],
-          ].map(([title, description]) => (
-            <div key={title} className="rounded-[14px] border border-[#dbe7e1] bg-[#f8fbf9] p-4">
-              <h4 className="text-[14px] font-semibold text-[#2b5557]">{title}</h4>
-              <p className="mt-2 text-[12px] leading-6 text-[#5b7478]">{description}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section id="woolwich-construction" className="scroll-mt-24 border-t border-[#d8e6df] pt-9">
-        <SectionHeading number="3" heading="Construction progress — the new roof-level steel superstructure" intro="Original dated site photographs show the top-floor addition being built: scaffolding on the street elevation, the exposed steel beams and columns, connection plates, framing and contractors at work. Each photo is individually watermarked over the building or structure, not the sky." />
-        <EvidenceGallery items={construction} prefix="Construction photograph" />
-        <p className="mt-5 text-[12px] leading-6 text-[#687c7f]">Construction photographs document works in progress rather than serving as structural calculation approval or final Building Control certificates.</p>
-      </section>
-
-      <section className="rounded-[18px] border border-[#cfe1d7] bg-[#f3faf6] p-6 sm:p-7">
-        <p className="text-[11px] font-bold uppercase tracking-[.15em] text-[#287969]">Planning · Building Regulations · Structural engineering · Construction support</p>
-        <h3 className="mt-3 text-[21px] font-semibold text-[#244b4d]">Planning an extension, loft conversion, flats or a larger residential development?</h3>
-        <p className="mt-3 text-[13px] leading-7 text-[#526f72]">WEDRAWPLANS prepares coordinated planning and Building Regulations drawing packages for homeowners and developers in Greenwich and across London. Ask for a clear fixed-fee quotation appropriate to your scheme.</p>
-        <div className="mt-5 flex flex-wrap gap-3">
-          <Link href={quote} className="inline-flex min-h-11 items-center rounded-full bg-[#256f75] px-5 py-3 text-[13px] font-bold text-white hover:bg-[#18575f]">Get your fixed-fee quote</Link>
-          <Link href="/building-regulation-drawings" className="inline-flex min-h-11 items-center rounded-full border border-[#accdc8] px-5 py-3 text-[12px] font-semibold text-[#286f75]">Building Regulations services</Link>
-          <Link href="/areas/greenwich" className="inline-flex min-h-11 items-center rounded-full border border-[#accdc8] px-5 py-3 text-[12px] font-semibold text-[#286f75]">Greenwich projects</Link>
-        </div>
-      </section>
     </div>
   );
 }
