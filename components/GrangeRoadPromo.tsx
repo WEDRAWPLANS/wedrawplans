@@ -24,9 +24,13 @@ export default function GrangeRoadPromo({ context = "service" }: Props) {
         </div>
         <Link href={href} className="block overflow-hidden rounded-[18px] border border-[#d1e1d7] bg-white p-3 shadow-[0_10px_30px_rgba(32,82,76,.05)]" aria-label="Open the Grange Road side extension project">
           <div className="relative aspect-[1880/1329]">
-            <Image src="/images/case-studies/grange-road-edgware-side-extension/planning-01-proposed-floor-and-roof.webp" alt="WEDRAWPLANS original proposed floor and roof drawings for a lawful side extension in Edgware, with subtle diagonal watermark" fill sizes="(max-width: 768px) 100vw, 42vw" draggable={false} className="pointer-events-none object-contain" />
+            <Image
+              src={context === "service" ? "/images/case-studies/grange-road-edgware-side-extension/br-01-ground-floor-services.webp" : "/images/case-studies/grange-road-edgware-side-extension/planning-01-proposed-floor-and-roof.webp"}
+              alt={context === "service" ? "Full original WEDRAWPLANS Building Regulations BR01 drawing showing the Edgware side extension ground floor and service layouts" : "WEDRAWPLANS original proposed floor and roof drawings for a lawful side extension in Edgware, with subtle diagonal watermark"}
+              fill sizes="(max-width: 768px) 100vw, 42vw" draggable={false} className="pointer-events-none object-contain"
+            />
           </div>
-          <p className="mt-2 text-center text-[11px] font-semibold text-[#557677]">Proposed planning sheet · Full-sheet redacted web preview</p>
+          <p className="mt-2 text-center text-[11px] font-semibold text-[#557677]">{context === "service" ? "Drawing 1 · Original Building Regulations BR01 technical sheet" : "Proposed planning sheet · Full-sheet redacted web preview"}</p>
         </Link>
       </div>
     </section>

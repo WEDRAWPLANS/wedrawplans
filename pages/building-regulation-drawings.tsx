@@ -1,8 +1,6 @@
-import GrangeRoadPromo from "../components/GrangeRoadPromo";
+import BuildingRegProofShowcase from "../components/BuildingRegProofShowcase";
 import IntentAreaDirectory from "../components/IntentAreaDirectory";
-import BarnetCombinedExtensionPromo from "../components/BarnetCombinedExtensionPromo";
 import Head from "next/head";
-import CranbournePromo from "../components/CranbournePromo";
 import Link from "next/link";
 import AllumLaneSiteFeature from "../components/AllumLaneSiteFeature";
 import { FormEvent, useMemo, useState } from "react";
@@ -21,10 +19,10 @@ const PHONE_TEL = "+442036548508";
 const EMAIL = "info@wedrawplans.com";
 const PAGE_URL = "https://www.wedrawplans.co.uk/building-regulation-drawings";
 const PAGE_TITLE =
-  "Building Regulation Drawings London | Building Control Drawings & Technical Packs | WEDRAWPLANS";
+  "Building Regulation Drawings London | Extensions, Lofts & Structural Coordination | WEDRAWPLANS";
 const PAGE_DESCRIPTION =
-  "Building Regulation drawings in London for extensions, loft conversions, new builds, conversions and commercial projects. Detailed building control drawing packs, construction details, structural coordination and technical drawing packages prepared for Building Control review, pricing and construction.";
-const HERO_IMAGE = "/images/building-regulations-hero.jpg";
+  "Building Regulation drawings in London for house extensions, lofts and new homes. Genuine planning approvals, technical drawing examples and structural coordination. Fixed-fee quotes.";
+const HERO_IMAGE = "/images/case-studies/cranbourne-drive-hoddesdon-combined/bc-3d-views.webp";
 const SECOND_IMAGE = "/images/building-regulations-detail.jpg";
 const LOGO_IMAGE = "/images/wedrawplans-logo.png";
 const WHATSAPP_LINK =
@@ -111,6 +109,14 @@ const projectTypes = [
     text: "Conversion drawings for self contained flats, internal layouts, fire separation, sound requirements and technical coordination.",
   },
   {
+    title: "New flats and residential buildings",
+    text: "Technical plans for multiple dwellings, shared escape routes, fire and acoustic separation, access and consultant coordination.",
+  },
+  {
+    title: "High-rise and higher-risk buildings",
+    text: "Specialist drawing coordination subject to competent appointments, project-specific statutory checks and the Building Safety Regulator where applicable.",
+  },
+  {
     title: "Commercial works",
     text: "Technical drawing support for fit outs, mixed use buildings, change of use projects and commercial building alterations.",
   },
@@ -119,7 +125,7 @@ const projectTypes = [
 const processSteps = [
   {
     title: "Step 1",
-    text: "Send the approved drawings, site address, photos and a short description of what needs to be built.",
+    text: "Tell us the property postcode and what you would like to build. No drawings are needed for the first enquiry.",
   },
   {
     title: "Step 2",
@@ -314,6 +320,10 @@ export default function BuildingRegulationDrawingsPage() {
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (!form.email.trim() && !form.phone.trim()) {
+      setSubmitState({ type: "error", message: "Please enter an email address or telephone number so we can reply." });
+      return;
+    }
     setIsSubmitting(true);
     setSubmitState({ type: "idle", message: "" });
 
@@ -516,27 +526,34 @@ export default function BuildingRegulationDrawingsPage() {
                     </p>
 
                     <h1 className="mt-2 text-[24px] font-black uppercase leading-snug tracking-[0.10em] text-slate-950 sm:text-[31px] lg:text-[35px]">
-                      Building Regulation Drawings in London for Extensions, Lofts, New Builds and Conversions
+                      Building Regulation Drawings &amp; Structural Coordination in London
                     </h1>
 
                     <p className="mt-3 text-[13px] font-semibold tracking-[0.08em] text-slate-800">
-                      Technical plans • Construction sections • Structural coordination • Initial survey within 48 hours
+                      Extensions • Loft conversions • New homes • Building Control technical packs
                     </p>
                   </div>
 
                   <div className="overflow-hidden border border-slate-200 bg-white shadow-md">
                     <img
                       src={HERO_IMAGE}
-                      alt="Building Regulation drawings and construction detail package for London projects"
-                      className="h-[260px] w-full object-cover sm:h-[330px]"
+                      alt="Original WEDRAWPLANS BC-10 design sheet showing Cranbourne Drive rear extension and separate loft technical design"
+                      className="h-[260px] w-full bg-[#f2f7f4] object-contain sm:h-[330px]"
                     />
                   </div>
 
+                  <p className="-mt-2 text-[11px] leading-5 text-slate-600">
+                    Original WEDRAWPLANS technical presentation · Cranbourne Drive, Broxbourne
+                  </p>
+                  <p className="text-[14px] font-semibold leading-7 text-[#214c50]">
+                    Planning + Building Regulations + structural engineer coordination in one clearly agreed
+                    service package, or a standalone technical drawing pack if your planning drawings are already prepared.
+                  </p>
                   <p className="text-[13px] leading-7 text-slate-700">
-                    WEDRAWPLANS prepares Building Regulation drawings and technical drawing packs for homeowners,
-                    developers, landlords and commercial clients across London and surrounding M25 areas. We help
-                    turn approved planning drawings or agreed design layouts into practical construction information
-                    suitable for Building Control review, builder pricing and site coordination.
+                    WEDRAWPLANS prepares Building Regulation drawings for homeowners extending, converting or improving
+                    their homes across London and the M25. We help translate the design into buildable construction
+                    information for Building Control review, builders and coordination with your structural engineer.
+                    Any structural calculations and specialist designs are scoped separately in writing.
                   </p>
 
                   <p className="text-[13px] leading-7 text-slate-700">
@@ -546,9 +563,9 @@ export default function BuildingRegulationDrawingsPage() {
                   </p>
 
                   <p className="text-[13px] leading-7 text-slate-700">
-                    Whether you are preparing a rear extension, loft conversion, new build house, conversion to flats,
-                    commercial alteration or internal structural change, we can review the scope and prepare a clear
-                    Building Regulation drawing package for the next stage.
+                    Rear and side extensions, kitchen remodelling, loft conversions, structural alterations and new
+                    houses are our domestic priorities. We also help with new flats and specialist residential or
+                    commercial work, with genuine examples and a clear technical scope below.
                   </p>
 
                   <div className="grid gap-3 sm:grid-cols-3">
@@ -569,7 +586,7 @@ export default function BuildingRegulationDrawingsPage() {
                   <ul className="space-y-1 text-[13px] text-slate-800">
                     <li>• Extension Building Regulation drawings and Building Control packs</li>
                     <li>• Loft conversion technical drawings, stair layouts and roof build ups</li>
-                    <li>• New build, conversion, commercial and mixed use technical packages</li>
+                    <li>• New-build houses, flat conversions and technical construction packages</li>
                     <li>• Structural engineer coordination for beams, padstones and openings</li>
                     <li>• Construction sections, insulation notes and practical build details</li>
                     <li>• Support for London borough projects and surrounding M25 locations</li>
@@ -638,9 +655,9 @@ export default function BuildingRegulationDrawingsPage() {
                       Building Regulation drawing enquiry
                     </h2>
                     <p className="mt-3 text-slate-700">
-                      Tell us briefly what has planning consent and what needs a
-                      technical drawing pack. We will review the scope and come back
-                      with a clear quote.
+                      Tell us what you would like to build and your postcode.
+                      Request planning drawings, Building Regulations and structural coordination together,
+                      or just the technical stage. No drawings are needed for an initial quote.
                     </p>
 
                     <form
@@ -672,7 +689,7 @@ export default function BuildingRegulationDrawingsPage() {
                             htmlFor="phone"
                             className="mb-2 block text-sm font-medium text-slate-900"
                           >
-                            Telephone
+                            Telephone (optional if email supplied)
                           </label>
                           <input
                             id="phone"
@@ -690,13 +707,12 @@ export default function BuildingRegulationDrawingsPage() {
                             htmlFor="email"
                             className="mb-2 block text-sm font-medium text-slate-900"
                           >
-                            Email
+                            Email (or telephone)
                           </label>
                           <input
                             id="email"
-                            type="email"
-                            required
-                            value={form.email}
+                          type="email"
+                          value={form.email}
                             onChange={(e) =>
                               setForm((prev) => ({ ...prev, email: e.target.value }))
                             }
@@ -748,6 +764,8 @@ export default function BuildingRegulationDrawingsPage() {
                           <option>Conversion Building Regulation Drawings</option>
                           <option>Commercial Building Regulation Drawings</option>
                           <option>Structural Coordination Package</option>
+                          <option>New Flats / Residential Building Technical Drawings</option>
+                          <option>Higher-Risk / Specialist Residential Technical Enquiry</option>
                         </select>
                       </div>
 
@@ -765,7 +783,7 @@ export default function BuildingRegulationDrawingsPage() {
                           onChange={(e) =>
                             setForm((prev) => ({ ...prev, message: e.target.value }))
                           }
-                          placeholder="For example: rear extension has planning approved, technical pack needed for building control submission, structural engineer already instructed, steel and insulation coordination required."
+                          placeholder="Example: I want a rear kitchen extension. Please quote for planning, Building Regulations and structural coordination. Or: my plans are approved and I need construction drawings."
                           className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-slate-500"
                         />
                       </div>
@@ -791,8 +809,9 @@ export default function BuildingRegulationDrawingsPage() {
                       ) : null}
 
                       <p className="text-xs leading-5 text-slate-500">
-                        WEDRAWPLANS focuses on practical, buildable technical details
-                        that align with structural design and building control expectations.
+                        Email or telephone is sufficient. No existing plans are required for an initial enquiry.
+                        Planning and Building Control approvals are separate; structural calculations are
+                        included only when agreed in the written fee scope.
                       </p>
                     </form>
                   </aside>
@@ -817,6 +836,8 @@ export default function BuildingRegulationDrawingsPage() {
               </div>
             </div>
           </section>
+
+          <BuildingRegProofShowcase />
 
           <section className="border-b border-slate-200 bg-white py-8">
             <div className="mx-auto max-w-6xl px-4 lg:px-6">
@@ -1107,7 +1128,7 @@ export default function BuildingRegulationDrawingsPage() {
                   </h2>
                   <p className="mt-5 text-[14px] leading-7 text-slate-200">
                     WEDRAWPLANS supports projects across London boroughs and selected surrounding M25 locations.
-                    If your project is ready for Building Control stage, send the address, drawings and project details
+                    If your project is ready for Building Control stage, send your postcode and a short description of the work
                     and we will review the technical route.
                   </p>
 
@@ -1295,10 +1316,7 @@ export default function BuildingRegulationDrawingsPage() {
             </div>
           </footer>
 
-          <CranbournePromo context="Building Regulations" />
-          <GrangeRoadPromo context="service" />
           <SmartPlanningAssistant boroughName="London" />
-        <BarnetCombinedExtensionPromo context="service" />
         </main>
       </div>
     </>
