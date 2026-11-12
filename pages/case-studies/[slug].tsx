@@ -5,6 +5,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { caseStudies, caseStudyBySlug, categoryForCaseStudy, CaseStudy } from "../../data/caseStudies";
 import { CaseStudyHeader, CaseStudyBottom, CaseStudyFooter } from "../../components/CaseStudyChrome";
 import CaseStudyGalleryQuote from "../../components/CaseStudyGalleryQuote";
+import { BARNET_COUNCIL_DOCUMENTS } from "../../data/councilPlanningEvidence";
 
 const QUOTE = "/get-drawings-quote";
 
@@ -39,6 +40,24 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
     const canonical = "https://www.wedrawplans.co.uk/case-studies/" + item.slug;
   const quoteHref = "/get-drawings-quote?source=case-study&project=" + encodeURIComponent(item.slug);
   const category = categoryForCaseStudy(item);
+  // Only link to individually verified council records, never a guessed keyVal.
+  // Some WEDRAWPLANS projects have multiple planning decisions: keep each
+  // decision's evidence distinct and do not imply each record is an approval.
+  const barnetProjectReferences = item.authority === "London Borough of Barnet"
+    ? Array.from(new Set([
+        ...(item.reference.match(/\b\d{2}\/\d{3,5}\/[A-Z0-9]+\b/g) || []),
+        ...(item.decisions || []).map((decision) => decision.reference),
+      ]))
+    : [];
+  const councilRecordEntries = barnetProjectReferences
+    .filter((ref) => BARNET_COUNCIL_DOCUMENTS[ref])
+    .map((ref) => ({ reference: ref, url: BARNET_COUNCIL_DOCUMENTS[ref] }));
+  const primaryReference = item.reference.match(/\b\d{2}\/\d{3,5}\/[A-Z0-9]+\b/)?.[0];
+  const primaryCouncilDocumentUrl =
+    item.councilApplicationUrl ||
+    (primaryReference ? BARNET_COUNCIL_DOCUMENTS[primaryReference] : undefined);
+  const relatedCouncilRecords = councilRecordEntries.filter((record) => record.url !== primaryCouncilDocumentUrl);
+
   const related = caseStudies
     .filter((project) => project.slug !== item.slug)
     .map((project) => ({
@@ -63,6 +82,12 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
     publisher: { "@type": "Organization", name: "WEDRAWPLANS", url: "https://www.wedrawplans.co.uk/" },
     mainEntityOfPage: canonical,
     about: [item.service, item.authority, item.location],
+    ...((primaryCouncilDocumentUrl || councilRecordEntries.length)
+      ? { citation: Array.from(new Set([
+          ...(primaryCouncilDocumentUrl ? [primaryCouncilDocumentUrl] : []),
+          ...councilRecordEntries.map((record) => record.url),
+        ])) }
+      : {}),
   };
   const breadcrumbJson = {
     "@context": "https://schema.org",
@@ -138,7 +163,7 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
                 {item.decisionDate ? <Detail label="Decision date" value={item.decisionDate} /> : null}
                 <Detail label="Planning outcome" value={item.outcome} />
               </dl>
-              {item.councilApplicationUrl ? (
+              {primaryCouncilDocumentUrl || relatedCouncilRecords.length ? (
                 <div className="mt-5 rounded-[16px] border border-[#bddbd4] bg-white p-4 shadow-[0_5px_18px_rgba(20,81,76,0.04)] sm:p-5">
                   <div className="flex items-start gap-3">
                     <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#e6f4ef] text-[18px] text-[#247267]">✓</span>
@@ -154,16 +179,38 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
                       </p>
                     </div>
                   </div>
-                  <a
-                    href={item.councilApplicationUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-4 flex min-h-11 w-full items-center justify-between gap-3 rounded-xl bg-[#266f78] px-4 py-3 text-left text-[13px] font-bold text-white no-underline transition-colors hover:bg-[#19545c] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#266f78]"
-                    aria-label={`Open official council planning application ${item.reference} (new tab)`}
-                  >
-                    <span>View council planning documents</span>
-                    <span aria-hidden="true">↗</span>
-                  </a>
+                  {primaryCouncilDocumentUrl ? (
+                    <a
+                      href={primaryCouncilDocumentUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-4 flex min-h-11 w-full items-center justify-between gap-3 rounded-xl bg-[#266f78] px-4 py-3 text-left text-[13px] font-bold text-white no-underline transition-colors hover:bg-[#19545c] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#266f78]"
+                      aria-label={`Open official council planning application ${primaryReference || item.reference} (new tab)`}
+                    >
+                      <span>View council planning documents</span>
+                      <span aria-hidden="true">↗</span>
+                    </a>
+                  ) : null}
+                  {relatedCouncilRecords.length > 0 ? (
+                    <div className="mt-4 border-t border-[#dce8e4] pt-3">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#557574]">
+                        Additional planning records at this property
+                      </p>
+                      <div className="mt-2 flex flex-col gap-2">
+                        {relatedCouncilRecords.map((record) => (
+                          <a
+                            key={record.reference}
+                            href={record.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-[#226f78] underline underline-offset-4 hover:text-[#164d55] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#226f78]"
+                          >
+                            {record.reference} — view council documents <span aria-hidden="true">↗</span>
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
                   <p className="mt-3 text-[11px] leading-5 text-[#6a7c7e]">
                     Opens the council-held application record in a new tab. Check its documents section for the submitted drawings, supporting reports and decision notice.
                   </p>
@@ -277,6 +324,16 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
                       <div key={decision.reference} className="rounded-[14px] border border-[#e2e8e4] bg-[#fafbf9] p-4">
                         <p className="text-[12px] font-semibold text-[#226f76]">{decision.reference} · {decision.outcome}</p>
                         <p className="mt-2 text-[13px] leading-6 text-[#5a6c71]">{decision.description}</p>
+                        {item.authority === "London Borough of Barnet" && BARNET_COUNCIL_DOCUMENTS[decision.reference] ? (
+                          <a
+                            href={BARNET_COUNCIL_DOCUMENTS[decision.reference]}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="mt-2 inline-flex text-[12px] font-semibold text-[#226f78] underline underline-offset-4 hover:text-[#164d55]"
+                          >
+                            View documents for {decision.reference} on Barnet Council ↗
+                          </a>
+                        ) : null}
                       </div>
                     ))}
                   </div>
@@ -286,9 +343,9 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
                 <div className="mt-6 rounded-[16px] border border-[#e2e8e4] bg-[#fafbf9] p-5">
                   <h3 className="text-[14px] font-semibold">Approved documents referenced by the council</h3>
                   <p className="mt-2 text-[13px] leading-7 text-[#586f73]">{item.approvedDrawings}</p>
-                  {item.councilApplicationUrl ? (
+                  {primaryCouncilDocumentUrl ? (
                     <a
-                      href={item.councilApplicationUrl}
+                      href={primaryCouncilDocumentUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="mt-3 inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#226f78] underline underline-offset-4 hover:text-[#164d55] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#226f78]"
