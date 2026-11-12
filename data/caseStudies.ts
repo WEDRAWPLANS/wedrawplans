@@ -44,6 +44,7 @@ export const caseStudies: CaseStudy[] = [
     location: "Regents Park Road, Finchley, London N3",
     authority: "London Borough of Barnet",
     reference: "23/2690/191",
+    councilApplicationUrl: "https://publicaccess.barnet.gov.uk/online-applications/applicationDetails.do?activeTab=documents&keyVal=RWK6CJJI09100",
     year: "2023",
     decisionDate: "8 August 2023",
     service: "Mixed-use commercial and residential ground-floor layout; existing-use certificate for self-contained dwelling",
