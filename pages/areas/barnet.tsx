@@ -1,3 +1,4 @@
+import GrangeRoadPromo from "../../components/GrangeRoadPromo";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BarnetCombinedExtensionPromo from "../../components/BarnetCombinedExtensionPromo";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
@@ -441,9 +442,9 @@ export default function BarnetAreaPage() {
           <ServiceInternalLinks boroughName="Barnet" />
 
 <ApprovalEvidenceStrip
-  slugs={["sunbury-avenue-mill-hill-side-rear-extension","the-reddings-mill-hill-extension-basement-loft","13-reddings-close-mill-hill-first-floor-extension","northolm-edgware-two-storey-extension"]}
-  title="Approved house-extension projects in Barnet"
-  intro="Selected planning permissions for side, rear and first-floor extensions in Mill Hill and Edgware, with details of the approved proposals and drawings."
+  slugs={["grange-road-edgware-side-extension-lawful-development-building-regulations","sunbury-avenue-mill-hill-side-rear-extension","the-reddings-mill-hill-extension-basement-loft","13-reddings-close-mill-hill-first-floor-extension","northolm-edgware-two-storey-extension"]}
+  title="Barnet extensions: permissions and lawful-development certificates"
+  intro="See real Barnet decisions and plans for side, rear and first-floor extensions in Edgware and Mill Hill, including a granted Lawful Development Certificate and separate technical drawings."
 />
 
           <section className="border-b border-slate-200 bg-white py-10">
@@ -1034,6 +1035,7 @@ export default function BarnetAreaPage() {
 
           <SmartPlanningAssistant boroughName="Barnet" />
         <BarnetCombinedExtensionPromo context="local" area="Barnet" />
+        <GrangeRoadPromo context="local" />
           <BoroughIntentCapture slug="barnet" />
         </main>
 

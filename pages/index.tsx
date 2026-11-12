@@ -1,3 +1,4 @@
+import GrangeRoadPromo from "../components/GrangeRoadPromo";
 import IntentAreaDirectory from "../components/IntentAreaDirectory";
 import BarnetCombinedExtensionPromo from "../components/BarnetCombinedExtensionPromo";
 import NearbySuttonLoftCaseStudy from "../components/NearbySuttonLoftCaseStudy";
@@ -1482,6 +1483,7 @@ export default function IndexPage() {
 
         <NearbySuttonLoftCaseStudy context="home" />
         <BarnetCombinedExtensionPromo context="home" />
+        <GrangeRoadPromo context="home" />
         <section aria-labelledby="home-greenwich-tenflats" className="border-b border-[#dce6df] bg-white py-9">
           <div className="mx-auto grid max-w-6xl items-center gap-5 px-4 md:grid-cols-[minmax(0,.6fr)_minmax(0,1fr)] lg:px-6">
             <Link href="/case-studies/chestnut-rise-plumstead-greenwich-ten-flats-lawfulness" className="block overflow-hidden rounded-xl border border-[#dbe7df] bg-[#f7faf7]" aria-label="See the Greenwich ten-flat Certificate of Lawfulness case study">

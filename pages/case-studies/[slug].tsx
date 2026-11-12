@@ -5,6 +5,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { caseStudies, caseStudyBySlug, categoryForCaseStudy, CaseStudy } from "../../data/caseStudies";
 import { CaseStudyHeader, CaseStudyBottom, CaseStudyFooter } from "../../components/CaseStudyChrome";
 import CaseStudyGalleryQuote from "../../components/CaseStudyGalleryQuote";
+import GrangeRoadCombinedShowcase from "../../components/GrangeRoadCombinedShowcase";
 import { BARNET_COUNCIL_DOCUMENTS } from "../../data/councilPlanningEvidence";
 
 const QUOTE = "/get-drawings-quote";
@@ -32,7 +33,8 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
   const isCranbourneCombined = item.slug === "cranbourne-drive-hoddesdon-planning-project";
   const isSuttonLoft = item.slug === "sutton-loft-conversion-planning-permission-wallington";
   const isLeicesterCombined = item.slug === "leicester-road-barnet-rear-extension-planning-building-regulations-structural";
-  const isFlagship = isReddings || isAllum || isSistova || isCromwell || isBrockley || isHarrowStudios || isCannon || isSunburyCare || isGreenwichTen || isHendonHMO || isCranbourneCombined || isSuttonLoft || isLeicesterCombined;
+  const isGrangeCombined = item.slug === "grange-road-edgware-side-extension-lawful-development-building-regulations";
+  const isFlagship = isReddings || isAllum || isSistova || isCromwell || isBrockley || isHarrowStudios || isCannon || isSunburyCare || isGreenwichTen || isHendonHMO || isCranbourneCombined || isSuttonLoft || isLeicesterCombined || isGrangeCombined;
   const useOriginalDrawingGallery = item.slug === "sistova-road-wandsworth-extension-basement" || item.slug === "cromwell-road-hounslow-rear-extension" || isFlagship;
   const isProduction = process.env.VERCEL_ENV === "production";
   const hasApprovedVisual = [item.heroImage, item.secondaryImage].some(src => Boolean(src) && (src.startsWith("/images/case-studies/") || src.startsWith("/images/hyde-")));
@@ -220,7 +222,7 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
           </div>
         </section>
 
-        {useOriginalDrawingGallery ? <CaseStudyGalleryQuote projects={[item]} context="project" /> : null}
+        {isGrangeCombined ? <GrangeRoadCombinedShowcase project={item} /> : useOriginalDrawingGallery ? <CaseStudyGalleryQuote projects={[item]} context="project" /> : null}
         {showGallery && !useOriginalDrawingGallery ? (
         <section id="project-drawings" className="border-y border-[#e2e9e5] bg-[#f5f8f6]" aria-labelledby="drawing-heading">
           <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-14">

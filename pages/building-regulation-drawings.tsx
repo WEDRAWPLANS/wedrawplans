@@ -1,3 +1,4 @@
+import GrangeRoadPromo from "../components/GrangeRoadPromo";
 import IntentAreaDirectory from "../components/IntentAreaDirectory";
 import BarnetCombinedExtensionPromo from "../components/BarnetCombinedExtensionPromo";
 import Head from "next/head";
@@ -1295,6 +1296,7 @@ export default function BuildingRegulationDrawingsPage() {
           </footer>
 
           <CranbournePromo context="Building Regulations" />
+          <GrangeRoadPromo context="service" />
           <SmartPlanningAssistant boroughName="London" />
         <BarnetCombinedExtensionPromo context="service" />
         </main>
