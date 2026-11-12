@@ -146,7 +146,7 @@ export default function CaseStudiesHub() {
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#26747a]">Independently verifiable projects</p>
               <h2 className="mt-1 text-lg font-semibold text-[#224549]">See official council evidence for a sample of our projects</h2>
-              <p className="mt-2 max-w-3xl text-[13px] leading-6 text-[#577071]">Explore a sample of our wider portfolio: 16 Barnet project presentations linked to 22 distinct council records, plus a Wandsworth extension. This is not our full project history.</p>
+              <p className="mt-2 max-w-3xl text-[13px] leading-6 text-[#577071]">Explore selected projects: 16 Barnet case-study presentations linked to 22 distinct council records, plus an approved Wandsworth extension.</p>
             </div>
             <Link href="/verified-planning-approvals" className="inline-flex shrink-0 items-center justify-center rounded-full bg-[#287780] px-5 py-3 text-[13px] font-semibold text-white hover:bg-[#175a63]">
               Explore verified planning evidence →
