@@ -273,6 +273,7 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
   const isCranbourneCombined = !isHub && project?.slug === "cranbourne-drive-hoddesdon-planning-project";
   const isSuttonLoft = !isHub && project?.slug === "sutton-loft-conversion-planning-permission-wallington";
   const isLeicesterCombined = !isHub && project?.slug === "leicester-road-barnet-rear-extension-planning-building-regulations-structural";
+  const isWoolwich = !isHub && project?.slug === "700-woolwich-road-greenwich-two-new-flats";
   const isApprovedDrawingShowcase = isSistova || isCromwell;
   const quotePanelRef = useRef<HTMLDivElement>(null);
   const [quoteHeight, setQuoteHeight] = useState<number | undefined>(undefined);
