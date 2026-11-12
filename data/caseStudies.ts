@@ -21,6 +21,7 @@ export type CaseStudy = {
   review?: string;
   featured?: boolean;
   decisionDate?: string;
+  councilApplicationUrl?: string;
   approvedDrawings?: string;
   keyConditions?: string[];
   highlights?: string[];
@@ -88,6 +89,7 @@ export const caseStudies: CaseStudy[] = [
     location: "Sistova Road, Wandsworth, SW12 9QS",
     authority: "London Borough of Wandsworth",
     reference: "2026/1748",
+    councilApplicationUrl: "https://planning.wandsworth.gov.uk/wandsworth/application-details/1242434",
     year: "2026",
     service: "Side and rear extension, basement lightwell and access works",
     outcome: "Planning permission granted",
