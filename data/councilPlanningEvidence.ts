@@ -23,4 +23,7 @@ export const BARNET_COUNCIL_DOCUMENTS: Record<string, string> = {
   "18/0927/S73": "https://publicaccess.barnet.gov.uk/online-applications/applicationDetails.do?activeTab=documents&keyVal=P41H0BJILM400",
   "21/2335/HSE": "https://publicaccess.barnet.gov.uk/online-applications/applicationDetails.do?activeTab=documents&keyVal=QS5QSAJIMAV00",
   "17/4639/HSE": "https://publicaccess.barnet.gov.uk/online-applications/applicationDetails.do?activeTab=documents&keyVal=OTABMQJILAK00",
+  "20/3400/HSE": "https://publicaccess.barnet.gov.uk/online-applications/applicationDetails.do?activeTab=documents&keyVal=QDZ3R5JIIIR00",
+  "20/5459/HSE": "https://publicaccess.barnet.gov.uk/online-applications/applicationDetails.do?activeTab=documents&keyVal=QJQNV3JIN3U00",
+  "20/5460/HSE": "https://publicaccess.barnet.gov.uk/online-applications/applicationDetails.do?activeTab=documents&keyVal=QJQNVMJIN3W00",
 };
