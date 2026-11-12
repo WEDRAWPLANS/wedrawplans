@@ -138,6 +138,37 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
                 {item.decisionDate ? <Detail label="Decision date" value={item.decisionDate} /> : null}
                 <Detail label="Planning outcome" value={item.outcome} />
               </dl>
+              {item.councilApplicationUrl ? (
+                <div className="mt-5 rounded-[16px] border border-[#bddbd4] bg-white p-4 shadow-[0_5px_18px_rgba(20,81,76,0.04)] sm:p-5">
+                  <div className="flex items-start gap-3">
+                    <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#e6f4ef] text-[18px] text-[#247267]">✓</span>
+                    <div className="min-w-0">
+                      <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#2b756d]">
+                        Independent planning evidence
+                      </p>
+                      <h3 className="mt-1 text-[15px] font-semibold leading-6 text-[#24464a]">
+                        Official council application record
+                      </h3>
+                      <p className="mt-1 text-[12px] leading-5 text-[#667c7e]">
+                        {item.authority} · Reference {item.reference}
+                      </p>
+                    </div>
+                  </div>
+                  <a
+                    href={item.councilApplicationUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 flex min-h-11 w-full items-center justify-between gap-3 rounded-xl bg-[#266f78] px-4 py-3 text-left text-[13px] font-bold text-white no-underline transition-colors hover:bg-[#19545c] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#266f78]"
+                    aria-label={`Open official council planning application ${item.reference} (new tab)`}
+                  >
+                    <span>View council planning documents</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                  <p className="mt-3 text-[11px] leading-5 text-[#6a7c7e]">
+                    Opens the council-held application record in a new tab. Check its documents section for the submitted drawings, supporting reports and decision notice.
+                  </p>
+                </div>
+              ) : null}
             </aside>
           </div>
         </section>
@@ -255,6 +286,16 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
                 <div className="mt-6 rounded-[16px] border border-[#e2e8e4] bg-[#fafbf9] p-5">
                   <h3 className="text-[14px] font-semibold">Approved documents referenced by the council</h3>
                   <p className="mt-2 text-[13px] leading-7 text-[#586f73]">{item.approvedDrawings}</p>
+                  {item.councilApplicationUrl ? (
+                    <a
+                      href={item.councilApplicationUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-3 inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#226f78] underline underline-offset-4 hover:text-[#164d55] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#226f78]"
+                    >
+                      Compare with the official council document list <span aria-hidden="true">↗</span>
+                    </a>
+                  ) : null}
                 </div>
               ) : null}
             </div>
