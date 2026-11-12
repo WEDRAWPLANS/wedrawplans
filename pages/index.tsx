@@ -1460,7 +1460,7 @@ export default function IndexPage() {
         <section aria-label="Sample of WEDRAWPLANS planning-approved projects" className="bg-white pb-2 pt-9 sm:pt-12">
           <div className="mx-auto max-w-6xl px-4 lg:px-6">
             <p className="text-[11px] font-bold uppercase tracking-[.17em] text-[#26786e]">Sample of WEDRAWPLANS approved projects</p>
-            <h2 className="mt-2 max-w-3xl text-[24px] font-semibold leading-tight text-[#244952] sm:text-[31px]">Planning approvals for real home improvements</h2>
+            <h2 className="mt-2 max-w-3xl text-[24px] font-semibold leading-tight text-[#244952] sm:text-[31px]">Approved extension and loft projects</h2>
             <p className="mt-2 max-w-3xl text-[13px] leading-7 text-[#577277]">Explore selected planning-approved extensions and loft schemes, original architectural drawings and the decisions behind the projects.</p>
           </div>
         </section>
