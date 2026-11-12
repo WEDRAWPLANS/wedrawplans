@@ -31,10 +31,10 @@ const larger = [
   {
     id: "woolwich",
     place: "Woolwich Road · Greenwich",
-    title: "Two new flats in an approved additional-floor scheme",
-    desc: "A documented planning approval for an additional floor with two residential flats, access and parking changes. The published example demonstrates architectural planning work; Building Regulations approval is not claimed.",
-    image: "/images/barnet-project-drawings-board.jpg",
-    alt: "WEDRAWPLANS architectural drawing presentation showing residential design expertise",
+    title: "Two more flats · Building Regulations, planning and structural coordination",
+    desc: "Greenwich approved two further residential flats above an original 14-flat mixed-use scheme. Explore original WEDRAWPLANS planning drawings, the BR01-led Building Regulations technical set and rooftop steelwork construction photographs; completion certification is confirmed by the client.",
+    image: "/images/case-studies/700-woolwich-road-greenwich-two-new-flats/construction-02-roof-steel-frame.webp",
+    alt: "Original Woolwich Road rooftop steel-frame construction photograph showing WEDRAWPLANS residential structural coordination",
     href: "/case-studies/700-woolwich-road-greenwich-two-new-flats",
   },
   {
@@ -126,7 +126,7 @@ export default function BuildingRegProofShowcase() {
           </h2>
           <p className="mt-3 max-w-4xl text-[13px] leading-7 text-[#536d72]">
             We also quote for new-build Building Regulation drawings, flats, structural alterations and mixed-use
-            building projects. The larger examples below document the planning stage only; technical design,
+            building projects. The larger examples document their evidenced planning and technical stages; specialist design,
             structural engineering and Building Control requirements depend on the specific scheme.
           </p>
           <div className="mt-6 grid gap-5 lg:grid-cols-2">
@@ -138,7 +138,7 @@ export default function BuildingRegProofShowcase() {
                   </div>
                 </Link>
                 <div className="p-5">
-                  <p className="text-[10px] font-bold uppercase tracking-[.12em] text-[#287660]">{item.place} · Planning-stage project</p>
+                  <p className="text-[10px] font-bold uppercase tracking-[.12em] text-[#287660]">{item.place} · {item.id === "woolwich" ? "Planning + Building Regulations + structure" : "Planning-stage project"}</p>
                   <h3 className="mt-2 text-[20px] font-bold text-[#23454d]">{item.title}</h3>
                   <p className="mt-3 text-[13px] leading-7 text-[#536d72]">{item.desc}</p>
                   <Link href={item.href} className="mt-4 inline-flex text-[13px] font-bold text-[#246a74] underline underline-offset-4">Explore planning project</Link>
