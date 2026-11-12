@@ -8,16 +8,16 @@ const quote = "/get-drawings-quote?source=case-study&project=700-woolwich-road-g
 const council = "https://planning.royalgreenwich.gov.uk/online-applications/applicationDetails.do?activeTab=documents&keyVal=_GRNW_DCAPR_102414";
 
 const planning: Media[] = [
-  { file: "planning-01-proposed-fourth-floor", title: "Proposed fourth-floor layout", description: "The featured planning drawing showing the two additional two-bedroom flats and access to the upper-level accommodation." },
-  { file: "planning-02-approved-vs-proposed-section", title: "Approved and proposed building sections", description: "The before-and-proposed comparison showing the extra floor within the building's overall height and massing." },
-  { file: "planning-03-proposed-elevations", title: "Proposed building elevations", description: "External elevations illustrating the additional residential accommodation and its relationship to the original building." },
-  { file: "planning-04-proposed-second-floor", title: "Proposed second-floor layout", description: "The underlying residential development context and the circulation arrangement serving the development." },
-  { file: "planning-05-cover-perspective", title: "Planning presentation and perspective", description: "WEDRAWPLANS presentation drawing prepared for the additional residential storey." },
-  { file: "planning-06-comparative-layout", title: "Planning drawing and layout", description: "Supporting original planning-stage drawing retained in complete-sheet format." },
-  { file: "planning-07-drawing", title: "Supporting planning drawing", description: "Additional original planning-stage drawing submitted as part of the architectural set." },
-  { file: "planning-08-drawing", title: "Supporting planning arrangement", description: "Additional full-sheet planning documentation." },
-  { file: "planning-09-elevation", title: "Additional elevation drawing", description: "An original sheet showing the building exterior and approved design context." },
-  { file: "planning-10-elevation", title: "Additional building elevation", description: "Original planning elevation illustrating the proposed architectural treatment." },
+  { file: "planning-07-drawing", title: "Proposed fourth-floor plan — Flats 15 and 16", description: "The essential planning drawing: two new two-bedroom flats within the additional western rooftop storey, with the shared access arrangement." },
+  { file: "planning-02-approved-vs-proposed-section", title: "Approved versus proposed fourth floor and sections", description: "A direct comparison of the earlier rooftop arrangement with the design for Flats 15 and 16 and the building's revised section." },
+  { file: "planning-09-elevation", title: "Proposed front and rear elevations", description: "The full exterior elevations demonstrating how the new upper floor is integrated with the established brick and glazed façades." },
+  { file: "planning-03-proposed-elevations", title: "Proposed side elevations", description: "Two side elevations recording the height and appearance of the additional accommodation." },
+  { file: "planning-10-elevation", title: "Rear elevation and materials schedule", description: "The full rear elevation together with design references and external material proposals." },
+  { file: "planning-01-proposed-fourth-floor", title: "Proposed roof floor and communal green roof", description: "Roof plan showing the PV array, green roof and shared amenity area above the extra residential storey." },
+  { file: "planning-08-drawing", title: "Proposed ground-floor layout and parking", description: "Ground-floor layout recording parking, cycle and refuse facilities and associated changes to building access." },
+  { file: "planning-04-proposed-second-floor", title: "Proposed second-floor layout", description: "The wider residential plan, linked circulation and adjacent-site context below the additional-storey proposal." },
+  { file: "planning-06-comparative-layout", title: "Proposed first-floor residential plan", description: "Typical floor arrangement and relationship between the residential wings and central circulation core." },
+  { file: "planning-05-cover-perspective", title: "Architectural perspective of the mixed-use building", description: "Project-specific WEDRAWPLANS visual illustrating the street frontage and additional residential floor." },
 ];
 const technical: Media[] = [
   { file: "br-01-fourth-floor-services", title: "BR01 — fourth-floor Building Regulations and services plan", description: "Start here: the complete WEDRAWPLANS technical drawing identifies Flats 15 and 16, coordinated MVHR ducting, fire dampers, protected access, layout and services notes." },
