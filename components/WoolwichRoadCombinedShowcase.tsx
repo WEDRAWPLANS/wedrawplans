@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 type Stage = "planning" | "technical" | "construction";
 type Media = { file: string; title: string; detail: string };
@@ -65,122 +65,167 @@ function asset(file: string) { return base + file + ".webp"; }
 
 export default function WoolwichRoadCombinedShowcase() {
   const [stage, setStage] = useState<Stage>("planning");
-  const [active, setActive] = useState<number | null>(null);
-  const current = collections[stage];
-  const selected = active === null ? null : current.items[active];
-
-  function chooseStage(next: Stage) {
-    setActive(null);
-    setStage(next);
-  }
-  function navigate(direction: number) {
-    setActive(index => index === null ? null : (index + direction + current.items.length) % current.items.length);
-  }
-
-  useEffect(() => {
-    if (active === null) return;
-    function onKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") setActive(null);
-      if (event.key === "ArrowRight") setActive(index => index === null ? null : (index + 1) % collections[stage].items.length);
-      if (event.key === "ArrowLeft") setActive(index => index === null ? null : (index - 1 + collections[stage].items.length) % collections[stage].items.length);
-    }
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [active, stage]);
+  const [planningIndex, setPlanningIndex] = useState(0);
+  const [technicalIndex, setTechnicalIndex] = useState(0);
+  const [constructionIndex, setConstructionIndex] = useState(0);
+  const [zoom, setZoom] = useState(false);
+  const items = collections[stage].items;
+  const index = stage === "planning" ? planningIndex : stage === "technical" ? technicalIndex : constructionIndex;
+  const item = items[index] || items[0];
+  const go = (i: number) => {
+    const next = (i + items.length) % items.length;
+    (stage === "planning" ? setPlanningIndex : stage === "technical" ? setTechnicalIndex : setConstructionIndex)(next);
+    setZoom(false);
+  };
+  const setPhaseTab = (next: Stage) => { setStage(next); setZoom(false); };
+  const image = (file: string) => base + file + ".webp";
 
   return (
-    <div className="min-w-0 space-y-7" aria-label="Woolwich Road planning, Building Regulations and construction">
-      <section className="overflow-hidden rounded-[20px] border border-[#d9e7e1] bg-white shadow-[0_10px_32px_rgba(24,72,67,.04)]">
-        <header className="bg-gradient-to-r from-[#edf7f2] to-[#f9fbf9] px-5 py-6 sm:px-7 sm:py-8">
-          <p className="text-[11px] font-semibold uppercase tracking-[.13em] text-[#28776f]">Woolwich Road · Greenwich</p>
-          <h2 className="mt-2 text-[23px] font-semibold leading-tight text-[#244b4e] sm:text-[29px]">An additional storey. Two new homes. One coordinated project.</h2>
-          <p className="mt-3 text-[13px] leading-7 text-[#567175]">
-            WEDRAWPLANS provided planning, Building Regulations construction drawings and structural engineering coordination for this mixed-use residential project. During construction, planning permission was secured for two further two-bedroom flats above the western wing, bringing the revised scheme to 16 residential apartments alongside two commercial units.
+    <div className="w-full min-w-0 max-w-full space-y-7 select-none" onContextMenu={e => e.preventDefault()} onDragStart={e => e.preventDefault()}>
+      <section className="overflow-hidden rounded-[22px] border border-[#d5e4dd] bg-white shadow-[0_18px_42px_rgba(25,70,72,.065)]">
+        <div className="bg-[#edf7f1] px-5 py-6 sm:px-8 sm:py-8">
+          <p className="text-[11px] font-bold uppercase tracking-[.16em] text-[#27745d]">Greenwich, London · Planning permission secured</p>
+          <h2 className="mt-3 max-w-3xl text-[26px] font-semibold leading-tight text-[#23474b] sm:text-[33px]">
+            Residential development: planning, technical design and construction
+          </h2>
+          <p className="mt-4 max-w-4xl text-[14px] leading-7 text-[#567174]">
+            WEDRAWPLANS provided planning, Building Regulations drawings and structural coordination for
+            this residential development. Permission was secured during construction for an additional
+            upper storey containing two two-bedroom flats, increasing the approved residential provision to
+            16 apartments alongside two commercial units.
           </p>
-          <p className="mt-3 text-[13px] leading-7 text-[#567175]">
-            The work also included construction-stage coordination and planning-condition submissions. The completed development received its final Building Control certificate.
-          </p>
-          <a href={council} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex min-h-11 items-center rounded-full border border-[#b6d7ce] bg-white px-5 py-3 text-[12px] font-semibold text-[#276d70] hover:bg-[#eaf7f1]">Royal Greenwich planning documents ↗</a>
-        </header>
+          <div className="mt-6 grid gap-3 sm:grid-cols-3">
+            {[
+              ["Planning approved", "Two additional fourth-floor apartments"],
+              ["28 original images", "Planning, technical drawings and site photography"],
+              ["Project completed", "Construction coordination and Building Control completion"],
+            ].map(([value, label]) => (
+              <div key={label} className="rounded-xl border border-[#d3e3d8] bg-white/80 px-4 py-4">
+                <p className="text-[17px] font-bold text-[#245f5b]">{value}</p>
+                <p className="mt-1 text-[11px] leading-5 text-[#627b7a]">{label}</p>
+              </div>
+            ))}
+          </div>
+          <a href={council} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex rounded-full border border-[#b2d2c3] bg-white px-5 py-3 text-[12px] font-semibold text-[#286b70] hover:bg-[#e2f0e8]">
+            View Royal Greenwich planning records ↗
+          </a>
+        </div>
+      </section>
 
-        <div className="px-5 pb-2 pt-6 sm:px-7">
-          <p className="text-[11px] font-bold uppercase tracking-[.13em] text-[#a46d62]">Project drawings and construction photography</p>
-          <h3 className="mt-2 text-[21px] font-semibold text-[#25494d] sm:text-[25px]">Explore the project</h3>
-          <p className="mt-2 text-[13px] leading-6 text-[#60777a]">Choose a category, then tap any thumbnail to view the drawing or photograph in detail.</p>
+      <section className="overflow-hidden rounded-[21px] border border-[#d6e5df] bg-white shadow-[0_15px_38px_rgba(20,68,68,.05)]" aria-labelledby="woolwich-gallery-title">
+        <div className="px-4 pb-4 pt-6 sm:px-7">
+          <p className="text-[11px] font-bold uppercase tracking-[.15em] text-[#a16d63]">Architecture, Building Regulations and structural design</p>
+          <h2 id="woolwich-gallery-title" className="mt-2 text-[24px] font-semibold text-[#25484c] sm:text-[28px]">Explore the project drawing packages</h2>
+          <p className="mt-3 max-w-3xl text-[12px] leading-6 text-[#617b7a]">
+            Select a category and browse each drawing or photograph using the small thumbnails.
+            Full drawing sheets fit the viewer without cropping, with closer inspection available.
+          </p>
         </div>
 
-        <div className="grid grid-cols-3 gap-2 px-3 py-4 sm:gap-3 sm:px-6" role="tablist" aria-label="Choose project gallery">
-          {stages.map((key, index) => (
-            <button key={key} type="button" role="tab" id={"woolwich-tab-" + key} aria-controls="woolwich-gallery" aria-selected={stage === key} onClick={() => chooseStage(key)}
-              className={"min-w-0 rounded-[13px] border px-2 py-3 text-center transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#26787b] sm:px-3 sm:py-4 " + (stage === key ? "border-[#26777b] bg-[#26777b] text-white shadow-sm" : "border-[#d6e6e0] bg-[#f9fcfa] text-[#376166] hover:border-[#94c0b6]")}>
-              <span className="block text-[10px] font-semibold uppercase opacity-80">0{index + 1}</span>
-              <span className="mt-1 block text-[11px] font-bold leading-4 sm:text-[13px]">{collections[key].shortLabel}</span>
-              <span className="mt-1 block text-[10px] opacity-80">{collections[key].items.length} images</span>
+        <div className="grid grid-cols-3 gap-2 border-y border-[#deebe3] bg-[#f6faf7] p-3 sm:gap-4 sm:p-5" role="tablist" aria-label="Project drawing stage">
+          {stages.map((key, number) => (
+            <button key={key} type="button" role="tab" aria-selected={stage === key} aria-controls="woolwich-selected-image" onClick={() => setPhaseTab(key)}
+              className={"min-w-0 rounded-xl px-2 py-4 text-left text-[11px] font-bold leading-5 transition sm:px-5 sm:text-[14px] " + (stage === key ? "bg-[#286f74] text-white shadow-sm" : "border border-[#d3e3dc] bg-white text-[#42686a] hover:bg-[#edf6f0]")}>
+              <span className="block text-[10px] font-semibold uppercase tracking-[.1em] opacity-75">Stage 0{number + 1} · {collections[key].items.length} images</span>
+              {key === "planning" ? "Planning & design" : key === "technical" ? "Building Regulations" : "Construction photos"}
             </button>
           ))}
         </div>
 
-        <div id="woolwich-gallery" role="tabpanel" aria-labelledby={"woolwich-tab-" + stage} className="border-t border-[#e3ece7] px-4 py-6 sm:px-7">
-          <h4 className="text-[18px] font-semibold leading-6 text-[#274b50] sm:text-[21px]">{current.heading}</h4>
-          <p className="mb-5 mt-2 text-[12px] leading-6 text-[#627a7d]">{current.intro}</p>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4" aria-label={current.label + " thumbnail gallery"}>
-            {current.items.map((item, index) => (
-              <button key={item.file} type="button" onClick={() => setActive(index)}
-                className="group min-w-0 overflow-hidden rounded-[12px] border border-[#d9e7e0] bg-white p-2 text-left shadow-[0_3px_10px_rgba(24,72,67,.035)] transition hover:border-[#71aaa2] hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#26787b]"
-                aria-label={"Enlarge " + item.title}>
-                <span className="relative block aspect-[4/3] overflow-hidden rounded-[7px] bg-[#f6f9f7]">
-                  <Image src={asset(item.file)} alt={item.title} fill draggable={false} sizes="(max-width: 640px) 44vw, (max-width: 1024px) 25vw, 170px" className={"transition group-hover:scale-[1.03] " + (stage === "construction" ? "object-cover" : "object-contain")} />
-                </span>
-                <span className="mt-2 block text-[10px] font-bold uppercase tracking-[.03em] text-[#317770]">{stage === "technical" ? "BR" : stage === "planning" ? "Drawing" : "Photo"} {index + 1}</span>
-                <span className="mt-0.5 block min-h-[34px] text-[11px] font-medium leading-[17px] text-[#375d62]">{item.title}</span>
-                <span className="mt-1 inline-block text-[10px] font-semibold text-[#29787b] group-hover:underline">View larger +</span>
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="grid gap-3 sm:grid-cols-2" aria-label="Project services">
-        <div className="rounded-[17px] border border-[#d8e7e0] bg-white p-5">
-          <p className="text-[11px] font-semibold uppercase tracking-[.11em] text-[#a16e63]">Planning and additional homes</p>
-          <h3 className="mt-2 text-[17px] font-semibold text-[#294f52]">Permission secured during construction</h3>
-          <p className="mt-2 text-[12px] leading-6 text-[#60787a]">The additional-floor design was coordinated with the existing building, its access, parking and rooftop amenity arrangements. Royal Greenwich granted permission under reference 20/0899/F.</p>
-        </div>
-        <div className="rounded-[17px] border border-[#d8e7e0] bg-white p-5">
-          <p className="text-[11px] font-semibold uppercase tracking-[.11em] text-[#a16e63]">Detailed design and delivery</p>
-          <h3 className="mt-2 text-[17px] font-semibold text-[#294f52]">Building Regulations and structural coordination</h3>
-          <p className="mt-2 text-[12px] leading-6 text-[#60787a]">Construction drawings addressed building fabric, ventilation, fire and acoustic requirements, services and the interface between the rooftop steel frame and existing structure, with support through the construction programme.</p>
-        </div>
-      </section>
-
-      <section className="rounded-[18px] border border-[#cfe3da] bg-[#f3faf6] p-5 sm:p-7">
-        <h3 className="text-[20px] font-semibold text-[#25494e]">Planning an extension, rooftop addition or residential development?</h3>
-        <p className="mt-3 text-[13px] leading-7 text-[#59767a]">WEDRAWPLANS provides planning drawings, Building Regulations packages and structural coordination for homeowners and developers across London. Tell us what you would like to achieve and request a fixed-fee quotation.</p>
-        <div className="mt-5 flex flex-wrap gap-3">
-          <Link href={quote} className="inline-flex min-h-11 items-center rounded-full bg-[#26747a] px-5 py-3 text-[12px] font-bold text-white hover:bg-[#195960]">Get your fixed-fee quote</Link>
-          <Link href="/building-regulation-drawings" className="inline-flex min-h-11 items-center rounded-full border border-[#b5d5ca] bg-white px-5 py-3 text-[12px] font-semibold text-[#286d72]">Building Regulations services</Link>
-        </div>
-      </section>
-
-      {selected && active !== null ? (
-        <div className="fixed inset-0 z-[100] flex flex-col bg-[#101a1c]/95 px-2 pb-4 pt-3 text-white sm:px-6 sm:pb-6" role="dialog" aria-modal="true" aria-label={selected.title}>
-          <div className="mx-auto mb-3 flex w-full max-w-[1600px] items-center justify-between gap-3">
-            <div className="min-w-0">
-              <p className="text-[11px] font-medium uppercase tracking-[.12em] text-[#b7ddd4]">{current.label} · {active + 1} of {current.items.length}</p>
-              <h4 className="truncate text-[14px] font-semibold sm:text-[17px]">{selected.title}</h4>
+        <div className="border-b border-[#e5eee8] px-4 py-4 sm:px-6">
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[.12em] text-[#29735d]">
+                {stage === "planning" ? "Planning drawing" : stage === "technical" ? "Building Regulations" : "Construction photograph"} · {index + 1} of {items.length}
+              </p>
+              <h3 className="mt-1 text-[18px] font-semibold text-[#2b4e50]">{item.title}</h3>
+              <p className="mt-1 max-w-xl text-[12px] leading-6 text-[#6a8080]">{item.detail}</p>
             </div>
-            <button autoFocus type="button" onClick={() => setActive(null)} className="min-h-11 shrink-0 rounded-full border border-white/60 bg-white/10 px-5 text-[12px] font-semibold hover:bg-white/20" aria-label="Close image viewer">Close ×</button>
+            <div className="flex items-center gap-2">
+              <button type="button" aria-label="Previous image" onClick={() => go(index - 1)} className="flex h-10 w-10 items-center justify-center rounded-full border border-[#bdd2ca] bg-white text-[23px] text-[#2f6c6f] hover:bg-[#eff7f2]">‹</button>
+              <button type="button" aria-label="Next image" onClick={() => go(index + 1)} className="flex h-10 w-10 items-center justify-center rounded-full border border-[#bdd2ca] bg-white text-[23px] text-[#2f6c6f] hover:bg-[#eff7f2]">›</button>
+            </div>
           </div>
-          <div className="relative mx-auto min-h-0 w-full max-w-[1600px] flex-1 overflow-hidden rounded-lg bg-white">
-            <Image src={asset(selected.file)} alt={selected.title} fill priority sizes="100vw" className="object-contain" draggable={false} />
-          </div>
-          <div className="mx-auto mt-3 flex w-full max-w-[1600px] items-center justify-between gap-3">
-            <button type="button" onClick={() => navigate(-1)} className="min-h-11 shrink-0 rounded-full border border-white/50 px-4 text-[12px] font-semibold hover:bg-white/15" aria-label="Previous image">‹ Previous</button>
-            <p className="max-w-[68%] text-center text-[11px] leading-5 text-[#d5e2df] sm:text-[12px]">{selected.detail}</p>
-            <button type="button" onClick={() => navigate(1)} className="min-h-11 shrink-0 rounded-full border border-white/50 px-4 text-[12px] font-semibold hover:bg-white/15" aria-label="Next image">Next ›</button>
-          </div>
+          <button type="button" onClick={() => setZoom(z => !z)} aria-pressed={zoom}
+            className="mt-3 rounded-full border border-[#aacac0] bg-[#eff7f2] px-4 py-2 text-[12px] font-semibold text-[#286a6e] hover:bg-[#e2f0e8]">
+            {zoom ? "Fit complete image to screen" : stage === "construction" ? "Inspect larger photograph" : "Inspect larger drawing detail"}
+          </button>
         </div>
-      ) : null}
+
+        <figure id="woolwich-selected-image" className="mx-2 my-4 min-w-0 overflow-hidden rounded-xl border border-[#e1ebe4] bg-[#f8fbf9] p-1.5 sm:mx-5 sm:p-3">
+          <div className={zoom ? "max-w-full overflow-x-auto overscroll-x-contain" : "max-w-full overflow-hidden"}>
+            <div className={"relative " + (zoom ? "w-[960px] md:w-[1250px]" : "w-full")}
+              style={{ aspectRatio: stage === "construction" ? "4/3" : "2384/1684" }}>
+              <Image key={item.file} src={image(item.file)} alt={item.title + " — WEDRAWPLANS project"}
+                fill sizes={zoom ? "1250px" : "(max-width: 768px) 100vw, 75vw"}
+                className="pointer-events-none h-full w-full object-contain" draggable={false} />
+            </div>
+          </div>
+          <figcaption className="border-t border-[#e2ebe6] px-2 py-3 text-[11px] leading-6 text-[#657d7d]">
+            {stage === "planning" ? "Planning drawing" : stage === "technical" ? "Building Regulations drawing" : "Construction photograph"} {index + 1}.
+            {" "}{zoom ? "Swipe horizontally within the image to inspect at larger size." : "Select another thumbnail below to explore the project."}
+          </figcaption>
+        </figure>
+
+        <div className="flex gap-3 overflow-x-auto overscroll-x-contain border-t border-[#e1ebe4] bg-[#fafcf9] px-3 py-4 sm:px-5" role="group" aria-label="Select a drawing or photograph">
+          {items.map((v, i) => (
+            <button key={v.file} type="button" onClick={() => go(i)} aria-label={"Show " + v.title} aria-current={index === i ? "true" : undefined}
+              className={"w-[155px] shrink-0 overflow-hidden rounded-xl border p-2 text-left transition sm:w-[180px] " + (index === i ? "border-[#318e87] bg-[#ebf7ef]" : "border-[#d6e6de] bg-white hover:border-[#9ec7b8]")}>
+              <span className="relative block aspect-[1.38] rounded-md bg-[#fbfcfa]">
+                <Image src={image(v.file)} alt="" fill sizes="180px" className="pointer-events-none object-contain" draggable={false} />
+              </span>
+              <span className="mt-2 block text-[11px] font-semibold leading-5 text-[#48696d]">{v.title}</span>
+            </button>
+          ))}
+        </div>
+      </section>
+
+      <section className="rounded-[20px] border border-[#dce7df] bg-white p-5 sm:p-8">
+        <p className="text-[11px] font-bold uppercase tracking-[.16em] text-[#ad7468]">Stage 01 · Planning permission</p>
+        <h2 className="mt-2 text-[23px] font-semibold leading-tight text-[#274b50] sm:text-[28px]">Two additional flats secured during construction</h2>
+        <p className="mt-4 text-[13px] leading-7 text-[#577276]">
+          Royal Greenwich granted permission under application 20/0899/F for two additional two-bedroom flats
+          at fourth-floor level. The new accommodation was coordinated with the existing mixed-use building,
+          including access, parking, amenity and external appearance.
+        </p>
+        <a href={council} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex text-[12px] font-semibold text-[#286b70] underline underline-offset-4">See the council planning application and drawings ↗</a>
+      </section>
+
+      <section className="rounded-[20px] border border-[#dce7df] bg-white p-5 sm:p-8">
+        <p className="text-[11px] font-bold uppercase tracking-[.16em] text-[#ad7468]">Stage 02 · Technical design</p>
+        <h2 className="mt-2 text-[23px] font-semibold leading-tight text-[#274b50] sm:text-[28px]">Building Regulations and structural coordination</h2>
+        <p className="mt-4 text-[13px] leading-7 text-[#577276]">
+          The BR01-led technical drawing collection illustrates building fabric, fire protection,
+          services and ventilation, construction details, roof design and integration with the
+          new structural frame. WEDRAWPLANS coordinated detailed drawing information, structural
+          engineering interfaces and planning-condition submissions.
+        </p>
+      </section>
+
+      <section className="rounded-[20px] border border-[#dce7df] bg-white p-5 sm:p-8">
+        <p className="text-[11px] font-bold uppercase tracking-[.16em] text-[#ad7468]">Stage 03 · Structural construction</p>
+        <h2 className="mt-2 text-[23px] font-semibold leading-tight text-[#274b50] sm:text-[28px]">From roof-level steelwork to completion</h2>
+        <p className="mt-4 text-[13px] leading-7 text-[#577276]">
+          Original site photography records construction of the rooftop steel-frame superstructure,
+          including beams, columns and connections, alongside the existing residential building.
+          The scheme has been completed and final Building Control certification issued.
+        </p>
+      </section>
+
+      <section className="rounded-[18px] border border-[#c9e0d3] bg-[#edf7f1] p-5 sm:p-7">
+        <p className="text-[11px] font-bold uppercase tracking-[.15em] text-[#28765e]">WEDRAWPLANS · London planning and Building Regulations specialists</p>
+        <h2 className="mt-2 text-[23px] font-semibold leading-tight text-[#274e4e]">Planning a similar residential project?</h2>
+        <p className="mt-3 text-[13px] leading-7 text-[#597374]">
+          From domestic extensions and loft conversions to rooftop additions and residential developments,
+          WEDRAWPLANS prepares coordinated planning and Building Regulations drawing packages and works
+          with structural engineers. Ask for a fixed-fee quotation for your project.
+        </p>
+        <div className="mt-5 flex flex-wrap gap-3">
+          <a href="#case-study-quote" className="inline-flex rounded-full bg-[#276f75] px-5 py-3 text-[12px] font-bold text-white hover:bg-[#1d575b]">Get your fixed-fee quote</a>
+          <Link href="/building-regulation-drawings" className="inline-flex rounded-full border border-[#b2d2c3] bg-white px-5 py-3 text-[12px] font-semibold text-[#286b70]">Building Regulations services</Link>
+          <Link href="/areas/greenwich" className="inline-flex rounded-full border border-[#b2d2c3] bg-white px-5 py-3 text-[12px] font-semibold text-[#286b70]">Greenwich services</Link>
+        </div>
+      </section>
     </div>
   );
 }
