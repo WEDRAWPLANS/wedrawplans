@@ -118,7 +118,7 @@ const projectTypes = [
 const processSteps = [
   {
     title: "Step 1",
-    text: "Send the approved drawings, site address, photos and a short description of what needs to be built.",
+    text: "Tell us your project address and what you plan to build. Existing drawings or photos are helpful but not required for the first enquiry.",
   },
   {
     title: "Step 2",
@@ -519,7 +519,7 @@ export default function BuildingRegulationDrawingsPage() {
                     </h1>
 
                     <p className="mt-3 text-[13px] font-semibold tracking-[0.08em] text-slate-800">
-                      Technical plans • Construction sections • Structural coordination • Initial survey within 48 hours
+                      Technical plans • Construction sections • Structural coordination • Clear fixed-fee quotations
                     </p>
                   </div>
 
@@ -617,7 +617,7 @@ export default function BuildingRegulationDrawingsPage() {
                     <div className="mt-2 grid grid-cols-1 gap-3 text-[12px] text-slate-700 sm:grid-cols-3">
                       <div className="rounded-xl border border-slate-100 p-3">
                         <div className="font-semibold text-slate-900">Step 1</div>
-                        <div>Send project details and any approved drawings</div>
+                        <div>Tell us about your project — drawings can follow later</div>
                       </div>
                       <div className="rounded-xl border border-slate-100 p-3">
                         <div className="font-semibold text-slate-900">Step 2</div>
@@ -637,9 +637,9 @@ export default function BuildingRegulationDrawingsPage() {
                       Building Regulation drawing enquiry
                     </h2>
                     <p className="mt-3 text-slate-700">
-                      Tell us briefly what has planning consent and what needs a
-                      technical drawing pack. We will review the scope and come back
-                      with a clear quote.
+                      Tell us what you are planning and whether permission has been granted,
+                      is pending or has not yet been explored. You do not need existing
+                      drawings to request an initial quotation.
                     </p>
 
                     <form
@@ -764,7 +764,7 @@ export default function BuildingRegulationDrawingsPage() {
                           onChange={(e) =>
                             setForm((prev) => ({ ...prev, message: e.target.value }))
                           }
-                          placeholder="For example: rear extension has planning approved, technical pack needed for building control submission, structural engineer already instructed, steel and insulation coordination required."
+                          placeholder="For example: planning a rear extension in Barnet; planning status not yet confirmed; would like a quote for Building Regulation drawings and structural coordination."
                           className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-slate-500"
                         />
                       </div>
