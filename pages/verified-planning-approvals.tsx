@@ -87,8 +87,8 @@ export default function VerifiedPlanningApprovals() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Verified planning outcomes and council records | WEDRAWPLANS",
-    description: "A curated index of WEDRAWPLANS architectural drawing projects with independently accessible official council planning records.",
+    name: "Sample WEDRAWPLANS planning projects with official council records",
+    description: "A selected sample of WEDRAWPLANS projects from a wider architectural drawing portfolio, with independently accessible council planning records.",
     url: SITE + PAGE,
     publisher: { "@type": "Organization", name: "WEDRAWPLANS", url: SITE },
     mainEntity: {
@@ -103,31 +103,31 @@ export default function VerifiedPlanningApprovals() {
   return (
     <>
       <Head>
-        <title>Verified Planning Approvals & Council Records | WEDRAWPLANS</title>
-        <meta name="description" content="Explore genuine WEDRAWPLANS extension, loft and planning projects. See the drawings and verify application outcomes using official council planning records." />
+        <title>Sample Planning Projects & Official Council Records | WEDRAWPLANS</title>
+        <meta name="description" content="Explore a sample from the wider WEDRAWPLANS project portfolio. See selected extension, loft and planning drawings, with official council records for independent verification." />
         <meta name="robots" content={process.env.VERCEL_ENV === "production" ? "index,follow,max-image-preview:large" : "noindex,nofollow"} />
         <link rel="canonical" href={SITE + PAGE} />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Real planning projects. Official council evidence. | WEDRAWPLANS" />
-        <meta property="og:description" content="Browse approved house extensions, loft conversions and other projects with links to official council application records." />
+        <meta property="og:title" content="A Sample of Our Planning Projects | Official Council Evidence | WEDRAWPLANS" />
+        <meta property="og:description" content="Explore selected examples from WEDRAWPLANS' wider portfolio, with drawings and links to official council planning records." />
         <meta property="og:url" content={SITE + PAGE} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       </Head>
       <main className="min-h-screen bg-[#fafbf9] text-[#243d42]">
         <CaseStudyHeader />
         <div className="border-b border-[#e8d8d1] bg-[#fceee9] py-3 text-center text-[11px] font-semibold uppercase tracking-[.15em] text-[#9f5b53]">
-          Genuine projects · Independent planning evidence
+          A selection of our work · Independent planning evidence
         </div>
         <section className="border-b border-[#e2e9e5] bg-white">
           <div className="mx-auto max-w-7xl px-5 pb-12 pt-12 sm:px-8 sm:pb-16 sm:pt-16">
-            <p className="text-[12px] font-semibold uppercase tracking-[.17em] text-[#2a7882]">WEDRAWPLANS project evidence</p>
+            <p className="text-[12px] font-semibold uppercase tracking-[.17em] text-[#2a7882]">A sample of the WEDRAWPLANS portfolio</p>
             <h1 className="mt-4 max-w-5xl text-4xl font-semibold leading-[1.13] tracking-tight text-[#20383b] sm:text-5xl">
-              Real planning projects. <span className="text-[#237980]">Official council records.</span>
+              A sample of our projects. <span className="text-[#237980]">Official council evidence.</span>
             </h1>
             <p className="mt-5 max-w-3xl text-[15px] leading-8 text-[#536b70]">
-              Don't just take our word for it. Explore selected WEDRAWPLANS architectural drawings and planning outcomes,
-              with direct links to the councils' public application documents. From house extensions in Barnet to a basement
-              extension in Wandsworth, each project provides useful evidence of the design and planning process.
+              These are selected examples from WEDRAWPLANS' wider portfolio — not a complete list of our projects, planning applications or drawing packages.
+              Explore architectural drawings and planning outcomes with direct links to councils' public application documents.
+              From house extensions in Barnet to a basement extension in Wandsworth, the examples demonstrate our work and approach.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link href="#verified-projects" className="rounded-full bg-[#287780] px-6 py-3 text-sm font-semibold text-white hover:bg-[#175a63]">Explore verified projects</Link>
@@ -136,15 +136,15 @@ export default function VerifiedPlanningApprovals() {
             <div className="mt-9 grid gap-3 sm:grid-cols-3">
               <div className="rounded-xl border border-[#dce9e4] bg-[#f6faf8] p-4">
                 <p className="text-2xl font-semibold tabular-nums text-[#234c50]">{verifiedBarnet.length}</p>
-                <p className="mt-1 text-[12px] leading-5 text-[#547073]">Barnet case-study presentations with official planning evidence</p>
+                <p className="mt-1 text-[12px] leading-5 text-[#547073]">Sample Barnet case-study presentations with official planning evidence</p>
               </div>
               <div className="rounded-xl border border-[#dce9e4] bg-[#f6faf8] p-4">
                 <p className="text-2xl font-semibold tabular-nums text-[#234c50]">{verifiedReferences.length}</p>
-                <p className="mt-1 text-[12px] leading-5 text-[#547073]">Distinct Barnet application records linked, including historic outcomes</p>
+                <p className="mt-1 text-[12px] leading-5 text-[#547073]">Distinct council records supporting these examples, including historic outcomes</p>
               </div>
               <div className="rounded-xl border border-[#dce9e4] bg-[#f6faf8] p-4">
                 <p className="text-2xl font-semibold tabular-nums text-[#234c50]">1</p>
-                <p className="mt-1 text-[12px] leading-5 text-[#547073]">Additional Wandsworth case study with an official council application link</p>
+                <p className="mt-1 text-[12px] leading-5 text-[#547073]">Wandsworth example with an official council application link</p>
               </div>
             </div>
           </div>
@@ -170,7 +170,7 @@ export default function VerifiedPlanningApprovals() {
             House extensions, lofts and outbuildings in Barnet
           </h2>
           <p className="mt-4 max-w-3xl text-[14px] leading-7 text-[#5b7174]">
-            Select a project to explore the WEDRAWPLANS drawings, planning approach and official application documents.
+            These are illustrative examples of our wider domestic-project portfolio. Explore the drawings, planning approach and council documents for each.
             Multiple records for one property are listed separately; they are not counted as separate projects.
           </p>
           <div className="mt-8 grid gap-5 md:grid-cols-2">
@@ -182,7 +182,7 @@ export default function VerifiedPlanningApprovals() {
             <p className="text-[12px] font-semibold uppercase tracking-[.15em] text-[#2a7980]">Additional project types</p>
             <h2 className="mt-2 text-2xl font-semibold sm:text-3xl">Residential conversions and specialist planning cases</h2>
             <p className="mt-4 max-w-3xl text-[14px] leading-7 text-[#5b7174]">
-              These demonstrate other planning routes. They are presented separately from domestic extensions and include the exact council decision history.
+              These additional examples demonstrate other planning routes from our wider body of work. They are presented separately from domestic extensions, with relevant council decision histories.
             </p>
             <div className="mt-7 grid gap-5 md:grid-cols-2">
               {otherProjects.map((project) => <EvidenceProject key={project.slug} project={project} />)}
