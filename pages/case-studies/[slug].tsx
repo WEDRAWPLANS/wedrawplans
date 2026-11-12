@@ -297,8 +297,8 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
         <section className="bg-white">
           <div className="mx-auto grid max-w-7xl gap-9 px-5 py-12 sm:px-8 sm:py-16 lg:grid-cols-2 lg:gap-20">
             <div>
-              <p className="text-[12px] font-semibold uppercase tracking-[0.15em] text-[#357d81]">The proposal</p>
-              <h2 className="mt-3 text-2xl font-semibold sm:text-3xl">Scope of work</h2>
+              <p className="text-[12px] font-semibold uppercase tracking-[0.15em] text-[#357d81]">{isWoolwich ? "Project delivery" : "The proposal"}</p>
+              <h2 className="mt-3 text-2xl font-semibold sm:text-3xl">{isWoolwich ? "Planning, design and construction services" : "Scope of work"}</h2>
               {item.highlights?.length ? (
                 <ul className="mt-5 space-y-4">
                   {item.highlights.map((highlight) => (
@@ -310,14 +310,14 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
                 </ul>
               ) : null}
               <div className="mt-7 border-l-[3px] border-[#64aeb5] bg-[#f3f8f6] px-5 py-4">
-                <p className="text-[13px] font-semibold text-[#2b6269]">Considering a similar project?</p>
-                <p className="mt-2 text-[13px] leading-6 text-[#5c7274]">We can help assess the appropriate planning route, prepare architectural drawings and coordinate the application documents required for your property.</p>
+                <p className="text-[13px] font-semibold text-[#2b6269]">{isWoolwich ? "Fixed-fee architectural drawing packages" : "Considering a similar project?"}</p>
+                <p className="mt-2 text-[13px] leading-6 text-[#5c7274]">{isWoolwich ? "From home extensions and loft conversions to multi-unit developments, we prepare planning and Building Regulations drawing packages, with structural engineering coordination to suit your project." : "We can help assess the appropriate planning route, prepare architectural drawings and coordinate the application documents required for your property."}</p>
                 <Link href={quoteHref} className="mt-3 inline-block text-[13px] font-semibold text-[#17717b] underline-offset-4 hover:underline">Request a quotation →</Link>
               </div>
             </div>
             <div>
-              <p className="text-[12px] font-semibold uppercase tracking-[0.15em] text-[#357d81]">The decision</p>
-              <h2 className="mt-3 text-2xl font-semibold sm:text-3xl">Planning outcome &amp; drawing work</h2>
+              <p className="text-[12px] font-semibold uppercase tracking-[0.15em] text-[#357d81]">{isWoolwich ? "Planning permission" : "The decision"}</p>
+              <h2 className="mt-3 text-2xl font-semibold sm:text-3xl">{isWoolwich ? "Planning approval for two more homes" : "Planning outcome & drawing work"}</h2>
               <p className="mt-5 text-[15px] leading-8 text-[#51676b]">{item.proof}</p>
               {item.decisions?.length ? (
                 <div className="mt-6">
@@ -344,7 +344,7 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
               ) : null}
               {item.approvedDrawings ? (
                 <div className="mt-6 rounded-[16px] border border-[#e2e8e4] bg-[#fafbf9] p-5">
-                  <h3 className="text-[14px] font-semibold">Approved documents referenced by the council</h3>
+                  <h3 className="text-[14px] font-semibold">{isWoolwich ? "Planning and Building Regulations drawing packages" : "Approved documents referenced by the council"}</h3>
                   <p className="mt-2 text-[13px] leading-7 text-[#586f73]">{item.approvedDrawings}</p>
                   {primaryCouncilDocumentUrl ? (
                     <a
@@ -353,7 +353,7 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
                       rel="noopener noreferrer"
                       className="mt-3 inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#226f78] underline underline-offset-4 hover:text-[#164d55] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#226f78]"
                     >
-                      Compare with the official council document list <span aria-hidden="true">↗</span>
+                      {isWoolwich ? "View Royal Greenwich planning documents" : "Compare with the official council document list"} <span aria-hidden="true">↗</span>
                     </a>
                   ) : null}
                 </div>
@@ -365,8 +365,8 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
         <section className="border-t border-[#e2e9e5] bg-[#f9fbf9]" aria-labelledby="wedrawplans-service-heading">
           <div className="mx-auto grid max-w-7xl gap-8 px-5 py-12 sm:px-8 sm:py-14 lg:grid-cols-[1.16fr_.84fr] lg:gap-16">
             <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.17em] text-[#a5675f]">Architectural drawing service</p>
-              <h2 id="wedrawplans-service-heading" className="mt-3 text-2xl font-semibold leading-snug text-[#233f42] sm:text-3xl">How WEDRAWPLANS supported this approval</h2>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.17em] text-[#a5675f]">{isWoolwich ? "WEDRAWPLANS architectural services" : "Architectural drawing service"}</p>
+              <h2 id="wedrawplans-service-heading" className="mt-3 text-2xl font-semibold leading-snug text-[#233f42] sm:text-3xl">{isWoolwich ? "Our planning, Building Regulations and structural services" : "How WEDRAWPLANS supported this approval"}</h2>
               <p className="mt-5 text-[15px] leading-8 text-[#526a6e]">{item.wdpService}</p>
               <Link href={item.relatedService} className="mt-4 inline-flex text-[13px] font-semibold text-[#1e727e] underline-offset-4 hover:underline">Explore our related architectural drawing service →</Link>
             </div>
@@ -382,7 +382,7 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
         {item.keyConditions?.length ? (
           <section className="border-y border-[#e5eae7] bg-[#f6f9f7]">
             <div className="mx-auto max-w-7xl px-5 py-10 sm:px-8 sm:py-12">
-              <h2 className="text-xl font-semibold sm:text-2xl">Relevant planning conditions</h2>
+              <h2 className="text-xl font-semibold sm:text-2xl">{isWoolwich ? "Coordinated project services" : "Relevant planning conditions"}</h2>
               <ul className="mt-5 grid gap-3 text-[14px] leading-7 text-[#51656a] md:grid-cols-2">
                 {item.keyConditions.map((condition) => (
                   <li key={condition} className="rounded-xl border border-[#e1e9e4] bg-white px-5 py-4">{condition}</li>
@@ -397,9 +397,9 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
             <div className="grid items-center gap-8 rounded-[22px] border border-[#dae7e2] bg-[#eef6f3] p-7 sm:p-10 lg:grid-cols-[1.3fr_.7fr]">
               <div>
                 <p className="text-[12px] font-semibold uppercase tracking-[0.15em] text-[#36747c]">Your next project</p>
-                <h2 className="mt-3 text-2xl font-semibold leading-tight sm:text-3xl">Planning similar work at your property?</h2>
+                <h2 className="mt-3 text-2xl font-semibold leading-tight sm:text-3xl">{isWoolwich ? "Fixed-fee planning & Building Regulations drawing packages" : "Planning similar work at your property?"}</h2>
                 <p className="mt-4 max-w-2xl text-[14px] leading-7 text-[#566c70]">
-                  {item.leadAngle} Share the postcode and your proposal so we can outline the drawing requirements and provide a fixed-fee quotation.
+                  {isWoolwich ? "Whether you are planning a house extension, loft conversion, new home or residential development, our architectural drawing services can be tailored to your project. Request a clearly scoped fixed-fee quotation for planning drawings, Building Regulations details and structural coordination." : <>{item.leadAngle} Share the postcode and your proposal so we can outline the drawing requirements and provide a fixed-fee quotation.</>}
                 </p>
               </div>
               <div className="flex flex-col items-start gap-3 lg:items-end">
