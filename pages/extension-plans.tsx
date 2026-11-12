@@ -1,3 +1,4 @@
+import GrangeRoadPromo from "../components/GrangeRoadPromo";
 import IntentAreaDirectory from "../components/IntentAreaDirectory";
 import BarnetCombinedExtensionPromo from "../components/BarnetCombinedExtensionPromo";
 import React from "react";
@@ -314,8 +315,9 @@ export default function ExtensionPlansPage() {
         {/* QUICK NAV */}
 
 <CranbournePromo context="Hertfordshire" />
+<GrangeRoadPromo context="service" />
 <ApprovalEvidenceStrip
-  slugs={["cranbourne-drive-hoddesdon-planning-project","sistova-road-wandsworth-extension-basement","allum-lane-elstree-major-house-extension","sunbury-avenue-mill-hill-side-rear-extension","cromwell-road-hounslow-rear-extension","the-reddings-mill-hill-extension-basement-loft","cannon-lane-pinner-5-metre-rear-extension"]}
+  slugs={["grange-road-edgware-side-extension-lawful-development-building-regulations","cranbourne-drive-hoddesdon-planning-project","sistova-road-wandsworth-extension-basement","allum-lane-elstree-major-house-extension","sunbury-avenue-mill-hill-side-rear-extension","cromwell-road-hounslow-rear-extension","the-reddings-mill-hill-extension-basement-loft","cannon-lane-pinner-5-metre-rear-extension"]}
   title="Approved house-extension projects"
   intro="Explore selected side, rear and two-storey extension projects across London and Hertfordshire, with details of the proposed works and planning decisions."
 />
