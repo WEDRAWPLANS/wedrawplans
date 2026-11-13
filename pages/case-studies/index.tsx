@@ -24,6 +24,21 @@ function ProjectVisual({ item, featured = false }: { item: CaseStudy; featured?:
       </div>
     );
   }
+  if (item.slug === "sunbury-avenue-mill-hill-side-rear-extension") {
+    return (
+      <div className={"flex flex-col justify-between border-b border-[#d7e5de] bg-[#edf5f0] p-6 text-[#254b4d] sm:p-8 " + (featured ? "min-h-[280px] sm:min-h-[380px]" : "aspect-[3/2] w-full")}>
+        <div>
+          <p className="text-[10px] font-bold uppercase tracking-[0.17em] text-[#397b71]">WEDRAWPLANS · Mill Hill, Barnet</p>
+          <p className="mt-3 max-w-xs text-[20px] font-semibold leading-snug sm:text-[23px]">House extension planning</p>
+          <p className="mt-2 text-[12px] leading-5 text-[#53736f]">Side and rear extension proposals</p>
+        </div>
+        <div className="flex items-end gap-3 border-t border-[#cddfd6] pt-4">
+          <span className="text-[34px] font-semibold leading-none text-[#286f66]">5</span>
+          <p className="max-w-[155px] text-[11px] font-semibold leading-5 text-[#426e68]">recorded Barnet planning decisions · 2020–2022</p>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className={"flex flex-col items-center justify-center border-b border-[#e5e9e7] bg-[#f7faf8] p-6 text-center " + (featured ? "min-h-[280px] sm:min-h-[380px]" : "aspect-[3/2] w-full")}>
       <svg viewBox="0 0 96 70" width="80" height="58" role="img" aria-label="Architectural drawing sheet illustration">
@@ -31,7 +46,7 @@ function ProjectVisual({ item, featured = false }: { item: CaseStudy; featured?:
         <path d="M18 53H78M18 57H78M31 17H65V49H31zM41 30h17v19H41z" fill="none" stroke="#a1bab8" strokeWidth="1.5"/>
       </svg>
       <p className="mt-3 text-[13px] font-semibold text-[#3b5d61]">{item.shortTitle}</p>
-      <p className="mt-1 text-[11px] text-[#718489]">{process.env.VERCEL_ENV === "production" ? "Approved planning project" : "Architectural drawing presentation to be added"}</p>
+      <p className="mt-1 text-[11px] text-[#718489]">{process.env.VERCEL_ENV === "production" ? "Approved planning project" : "Planning decision and project information"}</p>
     </div>
   );
 }
