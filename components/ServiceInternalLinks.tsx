@@ -262,7 +262,7 @@ export default function ServiceInternalLinks({
                 </div>
               </div>
               <div className="lg:sticky lg:top-4">
-                <ProjectQuickQuotePanel source="case-study-gallery" projectSlug="the-reddings-mill-hill-extension-basement-loft" projectTitle="The Reddings flagship project" suggestedService="House extension drawings" />
+                <ProjectQuickQuotePanel source="case-study-gallery" projectSlug="the-reddings-mill-hill-extension-basement-loft" projectTitle="The Reddings house extension and loft project" suggestedService="House extension drawings" />
               </div>
             </div>
           </div>
