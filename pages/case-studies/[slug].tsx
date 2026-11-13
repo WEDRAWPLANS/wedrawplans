@@ -237,7 +237,7 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
               <figure className="overflow-hidden rounded-[18px] border border-[#dee5e1] bg-white p-3 shadow-[0_8px_34px_rgba(32,70,73,0.035)] sm:p-5">
                 <Image src={item.heroImage} alt={"WEDRAWPLANS project drawing or architectural visualisation — " + item.shortTitle} width={1500} height={1000} priority sizes="(max-width: 768px) 100vw, 85vw" className="mx-auto h-auto max-h-[780px] w-full object-contain"/>
                 <figcaption className="mt-3 border-t border-[#edf0ee] px-1 pt-3 text-[12px] leading-5 text-[#617579]">
-                  WEDRAWPLANS architectural project presentation. The planning decision confirms the approved drawing references.
+                  Architectural drawings by WEDRAWPLANS, prepared to explain the proposal, its relationship to the existing building and the details considered during the planning process.
                 </figcaption>
               </figure>
             ) : !isProduction ? (
@@ -259,7 +259,7 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
               <div className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-[16px] border border-[#d7e7e1] bg-white px-5 py-4">
                 <div>
                   <p className="text-[14px] font-semibold text-[#264d51]">WEDRAWPLANS project video</p>
-                  <p className="mt-1 text-[12px] leading-6 text-[#60797b]">Explore the design presentation for this approved project.</p>
+                  <p className="mt-1 text-[12px] leading-6 text-[#60797b]">Explore the architectural design and understand how WEDRAWPLANS developed the proposal.</p>
                 </div>
                 <a href={item.projectVideoUrl} target="_blank" rel="noopener noreferrer" className="inline-flex rounded-full border border-[#b7d6d0] px-5 py-2.5 text-[13px] font-semibold text-[#26737c] hover:bg-[#eaf6f2]">View project video ↗</a>
               </div>
