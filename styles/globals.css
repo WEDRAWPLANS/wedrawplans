@@ -10,3 +10,25 @@
     overscroll-behavior: contain;
   }
 }
+
+/* On case studies with a fixed mobile quote CTA, keep contact shortcuts above
+   the CTA and separate the planning assistant from the WhatsApp button. */
+@media (max-width: 1023px) {
+  body:has(.case-study-mobile-quote-bar)
+    a[aria-label="Chat on WhatsApp with WEDRAWPLANS"] {
+    bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+@media (max-width: 767px) {
+  body:has(.case-study-mobile-quote-bar)
+    div.fixed:has(> button[aria-label="Open planning assistant"]) {
+    bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
+    left: 0.75rem;
+    right: auto;
+    max-width: calc(100vw - 5.75rem);
+  }
+  body:has(.case-study-mobile-quote-bar)
+    div.fixed:has(> button[aria-label="Open planning assistant"]) > button {
+    max-width: 100%;
+  }
+}
