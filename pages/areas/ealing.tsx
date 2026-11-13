@@ -5,6 +5,7 @@ import Image from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
 import { hasOneReplyMethod } from "../../lib/hasOneReplyMethod";
 import ServiceInternalLinks from "../../components/ServiceInternalLinks";
+import BoroughQuoteForm from "../../components/BoroughQuoteForm";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
@@ -594,101 +595,7 @@ export default function EalingAreaPage() {
 
               <div id="ealing-quote" className="scroll-mt-5 lg:w-1/2">
                 <div className="rounded-2xl border border-[#e0e7e3] bg-white p-5 shadow-md sm:p-6">
-                  <h2 className="text-[14px] uppercase font-semibold tracking-[0.16em] text-slate-900">
-                    Request your Ealing fixed-fee quote
-                  </h2>
-
-                  <p className="mt-1 text-[12px] text-slate-600">
-                    Tell us a little about your property and what you plan to build. We will reply with a clear fixed fee for your drawings.
-                  </p>
-
-                  <form onSubmit={handleSubmit} className="mt-3 space-y-3 text-[13px]">
-                    <div className="space-y-1">
-                      <label className="text-[11px] font-medium">Name</label>
-                      <input
-                        name="name"
-                        required
-                        className="w-full bg-transparent border-b border-slate-300 py-1.5 px-1 focus:border-[#64b7c4] outline-none"
-                      />
-                    </div>
-
-                    <div className="grid sm:grid-cols-2 gap-3">
-                      <div className="space-y-1">
-                        <label className="text-[11px] font-medium">Telephone (or email)</label>
-                        <input
-                          name="phone"
-                          type="tel"
-                          className="w-full bg-transparent border-b border-slate-300 py-1.5 px-1 focus:border-[#64b7c4] outline-none"
-                        />
-                      </div>
-
-                      <div className="space-y-1">
-                        <label className="text-[11px] font-medium">Email (or telephone)</label>
-                        <input
-                          name="email"
-                          type="email"
-                          className="w-full bg-transparent border-b border-slate-300 py-1.5 px-1 focus:border-[#64b7c4] outline-none"
-                        />
-                      </div>
-                    </div>
-
-                    <p className="text-[11px] text-slate-600">One contact method is enough. Choose phone or email, whichever you prefer.</p>
-                    <div className="space-y-1">
-                      <label className="text-[11px] font-medium">Ealing postcode</label>
-                      <input
-                        name="postcode"
-                        required
-                        placeholder="W5 2AA"
-                        onFocus={(e) => (e.target.placeholder = "")}
-                        onBlur={(e) => !e.target.value && (e.target.placeholder = "W5 2AA")}
-                        className="w-full border-b border-slate-300 bg-transparent py-1.5 px-1 text-slate-500/70 focus:text-slate-900 focus:border-[#64b7c4] outline-none"
-                      />
-                    </div>
-
-                    <div className="space-y-1">
-                      <label className="text-[11px] font-medium">Project type</label>
-                      <select
-                        name="projectType"
-                        required
-                        defaultValue=""
-                        className="w-full border-b border-slate-300 bg-transparent py-1.5 px-1 focus:border-[#64b7c4] outline-none"
-                      >
-                        <option value="" disabled>
-                          Select project type
-                        </option>
-                        <option>House extension</option>
-                        <option>Loft conversion</option>
-                        <option>Garage conversion</option>
-                        <option>Outbuilding or garden room</option>
-                        <option>Internal remodelling</option>
-                        <option>New build house</option>
-                        <option>Conversion to flats</option>
-                        <option>Building regulation pack only</option>
-                        <option>Other domestic project</option>
-                      </select>
-                    </div>
-
-                    <div className="space-y-1">
-                      <label className="text-[11px] font-medium">Brief description of your project</label>
-                      <textarea
-                        name="projectDetails"
-                        rows={4}
-                        placeholder="For example: rear extension to a terrace in Acton with new open plan kitchen."
-                        className="w-full border border-slate-300 rounded bg-white px-2 py-2 focus:border-[#64b7c4] outline-none"
-                      />
-                    </div>
-
-                    <button
-                      type="submit"
-                      className="w-full rounded-full bg-[#64b7c4] py-2.5 text-white text-[13px] font-semibold uppercase tracking-[0.2em] hover:bg-[#4da4b4]"
-                    >
-                      Get a fixed fee quote
-                    </button>
-
-                    <p className="text-[11px] text-slate-500 mt-2">
-                      Typical Ealing projects include rear extensions, wraparound extensions, loft conversions and refurbishments.
-                    </p>
-                  </form>
+                  <BoroughQuoteForm boroughName="Ealing" formId="ealing-quote" onSubmit={handleSubmit} />
 
                   <div className="mt-5 overflow-hidden rounded-xl border border-[#e0e8e4] bg-[#f7faf9] lg:hidden">
                     <Image
