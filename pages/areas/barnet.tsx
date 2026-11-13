@@ -312,11 +312,10 @@ export default function BarnetAreaPage() {
               <div className="mt-8 overflow-hidden rounded-[19px] border border-[#d9e5df] bg-white px-4 py-5 shadow-[0_10px_28px_rgba(25,64,67,.045)] sm:px-6">
                 <div className="flex flex-wrap items-end justify-between gap-3">
                   <div>
-                    <p className="text-[11px] font-bold uppercase tracking-[.16em] text-[#a16d62]">Real WEDRAWPLANS technical drawing examples</p>
+                    <p className="text-[11px] font-bold uppercase tracking-[.16em] text-[#a16d62]">WEDRAWPLANS planning and technical drawing examples</p>
                     <h3 className="mt-1 text-[22px] font-semibold text-[#274b4f] sm:text-[27px]">Original plans &amp; elevations</h3>
                     <p className="mt-2 max-w-2xl text-[13px] leading-6 text-[#657a7e]">
-                      Selected complete drawing sheets from the approved project's architectural package.
-                      View the full portfolio to browse all 12 drawings and the original 3D design views.
+                      Explore how WEDRAWPLANS coordinated floor plans, roof design, elevations and Building Regulations details for this substantial Mill Hill home improvement project. Review the full case study to see the architectural drawings and associated planning outcomes.
                     </p>
                   </div>
                   <Link href="/case-studies/the-reddings-mill-hill-extension-basement-loft#project-drawings" className="rounded-full border border-[#a8cdc9] px-4 py-2.5 text-[12px] font-bold text-[#2b7079] hover:bg-[#edf7f2]">
@@ -345,7 +344,7 @@ export default function BarnetAreaPage() {
                     Planning approval and lawful-development certificate secured in Barnet.
                   </p>
                   <Link href="/case-studies/the-reddings-mill-hill-extension-basement-loft" className="text-[12px] font-bold text-[#1e7178] underline underline-offset-4">
-                    Explore the full flagship showcase →
+                    Explore the Mill Hill project and drawings →
                   </Link>
                 </div>
               </div>

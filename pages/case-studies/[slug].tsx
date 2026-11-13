@@ -34,11 +34,11 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
   const isSuttonLoft = item.slug === "sutton-loft-conversion-planning-permission-wallington";
   const isLeicesterCombined = item.slug === "leicester-road-barnet-rear-extension-planning-building-regulations-structural";
   const isGrangeCombined = item.slug === "grange-road-edgware-side-extension-lawful-development-building-regulations";
-  const isFlagship = isReddings || isAllum || isSistova || isCromwell || isBrockley || isHarrowStudios || isCannon || isSunburyCare || isGreenwichTen || isHendonHMO || isCranbourneCombined || isSuttonLoft || isLeicesterCombined || isGrangeCombined;
-  const useOriginalDrawingGallery = item.slug === "sistova-road-wandsworth-extension-basement" || item.slug === "cromwell-road-hounslow-rear-extension" || isFlagship;
+  const isFeaturedLayout = isReddings || isAllum || isSistova || isCromwell || isBrockley || isHarrowStudios || isCannon || isSunburyCare || isGreenwichTen || isHendonHMO || isCranbourneCombined || isSuttonLoft || isLeicesterCombined || isGrangeCombined;
+  const useOriginalDrawingGallery = item.slug === "sistova-road-wandsworth-extension-basement" || item.slug === "cromwell-road-hounslow-rear-extension" || isFeaturedLayout;
   const isProduction = process.env.VERCEL_ENV === "production";
   const hasApprovedVisual = [item.heroImage, item.secondaryImage].some(src => Boolean(src) && (src.startsWith("/images/case-studies/") || src.startsWith("/images/hyde-")));
-  const showGallery = !isProduction || hasApprovedVisual || Boolean(item.projectVideoUrl);
+  const showGallery = hasApprovedVisual || Boolean(item.projectVideoUrl);
     const canonical = "https://www.wedrawplans.co.uk/case-studies/" + item.slug;
   const quoteHref = "/get-drawings-quote?source=case-study&project=" + encodeURIComponent(item.slug);
   const category = categoryForCaseStudy(item);
@@ -138,16 +138,16 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
         </div>
 
         <section className="bg-white">
-          <div className={isFlagship ? "mx-auto grid max-w-7xl gap-5 px-5 pb-8 pt-8 sm:px-8 sm:pb-9 sm:pt-10" : "mx-auto grid max-w-7xl gap-9 px-5 pb-12 pt-10 sm:px-8 sm:pb-16 sm:pt-14 lg:grid-cols-[1.25fr_.75fr] lg:gap-16"}>
+          <div className={isFeaturedLayout ? "mx-auto grid max-w-7xl gap-5 px-5 pb-8 pt-8 sm:px-8 sm:pb-9 sm:pt-10" : "mx-auto grid max-w-7xl gap-9 px-5 pb-12 pt-10 sm:px-8 sm:pb-16 sm:pt-14 lg:grid-cols-[1.25fr_.75fr] lg:gap-16"}>
             <div>
               <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-[#257b83]">{category} · {item.year}</p>
-              <h1 className={isFlagship ? "mt-2 max-w-5xl text-3xl font-semibold leading-[1.17] tracking-tight text-[#223b3e] sm:text-4xl" : "mt-4 max-w-3xl text-3xl font-semibold leading-[1.17] tracking-tight text-[#223b3e] sm:text-4xl lg:text-[46px]"}>{item.title}</h1>
+              <h1 className={isFeaturedLayout ? "mt-2 max-w-5xl text-3xl font-semibold leading-[1.17] tracking-tight text-[#223b3e] sm:text-4xl" : "mt-4 max-w-3xl text-3xl font-semibold leading-[1.17] tracking-tight text-[#223b3e] sm:text-4xl lg:text-[46px]"}>{item.title}</h1>
               <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-[#efcbc4] bg-[#fff0ed] px-3.5 py-1.5 text-[12px] font-semibold text-[#97594f]">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#c78175]" aria-hidden="true" />{item.outcome}
               </div>
-              <p className={isFlagship ? "mt-4 max-w-4xl text-[15px] leading-7 text-[#52666b]" : "mt-6 max-w-3xl text-[16px] leading-8 text-[#52666b]"}>{item.summary}</p>
-              <div className={isFlagship ? "mt-5 flex flex-wrap items-center gap-3" : "mt-7 flex flex-wrap items-center gap-3"}>
-                <Link href={isFlagship ? "#case-study-quote" : quoteHref} className="rounded-full bg-[#51aab8] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#318e9c]">
+              <p className={isFeaturedLayout ? "mt-4 max-w-4xl text-[15px] leading-7 text-[#52666b]" : "mt-6 max-w-3xl text-[16px] leading-8 text-[#52666b]"}>{item.summary}</p>
+              <div className={isFeaturedLayout ? "mt-5 flex flex-wrap items-center gap-3" : "mt-7 flex flex-wrap items-center gap-3"}>
+                <Link href={isFeaturedLayout ? "#case-study-quote" : quoteHref} className="rounded-full bg-[#51aab8] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#318e9c]">
                   Get your fixed-fee quote
                 </Link>
                 <Link href={item.relatedService} className="rounded-full border border-[#cbdad7] bg-white px-6 py-3.5 text-sm font-semibold text-[#2f646a] hover:bg-[#f0f7f6]">
@@ -155,9 +155,9 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
                 </Link>
               </div>
             </div>
-            <aside className={isFlagship ? "self-start rounded-[17px] border border-[#dbe7e2] bg-[#f5f9f7] px-5 py-3 sm:px-6" : "self-start rounded-[20px] border border-[#dbe7e2] bg-[#f5f9f7] p-6 sm:p-7"} aria-label="Project information">
-              <h2 className={isFlagship ? "sr-only" : "text-lg font-semibold"}>Project information</h2>
-              <dl className={isFlagship ? "grid gap-x-5 sm:grid-cols-2 lg:grid-cols-3" : "mt-4"}>
+            <aside className={isFeaturedLayout ? "self-start rounded-[17px] border border-[#dbe7e2] bg-[#f5f9f7] px-5 py-3 sm:px-6" : "self-start rounded-[20px] border border-[#dbe7e2] bg-[#f5f9f7] p-6 sm:p-7"} aria-label="Project information">
+              <h2 className={isFeaturedLayout ? "sr-only" : "text-lg font-semibold"}>Project information</h2>
+              <dl className={isFeaturedLayout ? "grid gap-x-5 sm:grid-cols-2 lg:grid-cols-3" : "mt-4"}>
                 <Detail label="Location" value={item.location} />
                 <Detail label="Planning authority" value={item.authority} />
                 <Detail label="Application reference" value={item.reference} />
@@ -240,15 +240,6 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
                   Architectural drawings by WEDRAWPLANS, prepared to explain the proposal, its relationship to the existing building and the details considered during the planning process.
                 </figcaption>
               </figure>
-            ) : !isProduction ? (
-              <div className="flex min-h-[320px] flex-col items-center justify-center rounded-[18px] border border-dashed border-[#bfd3d0] bg-white p-8 text-center sm:min-h-[450px]" aria-label="Drawing presentation space reserved">
-                <svg viewBox="0 0 120 90" width="110" height="84" role="img" aria-label="Drawing sheet icon" className="text-[#92aeb0]">
-                  <rect x="15" y="9" width="90" height="72" rx="2" fill="none" stroke="currentColor" strokeWidth="2"/>
-                  <path d="M22 67H98M22 72H98M38 20V62M78 20V62M38 20H78V62H38zM49 33h19v29H49zM22 42h16M78 42h20" fill="none" stroke="currentColor" strokeWidth="1.5"/>
-                </svg>
-                <p className="mt-4 text-[17px] font-semibold text-[#3b5e61]">Project drawings to be added</p>
-                <p className="mt-2 max-w-lg text-[13px] leading-6 text-[#738689]">This space is ready for the approved architectural drawings, plans or 3D design views.</p>
-              </div>
             ) : null}
             {!isHarrowStudios && item.secondaryImage && (item.secondaryImage.startsWith("/images/case-studies/") || item.secondaryImage.startsWith("/images/hyde-")) && item.secondaryImage !== item.heroImage ? (
               <figure className="mt-5 overflow-hidden rounded-[18px] border border-[#dee5e1] bg-white p-5">
@@ -264,33 +255,28 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
                 <a href={item.projectVideoUrl} target="_blank" rel="noopener noreferrer" className="inline-flex rounded-full border border-[#b7d6d0] px-5 py-2.5 text-[13px] font-semibold text-[#26737c] hover:bg-[#eaf6f2]">View project video ↗</a>
               </div>
             ) : null}
-            {item.animationSlot && !isProduction ? (
-              <div className="mt-5 grid gap-5 lg:grid-cols-2">
-                <div className="flex aspect-video flex-col items-center justify-center rounded-[18px] border border-dashed border-[#c5d5d3] bg-white p-6 text-center">
-                  <span className="text-[32px] text-[#9ab5b5]" aria-hidden="true">▷</span>
-                  <h3 className="mt-2 text-[15px] font-semibold">Architectural animation</h3>
-                  <p className="mt-2 text-[12px] text-[#708287]">Space prepared for the Allum Lane project animation</p>
-                </div>
-                <div className="flex aspect-video flex-col items-center justify-center rounded-[18px] border border-dashed border-[#c5d5d3] bg-white p-6 text-center">
-                  <h3 className="text-[15px] font-semibold">Additional drawings &amp; 3D views</h3>
-                  <p className="mt-2 text-[12px] text-[#708287]">Space prepared for the approved drawing set</p>
-                </div>
-              </div>
-            ) : null}
-            {item.constructionSlot && !isProduction ? (
-              <div className="mt-5">
-                <h3 className="text-xl font-semibold">Construction progress</h3>
-                <p className="mt-2 max-w-2xl text-[13px] leading-6 text-[#607679]">Works are currently in progress at this property. The construction photographs will illustrate how the approved extension design is being delivered on site.</p>
-                <div className="mt-4 grid gap-4 sm:grid-cols-3">
-                  {["Early works","Structural progress","Current progress"].map(label => (
-                    <div key={label} className="flex aspect-[4/3] items-center justify-center rounded-[15px] border border-dashed border-[#c8d8d4] bg-white p-5 text-center text-[13px] font-medium text-[#809194]">{label} — photo space</div>
-                  ))}
-                </div>
-              </div>
-            ) : null}
             {item.mediaNote && !isProduction ? <p className="mt-4 text-[12px] leading-6 text-[#657a7c]">{item.mediaNote}</p> : null}
           </div>
         </section>
+        ) : null}
+
+        {item.slug === "sunbury-avenue-mill-hill-side-rear-extension" ? (
+          <section aria-labelledby="sunbury-planning-experience" className="border-y border-[#dce8e1] bg-[#f1f7f3]">
+            <div className="mx-auto grid max-w-7xl gap-5 px-5 py-8 sm:px-8 lg:grid-cols-[1.2fr_.8fr] lg:items-center">
+              <div>
+                <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#367969]">Selected planning experience · Mill Hill</p>
+                <h2 id="sunbury-planning-experience" className="mt-2 text-[22px] font-semibold leading-tight text-[#24464a] sm:text-[27px]">Five Barnet planning decisions. Coordinated architectural drawings.</h2>
+                <p className="mt-3 text-[13px] leading-7 text-[#58716e]">
+                  This project demonstrates WEDRAWPLANS' experience with successive house-extension proposals, from single-storey rear additions to two-storey side and rear alterations. The council references and individual decisions are documented below.
+                </p>
+              </div>
+              <div className="rounded-[15px] border border-[#cdded4] bg-white p-5">
+                <p className="text-[13px] font-semibold text-[#285951]">Planning a similar extension?</p>
+                <p className="mt-2 text-[12px] leading-6 text-[#607672]">We can review the existing property, assess relevant permissions and prepare a fixed-fee architectural drawing package suited to the proposed work.</p>
+                <Link href={quoteHref} className="mt-4 inline-flex rounded-full bg-[#27767a] px-5 py-3 text-[12px] font-bold text-white hover:bg-[#1c5d63]">Get your fixed-fee drawing quote</Link>
+              </div>
+            </div>
+          </section>
         ) : null}
 
         <section className="bg-white">
