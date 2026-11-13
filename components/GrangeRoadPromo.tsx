@@ -12,8 +12,8 @@ export default function GrangeRoadPromo({ context = "service" }: Props) {
           <p className="text-[11px] font-bold uppercase tracking-[.16em] text-[#2f7867]">Edgware · Barnet · Lawful Development Certificate granted</p>
           <h2 className="mt-3 max-w-2xl text-[22px] font-semibold leading-tight text-[#254c50] sm:text-[27px]">Side extension drawings, Building Regulations &amp; structural coordination — one genuine project</h2>
           <p className="mt-4 max-w-2xl text-[13px] leading-7 text-[#5a7576]">
-            {context === "local" ? "An Edgware example for Barnet homeowners: " : "A genuine WEDRAWPLANS project: "}
-            a 3 m-wide side extension with a 2016 Barnet Certificate of Lawfulness, followed by a separate technical drawing package. Explore the original planning sheet first, then BR01 and four more Building Regulations sheets, all presented with discreet WEDRAWPLANS watermarks.
+            {context === "local" ? "For homeowners in Barnet, this Edgware project demonstrates " : "This WEDRAWPLANS project demonstrates "}
+            how architectural planning drawings support a 3 m-wide side extension confirmed lawful by Barnet in 2016. Separate Building Regulations drawings explain construction, services and structural coordination for the next design stage.
           </p>
           <div className="mt-4 flex flex-wrap gap-2 text-[11px] font-semibold text-[#396b63]">
             <span className="rounded-full border border-[#c7ded3] bg-white px-3 py-1.5">Lawful development</span>
@@ -30,7 +30,7 @@ export default function GrangeRoadPromo({ context = "service" }: Props) {
               fill sizes="(max-width: 768px) 100vw, 42vw" draggable={false} className="pointer-events-none object-contain"
             />
           </div>
-          <p className="mt-2 text-center text-[11px] font-semibold text-[#557677]">{context === "service" ? "Drawing 1 · Original Building Regulations BR01 technical sheet" : "Proposed planning sheet · Full-sheet redacted web preview"}</p>
+          <p className="mt-2 text-center text-[11px] font-semibold text-[#557677]">{context === "service" ? "Drawing 1 · Original Building Regulations BR01 technical sheet" : "Proposed floor and roof plans · lawful side extension"}</p>
         </Link>
       </div>
     </section>

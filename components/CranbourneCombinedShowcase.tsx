@@ -66,7 +66,7 @@ export default function CranbourneCombinedShowcase({ project }: { project: CaseS
           <p className="text-[11px] font-bold uppercase tracking-[.15em] text-[#a16d63]">Architecture and technical design</p>
           <h2 id="cranbourne-gallery-title" className="mt-2 text-[24px] font-semibold text-[#25484c] sm:text-[28px]">Explore the two drawing packages</h2>
           <p className="mt-3 max-w-3xl text-[12px] leading-6 text-[#617b7a]">
-            Start with the BC-10 existing-and-proposed house visual, then explore the planning design and detailed Building Regulations drawings. Every original sheet is presented in full, with closer inspection available on mobile.
+            Explore how WEDRAWPLANS coordinated the Broxbourne-approved rear-extension planning scheme with separate Building Regulations drawings for the ground-floor alterations and gable-loft design. The plans, construction details and structural interfaces show the technical information homeowners need as their project develops.
           </p>
         </div>
         <div className="grid grid-cols-2 gap-2 border-y border-[#deebe3] bg-[#f6faf7] p-3 sm:gap-4 sm:p-5" role="tablist" aria-label="Project drawing stage">

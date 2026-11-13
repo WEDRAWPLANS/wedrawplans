@@ -45,16 +45,13 @@ export default function GrangeRoadCombinedShowcase({ project }: { project: CaseS
             Side extension, planning-stage drawings, Building Regulations &amp; structural coordination
           </h2>
           <p className="mt-4 max-w-4xl text-[14px] leading-7 text-[#577173]">
-            This WEDRAWPLANS project shows how one side extension progresses through two distinct drawing stages.
-            Barnet formally confirmed the proposal was lawful under permitted-development rules on 20 April 2016.
-            The separate Building Regulations sheets demonstrate technical detailing, service planning and construction
-            interfaces, including items requiring structural engineer input where appropriate.
+            This Edgware project demonstrates the value of a coordinated approach from the first planning drawing to later technical details. WEDRAWPLANS prepared the architectural information for a side extension that Barnet confirmed as lawful on 20 April 2016. Separate Building Regulations drawings then addressed construction details, service layouts and structural design interfaces, showing homeowners how each stage can be clearly documented.
           </p>
           <div className="mt-6 grid gap-3 sm:grid-cols-3">
             {[
               ["20 Apr 2016", "Barnet certificate granted"],
               ["3 m × 7.19 m", "Proposed side extension footprint"],
-              ["4 + 5 sheets", "Planning and Building Regulations previews"],
+              ["4 + 5 sheets", "Planning drawings and technical details"],
             ].map(([n, t]) => (
               <div key={t} className="rounded-xl border border-[#d6e6df] bg-white/90 px-4 py-4">
                 <p className="text-[19px] font-bold text-[#245e5e]">{n}</p>
@@ -71,9 +68,9 @@ export default function GrangeRoadCombinedShowcase({ project }: { project: CaseS
 
       <section className="overflow-hidden rounded-[22px] border border-[#dae8df] bg-white shadow-[0_12px_36px_rgba(30,80,76,.045)]" aria-labelledby="grange-drawings">
         <header className="px-5 py-6 sm:px-8">
-          <p className="text-[11px] font-bold uppercase tracking-[.16em] text-[#9b6b5e]">Complete original drawing-sheet previews</p>
+          <p className="text-[11px] font-bold uppercase tracking-[.16em] text-[#9b6b5e]">Planning Drawings &amp; Building Regulations Details</p>
           <h2 id="grange-drawings" className="mt-2 text-[24px] font-semibold text-[#27494d] sm:text-[29px]">Explore the two drawing packages</h2>
-          <p className="mt-3 max-w-3xl text-[13px] leading-7 text-[#627b7b]">The Planning gallery opens with the proposed floor plan. The Building Regulations gallery opens with BR01. Each public preview retains the complete sheet layout and a light diagonal WEDRAWPLANS watermark; private title-block details are redacted.</p>
+          <p className="mt-3 max-w-3xl text-[13px] leading-7 text-[#627b7b]">The planning drawings explain the proposed floor layout, elevations and roof relationship that informed the Certificate of Lawfulness. The separate BR01-led Building Regulations package illustrates service layouts, roof and floor construction, foundations and structural coordination.</p>
         </header>
         <div className="grid grid-cols-2 gap-3 border-y border-[#e0ebe3] bg-[#f7faf8] p-3 sm:p-5" role="tablist" aria-label="Select drawing stage">
           <button type="button" role="tab" aria-selected={stage === "planning"} onClick={() => chooseStage("planning")}
@@ -106,7 +103,7 @@ export default function GrangeRoadCombinedShowcase({ project }: { project: CaseS
             </div>
           </div>
           <figcaption className="mt-3 border-t border-[#e5eee8] pt-3 text-[11px] leading-6 text-[#668180]">
-            {current.code}. Full-sheet web presentation with redacted private title-block details. {zoom ? "Swipe to inspect details." : "Use Inspect larger to review sheet details."}
+            {current.code}. {stage === "planning" ? "Architectural planning information for the side extension." : "Building Regulations construction design information for the same project."} {zoom ? "Swipe to inspect details." : "Select Inspect larger for additional detail."}
           </figcaption>
         </figure>
         <div className="flex gap-3 overflow-x-auto border-t border-[#e1ebe5] bg-[#f9fcfa] px-4 py-5 sm:px-6" role="group" aria-label="Choose drawing">

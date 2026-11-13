@@ -16,7 +16,7 @@ function projectMedia(project: CaseStudy) {
     .map((src, index) => ({
       src,
       alt: (index === 0 ? "Architectural drawing or design view" : "Additional project illustration") + " — " + project.shortTitle,
-      caption: index === 0 ? "WEDRAWPLANS project presentation" : "Additional architectural project view",
+      caption: index === 0 ? "WEDRAWPLANS architectural design" : "Additional architectural project view",
     }));
   const known = new Set<string>();
   return (extra.length ? extra : primary).filter((item) => {
@@ -77,7 +77,7 @@ export default function ProjectMediaSlider({ projects, mode }: Props) {
             </svg>
             <p className="mt-5 text-xl font-semibold leading-snug text-[#2d5056]">{current.project.shortTitle}</p>
             <p className="mt-2 max-w-sm text-[13px] leading-6 text-[#688187]">
-              {isPreview ? "Project drawing gallery — drawings will be added here" : "Approved planning project · WEDRAWPLANS architectural drawings"}
+              {isPreview ? "Explore WEDRAWPLANS planning drawings and project design" : "Approved planning project · WEDRAWPLANS architectural drawings"}
             </p>
             <p className="mt-4 max-w-md text-[13px] leading-6 text-[#567075]">{current.project.service}</p>
           </div>

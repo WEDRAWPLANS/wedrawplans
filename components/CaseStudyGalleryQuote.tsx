@@ -58,7 +58,7 @@ function RealProjectShowcase({ project }: { project: ReddingsProject }) {
       <section aria-labelledby="real-project-before-after">
         <div className="mb-4 flex flex-wrap items-end justify-between gap-2">
           <div>
-            <p className="text-[11px] font-bold uppercase tracking-[.19em] text-[#aa6b61]">The transformation · real project</p>
+            <p className="text-[11px] font-bold uppercase tracking-[.19em] text-[#aa6b61]">A completed Mill Hill home transformation</p>
             <h3 id="real-project-before-after" className="mt-1.5 text-[22px] font-semibold tracking-tight text-[#26474b] sm:text-[27px]">Before &amp; after</h3>
           </div>
           <span className="rounded-full border border-[#bcd6ce] bg-[#ecf5f0] px-3 py-1 text-[11px] font-bold text-[#276752]">Completed project</span>
@@ -84,9 +84,9 @@ function RealProjectShowcase({ project }: { project: ReddingsProject }) {
 
       <section aria-labelledby="real-drawing-examples" className="overflow-hidden rounded-[19px] border border-[#d7e5df] bg-white shadow-[0_14px_40px_rgba(24,64,68,.055)]">
         <header className="border-b border-[#e1eae6] bg-[#edf5f1] px-4 py-5 sm:px-6">
-          <p className="text-[11px] font-bold uppercase tracking-[.18em] text-[#a56b62]">The real architectural drawing package</p>
-          <h3 id="real-drawing-examples" className="mt-1.5 text-[24px] font-semibold leading-tight tracking-tight text-[#23484b] sm:text-[29px]">Real Drawing Examples</h3>
-          <p className="mt-2 max-w-[550px] text-[12px] leading-6 text-[#526d70] sm:text-[13px]">Explore the original architectural drawings prepared for this approved project, including proposed floor plans, elevations, structural layouts and Building Regulations details.</p>
+          <p className="text-[11px] font-bold uppercase tracking-[.18em] text-[#a56b62]">WEDRAWPLANS architectural and technical drawings</p>
+          <h3 id="real-drawing-examples" className="mt-1.5 text-[24px] font-semibold leading-tight tracking-tight text-[#23484b] sm:text-[29px]">Architectural &amp; Building Regulations Drawings</h3>
+          <p className="mt-2 max-w-[550px] text-[12px] leading-6 text-[#526d70] sm:text-[13px]">See how WEDRAWPLANS brought floor plans, elevations, structural layouts and Building Regulations details together for this substantial Mill Hill house transformation. These project drawings demonstrate the design and technical coordination behind the home improvements.</p>
         </header>
         {chosen ? (
           <>
@@ -107,7 +107,7 @@ function RealProjectShowcase({ project }: { project: ReddingsProject }) {
               
             </figure>
             <div className="border-t border-[#e5ece8] px-3 py-4 sm:px-5">
-              <p className="mb-3 text-[11px] font-semibold text-[#426468]">Explore the approved architectural drawings:</p>
+              <p className="mb-3 text-[11px] font-semibold text-[#426468]">Explore the planning and technical drawings:</p>
               <div className="flex snap-x snap-mandatory gap-2.5 overflow-x-auto pb-2" aria-label="Select architectural drawing">
                 {drawings.map((drawing, index) => (
                   <button key={drawing.src} type="button" onClick={() => setSelected(index)} aria-current={selected === index ? "true" : undefined} aria-label={"View drawing " + (index + 1) + ": " + drawing.alt} className={"w-[102px] shrink-0 snap-start rounded-xl border p-1.5 text-left transition focus-visible:ring-2 focus-visible:ring-[#2a97a3] sm:w-[117px] " + (selected === index ? "border-[#3e9d9c] bg-[#e9f5f1] shadow-[0_3px_12px_rgba(26,91,86,.12)]" : "border-[#dfebe6] bg-white hover:border-[#9bc6bc]")}>
@@ -204,8 +204,8 @@ function AllumLaneShowcase({ project, quoteHeight }: { project: CaseStudy; quote
       <section aria-labelledby="allum-full-architectural-drawings" className="overflow-hidden rounded-[20px] border border-[#d9e7e2] bg-white shadow-[0_14px_32px_rgba(22,68,70,.055)]">
         <header className="border-b border-[#dfe9e3] bg-[#edf6f1] px-4 py-5 sm:px-6">
           <p className="text-[11px] font-bold uppercase tracking-[.18em] text-[#ab6a60]">Genuine WEDRAWPLANS approved project documents</p>
-          <h3 id="allum-full-architectural-drawings" className="mt-1.5 text-[24px] font-semibold text-[#23474b] sm:text-[29px]">Real Drawing Examples</h3>
-          <p className="mt-2 max-w-[640px] text-[13px] leading-6 text-[#567278]">Explore selected approved architectural drawings: Drawings 5, 6 and 8 only. Each drawing is displayed in full with a discreet grey WEDRAWPLANS watermark.</p>
+          <h3 id="allum-full-architectural-drawings" className="mt-1.5 text-[24px] font-semibold text-[#23474b] sm:text-[29px]">Approved Planning Drawing Examples</h3>
+          <p className="mt-2 max-w-[640px] text-[13px] leading-6 text-[#567278]">See how WEDRAWPLANS used proposed floor plans, elevations and architectural details to explain the scale, layout and appearance of this Hertsmere house extension as part of a successful planning application.</p>
         </header>
         {selectedDrawing ? (
           <>
@@ -294,7 +294,7 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
           <div>
             <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-[#a36a63]">WEDRAWPLANS architectural drawings</p>
             <h2 id="project-gallery-heading" className="mt-2 text-2xl font-semibold tracking-tight text-[#284549] sm:text-3xl">
-              {isHub ? "Explore our approved planning projects" : isReddings ? "A real project, from before to after" : isAllum ? "A real approved project, from plans to 3D design" : isApprovedDrawingShowcase ? "Approved planning drawings & architectural 3D design" : isBrockley ? "Approved two-flat conversion · original architectural design" : isHarrowStudios ? "Three studio flats approved above retail · drawings and 3D walkthroughs" : isCannon ? "5 metre rear extension · original design and approved drawings" : isSunburyCare ? "Accessible garden outbuilding · original architectural design" : isGreenwichTen ? "Ten-flat existing-use case · original drawings and planning evidence" : isHendonHMO ? "Seven-bedroom HMO · approved architectural plans and planning assessment" : isCranbourneCombined ? "Extension planning & loft Building Regulations · two coordinated design stages" : isSuttonLoft ? "Approved Sutton loft conversion · original 3D design and planning drawings" : isLeicesterCombined ? "Barnet rear extension · original animation, planning and Building Regulations drawings" : "Project drawings & design"}
+              {isHub ? "Explore our approved planning projects" : isReddings ? "Mill Hill home extension · before & after" : isAllum ? "Approved Elstree extension · planning drawings & 3D design" : isApprovedDrawingShowcase ? "Approved planning drawings & architectural 3D design" : isBrockley ? "Approved two-flat conversion · original architectural design" : isHarrowStudios ? "Three studio flats approved above retail · drawings and 3D walkthroughs" : isCannon ? "5 metre rear extension · original design and approved drawings" : isSunburyCare ? "Accessible garden outbuilding · original architectural design" : isGreenwichTen ? "Ten-flat existing-use case · original drawings and planning evidence" : isHendonHMO ? "Seven-bedroom HMO · approved architectural plans and planning assessment" : isCranbourneCombined ? "Extension planning & loft Building Regulations · two coordinated design stages" : isSuttonLoft ? "Approved Sutton loft conversion · original 3D design and planning drawings" : isLeicesterCombined ? "Barnet rear extension · original animation, planning and Building Regulations drawings" : "Project drawings & design"}
             </h2>
             <p className="mt-3 max-w-3xl text-[14px] leading-7 text-[#61777b]">
               {isHub
@@ -315,7 +315,7 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
                               ? "Explore the successful Wallington loft conversion application with eight genuine WEDRAWPLANS drawing sheets, existing/proposed 3D visualisations and a clearly labelled inspiration gallery."
                               : isLeicesterCombined
                                 ? "See how WEDRAWPLANS combines original design animation and Barnet prior approval with a coordinated Building Regulations drawing package and structural engineer interfaces."
-                                : "Explore the architectural project presentation and ask us about drawings for your own property."}
+                                : "See how WEDRAWPLANS approaches architectural planning drawings and design coordination, then request a fixed-fee quotation tailored to your own property."}
             </p>
           </div>
           {isHub ? <Link href="#browse-projects" className="text-[13px] font-semibold text-[#27757e] underline-offset-4 hover:underline">Browse all approved projects →</Link> : <span className="text-[12px] text-[#667f81]">{project.shortTitle}</span>}
@@ -327,7 +327,7 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
               <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-[15px] border border-[#dce7e4] bg-white px-5 py-4">
                 <div>
                   <p className="text-[14px] font-semibold text-[#36595e]">Architectural project video</p>
-                  <p className="mt-1 text-[12px] leading-6 text-[#71858a]">View the WEDRAWPLANS project presentation.</p>
+                  <p className="mt-1 text-[12px] leading-6 text-[#71858a]">Explore how the proposed design was developed through architectural drawings and 3D design views.</p>
                 </div>
                 <a href={project.projectVideoUrl} target="_blank" rel="noopener noreferrer" className="rounded-full border border-[#b7d2d2] px-4 py-2.5 text-[12px] font-semibold text-[#2b777e] hover:bg-[#f0f8f6]">View video ↗</a>
               </div>

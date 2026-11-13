@@ -57,7 +57,7 @@ export default function SuttonLoftShowcase({ project }: Props) {
         <div className="border-b border-[#dce9e3] bg-[#edf6f1] px-5 py-5 sm:px-7">
           <p className="text-[11px] font-bold uppercase tracking-[.17em] text-[#ad7164]">Original approved architectural drawings</p>
           <h3 id="sutton-loft-drawings" className="mt-1 text-[23px] font-semibold text-[#244c50]">Explore the full drawing package</h3>
-          <p className="mt-2 text-[13px] leading-6 text-[#587477]">Eight original full-sheet drawing presentations, including before-and-after 3D views, plans, elevations and sections. Client details are concealed and each sheet carries one faded WEDRAWPLANS watermark.</p>
+          <p className="mt-2 text-[13px] leading-6 text-[#587477]">See how WEDRAWPLANS developed the Sutton loft conversion through existing and proposed roof plans, elevations, sections and 3D architectural design. Together, the drawings explain the rear dormer, side rooflights, bedroom, en-suite and eaves storage considered in the approved application.</p>
         </div>
         {active ? (
           <>
@@ -78,7 +78,7 @@ export default function SuttonLoftShowcase({ project }: Props) {
               <figcaption className="border-t border-[#e5ece7] px-2 pt-3 text-[12px] leading-6 text-[#5c7574]">{active.caption}</figcaption>
             </figure>
             <div className="border-t border-[#e6ede9] px-3 py-4 sm:px-5">
-              <p className="mb-3 text-[11px] font-semibold text-[#4d6f70]">Choose a full original drawing sheet:</p>
+              <p className="mb-3 text-[11px] font-semibold text-[#4d6f70]">Explore another planning drawing:</p>
               <div className="flex snap-x gap-2.5 overflow-x-auto pb-2" aria-label="Architectural drawing selection">
                 {drawings.map((sheet,index) => (
                   <button key={sheet.src} type="button" onClick={() => setSelected(index)} aria-current={selected === index ? "true" : undefined} aria-label={"Open drawing " + (index+1) + ": " + sheet.caption} className={"w-[126px] shrink-0 snap-start rounded-xl border p-1.5 text-left transition sm:w-[139px] " + (selected===index ? "border-[#438d83] bg-[#e7f4ed] shadow-sm" : "border-[#dfe8e3] bg-white hover:border-[#aaccc2]")}>
