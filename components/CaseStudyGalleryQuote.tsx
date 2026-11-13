@@ -84,9 +84,9 @@ function RealProjectShowcase({ project }: { project: ReddingsProject }) {
 
       <section aria-labelledby="real-drawing-examples" className="overflow-hidden rounded-[19px] border border-[#d7e5df] bg-white shadow-[0_14px_40px_rgba(24,64,68,.055)]">
         <header className="border-b border-[#e1eae6] bg-[#edf5f1] px-4 py-5 sm:px-6">
-          <p className="text-[11px] font-bold uppercase tracking-[.18em] text-[#a56b62]">The real architectural drawing package</p>
-          <h3 id="real-drawing-examples" className="mt-1.5 text-[24px] font-semibold leading-tight tracking-tight text-[#23484b] sm:text-[29px]">Approved Planning Drawing Examples</h3>
-          <p className="mt-2 max-w-[550px] text-[12px] leading-6 text-[#526d70] sm:text-[13px]">Explore the original architectural drawings prepared for this approved project, including proposed floor plans, elevations, structural layouts and Building Regulations details.</p>
+          <p className="text-[11px] font-bold uppercase tracking-[.18em] text-[#a56b62]">WEDRAWPLANS architectural and technical drawings</p>
+          <h3 id="real-drawing-examples" className="mt-1.5 text-[24px] font-semibold leading-tight tracking-tight text-[#23484b] sm:text-[29px]">Architectural &amp; Building Regulations Drawings</h3>
+          <p className="mt-2 max-w-[550px] text-[12px] leading-6 text-[#526d70] sm:text-[13px]">See how WEDRAWPLANS brought floor plans, elevations, structural layouts and Building Regulations details together for this substantial Mill Hill house transformation. These project drawings demonstrate the design and technical coordination behind the home improvements.</p>
         </header>
         {chosen ? (
           <>
@@ -107,7 +107,7 @@ function RealProjectShowcase({ project }: { project: ReddingsProject }) {
               
             </figure>
             <div className="border-t border-[#e5ece8] px-3 py-4 sm:px-5">
-              <p className="mb-3 text-[11px] font-semibold text-[#426468]">Explore the approved architectural drawings:</p>
+              <p className="mb-3 text-[11px] font-semibold text-[#426468]">Explore the planning and technical drawings:</p>
               <div className="flex snap-x snap-mandatory gap-2.5 overflow-x-auto pb-2" aria-label="Select architectural drawing">
                 {drawings.map((drawing, index) => (
                   <button key={drawing.src} type="button" onClick={() => setSelected(index)} aria-current={selected === index ? "true" : undefined} aria-label={"View drawing " + (index + 1) + ": " + drawing.alt} className={"w-[102px] shrink-0 snap-start rounded-xl border p-1.5 text-left transition focus-visible:ring-2 focus-visible:ring-[#2a97a3] sm:w-[117px] " + (selected === index ? "border-[#3e9d9c] bg-[#e9f5f1] shadow-[0_3px_12px_rgba(26,91,86,.12)]" : "border-[#dfebe6] bg-white hover:border-[#9bc6bc]")}>
