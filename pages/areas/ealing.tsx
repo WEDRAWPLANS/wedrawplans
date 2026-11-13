@@ -596,6 +596,9 @@ export default function EalingAreaPage() {
               <div id="ealing-quote" className="scroll-mt-5 lg:w-1/2">
                 <div className="rounded-2xl border border-[#e0e7e3] bg-white p-5 shadow-md sm:p-6">
                   <BoroughQuoteForm boroughName="Ealing" formId="ealing-quote" onSubmit={handleSubmit} />
+                  <p className="mt-3 text-[11px] leading-5 text-slate-500">
+                    Typical Ealing projects include rear extensions, wraparound extensions, loft conversions and refurbishments.
+                  </p>
 
                   <div className="mt-5 overflow-hidden rounded-xl border border-[#e0e8e4] bg-[#f7faf9] lg:hidden">
                     <Image
