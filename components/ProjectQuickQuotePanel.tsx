@@ -12,6 +12,7 @@ type Props = {
   projectTitle?: string;
   suggestedService?: string;
   source: "case-study-gallery" | "case-studies-hub";
+  sticky?: boolean;
 };
 
 function fireEvent(name: string, params: Record<string, string>) {
@@ -25,6 +26,7 @@ export default function ProjectQuickQuotePanel({
   projectTitle = "",
   suggestedService = "",
   source,
+  sticky = true,
 }: Props) {
   const [service, setService] = useState(suggestedService);
   const [postcode, setPostcode] = useState("");
@@ -111,7 +113,7 @@ export default function ProjectQuickQuotePanel({
   }
 
   return (
-    <aside className="h-fit w-full rounded-[22px] border border-[#e2e9e8] bg-white p-3 shadow-[0_15px_36px_rgba(19,46,52,0.07)] sm:p-4 lg:sticky lg:top-36" aria-label="Get a quick quotation">
+    <aside className={"h-fit w-full rounded-[22px] border border-[#e2e9e8] bg-white p-3 shadow-[0_15px_36px_rgba(19,46,52,0.07)] sm:p-4" + (sticky ? " lg:sticky lg:top-36" : "")} aria-label="Get a quick quotation">
       <div className="rounded-[18px] border border-[#e2e8eb] bg-[#f7fafc] px-4 py-5 sm:px-6">
         {success ? (
           <div role="status" className="py-8 text-center">
