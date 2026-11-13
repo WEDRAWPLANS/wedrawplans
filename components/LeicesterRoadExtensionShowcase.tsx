@@ -79,7 +79,7 @@ export default function LeicesterRoadExtensionShowcase({ project }: Props) {
         <div className="px-5 pb-4 pt-6 sm:px-7">
           <p className="text-[11px] font-bold uppercase tracking-[.17em] text-[#a36b62]">Authentic WEDRAWPLANS drawings</p>
           <h3 id="leicester-gallery-heading" className="mt-1 text-[23px] font-semibold text-[#274c4e]">Explore the planning &amp; construction details</h3>
-          <p className="mt-2 text-[13px] leading-6 text-[#637b7a]">Original full-sheet architectural and Building Regulations documents with private details concealed and one faded diagonal WEDRAWPLANS watermark on each drawing.</p>
+          <p className="mt-2 text-[13px] leading-6 text-[#637b7a]">Explore how WEDRAWPLANS coordinated the planning drawings for Barnet's 4-metre rear-extension prior approval with separate preliminary Building Regulations details for the floor, walls, roof, foundations and drainage, including structural design interfaces.</p>
         </div>
         <div className="flex flex-wrap gap-2 border-y border-[#e1eae4] bg-[#f6faf7] px-3 py-3 sm:px-5" role="tablist" aria-label="Drawing categories">
           {categories.map((item)=>(
@@ -116,7 +116,7 @@ export default function LeicesterRoadExtensionShowcase({ project }: Props) {
         </div>
         <div className="border-t border-[#deebe3] bg-[#f2f8f3] px-5 py-4 sm:px-7">
           <p className="text-[12px] font-bold text-[#286a57]">Barnet prior approval granted · Ref 20/1467/PNH · 29 April 2020</p>
-          <p className="mt-2 text-[12px] leading-6 text-[#607775]">The council decision relates to the planning prior-approval procedure only. The BR drawings supplied are marked preliminary. This case study does not claim Building Control approval, structural certification, or completed construction.</p>
+          <p className="mt-2 text-[12px] leading-6 text-[#607775]">Barnet's decision confirms planning prior approval. The separate Building Regulations drawings are preliminary technical design information and should not be confused with a Building Control approval or completion certificate.</p>
         </div>
       </section>
       <div className="rounded-[17px] border border-[#d8e7e0] bg-[#f3faf5] px-5 py-5 sm:px-6">
