@@ -24,7 +24,7 @@ export default function BoroughQuoteForm({ boroughName, formId, onSubmit }: Prop
         </p>
       </div>
       <h2 className="mt-4 text-[17px] font-semibold leading-snug tracking-tight text-[#223b3e] sm:text-[19px]">
-        Request your {boroughName} fixed-fee quote
+        Get your fixed-fee drawing quote
       </h2>
       <p className="mt-1.5 text-[12px] leading-5 text-[#586d73]">
         Tell us what you would like to build or change. No drawings or plans are needed to enquire.
