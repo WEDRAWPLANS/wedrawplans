@@ -19,11 +19,10 @@ export default function BrockleyCaseStudyShowcase({ project }: Props) {
         <div className="border-b border-[#dce9e2] bg-[#edf6f0] px-4 py-5 sm:px-6">
           <p className="text-[11px] font-extrabold uppercase tracking-[.17em] text-[#287359]">Lewisham planning permission granted · 3 December 2025</p>
           <h3 className="mt-2 text-[24px] font-semibold leading-tight text-[#234a4d] sm:text-[29px]">
-            Architectural 3D design &amp; four selected technical drawings
+            Architectural Planning &amp; Building Regulations Design for Two Flats
           </h3>
           <p className="mt-2 text-[13px] leading-6 text-[#557277]">
-            Explore original WEDRAWPLANS architectural views, the proposed second-floor arrangement, building section and elevations.
-            Every sheet is shown complete, with one extremely faint grey diagonal WEDRAWPLANS watermark and identifying house numbers removed.
+            WEDRAWPLANS developed architectural layouts for two self-contained homes above retail premises, followed by separate technical drawings for access, fire and acoustic separation and smoke ventilation. This project illustrates how coordinated design information helps make a complex residential conversion clearer.
           </p>
         </div>
 
@@ -70,7 +69,7 @@ export default function BrockleyCaseStudyShowcase({ project }: Props) {
           Later 2026 Building Control drawings demonstrate the technical design work, including a protected common stair, fire and acoustic separation and smoke-ventilation provisions.
         </p>
         <p className="mt-3 text-[12px] leading-6 text-[#657b7f]">
-          Accuracy note: the drawings displayed here are later 2026 technical revisions; the council's 2025 decision notice lists a separate set of approved planning drawing references. These sheets are not presented as approved by the 2025 decision.
+          Lewisham's 2025 planning permission relates to the approved planning drawing set. The Building Control sheets shown here are separate technical design revisions prepared in 2026, not a Building Control approval certificate.
         </p>
         <Link href="#case-study-quote" className="mt-5 inline-flex rounded-full bg-[#236e74] px-5 py-3 text-[12px] font-bold text-white transition hover:bg-[#1b5961]">
           Request your fixed-fee quote →
