@@ -334,7 +334,7 @@ export default function CityOfLondonAreaPage() {
                     Fit-out / layout planning drawings
                   </h3>
                   <div className="mt-1 text-[13px] font-semibold text-slate-900">
-                    from £950 + VAT
+                    from £950
                   </div>
                   <p className="mt-2 text-[12px] text-slate-600">
                     Existing and proposed plans suitable for planning,
@@ -346,7 +346,7 @@ export default function CityOfLondonAreaPage() {
                     Measured survey in the City
                   </h3>
                   <div className="mt-1 text-[13px] font-semibold text-slate-900">
-                    from £250 + VAT
+                    from £250
                   </div>
                   <p className="mt-2 text-[12px] text-slate-600">
                     Targeted measured surveys to support accurate base drawings.
@@ -357,7 +357,7 @@ export default function CityOfLondonAreaPage() {
                     Building regulation packs
                   </h3>
                   <div className="mt-1 text-[13px] font-semibold text-slate-900">
-                    from £1,150 + VAT
+                    from £1,150
                   </div>
                   <p className="mt-2 text-[12px] text-slate-600">
                     Coordinated technical drawings, sections and notes suitable
