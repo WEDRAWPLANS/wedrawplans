@@ -376,7 +376,7 @@ export default function SurreyBordersM25AreaPage() {
                     Extension or loft planning drawings
                   </h3>
                   <div className="mt-1 text-[13px] font-semibold text-slate-900">
-                    from £850 + VAT
+                    from £850
                   </div>
                   <p className="mt-2 text-[12px] text-slate-600">
                     Existing and proposed plans and elevations for planning or permitted
@@ -389,7 +389,7 @@ export default function SurreyBordersM25AreaPage() {
                     Measured survey
                   </h3>
                   <div className="mt-1 text-[13px] font-semibold text-slate-900">
-                    from £180 + VAT
+                    from £180
                   </div>
                   <p className="mt-2 text-[12px] text-slate-600">
                     Detailed on-site survey of your property prior to drawing production.
@@ -401,7 +401,7 @@ export default function SurreyBordersM25AreaPage() {
                     Building regulation packs
                   </h3>
                   <div className="mt-1 text-[13px] font-semibold text-slate-900">
-                    from £1,050 + VAT
+                    from £1,050
                   </div>
                   <p className="mt-2 text-[12px] text-slate-600">
                     Full construction notes, sections and technical details coordinated
