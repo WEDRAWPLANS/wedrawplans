@@ -28,8 +28,8 @@ const PROJECTS: Record<ProjectKind, {
   sistova: {
     eyebrow: "Wandsworth · Approved house extension and basement",
     heading: "A coordinated design for a side and rear extension",
-    visualIntro: "Compare the original building and the approved proposal through WEDRAWPLANS' own existing-and-proposed 3D architectural views. These are design drawings, not construction photographs.",
-    drawingIntro: "Only four selected WEDRAWPLANS drawing sheets are displayed: existing and proposed 3D views, proposed floor and roof plans, proposed elevations and a proposed section. Each original sheet retains its full drawing border and title block, with one extremely faint diagonal grey WEDRAWPLANS watermark.",
+    visualIntro: "See how WEDRAWPLANS used existing and proposed 3D architectural design to explain the extension's proportions, additional living space and relationship to neighbouring homes. These views illustrate the approved design, not a completed build.",
+    drawingIntro: "For this approved Wandsworth side and rear extension with basement works, WEDRAWPLANS coordinated floor and roof plans, proposed elevations and sections to communicate the rear lightwell, layout and neighbouring relationships clearly to the planning authority.",
     methodHeading: "How the Wandsworth proposal was developed",
     method: [
       { title: "1 · Working with the existing house", body: "Existing floor and roof plans, elevations and 3D views establish the original building, its side passage and its relationship with neighbouring properties." },
@@ -44,8 +44,8 @@ const PROJECTS: Record<ProjectKind, {
   cromwell: {
     eyebrow: "Hounslow · Approved side-return and rear infill",
     heading: "Turning an underused side return into better living space",
-    visualIntro: "See WEDRAWPLANS' existing-and-proposed architectural 3D illustrations showing the relationship between the original building and the approved rear addition. These are design illustrations rather than photographs of completed construction.",
-    drawingIntro: "Five complete original architectural sheets present the existing and proposed layouts, rooflight, rear glazing, elevations and detailed sections. They are displayed with the original drawing borders and WEDRAWPLANS title blocks intact.",
+    visualIntro: "See how WEDRAWPLANS developed an architectural design for improved kitchen and living accommodation, with a rooflight, glazed rear doors and a considered relationship to the existing house. These are proposed design views, not completed-build photographs.",
+    drawingIntro: "WEDRAWPLANS brought existing and proposed layouts, rooflight design, rear glazing, elevations and key sections together into a coordinated drawing package, helping Hounslow assess the extension as one clear planning proposal.",
     methodHeading: "How the Hounslow proposal was presented",
     method: [
       { title: "1 · Understanding the existing building", body: "Architectural views and existing elevations document the original rear projection and the side-return space alongside the house." },
@@ -98,7 +98,7 @@ export default function ApprovedDrawingShowcase({
             </div>
             <figcaption className="flex flex-wrap justify-between gap-2 border-t border-[#e5ece8] px-4 py-3 text-[11px] font-semibold leading-5 text-[#43666b] sm:px-6 sm:text-[12px]">
               <span>Existing &amp; proposed 3D architectural drawings</span>
-              <span>Original WEDRAWPLANS presentation</span>
+              <span>Architectural design by WEDRAWPLANS</span>
             </figcaption>
           </figure>
         ) : null}
@@ -107,7 +107,7 @@ export default function ApprovedDrawingShowcase({
       <section aria-labelledby="approved-drawing-gallery" className="overflow-hidden rounded-[19px] border border-[#d9e6df] bg-white shadow-[0_14px_40px_rgba(24,64,68,.055)]">
         <div className="border-b border-[#dfe9e3] bg-[#edf5f1] px-4 py-5 sm:px-6">
           <p className="text-[11px] font-bold uppercase tracking-[.16em] text-[#a66b62]">WEDRAWPLANS · Original approved project drawings</p>
-          <h3 id="approved-drawing-gallery" className="mt-1.5 text-[24px] font-semibold text-[#23474b] sm:text-[29px]">Real Drawing Examples</h3>
+          <h3 id="approved-drawing-gallery" className="mt-1.5 text-[24px] font-semibold text-[#23474b] sm:text-[29px]">Planning Drawings &amp; Design</h3>
           <p className="mt-2 text-[12px] leading-6 text-[#5d7478] sm:text-[13px]">{content.drawingIntro}</p>
         </div>
         {selected ? (
