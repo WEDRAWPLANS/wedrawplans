@@ -123,6 +123,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: "sistova-road-wandsworth-extension-basement",
+    seoDescription: "Wandsworth granted permission for a single-storey side/rear extension, excavation to enlarge the existing basement and form a rear lightwell, and a replacement side window at Sistova Road. See the project details and request a fixed-fee drawing quote from WEDRAWPLANS.",
     wdpService: "WEDRAWPLANS surveyed and developed the existing and proposed plans, elevations and sections for the side/rear extension and basement works. The practice prepared the application drawing revisions and fire-safety information, submitted the planning material and maintained communication with Wandsworth's case officer until permission was granted.",
     homeownerGuidance: "For basement and rear extension proposals in Wandsworth, the drawings need to demonstrate existing and proposed levels, neighbour relationships, glazing and external finishes. WEDRAWPLANS can assess the site and prepare a coordinated submission.",
     highlights: ["Single-storey side and rear extension","Basement enlargement and formation of a rear lightwell","Replacement side window and associated access alterations","Revised drawings and fire-safety information referenced by the council"],
@@ -219,6 +220,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "allum-lane-elstree-major-house-extension",
+    seoDescription: "Explore the approved Allum Lane house-extension design in Elstree: three selected 3D views and Drawings 5, 6 and 8. The scheme combines front, side and rear alterations, pitched rooflines and contemporary glazing. See the project details and request a fixed-fee drawing quote from WEDRAWPLANS.",
     wdpService: "WEDRAWPLANS prepared the architectural drawings and 3D design presentation for a substantial house extension project in Elstree. The package coordinates existing and proposed floor plans, four building elevations, landscaped site planning, roof and glazing alterations, and a 45-degree right-of-light study to demonstrate the design and its relationship to neighbouring homes.",
     homeownerGuidance: "For major extensions in Elstree, Borehamwood and Hertsmere, clear existing and proposed drawings, coordinated rooflines, elevation details and daylight studies can help explain a complex scheme to the planning authority. The architectural 3D views show how the approved layout and façade design may appear; they do not represent photographs of construction.",
     highlights: [
@@ -439,6 +441,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "the-reddings-mill-hill-extension-basement-loft",
+    seoDescription: "An ambitious Mill Hill house-improvement project combining front, side and rear extensions with basement accommodation, alongside a separately certified loft and roof enlargement. See the project details and request a fixed-fee drawing quote from WEDRAWPLANS.",
     wdpService: "WEDRAWPLANS prepared architectural design drawings for the house extensions, basement and roof enlargement. The practice coordinated the householder application and separate lawful-development certificate, working with Barnet's planning officers to secure the recorded outcomes.",
     homeownerGuidance: "Front, side, rear, basement and loft alterations may call for different consent routes. A combined design strategy can reduce contradictory details across drawings while preserving the distinct approval requirements.",
     title: "Approved House Extension, Basement and Loft Scheme in Mill Hill",
