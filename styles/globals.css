@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Keep the case-study enquiry card reachable below the sticky desktop header. */
+@media (min-width: 1024px) {
+  .case-study-quote {
+    max-height: calc(100dvh - var(--case-study-header-height, 0px) - 16px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+}

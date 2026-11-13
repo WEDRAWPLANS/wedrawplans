@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 import WhatsAppIcon from "./WhatsAppIcon";
 
 const PHONE_DISPLAY = "020 3654 8508";
@@ -8,8 +9,35 @@ const GOOGLE_PROFILE = "https://share.google/D3KId64vHtHSKPALr";
 const QUOTE = "/get-drawings-quote";
 
 export function CaseStudyHeader() {
+  const headerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header) return;
+
+    const updateHeaderOffset = () => {
+      // The desktop header is sticky; on mobile it scrolls away.
+      const height = window.innerWidth >= 1024 ? Math.ceil(header.getBoundingClientRect().height) : 0;
+      document.documentElement.style.setProperty("--case-study-header-height", `${height}px`);
+    };
+    updateHeaderOffset();
+
+    const observer = typeof ResizeObserver !== "undefined" ? new ResizeObserver(updateHeaderOffset) : null;
+    observer?.observe(header);
+    window.addEventListener("resize", updateHeaderOffset);
+    // Correct deep links where the browser jumped before React measured the header.
+    if (window.location.hash === "#case-study-quote") {
+      window.requestAnimationFrame(() => document.getElementById("case-study-quote")?.scrollIntoView({ block: "start" }));
+    }
+    return () => {
+      observer?.disconnect();
+      window.removeEventListener("resize", updateHeaderOffset);
+      document.documentElement.style.removeProperty("--case-study-header-height");
+    };
+  }, []);
+
   return (
-    <header className="sticky top-0 z-[60] border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur">
+    <header ref={headerRef} className="relative z-[60] border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur lg:sticky lg:top-0">
       <div className="mx-auto max-w-6xl px-4 pb-3 pt-4 lg:px-6 lg:pt-5">
         <div className="flex flex-col items-center text-center">
           <Link href="/" className="inline-flex items-center justify-center">
