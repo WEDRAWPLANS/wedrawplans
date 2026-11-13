@@ -289,7 +289,7 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
   if (!project) return null;
   return (
     <section id="project-drawings" aria-labelledby="project-gallery-heading" className="border-y border-[#e3e9e6] bg-[#f4f8f7]">
-      <div className="mx-auto max-w-7xl px-5 py-8 pb-24 sm:px-8 sm:py-11 lg:pb-12">
+      <div className="mx-auto max-w-7xl px-5 py-8 pb-8 sm:px-8 sm:py-11 lg:pb-12">
         <div className="mb-7 flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-[#a36a63]">WEDRAWPLANS architectural drawings</p>
@@ -352,7 +352,7 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
           </div>
         </div>
       </div>
-      {(isReddings || isAllum || isApprovedDrawingShowcase || isBrockley || isHarrowStudios || isCannon || isSunburyCare || isGreenwichTen || isHendonHMO || isCranbourneCombined || isSuttonLoft || isLeicesterCombined) ? <a href="#case-study-quote" className="fixed inset-x-0 bottom-0 z-40 flex min-h-[60px] items-center justify-center border-t border-[#bcd5d0] bg-[#224b4e] px-5 py-3 text-[14px] font-bold text-white shadow-[0_-10px_30px_rgba(0,0,0,.13)] lg:hidden">Get your fixed-fee drawing quote →</a> : null}
+      {(isReddings || isAllum || isApprovedDrawingShowcase || isBrockley || isHarrowStudios || isCannon || isSunburyCare || isGreenwichTen || isHendonHMO || isCranbourneCombined || isSuttonLoft || isLeicesterCombined) ? <a href="#case-study-quote" className="case-study-mobile-quote-bar fixed inset-x-0 bottom-0 z-40 flex min-h-[60px] items-center justify-center border-t border-[#bcd5d0] bg-[#224b4e] px-5 py-3 text-[14px] font-bold text-white shadow-[0_-10px_30px_rgba(0,0,0,.13)] lg:hidden">Get your fixed-fee drawing quote →</a> : null}
     </section>
   );
 }
