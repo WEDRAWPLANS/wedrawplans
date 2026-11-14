@@ -28,25 +28,25 @@ export default function BoroughQuoteForm({ boroughName, formId }: Props) {
     }
   }
 
-  const control = "h-12 w-full min-w-0 rounded-[14px] border border-[#7a8d92] bg-white px-4 text-[16px] text-[#203e4a] outline-none transition placeholder:text-[#60747a] focus:border-[#236f7b] focus:ring-2 focus:ring-[#236f7b] focus:ring-offset-2";
-  const fieldLabel = "mb-1.5 block text-left text-[13px] font-semibold text-[#203e4a]";
+  const control = "block h-12 w-full min-w-0 rounded-xl border border-[#7f9595] bg-[#f8fbfa] px-3.5 text-base text-[#203e4a] outline-none transition-colors placeholder:text-[#566e72] focus:border-[#236f7b] focus:bg-white focus:ring-2 focus:ring-[#236f7b] focus:ring-offset-2";
+  const fieldLabel = "mb-1.5 block text-sm font-semibold leading-5 text-[#203e4a]";
   const titleId = `${formId}-heading`;
   const whatsappHref = "https://wa.me/442036548508?text=" + encodeURIComponent(
     `Hello WEDRAWPLANS, I would like a drawing quote for a project in ${boroughName}.`
   );
 
   return (
-    <section id={BOROUGH_QUOTE_ID} aria-labelledby={titleId} tabIndex={-1} className="min-w-0 scroll-mt-5">
-      <div className="overflow-hidden rounded-[13px] bg-[#245b63] px-4 py-2.5 text-center text-white">
-        <p className="break-words text-[14px] font-extrabold uppercase tracking-[0.17em] sm:text-[15px]">
+    <section id={BOROUGH_QUOTE_ID} aria-labelledby={titleId} tabIndex={-1} className="min-w-0 scroll-mt-5 focus:outline-none">
+      <div className="rounded-xl bg-[#e6f1ee] px-4 py-2.5 text-center text-[#245b63]">
+        <p className="break-words text-[13px] font-extrabold uppercase tracking-[0.15em]">
           {boroughName}
         </p>
       </div>
-      <h2 id={titleId} className="mt-4 text-[17px] font-semibold leading-snug tracking-tight text-[#223b3e] sm:text-[19px]">
+      <h2 id={titleId} className="mt-4 text-[22px] font-bold leading-tight tracking-tight text-[#193c43] sm:text-[24px]">
         Get your fixed-fee drawing quote
       </h2>
-      <p className="mt-1.5 text-[13px] leading-5 text-[#586d73]">
-        Tell us a little about your project. No drawings or plans needed.
+      <p className="mt-2 text-sm leading-5 text-[#52686e]">
+        A short description is enough. No drawings needed.
       </p>
       <form onSubmit={handleSubmit} onChange={() => { if (status === "sent") setStatus("idle"); }} aria-labelledby={titleId} className="mt-4 space-y-3 text-[13px]">
         <input type="text" name="company" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
@@ -56,29 +56,28 @@ export default function BoroughQuoteForm({ boroughName, formId }: Props) {
             Property postcode <span className="text-[#b64740]">*</span>
           </label>
           <input id={formId + "-postcode"} name="postcode" required autoComplete="postal-code"
-            inputMode="text" autoCapitalize="characters" spellCheck={false} placeholder="Enter your property postcode" className={control} />
+            inputMode="text" autoCapitalize="characters" spellCheck={false} placeholder="e.g. SW1A 1AA" className={control} />
         </div>
         <div>
           <label htmlFor={formId + "-details"} className={fieldLabel}>
             What would you like to build or change? <span className="text-[#b64740]">*</span>
           </label>
-          <textarea id={formId + "-details"} name="projectDetails" required rows={3}
-            placeholder="For example: single-storey rear extension or loft conversion"
-            className={control + " min-h-[92px] resize-y py-3 leading-6"} />
+          <textarea id={formId + "-details"} name="projectDetails" required rows={2}
+            placeholder="e.g. A rear extension for a bigger kitchen"
+            className={control + " min-h-[84px] resize-y py-2.5 leading-6"} />
         </div>
         <div>
           <label htmlFor={formId + "-name"} className={fieldLabel}>
             Your name <span className="text-[#b64740]">*</span>
           </label>
-          <input id={formId + "-name"} name="name" required autoComplete="name"
-            placeholder="Your name" className={control} />
+          <input id={formId + "-name"} name="name" required autoComplete="name" className={control} />
         </div>
         <div>
           <label htmlFor={formId + "-email"} className={fieldLabel}>
             Email address <span className="text-[#b64740]">*</span>
           </label>
           <input id={formId + "-email"} name="email" type="email" required autoComplete="email"
-            autoCapitalize="none" spellCheck={false} placeholder="Your email address" className={control} />
+            autoCapitalize="none" spellCheck={false} className={control} />
         </div>
         <div>
           <label htmlFor={formId + "-phone"} className={fieldLabel}>Telephone (optional)</label>
@@ -99,7 +98,7 @@ export default function BoroughQuoteForm({ boroughName, formId }: Props) {
           No obligation. We use your details only to respond to your enquiry.
         </p>
       </form>
-      <div className="mt-3 flex flex-wrap items-center justify-center gap-x-4 border-t border-[#d6e3e5] text-[13px] font-semibold text-[#236f7b]">
+      <div className="mt-3 flex flex-wrap items-center justify-center gap-x-4 border-t border-[#e4ece9] text-[13px] font-semibold text-[#236f7b]">
         <a href="tel:+442036548508" className="inline-flex min-h-[44px] items-center underline underline-offset-2">Call us</a>
         <a href={whatsappHref} className="inline-flex min-h-[44px] items-center underline underline-offset-2" target="_blank" rel="noopener noreferrer">WhatsApp</a>
         <Link href="/get-drawings-quote" className="inline-flex min-h-[44px] items-center underline underline-offset-2">Detailed quote form</Link>
