@@ -495,25 +495,47 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "the-hyde-colindale-major-residential-development",
-    wdpService: "WEDRAWPLANS prepared architectural design drawings and coordinated the planning submission for the six-storey residential and commercial scheme at Halt Parade. The practice supported communication with Barnet's case officer through assessment of the proposals and the subsequent planning outcome.",
-    homeownerGuidance: "Mixed-use residential projects require a different level of coordination from a home extension. Plans should clearly explain entrances, unit layouts, access and the relationship between residential and commercial uses.",
-    highlights: ["Six-storey approved development at Halt Parade","18 residential flats within the approved scheme","Approximately 40 sq m of commercial floorspace","Mixed-use planning and architectural design"],
-    title: "Approved Six-Storey Residential Scheme at The Hyde, Colindale",
+    title: "The Hyde, Colindale | Six-Storey Residential & Mixed-Use Development",
     shortTitle: "The Hyde, Colindale",
-    location: "Halt Parade, The Hyde, Colindale, London NW9 5AH",
+    seoDescription: "WEDRAWPLANS architectural design and planning approval at The Hyde, Colindale: six-storey mixed-use development with 18 flats and 40sqm of B1 office space. Explore original 3D design, privacy studies and Barnet Council evidence.",
+    location: "1–5 Halt Parade, The Hyde, London NW9 5AH",
     authority: "London Borough of Barnet",
-    reference: "17/0660/FUL; 18/0927/S73",
+    reference: "17/0660/FUL",
+    councilApplicationUrl: "https://publicaccess.barnet.gov.uk/online-applications/applicationDetails.do?activeTab=documents&keyVal=OKT5JEJIMAU00",
     year: "2017",
     service: "Six-storey residential and commercial development",
-    outcome: "Planning approval secured",
+    outcome: "Planning permission granted",
     approved: true,
-    summary: "An approved six-storey development at Halt Parade, The Hyde, providing 18 residential flats together with approximately 40 sq m of commercial floorspace.",
-    proof: "Barnet granted permission under 17/0660/FUL for demolition and a six-storey building containing 18 self-contained flats and approximately 40 sq m of B1 space. A subsequent variation of approved plans is recorded under 18/0927/S73. The WEDRAWPLANS project visuals illustrate the residential design, but the named planning agent on the original council record should be checked before attributing application submission.",
-    leadAngle: "Considering a larger residential conversion, redevelopment or multi-unit scheme?",
+    summary: "Demolition of existing buildings and erection of a new 6 storey building to provide 18no self-contained flat to all levels and 40sqm B1 sapce at ground floor level. Association parking, refuse and landscaping",
+    proof: "Barnet Council's application record under reference 17/0660/FUL identifies the proposal as: “Demolition of existing buildings and erection of a new 6 storey building to provide 18no self-contained flat to all levels and 40sqm B1 sapce at ground floor level. Association parking, refuse and landscaping”. Planning permission was granted. The subsequent 18/0927/S73 record concerns a later variation to the approved plans. The gallery presents selected original WEDRAWPLANS architectural design, 3D and privacy/outlook study sheets; it does not claim Building Regulations or Building Control approval.",
+    highlights: [
+      "Six-storey residential and mixed-use development",
+      "18 self-contained flats",
+      "40sqm B1 office space at ground-floor level",
+      "Parking, refuse and landscaping provision",
+      "Three-dimensional flat layouts and internal design views",
+      "Privacy, glazing, louvre and outlook studies"
+    ],
+    wdpService: "WEDRAWPLANS prepared the architectural design drawings and Design and Access Statement for the scheme. The design work included three-dimensional flat layouts, internal outlook studies, privacy analysis, and the use of high-level frosted glazing and louvres to address relationships with neighbouring properties.",
+    homeownerGuidance: "This is a larger mixed-use development rather than a domestic extension. It demonstrates WEDRAWPLANS' experience in architectural planning design, multi-unit layouts, 3D presentation and the coordination of supporting planning evidence.",
+    leadAngle: "Considering a multi-unit residential redevelopment or mixed-use planning proposal?",
     relatedService: "/new-build-plans",
     relatedArea: "/areas/barnet",
     heroImage: "/images/hyde-cgi-main.jpg",
-    secondaryImage: "/images/hyde-slide-1.jpg"
+    secondaryImage: "",
+    galleryImages: [
+      { src: "/images/hyde-cgi-main.jpg", alt: "WEDRAWPLANS architectural CGI of the proposed six-storey mixed-use building at The Hyde, Colindale", caption: "Architectural CGI · Proposed six-storey development" },
+      { src: "/images/case-studies/the-hyde-colindale-major-residential-development/drawing-1-flat-one-3d-layout.webp", alt: "Original WEDRAWPLANS architectural sheet showing Flat 1 three-dimensional layout, internal views and views key plan", caption: "Drawing 1 · Flat 1 — 3D layout and internal views" },
+      { src: "/images/case-studies/the-hyde-colindale-major-residential-development/drawing-2-privacy-glazing-details.webp", alt: "Original WEDRAWPLANS privacy design sheet showing high-level frosted glazing and window sections", caption: "Drawing 2 · Privacy design — frosted glazing and window details" },
+      { src: "/images/case-studies/the-hyde-colindale-major-residential-development/drawing-3-flat-two-3d-layout.webp", alt: "Original WEDRAWPLANS architectural sheet showing Flat 2 three-dimensional layout and internal design views", caption: "Drawing 3 · Flat 2 — 3D layout and internal views" },
+      { src: "/images/case-studies/the-hyde-colindale-major-residential-development/drawing-4-outlook-analysis-one.webp", alt: "Original WEDRAWPLANS outlook analysis sheet showing sightlines, louvres and views toward Edgware Road", caption: "Drawing 4 · Outlook analysis — sightlines and louvre design" },
+      { src: "/images/case-studies/the-hyde-colindale-major-residential-development/drawing-5-flat-three-3d-layout.webp", alt: "Original WEDRAWPLANS architectural sheet showing Flat 3 three-dimensional layout, internal views and views key plan", caption: "Drawing 5 · Flat 3 — 3D layout and internal views" },
+      { src: "/images/case-studies/the-hyde-colindale-major-residential-development/drawing-6-outlook-analysis-two.webp", alt: "Original WEDRAWPLANS outlook analysis sheet showing clear-view angles and privacy screening", caption: "Drawing 6 · Outlook analysis — privacy and clear views" }
+    ],
+    decisions: [
+      { reference: "18/0927/S73", description: "Subsequent variation to the approved plans for the Halt Parade development", outcome: "Approved variation" }
+    ],
+    mediaNote: "Selected original WEDRAWPLANS architectural design, 3D layout, privacy and outlook studies. Drawing title-block client information has been omitted from the public images."
   },
   {
     slug: "chestnut-rise-plumstead-greenwich-ten-flats-lawfulness",
