@@ -32,10 +32,11 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
   const isHendonHMO = item.slug === "sevington-road-hendon-seven-bedroom-hmo-planning-approval";
   const isCranbourneCombined = item.slug === "cranbourne-drive-hoddesdon-planning-project";
   const isSuttonLoft = item.slug === "sutton-loft-conversion-planning-permission-wallington";
+  const isHyde = item.slug === "the-hyde-colindale-major-residential-development";
   const isLeicesterCombined = item.slug === "leicester-road-barnet-rear-extension-planning-building-regulations-structural";
   const isGrangeCombined = item.slug === "grange-road-edgware-side-extension-lawful-development-building-regulations";
   const isFeaturedLayout = isReddings || isAllum || isSistova || isCromwell || isBrockley || isHarrowStudios || isCannon || isSunburyCare || isGreenwichTen || isHendonHMO || isCranbourneCombined || isSuttonLoft || isLeicesterCombined || isGrangeCombined;
-  const useOriginalDrawingGallery = item.slug === "sistova-road-wandsworth-extension-basement" || item.slug === "cromwell-road-hounslow-rear-extension" || isFeaturedLayout;
+  const useOriginalDrawingGallery = item.slug === "sistova-road-wandsworth-extension-basement" || item.slug === "cromwell-road-hounslow-rear-extension" || isFeaturedLayout || isHyde;
   const isProduction = process.env.VERCEL_ENV === "production";
   const hasApprovedVisual = [item.heroImage, item.secondaryImage].some(src => Boolean(src) && (src.startsWith("/images/case-studies/") || src.startsWith("/images/hyde-")));
   const showGallery = hasApprovedVisual || Boolean(item.projectVideoUrl);
@@ -120,9 +121,9 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
       <main className="min-h-screen bg-[#fafbf9] text-[#23383d]">
         <CaseStudyHeader />
 
-        <div className="border-b border-[#edcfca] bg-[#fbeae6]">
-          <div className="mx-auto max-w-7xl px-5 py-2.5 text-center text-[11px] font-semibold uppercase tracking-[0.15em] text-[#98584f] sm:px-8">
-            Selected WEDRAWPLANS planning projects
+        <div className={isHyde ? "border-b border-[#cfe3d8] bg-[#edf6f1]" : "border-b border-[#edcfca] bg-[#fbeae6]"}>
+          <div className={isHyde ? "mx-auto max-w-7xl px-5 py-2.5 text-center text-[11px] font-bold uppercase tracking-[0.15em] text-[#216b56] sm:px-8" : "mx-auto max-w-7xl px-5 py-2.5 text-center text-[11px] font-semibold uppercase tracking-[0.15em] text-[#98584f] sm:px-8"}>
+            {isHyde ? "WEDRAWPLANS · PLANNING APPROVAL GRANTED" : "Selected WEDRAWPLANS planning projects"}
           </div>
         </div>
         <div className="border-b border-[#e5eae7] bg-white">
