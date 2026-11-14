@@ -39,13 +39,9 @@ export default function BoroughQuoteForm({ boroughName, formId }: Props) {
     <section id={BOROUGH_QUOTE_ID} aria-labelledby={titleId} tabIndex={-1} className="min-w-0 scroll-mt-5 focus:outline-none">
       <div className="rounded-xl bg-[#e6f1ee] px-4 py-2.5 text-center text-[#245b63]">
         <p className="break-words text-[13px] font-extrabold uppercase tracking-[0.15em]">
-          {boroughName === "Barnet" ? (
-            <>
-              <span className="font-semibold">WEDRAWPLANS</span>
-              {" · "}
-              <strong className="font-extrabold">{boroughName}</strong>
-            </>
-          ) : boroughName}
+          <span className="font-semibold">WEDRAWPLANS</span>
+          {" · "}
+          <strong className="font-extrabold">{boroughName}</strong>
         </p>
       </div>
       <h2 id={titleId} className="mt-4 text-[22px] font-bold leading-tight tracking-tight text-[#193c43] sm:text-[24px]">
