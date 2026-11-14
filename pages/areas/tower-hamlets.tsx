@@ -118,7 +118,7 @@ export default function TowerHamletsAreaPage() {
 
       <AreaTopHeader />
 
-      <div className="min-h-screen w-screen max-w-[100vw] min-w-0 overflow-x-clip bg-[#f8f4f0] text-slate-900">
+      <div className="min-h-screen w-full min-w-0 overflow-x-clip bg-[#f8f4f0] text-slate-900">
         <BoroughMasterHeader boroughName={"Tower Hamlets"} />
         <main>
           <BoroughMasterHero boroughName={"Tower Hamlets"} formId={"tower-hamlets-quote"} headline={"Plans for extensions, lofts and conversions in Tower Hamlets"} />

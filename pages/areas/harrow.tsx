@@ -1,7 +1,7 @@
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BarnetCombinedExtensionPromo from "../../components/BarnetCombinedExtensionPromo";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
-import React, { useMemo, useRef, useState } from "react";
+import React, { useMemo } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,296 +16,6 @@ const EMAIL_LINK = "mailto:info@wedrawplans.com";
 const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Harrow";
 const GOOGLE_BUSINESS_PROFILE_LINK = "https://share.google/D3KId64vHtHSKPALr";
-
-type ChatRole = "assistant" | "user";
-type ChatMessage = { role: ChatRole; text: string };
-
-function sanitizeText(input: string) {
-  return input.replace(/\s+/g, " ").trim();
-}
-
-function includesAny(haystack: string, needles: string[]) {
-  const s = haystack.toLowerCase();
-  return needles.some((n) => s.includes(n));
-}
-
-function PlanningAssistant({
-  boroughName,
-  onGetQuote,
-}: {
-  boroughName: string;
-  onGetQuote: () => void;
-}) {
-  const [open, setOpen] = useState(false);
-  const [input, setInput] = useState("");
-  const [postcode, setPostcode] = useState<string | null>(null);
-  const [projectType, setProjectType] = useState<string | null>(null);
-  const [messages, setMessages] = useState<ChatMessage[]>([
-    {
-      role: "assistant",
-      text:
-        "Hi, I am the WEDRAWPLANS planning assistant for Harrow. Tell me what you want to build and your postcode, and I will guide you to the fastest route for drawings and planning.",
-    },
-    {
-      role: "assistant",
-      text:
-        "Quick start: type something like rear extension HA1, loft conversion HA2, or building regs pack HA3.",
-    },
-  ]);
-
-  const listRef = useRef<HTMLDivElement | null>(null);
-
-  const quickReplies = useMemo(
-    () => [
-      "Do I need planning permission in Harrow",
-      "Permitted development for rear extension",
-      "Loft conversion rules",
-      "How long does Harrow Council take",
-      "How much do drawings cost",
-      "Book a survey within 48 hours",
-    ],
-    []
-  );
-
-  function pushMessage(msg: ChatMessage) {
-    setMessages((prev) => [...prev, msg]);
-    setTimeout(() => {
-      if (listRef.current) listRef.current.scrollTop = listRef.current.scrollHeight;
-    }, 0);
-  }
-
-  function extractPostcode(text: string) {
-    const t = text.toUpperCase();
-    const match = t.match(/\bHA\d{1,2}\s?\d?[A-Z]{0,2}\b/g);
-    if (!match) return null;
-    return match[0].replace(/\s+/g, " ").trim();
-  }
-
-  function generateAssistantReply(userTextRaw: string) {
-    const userText = sanitizeText(userTextRaw);
-    const userLower = userText.toLowerCase();
-
-    const foundPostcode = extractPostcode(userText);
-    if (foundPostcode && !postcode) setPostcode(foundPostcode);
-
-    const projectSignals: Array<{ key: string; label: string; terms: string[] }> = [
-      { key: "extension", label: "House extension", terms: ["extension", "rear", "side", "wrap", "wraparound", "kitchen", "dining"] },
-      { key: "loft", label: "Loft conversion", terms: ["loft", "dormer", "hip", "gable", "mansard", "roof"] },
-      { key: "regs", label: "Building regulation pack", terms: ["building regs", "building regulation", "regulations", "building control", "technical"] },
-      { key: "newbuild", label: "New build house", terms: ["new build", "newbuild", "self build", "house build"] },
-      { key: "conversion", label: "Conversion to flats", terms: ["flat", "flats", "conversion", "hmo", "studio", "change of use"] },
-      { key: "internal", label: "Internal remodelling", terms: ["internal", "knock through", "open plan", "layout", "reconfigure"] },
-      { key: "outbuilding", label: "Outbuilding or garden room", terms: ["outbuilding", "garden room", "studio", "annexe", "shed"] },
-    ];
-
-    if (!projectType) {
-      const match = projectSignals.find((p) => includesAny(userLower, p.terms));
-      if (match) setProjectType(match.label);
-    }
-
-    const hasPlanningIntent = includesAny(userLower, [
-      "planning",
-      "permission",
-      "permitted",
-      "pd",
-      "lawful",
-      "ldc",
-      "certificate",
-      "prior approval",
-      "council",
-      "validation",
-      "conservation",
-      "article 4",
-    ]);
-
-    const hasTimelineIntent = includesAny(userLower, ["how long", "timeline", "time", "weeks", "months", "decide", "decision"]);
-    const hasCostIntent = includesAny(userLower, ["cost", "price", "how much", "fee", "quote", "budget"]);
-    const hasLoftIntent = includesAny(userLower, ["loft", "dormer", "hip", "gable", "mansard", "roof"]);
-    const hasExtensionIntent = includesAny(userLower, ["rear extension", "side return", "wrap", "extension", "kitchen", "single storey", "double storey"]);
-
-    const knownPostcode = foundPostcode || postcode;
-    const knownType =
-      projectType || (hasLoftIntent ? "Loft conversion" : hasExtensionIntent ? "House extension" : null);
-
-    if (includesAny(userLower, ["book", "survey", "visit", "measure", "measured"])) {
-      return [
-        "We can usually arrange the initial measured survey within 48 hours in Harrow, subject to availability.",
-        "If you want, tap Request drawing fees instantly and enter your postcode and project type. We will confirm the next available survey slot.",
-      ];
-    }
-
-    if (hasTimelineIntent) {
-      return [
-        "Typical times: a householder planning application is often 6 to 8 weeks after validation. A Lawful Development Certificate is often 4 to 6 weeks after validation.",
-        "We focus on getting the submission correct first time so validation is not delayed.",
-        "Tell me your postcode and what you want to build and I will suggest the best route for Harrow.",
-      ];
-    }
-
-    if (hasCostIntent) {
-      return [
-        "We price drawings as fixed fees with a clear scope so you know exactly what you get.",
-        "For the fastest accurate quote, share your postcode and project type. If you can, add a one line description like rear extension to a semi or dormer loft with ensuite.",
-        "You can also tap Request drawing fees instantly and complete the form in 60 seconds.",
-      ];
-    }
-
-    if (hasPlanningIntent) {
-      return [
-        "In Harrow, many home extensions and loft conversions can be permitted development, but it depends on house type, location, conservation status, and any local restrictions.",
-        "The safest approach is a quick check against your address and proposal, then we recommend either permitted development, prior approval, lawful certificate, or full planning where needed.",
-        "Share your postcode and what you want to build and I will guide you to the correct route.",
-      ];
-    }
-
-    if (hasLoftIntent) {
-      return [
-        "Loft conversions in Harrow often work well as rear dormers and hip to gable layouts, depending on roof shape and permitted development limits.",
-        "Key checks include volume allowance, front roof restrictions, and side window rules. Conservation areas and corner plots may require more careful design.",
-        "Share your postcode and your roof idea and I will tell you the likely path, then you can request fixed drawing fees.",
-      ];
-    }
-
-    if (hasExtensionIntent) {
-      return [
-        "Rear and wraparound extensions are common in Harrow. The route can be permitted development, prior approval, or full planning depending on depth, height, and location.",
-        "Share your postcode and a simple description like 4m rear extension or wraparound kitchen extension, and I will guide you to the best route.",
-      ];
-    }
-
-    if (!knownPostcode || !knownType) {
-      const prompts: string[] = [];
-      if (!knownType) prompts.push("What is your project type: extension, loft, new build, internal, or building regs pack");
-      if (!knownPostcode) prompts.push("What is your postcode: for example HA1, HA2, or HA3");
-      return [
-        "To give accurate guidance, I need two details.",
-        ...prompts,
-        "Once I have them, I can recommend the fastest route and you can request fixed drawing fees.",
-      ];
-    }
-
-    return [
-      `Thanks. I have ${knownType}${knownPostcode ? ` for ${knownPostcode}` : ""}.`,
-      "Next step: request fixed drawing fees so we can confirm scope, survey timing, and the correct planning route for Harrow.",
-      "Tap Request drawing fees instantly and we will reply with clear next steps.",
-    ];
-  }
-
-  function handleSend(text: string) {
-    const t = sanitizeText(text);
-    if (!t) return;
-
-    pushMessage({ role: "user", text: t });
-
-    const replies = generateAssistantReply(t);
-    replies.forEach((r, idx) => {
-      setTimeout(() => pushMessage({ role: "assistant", text: r }), 140 * (idx + 1));
-    });
-
-    setInput("");
-  }
-
-  return (
-    <div className="fixed bottom-4 right-20 z-50 hidden lg:block">
-      {open ? (
-        <div className="w-[320px] sm:w-[360px] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl">
-          <div className="flex items-center justify-between bg-slate-900 px-4 py-3 text-white">
-            <div className="text-[12px] font-semibold uppercase tracking-[0.16em]">
-              Planning Assistant • {boroughName}
-            </div>
-            <button
-              type="button"
-              onClick={() => setOpen(false)}
-              className="text-[14px] text-white/90 hover:text-white"
-              aria-label="Close assistant"
-            >
-              ✕
-            </button>
-          </div>
-
-          <div ref={listRef} className="max-h-[320px] space-y-3 overflow-y-auto px-4 py-3">
-            {messages.map((m, i) => (
-              <div
-                key={i}
-                className={
-                  m.role === "user"
-                    ? "ml-auto max-w-[85%] rounded-2xl bg-[#64b7c4] px-3 py-2 text-[13px] text-white"
-                    : "mr-auto max-w-[85%] rounded-2xl bg-slate-100 px-3 py-2 text-[13px] text-slate-900"
-                }
-              >
-                {m.text}
-              </div>
-            ))}
-
-            <div className="pt-1">
-              <div className="mb-2 text-[11px] text-slate-500">Quick questions</div>
-              <div className="flex flex-wrap gap-2">
-                {quickReplies.map((q) => (
-                  <button
-                    key={q}
-                    type="button"
-                    onClick={() => handleSend(q)}
-                    className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-[11px] hover:bg-slate-900 hover:text-white"
-                  >
-                    {q}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-slate-200 p-3">
-            <div className="flex gap-2">
-              <input
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                placeholder="Type your question or postcode"
-                className="flex-1 rounded-full border border-slate-300 px-4 py-2 text-[13px] outline-none focus:border-[#64b7c4]"
-              />
-              <button
-                type="button"
-                onClick={() => handleSend(input)}
-                className="rounded-full bg-slate-900 px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.14em] text-white hover:bg-slate-800"
-              >
-                Send
-              </button>
-            </div>
-
-            <div className="mt-3 flex items-center justify-between gap-2">
-              <button
-                type="button"
-                onClick={onGetQuote}
-                className="flex-1 rounded-full bg-[#64b7c4] px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.14em] text-white hover:bg-[#4da4b4]"
-              >
-                Request drawing fees instantly
-              </button>
-              <a
-                href={WHATSAPP_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 rounded-full border border-slate-300 bg-white px-4 py-2 text-center text-[12px] font-semibold uppercase tracking-[0.14em] hover:bg-slate-900 hover:text-white"
-              >
-                WhatsApp
-              </a>
-            </div>
-
-            <div className="mt-2 text-[10px] text-slate-500">
-              This assistant gives general guidance only. We confirm the correct route after checking your address and proposal.
-            </div>
-          </div>
-        </div>
-      ) : (
-        <button
-          type="button"
-          onClick={() => setOpen(true)}
-          className="rounded-full border border-slate-200 bg-slate-900 px-4 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-white shadow-lg hover:bg-slate-800"
-        >
-          Planning Assistant
-        </button>
-      )}
-    </div>
-  );
-}
 
 export default function HarrowAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -463,7 +173,7 @@ export default function HarrowAreaPage() {
         />
       </Head>
 
-      <div className="min-h-screen w-screen max-w-[100vw] min-w-0 overflow-x-clip bg-[#f8f4f0] text-slate-900">
+      <div className="min-h-screen w-full min-w-0 overflow-x-clip bg-[#f8f4f0] text-slate-900">
         <BoroughMasterHeader boroughName={"Harrow"} />
 
         <main>
@@ -892,7 +602,6 @@ export default function HarrowAreaPage() {
             </div>
           </section>
 
-          <PlanningAssistant boroughName="Harrow" onGetQuote={scrollToForm} />
         <BarnetCombinedExtensionPromo context="local" area="Harrow" />
           <BoroughIntentCapture slug="harrow" />
         </main>
@@ -1009,15 +718,6 @@ export default function HarrowAreaPage() {
           </div>
         </footer>
 
-        <a
-          href={WHATSAPP_LINK}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Chat on WhatsApp with WEDRAWPLANS"
-          className="fixed bottom-4 right-4 z-[70] flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg ring-2 ring-white/70 hover:bg-[#1ebe57]"
-        >
-          <span className="text-xl">💬</span>
-        </a>
       </div>
     </>
   );

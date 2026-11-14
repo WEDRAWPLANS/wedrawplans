@@ -1,11 +1,10 @@
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import Head from "next/head";
-import React, { useMemo, useRef, useState } from "react";
+import React, { useMemo } from "react";
 import Image from "next/image";
-import { submitBoroughLead } from "../../lib/submitBoroughLead";
-import { hasOneReplyMethod } from "../../lib/hasOneReplyMethod";
 import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 import BoroughQuoteForm from "../../components/BoroughQuoteForm";
+import { BOROUGH_QUOTE_ANCHOR } from "../../data/londonAreas";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
@@ -17,320 +16,7 @@ const EALING_LOCAL_IMAGE = "/images/drawings.jpg";
 const PROJECT_IMAGE_1 = "/images/case-studies/allum-lane/3d-01.webp";
 const PROJECT_IMAGE_2 = "/images/case-studies/allum-lane/3d-02.webp";
 
-type ChatRole = "assistant" | "user";
-type ChatMessage = { role: ChatRole; text: string };
-
-function sanitizeText(input: string) {
-  return input.replace(/\s+/g, " ").trim();
-}
-
-function includesAny(haystack: string, needles: string[]) {
-  const s = haystack.toLowerCase();
-  return needles.some((n) => s.includes(n));
-}
-
-function PlanningAssistant({
-  boroughName,
-  onGetQuote,
-}: {
-  boroughName: string;
-  onGetQuote: () => void;
-}) {
-  const [open, setOpen] = useState(false);
-  const [input, setInput] = useState("");
-  const [postcode, setPostcode] = useState<string | null>(null);
-  const [projectType, setProjectType] = useState<string | null>(null);
-  const [messages, setMessages] = useState<ChatMessage[]>([
-    {
-      role: "assistant",
-      text:
-        "Hi, I am the WEDRAWPLANS planning assistant for Ealing. Tell me what you want to build and your postcode, and I will guide you to the fastest route for drawings and planning.",
-    },
-    {
-      role: "assistant",
-      text:
-        "Quick start: type something like rear extension W5, loft conversion W3, wraparound extension UB1, or building regs pack W13.",
-    },
-  ]);
-
-  const listRef = useRef<HTMLDivElement | null>(null);
-
-  const quickReplies = useMemo(
-    () => [
-      "Do I need planning permission in Ealing",
-      "Permitted development for rear extension",
-      "Loft conversion rules and dormers",
-      "How long does Ealing Council take",
-      "Conservation area checks in Ealing",
-      "Book a survey within 48 hours",
-    ],
-    []
-  );
-
-  function pushMessage(msg: ChatMessage) {
-    setMessages((prev) => [...prev, msg]);
-    setTimeout(() => {
-      if (listRef.current) listRef.current.scrollTop = listRef.current.scrollHeight;
-    }, 0);
-  }
-
-  function extractPostcode(text: string) {
-    const t = text.toUpperCase();
-    const match = t.match(/\b(W|UB|NW)\d{1,2}\s?\d?[A-Z]{0,2}\b/g);
-    if (!match) return null;
-    return match[0].replace(/\s+/g, " ").trim();
-  }
-
-  function generateAssistantReply(userTextRaw: string) {
-    const userText = sanitizeText(userTextRaw);
-    const userLower = userText.toLowerCase();
-
-    const foundPostcode = extractPostcode(userText);
-    if (foundPostcode && !postcode) setPostcode(foundPostcode);
-
-    const projectSignals: Array<{ label: string; terms: string[] }> = [
-      {
-        label: "House extension",
-        terms: [
-          "extension",
-          "rear",
-          "side",
-          "wrap",
-          "wraparound",
-          "wrap around",
-          "kitchen",
-          "dining",
-          "single storey",
-          "double storey",
-          "two storey",
-        ],
-      },
-      { label: "Loft conversion", terms: ["loft", "dormer", "hip", "gable", "mansard", "roof"] },
-      {
-        label: "Building regulation pack",
-        terms: [
-          "building regs",
-          "building regulation",
-          "regulations",
-          "building control",
-          "technical",
-          "structural notes",
-          "construction pack",
-        ],
-      },
-      { label: "Garage conversion", terms: ["garage", "garage conversion"] },
-      { label: "Outbuilding or garden room", terms: ["outbuilding", "garden room", "studio", "annexe", "summerhouse"] },
-      { label: "New build house", terms: ["new build", "newbuild", "self build", "house build"] },
-      { label: "Conversion to flats", terms: ["flat", "flats", "conversion", "hmo", "studio flat", "change of use"] },
-      { label: "Internal remodelling", terms: ["internal", "knock through", "open plan", "layout", "reconfigure", "refurb"] },
-    ];
-
-    if (!projectType) {
-      const match = projectSignals.find((p) => includesAny(userLower, p.terms));
-      if (match) setProjectType(match.label);
-    }
-
-    const hasPlanningIntent = includesAny(userLower, [
-      "planning",
-      "permission",
-      "permitted",
-      "pd",
-      "lawful",
-      "ldc",
-      "certificate",
-      "prior approval",
-      "council",
-      "validation",
-      "conservation",
-      "article 4",
-      "listed",
-      "heritage",
-      "street scene",
-      "roof form",
-    ]);
-
-    const hasTimelineIntent = includesAny(userLower, ["how long", "timeline", "time", "weeks", "months", "decide", "decision"]);
-    const hasCostIntent = includesAny(userLower, ["cost", "price", "how much", "fee", "quote", "budget"]);
-    const hasSurveyIntent = includesAny(userLower, ["book", "survey", "visit", "measure", "measured", "come out"]);
-
-    const knownPostcode = foundPostcode || postcode;
-    const knownType = projectType || null;
-
-    if (hasSurveyIntent) {
-      return [
-        "We can usually arrange the initial measured survey within 48 hours in Ealing, subject to availability.",
-        "Tap Get a quick quote and enter your postcode and project type. We will confirm scope, survey timing and next steps.",
-      ];
-    }
-
-    if (hasTimelineIntent) {
-      return [
-        "Typical times: a householder planning application is often decided about 6 to 8 weeks after validation. A Lawful Development Certificate is often about 4 to 6 weeks after validation.",
-        "To avoid delays, we focus on a clean submission with the right drawings and supporting info where needed.",
-        "Tell me your postcode and what you want to build and I will suggest the best route.",
-      ];
-    }
-
-    if (hasCostIntent) {
-      return [
-        "We price drawings as fixed fees with a clear scope so you know exactly what you get.",
-        "For the fastest accurate quote, share your postcode and project type, plus one line description like 4m rear extension or dormer loft with ensuite.",
-        "Or tap Get a quick quote and complete the form in 60 seconds.",
-      ];
-    }
-
-    if (hasPlanningIntent) {
-      return [
-        "In Ealing, many house extensions and loft conversions can be permitted development, but it depends on house type, previous extensions, and conservation area constraints.",
-        "Flats usually need full planning permission. Roof changes and dormers are often reviewed closely where they affect the street scene.",
-        "Share your postcode and what you want to build and I will guide you to the correct route.",
-      ];
-    }
-
-    if (!knownPostcode || !knownType) {
-      const prompts: string[] = [];
-      if (!knownType)
-        prompts.push("What is your project type: extension, loft, garage conversion, outbuilding, new build, or building regs pack");
-      if (!knownPostcode) prompts.push("What is your postcode: for example W5, W13, W3, UB1");
-      return [
-        "To give accurate guidance, I need two details.",
-        ...prompts,
-        "Once I have them, I can recommend the fastest route and you can request a fixed fee quote.",
-      ];
-    }
-
-    return [
-      `Thanks. I have ${knownType}${knownPostcode ? ` for ${knownPostcode}` : ""}.`,
-      "Next step: request a fixed fee quote so we can confirm scope, survey timing, and the correct planning route for your address in Ealing.",
-      "Tap Get a quick quote and we will reply with clear next steps.",
-    ];
-  }
-
-  function handleSend(text: string) {
-    const t = sanitizeText(text);
-    if (!t) return;
-
-    pushMessage({ role: "user", text: t });
-
-    const replies = generateAssistantReply(t);
-    replies.forEach((r, idx) => {
-      setTimeout(() => pushMessage({ role: "assistant", text: r }), 140 * (idx + 1));
-    });
-
-    setInput("");
-  }
-
-  return (
-    <div className="fixed bottom-4 right-4 z-50">
-      {open ? (
-        <div className="w-[320px] sm:w-[360px] rounded-2xl shadow-xl border border-slate-200 bg-white overflow-hidden">
-          <div className="flex items-center justify-between px-4 py-3 bg-slate-900 text-white">
-            <div className="text-[12px] font-semibold uppercase tracking-[0.16em]">
-              Planning Assistant • {boroughName}
-            </div>
-            <button
-              type="button"
-              onClick={() => setOpen(false)}
-              className="text-white/90 hover:text-white text-[14px]"
-              aria-label="Close assistant"
-            >
-              ✕
-            </button>
-          </div>
-
-          <div ref={listRef} className="max-h-[320px] overflow-y-auto px-4 py-3 space-y-3">
-            {messages.map((m, i) => (
-              <div
-                key={i}
-                className={
-                  m.role === "user"
-                    ? "ml-auto max-w-[85%] rounded-2xl bg-[#64b7c4] text-white px-3 py-2 text-[13px]"
-                    : "mr-auto max-w-[85%] rounded-2xl bg-slate-100 text-slate-900 px-3 py-2 text-[13px]"
-                }
-              >
-                {m.text}
-              </div>
-            ))}
-
-            <div className="pt-1">
-              <div className="text-[11px] text-slate-500 mb-2">Quick questions</div>
-              <div className="flex flex-wrap gap-2">
-                {quickReplies.map((q) => (
-                  <button
-                    key={q}
-                    type="button"
-                    onClick={() => handleSend(q)}
-                    className="text-[11px] px-3 py-1.5 rounded-full border border-slate-200 bg-white hover:bg-slate-900 hover:text-white"
-                  >
-                    {q}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-slate-200 p-3">
-            <div className="flex gap-2">
-              <input
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                placeholder="Type your question or postcode"
-                className="flex-1 rounded-full border border-slate-300 px-4 py-2 text-[13px] outline-none focus:border-[#64b7c4]"
-              />
-              <button
-                type="button"
-                onClick={() => handleSend(input)}
-                className="rounded-full bg-slate-900 text-white px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.14em] hover:bg-slate-800"
-              >
-                Send
-              </button>
-            </div>
-
-            <div className="mt-3 flex items-center justify-between gap-2">
-              <button
-                type="button"
-                onClick={onGetQuote}
-                className="flex-1 rounded-full bg-[#64b7c4] text-white px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.14em] hover:bg-[#4da4b4]"
-              >
-                Get a quick quote
-              </button>
-              <a
-                href={WHATSAPP_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 text-center rounded-full border border-slate-300 bg-white px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.14em] hover:bg-slate-900 hover:text-white"
-              >
-                WhatsApp
-              </a>
-            </div>
-
-            <div className="mt-2 text-[10px] text-slate-500">
-              This assistant gives general guidance only. We confirm the correct route after checking your address and proposal.
-            </div>
-          </div>
-        </div>
-      ) : (
-        <button
-          type="button"
-          onClick={() => setOpen(true)}
-          className="rounded-full shadow-lg border border-slate-200 bg-slate-900 text-white px-4 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] hover:bg-slate-800"
-        >
-          Planning Assistant
-        </button>
-      )}
-    </div>
-  );
-}
-
 export default function EalingAreaPage() {
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    if (!hasOneReplyMethod(e.currentTarget)) {
-      e.preventDefault();
-      return;
-    }
-    await submitBoroughLead(e, { boroughName: "Ealing" });
-  }
-
   function scrollToForm() {
     const el = document.getElementById("ealing-quote");
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -437,7 +123,7 @@ export default function EalingAreaPage() {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }} />
       </Head>
 
-      <div className="min-h-screen w-screen max-w-[100vw] min-w-0 overflow-x-clip bg-[#f8f4f0] text-slate-900">
+      <div className="min-h-screen w-full min-w-0 overflow-x-clip bg-[#f8f4f0] text-slate-900">
         <header className="bg-[#fdf8f3]/95 backdrop-blur border-b border-slate-200">
           <div className="mx-auto max-w-6xl px-4 pt-3 pb-2 sm:pt-6 sm:pb-3 lg:px-6">
             <div className="flex flex-col items-center text-center">
@@ -510,9 +196,9 @@ export default function EalingAreaPage() {
                       For suitable straightforward house extension and loft conversion planning drawings.
                       Your written fixed-fee quote sets out the included work.
                     </p>
-                    <button type="button" onClick={scrollToForm} className="mt-4 flex min-h-[46px] w-full items-center justify-center rounded-full bg-[#236f7b] px-5 py-3 text-[14px] font-bold text-white transition hover:bg-[#194e5b] sm:w-auto">
+                    <a href={BOROUGH_QUOTE_ANCHOR} className="mt-4 flex min-h-[46px] w-full items-center justify-center rounded-full bg-[#236f7b] px-5 py-3 text-[14px] font-bold text-white transition hover:bg-[#194e5b] sm:w-auto">
                       Get your fixed-fee quote
-                    </button>
+                    </a>
                     <p className="mt-3 text-[11px] leading-[1.65] text-[#667b80]">
                       Council application fees, measured surveys, structural calculations and technical Building Regulations drawings are separate where required.
                     </p>
@@ -593,9 +279,9 @@ export default function EalingAreaPage() {
                 </div>
               </div>
 
-              <div id="ealing-quote" className="scroll-mt-5 lg:w-1/2">
+              <div id="ealing-quote" className="min-w-0 scroll-mt-5 lg:w-1/2">
                 <div className="rounded-2xl border border-[#e0e7e3] bg-white p-5 shadow-md sm:p-6">
-                  <BoroughQuoteForm boroughName="Ealing" formId="ealing-quote" onSubmit={handleSubmit} />
+                  <BoroughQuoteForm boroughName="Ealing" formId="ealing-quote" />
                   <p className="mt-3 text-[11px] leading-5 text-slate-500">
                     Typical Ealing projects include rear extensions, wraparound extensions, loft conversions and refurbishments.
                   </p>
@@ -884,7 +570,6 @@ export default function EalingAreaPage() {
             </div>
           </section>
 
-          {/* One compact site-wide planning assistant remains; avoid duplicate floating chat controls on mobile. */}
           <BoroughIntentCapture slug="ealing" />
         </main>
       </div>

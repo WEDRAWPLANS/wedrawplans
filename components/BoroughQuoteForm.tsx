@@ -1,51 +1,54 @@
 import { useRef, useState, type FormEvent } from "react";
 import Link from "next/link";
+import { BOROUGH_QUOTE_ID } from "../data/londonAreas";
+import { submitBoroughLead } from "../lib/submitBoroughLead";
 
 type Props = {
   boroughName: string;
   formId: string;
-  onSubmit: (event: FormEvent<HTMLFormElement>) => void | Promise<void>;
 };
 
-/**
- * One-step, postcode-first form shared by all 33 London borough-area heroes.
- * Preserve the existing /api/contact-resend delivery and tracking via onSubmit.
- * Never block enquiries for a postcode outside the named borough.
- */
-export default function BoroughQuoteForm({ boroughName, formId, onSubmit }: Props) {
+export default function BoroughQuoteForm({ boroughName, formId }: Props) {
   const submittingRef = useRef(false);
-  const [submitting, setSubmitting] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const submitting = status === "sending";
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (submittingRef.current) return;
     submittingRef.current = true;
-    setSubmitting(true);
+    setStatus("sending");
     try {
-      await onSubmit(event);
+      const sent = await submitBoroughLead(event, { boroughName, showFormAlerts: false });
+      setStatus(sent ? "sent" : "error");
+    } catch {
+      setStatus("error");
     } finally {
       submittingRef.current = false;
-      setSubmitting(false);
     }
   }
 
   const control = "h-12 w-full min-w-0 rounded-[14px] border border-[#7a8d92] bg-white px-4 text-[16px] text-[#203e4a] outline-none transition placeholder:text-[#60747a] focus:border-[#236f7b] focus:ring-2 focus:ring-[#236f7b] focus:ring-offset-2";
-  const fieldLabel = "mb-1.5 block text-left text-[12px] font-semibold text-[#203e4a]";
+  const fieldLabel = "mb-1.5 block text-left text-[13px] font-semibold text-[#203e4a]";
+  const titleId = `${formId}-heading`;
+  const whatsappHref = "https://wa.me/442036548508?text=" + encodeURIComponent(
+    `Hello WEDRAWPLANS, I would like a drawing quote for a project in ${boroughName}.`
+  );
 
   return (
-    <>
+    <section id={BOROUGH_QUOTE_ID} aria-labelledby={titleId} tabIndex={-1} className="min-w-0 scroll-mt-5">
       <div className="overflow-hidden rounded-[13px] bg-[#245b63] px-4 py-2.5 text-center text-white">
         <p className="break-words text-[14px] font-extrabold uppercase tracking-[0.17em] sm:text-[15px]">
           {boroughName}
         </p>
       </div>
-      <h2 className="mt-4 text-[17px] font-semibold leading-snug tracking-tight text-[#223b3e] sm:text-[19px]">
+      <h2 id={titleId} className="mt-4 text-[17px] font-semibold leading-snug tracking-tight text-[#223b3e] sm:text-[19px]">
         Get your fixed-fee drawing quote
       </h2>
-      <p className="mt-1.5 text-[12px] leading-5 text-[#586d73]">
-        Tell us what you would like to build or change. No drawings or plans are needed to enquire.
+      <p className="mt-1.5 text-[13px] leading-5 text-[#586d73]">
+        Tell us a little about your project. No drawings or plans needed.
       </p>
-      <form onSubmit={handleSubmit} aria-busy={submitting} className="mt-4 space-y-3.5 text-[13px]">
+      <form onSubmit={handleSubmit} onChange={() => { if (status === "sent") setStatus("idle"); }} aria-labelledby={titleId} className="mt-4 space-y-3 text-[13px]">
         <input type="text" name="company" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
         <input type="hidden" name="service" value="Homeowner project enquiry" readOnly />
         <div>
@@ -53,7 +56,7 @@ export default function BoroughQuoteForm({ boroughName, formId, onSubmit }: Prop
             Property postcode <span className="text-[#b64740]">*</span>
           </label>
           <input id={formId + "-postcode"} name="postcode" required autoComplete="postal-code"
-            inputMode="text" placeholder="Enter your property postcode" className={control} />
+            inputMode="text" autoCapitalize="characters" spellCheck={false} placeholder="Enter your property postcode" className={control} />
         </div>
         <div>
           <label htmlFor={formId + "-details"} className={fieldLabel}>
@@ -75,29 +78,32 @@ export default function BoroughQuoteForm({ boroughName, formId, onSubmit }: Prop
             Email address <span className="text-[#b64740]">*</span>
           </label>
           <input id={formId + "-email"} name="email" type="email" required autoComplete="email"
-            placeholder="Your email address" className={control} />
+            autoCapitalize="none" spellCheck={false} placeholder="Your email address" className={control} />
         </div>
         <div>
           <label htmlFor={formId + "-phone"} className={fieldLabel}>Telephone (optional)</label>
-          <input id={formId + "-phone"} name="phone" type="tel" autoComplete="tel"
-            placeholder="Your phone number, if preferred" className={control} />
+          <input id={formId + "-phone"} name="phone" type="tel" autoComplete="tel" className={control} />
         </div>
-        <button type="submit" disabled={submitting} className="flex min-h-[50px] w-full items-center justify-center rounded-full bg-[#236f7b] px-5 py-3 text-center text-[13px] font-bold uppercase tracking-[0.08em] text-white shadow-[0_8px_22px_rgba(20,79,91,0.15)] transition hover:bg-[#194e5b] focus-visible:ring-2 focus-visible:ring-[#236f7b] focus-visible:ring-offset-2 disabled:cursor-wait">
-          {submitting ? "Sending your enquiry…" : "Get my fixed-fee quote →"}
+        {status === "error" && (
+          <p role="alert" className="rounded-xl bg-red-50 p-3 text-sm text-red-900">
+            Your enquiry could not be sent. Please try again or call <a className="font-semibold underline" href="tel:+442036548508">020 3654 8508</a>.
+          </p>
+        )}
+        <div role="status" className={status === "sent" ? "rounded-xl border border-[#9acdb7] bg-emerald-50 p-3 text-sm font-medium text-emerald-950" : "sr-only"}>
+          {submitting ? "Sending your enquiry. Please wait." : status === "sent" ? "Thank you. Your enquiry has been sent. We’ll be in touch by email." : ""}
+        </div>
+        <button type="submit" disabled={submitting} aria-busy={submitting} className="flex min-h-[50px] w-full items-center justify-center rounded-full bg-[#236f7b] px-5 py-3 text-center text-[16px] font-bold text-white shadow-[0_8px_22px_rgba(20,79,91,0.15)] transition hover:bg-[#194e5b] focus-visible:ring-2 focus-visible:ring-[#236f7b] focus-visible:ring-offset-2 disabled:cursor-wait">
+          {submitting ? "Sending your enquiry…" : "Get my fixed-fee quote"}
         </button>
-        <p className="text-center text-[11px] leading-5 text-[#60747a]">
+        <p className="text-center text-[12px] leading-5 text-[#60747a]">
           No obligation. We use your details only to respond to your enquiry.
         </p>
-        <p className="text-center text-[11px] leading-5 text-[#60747a]">
-          Prefer a service list?{" "}
-          <Link href="/get-drawings-quote" className="font-semibold text-[#236f7b] underline underline-offset-2 hover:text-[#194e5b]">
-            Use the detailed quote form
-          </Link>
-        </p>
       </form>
-      <p role="status" aria-live="polite" className="sr-only">
-        {submitting ? "Sending your enquiry. Please wait." : ""}
-      </p>
-    </>
+      <div className="mt-3 flex flex-wrap items-center justify-center gap-x-4 border-t border-[#d6e3e5] text-[13px] font-semibold text-[#236f7b]">
+        <a href="tel:+442036548508" className="inline-flex min-h-[44px] items-center underline underline-offset-2">Call us</a>
+        <a href={whatsappHref} className="inline-flex min-h-[44px] items-center underline underline-offset-2" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <Link href="/get-drawings-quote" className="inline-flex min-h-[44px] items-center underline underline-offset-2">Detailed quote form</Link>
+      </div>
+    </section>
   );
 }

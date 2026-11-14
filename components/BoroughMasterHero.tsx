@@ -1,8 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import BoroughQuoteForm from "./BoroughQuoteForm";
-import { submitBoroughLead } from "../lib/submitBoroughLead";
-import { hasOneReplyMethod } from "../lib/hasOneReplyMethod";
+import { BOROUGH_QUOTE_ANCHOR } from "../data/londonAreas";
 
 type BoroughHeaderProps = {
   boroughName: string;
@@ -31,7 +30,7 @@ function whatsappHref(boroughName: string) {
  */
 export function BoroughMasterHeader({ boroughName }: BoroughHeaderProps) {
   return (
-    <header className="w-screen max-w-[100vw] min-w-0 overflow-x-clip border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur">
+    <header className="w-full min-w-0 border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur">
       <div className="mx-auto max-w-6xl px-4 pb-2 pt-3 sm:pb-3 sm:pt-6 lg:px-6">
         <div className="flex flex-col items-center text-center">
           <a href="/" aria-label="WEDRAWPLANS homepage">
@@ -86,18 +85,6 @@ export function BoroughMasterHeader({ boroughName }: BoroughHeaderProps) {
  * never to an inclusive Building Regulations package.
  */
 export default function BoroughMasterHero({ boroughName, formId, headline, showcaseImage }: BoroughHeroProps) {
-  function scrollToForm() {
-    document.getElementById(formId)?.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    if (!hasOneReplyMethod(e.currentTarget)) {
-      e.preventDefault();
-      return;
-    }
-    await submitBoroughLead(e, { boroughName });
-  }
-
   return (
     <section className="w-full min-w-0 border-b border-slate-200 bg-[#fdf8f3]">
       <div className="mx-auto flex max-w-5xl min-w-0 flex-col gap-5 px-4 py-6 lg:flex-row lg:gap-8 lg:px-6 lg:py-10">
@@ -121,13 +108,12 @@ export default function BoroughMasterHero({ boroughName, formId, headline, showc
                 For suitable straightforward house extension and loft conversion planning drawings.
                 Your written fixed-fee quote sets out the included work.
               </p>
-              <button
-                type="button"
-                onClick={scrollToForm}
+              <a
+                href={BOROUGH_QUOTE_ANCHOR}
                 className="mt-4 flex min-h-[46px] w-full items-center justify-center rounded-full bg-[#236f7b] px-5 py-3 text-[14px] font-bold text-white transition hover:bg-[#194e5b] sm:w-auto"
               >
                 Get your fixed-fee quote
-              </button>
+              </a>
               <p className="mt-3 text-[11px] leading-[1.65] text-[#667b80]">
                 Council application fees, measured surveys, structural calculations and technical Building Regulations drawings are separate where required.
               </p>
@@ -170,7 +156,7 @@ export default function BoroughMasterHero({ boroughName, formId, headline, showc
 
         <div id={formId} className="min-w-0 scroll-mt-5 lg:w-1/2">
           <div className="rounded-2xl border border-[#e0e7e3] bg-white p-5 shadow-md sm:p-6">
-            <BoroughQuoteForm boroughName={boroughName} formId={formId} onSubmit={handleSubmit} />
+            <BoroughQuoteForm boroughName={boroughName} formId={formId} />
             <div className="mt-5 overflow-hidden rounded-xl border border-[#e0e8e4] bg-[#f7faf9] lg:hidden">
               <div className={showcaseImage ? (showcaseImage.fit === "contain" ? "relative aspect-[1.414/1] max-h-[285px] w-full bg-[#f1f5f2]" : "relative aspect-[16/10] max-h-[285px] w-full bg-[#f1f5f2]") : "relative h-[140px] w-full bg-[#f7faf9]"}>
                 <Image

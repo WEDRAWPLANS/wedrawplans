@@ -117,7 +117,7 @@ export default function SouthwarkAreaPage() {
 
       <AreaTopHeader />
 
-      <div className="min-h-screen w-screen max-w-[100vw] min-w-0 overflow-x-clip bg-[#f8f4f0] text-slate-900">
+      <div className="min-h-screen w-full min-w-0 overflow-x-clip bg-[#f8f4f0] text-slate-900">
         <BoroughMasterHeader boroughName={"Southwark"} />
         <main>
           <BoroughMasterHero boroughName={"Southwark"} formId={"southwark-quote"} headline={"Plans for extensions, lofts and new builds in Southwark"} />

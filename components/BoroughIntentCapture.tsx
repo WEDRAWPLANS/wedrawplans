@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { boroughIntent } from "../data/boroughIntent";
+import { BOROUGH_QUOTE_ANCHOR, hasLondonBoroughQuote } from "../data/londonAreas";
 import { caseStudyBySlug } from "../data/caseStudies";
 
 type Props = { slug: string };
@@ -14,6 +15,7 @@ const SERVICE_LINKS = [
 export default function BoroughIntentCapture({ slug }: Props) {
   const info = boroughIntent[slug];
   if (!info) return null;
+  const hasLocalQuote = hasLondonBoroughQuote(`/areas/${slug}`);
 
   const evidence = info.evidence
     .map((id) => caseStudyBySlug[id])
@@ -85,9 +87,9 @@ export default function BoroughIntentCapture({ slug }: Props) {
         <div className="mt-8 flex flex-wrap items-center gap-3 rounded-xl bg-[#173e46] p-5 text-white">
           <div className="min-w-0 flex-1">
             <h3 className="text-lg font-semibold">Get a fixed-fee drawing quote in {info.name}</h3>
-            <p className="mt-1 text-sm leading-6 text-slate-100">Tell us your postcode and project type; we will set out the planning, technical and structural scope separately where required.</p>
+            <p className="mt-1 text-sm leading-6 text-slate-100">{hasLocalQuote ? "Tell us your postcode and a little about your project. We’ll explain the work included and give you a fixed fee." : "Tell us your postcode and project type; we will set out the planning, technical and structural scope separately where required."}</p>
           </div>
-          <Link href="/get-drawings-quote" className="rounded-full bg-white px-5 py-3 text-sm font-bold text-[#173e46] hover:bg-teal-50">Request a quote →</Link>
+          <Link href={hasLocalQuote ? BOROUGH_QUOTE_ANCHOR : "/get-drawings-quote"} className="inline-flex min-h-[44px] items-center rounded-full bg-white px-5 py-3 text-sm font-bold text-[#173e46] hover:bg-teal-50">Request a quote →</Link>
         </div>
       </div>
     </section>

@@ -71,7 +71,7 @@ export default function BexleyAreaPage() {
         />
       </Head>
 
-      <div className="min-h-screen w-screen max-w-[100vw] min-w-0 overflow-x-clip bg-[#f8f4f0] text-slate-900">
+      <div className="min-h-screen w-full min-w-0 overflow-x-clip bg-[#f8f4f0] text-slate-900">
         <BoroughMasterHeader boroughName={"Bexley"} />
 
         <main>
@@ -444,15 +444,6 @@ export default function BexleyAreaPage() {
           </div>
         </footer>
 
-        <a
-          href={WHATSAPP_LINK}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Chat on WhatsApp with WEDRAWPLANS"
-          className="fixed bottom-4 right-4 z-[70] flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg ring-2 ring-white/70 hover:bg-[#1ebe57]"
-        >
-          <span className="text-xl">💬</span>
-        </a>
       </div>
     </>
   );
