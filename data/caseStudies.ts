@@ -524,7 +524,10 @@ export const caseStudies: CaseStudy[] = [
     heroImage: "/images/hyde-cgi-main.jpg",
     secondaryImage: "",
     galleryImages: [
-      { src: "/images/hyde-cgi-main.jpg", alt: "WEDRAWPLANS architectural CGI of the proposed six-storey mixed-use building at The Hyde, Colindale", caption: "Architectural CGI · Proposed six-storey development" }
+      { src: "/images/hyde-cgi-main.jpg", alt: "WEDRAWPLANS architectural CGI of the proposed six-storey mixed-use building at The Hyde, Colindale", caption: "Architectural CGI · Proposed six-storey development" },
+      { src: "/images/case-studies/the-hyde-colindale-major-residential-development/drawing-1-flat-one-3d-layout.svg", alt: "Original WEDRAWPLANS architectural sheet showing Flat 1 three-dimensional layout and internal views", caption: "Flat 1 · 3D apartment layout and internal views" },
+      { src: "/images/case-studies/the-hyde-colindale-major-residential-development/drawing-3-flat-two-3d-layout.svg", alt: "Original WEDRAWPLANS architectural sheet showing Flat 2 three-dimensional layout and internal views", caption: "Flat 2 · 3D apartment layout and internal views" },
+      { src: "/images/case-studies/the-hyde-colindale-major-residential-development/drawing-5-flat-three-3d-layout.svg", alt: "Original WEDRAWPLANS architectural sheet showing Flat 3 three-dimensional layout and internal views", caption: "Flat 3 · 3D apartment layout and internal views" }
     ],
     decisions: [
       { reference: "18/0927/S73", description: "Subsequent variation to the approved plans for the Halt Parade development", outcome: "Approved variation" }
