@@ -1105,8 +1105,8 @@ export function categoryForCaseStudy(item: CaseStudy): string {
   if (/garden room|outbuilding|garden studio|garden office|care building/.test(service)) return "Garden rooms & outbuildings";
   if (/loft|dormer|gable/.test(service)) return "Loft conversions";
   if (/kerb|crossover/.test(service)) return "Dropped kerbs";
+  if (/residential.*development|six[- ]storey|flat conversion|residential conversion|conversion to.*flats|self-contained(?: residential)? flats|multi-unit|existing-use certificate|additional floor|major residential|two new flats|hmo/.test(service)) return "Residential development";
   if (/heritage|listed|shopfront|mixed-use/.test(service)) return "Heritage & commercial";
-  if (/flat conversion|residential conversion|conversion to.*flats|self-contained(?: residential)? flats|multi-unit|existing-use certificate|additional floor|major residential|two new flats|hmo/.test(service)) return "Residential development";
   if (/extension|prior approval/.test(service)) return "Extensions";
   return "Other projects";
 }
