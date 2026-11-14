@@ -1,4 +1,4 @@
-import type { FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import Link from "next/link";
 
 type Props = {
@@ -13,13 +13,29 @@ type Props = {
  * Never block enquiries for a postcode outside the named borough.
  */
 export default function BoroughQuoteForm({ boroughName, formId, onSubmit }: Props) {
-  const control = "h-12 w-full min-w-0 rounded-[14px] border border-[#d6e3e5] bg-white px-4 text-[15px] text-[#203e4a] outline-none transition placeholder:text-slate-400 focus:border-[#64b7c4] focus:ring-2 focus:ring-[#d6edf1]";
+  const submittingRef = useRef(false);
+  const [submitting, setSubmitting] = useState(false);
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (submittingRef.current) return;
+    submittingRef.current = true;
+    setSubmitting(true);
+    try {
+      await onSubmit(event);
+    } finally {
+      submittingRef.current = false;
+      setSubmitting(false);
+    }
+  }
+
+  const control = "h-12 w-full min-w-0 rounded-[14px] border border-[#7a8d92] bg-white px-4 text-[16px] text-[#203e4a] outline-none transition placeholder:text-[#60747a] focus:border-[#236f7b] focus:ring-2 focus:ring-[#236f7b] focus:ring-offset-2";
   const fieldLabel = "mb-1.5 block text-left text-[12px] font-semibold text-[#203e4a]";
 
   return (
     <>
       <div className="overflow-hidden rounded-[13px] bg-[#245b63] px-4 py-2.5 text-center text-white">
-        <p className="text-[14px] font-extrabold uppercase tracking-[0.17em] sm:text-[15px]">
+        <p className="break-words text-[14px] font-extrabold uppercase tracking-[0.17em] sm:text-[15px]">
           {boroughName}
         </p>
       </div>
@@ -29,7 +45,7 @@ export default function BoroughQuoteForm({ boroughName, formId, onSubmit }: Prop
       <p className="mt-1.5 text-[12px] leading-5 text-[#586d73]">
         Tell us what you would like to build or change. No drawings or plans are needed to enquire.
       </p>
-      <form onSubmit={onSubmit} className="mt-4 space-y-3.5 text-[13px]">
+      <form onSubmit={handleSubmit} aria-busy={submitting} className="mt-4 space-y-3.5 text-[13px]">
         <input type="text" name="company" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
         <input type="hidden" name="service" value="Homeowner project enquiry" readOnly />
         <div>
@@ -66,8 +82,8 @@ export default function BoroughQuoteForm({ boroughName, formId, onSubmit }: Prop
           <input id={formId + "-phone"} name="phone" type="tel" autoComplete="tel"
             placeholder="Your phone number, if preferred" className={control} />
         </div>
-        <button type="submit" className="flex min-h-[50px] w-full items-center justify-center rounded-full bg-[#236f7b] px-5 py-3 text-center text-[13px] font-bold uppercase tracking-[0.08em] text-white shadow-[0_8px_22px_rgba(20,79,91,0.15)] transition hover:bg-[#194e5b] focus-visible:ring-2 focus-visible:ring-[#64b7c4] focus-visible:ring-offset-2">
-          Get my fixed-fee quote →
+        <button type="submit" disabled={submitting} className="flex min-h-[50px] w-full items-center justify-center rounded-full bg-[#236f7b] px-5 py-3 text-center text-[13px] font-bold uppercase tracking-[0.08em] text-white shadow-[0_8px_22px_rgba(20,79,91,0.15)] transition hover:bg-[#194e5b] focus-visible:ring-2 focus-visible:ring-[#236f7b] focus-visible:ring-offset-2 disabled:cursor-wait">
+          {submitting ? "Sending your enquiry…" : "Get my fixed-fee quote →"}
         </button>
         <p className="text-center text-[11px] leading-5 text-[#60747a]">
           No obligation. We use your details only to respond to your enquiry.
@@ -79,6 +95,9 @@ export default function BoroughQuoteForm({ boroughName, formId, onSubmit }: Prop
           </Link>
         </p>
       </form>
+      <p role="status" aria-live="polite" className="sr-only">
+        {submitting ? "Sending your enquiry. Please wait." : ""}
+      </p>
     </>
   );
 }
