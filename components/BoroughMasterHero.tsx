@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import { submitBoroughLead } from "../lib/submitBoroughLead";
-import { hasOneReplyMethod } from "../lib/hasOneReplyMethod";
+import BoroughQuoteForm from "./BoroughQuoteForm";
+import { BOROUGH_QUOTE_ANCHOR } from "../data/londonAreas";
 
 type BoroughHeaderProps = {
   boroughName: string;
@@ -30,7 +30,7 @@ function whatsappHref(boroughName: string) {
  */
 export function BoroughMasterHeader({ boroughName }: BoroughHeaderProps) {
   return (
-    <header className="w-screen max-w-[100vw] min-w-0 overflow-x-clip border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur">
+    <header className="w-full min-w-0 border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur">
       <div className="mx-auto max-w-6xl px-4 pb-2 pt-3 sm:pb-3 sm:pt-6 lg:px-6">
         <div className="flex flex-col items-center text-center">
           <a href="/" aria-label="WEDRAWPLANS homepage">
@@ -85,18 +85,6 @@ export function BoroughMasterHeader({ boroughName }: BoroughHeaderProps) {
  * never to an inclusive Building Regulations package.
  */
 export default function BoroughMasterHero({ boroughName, formId, headline, showcaseImage }: BoroughHeroProps) {
-  function scrollToForm() {
-    document.getElementById(formId)?.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    if (!hasOneReplyMethod(e.currentTarget)) {
-      e.preventDefault();
-      return;
-    }
-    await submitBoroughLead(e, { boroughName });
-  }
-
   return (
     <section className="w-full min-w-0 border-b border-slate-200 bg-[#fdf8f3]">
       <div className="mx-auto flex max-w-5xl min-w-0 flex-col gap-5 px-4 py-6 lg:flex-row lg:gap-8 lg:px-6 lg:py-10">
@@ -120,13 +108,12 @@ export default function BoroughMasterHero({ boroughName, formId, headline, showc
                 For suitable straightforward house extension and loft conversion planning drawings.
                 Your written fixed-fee quote sets out the included work.
               </p>
-              <button
-                type="button"
-                onClick={scrollToForm}
+              <a
+                href={BOROUGH_QUOTE_ANCHOR}
                 className="mt-4 flex min-h-[46px] w-full items-center justify-center rounded-full bg-[#236f7b] px-5 py-3 text-[14px] font-bold text-white transition hover:bg-[#194e5b] sm:w-auto"
               >
                 Get your fixed-fee quote
-              </button>
+              </a>
               <p className="mt-3 text-[11px] leading-[1.65] text-[#667b80]">
                 Council application fees, measured surveys, structural calculations and technical Building Regulations drawings are separate where required.
               </p>
@@ -169,56 +156,7 @@ export default function BoroughMasterHero({ boroughName, formId, headline, showc
 
         <div id={formId} className="min-w-0 scroll-mt-5 lg:w-1/2">
           <div className="rounded-2xl border border-[#e0e7e3] bg-white p-5 shadow-md sm:p-6">
-            <h2 className="text-[14px] font-semibold uppercase tracking-[0.16em] text-slate-900">
-              Request your {boroughName} fixed-fee quote
-            </h2>
-            <p className="mt-1 text-[12px] text-slate-600">
-              Tell us a little about your property and what you plan to build. We will reply with a clear fixed fee for your drawings.
-            </p>
-            <form onSubmit={handleSubmit} className="mt-3 space-y-3 text-[13px]">
-              <div className="space-y-1">
-                <label htmlFor={formId + "-name"} className="text-[11px] font-medium">Name</label>
-                <input id={formId + "-name"} name="name" required autoComplete="name" className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 outline-none focus:border-[#64b7c4]" />
-              </div>
-              <div className="grid gap-3 sm:grid-cols-2">
-                <div className="space-y-1">
-                  <label htmlFor={formId + "-phone"} className="text-[11px] font-medium">Telephone (or email)</label>
-                  <input id={formId + "-phone"} name="phone" type="tel" autoComplete="tel" className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 outline-none focus:border-[#64b7c4]" />
-                </div>
-                <div className="space-y-1">
-                  <label htmlFor={formId + "-email"} className="text-[11px] font-medium">Email (or telephone)</label>
-                  <input id={formId + "-email"} name="email" type="email" autoComplete="email" className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 outline-none focus:border-[#64b7c4]" />
-                </div>
-              </div>
-              <p className="text-[11px] text-slate-600">One contact method is enough; you may leave phone or email blank.</p>
-              <div className="space-y-1">
-                <label htmlFor={formId + "-postcode"} className="text-[11px] font-medium">Property postcode</label>
-                <input id={formId + "-postcode"} name="postcode" required autoComplete="postal-code" placeholder="Enter your postcode" className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 outline-none focus:border-[#64b7c4]" />
-              </div>
-              <div className="space-y-1">
-                <label htmlFor={formId + "-type"} className="text-[11px] font-medium">Project type</label>
-                <select id={formId + "-type"} name="projectType" required defaultValue="" className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 outline-none focus:border-[#64b7c4]">
-                  <option value="" disabled>Select project type</option>
-                  <option>House extension</option>
-                  <option>Loft conversion</option>
-                  <option>Garage conversion</option>
-                  <option>Outbuilding or garden room</option>
-                  <option>Internal remodelling</option>
-                  <option>New build house</option>
-                  <option>Conversion to flats</option>
-                  <option>Building regulation pack only</option>
-                  <option>Other domestic project</option>
-                </select>
-              </div>
-              <div className="space-y-1">
-                <label htmlFor={formId + "-details"} className="text-[11px] font-medium">Brief description of your project</label>
-                <textarea id={formId + "-details"} name="projectDetails" rows={4} placeholder="For example: a rear kitchen extension with a new open-plan layout." className="w-full rounded border border-slate-300 bg-white px-2 py-2 outline-none focus:border-[#64b7c4]" />
-              </div>
-              <button type="submit" className="w-full rounded-full bg-[#64b7c4] py-2.5 text-[13px] font-semibold uppercase tracking-[0.2em] text-white hover:bg-[#4da4b4]">
-                Get a fixed fee quote
-              </button>
-              <p className="mt-2 text-[11px] text-slate-500">Your information is used only to reply to your enquiry.</p>
-            </form>
+            <BoroughQuoteForm boroughName={boroughName} formId={formId} />
             <div className="mt-5 overflow-hidden rounded-xl border border-[#e0e8e4] bg-[#f7faf9] lg:hidden">
               <div className={showcaseImage ? (showcaseImage.fit === "contain" ? "relative aspect-[1.414/1] max-h-[285px] w-full bg-[#f1f5f2]" : "relative aspect-[16/10] max-h-[285px] w-full bg-[#f1f5f2]") : "relative h-[140px] w-full bg-[#f7faf9]"}>
                 <Image

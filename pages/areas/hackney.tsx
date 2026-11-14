@@ -136,7 +136,7 @@ export default function HackneyAreaPage() {
         />
       </Head>
 
-      <div className="min-h-screen w-screen max-w-[100vw] min-w-0 overflow-x-clip bg-[#f8f4f0] text-slate-900">
+      <div className="min-h-screen w-full min-w-0 overflow-x-clip bg-[#f8f4f0] text-slate-900">
         <BoroughMasterHeader boroughName={"Hackney"} />
 
         <main>

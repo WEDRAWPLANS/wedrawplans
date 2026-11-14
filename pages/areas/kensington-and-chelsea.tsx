@@ -120,7 +120,7 @@ export default function KensingtonAndChelseaAreaPage() {
 
       <AreaTopHeader />
 
-      <div className="min-h-screen w-screen max-w-[100vw] min-w-0 overflow-x-clip bg-[#f8f4f0] text-slate-900">
+      <div className="min-h-screen w-full min-w-0 overflow-x-clip bg-[#f8f4f0] text-slate-900">
         <BoroughMasterHeader boroughName={"Kensington and Chelsea"} />
         <main>
           <BoroughMasterHero boroughName={"Kensington and Chelsea"} formId={"kensington-and-chelsea-quote"} headline={"Plans for extensions, lofts and new builds in Kensington and Chelsea"} />

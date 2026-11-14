@@ -225,8 +225,9 @@ function buildPayloadFromObject(obj: BoroughLeadObject) {
 
 export async function submitBoroughLead(
   eOrData: React.FormEvent<HTMLFormElement> | BoroughLeadObject,
-  options?: { boroughName?: string }
+  options?: { boroughName?: string; showFormAlerts?: boolean }
 ) {
+  const showFormAlerts = options?.showFormAlerts !== false;
   let payload: any;
   let boroughName = "";
   let form: HTMLFormElement | null = null;
@@ -277,7 +278,7 @@ export async function submitBoroughLead(
             ? responseData
             : "Something went wrong. Please try again or call us directly.";
 
-      if (form) {
+      if (form && showFormAlerts) {
         alert(serverMessage);
       }
 
@@ -294,8 +295,10 @@ export async function submitBoroughLead(
     });
 
     if (form) {
-      const label = boroughName ? `${boroughName} ` : "";
-      alert(`Thank you — your ${label}enquiry has been sent. WEDRAWPLANS will contact you shortly.`);
+      if (showFormAlerts) {
+        const label = boroughName ? `${boroughName} ` : "";
+        alert(`Thank you — your ${label}enquiry has been sent. WEDRAWPLANS will contact you shortly.`);
+      }
       form.reset();
     }
 
@@ -306,7 +309,7 @@ export async function submitBoroughLead(
       payload,
     });
 
-    if (form) {
+    if (form && showFormAlerts) {
       alert("Network error — please try again.");
     }
 

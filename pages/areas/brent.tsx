@@ -119,7 +119,7 @@ export default function BrentAreaPage() {
 
       <AreaTopHeader />
 
-      <div className="min-h-screen w-screen max-w-[100vw] min-w-0 overflow-x-clip bg-[#f8f4f0] text-slate-900">
+      <div className="min-h-screen w-full min-w-0 overflow-x-clip bg-[#f8f4f0] text-slate-900">
         <BoroughMasterHeader boroughName={"Brent"} />
         <main>
           <BoroughMasterHero boroughName={"Brent"} formId={"brent-quote"} headline={"Plans for extensions, lofts and conversions in Brent"} />

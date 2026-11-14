@@ -6,7 +6,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
 import ServiceInternalLinks from "../../components/ServiceInternalLinks";
-import SmartPlanningAssistant from "../../components/SmartPlanningAssistant";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
@@ -186,7 +185,7 @@ export default function BromleyAreaPage() {
         />
       </Head>
 
-      <div className="min-h-screen w-screen max-w-[100vw] min-w-0 overflow-x-clip bg-[#f8f4f0] text-slate-900">
+      <div className="min-h-screen w-full min-w-0 overflow-x-clip bg-[#f8f4f0] text-slate-900">
         <BoroughMasterHeader boroughName={"Bromley"} />
 
         <main>
@@ -862,7 +861,6 @@ export default function BromleyAreaPage() {
             </div>
           </section>
 
-          <SmartPlanningAssistant boroughName="Bromley" />
           <BoroughIntentCapture slug="bromley" />
         </main>
 
@@ -980,15 +978,6 @@ export default function BromleyAreaPage() {
           </div>
         </footer>
 
-        <a
-          href={WHATSAPP_LINK}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Chat on WhatsApp with WEDRAWPLANS"
-          className="fixed bottom-4 right-4 z-[80] flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg ring-2 ring-white/70 hover:bg-[#1ebe57]"
-        >
-          <span className="text-xl">💬</span>
-        </a>
       </div>
     </>
   );
