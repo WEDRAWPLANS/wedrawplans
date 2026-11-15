@@ -1,3 +1,4 @@
+import { getLondonAreaMetadata } from "../../data/londonAreas";
 import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
@@ -12,6 +13,8 @@ const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Southwark";
+
+const areaMetadata = getLondonAreaMetadata("Southwark");
 
 export default function SouthwarkAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -95,8 +98,8 @@ export default function SouthwarkAreaPage() {
   return (
     <>
       <Head>
-        <title>Side return extension and planning drawings in Southwark | WEDRAWPLANS</title>
-        <meta name="description" content="Side return extension and planning drawings in Southwark. Planning and Building Regulation drawings in Southwark. Get a fixed-fee quotation." />
+        <title>{areaMetadata.title}</title>
+        <meta name="description" content={areaMetadata.description} />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/southwark" />
         <script
           type="application/ld+json"

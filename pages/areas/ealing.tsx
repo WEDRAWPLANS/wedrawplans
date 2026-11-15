@@ -5,7 +5,7 @@ import React, { useMemo } from "react";
 import Image from "next/image";
 import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 import BoroughQuoteForm from "../../components/BoroughQuoteForm";
-import { BOROUGH_QUOTE_ANCHOR } from "../../data/londonAreas";
+import { BOROUGH_QUOTE_ANCHOR, getLondonAreaMetadata } from "../../data/londonAreas";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
@@ -16,6 +16,8 @@ const HERO_IMAGE = "/images/case-studies/the-reddings/after.jpg";
 const EALING_LOCAL_IMAGE = "/images/drawings.jpg";
 const PROJECT_IMAGE_1 = "/images/case-studies/allum-lane/public-sheets/3d-01.webp";
 const PROJECT_IMAGE_2 = "/images/case-studies/allum-lane/public-sheets/3d-02.webp";
+
+const areaMetadata = getLondonAreaMetadata("Ealing");
 
 export default function EalingAreaPage() {
   function scrollToForm() {
@@ -107,8 +109,8 @@ export default function EalingAreaPage() {
   return (
     <>
       <Head>
-        <title>Extension plans and planning drawings in Ealing | WEDRAWPLANS</title>
-        <meta name="description" content="Extension plans and planning drawings in Ealing. Planning and Building Regulation drawings in Ealing. Get a fixed-fee quotation." />
+        <title>{areaMetadata.title}</title>
+        <meta name="description" content={areaMetadata.description} />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/ealing" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }} />

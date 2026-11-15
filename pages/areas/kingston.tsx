@@ -1,3 +1,4 @@
+import { getLondonAreaMetadata } from "../../data/londonAreas";
 import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import NearbySuttonLoftCaseStudy from "../../components/NearbySuttonLoftCaseStudy";
@@ -17,6 +18,8 @@ const HERO_IMAGE = "/images/kingston-hero.jpg";
 const KINGSTON_LOCAL_IMAGE = "/images/kingston-local.jpg";
 const PROJECT_IMAGE_1 = "/images/kingston-project-1.jpg";
 const PROJECT_IMAGE_2 = "/images/kingston-project-2.jpg";
+
+const areaMetadata = getLondonAreaMetadata("Kingston upon Thames");
 
 export default function KingstonAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -114,8 +117,8 @@ export default function KingstonAreaPage() {
   return (
     <>
       <Head>
-        <title>House extension plans and loft conversion drawings in Kingston | WEDRAWPLANS</title>
-        <meta name="description" content="House extension plans and loft conversion drawings in Kingston. Planning and Building Regulation drawings in Kingston upon Thames. Get a fixed-fee quotation." />
+        <title>{areaMetadata.title}</title>
+        <meta name="description" content={areaMetadata.description} />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/kingston" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }} />

@@ -1,3 +1,4 @@
+import { getLondonAreaMetadata } from "../../data/londonAreas";
 import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
@@ -17,6 +18,8 @@ const HERO_IMAGE = "/images/waltham-forest-hero.jpg";
 const DRAWINGS_IMAGE = "/images/waltham-forest-drawings.jpg";
 const PROJECT_IMAGE = "/images/waltham-forest-project.jpg";
 const PROMO_IMAGE = "/images/waltham-forest-promo.jpg";
+
+const areaMetadata = getLondonAreaMetadata("Waltham Forest");
 
 export default function WalthamForestAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -99,8 +102,8 @@ export default function WalthamForestAreaPage() {
   return (
     <>
       <Head>
-        <title>Rear extension and loft planning drawings in Waltham Forest | WEDRAWPLANS</title>
-        <meta name="description" content="Rear extension and loft planning drawings in Waltham Forest. Planning and Building Regulation drawings in Waltham Forest. Get a fixed-fee quotation." />
+        <title>{areaMetadata.title}</title>
+        <meta name="description" content={areaMetadata.description} />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/waltham-forest" />
         <meta property="og:title" content="Architectural Drawings in Waltham Forest | WEDRAWPLANS" />
         <meta

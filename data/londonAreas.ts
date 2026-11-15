@@ -42,3 +42,18 @@ export const BOROUGH_QUOTE_ANCHOR = `#${BOROUGH_QUOTE_ID}`;
 export function hasLondonBoroughQuote(path: string) {
   return londonAreaPaths.has(path);
 }
+
+type LondonAreaName = (typeof LONDON_AREAS)[number][0];
+
+const searchAreaNames: Partial<Record<LondonAreaName, string>> = {
+  Bexley: "Bexleyheath & Bexley",
+  "City of London": "the City of London",
+};
+
+export function getLondonAreaMetadata(areaName: LondonAreaName) {
+  const location = searchAreaNames[areaName] ?? areaName;
+  return {
+    title: `Architectural Drawings in ${location} | Extension, Loft & Planning Plans | WEDRAWPLANS`,
+    description: `Fixed-fee architectural drawings in ${location} for house extensions, loft conversions, flats & building regulations. Fast local site surveys within 48 hours and full council planning submission. Call 020 3654 8508.`,
+  };
+}

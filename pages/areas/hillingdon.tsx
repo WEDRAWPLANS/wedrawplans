@@ -1,3 +1,4 @@
+import { getLondonAreaMetadata } from "../../data/londonAreas";
 import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
@@ -22,6 +23,8 @@ const PROJECT_IMAGE_1 = "/images/hillingdon-project-1.jpg";
 const PROJECT_IMAGE_2 = "/images/hillingdon-project-2.jpg";
 const HILLINGDON_AREA_IMAGE = "/images/hillingdon-area.jpg";
 const HILLINGDON_VIDEO = "/videos/hillingdon-planning-project.mp4";
+
+const areaMetadata = getLondonAreaMetadata("Hillingdon");
 
 export default function HillingdonAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -170,8 +173,8 @@ export default function HillingdonAreaPage() {
   return (
     <>
       <Head>
-        <title>Extension and loft planning drawings in Hillingdon | WEDRAWPLANS</title>
-        <meta name="description" content="Extension and loft planning drawings in Hillingdon. Planning and Building Regulation drawings in Hillingdon. Get a fixed-fee quotation." />
+        <title>{areaMetadata.title}</title>
+        <meta name="description" content={areaMetadata.description} />
         <meta
           name="keywords"
           content="architectural drawings Hillingdon, extension drawings Hillingdon, loft conversion drawings Hillingdon, planning drawings Hillingdon, building regulation drawings Hillingdon, architectural plans Uxbridge, Hayes, Ruislip, West Drayton"

@@ -1,3 +1,4 @@
+import { getLondonAreaMetadata } from "../../data/londonAreas";
 import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BarnetCombinedExtensionPromo from "../../components/BarnetCombinedExtensionPromo";
@@ -18,6 +19,8 @@ const HERO_IMAGE = "/images/enfield-hero.jpg";
 const ENFIELD_LOCAL_IMAGE = "/images/enfield-local.jpg";
 const PROJECT_IMAGE_1 = "/images/enfield-project-1.jpg";
 const PROJECT_IMAGE_2 = "/images/enfield-project-2.jpg";
+
+const areaMetadata = getLondonAreaMetadata("Enfield");
 
 export default function EnfieldAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -144,8 +147,8 @@ export default function EnfieldAreaPage() {
   return (
     <>
       <Head>
-        <title>Rear extension and loft conversion plans in Enfield | WEDRAWPLANS</title>
-        <meta name="description" content="Rear extension and loft conversion plans in Enfield. Planning and Building Regulation drawings in Enfield. Get a fixed-fee quotation." />
+        <title>{areaMetadata.title}</title>
+        <meta name="description" content={areaMetadata.description} />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/enfield" />
 
         <meta property="og:title" content="Architectural Drawings Enfield | WEDRAWPLANS" />

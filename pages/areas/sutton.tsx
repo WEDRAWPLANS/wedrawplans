@@ -1,3 +1,4 @@
+import { getLondonAreaMetadata } from "../../data/londonAreas";
 import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
@@ -13,6 +14,8 @@ const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Sutton";
+
+const areaMetadata = getLondonAreaMetadata("Sutton");
 
 export default function SuttonAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -95,8 +98,8 @@ export default function SuttonAreaPage() {
   return (
     <>
       <Head>
-        <title>Loft conversion and rear extension plans in Sutton | WEDRAWPLANS</title>
-        <meta name="description" content="Loft conversion and rear extension plans in Sutton. Planning and Building Regulation drawings in Sutton. Get a fixed-fee quotation." />
+        <title>{areaMetadata.title}</title>
+        <meta name="description" content={areaMetadata.description} />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/sutton" />
         <script
           type="application/ld+json"

@@ -1,3 +1,4 @@
+import { getLondonAreaMetadata } from "../../data/londonAreas";
 import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
@@ -20,6 +21,8 @@ const HERO_IMAGE = "/images/richmond-hero.jpg";
 const RICHMOND_LOCAL_IMAGE = "/images/richmond-local.jpg";
 const PROJECT_IMAGE_1 = "/images/richmond-project-1.jpg";
 const PROJECT_IMAGE_2 = "/images/richmond-project-2.jpg";
+
+const areaMetadata = getLondonAreaMetadata("Richmond upon Thames");
 
 export default function RichmondAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -166,8 +169,8 @@ export default function RichmondAreaPage() {
   return (
     <>
       <Head>
-        <title>House extension planning drawings in Richmond upon Thames | WEDRAWPLANS</title>
-        <meta name="description" content="House extension planning drawings in Richmond upon Thames. Planning and Building Regulation drawings in Richmond upon Thames. Get a fixed-fee quotation." />
+        <title>{areaMetadata.title}</title>
+        <meta name="description" content={areaMetadata.description} />
         <meta
           name="keywords"
           content="architectural drawings Richmond upon Thames, extension drawings Richmond, loft conversion drawings Richmond, planning drawings Richmond upon Thames, building regulation drawings Richmond, architectural plans Twickenham, Barnes, Kew, Teddington"

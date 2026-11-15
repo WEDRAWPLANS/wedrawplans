@@ -1,3 +1,4 @@
+import { getLondonAreaMetadata } from "../../data/londonAreas";
 import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
@@ -15,6 +16,8 @@ const EMAIL_LINK = "mailto:info@wedrawplans.com";
 const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Bromley";
 const GOOGLE_BUSINESS_PROFILE_LINK = "https://share.google/D3KId64vHtHSKPALr";
+
+const areaMetadata = getLondonAreaMetadata("Bromley");
 
 export default function BromleyAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -160,8 +163,8 @@ export default function BromleyAreaPage() {
   return (
     <>
       <Head>
-        <title>House extension planning drawings in Bromley | WEDRAWPLANS</title>
-        <meta name="description" content="House extension planning drawings in Bromley. Planning and Building Regulation drawings in Bromley. Get a fixed-fee quotation." />
+        <title>{areaMetadata.title}</title>
+        <meta name="description" content={areaMetadata.description} />
         <meta
           name="keywords"
           content="architectural drawings Bromley, extension drawings Bromley, loft conversion drawings Bromley, planning drawings Bromley, building regulation drawings Bromley, architectural plans Beckenham, Orpington, Chislehurst"

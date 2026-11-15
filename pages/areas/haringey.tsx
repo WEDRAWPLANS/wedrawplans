@@ -1,3 +1,4 @@
+import { getLondonAreaMetadata } from "../../data/londonAreas";
 import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BarnetCombinedExtensionPromo from "../../components/BarnetCombinedExtensionPromo";
@@ -12,6 +13,8 @@ const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Haringey";
+
+const areaMetadata = getLondonAreaMetadata("Haringey");
 
 export default function HaringeyAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -94,8 +97,8 @@ export default function HaringeyAreaPage() {
   return (
     <>
       <Head>
-        <title>Rear extension and loft conversion planning drawings in Haringey | WEDRAWPLANS</title>
-        <meta name="description" content="Rear extension and loft conversion planning drawings in Haringey. Planning and Building Regulation drawings in Haringey. Get a fixed-fee quotation." />
+        <title>{areaMetadata.title}</title>
+        <meta name="description" content={areaMetadata.description} />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/haringey" />
 
         <script

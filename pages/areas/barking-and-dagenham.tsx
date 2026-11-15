@@ -1,3 +1,4 @@
+import { getLondonAreaMetadata } from "../../data/londonAreas";
 import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
@@ -12,6 +13,8 @@ const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20need%20a%20quote%20for%20plans%20in%20Barking%20and%20Dagenham";
+
+const areaMetadata = getLondonAreaMetadata("Barking and Dagenham");
 
 export default function BarkingAndDagenhamAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -91,8 +94,8 @@ export default function BarkingAndDagenhamAreaPage() {
   return (
     <>
       <Head>
-        <title>Rear extension and planning drawings in Barking and Dagenham | WEDRAWPLANS</title>
-        <meta name="description" content="Rear extension and planning drawings in Barking and Dagenham. Planning and Building Regulation drawings in Barking and Dagenham. Get a fixed-fee quotation." />
+        <title>{areaMetadata.title}</title>
+        <meta name="description" content={areaMetadata.description} />
         <link rel="canonical" href={canonicalUrl} />
         <script
           type="application/ld+json"

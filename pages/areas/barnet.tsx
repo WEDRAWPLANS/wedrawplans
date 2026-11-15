@@ -1,3 +1,4 @@
+import { getLondonAreaMetadata } from "../../data/londonAreas";
 import { businessReference } from "../../data/businessSchema";
 import GrangeRoadPromo from "../../components/GrangeRoadPromo";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
@@ -38,6 +39,8 @@ const LOCAL_PROJECTS = [
   { slug: "sefton-avenue-mill-hill-prior-approval", title: "Sefton Avenue rear extension" },
   { slug: "dryfield-road-edgware-conservation-extension", title: "Dryfield Road conservation area extension" },
 ];
+
+const areaMetadata = getLondonAreaMetadata("Barnet");
 
 export default function BarnetAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -182,8 +185,8 @@ export default function BarnetAreaPage() {
   return (
     <>
       <Head>
-        <title>Rear extension planning drawings in Barnet | WEDRAWPLANS</title>
-        <meta name="description" content="Rear extension planning drawings in Barnet. Planning and Building Regulation drawings in Barnet. Get a fixed-fee quotation." />
+        <title>{areaMetadata.title}</title>
+        <meta name="description" content={areaMetadata.description} />
         <meta
           name="keywords"
           content="architectural drawings Barnet, extension drawings Barnet, loft conversion drawings Barnet, planning drawings Barnet, building regulation drawings Barnet, Barnet side extension drawings, Finchley extension drawings, Hendon loft drawings, Mill Hill planning drawings, Barnet HMO drawings, Barnet new build drawings"

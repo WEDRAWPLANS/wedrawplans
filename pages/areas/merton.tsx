@@ -1,3 +1,4 @@
+import { getLondonAreaMetadata } from "../../data/londonAreas";
 import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import NearbySuttonLoftCaseStudy from "../../components/NearbySuttonLoftCaseStudy";
@@ -21,6 +22,8 @@ const HERO_IMAGE = "/images/merton-hero.jpg";
 const MERTON_LOCAL_IMAGE = "/images/merton-local.jpg";
 const PROJECT_IMAGE_1 = "/images/merton-project-1.jpg";
 const PROJECT_IMAGE_2 = "/images/merton-project-2.jpg";
+
+const areaMetadata = getLondonAreaMetadata("Merton");
 
 export default function MertonAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -145,8 +148,8 @@ export default function MertonAreaPage() {
   return (
     <>
       <Head>
-        <title>Rear extension and loft planning drawings in Merton | WEDRAWPLANS</title>
-        <meta name="description" content="Rear extension and loft planning drawings in Merton. Planning and Building Regulation drawings in Merton. Get a fixed-fee quotation." />
+        <title>{areaMetadata.title}</title>
+        <meta name="description" content={areaMetadata.description} />
         <meta
           name="keywords"
           content="architectural drawings Merton, extension drawings Wimbledon, loft conversion drawings Raynes Park, planning drawings Merton, building regulation drawings Morden, Mitcham architectural plans, Colliers Wood extension drawings"

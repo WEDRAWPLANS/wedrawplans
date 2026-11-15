@@ -1,3 +1,4 @@
+import { getLondonAreaMetadata } from "../../data/londonAreas";
 import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BarnetCombinedExtensionPromo from "../../components/BarnetCombinedExtensionPromo";
@@ -17,6 +18,8 @@ const EMAIL_LINK = "mailto:info@wedrawplans.com";
 const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Harrow";
 const GOOGLE_BUSINESS_PROFILE_LINK = "https://share.google/D3KId64vHtHSKPALr";
+
+const areaMetadata = getLondonAreaMetadata("Harrow");
 
 export default function HarrowAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -142,8 +145,8 @@ export default function HarrowAreaPage() {
   return (
     <>
       <Head>
-        <title>Rear extension planning drawings and loft plans in Harrow | WEDRAWPLANS</title>
-        <meta name="description" content="Rear extension planning drawings and loft plans in Harrow. Planning and Building Regulation drawings in Harrow. Get a fixed-fee quotation." />
+        <title>{areaMetadata.title}</title>
+        <meta name="description" content={areaMetadata.description} />
         <meta
           name="keywords"
           content="architectural drawings Harrow, extension drawings Harrow, loft conversion drawings Harrow, planning drawings Harrow, building regulation drawings Harrow, architectural services Harrow"

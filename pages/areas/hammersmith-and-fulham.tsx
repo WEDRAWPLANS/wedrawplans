@@ -1,3 +1,4 @@
+import { getLondonAreaMetadata } from "../../data/londonAreas";
 import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
@@ -11,6 +12,8 @@ const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const WHATSAPP_LINK = "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Hammersmith%20and%20Fulham";
 
+
+const areaMetadata = getLondonAreaMetadata("Hammersmith and Fulham");
 
 export default function HammersmithAndFulhamAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -91,8 +94,8 @@ export default function HammersmithAndFulhamAreaPage() {
   return (
     <>
       <Head>
-        <title>Loft conversion and rear extension drawings in Hammersmith and Fulham | WEDRAWPLANS</title>
-        <meta name="description" content="Loft conversion and rear extension drawings in Hammersmith and Fulham. Planning and Building Regulation drawings in Hammersmith and Fulham. Get a fixed-fee quotation." />
+        <title>{areaMetadata.title}</title>
+        <meta name="description" content={areaMetadata.description} />
         <link rel="canonical" href={canonicalUrl} />
 
         <meta property="og:title" content="Architectural Drawings in Hammersmith and Fulham | WEDRAWPLANS" />

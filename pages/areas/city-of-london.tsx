@@ -1,3 +1,4 @@
+import { getLondonAreaMetadata } from "../../data/londonAreas";
 import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
@@ -12,6 +13,8 @@ const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20City%20of%20London";
+
+const areaMetadata = getLondonAreaMetadata("City of London");
 
 export default function CityOfLondonAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -112,8 +115,8 @@ export default function CityOfLondonAreaPage() {
   return (
     <>
       <Head>
-        <title>Planning and Building Regulation drawings in the City of London | WEDRAWPLANS</title>
-        <meta name="description" content="Planning and Building Regulation drawings in the City of London. Planning and Building Regulation drawings in City of London. Get a fixed-fee quotation." />
+        <title>{areaMetadata.title}</title>
+        <meta name="description" content={areaMetadata.description} />
         <link
           rel="canonical"
           href="https://www.wedrawplans.co.uk/areas/city-of-london"

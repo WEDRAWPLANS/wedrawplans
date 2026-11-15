@@ -1,3 +1,4 @@
+import { getLondonAreaMetadata } from "../../data/londonAreas";
 import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
@@ -17,6 +18,8 @@ const HERO_IMAGE = "/images/hounslow-hero.jpg";
 const HOUNSLOW_LOCAL_IMAGE = "/images/hounslow-local.jpg";
 const PROJECT_IMAGE_1 = "/images/hounslow-project-1.jpg";
 const PROJECT_IMAGE_2 = "/images/hounslow-project-2.jpg";
+
+const areaMetadata = getLondonAreaMetadata("Hounslow");
 
 export default function HounslowAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -125,8 +128,8 @@ export default function HounslowAreaPage() {
   return (
     <>
       <Head>
-        <title>Rear extension planning and Building Regulations drawings in Hounslow | WEDRAWPLANS</title>
-        <meta name="description" content="Rear extension planning and Building Regulations drawings in Hounslow. Planning and Building Regulation drawings in Hounslow. Get a fixed-fee quotation." />
+        <title>{areaMetadata.title}</title>
+        <meta name="description" content={areaMetadata.description} />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/hounslow" />
 
         <meta property="og:title" content="Architectural Drawings Hounslow | WEDRAWPLANS" />

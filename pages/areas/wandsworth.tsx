@@ -1,3 +1,4 @@
+import { getLondonAreaMetadata } from "../../data/londonAreas";
 import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
@@ -21,6 +22,8 @@ const HERO_IMAGE = "/images/hero.jpg";
 const LOCAL_IMAGE = "/images/wandsworth-area.jpg";
 const PROJECT_IMAGE_1 = "/images/drawings.jpg";
 const PROJECT_IMAGE_2 = "/images/hero.jpg";
+
+const areaMetadata = getLondonAreaMetadata("Wandsworth");
 
 export default function WandsworthAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -162,8 +165,8 @@ export default function WandsworthAreaPage() {
   return (
     <>
       <Head>
-        <title>Side return and rear extension planning drawings in Wandsworth | WEDRAWPLANS</title>
-        <meta name="description" content="Side return and rear extension planning drawings in Wandsworth. Planning and Building Regulation drawings in Wandsworth. Get a fixed-fee quotation." />
+        <title>{areaMetadata.title}</title>
+        <meta name="description" content={areaMetadata.description} />
         <meta
           name="keywords"
           content="architectural drawings Wandsworth, extension drawings Wandsworth, loft conversion drawings Wandsworth, planning drawings Wandsworth, building regulation drawings Wandsworth, Battersea architectural plans, Balham drawings, Earlsfield extension plans"
