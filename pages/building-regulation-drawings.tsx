@@ -289,28 +289,6 @@ export default function BuildingRegulationDrawingsPage() {
     []
   );
 
-  const breadcrumbSchema = useMemo(
-    () => ({
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        {
-          "@type": "ListItem",
-          position: 1,
-          name: "Home",
-          item: "https://www.wedrawplans.co.uk",
-        },
-        {
-          "@type": "ListItem",
-          position: 2,
-          name: "Building Regulation Drawings",
-          item: PAGE_URL,
-        },
-      ],
-    }),
-    []
-  );
-
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!form.email.trim() && !form.phone.trim()) {
@@ -425,10 +403,6 @@ export default function BuildingRegulationDrawingsPage() {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
         />
       </Head>
 

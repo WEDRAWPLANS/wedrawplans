@@ -67,18 +67,6 @@ export default function HounslowAreaPage() {
     []
   );
 
-  const breadcrumbJson = useMemo(
-    () => ({
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://www.wedrawplans.co.uk/" },
-        { "@type": "ListItem", position: 2, name: "Hounslow", item: "https://www.wedrawplans.co.uk/areas/hounslow" },
-      ],
-    }),
-    []
-  );
-
   const faqJson = useMemo(
     () => ({
       "@context": "https://schema.org",
@@ -150,7 +138,6 @@ export default function HounslowAreaPage() {
         <meta name="twitter:image" content="https://www.wedrawplans.co.uk/images/hero.jpg" />
 
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJson) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }} />
       </Head>
 

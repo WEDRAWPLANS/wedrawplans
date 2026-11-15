@@ -27,18 +27,6 @@ export default function CroydonAreaPage() {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  const breadcrumbJson = useMemo(
-    () => ({
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://www.wedrawplans.co.uk/" },
-        { "@type": "ListItem", position: 2, name: "Croydon", item: "https://www.wedrawplans.co.uk/areas/croydon" },
-      ],
-    }),
-    []
-  );
-
   const serviceJson = useMemo(
     () => ({
       "@context": "https://schema.org",
@@ -206,10 +194,6 @@ export default function CroydonAreaPage() {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJson) }}
         />
         <script
           type="application/ld+json"

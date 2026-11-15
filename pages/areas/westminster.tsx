@@ -26,25 +26,6 @@ export default function WestminsterAreaPage() {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  const breadcrumbJson = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: "https://www.wedrawplans.co.uk/",
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Westminster",
-        item: "https://www.wedrawplans.co.uk/areas/westminster",
-      },
-    ],
-  };
-
   const serviceJson = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -188,10 +169,6 @@ export default function WestminsterAreaPage() {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJson) }}
         />
         <script
           type="application/ld+json"
