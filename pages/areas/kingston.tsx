@@ -17,8 +17,8 @@ const WHATSAPP_LINK =
 
 const HERO_IMAGE = "/images/kingston-hero.jpg";
 const KINGSTON_LOCAL_IMAGE = "/images/kingston-local.jpg";
-const PROJECT_IMAGE_1 = "/images/kingston-project-1.jpg";
-const PROJECT_IMAGE_2 = "/images/kingston-project-2.jpg";
+const PROJECT_IMAGE_1 = "/images/case-studies/sutton-wallington-loft-conversion-2026/drawing-02-proposed-loft-and-roof.webp";
+const PROJECT_IMAGE_2 = "/images/case-studies/cranbourne-drive-hoddesdon-combined/bc-loft-floor.webp";
 
 const areaMetadata = getLondonAreaMetadata("Kingston upon Thames");
 
@@ -217,11 +217,14 @@ export default function KingstonAreaPage() {
 
                   <Image
                     src={PROJECT_IMAGE_1}
-                    alt="Kingston project example"
+                    alt="WEDRAWPLANS planning sheet showing the proposed loft and roof plans with a bedroom, en-suite and rooflights in Wallington"
                     width={800}
                     height={500}
-                    className="rounded-xl object-cover mt-2"
+                    className="rounded-xl aspect-[8/5] object-contain mt-2"
                   />
+                  <p className="text-[12px] leading-5 text-slate-600">
+                    WEDRAWPLANS loft conversion planning sheet showing the proposed bedroom, en-suite and roof layout in Wallington.
+                  </p>
                 </div>
               </div>
 
@@ -230,10 +233,10 @@ export default function KingstonAreaPage() {
                   <div className="relative h-56 w-full">
                     <Image
                       src={PROJECT_IMAGE_2}
-                      alt="Kingston loft and extension drawing example"
+                      alt="WEDRAWPLANS Building Regulations drawing BC-05 showing the proposed loft floor plan, stair and rooflight details in Hoddesdon"
                       fill
                       sizes="(max-width: 1024px) 100vw, 520px"
-                      className="object-cover"
+                      className="object-contain"
                     />
                   </div>
                   <div className="p-5 space-y-2">
@@ -241,7 +244,7 @@ export default function KingstonAreaPage() {
                       Clear packs for planning and building control
                     </h3>
                     <p className="text-[13px] text-slate-700">
-                      We provide drawing packs that help you obtain planning approval and move into construction with the right information.
+                      WEDRAWPLANS Building Regulations sheet BC-05 shows the loft floor plan, stair and rooflight notes for a Hoddesdon project.
                     </p>
                   </div>
                 </div>

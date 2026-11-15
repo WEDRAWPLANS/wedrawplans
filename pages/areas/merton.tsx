@@ -20,8 +20,8 @@ const WHATSAPP_LINK =
 const GOOGLE_BUSINESS_PROFILE_LINK = "https://share.google/D3KId64vHtHSKPALr";
 
 const HERO_IMAGE = "/images/merton-hero.jpg";
-const MERTON_LOCAL_IMAGE = "/images/merton-local.jpg";
-const PROJECT_IMAGE_1 = "/images/merton-project-1.jpg";
+const MERTON_LOFT_DRAWING = "/images/case-studies/sutton-wallington-loft-conversion-2026/drawing-03-proposed-elevations.webp";
+const PROJECT_IMAGE_1 = "/images/case-studies/cannon-lane-pinner-5-metre-rear-extension/p07-proposed-elevations-and-section.webp";
 const PROJECT_IMAGE_2 = "/images/merton-project-2.jpg";
 
 const areaMetadata = getLondonAreaMetadata("Merton");
@@ -168,17 +168,16 @@ export default function MertonAreaPage() {
                 >
                   <Image
                     src={PROJECT_IMAGE_1}
-                    alt="Example extension drawings presentation including plans elevations and sections"
+                    alt="WEDRAWPLANS planning drawing P07 showing the rear elevation and side section of the Cannon Lane rear extension in Pinner"
                     width={900}
                     height={700}
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-contain"
                   />
                 </button>
               </div>
 
               <p className="mx-auto mt-4 max-w-3xl text-center text-[13px] leading-7 text-slate-700">
-                A complete drawing package prepared clearly, professionally, and ready for the next stage of review,
-                planning or technical development.
+                WEDRAWPLANS planning sheet P07 showing the rear elevation and side section for a five-metre extension in Pinner.
               </p>
 
               <div className="mt-5 flex flex-wrap justify-center gap-3">
@@ -288,20 +287,18 @@ export default function MertonAreaPage() {
                 <div className="space-y-6">
                   <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-md">
                     <Image
-                      src="/images/merton-drawings.jpg"
-                      alt="Architectural drawings laid out neatly for a Merton project"
+                      src="/images/case-studies/grange-road-edgware-side-extension/br-04-rear-elevation-notes.webp"
+                      alt="WEDRAWPLANS Building Regulations drawing BR04 showing the rear elevation and roof, wall and floor construction specifications for an Edgware extension"
                       width={800}
                       height={500}
-                      className="h-56 w-full object-cover"
+                      className="h-56 w-full object-contain"
                     />
                     <div className="space-y-2 p-5">
                       <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
                         Technical drawings builders can price from
                       </h3>
                       <p className="text-[13px] leading-7 text-slate-700">
-                        Clear floor plans, elevations, sections and notes, coordinated with structural design
-                        so builders, Building Control and inspectors have what they need for accurate pricing
-                        and site delivery.
+                        WEDRAWPLANS Building Regulations sheet BR04 shows the rear elevation and roof, wall and floor specifications for an Edgware extension.
                       </p>
                       <div className="pt-2">
                         <button
@@ -317,17 +314,18 @@ export default function MertonAreaPage() {
 
                   <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-md">
                     <Image
-                      src={MERTON_LOCAL_IMAGE}
-                      alt="Merton area coverage image showing local streets and housing"
+                      src={MERTON_LOFT_DRAWING}
+                      alt="WEDRAWPLANS planning sheet ID-06 showing the front, rear and side elevations for a proposed dormer loft conversion in Wallington"
                       width={800}
                       height={500}
-                      className="h-56 w-full object-cover"
+                      className="h-56 w-full object-contain"
                     />
                     <div className="space-y-2 p-5">
                       <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
                         Real local coverage across the borough
                       </h3>
                       <p className="text-[13px] leading-7 text-slate-700">
+                        WEDRAWPLANS loft conversion planning sheet ID-06 shows the proposed dormer and how it relates to the elevations of a Wallington home.
                         We support homeowners across Merton with measured surveys, design development and
                         planning or building regulation drawing packs tailored to the property and proposal.
                       </p>
@@ -416,18 +414,17 @@ export default function MertonAreaPage() {
                   <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                     <Image
                       src={PROJECT_IMAGE_1}
-                      alt="Merton extension drawings presentation"
+                      alt="WEDRAWPLANS planning drawing P07 showing the rear elevation and side section of the Cannon Lane rear extension in Pinner"
                       width={900}
                       height={700}
-                      className="h-64 w-full object-cover"
+                      className="h-64 w-full object-contain"
                     />
                     <div className="space-y-2 p-5">
                       <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
                         Exterior and planning transformation
                       </h3>
                       <p className="text-[13px] leading-7 text-slate-700">
-                        Good drawings do more than show added floor area. They help shape massing, openings,
-                        proportions and the overall quality of the finished extension.
+                        WEDRAWPLANS planning sheet P07 showing the rear elevation and side section for a five-metre extension in Pinner.
                       </p>
                     </div>
                   </div>

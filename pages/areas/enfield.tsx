@@ -18,8 +18,8 @@ const WHATSAPP_LINK =
 
 const HERO_IMAGE = "/images/enfield-hero.jpg";
 const ENFIELD_LOCAL_IMAGE = "/images/enfield-local.jpg";
-const PROJECT_IMAGE_1 = "/images/enfield-project-1.jpg";
-const PROJECT_IMAGE_2 = "/images/enfield-project-2.jpg";
+const PROJECT_IMAGE_1 = "/images/case-studies/cranbourne-drive-hoddesdon-combined/planning-05-ground-floor.webp";
+const PROJECT_IMAGE_2 = "/images/case-studies/sutton-wallington-loft-conversion-2026/drawing-04-existing-proposed-sections.webp";
 
 const areaMetadata = getLondonAreaMetadata("Enfield");
 
@@ -201,12 +201,15 @@ export default function EnfieldAreaPage() {
 
                   <Image
                     src={PROJECT_IMAGE_1}
-                    alt="Enfield area and typical home improvement projects"
+                    alt="WEDRAWPLANS planning drawing PP05 showing proposed ground-floor and roof plans for the Hoddesdon rear extension"
                     width={800}
                     height={500}
-                    className="rounded-xl object-cover mb-3"
+                    className="rounded-xl aspect-[8/5] object-contain mb-3"
                     loading="lazy"
                   />
+                  <p className="text-[12px] leading-5 text-slate-600">
+                    WEDRAWPLANS extension planning sheet showing the proposed ground-floor and roof plans for a Hoddesdon project.
+                  </p>
 
                   <p className="text-[13px] text-slate-700">Drawings for the whole borough, including:</p>
 
@@ -254,11 +257,14 @@ export default function EnfieldAreaPage() {
 
                   <Image
                     src={PROJECT_IMAGE_2}
-                    alt="Completed extension and loft style project"
+                    alt="WEDRAWPLANS loft conversion sections comparing the existing roof with the proposed dormer and stair access in Wallington"
                     width={800}
                     height={500}
-                    className="rounded-xl object-cover mt-2"
+                    className="rounded-xl aspect-[8/5] object-contain mt-2"
                   />
+                  <p className="text-[12px] leading-5 text-slate-600">
+                    WEDRAWPLANS loft conversion planning sheet comparing the existing and proposed sections through the dormer and stair in Wallington.
+                  </p>
                 </div>
               </div>
 

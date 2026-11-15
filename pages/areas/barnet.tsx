@@ -30,7 +30,7 @@ const DRAWINGS_BOARD_IMAGE = "/images/barnet-project-drawings-board.jpg";
 const BARNET_MAP_IMAGE = "/images/barnet-area-map.jpg";
 const BEFORE_AFTER_IMAGE = "/images/barnet-6a-before-after.jpg";
 const CONSTRUCTION_PROGRESS_IMAGE = "/images/barnet-6b-construction-progress.jpg";
-const BARNET_STREET_IMAGE = "/images/barnet-7a-barnet-street-scene.jpg";
+const BARNET_EXTENSION_ELEVATIONS = "/images/case-studies/leicester-road-barnet-combined-extension/01-planning-existing-proposed-side-elevations.webp";
 const PREMIUM_SIDE_EXTENSION_IMAGE = "/images/barnet-11-premium-side-extension.jpg";
 const APPROVED_LOCATIONS_IMAGE = "/images/barnet-approved-locations.jpg";
 const LOCAL_PROJECTS = [
@@ -506,18 +506,18 @@ export default function BarnetAreaPage() {
 
                   <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-md">
                     <Image
-                      src={BARNET_STREET_IMAGE}
-                      alt="Typical Barnet residential street scene with family houses"
+                      src={BARNET_EXTENSION_ELEVATIONS}
+                      alt="WEDRAWPLANS rear extension planning sheet comparing existing and proposed side elevations in Barnet"
                       width={1600}
                       height={1000}
-                      className="h-56 w-full object-cover"
+                      className="h-56 w-full object-contain"
                     />
                     <div className="space-y-2 p-5">
                       <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
                         Local streets and housing context
                       </h3>
                       <p className="text-[13px] leading-7 text-slate-700">
-                        Barnet homeowners want drawings that suit the kind of streets they actually live on.
+                        WEDRAWPLANS planning sheet showing the existing and proposed side elevations for a Barnet rear extension.
                         We tailor every drawing package around Barnet&apos;s specific residential character, local streetscapes,
                         and council planning policies to give your application the strongest path to approval.
                       </p>

@@ -19,9 +19,9 @@ const WHATSAPP_LINK =
 const GOOGLE_BUSINESS_PROFILE_LINK = "https://share.google/D3KId64vHtHSKPALr";
 
 const HERO_IMAGE = "/images/richmond-hero.jpg";
-const RICHMOND_LOCAL_IMAGE = "/images/richmond-local.jpg";
-const PROJECT_IMAGE_1 = "/images/richmond-project-1.jpg";
-const PROJECT_IMAGE_2 = "/images/richmond-project-2.jpg";
+const RICHMOND_LOFT_DRAWING = "/images/case-studies/the-reddings/public-sheets/full-sheet-04.webp";
+const PROJECT_IMAGE_1 = "/images/case-studies/sistova-road-wandsworth-extension-basement/02-proposed-floor-roof-plans.webp";
+const PROJECT_IMAGE_2 = "/images/case-studies/grange-road-edgware-side-extension/br-02-roof-and-section.webp";
 
 const areaMetadata = getLondonAreaMetadata("Richmond upon Thames");
 
@@ -171,17 +171,16 @@ export default function RichmondAreaPage() {
                 >
                   <Image
                     src={PROJECT_IMAGE_1}
-                    alt="Example extension drawings presentation including plans elevations and sections"
+                    alt="WEDRAWPLANS proposed floor and roof plans for the Sistova Road house extension in Wandsworth"
                     width={900}
                     height={700}
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-contain"
                   />
                 </button>
               </div>
 
               <p className="mx-auto mt-4 max-w-3xl text-center text-[13px] leading-7 text-slate-700">
-                A complete drawing package prepared clearly, professionally, and ready for the next stage of review,
-                planning or technical development.
+                WEDRAWPLANS extension planning sheet showing the proposed floor layouts and roof plan for Sistova Road in Wandsworth.
               </p>
 
               <div className="mt-5 flex flex-wrap justify-center gap-3">
@@ -319,17 +318,18 @@ export default function RichmondAreaPage() {
 
                   <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-md">
                     <Image
-                      src={RICHMOND_LOCAL_IMAGE}
-                      alt="Richmond upon Thames area coverage image showing local streets and housing"
+                      src={RICHMOND_LOFT_DRAWING}
+                      alt="WEDRAWPLANS proposed loft floor plans from the Mill Hill house extension and loft conversion case study"
                       width={800}
                       height={500}
-                      className="h-56 w-full object-cover"
+                      className="h-56 w-full object-contain"
                     />
                     <div className="space-y-2 p-5">
                       <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
                         Real local coverage across the borough
                       </h3>
                       <p className="text-[13px] leading-7 text-slate-700">
+                        WEDRAWPLANS proposed loft floor plans from a house extension and loft conversion in Mill Hill.
                         We support homeowners across Richmond upon Thames with measured surveys, design development
                         and planning or building regulation drawing packs tailored to the property and proposal.
                       </p>
@@ -395,11 +395,14 @@ export default function RichmondAreaPage() {
                   </div>
                   <Image
                     src={PROJECT_IMAGE_1}
-                    alt="Completed Richmond extension and loft project"
+                    alt="WEDRAWPLANS proposed floor and roof plans for the Sistova Road house extension in Wandsworth"
                     width={800}
                     height={500}
-                    className="mt-2 rounded-xl object-cover"
+                    className="mt-2 rounded-xl aspect-[8/5] object-contain"
                   />
+                  <p className="text-[12px] leading-5 text-slate-600">
+                    WEDRAWPLANS extension planning sheet showing the proposed floor layouts and roof plan for Sistova Road in Wandsworth.
+                  </p>
                 </div>
               </div>
 
@@ -418,18 +421,17 @@ export default function RichmondAreaPage() {
                   <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                     <Image
                       src={PROJECT_IMAGE_1}
-                      alt="Richmond extension drawings presentation"
+                      alt="WEDRAWPLANS proposed floor and roof plans for the Sistova Road house extension in Wandsworth"
                       width={900}
                       height={700}
-                      className="h-64 w-full object-cover"
+                      className="h-64 w-full object-contain"
                     />
                     <div className="space-y-2 p-5">
                       <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
                         Exterior and planning transformation
                       </h3>
                       <p className="text-[13px] leading-7 text-slate-700">
-                        Good drawings do more than show added floor area. They help shape massing, openings,
-                        proportions and the overall quality of the finished extension.
+                        WEDRAWPLANS extension planning sheet showing the proposed floor layouts and roof plan for Sistova Road in Wandsworth.
                       </p>
                     </div>
                   </div>
@@ -437,18 +439,17 @@ export default function RichmondAreaPage() {
                   <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                     <Image
                       src={PROJECT_IMAGE_2}
-                      alt="Technical drawing set and completed Richmond project visual"
+                      alt="WEDRAWPLANS Building Regulations drawing BR02 showing the roof rafter plan, section and construction details for an Edgware side extension"
                       width={900}
                       height={700}
-                      className="h-64 w-full object-cover"
+                      className="h-64 w-full object-contain"
                     />
                     <div className="space-y-2 p-5">
                       <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
                         Interior and technical outcome
                       </h3>
                       <p className="text-[13px] leading-7 text-slate-700">
-                        Proposed drawings communicate the improved arrangement clearly so clients, planners and
-                        builders understand the space gain, external form and construction intent from the start.
+                        WEDRAWPLANS Building Regulations sheet BR02 shows a roof rafter plan, section and construction details for an Edgware side extension.
                       </p>
                     </div>
                   </div>

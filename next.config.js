@@ -1,5 +1,65 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  async rewrites() {
+    return [
+      {
+        source: "/images/barnet-7a-barnet-street-scene.jpg",
+        destination: "/images/case-studies/leicester-road-barnet-combined-extension/01-planning-existing-proposed-side-elevations.webp",
+      },
+      {
+        source: "/images/enfield-project-1.jpg",
+        destination: "/images/case-studies/cranbourne-drive-hoddesdon-combined/planning-05-ground-floor.webp",
+      },
+      {
+        source: "/images/enfield-project-2.jpg",
+        destination: "/images/case-studies/sutton-wallington-loft-conversion-2026/drawing-04-existing-proposed-sections.webp",
+      },
+      {
+        source: "/images/hounslow-project-1.jpg",
+        destination: "/images/case-studies/cromwell-road-hounslow-rear-extension/02-existing-proposed-floor-plans.webp",
+      },
+      {
+        source: "/images/hounslow-project-2.jpg",
+        destination: "/images/case-studies/cromwell-road-hounslow-rear-extension/03-proposed-elevations-section.webp",
+      },
+      {
+        source: "/images/kensingtonandchelsea-area.jpg",
+        destination: "/images/case-studies/sistova-road-wandsworth-extension-basement/03-proposed-elevations-section.webp",
+      },
+      {
+        source: "/images/kingston-project-1.jpg",
+        destination: "/images/case-studies/sutton-wallington-loft-conversion-2026/drawing-02-proposed-loft-and-roof.webp",
+      },
+      {
+        source: "/images/kingston-project-2.jpg",
+        destination: "/images/case-studies/cranbourne-drive-hoddesdon-combined/bc-loft-floor.webp",
+      },
+      {
+        source: "/images/merton-project-1.jpg",
+        destination: "/images/case-studies/cannon-lane-pinner-5-metre-rear-extension/p07-proposed-elevations-and-section.webp",
+      },
+      {
+        source: "/images/merton-drawings.jpg",
+        destination: "/images/case-studies/grange-road-edgware-side-extension/br-04-rear-elevation-notes.webp",
+      },
+      {
+        source: "/images/merton-local.jpg",
+        destination: "/images/case-studies/sutton-wallington-loft-conversion-2026/drawing-03-proposed-elevations.webp",
+      },
+      {
+        source: "/images/richmond-project-1.jpg",
+        destination: "/images/case-studies/sistova-road-wandsworth-extension-basement/02-proposed-floor-roof-plans.webp",
+      },
+      {
+        source: "/images/richmond-local.jpg",
+        destination: "/images/case-studies/the-reddings/public-sheets/full-sheet-04.webp",
+      },
+      {
+        source: "/images/richmond-project-2.jpg",
+        destination: "/images/case-studies/grange-road-edgware-side-extension/br-02-roof-and-section.webp",
+      },
+    ];
+  },
   async redirects() {
     return [
       { source: "/case-studies/leicester-road-barnet-4m-rear-extension", destination: "/case-studies/leicester-road-barnet-rear-extension-planning-building-regulations-structural", permanent: true },

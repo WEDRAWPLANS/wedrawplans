@@ -168,12 +168,15 @@ export default function KensingtonAndChelseaAreaPage() {
                     Areas we cover in Kensington and Chelsea
                   </h3>
                   <Image
-                    src="/images/kensingtonandchelsea-area.jpg"
-                    alt="Local street scene in Kensington and Chelsea"
+                    src="/images/case-studies/sistova-road-wandsworth-extension-basement/03-proposed-elevations-section.webp"
+                    alt="WEDRAWPLANS planning elevations and section for the Sistova Road house extension in Wandsworth"
                     width={800}
                     height={500}
-                    className="rounded-xl object-cover mb-3"
+                    className="rounded-xl aspect-[8/5] object-contain mb-3"
                   />
+                  <p className="text-[12px] leading-5 text-slate-600">
+                    WEDRAWPLANS planning example showing elevations and a section for the Sistova Road extension in Wandsworth.
+                  </p>
                   <p className="text-[13px] text-slate-700">
                     Drawings for the whole borough of Kensington and Chelsea, including:
                   </p>

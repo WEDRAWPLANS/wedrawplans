@@ -17,8 +17,8 @@ const WHATSAPP_LINK =
 
 const HERO_IMAGE = "/images/hounslow-hero.jpg";
 const HOUNSLOW_LOCAL_IMAGE = "/images/hounslow-local.jpg";
-const PROJECT_IMAGE_1 = "/images/hounslow-project-1.jpg";
-const PROJECT_IMAGE_2 = "/images/hounslow-project-2.jpg";
+const PROJECT_IMAGE_1 = "/images/case-studies/cromwell-road-hounslow-rear-extension/02-existing-proposed-floor-plans.webp";
+const PROJECT_IMAGE_2 = "/images/case-studies/cromwell-road-hounslow-rear-extension/03-proposed-elevations-section.webp";
 
 const areaMetadata = getLondonAreaMetadata("Hounslow");
 
@@ -196,12 +196,15 @@ export default function HounslowAreaPage() {
 
                   <Image
                     src={PROJECT_IMAGE_1}
-                    alt="Hounslow area and typical residential streets"
+                    alt="WEDRAWPLANS rear extension planning sheet comparing existing and proposed floor and roof plans on Cromwell Road in Hounslow"
                     width={800}
                     height={500}
-                    className="rounded-xl object-cover mb-3"
+                    className="rounded-xl aspect-[8/5] object-contain mb-3"
                     loading="lazy"
                   />
+                  <p className="text-[12px] leading-5 text-slate-600">
+                    WEDRAWPLANS planning sheet comparing the existing and proposed floor and roof plans for the Cromwell Road rear extension in Hounslow.
+                  </p>
 
                   <p className="text-[13px] text-slate-700">Drawings for the whole borough, including:</p>
 
@@ -249,11 +252,14 @@ export default function HounslowAreaPage() {
 
                   <Image
                     src={PROJECT_IMAGE_2}
-                    alt="Completed extension and loft style project"
+                    alt="WEDRAWPLANS planning sheet showing proposed elevations and a section of the Cromwell Road rear extension in Hounslow"
                     width={800}
                     height={500}
-                    className="rounded-xl object-cover mt-2"
+                    className="rounded-xl aspect-[8/5] object-contain mt-2"
                   />
+                  <p className="text-[12px] leading-5 text-slate-600">
+                    WEDRAWPLANS planning sheet showing the proposed elevations and section for the Cromwell Road rear extension in Hounslow.
+                  </p>
                 </div>
               </div>
 
