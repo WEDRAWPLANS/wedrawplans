@@ -689,6 +689,7 @@ export default function HaveringAreaPage() {
                 <img
                   src="/images/wedrawplans-logo.png"
                   alt="WEDRAWPLANS"
+                  loading="lazy"
                   className="h-20 w-auto object-contain"
                 />
               </Link>

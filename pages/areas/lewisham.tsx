@@ -173,7 +173,7 @@ export default function LewishamAreaPage() {
                 <div className="rounded-2xl bg-white shadow-md border border-slate-100 overflow-hidden">
                   <Image
                     src="/images/drawings.jpg"
-                    alt="Example of architectural drawings for a Lewisham extension"
+                    alt="House extension planning drawing sheet with proposed floor plans, elevations and 3D views"
                     width={800}
                     height={500}
                     className="object-cover w-full h-48 md:h-56"
@@ -196,7 +196,7 @@ export default function LewishamAreaPage() {
                   </h3>
                   <Image
                     src="/images/lewisham-area.jpg"
-                    alt="Lewisham area coverage"
+                    alt="Lewisham residential street with two-storey houses and bay windows"
                     width={800}
                     height={500}
                     className="rounded-xl object-cover mb-3"
@@ -247,7 +247,7 @@ export default function LewishamAreaPage() {
 
                   <Image
                     src="/images/hero.jpg"
-                    alt="Completed extension and loft project"
+                    alt="Glazed rear house extension and dormer loft conversion viewed from the garden"
                     width={800}
                     height={500}
                     className="rounded-xl object-cover mt-2"

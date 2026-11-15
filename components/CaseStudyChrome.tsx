@@ -115,7 +115,7 @@ export function CaseStudyFooter() {
         <div className="mx-auto max-w-6xl px-4 py-10 lg:px-6">
           <div className="flex flex-col items-center text-center">
             <Link href="/" className="inline-flex items-center justify-center">
-              <img src="/images/wedrawplans-logo.png" alt="WEDRAWPLANS" className="h-20 w-auto object-contain" />
+              <img src="/images/wedrawplans-logo.png" alt="WEDRAWPLANS" className="h-20 w-auto object-contain" loading="lazy" />
             </Link>
             <div className="mt-3 text-[11px] uppercase tracking-[0.18em] text-white/70">Architectural Drawing Consultants</div>
             <p className="mt-4 max-w-2xl text-[13px] leading-7 text-white/80">

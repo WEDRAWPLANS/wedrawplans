@@ -366,9 +366,9 @@ export default function ServiceInternalLinks({
             <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {localCases.map((item) => (
                 <Link key={item.slug} href={"/case-studies/" + item.slug} className="block rounded-2xl border border-[#dce5e0] bg-[#f7faf8] p-5 hover:border-[#9dbfc3]">
-                  <span className="text-[11px] font-semibold text-[#a36a62]">{item.outcome}</span>
-                  <span className="mt-2 block text-[15px] font-semibold text-[#294448]">{item.shortTitle}</span>
-                  <span className="mt-2 block text-[12px] leading-6 text-[#617479]">{item.service}</span>
+                  <span className="text-[11px] font-semibold text-[#a36a62]">{item.outcome}</span>{" "}
+                  <span className="mt-2 block text-[15px] font-semibold text-[#294448]">{item.shortTitle}</span>{" "}
+                  <span className="mt-2 block text-[12px] leading-6 text-[#617479]">{item.service}</span>{" "}
                   <span className="mt-3 block text-[12px] font-semibold text-[#26747c]">View the approved project →</span>
                 </Link>
               ))}

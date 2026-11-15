@@ -113,7 +113,7 @@ export default function HackneyAreaPage() {
               <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
                   <div className="relative h-44 w-full">
-                    <Image src="/images/drawings.jpg" alt="Planning drawings" fill className="object-cover" />
+                    <Image src="/images/drawings.jpg" alt="House extension planning drawing sheet with proposed floor plans, elevations and 3D views" fill className="object-cover" />
                   </div>
                   <div className="p-4">
                     <div className="text-[12px] uppercase tracking-[0.18em] font-semibold text-slate-900">
@@ -127,7 +127,7 @@ export default function HackneyAreaPage() {
 
                 <div className="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
                   <div className="relative h-44 w-full">
-                    <Image src="/images/hero.jpg" alt="Extensions and lofts" fill className="object-cover" />
+                    <Image src="/images/hero.jpg" alt="Glazed rear house extension and dormer loft conversion viewed from the garden" fill className="object-cover" />
                   </div>
                   <div className="p-4">
                     <div className="text-[12px] uppercase tracking-[0.18em] font-semibold text-slate-900">
@@ -141,7 +141,7 @@ export default function HackneyAreaPage() {
 
                 <div className="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
                   <div className="relative h-44 w-full">
-                    <Image src="/images/hackney-area.jpg" alt="Hackney area" fill className="object-cover" />
+                    <Image src="/images/hackney-area.jpg" alt="Hackney street with brick terraced houses and a corner pub" fill className="object-cover" />
                   </div>
                   <div className="p-4">
                     <div className="text-[12px] uppercase tracking-[0.18em] font-semibold text-slate-900">

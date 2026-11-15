@@ -300,6 +300,7 @@ export default function CommercialRestaurantsPage() {
                 <img
                   src={PAGE_IMAGE}
                   alt="Restaurant planning drawings with shopfront design and realistic 3D visual"
+                  {...{ fetchpriority: "high" }}
                   className="h-full w-full object-cover"
                 />
               </div>

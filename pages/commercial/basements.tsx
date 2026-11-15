@@ -299,6 +299,7 @@ export default function CommercialBasementsPage() {
                 <img
                   src={PAGE_IMAGE}
                   alt="Commercial basement architectural drawings with detailed technical plans and realistic basement interior visual"
+                  {...{ fetchpriority: "high" }}
                   className="h-full w-full object-cover"
                 />
               </div>

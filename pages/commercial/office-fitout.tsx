@@ -300,6 +300,7 @@ export default function CommercialOfficeFitOutPage() {
                 <img
                   src={PAGE_IMAGE}
                   alt="Office fit out architectural drawings with detailed plans and realistic office interior visual"
+                  {...{ fetchpriority: "high" }}
                   className="h-full w-full object-cover"
                 />
               </div>

@@ -22,7 +22,7 @@ export default function SunburyCareOutbuildingShowcase({ project }: { project: C
         </div>
         <figure>
           <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#f2f7f4]">
-            <Image src={project.heroImage} alt="Architectural visualisation of a single-storey rendered garden care building with a flat roof, glazed doors, step-free approach and landscaped garden" fill priority sizes="(max-width: 1024px) 100vw, 65vw" className="pointer-events-none object-contain" draggable={false} />
+            <Image src={project.heroImage} alt="Architectural visualisation of a single-storey rendered garden care building with a flat roof, glazed doors, step-free approach and landscaped garden" fill loading="lazy" sizes="(max-width: 1024px) 100vw, 65vw" className="pointer-events-none object-contain" draggable={false} />
           </div>
           <figcaption className="border-t border-[#e6eee9] px-5 py-3 text-[12px] leading-6 text-[#617b7c] sm:px-7">
             Proposed ancillary garden care outbuilding · Sunbury Avenue, Mill Hill
@@ -88,7 +88,7 @@ export default function SunburyCareOutbuildingShowcase({ project }: { project: C
               <button key={sheet.src} type="button" onClick={() => setSelected(i)} aria-label={"Show " + sheet.caption} aria-current={i === selected ? "true" : undefined}
                 className={"w-[158px] shrink-0 rounded-xl border p-2 text-left transition " + (i === selected ? "border-[#3a8e84] bg-[#ebf7ef]" : "border-[#d8e7df] bg-white hover:border-[#9dc6b8]")}>
                 <span className="relative block aspect-[1.364/1] overflow-hidden rounded-md bg-[#f7faf7]">
-                  <Image src={sheet.src} alt="" fill sizes="158px" className="pointer-events-none object-contain" draggable={false} />
+                  <Image src={sheet.src} alt={sheet.alt} fill sizes="158px" className="pointer-events-none object-contain" draggable={false} loading="lazy" />
                 </span>
                 <span className="mt-2 block text-[11px] font-semibold leading-5 text-[#496b6d]">{sheet.caption}</span>
               </button>

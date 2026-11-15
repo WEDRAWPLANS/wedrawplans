@@ -289,7 +289,7 @@ export default function HillingdonAreaPage() {
                   <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-md">
                     <Image
                       src="/images/drawings.jpg"
-                      alt="Architectural drawings laid out neatly for a Hillingdon project"
+                      alt="House extension planning drawing sheet with proposed floor plans, elevations and 3D views"
                       width={800}
                       height={500}
                       className="h-56 w-full object-cover"
@@ -695,6 +695,7 @@ export default function HillingdonAreaPage() {
                 <img
                   src="/images/wedrawplans-logo.png"
                   alt="WEDRAWPLANS"
+                  loading="lazy"
                   className="h-20 w-auto object-contain"
                 />
               </Link>

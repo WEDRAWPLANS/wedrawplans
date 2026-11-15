@@ -102,7 +102,7 @@ export default function HydeDeveloperShowcase() {
               touchX.current = null;
             }}>
             <button type="button" className="absolute inset-0 block w-full cursor-zoom-in" onClick={() => setEnlarged(true)} aria-label={"View full-size architectural image: " + current.title}>
-              <Image src={BASE + current.file} alt={current.alt} fill priority={active === 0}
+              <Image src={BASE + current.file} alt={current.alt} fill loading="lazy"
                 sizes="(max-width: 1280px) 100vw, 1160px"
                 className="pointer-events-none select-none object-contain" unoptimized draggable={false}/>
             </button>

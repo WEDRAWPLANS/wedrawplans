@@ -205,11 +205,11 @@ export default function EalingAreaPage() {
                   <div className="relative h-[190px] w-full">
                     <Image
                       src={EALING_LOCAL_IMAGE}
-                      alt="WEDRAWPLANS architectural drawing example for home improvement plans"
+                      alt="House extension planning drawing sheet with proposed floor plans, elevations and 3D views"
                       fill
                       sizes="(max-width: 1024px) 100vw, 520px"
                       className="object-cover"
-                      priority
+                      loading="lazy"
                     />
                   </div>
                   <div className="p-4">
@@ -253,7 +253,7 @@ export default function EalingAreaPage() {
                   <div className="mt-5 overflow-hidden rounded-xl border border-[#e0e8e4] bg-[#f7faf9] lg:hidden">
                     <Image
                       src={EALING_LOCAL_IMAGE}
-                      alt="WEDRAWPLANS architectural drawing example for extensions and loft plans"
+                      alt="House extension planning drawing sheet with proposed floor plans, elevations and 3D views"
                       width={800}
                       height={310}
                       className="h-[140px] w-full object-cover"
@@ -305,7 +305,7 @@ export default function EalingAreaPage() {
                 <div className="rounded-2xl bg-white shadow-md border border-slate-100 overflow-hidden">
                   <Image
                     src="/images/drawings.jpg"
-                    alt="Example of architectural drawings for an Ealing project"
+                    alt="House extension planning drawing sheet with proposed floor plans, elevations and 3D views"
                     width={800}
                     height={500}
                     className="object-cover w-full h-48 md:h-56"

@@ -182,7 +182,7 @@ export default function WandsworthAreaPage() {
                 >
                   <Image
                     src={PROJECT_IMAGE_1}
-                    alt="Example extension drawings presentation including plans elevations and sections"
+                    alt="House extension planning drawing sheet with proposed floor plans, elevations and 3D views"
                     width={900}
                     height={700}
                     className="h-full w-full object-cover"
@@ -309,7 +309,7 @@ export default function WandsworthAreaPage() {
                   <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-md">
                     <Image
                       src="/images/drawings.jpg"
-                      alt="Architectural drawings laid out neatly for a Wandsworth project"
+                      alt="House extension planning drawing sheet with proposed floor plans, elevations and 3D views"
                       width={800}
                       height={500}
                       className="h-56 w-full object-cover"
@@ -413,7 +413,7 @@ export default function WandsworthAreaPage() {
                   </div>
                   <Image
                     src={PROJECT_IMAGE_2}
-                    alt="Completed extension and loft project in a Wandsworth style setting"
+                    alt="Glazed rear house extension and dormer loft conversion viewed from the garden"
                     width={800}
                     height={500}
                     className="mt-2 rounded-xl object-cover"
@@ -436,7 +436,7 @@ export default function WandsworthAreaPage() {
                   <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                     <Image
                       src={PROJECT_IMAGE_1}
-                      alt="Wandsworth extension drawings presentation"
+                      alt="House extension planning drawing sheet with proposed floor plans, elevations and 3D views"
                       width={900}
                       height={700}
                       className="h-64 w-full object-cover"
@@ -455,7 +455,7 @@ export default function WandsworthAreaPage() {
                   <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                     <Image
                       src={PROJECT_IMAGE_2}
-                      alt="Technical drawing set and completed Wandsworth style project visual"
+                      alt="Glazed rear house extension and dormer loft conversion viewed from the garden"
                       width={900}
                       height={700}
                       className="h-64 w-full object-cover"
@@ -714,6 +714,7 @@ export default function WandsworthAreaPage() {
                 <img
                   src="/images/wedrawplans-logo.png"
                   alt="WEDRAWPLANS"
+                  loading="lazy"
                   className="h-20 w-auto object-contain"
                 />
               </Link>

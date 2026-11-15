@@ -180,7 +180,7 @@ export default function WoolwichRoadCombinedShowcase() {
             <button key={v.file} type="button" onClick={() => go(i)} aria-label={"Show " + v.title} aria-current={index === i ? "true" : undefined}
               className={"w-[155px] shrink-0 overflow-hidden rounded-xl border p-2 text-left transition sm:w-[180px] " + (index === i ? "border-[#318e87] bg-[#ebf7ef]" : "border-[#d6e6de] bg-white hover:border-[#9ec7b8]")}>
               <span className="relative block aspect-[1.38] rounded-md bg-[#fbfcfa]">
-                <Image src={image(v.file)} alt="" fill sizes="180px" className="pointer-events-none object-contain" draggable={false} />
+                <Image src={image(v.file)} alt={v.title + " — Woolwich Road residential development, Greenwich"} fill sizes="180px" className="pointer-events-none object-contain" draggable={false} loading="lazy" />
               </span>
               <span className="mt-2 block text-[11px] font-semibold leading-5 text-[#48696d]">{v.title}</span>
             </button>

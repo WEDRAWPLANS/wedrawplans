@@ -99,7 +99,7 @@ export default function GrangeRoadCombinedShowcase({ project }: { project: CaseS
         <figure className="mx-2 mb-5 overflow-hidden rounded-xl border border-[#e1e8e3] bg-[#fbfdfb] p-2 sm:mx-6 sm:p-4">
           <div className={zoom ? "max-w-full overflow-x-auto overscroll-x-contain" : "max-w-full overflow-hidden"}>
             <div className={zoom ? "relative w-[1000px] md:w-[1400px]" : "relative w-full"} style={{ aspectRatio: stage === "planning" ? "1880 / 1329" : "2000 / 1414" }}>
-              <Image key={current.src} src={current.src} alt={current.alt} fill priority={currentIndex === 0 && stage === "planning"} draggable={false} sizes={zoom ? "1400px" : "(max-width: 800px) 100vw, 82vw"} className="pointer-events-none object-contain" />
+              <Image key={current.src} src={current.src} alt={current.alt} fill loading="lazy" draggable={false} sizes={zoom ? "1400px" : "(max-width: 800px) 100vw, 82vw"} className="pointer-events-none object-contain" />
             </div>
           </div>
           <figcaption className="mt-3 border-t border-[#e5eee8] pt-3 text-[11px] leading-6 text-[#668180]">
@@ -110,7 +110,7 @@ export default function GrangeRoadCombinedShowcase({ project }: { project: CaseS
           {sheets.map((s, i) => (
             <button type="button" key={s.src} onClick={() => pick(i)} aria-label={"View " + s.name} aria-current={currentIndex === i ? "true" : undefined}
               className={"w-[150px] shrink-0 rounded-xl border p-2 text-left sm:w-[190px] " + (i === currentIndex ? "border-[#28817b] bg-[#ecf7f1]" : "border-[#d7e6df] bg-white hover:border-[#9dcab9]")}>
-              <span className="relative block aspect-[1.42] rounded-md bg-white"><Image src={s.src} alt="" fill sizes="190px" className="pointer-events-none object-contain" draggable={false}/></span>
+              <span className="relative block aspect-[1.42] rounded-md bg-white"><Image src={s.src} alt={s.alt} fill sizes="190px" className="pointer-events-none object-contain" draggable={false} loading="lazy"/></span>
               <span className="mt-2 block text-[11px] font-semibold leading-5 text-[#45696b]">{s.name}</span>
             </button>
           ))}

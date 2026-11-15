@@ -171,7 +171,7 @@ export default function HarrowStudioConversionShowcase({ project }: Props) {
             </div>
             <figure className="mx-3 mb-4 rounded-[14px] border border-[#dce8e2] bg-[#f7f9f7] p-2 sm:mx-5 sm:p-4">
               <div className="relative mx-auto aspect-[1.415/1] w-full">
-                <Image key={selected.src} src={selected.src} alt={selected.alt} fill sizes="(max-width: 1024px) 96vw, 65vw" className="pointer-events-none object-contain" draggable={false} priority={drawingIndex === 0} />
+                <Image key={selected.src} src={selected.src} alt={selected.alt} fill sizes="(max-width: 1024px) 96vw, 65vw" className="pointer-events-none object-contain" draggable={false} loading="lazy" />
               </div>
             </figure>
             <div className="border-t border-[#e4ece7] px-3 py-4 sm:px-5">
@@ -181,7 +181,7 @@ export default function HarrowStudioConversionShowcase({ project }: Props) {
                   <button type="button" key={sheet.src} aria-current={drawingIndex === i ? "true" : undefined} aria-label={"Show drawing " + (i + 1) + ": " + sheet.caption} onClick={() => setDrawingIndex(i)}
                     className={"w-[134px] shrink-0 snap-start rounded-xl border p-2 text-left transition sm:w-[156px] " + (drawingIndex === i ? "border-[#348b8b] bg-[#e9f5ef]" : "border-[#dbe7e1] bg-white hover:border-[#9cc4b7]")}>
                     <div className="relative aspect-[1.415/1] rounded-md bg-[#f5f8f6]">
-                      <Image src={sheet.src} alt="" fill sizes="160px" className="pointer-events-none object-contain" draggable={false} />
+                      <Image src={sheet.src} alt={sheet.alt} fill sizes="160px" className="pointer-events-none object-contain" draggable={false} loading="lazy" />
                     </div>
                     <span className="mt-2 block text-[11px] font-semibold leading-4 text-[#476a6e]">{sheet.caption}</span>
                   </button>

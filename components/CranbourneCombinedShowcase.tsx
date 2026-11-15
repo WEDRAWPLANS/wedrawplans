@@ -111,7 +111,7 @@ export default function CranbourneCombinedShowcase({ project }: { project: CaseS
         <div className="flex gap-3 overflow-x-auto overscroll-x-contain border-t border-[#e1ebe4] bg-[#fafcf9] px-3 py-4 sm:px-5" role="group" aria-label="Select a drawing">
           {items.map((v,i)=><button key={v.image} type="button" onClick={()=>go(i)} aria-label={"Show "+v.title} aria-current={index===i?"true":undefined}
             className={"w-[155px] shrink-0 overflow-hidden rounded-xl border p-2 text-left transition sm:w-[180px] "+(index===i?"border-[#318e87] bg-[#ebf7ef]":"border-[#d6e6de] bg-white hover:border-[#9ec7b8]")}>
-            <span className="relative block aspect-[1.38] rounded-md bg-[#fbfcfa]"><Image src={v.image} alt="" fill sizes="180px" className="pointer-events-none object-contain" draggable={false}/></span>
+            <span className="relative block aspect-[1.38] rounded-md bg-[#fbfcfa]"><Image src={v.image} alt={v.alt} fill sizes="180px" className="pointer-events-none object-contain" draggable={false} loading="lazy"/></span>
             <span className="mt-2 block text-[11px] font-semibold leading-5 text-[#48696d]">{v.title}</span>
           </button>)}
         </div>

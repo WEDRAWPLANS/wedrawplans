@@ -299,6 +299,7 @@ export default function CommercialFireStrategyPage() {
                 <img
                   src={PAGE_IMAGE}
                   alt="Commercial fire strategy drawings with technical plans and coordinated building layouts"
+                  {...{ fetchpriority: "high" }}
                   className="h-full w-full object-cover"
                 />
               </div>

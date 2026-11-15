@@ -41,10 +41,10 @@ export default function ApprovalEvidenceStrip({
         <div className="mt-7 grid gap-4 md:grid-cols-3">
           {items.map((item) => (
             <article key={item.slug} className="flex flex-col rounded-[16px] border border-[#dde7e2] bg-white p-5 sm:p-6">
-              <p className="text-[11px] font-semibold text-[#387968]">{item.outcome}</p>
-              <h3 className="mt-3 text-[17px] font-semibold leading-snug text-[#264145]">{item.shortTitle}</h3>
-              <p className="mt-2 text-[13px] leading-6 text-[#5b6c70]">{item.service}</p>
-              <p className="mt-3 text-[12px] leading-5 text-[#728183]">{item.authority} · {item.reference}</p>
+              <p className="text-[11px] font-semibold text-[#387968]">{item.outcome}</p>{" "}
+              <h3 className="mt-3 text-[17px] font-semibold leading-snug text-[#264145]">{item.shortTitle}</h3>{" "}
+              <p className="mt-2 text-[13px] leading-6 text-[#5b6c70]">{item.service}</p>{" "}
+              <p className="mt-3 text-[12px] leading-5 text-[#728183]">{item.authority} · {item.reference}</p>{" "}
               <Link href={"/case-studies/" + item.slug} className="mt-auto inline-flex w-fit pt-5 text-[13px] font-semibold text-[#1d737d] underline-offset-4 hover:underline">
                 View project details →
               </Link>

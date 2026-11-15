@@ -77,6 +77,7 @@ const HeroSlider: React.FC<HeroSliderProps> = ({
                   <img
                     src={slide.src}
                     alt={slide.alt}
+                    loading="lazy"
                     className="h-full w-full object-cover object-[68%_center] sm:object-center"
                   />
 

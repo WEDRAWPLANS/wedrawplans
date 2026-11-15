@@ -37,7 +37,7 @@ export default function CannonLaneShowcase({ project }: { project: CaseStudy }) 
         </div>
         <figure className="mx-3 overflow-hidden rounded-xl border border-[#e1eae5] bg-[#f6f8f6] sm:mx-5">
           <div className={zoom && index > 0 ? "max-h-[72vh] overflow-auto" : "overflow-hidden"} style={{ WebkitTouchCallout: "none" }}>
-            <Image key={current.src} src={current.src} alt={current.title + " — Cannon Lane, Pinner"} width={current.width} height={current.height} sizes="(max-width: 1024px) 100vw, 68vw" draggable={false} className={zoom && index > 0 ? "pointer-events-none h-auto w-[1050px] max-w-none select-none" : "pointer-events-none h-auto w-full select-none object-contain"} priority={index === 0} />
+            <Image key={current.src} src={current.src} alt={current.title + " — Cannon Lane, Pinner"} width={current.width} height={current.height} sizes="(max-width: 1024px) 100vw, 68vw" draggable={false} className={zoom && index > 0 ? "pointer-events-none h-auto w-[1050px] max-w-none select-none" : "pointer-events-none h-auto w-full select-none object-contain"} loading="lazy" />
           </div>
           <figcaption className="border-t border-[#e4eae6] bg-white px-4 py-4 text-[13px] leading-6 text-[#597477]">{current.description}</figcaption>
         </figure>
@@ -48,7 +48,7 @@ export default function CannonLaneShowcase({ project }: { project: CaseStudy }) 
               <button key={slide.src} type="button" onClick={() => change(i)} aria-label={"Show " + slide.title} aria-current={i === index ? "true" : undefined}
                 className={"min-w-0 overflow-hidden rounded-xl border-2 bg-white text-left transition " + (i === index ? "border-[#2d8b7c] shadow-sm" : "border-[#e1ebe5] hover:border-[#97c0b4]")}>
                 <div className="relative aspect-[4/3] bg-[#f6f9f6]">
-                  <Image src={slide.src} alt="" fill sizes="(max-width: 640px) 32vw, 180px" className="pointer-events-none object-contain" draggable={false} />
+                  <Image src={slide.src} alt={slide.title + " — Cannon Lane rear extension, Pinner"} fill sizes="(max-width: 640px) 32vw, 180px" className="pointer-events-none object-contain" draggable={false} loading="lazy" />
                 </div>
                 <p className="px-2 pb-3 pt-2 text-[10px] font-bold leading-4 text-[#426568] sm:text-[12px]">{slide.label}</p>
               </button>

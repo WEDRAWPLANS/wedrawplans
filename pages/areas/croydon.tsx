@@ -194,7 +194,7 @@ export default function CroydonAreaPage() {
                 <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-md">
                   <Image
                     src="/images/drawings.jpg"
-                    alt="Example of architectural drawings for a Croydon extension"
+                    alt="House extension planning drawing sheet with proposed floor plans, elevations and 3D views"
                     width={800}
                     height={500}
                     className="h-48 w-full object-cover md:h-56"
@@ -226,7 +226,7 @@ export default function CroydonAreaPage() {
                   </h3>
                   <Image
                     src="/images/croydon-area.jpg"
-                    alt="Croydon local area"
+                    alt="Croydon residential street with two-storey houses and bay windows"
                     width={800}
                     height={500}
                     className="mb-3 rounded-xl object-cover"

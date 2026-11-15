@@ -136,7 +136,7 @@ export default function CamdenAreaPage() {
                 <div className="rounded-2xl bg-white shadow-md border border-slate-100 overflow-hidden">
                   <Image
                     src="/images/drawings.jpg"
-                    alt="Example of architectural drawings for a Camden extension"
+                    alt="House extension planning drawing sheet with proposed floor plans, elevations and 3D views"
                     width={800}
                     height={500}
                     className="object-cover w-full h-48 md:h-56"
@@ -160,7 +160,7 @@ export default function CamdenAreaPage() {
                   </h3>
                   <Image
                     src="/images/camden-area.jpg"
-                    alt="Camden local area"
+                    alt="Colourful Camden shopfront with a painted façade and an elephant sculpture"
                     width={800}
                     height={500}
                     className="rounded-xl object-cover mb-3"
@@ -210,7 +210,7 @@ export default function CamdenAreaPage() {
                   </div>
                   <Image
                     src="/images/hero.jpg"
-                    alt="Completed extension and loft project"
+                    alt="Glazed rear house extension and dormer loft conversion viewed from the garden"
                     width={800}
                     height={500}
                     className="rounded-xl object-cover mt-2"

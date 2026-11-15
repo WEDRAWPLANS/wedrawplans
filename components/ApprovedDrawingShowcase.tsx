@@ -89,7 +89,7 @@ export default function ApprovedDrawingShowcase({
                 src={leadDrawing.src}
                 alt={leadDrawing.alt}
                 fill
-                priority
+                loading="lazy"
                 sizes="(max-width: 1024px) 96vw, 62vw"
                 className="pointer-events-none object-contain"
                 draggable={false}
@@ -149,7 +149,7 @@ export default function ApprovedDrawingShowcase({
                     className={"w-[102px] shrink-0 snap-start rounded-xl border p-1.5 transition sm:w-[117px] " + (drawingIndex === i ? "border-[#3e9d9c] bg-[#e9f5f1]" : "border-[#dfebe6] bg-white hover:border-[#9bc6bc]")}
                   >
                     <div className="relative h-[82px] rounded-md bg-[#f3f5f3] sm:h-[92px]">
-                      <Image src={drawing.src} alt="" fill sizes="117px" className="pointer-events-none object-contain" draggable={false} />
+                      <Image src={drawing.src} alt={drawing.alt} fill sizes="117px" className="pointer-events-none object-contain" draggable={false} loading="lazy" />
                       {kind === "sistova" ? <SistovaFaintWatermark small /> : null}
                     </div>
                     <span className="mt-1.5 block text-center text-[10px] font-bold text-[#41656a]">Drawing {i + 1}</span>

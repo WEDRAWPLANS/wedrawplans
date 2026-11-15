@@ -34,7 +34,7 @@ export default function SuttonLoftShowcase({ project }: Props) {
         <div className="p-3 sm:p-5">
           <figure>
             <div className="relative aspect-[2000/1413] w-full overflow-hidden rounded-[13px] border border-[#dce6e2] bg-[#f8faf8]">
-              <Image src={project.heroImage} alt="Original WEDRAWPLANS full 3D presentation sheet comparing existing and proposed loft conversion elevations and roof alterations in Wallington, Sutton" fill priority sizes="(max-width: 1024px) 100vw, 65vw" className="pointer-events-none object-contain" draggable={false} />
+              <Image src={project.heroImage} alt="Original WEDRAWPLANS full 3D presentation sheet comparing existing and proposed loft conversion elevations and roof alterations in Wallington, Sutton" fill loading="lazy" sizes="(max-width: 1024px) 100vw, 65vw" className="pointer-events-none object-contain" draggable={false} />
             </div>
             <figcaption className="mt-3 text-[12px] leading-6 text-[#64797a]">Original WEDRAWPLANS 3D design sheet · Existing and proposed architectural views · Not photographs of completed construction.</figcaption>
           </figure>
@@ -83,7 +83,7 @@ export default function SuttonLoftShowcase({ project }: Props) {
                 {drawings.map((sheet,index) => (
                   <button key={sheet.src} type="button" onClick={() => setSelected(index)} aria-current={selected === index ? "true" : undefined} aria-label={"Open drawing " + (index+1) + ": " + sheet.caption} className={"w-[126px] shrink-0 snap-start rounded-xl border p-1.5 text-left transition sm:w-[139px] " + (selected===index ? "border-[#438d83] bg-[#e7f4ed] shadow-sm" : "border-[#dfe8e3] bg-white hover:border-[#aaccc2]")}>
                     <div className="relative aspect-[2000/1413] rounded-md bg-[#f2f6f3]">
-                      <Image src={sheet.src} alt="" fill sizes="139px" className="pointer-events-none object-contain" draggable={false}/>
+                      <Image src={sheet.src} alt={sheet.alt} fill sizes="139px" className="pointer-events-none object-contain" draggable={false} loading="lazy"/>
                     </div>
                     <p className="mt-1.5 text-center text-[11px] font-bold text-[#416b6a]">Drawing {index+1}</p>
                   </button>

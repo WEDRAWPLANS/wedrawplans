@@ -141,7 +141,7 @@ export default function IslingtonAreaPage() {
                 <div className="rounded-2xl bg-white shadow-md border border-slate-100 overflow-hidden">
                   <Image
                     src="/images/drawings.jpg"
-                    alt="Example of architectural drawings for an Islington extension"
+                    alt="House extension planning drawing sheet with proposed floor plans, elevations and 3D views"
                     width={800}
                     height={500}
                     className="object-cover w-full h-48 md:h-56"
@@ -165,7 +165,7 @@ export default function IslingtonAreaPage() {
                   </h3>
                   <Image
                     src="/images/islington-area.jpg"
-                    alt="Islington local area"
+                    alt="Islington high street with ground-floor shops and brick upper storeys"
                     width={800}
                     height={500}
                     className="rounded-xl object-cover mb-3"

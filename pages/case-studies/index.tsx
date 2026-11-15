@@ -42,7 +42,7 @@ function ProjectVisual({ item, featured = false }: { item: CaseStudy; featured?:
           src={item.heroImage}
           alt={"WEDRAWPLANS architectural drawing or design illustration for " + item.shortTitle}
           fill
-          priority={featured}
+          loading="lazy"
           sizes={featured ? "(max-width: 900px) 100vw, 55vw" : "(max-width: 768px) 100vw, 33vw"}
           className={item.slug === "the-reddings-mill-hill-extension-basement-loft" ? "object-cover" : "object-contain"}
         />

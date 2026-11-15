@@ -75,7 +75,7 @@ function RealProjectShowcase({ project }: { project: ReddingsProject }) {
                 <span className="hidden text-[10px] font-semibold text-[#718486] sm:block">MILL HILL · NW7</span>
               </div>
               <div className="relative aspect-[4/3] overflow-hidden bg-[#eaf0ee]">
-                {image ? <Image src={image.src} alt={image.alt} fill sizes="(max-width: 640px) 48vw, (max-width: 1024px) 46vw, 30vw" className="pointer-events-none object-cover" draggable={false} priority={label === "AFTER"} /> : null}
+                {image ? <Image src={image.src} alt={image.alt} fill sizes="(max-width: 640px) 48vw, (max-width: 1024px) 46vw, 30vw" className="pointer-events-none object-cover" draggable={false} loading="lazy" /> : null}
               </div>
               <figcaption className="min-h-[83px] px-3 py-3 sm:min-h-[89px] sm:px-4">
                 <strong className="block text-[12px] leading-5 text-[#294a4e] sm:text-[15px]">{title}</strong>
@@ -117,7 +117,7 @@ function RealProjectShowcase({ project }: { project: ReddingsProject }) {
                 {drawings.map((drawing, index) => (
                   <button key={drawing.src} type="button" onClick={() => setSelected(index)} aria-current={selected === index ? "true" : undefined} aria-label={"View drawing " + (index + 1) + ": " + drawing.alt} className={"w-[102px] shrink-0 snap-start rounded-xl border p-1.5 text-left transition focus-visible:ring-2 focus-visible:ring-[#2a97a3] sm:w-[117px] " + (selected === index ? "border-[#3e9d9c] bg-[#e9f5f1] shadow-[0_3px_12px_rgba(26,91,86,.12)]" : "border-[#dfebe6] bg-white hover:border-[#9bc6bc]")}>
                     <div className="relative h-[82px] rounded-md bg-[#f3f5f3] sm:h-[92px]">
-                      <Image src={drawing.src} alt="" fill sizes="117px" className="pointer-events-none object-contain" draggable={false} />
+                      <Image src={drawing.src} alt={drawing.alt} fill sizes="117px" className="pointer-events-none object-contain" draggable={false} loading="lazy" />
                     </div>
                     <span className="mt-1.5 block text-center text-[10px] font-bold text-[#41656a]">Drawing {index + 1}</span>
                   </button>
@@ -186,7 +186,7 @@ function AllumLaneShowcase({ project, quoteHeight }: { project: CaseStudy; quote
             </div>
             <figure className="mx-3 mb-3 overflow-hidden rounded-[13px] border border-[#dce6e2] bg-[#eef2ef] sm:mx-5">
               <div className="relative aspect-[4/3] w-full">
-                <Image key={featured.src} src={featured.src} alt={featured.alt} fill sizes="(max-width: 1024px) 96vw, 62vw" className="pointer-events-none object-contain" draggable={false} priority={false} />
+                <Image key={featured.src} src={featured.src} alt={featured.alt} fill sizes="(max-width: 1024px) 96vw, 62vw" className="pointer-events-none object-contain" draggable={false} loading="lazy" />
               </div>
               <figcaption className="border-t border-[#e1e9e4] bg-white px-4 py-3 text-[12px] font-semibold leading-5 text-[#41696e]">{featured.caption.replace(/^3D design \d+\s*[—–-]\s*/, "")}</figcaption>
             </figure>
@@ -194,7 +194,7 @@ function AllumLaneShowcase({ project, quoteHeight }: { project: CaseStudy; quote
               {designs.map((image, i) => (
                 <button key={image.src} type="button" onClick={() => setDesignIndex(i)} aria-label={"View 3D design " + (i + 1)} aria-current={i === designIndex ? "true" : undefined} className={"w-[112px] shrink-0 rounded-lg border p-1.5 transition sm:w-[130px] " + (i === designIndex ? "border-[#399699] bg-[#e9f5f1]" : "border-[#dce7e2] bg-white hover:border-[#9cc6bf]")}>
                   <div className="relative aspect-[4/3] overflow-hidden rounded-md bg-[#eff3f1]">
-                    <Image src={image.src} alt="" fill sizes="130px" className="pointer-events-none object-contain" draggable={false} />
+                    <Image src={image.src} alt={image.alt} fill sizes="130px" className="pointer-events-none object-contain" draggable={false} loading="lazy" />
                   </div>
                   <span className="mt-1.5 block text-[10px] font-bold text-[#426970]">3D View {i + 1}</span>
                 </button>
@@ -234,7 +234,7 @@ function AllumLaneShowcase({ project, quoteHeight }: { project: CaseStudy; quote
                 {drawings.map((image, i) => (
                   <button key={image.src} type="button" onClick={() => setDrawingIndex(i)} aria-label={"View drawing " + [5, 6, 8][i] + ": " + image.alt} aria-current={i === drawingIndex ? "true" : undefined} className={"w-[102px] shrink-0 rounded-xl border p-1.5 transition sm:w-[117px] " + (i === drawingIndex ? "border-[#379b9a] bg-[#eaf5f0]" : "border-[#dce8e2] bg-white hover:border-[#a1c8bc]")}>
                     <div className="relative h-[82px] rounded-md bg-[#f5f7f4] sm:h-[92px]">
-                      <Image src={image.src} alt="" fill sizes="117px" className="pointer-events-none object-contain" draggable={false} />
+                      <Image src={image.src} alt={image.alt} fill sizes="117px" className="pointer-events-none object-contain" draggable={false} loading="lazy" />
                     </div>
                     <span className="mt-2 block text-center text-[10px] font-bold text-[#3d666b]">Drawing {[5, 6, 8][i]}</span>
                   </button>

@@ -138,9 +138,10 @@ export default function BoroughMasterHero({ boroughName, formId, headline, showc
             <div className="relative h-[190px] w-full bg-[#f4f8f7]">
               <Image
                 src={showcaseImage?.src || "/images/drawings.jpg"}
-                alt={showcaseImage?.alt || "Example of WEDRAWPLANS architectural planning drawings"}
+                alt={showcaseImage?.alt || "House extension planning drawing sheet with proposed floor plans, elevations and 3D views"}
                 fill
                 sizes="(max-width: 1024px) 100vw, 520px"
+                loading="lazy"
                 className={showcaseImage?.fit === "contain" ? "object-contain" : showcaseImage ? "object-cover" : "object-contain"}
               />
               {showcaseImage && !showcaseImage.watermarkEmbedded ? <span aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden"><span className="-rotate-[24deg] whitespace-nowrap text-[clamp(22px,4vw,44px)] font-extrabold tracking-[.10em] text-slate-500/5">WEDRAWPLANS</span></span> : null}
@@ -161,9 +162,10 @@ export default function BoroughMasterHero({ boroughName, formId, headline, showc
               <div className={showcaseImage ? (showcaseImage.fit === "contain" ? "relative aspect-[1.414/1] max-h-[285px] w-full bg-[#f1f5f2]" : "relative aspect-[16/10] max-h-[285px] w-full bg-[#f1f5f2]") : "relative h-[140px] w-full bg-[#f7faf9]"}>
                 <Image
                   src={showcaseImage?.src || "/images/drawings.jpg"}
-                  alt={showcaseImage?.alt || "WEDRAWPLANS architectural drawing example"}
+                  alt={showcaseImage?.alt || "House extension planning drawing sheet with proposed floor plans, elevations and 3D views"}
                   fill
                   sizes="(max-width: 1024px) 100vw, 520px"
+                  loading="lazy"
                   className={showcaseImage?.fit === "contain" ? "object-contain" : showcaseImage ? "object-cover" : "object-contain"}
                 />
                 {showcaseImage && !showcaseImage.watermarkEmbedded ? <span aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden"><span className="-rotate-[24deg] whitespace-nowrap text-[clamp(25px,5vw,50px)] font-extrabold tracking-[.10em] text-slate-500/5">WEDRAWPLANS</span></span> : null}

@@ -508,6 +508,7 @@ export default function BuildingRegulationDrawingsPage() {
                     <img
                       src={HERO_IMAGE}
                       alt="Original WEDRAWPLANS BC-10 design sheet showing Cranbourne Drive rear extension and separate loft technical design"
+                      {...{ fetchpriority: "high" }}
                       className="h-[260px] w-full bg-[#f2f7f4] object-contain sm:h-[330px]"
                     />
                   </div>
@@ -790,6 +791,7 @@ export default function BuildingRegulationDrawingsPage() {
                     <img
                       src={SECOND_IMAGE}
                       alt="Detailed Building Regulation construction sections and technical drawing notes"
+                      loading="lazy"
                       className="h-[250px] w-full object-cover"
                     />
                     <div className="space-y-2 p-5">
@@ -896,6 +898,7 @@ export default function BuildingRegulationDrawingsPage() {
                   <img
                     src={SECOND_IMAGE}
                     alt="Building Regulation details, sections and construction notes"
+                    loading="lazy"
                     className="h-[330px] w-full object-cover"
                   />
                 </div>
@@ -1255,6 +1258,7 @@ export default function BuildingRegulationDrawingsPage() {
                   <img
                     src={LOGO_IMAGE}
                     alt="WEDRAWPLANS"
+                    loading="lazy"
                     className="h-20 w-auto object-contain"
                   />
                   <p className="mt-4 max-w-2xl text-[13px] leading-6 text-slate-200">

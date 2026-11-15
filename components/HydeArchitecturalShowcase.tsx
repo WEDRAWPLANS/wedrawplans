@@ -120,7 +120,7 @@ export default function HydeArchitecturalShowcase() {
               aria-label={"View " + item.title} className={"w-[97px] shrink-0 snap-start rounded-[10px] border p-1.5 transition sm:w-[113px] " +
                 (index === activeSheet ? "border-[#499d93] bg-[#edf7f2]" : "border-[#e0e9e5] bg-white hover:border-[#94c7b6]")}>
               <div className="relative aspect-[1684/1191] overflow-hidden bg-white">
-                <Image src={BASE + item.file} alt="" fill sizes="113px" className="pointer-events-none object-contain" unoptimized />
+                <Image src={BASE + item.file} alt={item.alt} fill sizes="113px" className="pointer-events-none object-contain" unoptimized loading="lazy" />
               </div>
               <span className="mt-1 block text-center text-[10px] font-bold text-[#426a69]">Drawing {index + 1}</span>
             </button>

@@ -302,6 +302,7 @@ export default function CommercialChangeOfUsePage() {
                 <img
                   src={PAGE_IMAGE}
                   alt="Change of use architectural drawings with technical plans and realistic conversion visual"
+                  {...{ fetchpriority: "high" }}
                   className="h-full w-full object-cover"
                 />
               </div>

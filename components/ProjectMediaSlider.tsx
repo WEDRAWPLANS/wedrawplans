@@ -66,7 +66,7 @@ export default function ProjectMediaSlider({ projects, mode }: Props) {
         onTouchEnd={(event) => { if (touchStart.current !== null && canChange) { const change = (event.changedTouches[0]?.clientX || 0) - touchStart.current; if (Math.abs(change) > 55) go(change < 0 ? 1 : -1); } touchStart.current = null; }}>
         {current.src ? (
           <button type="button" aria-label={"Enlarge " + current.project.shortTitle + " architectural image"} onClick={() => setLightbox(true)} className="relative block h-[300px] w-full cursor-zoom-in sm:h-[390px] lg:h-[430px]">
-            <Image src={current.src} alt={current.alt} fill priority={index === 0} sizes="(max-width: 1024px) 100vw, 57vw" className="pointer-events-none select-none object-contain p-4 sm:p-6" draggable={false}/>
+            <Image src={current.src} alt={current.alt} fill loading="lazy" sizes="(max-width: 1024px) 100vw, 57vw" className="pointer-events-none select-none object-contain p-4 sm:p-6" draggable={false}/>
             <span className="absolute bottom-3 right-3 rounded-full bg-white/95 px-3 py-1.5 text-[11px] font-semibold text-[#2f6970] shadow-sm">Enlarge view ↗</span>
           </button>
         ) : (
@@ -119,7 +119,7 @@ export default function ProjectMediaSlider({ projects, mode }: Props) {
             >
               {mode === "project" && slide.src && (
                 <span className="relative block h-[68px] w-[92px] rounded-md bg-[#f4f7f5]">
-                  <Image src={slide.src} alt="" fill sizes="92px" className="object-contain" />
+                  <Image src={slide.src} alt={slide.alt} fill sizes="92px" className="object-contain" loading="lazy" />
                 </span>
               )}
               <span className="mt-1 block">{mode === "project" ? `Drawing ${i + 1}` : slide.project.shortTitle}</span>

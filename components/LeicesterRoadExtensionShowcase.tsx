@@ -106,7 +106,7 @@ export default function LeicesterRoadExtensionShowcase({ project }: Props) {
               {group.length>1 && <div className="mt-4 flex snap-x gap-2.5 overflow-x-auto pb-4" aria-label="Select a drawing">
                 {group.map((item,index)=>(
                   <button key={item.src} onClick={()=>setSelected(index)} type="button" aria-label={"Show "+item.caption} aria-current={selected===index?"true":undefined} className={"w-[126px] shrink-0 snap-start rounded-[11px] border p-1.5 text-left sm:w-[143px] "+(selected===index?"border-[#378e83] bg-[#e9f4ee]":"border-[#dfe9e5] bg-white hover:border-[#b1d1c2]")}>
-                    <div className="relative aspect-[1650/1167] w-full"><Image src={item.src} alt="" fill sizes="143px" draggable={false} className="pointer-events-none object-contain" /></div>
+                    <div className="relative aspect-[1650/1167] w-full"><Image src={item.src} alt={item.alt} fill sizes="143px" draggable={false} className="pointer-events-none object-contain" loading="lazy" /></div>
                     <p className="mt-1.5 text-center text-[11px] font-bold text-[#4d7271]">Drawing {images.indexOf(item)+1}</p>
                   </button>
                 ))}

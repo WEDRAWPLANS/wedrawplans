@@ -144,7 +144,7 @@ export default function BrentAreaPage() {
                 <div className="rounded-2xl bg-white shadow-md border border-slate-100 overflow-hidden">
                   <Image
                     src="/images/drawings.jpg"
-                    alt="Example of architectural drawings for a Brent extension"
+                    alt="House extension planning drawing sheet with proposed floor plans, elevations and 3D views"
                     width={800}
                     height={500}
                     className="object-cover w-full h-48 md:h-56"
@@ -168,7 +168,7 @@ export default function BrentAreaPage() {
                   </h3>
                   <Image
                     src="/images/brent-area.jpg"
-                    alt="Brent local area"
+                    alt="Brent high street with ground-floor shopfronts and upper-storey façades"
                     width={800}
                     height={500}
                     className="rounded-xl object-cover mb-3"
@@ -216,7 +216,7 @@ export default function BrentAreaPage() {
                   </div>
                   <Image
                     src="/images/hero.jpg"
-                    alt="Completed extension and loft project"
+                    alt="Glazed rear house extension and dormer loft conversion viewed from the garden"
                     width={800}
                     height={500}
                     className="rounded-xl object-cover mt-2"

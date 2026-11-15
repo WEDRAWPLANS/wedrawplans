@@ -299,6 +299,7 @@ export default function CommercialMixedUsePage() {
                 <img
                   src={PAGE_IMAGE}
                   alt="Mixed use architectural drawings with technical plans and realistic commercial and residential visuals"
+                  {...{ fetchpriority: "high" }}
                   className="h-full w-full object-cover"
                 />
               </div>

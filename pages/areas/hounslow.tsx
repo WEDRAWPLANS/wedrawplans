@@ -172,7 +172,7 @@ export default function HounslowAreaPage() {
                 <div className="rounded-2xl bg-white shadow-md border border-slate-100 overflow-hidden">
                   <Image
                     src="/images/drawings.jpg"
-                    alt="Example of architectural drawings for a Hounslow project"
+                    alt="House extension planning drawing sheet with proposed floor plans, elevations and 3D views"
                     width={800}
                     height={500}
                     className="object-cover w-full h-48 md:h-56"
@@ -200,7 +200,7 @@ export default function HounslowAreaPage() {
                     width={800}
                     height={500}
                     className="rounded-xl object-cover mb-3"
-                    priority
+                    loading="lazy"
                   />
 
                   <p className="text-[13px] text-slate-700">Drawings for the whole borough, including:</p>

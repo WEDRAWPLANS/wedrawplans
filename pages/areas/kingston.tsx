@@ -140,7 +140,7 @@ export default function KingstonAreaPage() {
                 <div className="rounded-2xl bg-white shadow-md border border-slate-100 overflow-hidden">
                   <Image
                     src="/images/drawings.jpg"
-                    alt="Example of architectural drawings for a Kingston extension"
+                    alt="House extension planning drawing sheet with proposed floor plans, elevations and 3D views"
                     width={800}
                     height={500}
                     className="object-cover w-full h-48 md:h-56"
@@ -164,7 +164,7 @@ export default function KingstonAreaPage() {
 
                   <Image
                     src="/images/kingston-area.jpg"
-                    alt="Kingston area map and coverage"
+                    alt="Kingston brick terraced homes with bay windows and decorative gables"
                     width={800}
                     height={500}
                     className="rounded-xl object-cover mb-3"

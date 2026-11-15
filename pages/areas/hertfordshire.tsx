@@ -445,7 +445,7 @@ export default function HertfordshireAreaPage() {
                   </h3>
                   <Image
                     src="/images/hertfordshire-area.jpg"
-                    alt="Hertfordshire local area"
+                    alt="Aerial view of a Hertfordshire residential street lined with pitched-roof houses"
                     width={800}
                     height={500}
                     className="rounded-xl object-cover mb-3"
@@ -495,7 +495,7 @@ export default function HertfordshireAreaPage() {
                   </div>
                   <Image
                     src="/images/hero.jpg"
-                    alt="Residential project example"
+                    alt="Glazed rear house extension and dormer loft conversion viewed from the garden"
                     width={800}
                     height={500}
                     className="rounded-xl object-cover mt-2"

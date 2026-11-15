@@ -299,6 +299,7 @@ export default function CommercialShopfrontDrawingsPage() {
                 <img
                   src={PAGE_IMAGE}
                   alt="Commercial shopfront architectural drawings with front elevation and 3D visual"
+                  {...{ fetchpriority: "high" }}
                   className="h-full w-full object-cover"
                 />
               </div>

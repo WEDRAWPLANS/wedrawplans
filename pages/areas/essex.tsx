@@ -391,7 +391,7 @@ export default function EssexAreaPage() {
                   </h3>
                   <Image
                     src="/images/Essex-area.jpg"
-                    alt="Essex local area"
+                    alt="New houses with pitched roofs beside landscaped green space in Essex"
                     width={800}
                     height={500}
                     className="rounded-xl object-cover mb-3"
@@ -441,7 +441,7 @@ export default function EssexAreaPage() {
                   </div>
                   <Image
                     src="/images/hero.jpg"
-                    alt="Residential project example"
+                    alt="Glazed rear house extension and dormer loft conversion viewed from the garden"
                     width={800}
                     height={500}
                     className="rounded-xl object-cover mt-2"
