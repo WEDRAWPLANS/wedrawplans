@@ -121,13 +121,8 @@ export default function GetDrawingsQuotePage() {
       return;
     }
 
-    if (cleanedEmail && !isValidEmail(cleanedEmail)) {
-      setError("Please enter a valid email address, or leave email blank and provide a phone number.");
-      return;
-    }
-
-    if (!cleanedEmail && cleanedPhone.replace(/\D/g, "").length < 10) {
-      setError("Please enter an email address or a valid telephone number so we can reply.");
+    if (!cleanedEmail || !isValidEmail(cleanedEmail)) {
+      setError("Please enter a valid email address so we can reply. Phone number is optional.");
       return;
     }
 
@@ -477,11 +472,13 @@ export default function GetDrawingsQuotePage() {
                           htmlFor="email"
                           style={{ display: "block", marginBottom: 6, fontWeight: 700 }}
                         >
-                          Email (preferred)
+                          Email address (required)
                         </label>
                         <input
                           id="email"
                           type="email"
+                          required
+                          autoComplete="email"
                           value={form.email}
                           onChange={(e) => setForm((prev) => ({ ...prev, email: e.target.value }))}
                           placeholder="you@example.com"
@@ -494,11 +491,12 @@ export default function GetDrawingsQuotePage() {
                           htmlFor="phone"
                           style={{ display: "block", marginBottom: 6, fontWeight: 700 }}
                         >
-                          Phone (optional if email provided)
+                          Phone number (optional)
                         </label>
                         <input
                           id="phone"
                           type="tel"
+                          autoComplete="tel"
                           value={form.phone}
                           onChange={(e) => setForm((prev) => ({ ...prev, phone: e.target.value }))}
                           placeholder="07..."
@@ -1199,7 +1197,7 @@ export default function GetDrawingsQuotePage() {
 
         .formTwoCol {
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
           gap: 14px;
         }
 
@@ -1277,7 +1275,7 @@ export default function GetDrawingsQuotePage() {
           .cardGridFive,
           .faqGrid,
           .featureGridTwo {
-            grid-template-columns: 1fr;
+            grid-template-columns: minmax(0, 1fr);
           }
 
           h1 {
@@ -1309,7 +1307,7 @@ const inputStyle: React.CSSProperties = {
   color: "#0f172a",
   borderRadius: 14,
   padding: "14px 15px",
-  fontSize: 15,
+  fontSize: 16,
   lineHeight: 1.4,
   outline: "none",
   boxSizing: "border-box",
