@@ -2,11 +2,35 @@ import { useMemo, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { caseStudies, categoryForCaseStudy, CaseStudy } from "../../data/caseStudies";
+import { caseStudies, caseStudyBySlug, categoryForCaseStudy, CaseStudy } from "../../data/caseStudies";
 import { CaseStudyHeader, CaseStudyBottom, CaseStudyFooter } from "../../components/CaseStudyChrome";
 
 const QUOTE = "/get-drawings-quote";
 const PROJECT_BASE = "/case-studies/";
+const PRIORITY_PROJECT_SLUGS = [
+  "sistova-road-wandsworth-extension-basement",
+  "cranbourne-drive-hoddesdon-planning-project",
+  "allum-lane-elstree-major-house-extension",
+  "cromwell-road-hounslow-rear-extension",
+  "brockley-road-lewisham-two-flat-conversion",
+  "sutton-loft-conversion-planning-permission-wallington",
+  "cannon-lane-pinner-5-metre-rear-extension",
+  "sunbury-avenue-mill-hill-side-rear-extension",
+  "sunbury-avenue-mill-hill-accessible-garden-care-outbuilding",
+  "sevington-road-hendon-seven-bedroom-hmo-planning-approval",
+  "the-reddings-mill-hill-extension-basement-loft",
+  "chestnut-rise-plumstead-greenwich-ten-flats-lawfulness",
+  "grange-road-edgware-side-extension-lawful-development-building-regulations",
+  "burnt-oak-broadway-harrow-retail-flats",
+  "finchley-mixed-use-ground-floor-residential-lawfulness",
+  "the-hyde-colindale-major-residential-development",
+  "700-woolwich-road-greenwich-two-new-flats",
+];
+
+const archiveProjects = [
+  ...PRIORITY_PROJECT_SLUGS.map((slug) => caseStudyBySlug[slug]).filter(Boolean),
+  ...caseStudies.filter((item) => !PRIORITY_PROJECT_SLUGS.includes(item.slug)),
+];
 
 function ProjectVisual({ item, featured = false }: { item: CaseStudy; featured?: boolean }) {
   const hasProjectDrawing = Boolean(item.heroImage) && (item.heroImage.startsWith("/images/case-studies/") || item.heroImage.startsWith("/images/hyde-"));
@@ -106,7 +130,7 @@ export default function CaseStudiesHub() {
     description: "Selected WEDRAWPLANS architectural drawing and planning projects across London and the surrounding areas.",
     mainEntity: {
       "@type": "ItemList",
-      itemListElement: caseStudies.map((item, index) => ({
+      itemListElement: archiveProjects.map((item, index) => ({
         "@type": "ListItem",
         position: index + 1,
         name: item.title,
@@ -114,7 +138,7 @@ export default function CaseStudiesHub() {
       }))
     }
   };
-  const filtered = useMemo(() => caseStudies.filter((item) => {
+  const filtered = useMemo(() => archiveProjects.filter((item) => {
     const searchable = [item.title, item.shortTitle, item.location, item.authority, item.service, item.reference].join(" ").toLowerCase();
     return searchable.includes(query.trim().toLowerCase())
       && (type === "All project types" || categoryForCaseStudy(item) === type)
