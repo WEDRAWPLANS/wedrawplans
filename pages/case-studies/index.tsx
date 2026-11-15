@@ -156,6 +156,19 @@ export default function CaseStudiesHub() {
           </div>
         </section>
 
+        <section className="border-b border-[#dbe8e2] bg-[#f3f8f6]" aria-label="Recently approved Croydon garage conversion">
+          <div className="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-7 sm:px-8 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#26747a]">Newly featured · Croydon garage conversion</p>
+              <h2 className="mt-2 text-xl font-semibold text-[#203d42]">Home office and shower room from an existing garage</h2>
+              <p className="mt-2 max-w-3xl text-[13px] leading-6 text-[#577071]">Croydon Council confirmed the proposal lawful in November 2026. Explore six architectural and technical drawing views, the council evidence and a fixed-fee enquiry form.</p>
+            </div>
+            <Link href="/croydon-garage-conversion.html" className="inline-flex shrink-0 items-center justify-center rounded-full bg-[#277985] px-5 py-3 text-[13px] font-semibold text-white hover:bg-[#165b65]">
+              Explore the Croydon project →
+            </Link>
+          </div>
+        </section>
+
         <section className="border-b border-[#dfe9e5] bg-[#eef7f3]" aria-label="Official council planning evidence">
           <div className="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-6 sm:px-8 lg:flex-row lg:items-center lg:justify-between">
             <div>
