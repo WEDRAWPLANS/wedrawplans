@@ -88,6 +88,43 @@ function getBoroughFromPostcode(postcode: string) {
   return "London and surrounding M25 areas";
 }
 
+const FAQ_ITEMS = [
+  {
+    question: "Do I need planning drawings for a house extension?",
+    answer: "In many cases, yes. Professional planning drawings are usually needed for planning applications and are often also helpful when checking whether a project may fall under permitted development.",
+  },
+  {
+    question: "Do you provide building regulation drawings?",
+    answer: "Yes. WEDRAWPLANS prepares building regulation drawings and technical drawing packages for projects moving beyond the planning stage.",
+  },
+  {
+    question: "Can you help with loft conversion drawings?",
+    answer: "Yes. We prepare loft conversion drawings, house extension drawings, internal alteration drawings and other residential design packages across London and surrounding M25 areas.",
+  },
+  {
+    question: "Do you cover my area in London?",
+    answer: "We cover many London boroughs and surrounding M25 areas. Submit your postcode above and we will review your location and project requirements.",
+  },
+  {
+    question: "How do I get a quote for architectural drawings?",
+    answer: "Simply complete the quote form on this page with your postcode, project type and contact details. We will review your enquiry and contact you to discuss the next steps.",
+  },
+  {
+    question: "Do you provide measured building surveys?",
+    answer: "Yes. We provide measured building surveys and existing drawings to support planning drawings, extension plans and building regulation packages.",
+  },
+];
+
+const FAQ_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQ_ITEMS.map(({ question, answer }) => ({
+    "@type": "Question",
+    name: question,
+    acceptedAnswer: { "@type": "Answer", text: answer },
+  })),
+};
+
 export default function GetDrawingsQuotePage() {
   const router = useRouter();
   const incomingProject = typeof router.query.project === "string" ? router.query.project : "";
@@ -246,6 +283,10 @@ export default function GetDrawingsQuotePage() {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_SCHEMA) }}
         />
       </Head>
 
@@ -886,36 +927,11 @@ export default function GetDrawingsQuotePage() {
                 </h2>
 
                 <div className="faqGrid" style={{ marginTop: 24 }}>
-                  {[
-                    {
-                      q: "Do I need planning drawings for a house extension?",
-                      a: "In many cases, yes. Professional planning drawings are usually needed for planning applications and are often also helpful when checking whether a project may fall under permitted development.",
-                    },
-                    {
-                      q: "Do you provide building regulation drawings?",
-                      a: "Yes. WEDRAWPLANS prepares building regulation drawings and technical drawing packages for projects moving beyond the planning stage.",
-                    },
-                    {
-                      q: "Can you help with loft conversion drawings?",
-                      a: "Yes. We prepare loft conversion drawings, house extension drawings, internal alteration drawings and other residential design packages across London and surrounding M25 areas.",
-                    },
-                    {
-                      q: "Do you cover my area in London?",
-                      a: "We cover many London boroughs and surrounding M25 areas. Submit your postcode above and we will review your location and project requirements.",
-                    },
-                    {
-                      q: "How do I get a quote for architectural drawings?",
-                      a: "Simply complete the quote form on this page with your postcode, project type and contact details. We will review your enquiry and contact you to discuss the next steps.",
-                    },
-                    {
-                      q: "Do you provide measured building surveys?",
-                      a: "Yes. We provide measured building surveys and existing drawings to support planning drawings, extension plans and building regulation packages.",
-                    },
-                  ].map((item) => (
-                    <div key={item.q} className="softCard">
-                      <h3 style={{ margin: 0, fontSize: 20, lineHeight: 1.35 }}>{item.q}</h3>
+                  {FAQ_ITEMS.map(({ question, answer }) => (
+                    <div key={question} className="softCard">
+                      <h3 style={{ margin: 0, fontSize: 20, lineHeight: 1.35 }}>{question}</h3>
                       <p style={{ margin: "12px 0 0", color: "#475569", lineHeight: 1.75 }}>
-                        {item.a}
+                        {answer}
                       </p>
                     </div>
                   ))}

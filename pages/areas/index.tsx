@@ -212,6 +212,51 @@ function FaqCard({ title, body }: { title: string; body: string }) {
   );
 }
 
+const FAQ_ITEMS = [
+  {
+    question: "Do you cover every London borough for architectural drawings?",
+    answer: "Yes. WEDRAWPLANS cover every London borough and selected surrounding M25 locations. You can use the borough directory above or send your postcode and we will point you to the right route.",
+  },
+  {
+    question: "Can you help with both extensions and loft conversions?",
+    answer: "Yes. Many clients contact us for either one or both. We prepare drawing packages for rear extensions, side returns, wraparounds, loft conversions, dormers, mansards and other layout improvements.",
+  },
+  {
+    question: "Do I need planning permission or can I use permitted development?",
+    answer: "That depends on the property, location, design and restrictions. We check the address, proposal and borough context and then advise the most suitable route.",
+  },
+  {
+    question: "Can you prepare Building Regulation drawings after planning?",
+    answer: "Yes. We often take approved planning layouts forward into technical Building Regulation packs with structural coordination and builder ready detail.",
+  },
+  {
+    question: "Do you support flat conversions and new build schemes?",
+    answer: "Yes. We support conversion projects, self contained flat layouts, small development schemes and new build homes where the project scope fits our service offer.",
+  },
+  {
+    question: "How quickly can you survey?",
+    answer: "In most cases we can arrange the initial measured survey within 48 hours of instruction, subject to access, availability and location.",
+  },
+  {
+    question: "Do you submit to the local council?",
+    answer: "Yes. We can handle Planning Portal submissions and support planning officer queries where required so the process remains clear and well managed.",
+  },
+  {
+    question: "What is the quickest way to get started?",
+    answer: "Use the quote form on this page or send your postcode, photos and project description on WhatsApp. We will reply with a clear fixed fee and the recommended next steps.",
+  },
+];
+
+const FAQ_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQ_ITEMS.map(({ question, answer }) => ({
+    "@type": "Question",
+    name: question,
+    acceptedAnswer: { "@type": "Answer", text: answer },
+  })),
+};
+
 export default function AreasIndexPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     await submitBoroughLead(e, { boroughName: "London and M25" });
@@ -285,88 +330,6 @@ export default function AreasIndexPage() {
     []
   );
 
-  const faqJson = useMemo(
-    () => ({
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: "Do you cover every London borough for architectural drawings",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Yes. WEDRAWPLANS cover every London borough and selected surrounding M25 locations for extensions, loft conversions, planning drawings, building regulation packs, flat conversions, internal remodelling and small new build projects.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Can you prepare both planning drawings and building regulation drawings",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Yes. We prepare planning drawing packages, lawful development certificate drawings and technical building regulation packs, with structural coordination where required.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "How quickly can you arrange an initial measured survey",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "In most cases we can arrange the initial measured survey within 48 hours of instruction, subject to location, access and availability.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Do you submit to the local council through the Planning Portal",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Yes. We can prepare the drawings, complete the forms, submit through the Planning Portal and respond to planning officer queries where required.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Can you help if my project is an extension, loft conversion or new build",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Yes. We cover single storey and double storey extensions, side returns, wraparound extensions, loft conversions, garage conversions, garden rooms, conversion projects and new build homes.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Do you coordinate with structural engineers",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Yes. We coordinate with structural engineers so beams, openings, load paths and technical details align properly with the architectural drawings.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "What is the quickest way to get a quote from WEDRAWPLANS",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Send your postcode, project type and a short description using the form on this page or by WhatsApp. We reply with a clear fixed fee and recommended next steps.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Do you cover projects just outside London",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Yes. We also support selected surrounding M25 locations including parts of Hertfordshire, Essex and the Surrey borders.",
-          },
-        },
-      ],
-    }),
-    []
-  );
-
   const itemListJson = useMemo(
     () => ({
       "@context": "https://schema.org",
@@ -401,7 +364,7 @@ export default function AreasIndexPage() {
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_SCHEMA) }}
         />
         <script
           type="application/ld+json"
@@ -1094,38 +1057,9 @@ export default function AreasIndexPage() {
               />
 
               <div className="mt-6 grid gap-6 md:grid-cols-2">
-                <FaqCard
-                  title="Do you cover every London borough for architectural drawings"
-                  body="Yes. WEDRAWPLANS cover every London borough and selected surrounding M25 locations. You can use the borough directory above or send your postcode and we will point you to the right route."
-                />
-                <FaqCard
-                  title="Can you help with both extensions and loft conversions"
-                  body="Yes. Many clients contact us for either one or both. We prepare drawing packages for rear extensions, side returns, wraparounds, loft conversions, dormers, mansards and other layout improvements."
-                />
-                <FaqCard
-                  title="Do I need planning permission or can I use permitted development"
-                  body="That depends on the property, location, design and restrictions. We check the address, proposal and borough context and then advise the most suitable route."
-                />
-                <FaqCard
-                  title="Can you prepare Building Regulation drawings after planning"
-                  body="Yes. We often take approved planning layouts forward into technical Building Regulation packs with structural coordination and builder ready detail."
-                />
-                <FaqCard
-                  title="Do you support flat conversions and new build schemes"
-                  body="Yes. We support conversion projects, self contained flat layouts, small development schemes and new build homes where the project scope fits our service offer."
-                />
-                <FaqCard
-                  title="How quickly can you survey"
-                  body="In most cases we can arrange the initial measured survey within 48 hours of instruction, subject to access, availability and location."
-                />
-                <FaqCard
-                  title="Do you submit to the local council"
-                  body="Yes. We can handle Planning Portal submissions and support planning officer queries where required so the process remains clear and well managed."
-                />
-                <FaqCard
-                  title="What is the quickest way to get started"
-                  body="Use the quote form on this page or send your postcode, photos and project description on WhatsApp. We will reply with a clear fixed fee and the recommended next steps."
-                />
+                {FAQ_ITEMS.map(({ question, answer }) => (
+                  <FaqCard key={question} title={question} body={answer} />
+                ))}
               </div>
             </div>
           </section>
