@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { caseStudyBySlug } from "../data/caseStudies";
 import CranbournePromo from "./CranbournePromo";
 import GrangeRoadPromo from "./GrangeRoadPromo";
 import BarnetCombinedExtensionPromo from "./BarnetCombinedExtensionPromo";
@@ -10,7 +11,7 @@ const domestic = [
     status: "Mill Hill · Householder planning and lawful-development outcomes",
     title: "Loft Building Regulations details, roof structure and insulation",
     desc: "The Reddings house extension, basement and loft project has original rafter and joist drawings, Building Regulations construction details and insulation specifications. See how the technical information sits alongside the separately documented planning and lawful-development outcomes.",
-    image: "/images/case-studies/the-reddings/full-sheet-08.jpg",
+    image: "/images/case-studies/the-reddings/public-sheets/full-sheet-08.webp",
     alt: "Complete original WEDRAWPLANS Building Regulations construction detail sheet from the Reddings house extension and loft project",
     href: "/case-studies/the-reddings-mill-hill-extension-basement-loft",
     note: "Original construction detail drawing, not a Building Control approval certificate",
@@ -27,19 +28,26 @@ const domestic = [
   },
 ] as const;
 
+const woolwichSlug = "700-woolwich-road-greenwich-two-new-flats";
+const woolwichProject = caseStudyBySlug[woolwichSlug];
+
 const larger = [
   {
     id: "woolwich",
     place: "Woolwich Road · Greenwich",
+    status: "Planning permission granted",
     title: "Two new flats in an approved additional-floor scheme",
-    desc: "A documented planning approval for an additional floor with two residential flats, access and parking changes. The published example demonstrates architectural planning work; Building Regulations approval is not claimed.",
-    image: "/images/barnet-project-drawings-board.jpg",
-    alt: "WEDRAWPLANS architectural drawing presentation showing residential design expertise",
-    href: "/case-studies/700-woolwich-road-greenwich-two-new-flats",
+    desc: "This Woolwich Road planning sheet shows how the two additional flats fit into the building, comparing the previously approved fourth floor with the revised plans and sections.",
+    image: "/images/case-studies/700-woolwich-road-greenwich-two-new-flats/planning-02-approved-vs-proposed-section.webp",
+    alt: "Full WEDRAWPLANS Woolwich Road planning sheet comparing the previously approved fourth floor with the proposed plans and sections for two additional flats",
+    href: `/case-studies/${woolwichSlug}#project-drawings`,
+    councilDocuments: woolwichProject.councilApplicationUrl,
+    reference: woolwichProject.reference,
   },
   {
     id: "hyde",
     place: "The Hyde · Colindale",
+    status: "Planning-stage project",
     title: "Larger residential and mixed-use planning experience",
     desc: "A six-storey planning-approved scheme for 18 flats and commercial floorspace. A planning precedent, not evidence of Building Control approval or classification as a higher-risk building.",
     image: "/images/hyde-cgi-main.jpg",
@@ -138,10 +146,17 @@ export default function BuildingRegProofShowcase() {
                   </div>
                 </Link>
                 <div className="p-5">
-                  <p className="text-[10px] font-bold uppercase tracking-[.12em] text-[#287660]">{item.place} · Planning-stage project</p>
+                  <p className="text-[10px] font-bold uppercase tracking-[.12em] text-[#287660]">{item.place} · {item.status}</p>
                   <h3 className="mt-2 text-[20px] font-bold text-[#23454d]">{item.title}</h3>
                   <p className="mt-3 text-[13px] leading-7 text-[#536d72]">{item.desc}</p>
-                  <Link href={item.href} className="mt-4 inline-flex text-[13px] font-bold text-[#246a74] underline underline-offset-4">Explore planning project</Link>
+                  <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
+                    <Link href={item.href} className="text-[13px] font-bold text-[#246a74] underline underline-offset-4">Explore planning project</Link>
+                    {"councilDocuments" in item && item.councilDocuments ? (
+                      <a href={item.councilDocuments} target="_blank" rel="noopener noreferrer" className="text-[13px] font-bold text-[#246a74] underline underline-offset-4">
+                        Greenwich Council documents ({item.reference}) ↗
+                      </a>
+                    ) : null}
+                  </div>
                 </div>
               </article>
             ))}
