@@ -117,7 +117,7 @@ export default function WoolwichRoadCombinedShowcase() {
           </h2>
           <p className="mt-4 max-w-4xl text-[14px] leading-7 text-[#567174]">
             WEDRAWPLANS delivered a comprehensive architectural drawing and coordination service
-            for this mixed-use Greenwich development. During construction, we secured planning permission
+            for this mixed-use Greenwich development. Following the original 2016 planning approval for the five-storey mixed-use new-build, during construction we secured a further planning permission
             for two additional two-bedroom apartments at roof level, increasing the scheme from 14 to
             16 homes alongside two commercial units. Our Building Regulations drawings, structural engineering coordination and construction-stage information supported the delivery process.
           </p>
@@ -211,7 +211,7 @@ export default function WoolwichRoadCombinedShowcase() {
         <p className="text-[11px] font-bold uppercase tracking-[.16em] text-[#ad7468]">Stage 01 · Planning permission</p>
         <h2 className="mt-2 text-[23px] font-semibold leading-tight text-[#274b50] sm:text-[28px]">Two additional flats secured during construction</h2>
         <p className="mt-4 text-[13px] leading-7 text-[#577276]">
-          Royal Greenwich granted permission under application 20/0899/F for two additional two-bedroom flats
+          Royal Greenwich originally granted permission for the five-storey new-build under 14/0289/F in August 2016, with 14 flats and two commercial units. A further consent, 20/0899/F, granted permission for two additional two-bedroom flats
           at fourth-floor level. The new accommodation was coordinated with the existing mixed-use building,
           including access, parking, amenity and external appearance.
         </p>
