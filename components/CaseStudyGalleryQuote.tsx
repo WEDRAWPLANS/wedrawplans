@@ -17,6 +17,7 @@ import HendonHMOShowcase from "./HendonHMOShowcase";
 import CranbourneCombinedShowcase from "./CranbourneCombinedShowcase";
 import SuttonLoftShowcase from "./SuttonLoftShowcase";
 import LeicesterRoadExtensionShowcase from "./LeicesterRoadExtensionShowcase";
+import WoolwichRoadCombinedShowcase from "./WoolwichRoadCombinedShowcase";
 
 type Props = {
   projects: CaseStudy[];
@@ -273,6 +274,7 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
   const isCranbourneCombined = !isHub && project?.slug === "cranbourne-drive-hoddesdon-planning-project";
   const isSuttonLoft = !isHub && project?.slug === "sutton-loft-conversion-planning-permission-wallington";
   const isLeicesterCombined = !isHub && project?.slug === "leicester-road-barnet-rear-extension-planning-building-regulations-structural";
+  const isWoolwich = !isHub && project?.slug === "700-woolwich-road-greenwich-two-new-flats";
   const isHyde = !isHub && project?.slug === "the-hyde-colindale-major-residential-development";
   const isApprovedDrawingShowcase = isSistova || isCromwell;
   const quotePanelRef = useRef<HTMLDivElement>(null);
@@ -296,7 +298,7 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
           <div>
             <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-[#a36a63]">WEDRAWPLANS architectural drawings</p>
             <h2 id="project-gallery-heading" className="mt-2 text-2xl font-semibold tracking-tight text-[#284549] sm:text-3xl">
-              {isHub ? "Explore our approved planning projects" : isHyde ? "The Hyde, Colindale · original architectural design" : isReddings ? "Mill Hill home extension · before & after" : isAllum ? "Approved Elstree extension · planning drawings & 3D design" : isApprovedDrawingShowcase ? "Approved planning drawings & architectural 3D design" : isBrockley ? "Approved two-flat conversion · original architectural design" : isHarrowStudios ? "Three studio flats approved above retail · drawings and 3D walkthroughs" : isCannon ? "5 metre rear extension · original design and approved drawings" : isSunburyCare ? "Accessible garden outbuilding · original architectural design" : isGreenwichTen ? "Ten-flat existing-use case · original drawings and planning evidence" : isHendonHMO ? "Seven-bedroom HMO · approved architectural plans and planning assessment" : isCranbourneCombined ? "Extension planning & loft Building Regulations · two coordinated design stages" : isSuttonLoft ? "Approved Sutton loft conversion · original 3D design and planning drawings" : isLeicesterCombined ? "Barnet rear extension · original animation, planning and Building Regulations drawings" : "Project drawings & design"}
+              {isHub ? "Explore our approved planning projects" : isHyde ? "The Hyde, Colindale · original architectural design" : isReddings ? "Mill Hill home extension · before & after" : isAllum ? "Approved Elstree extension · planning drawings & 3D design" : isApprovedDrawingShowcase ? "Approved planning drawings & architectural 3D design" : isBrockley ? "Approved two-flat conversion · original architectural design" : isHarrowStudios ? "Three studio flats approved above retail · drawings and 3D walkthroughs" : isCannon ? "5 metre rear extension · original design and approved drawings" : isSunburyCare ? "Accessible garden outbuilding · original architectural design" : isGreenwichTen ? "Ten-flat existing-use case · original drawings and planning evidence" : isHendonHMO ? "Seven-bedroom HMO · approved architectural plans and planning assessment" : isCranbourneCombined ? "Extension planning & loft Building Regulations · two coordinated design stages" : isSuttonLoft ? "Approved Sutton loft conversion · original 3D design and planning drawings" : isWoolwich ? "Greenwich residential development · original animation, planning & Building Regulations drawings" : isLeicesterCombined ? "Barnet rear extension · original animation, planning and Building Regulations drawings" : "Project drawings & design"}
             </h2>
             <p className="mt-3 max-w-3xl text-[14px] leading-7 text-[#61777b]">
               {isHub
@@ -326,7 +328,7 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
         </div>
         <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1.3fr)_minmax(330px,.7fr)] lg:gap-7">
           <div className="min-w-0">
-            {isReddings ? <RealProjectShowcase project={project} /> : isAllum ? <AllumLaneShowcase project={project} quoteHeight={quoteHeight} /> : isApprovedDrawingShowcase ? <ApprovedDrawingShowcase project={project} kind={isSistova ? "sistova" : "cromwell"} /> : isBrockley ? <BrockleyCaseStudyShowcase project={project} /> : isHarrowStudios ? <HarrowStudioConversionShowcase project={project} /> : isCannon ? <CannonLaneShowcase project={project} /> : isSunburyCare ? <SunburyCareOutbuildingShowcase project={project} /> : isGreenwichTen ? <GreenwichTenFlatsShowcase project={project} /> : isHendonHMO ? <HendonHMOShowcase project={project} /> : isCranbourneCombined ? <CranbourneCombinedShowcase project={project} /> : isSuttonLoft ? <SuttonLoftShowcase project={project} /> : isLeicesterCombined ? <LeicesterRoadExtensionShowcase project={project} /> : isHyde ? <HydeArchitecturalShowcase /> : <ProjectMediaSlider projects={projects} mode={context} />}
+            {isReddings ? <RealProjectShowcase project={project} /> : isAllum ? <AllumLaneShowcase project={project} quoteHeight={quoteHeight} /> : isApprovedDrawingShowcase ? <ApprovedDrawingShowcase project={project} kind={isSistova ? "sistova" : "cromwell"} /> : isBrockley ? <BrockleyCaseStudyShowcase project={project} /> : isHarrowStudios ? <HarrowStudioConversionShowcase project={project} /> : isCannon ? <CannonLaneShowcase project={project} /> : isSunburyCare ? <SunburyCareOutbuildingShowcase project={project} /> : isGreenwichTen ? <GreenwichTenFlatsShowcase project={project} /> : isHendonHMO ? <HendonHMOShowcase project={project} /> : isCranbourneCombined ? <CranbourneCombinedShowcase project={project} /> : isSuttonLoft ? <SuttonLoftShowcase project={project} /> : isLeicesterCombined ? <LeicesterRoadExtensionShowcase project={project} /> : isWoolwich ? <WoolwichRoadCombinedShowcase /> : isHyde ? <HydeArchitecturalShowcase /> : <ProjectMediaSlider projects={projects} mode={context} />}
             {!isHub && project.projectVideoUrl && project.slug !== "the-reddings-mill-hill-extension-basement-loft" ? (
               <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-[15px] border border-[#dce7e4] bg-white px-5 py-4">
                 <div>
@@ -356,7 +358,7 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
           </div>
         </div>
       </div>
-      {(isReddings || isAllum || isApprovedDrawingShowcase || isBrockley || isHarrowStudios || isCannon || isSunburyCare || isGreenwichTen || isHendonHMO || isCranbourneCombined || isSuttonLoft || isLeicesterCombined) ? <a href="#case-study-quote" className="case-study-mobile-quote-bar fixed inset-x-0 bottom-0 z-40 flex min-h-[60px] items-center justify-center border-t border-[#bcd5d0] bg-[#224b4e] px-5 py-3 text-[14px] font-bold text-white shadow-[0_-10px_30px_rgba(0,0,0,.13)] lg:hidden">Get your fixed-fee drawing quote →</a> : null}
+      {(isReddings || isAllum || isApprovedDrawingShowcase || isBrockley || isHarrowStudios || isCannon || isSunburyCare || isGreenwichTen || isHendonHMO || isCranbourneCombined || isSuttonLoft || isLeicesterCombined || isWoolwich) ? <a href="#case-study-quote" className="case-study-mobile-quote-bar fixed inset-x-0 bottom-0 z-40 flex min-h-[60px] items-center justify-center border-t border-[#bcd5d0] bg-[#224b4e] px-5 py-3 text-[14px] font-bold text-white shadow-[0_-10px_30px_rgba(0,0,0,.13)] lg:hidden">Get your fixed-fee drawing quote →</a> : null}
     </section>
   );
 }
