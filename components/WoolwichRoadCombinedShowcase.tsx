@@ -82,6 +82,33 @@ export default function WoolwichRoadCombinedShowcase() {
 
   return (
     <div className="w-full min-w-0 max-w-full space-y-7 select-none" onContextMenu={e => e.preventDefault()} onDragStart={e => e.preventDefault()}>
+      <section aria-label="Original project animation" className="overflow-hidden rounded-[20px] border border-[#d5e4dd] bg-white shadow-sm">
+        <div className="px-5 pb-4 pt-5 sm:px-7">
+          <p className="text-[11px] font-bold uppercase tracking-[.15em] text-[#2a7568]">WEDRAWPLANS · Planning approved 2020</p>
+          <h2 className="mt-2 text-[21px] font-semibold leading-tight text-[#24474a] sm:text-[27px]">700–702 Woolwich Road: architectural animation</h2>
+          <p className="mt-3 text-[13px] leading-7 text-[#5a7477]">Explore the original proposed rooftop extension with two additional fourth-floor flats. The animation is a planning design visualisation, shown alongside the genuine Building Regulations drawings and construction evidence below.</p>
+        </div>
+        <div className="aspect-video w-full bg-slate-950">
+          <iframe
+            src="https://player.vimeo.com/video/396459625?title=0&byline=0&portrait=0"
+            title="WEDRAWPLANS two extra fourth-floor flats architectural animation, Woolwich Road"
+            loading="lazy"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen
+            className="h-full w-full border-0"
+          />
+        </div>
+      </section>
+      <figure className="overflow-hidden rounded-[20px] border border-[#d5e4dd] bg-white">
+        <img
+          src={base + "completed-woolwich-road.webp"}
+          alt="Completed 700–702 Woolwich Road Greenwich development with brick façades, residential balconies and roof-level accommodation"
+          loading="lazy"
+          className="h-auto w-full object-contain"
+          onError={e => { e.currentTarget.onerror = null; e.currentTarget.src = base + "construction-01-street-elevation.webp"; }}
+        />
+        <figcaption className="px-5 py-3 text-[12px] leading-6 text-[#536f75]">WEDRAWPLANS project photography · 700–702 Woolwich Road, Greenwich. The full finished-building photograph is being added to the media collection.</figcaption>
+      </figure>
       <section className="overflow-hidden rounded-[22px] border border-[#d5e4dd] bg-white shadow-[0_18px_42px_rgba(25,70,72,.065)]">
         <div className="bg-[#edf7f1] px-5 py-6 sm:px-8 sm:py-8">
           <p className="text-[11px] font-bold uppercase tracking-[.16em] text-[#27745d]">Greenwich, London · Planning permission secured</p>
