@@ -1,3 +1,5 @@
+import { commercialServices } from "./commercialPages";
+
 const siteUrl = "https://www.wedrawplans.co.uk";
 const googleMapsUrl = "https://maps.google.com/maps?cid=1112633828621225968";
 const companiesHouseUrl = "https://find-and-update.company-information.service.gov.uk/company/12251348";
@@ -64,7 +66,7 @@ export const businessSchema = {
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Architectural Drawing & Planning Services",
-    itemListElement: coreServices.map(({ name, path }) => ({
+    itemListElement: [...coreServices, ...commercialServices].map(({ name, path }) => ({
       "@type": "Offer",
       itemOffered: {
         "@type": "Service",

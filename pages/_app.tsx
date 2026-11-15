@@ -1,3 +1,4 @@
+import { commercialOverview, commercialServices } from "../data/commercialPages";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import Link from "next/link";
@@ -9,12 +10,14 @@ import { BOROUGH_QUOTE_ANCHOR, hasLondonBoroughQuote, LONDON_AREAS } from "../da
 
 const siteUrl = "https://www.wedrawplans.co.uk";
 
-const servicePageNames = new Map([
+const servicePageNames = new Map<string, string>([
   ["/extension-plans", "House Extension Plans"],
   ["/loft-conversion-plans", "Loft Conversion Plans"],
   ["/new-build-plans", "New Build Plans"],
   ["/building-regulation-drawings", "Building Regulation Drawings"],
   ["/get-drawings-quote", "Get a Quote for Architectural Drawings"],
+  [commercialOverview.path, commercialOverview.name],
+  ...commercialServices.map(({ name, path }) => [path, name] as const),
 ]);
 
 function getBreadcrumbSchema(pathname: string) {
@@ -27,6 +30,8 @@ function getBreadcrumbSchema(pathname: string) {
   const trail = [{ name: "Home", item: `${siteUrl}/` }];
   if (borough) {
     trail.push({ name: "Areas We Cover", item: `${siteUrl}/areas` });
+  } else if (pathname.startsWith(`${commercialOverview.path}/`)) {
+    trail.push({ name: commercialOverview.name, item: `${siteUrl}${commercialOverview.path}` });
   }
   trail.push({ name: pageName, item: `${siteUrl}${pathname}` });
 

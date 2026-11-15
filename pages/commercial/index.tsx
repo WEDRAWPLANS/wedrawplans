@@ -1,6 +1,17 @@
+import { businessReference } from "../../data/businessSchema";
 import React from "react";
 import Head from "next/head";
 import Link from "next/link";
+
+const SHOPFRONTS_URL = "https://www.wedrawplans.co.uk/commercial/shopfronts";
+
+const shopfrontServiceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Commercial Shopfront Drawings",
+  url: SHOPFRONTS_URL,
+  provider: businessReference,
+};
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
@@ -20,7 +31,11 @@ export default function ShopfrontsAndSignagePage() {
         />
         <link
           rel="canonical"
-          href="https://www.wedrawplans.co.uk/commercial/shopfronts"
+          href={SHOPFRONTS_URL}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(shopfrontServiceSchema) }}
         />
       </Head>
 
