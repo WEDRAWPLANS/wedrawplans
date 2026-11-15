@@ -3,6 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import AllumLaneSiteFeature from "../components/AllumLaneSiteFeature";
 import HydeDeveloperShowcase from "../components/HydeDeveloperShowcase";
+import WoolwichDeveloperShowcase from "../components/WoolwichDeveloperShowcase";
 import { submitBoroughLead } from "../lib/submitBoroughLead";
 
 import ApprovalEvidenceStrip from "../components/ApprovalEvidenceStrip";
@@ -928,6 +929,7 @@ export default function NewBuildPlansPage() {
           </section>
 
           <HydeDeveloperShowcase />
+          <WoolwichDeveloperShowcase />
 
 
           <section className="bg-white" aria-labelledby="developer-planning-support">
@@ -939,7 +941,7 @@ export default function NewBuildPlansPage() {
                   Every development site has its own constraints and commercial goals. Whether you own a vacant plot,
                   former commercial premises, a backland parcel or a larger residential redevelopment site,
                   WEDRAWPLANS can prepare architectural new-build drawings and help structure the planning application.
-                  The Hyde is one example of our experience presenting residential-led development proposals in a
+                  The Hyde and Woolwich Road showcase different approaches to residential-led development in a
                   challenging urban location.
                 </p>
                 <p className="mt-3 text-[15px] leading-7 text-slate-700">
