@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import type { GetStaticProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -109,7 +110,9 @@ function ProjectCard({ item }: { item: CaseStudy }) {
   );
 }
 
-export default function CaseStudiesHub() {
+type PageProps = { indexable: boolean };
+
+export default function CaseStudiesHub({ indexable }: PageProps) {
   const featured = caseStudies.find((item) => item.slug === "sistova-road-wandsworth-extension-basement") || caseStudies.find((item) => item.featured) || caseStudies[0];
   const [query, setQuery] = useState("");
   const [type, setType] = useState("All project types");
@@ -153,7 +156,7 @@ export default function CaseStudiesHub() {
       <Head>
         <title>Planning Approvals & Project Case Studies | WEDRAWPLANS London</title>
         <meta name="description" content="Explore WEDRAWPLANS planning permissions, extensions, loft conversions and architectural drawing projects across London and Hertfordshire. Find a similar project and request a fixed-fee quotation." />
-        <meta name="robots" content={process.env.VERCEL_ENV === "production" ? "index,follow,max-image-preview:large" : "noindex,nofollow"} />
+        <meta name="robots" content={indexable ? "index,follow,max-image-preview:large" : "noindex,nofollow"} />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/case-studies" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(listingSchema) }} />
       </Head>
@@ -286,3 +289,7 @@ export default function CaseStudiesHub() {
     </>
   );
 }
+
+export const getStaticProps: GetStaticProps<PageProps> = async () => ({
+  props: { indexable: process.env.VERCEL_ENV === "production" },
+});

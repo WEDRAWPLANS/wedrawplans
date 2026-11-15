@@ -15,7 +15,9 @@ function Detail({ label, value }: { label: string; value: string }) {
   );
 }
 
-export default function CaseStudyPage({ item }: { item: CaseStudy }) {
+type PageProps = { item: CaseStudy; indexable: boolean };
+
+export default function CaseStudyPage({ item, indexable }: PageProps) {
   const isReddings = item.slug === "the-reddings-mill-hill-extension-basement-loft";
   const isAllum = item.slug === "allum-lane-elstree-major-house-extension";
   const isSistova = item.slug === "sistova-road-wandsworth-extension-basement";
@@ -100,7 +102,7 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
       <Head>
         <title>{item.title} | WEDRAWPLANS</title>
         <meta name="description" content={item.seoDescription || (item.summary + " See the project details and request a fixed-fee drawing quote from WEDRAWPLANS.")} />
-        <meta name="robots" content={process.env.VERCEL_ENV === "production" ? "index,follow,max-image-preview:large" : "noindex,nofollow"} />
+        <meta name="robots" content={indexable ? "index,follow,max-image-preview:large" : "noindex,nofollow"} />
         <link rel="canonical" href={canonical} />
         <meta property="og:type" content="article" />
         <meta property="og:title" content={item.title + " | WEDRAWPLANS"} />
@@ -382,9 +384,9 @@ export const getStaticPaths: GetStaticPaths = async () => ({
   fallback: false,
 });
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps<PageProps> = async ({ params }) => {
   const slug = String(params?.slug || "");
   const item = caseStudyBySlug[slug];
   if (!item) return { notFound: true };
-  return { props: { item } };
+  return { props: { item, indexable: process.env.VERCEL_ENV === "production" } };
 };

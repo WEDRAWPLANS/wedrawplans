@@ -3,13 +3,13 @@ import React from "react";
 import Head from "next/head";
 import Link from "next/link";
 
-const SHOPFRONTS_URL = "https://www.wedrawplans.co.uk/commercial/shopfronts";
+const PAGE_URL = "https://www.wedrawplans.co.uk/commercial";
 
 const shopfrontServiceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   name: "Commercial Shopfront Drawings",
-  url: SHOPFRONTS_URL,
+  url: PAGE_URL,
   provider: businessReference,
 };
 
@@ -31,7 +31,7 @@ export default function ShopfrontsAndSignagePage() {
         />
         <link
           rel="canonical"
-          href={SHOPFRONTS_URL}
+          href={PAGE_URL}
         />
         <script
           type="application/ld+json"

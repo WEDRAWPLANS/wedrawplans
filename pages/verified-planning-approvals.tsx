@@ -1,3 +1,4 @@
+import type { GetStaticProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -82,7 +83,9 @@ function EvidenceProject({ project }: { project: CaseStudy }) {
   );
 }
 
-export default function VerifiedPlanningApprovals() {
+type PageProps = { indexable: boolean };
+
+export default function VerifiedPlanningApprovals({ indexable }: PageProps) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
@@ -104,7 +107,7 @@ export default function VerifiedPlanningApprovals() {
       <Head>
         <title>Selected Planning Projects & Official Council Records | WEDRAWPLANS</title>
         <meta name="description" content="Explore selected WEDRAWPLANS extension, loft and planning projects with original drawings and official council records for independent verification." />
-        <meta name="robots" content={process.env.VERCEL_ENV === "production" ? "index,follow,max-image-preview:large" : "noindex,nofollow"} />
+        <meta name="robots" content={indexable ? "index,follow,max-image-preview:large" : "noindex,nofollow"} />
         <link rel="canonical" href={SITE + PAGE} />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Selected Planning Projects | Official Council Evidence | WEDRAWPLANS" />
@@ -224,3 +227,7 @@ export default function VerifiedPlanningApprovals() {
     </>
   );
 }
+
+export const getStaticProps: GetStaticProps<PageProps> = async () => ({
+  props: { indexable: process.env.VERCEL_ENV === "production" },
+});
