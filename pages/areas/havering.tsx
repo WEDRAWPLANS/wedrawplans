@@ -457,7 +457,7 @@ export default function HaveringAreaPage() {
                 <p className="text-[13px] text-slate-700">
                   Havering homeowners often want more than drawings. They want clarity on what changes are achievable,
                   how the proposal will look, and whether it can move smoothly through planning and into construction.
-                  These visual sections help explain that journey and strengthen trust before an enquiry is sent.
+                  Our clear 3D visuals and detailed plans help you visualise the finished space and give builders everything needed for accurate pricing.
                 </p>
 
                 <div className="grid gap-6 md:grid-cols-2">

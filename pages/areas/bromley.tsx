@@ -277,19 +277,19 @@ export default function BromleyAreaPage() {
                   </p>
 
                   <p className="text-[13px] leading-7 text-slate-700">
-                    Alongside householder work, some clients also need commercial drawing services for
+                    Alongside householder work, some clients also need commercial drawing services for{" "}
                     <Link href="/commercial/restaurants" className="ml-1 font-semibold underline">
                       restaurant drawings
                     </Link>
-                    ,
+                    ,{" "}
                     <Link href="/commercial/shopfronts" className="ml-1 font-semibold underline">
                       shopfront drawings
                     </Link>
-                    , or
+                    , or{" "}
                     <Link href="/commercial/office-fitout" className="ml-1 font-semibold underline">
                       office fit out drawings
                     </Link>
-                    . Keeping these links visible helps both search visibility and real client journeys.
+                    . We provide the same fast 48-hour measured survey and fixed-fee clarity for local commercial premises and mixed-use buildings.
                   </p>
 
                   <div className="flex flex-wrap items-center gap-3">
@@ -472,7 +472,7 @@ export default function BromleyAreaPage() {
                 <p className="text-[13px] text-slate-700">
                   Bromley homeowners often want more than drawings. They want clarity on what changes are achievable,
                   how the proposal will look, and whether it can move smoothly through planning and into construction.
-                  These visual sections help explain that journey and strengthen trust before an enquiry is sent.
+                  Our clear 3D visuals and detailed plans help you visualise the finished space and give builders everything needed for accurate pricing.
                 </p>
 
                 <div className="grid gap-6 md:grid-cols-2">
@@ -707,8 +707,7 @@ export default function BromleyAreaPage() {
                 <p className="text-[13px] leading-7 text-slate-700">
                   Bromley enquiries do not always stop at standard householder work. Some clients also need drawings
                   for shopfronts, restaurant layouts, office fit outs, mixed use property updates, or planning support
-                  for investment property changes. Strong internal linking here helps both users and search visibility,
-                  while also helping WEDRAWPLANS surface for more than one type of enquiry.
+                  for investment property changes. We can explain which drawings you need for planning or Building Control and agree the scope before work starts.
                 </p>
 
                 <div className="grid gap-4 md:grid-cols-2">
