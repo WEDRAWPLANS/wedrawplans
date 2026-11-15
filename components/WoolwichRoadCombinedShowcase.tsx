@@ -98,19 +98,19 @@ export default function WoolwichRoadCombinedShowcase() {
         <div className="bg-[#edf7f1] px-5 py-6 sm:px-8 sm:py-8">
           <p className="text-[11px] font-bold uppercase tracking-[.16em] text-[#27745d]">Greenwich, London · Planning permission secured</p>
           <h2 className="mt-3 max-w-3xl text-[26px] font-semibold leading-tight text-[#23474b] sm:text-[33px]">
-            Woolwich Road: from planning approval to completed construction
+            Woolwich Road — Planning, Building Reg, Structure & Project Management
           </h2>
           <p className="mt-4 max-w-4xl text-[14px] leading-7 text-[#567174]">
             WEDRAWPLANS delivered a comprehensive architectural drawing and coordination service
             for this mixed-use Greenwich development. Following the original 2016 planning approval for the five-storey mixed-use new-build, during construction we secured a further planning permission
             for two additional two-bedroom apartments at roof level, increasing the scheme from 14 to
-            16 homes alongside two commercial units. Our Building Regulations drawings, structural engineering coordination and construction-stage information supported the delivery process.
+            16 homes alongside two commercial units. WEDRAWPLANS provided the complete Building Regulations drawing package for both additional flats, coordinated the structural engineering and managed the project throughout design development and construction.
           </p>
           <div className="mt-6 grid gap-3 sm:grid-cols-3">
             {[
               ["Two more homes", "Additional upper-floor planning approval"],
-              ["Complete design service", "Planning and Building Regulations drawings"],
-              ["Construction support", "Structural coordination and site delivery"],
+              ["Complete technical package", "Building Regulations for both additional flats"],
+              ["Project management", "Structural coordination and construction delivery"],
             ].map(([value, label]) => (
               <div key={label} className="rounded-xl border border-[#d3e3d8] bg-white/80 px-4 py-4">
                 <p className="text-[17px] font-bold text-[#245f5b]">{value}</p>
@@ -207,35 +207,31 @@ export default function WoolwichRoadCombinedShowcase() {
         <p className="text-[11px] font-bold uppercase tracking-[.16em] text-[#ad7468]">Stage 02 · Technical design</p>
         <h2 className="mt-2 text-[23px] font-semibold leading-tight text-[#274b50] sm:text-[28px]">Building Regulations and structural coordination</h2>
         <p className="mt-4 text-[13px] leading-7 text-[#577276]">
-          The BR01-led technical drawing collection illustrates building fabric, fire protection,
+          The comprehensive Building Regulations drawing package for both additional flats, led by BR01, illustrates building fabric, fire protection,
           services and ventilation, construction details, roof design and integration with the
           new structural frame. WEDRAWPLANS coordinated detailed drawing information, structural
-          engineering interfaces and planning-condition submissions.
+          engineering interfaces, planning-condition submissions and project-management requirements.
         </p>
       </section>
 
       <section className="rounded-[20px] border border-[#dce7df] bg-white p-5 sm:p-8">
         <p className="text-[11px] font-bold uppercase tracking-[.16em] text-[#ad7468]">Stage 03 · Structural construction</p>
-        <h2 className="mt-2 text-[23px] font-semibold leading-tight text-[#274b50] sm:text-[28px]">From roof-level steelwork to completion</h2>
+        <h2 className="mt-2 text-[23px] font-semibold leading-tight text-[#274b50] sm:text-[28px]">Structural works and management through completion</h2>
         <p className="mt-4 text-[13px] leading-7 text-[#577276]">
           Original site photography records construction of the rooftop steel-frame superstructure,
           including beams, columns and connections, alongside the existing residential building.
-          The finished building is documented in project photography. The Building Regulations drawings shown here are a separate technical stage from the council planning decision.
+          WEDRAWPLANS managed the coordination of the two additional flats through the design and construction stages, with the completed development presented in the project photographs.
         </p>
       </section>
 
       <section className="rounded-[18px] border border-[#c9e0d3] bg-[#edf7f1] p-5 sm:p-7">
-        <p className="text-[11px] font-bold uppercase tracking-[.15em] text-[#28765e]">Planning & Building Regulation drawing packages</p>
-        <h2 className="mt-2 text-[23px] font-semibold leading-tight text-[#274e4e]">Expert planning and Building Regulations drawing services</h2>
+        <p className="text-[11px] font-bold uppercase tracking-[.15em] text-[#28765e]">FOR DEVELOPERS AND LANDOWNERS</p>
+        <h2 className="mt-2 text-[23px] font-semibold leading-tight text-[#274e4e]">A joined-up service for residential development</h2>
         <p className="mt-3 text-[13px] leading-7 text-[#597374]">
-          WEDRAWPLANS delivers clearly scoped fixed-fee architectural drawing packages for house extensions,
-          loft conversions, residential conversions, new homes and larger developments. We provide
-          planning and Building Regulations drawings, coordinate structural engineering requirements
-          and support applications to the relevant authorities. Contact us for a quotation tailored to
-          your property and the services required.
+          Developing a residential site, adding flats above an existing building or seeking to maximise your property's potential? WEDRAWPLANS combines planning submissions, complete Building Regulations drawings, structural engineering coordination and project management into a clearly scoped service for landowners and developers. We can assess planning constraints, coordinate technical disciplines and support the delivery of ambitious residential projects.
         </p>
         <div className="mt-5 flex flex-wrap gap-3">
-          <a href="#case-study-quote" className="inline-flex rounded-full bg-[#276f75] px-5 py-3 text-[12px] font-bold text-white hover:bg-[#1d575b]">Get your fixed-fee quote</a>
+          <a href="#case-study-quote" className="inline-flex rounded-full bg-[#276f75] px-5 py-3 text-[12px] font-bold text-white hover:bg-[#1d575b]">Discuss your development project</a>
           <Link href="/building-regulation-drawings" className="inline-flex rounded-full border border-[#b2d2c3] bg-white px-5 py-3 text-[12px] font-semibold text-[#286b70]">Building Regulations services</Link>
           <Link href="/areas/greenwich" className="inline-flex rounded-full border border-[#b2d2c3] bg-white px-5 py-3 text-[12px] font-semibold text-[#286b70]">Greenwich services</Link>
         </div>
