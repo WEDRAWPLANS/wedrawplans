@@ -1,3 +1,4 @@
+import WoolwichAnimationCard from "./WoolwichAnimationCard";
 import Link from "next/link";
 import ProjectQuickQuotePanel from "./ProjectQuickQuotePanel";
 
@@ -6,7 +7,7 @@ const caseStudy = "/case-studies/700-woolwich-road-greenwich-two-new-flats";
 const councilDocuments = "https://planning.royalgreenwich.gov.uk/online-applications/applicationDetails.do?activeTab=documents&keyVal=_GRNW_DCAPR_102414";
 
 const canvases = [
-  { path: "completed-woolwich-road.webp", fallback: "construction-01-street-elevation.webp", title: "Woolwich Road · completed development", label: "Finished building", description: "Current street elevation of the completed residential development." },
+  { path: "construction-01-street-elevation.webp", fallback: "construction-01-street-elevation.webp", title: "Woolwich Road · construction-stage photograph", label: "Construction stage", description: "Original photograph documenting the Woolwich Road development." },
   { path: "approved-front-elevation-p09.webp", fallback: "planning-09-elevation.webp", title: "WEDRAWPLANS planning elevation", label: "Approved planning", description: "Original submitted elevation drawings; Greenwich 20/0899/F." },
   { path: "building-regulations-br01.webp", fallback: "br-01-fourth-floor-services.webp", title: "WEDRAWPLANS Building Regulations drawing BR01", label: "Building Regulations", description: "Proposed fourth-floor layout and services coordination." },
   { path: "construction-02-roof-steel-frame.webp", fallback: "construction-02-roof-steel-frame.webp", title: "Rooftop steelwork construction", label: "Structural coordination", description: "Steel beams, columns and construction-stage coordination." },
@@ -21,14 +22,14 @@ export default function WoolwichDeveloperShowcase() {
           <p className="inline-flex rounded-full border border-emerald-200 bg-white px-4 py-2 text-[11px] font-bold uppercase tracking-[.17em] text-[#1f745f]">WEDRAWPLANS — PLANNING APPROVAL GRANTED</p>
           <h2 id="woolwich-developer-heading" className="mt-4 text-3xl font-extrabold tracking-tight text-[#192d3c] sm:text-4xl">Woolwich Road, Greenwich — residential development delivered</h2>
           <p className="mt-3 text-[12px] font-bold uppercase tracking-[.14em] text-[#526777]">Planning + Building Regulations + Structural Coordination + Project Management</p>
-          <p className="mx-auto mt-5 max-w-4xl text-[15px] leading-8 text-[#4e6870]">The 700–702 Woolwich Road development demonstrates two stages of successful residential planning. Royal Greenwich first approved a five-storey new-build scheme of 14 flats and two commercial units in 2016 (14/0289/F). In July 2020, permission followed for a further upper floor with two additional two-bedroom flats (20/0899/F), alongside related access and parking changes. WEDRAWPLANS developed the architectural planning and Building Regulations drawing information and supported coordination of the structural and construction stages.</p>
+          <p className="mx-auto mt-5 max-w-4xl text-[15px] leading-8 text-[#4e6870]">The Woolwich Road development demonstrates two stages of successful residential planning. Royal Greenwich first approved a five-storey new-build scheme of 14 flats and two commercial units in 2016 (14/0289/F). In July 2020, permission followed for a further upper floor with two additional two-bedroom flats (20/0899/F), alongside related access and parking changes. WEDRAWPLANS developed the architectural planning and Building Regulations drawing information and supported coordination of the structural and construction stages.</p>
           <p className="mt-3 text-[13px] font-semibold text-[#236f65]">Royal Borough of Greenwich · Original new-build approval 2016 (14/0289/F) · Additional-floor approval 2020 (20/0899/F)</p>
         </div>
         <div className="mt-9 overflow-hidden rounded-[23px] border border-[#d6e6df] bg-white shadow-[0_18px_55px_rgba(33,62,58,.10)]">
           <div className="relative aspect-[16/8] min-h-[250px] w-full overflow-hidden bg-slate-200">
             <img
-              src={mediaBase + "completed-woolwich-road.webp"}
-              alt="Woolwich Road Greenwich residential development street elevation showing brickwork, balconies and the roof-level accommodation"
+              src={mediaBase + "construction-01-street-elevation.webp"}
+              alt="Woolwich Road Greenwich residential development photographed during construction"
               loading="lazy"
               className="h-full w-full object-cover"
               onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = mediaBase + "construction-01-street-elevation.webp"; }}
@@ -36,31 +37,12 @@ export default function WoolwichDeveloperShowcase() {
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#061d27]/70 via-transparent to-transparent" />
             <div className="absolute bottom-0 left-0 p-5 text-white sm:p-8">
               <p className="text-[11px] font-bold uppercase tracking-[.18em]">WEDRAWPLANS · Greenwich residential development</p>
-              <p className="mt-2 max-w-3xl text-xl font-semibold leading-tight sm:text-3xl">From an approved additional floor to a completed mixed-use development</p>
+              <p className="mt-2 max-w-3xl text-xl font-semibold leading-tight sm:text-3xl">Planning approval followed by construction progress at Woolwich Road</p>
             </div>
           </div>
         </div>
         <div className="mt-8 grid items-start gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(330px,.65fr)]">
-          <div className="overflow-hidden rounded-[20px] border border-[#dce8e1] bg-white shadow-sm">
-            <div className="p-4 sm:p-5">
-              <p className="text-[11px] font-bold uppercase tracking-[.17em] text-[#297260]">Architectural animation · Two additional fourth-floor flats</p>
-              <h3 className="mt-2 text-xl font-bold text-[#25454b]">See the rooftop development design in motion</h3>
-            </div>
-            <div className="aspect-video w-full bg-slate-950">
-              <iframe
-                src="https://player.vimeo.com/video/396459625?title=0&byline=0&portrait=0"
-                title="WEDRAWPLANS Joynes House 700–702 Woolwich Road animation of two additional fourth-floor flats"
-                loading="lazy"
-                allow="autoplay; fullscreen; picture-in-picture"
-                allowFullScreen
-                className="h-full w-full border-0"
-              />
-            </div>
-            <div className="flex flex-wrap justify-between gap-3 p-4 text-[12px] leading-6 text-[#516a70] sm:p-5">
-              <span>Original WEDRAWPLANS architectural animation · conceptual proposal, not as-built footage</span>
-              <a href="https://vimeo.com/396459625" target="_blank" rel="noopener noreferrer" className="font-bold text-[#1f7071] underline underline-offset-4">Open video on Vimeo</a>
-            </div>
-          </div>
+          <WoolwichAnimationCard compact />
           <div className="min-w-0">
             <ProjectQuickQuotePanel source="new-build-developer-showcase" projectSlug="700-woolwich-road-greenwich-two-new-flats" projectTitle="Woolwich Road, Greenwich" suggestedService="New build drawings"/>
           </div>
