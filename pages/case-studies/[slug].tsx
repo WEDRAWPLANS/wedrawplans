@@ -1,14 +1,10 @@
 import Head from "next/head";
-import Image from "next/image";
 import Link from "next/link";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { caseStudies, caseStudyBySlug, categoryForCaseStudy, CaseStudy } from "../../data/caseStudies";
 import { CaseStudyHeader, CaseStudyBottom, CaseStudyFooter } from "../../components/CaseStudyChrome";
 import CaseStudyGalleryQuote from "../../components/CaseStudyGalleryQuote";
-import GrangeRoadCombinedShowcase from "../../components/GrangeRoadCombinedShowcase";
 import { BARNET_COUNCIL_DOCUMENTS } from "../../data/councilPlanningEvidence";
-
-const QUOTE = "/get-drawings-quote";
 
 function Detail({ label, value }: { label: string; value: string }) {
   return (
@@ -37,12 +33,8 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
   const isGrangeCombined = item.slug === "grange-road-edgware-side-extension-lawful-development-building-regulations";
   const isWoolwich = item.slug === "700-woolwich-road-greenwich-two-new-flats";
   const isFeaturedLayout = isReddings || isAllum || isSistova || isCromwell || isBrockley || isHarrowStudios || isCannon || isSunburyCare || isGreenwichTen || isHendonHMO || isCranbourneCombined || isSuttonLoft || isLeicesterCombined || isGrangeCombined || isHyde || isWoolwich;
-  const useOriginalDrawingGallery = item.slug === "sistova-road-wandsworth-extension-basement" || item.slug === "cromwell-road-hounslow-rear-extension" || isFeaturedLayout || isHyde;
-  const isProduction = process.env.VERCEL_ENV === "production";
-  const hasApprovedVisual = [item.heroImage, item.secondaryImage].some(src => Boolean(src) && (src.startsWith("/images/case-studies/") || src.startsWith("/images/hyde-")));
-  const showGallery = hasApprovedVisual || Boolean(item.projectVideoUrl);
-    const canonical = "https://www.wedrawplans.co.uk/case-studies/" + item.slug;
-  const quoteHref = "/get-drawings-quote?source=case-study&project=" + encodeURIComponent(item.slug);
+  const canonical = "https://www.wedrawplans.co.uk/case-studies/" + item.slug;
+  const quoteHref = "#case-study-quote";
   const category = categoryForCaseStudy(item);
   // Only link to individually verified council records, never a guessed keyVal.
   // Some WEDRAWPLANS projects have multiple planning decisions: keep each
@@ -124,7 +116,7 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
 
         <div className={isHyde ? "border-b border-[#cfe3d8] bg-[#edf6f1]" : "border-b border-[#edcfca] bg-[#fbeae6]"}>
           <div className={isHyde ? "mx-auto max-w-7xl px-5 py-2.5 text-center text-[11px] font-bold uppercase tracking-[0.15em] text-[#216b56] sm:px-8" : "mx-auto max-w-7xl px-5 py-2.5 text-center text-[11px] font-semibold uppercase tracking-[0.15em] text-[#98584f] sm:px-8"}>
-            {isHyde ? "WEDRAWPLANS · PLANNING APPROVAL GRANTED" : "Selected WEDRAWPLANS planning projects"}
+            {item.outcome} · {item.authority} · {item.reference}
           </div>
         </div>
         <div className="border-b border-[#e5eae7] bg-white">
@@ -144,12 +136,9 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
             <div>
               <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-[#257b83]">{category} · {item.year}</p>
               <h1 className={isFeaturedLayout ? "mt-2 max-w-5xl text-3xl font-semibold leading-[1.17] tracking-tight text-[#223b3e] sm:text-4xl" : "mt-4 max-w-3xl text-3xl font-semibold leading-[1.17] tracking-tight text-[#223b3e] sm:text-4xl lg:text-[46px]"}>{item.title}</h1>
-              <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-[#efcbc4] bg-[#fff0ed] px-3.5 py-1.5 text-[12px] font-semibold text-[#97594f]">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#c78175]" aria-hidden="true" />{item.outcome}
-              </div>
               <p className={isFeaturedLayout ? "mt-4 max-w-4xl text-[15px] leading-7 text-[#52666b]" : "mt-6 max-w-3xl text-[16px] leading-8 text-[#52666b]"}>{item.summary}</p>
               <div className={isFeaturedLayout ? "mt-5 flex flex-wrap items-center gap-3" : "mt-7 flex flex-wrap items-center gap-3"}>
-                <Link href={isFeaturedLayout ? "#case-study-quote" : quoteHref} className="rounded-full bg-[#51aab8] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#318e9c]">
+                <Link href={quoteHref} className="rounded-full bg-[#51aab8] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#318e9c]">
                   Get your fixed-fee quote
                 </Link>
                 <Link href={item.relatedService} className="rounded-full border border-[#cbdad7] bg-white px-6 py-3.5 text-sm font-semibold text-[#2f646a] hover:bg-[#f0f7f6]">
@@ -224,43 +213,7 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
           </div>
         </section>
 
-        {isGrangeCombined ? <GrangeRoadCombinedShowcase project={item} /> : useOriginalDrawingGallery ? <CaseStudyGalleryQuote projects={[item]} context="project" /> : null}
-        {showGallery && !useOriginalDrawingGallery ? (
-        <section id="project-drawings" className="border-y border-[#e2e9e5] bg-[#f5f8f6]" aria-labelledby="drawing-heading">
-          <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-14">
-            <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
-              <div>
-                <p className="text-[12px] font-semibold uppercase tracking-[0.15em] text-[#347c81]">WEDRAWPLANS architectural drawings</p>
-                <h2 id="drawing-heading" className="mt-2 text-2xl font-semibold sm:text-3xl">Project drawings &amp; design</h2>
-              </div>
-              <span className="text-[12px] text-[#587274]">{item.shortTitle}</span>
-            </div>
-            {!isHarrowStudios && item.heroImage && (item.heroImage.startsWith("/images/case-studies/") || item.heroImage.startsWith("/images/hyde-")) ? (
-              <figure className="overflow-hidden rounded-[18px] border border-[#dee5e1] bg-white p-3 shadow-[0_8px_34px_rgba(32,70,73,0.035)] sm:p-5">
-                <Image src={item.heroImage} alt={"WEDRAWPLANS project drawing or architectural visualisation — " + item.shortTitle} width={1500} height={1000} priority sizes="(max-width: 768px) 100vw, 85vw" className="mx-auto h-auto max-h-[780px] w-full object-contain"/>
-                <figcaption className="mt-3 border-t border-[#edf0ee] px-1 pt-3 text-[12px] leading-5 text-[#617579]">
-                  Architectural drawings by WEDRAWPLANS, prepared to explain the proposal, its relationship to the existing building and the details considered during the planning process.
-                </figcaption>
-              </figure>
-            ) : null}
-            {!isHarrowStudios && item.secondaryImage && (item.secondaryImage.startsWith("/images/case-studies/") || item.secondaryImage.startsWith("/images/hyde-")) && item.secondaryImage !== item.heroImage ? (
-              <figure className="mt-5 overflow-hidden rounded-[18px] border border-[#dee5e1] bg-white p-5">
-                <Image src={item.secondaryImage} alt={"Additional architectural illustration for " + item.shortTitle} width={1450} height={900} className="h-auto w-full object-contain"/>
-              </figure>
-            ) : null}
-            {item.projectVideoUrl ? (
-              <div className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-[16px] border border-[#d7e7e1] bg-white px-5 py-4">
-                <div>
-                  <p className="text-[14px] font-semibold text-[#264d51]">WEDRAWPLANS project video</p>
-                  <p className="mt-1 text-[12px] leading-6 text-[#60797b]">Explore the architectural design and understand how WEDRAWPLANS developed the proposal.</p>
-                </div>
-                <a href={item.projectVideoUrl} target="_blank" rel="noopener noreferrer" className="inline-flex rounded-full border border-[#b7d6d0] px-5 py-2.5 text-[13px] font-semibold text-[#26737c] hover:bg-[#eaf6f2]">View project video ↗</a>
-              </div>
-            ) : null}
-            {item.mediaNote && !isProduction ? <p className="mt-4 text-[12px] leading-6 text-[#657a7c]">{item.mediaNote}</p> : null}
-          </div>
-        </section>
-        ) : null}
+        <CaseStudyGalleryQuote projects={[item]} context="project" councilDocumentsHref={primaryCouncilDocumentUrl} />
 
         {item.slug === "sunbury-avenue-mill-hill-side-rear-extension" ? (
           <section aria-labelledby="sunbury-planning-experience" className="border-y border-[#dce8e1] bg-[#f1f7f3]">
@@ -417,7 +370,7 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
             </div>
           </section>
         ) : null}
-        <CaseStudyBottom projectType={category === "Extensions" ? "house extension" : category === "Loft conversions" ? "loft conversion" : "residential or commercial project"} />
+        <CaseStudyBottom quoteHref={quoteHref} projectType={category === "Extensions" ? "house extension" : category === "Loft conversions" ? "loft conversion" : "residential or commercial project"} />
         <CaseStudyFooter />
       </main>
     </>

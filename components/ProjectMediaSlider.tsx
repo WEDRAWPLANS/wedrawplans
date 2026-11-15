@@ -6,7 +6,7 @@ import type { CaseStudy } from "../data/caseStudies";
 type Slide = { project: CaseStudy; src: string; alt: string; caption: string };
 type Props = { projects: CaseStudy[]; mode: "project" | "hub" };
 
-function projectMedia(project: CaseStudy) {
+export function projectMedia(project: CaseStudy) {
   const allowed = (src: string) => Boolean(src) &&
     (src.startsWith("/images/case-studies/") || src.startsWith("/images/hyde-"));
   const extra = (project.galleryImages || []).filter((image) => allowed(image.src))
@@ -100,14 +100,33 @@ export default function ProjectMediaSlider({ projects, mode }: Props) {
       <div className="flex flex-wrap items-center justify-between gap-3 border-t border-[#e5eeeb] bg-white px-5 py-4">
         <div className="min-w-0 flex-1">
           <p className="truncate text-[12px] font-semibold text-[#375c62]">{current.project.shortTitle}</p>
-          <p className="mt-1 text-[11px] text-[#6a7d81]">{current.src ? current.caption : current.project.authority}</p>
+          <p className="mt-1 text-[11px] text-[#6a7d81]">
+            {mode === "project" && current.src ? `Drawing ${index + 1} · ${current.caption}` : current.src ? current.caption : current.project.authority}
+          </p>
         </div>
         {mode === "hub" ? <Link href={"/case-studies/" + current.project.slug} className="rounded-full border border-[#b5d7d8] px-4 py-2 text-[12px] font-semibold text-[#27737d] hover:bg-[#edf8f6]">View this project →</Link> : null}
         {canChange ? <span className="shrink-0 text-[12px] font-semibold tabular-nums text-[#5e7b7e]">{index + 1} / {length}</span> : null}
       </div>
-      {canChange && <div className="flex flex-wrap items-center justify-center gap-2 border-t border-[#edf0f0] bg-white px-4 py-3">
-        {slides.map((slide, i) => <button key={slide.project.slug + "-" + i} type="button" aria-label={"View " + slide.project.shortTitle + " slide " + (i + 1)} aria-current={i === index ? "true" : undefined} onClick={() => setIndex(i)} className={"h-2.5 rounded-full transition-all focus-visible:ring-2 focus-visible:ring-[#64b7c4] " + (i === index ? "w-7 bg-[#5aa7b5]" : "w-2.5 bg-[#cbdedb] hover:bg-[#95bcbc]")} />)}
-      </div>}
+      {canChange && (
+        <div className="flex flex-wrap items-center gap-2 border-t border-[#edf0f0] bg-white px-4 py-3">
+          {slides.map((slide, i) => (
+            <button
+              key={slide.project.slug + "-" + i}
+              type="button"
+              aria-current={i === index ? "true" : undefined}
+              onClick={() => setIndex(i)}
+              className={"min-h-11 rounded-lg border p-1.5 text-[11px] font-semibold focus-visible:ring-2 focus-visible:ring-[#64b7c4] " + (i === index ? "border-[#5aa7b5] bg-[#edf8f6] text-[#235a62]" : "border-[#dce5e3] text-[#537075]")}
+            >
+              {mode === "project" && slide.src && (
+                <span className="relative block h-[68px] w-[92px] rounded-md bg-[#f4f7f5]">
+                  <Image src={slide.src} alt="" fill sizes="92px" className="object-contain" />
+                </span>
+              )}
+              <span className="mt-1 block">{mode === "project" ? `Drawing ${i + 1}` : slide.project.shortTitle}</span>
+            </button>
+          ))}
+        </div>
+      )}
 
       {lightbox && current.src && <div className="fixed inset-0 z-[100] flex items-center justify-center bg-[#15282d]/95 p-3 sm:p-8" role="dialog" aria-modal="true" aria-label={"Enlarged architectural view — " + current.project.shortTitle} onClick={() => setLightbox(false)} onContextMenu={(event) => event.preventDefault()} onDragStart={(event) => event.preventDefault()}>
         <button type="button" aria-label="Close enlarged view" onClick={() => setLightbox(false)} className="absolute right-4 top-4 z-10 rounded-full bg-white px-4 py-2 text-sm font-semibold text-[#2d5960]">Close ✕</button>

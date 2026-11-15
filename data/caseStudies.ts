@@ -246,36 +246,36 @@ export const caseStudies: CaseStudy[] = [
     leadAngle: "Planning a substantial house extension in Elstree, Borehamwood or Hertsmere?",
     relatedService: "/extension-plans",
     relatedArea: "/areas/hertfordshire",
-    heroImage: "/images/case-studies/allum-lane/3d-03.webp",
-    secondaryImage: "/images/case-studies/allum-lane/3d-02.webp",
+    heroImage: "/images/case-studies/allum-lane/public-sheets/3d-03.webp",
+    secondaryImage: "/images/case-studies/allum-lane/public-sheets/3d-02.webp",
     galleryImages: [
           {
-                "src": "/images/case-studies/allum-lane/3d-01.webp",
+                "src": "/images/case-studies/allum-lane/public-sheets/3d-01.webp",
                 "alt": "WEDRAWPLANS original 3D architectural design of approved Allum Lane Elstree house scheme: Front perspective — access, garden and main entrance",
                 "caption": "3D design 4 — Front perspective — access, garden and main entrance"
           },
           {
-                "src": "/images/case-studies/allum-lane/3d-02.webp",
+                "src": "/images/case-studies/allum-lane/public-sheets/3d-02.webp",
                 "alt": "WEDRAWPLANS original 3D architectural design of approved Allum Lane Elstree house scheme: Rear aerial — roof form, gables, terrace and garden",
                 "caption": "3D design 3 — Rear aerial — roof form, gables, terrace and garden"
           },
           {
-                "src": "/images/case-studies/allum-lane/3d-03.webp",
+                "src": "/images/case-studies/allum-lane/public-sheets/3d-03.webp",
                 "alt": "WEDRAWPLANS original 3D architectural design of approved Allum Lane Elstree house scheme: Rear elevation — contemporary double gable façade, upper terrace, glazing and garden landscaping",
                 "caption": "3D design 1 — Rear elevation — contemporary double gable façade, upper terrace, glazing and garden landscaping"
           },
           {
-                "src": "/images/case-studies/allum-lane/full-drawing-05.webp",
+                "src": "/images/case-studies/allum-lane/public-sheets/full-drawing-05.webp",
                 "alt": "Original Allum Lane architectural Drawing 5: Proposed ground-floor plan; complete original page and title block",
                 "caption": "Drawing 5 — Proposed ground-floor plan"
           },
           {
-                "src": "/images/case-studies/allum-lane/full-drawing-06.webp",
+                "src": "/images/case-studies/allum-lane/public-sheets/full-drawing-06.webp",
                 "alt": "Original Allum Lane architectural Drawing 6: Proposed first-floor plan; complete original page and title block",
                 "caption": "Drawing 6 — Proposed first-floor plan"
           },
           {
-                "src": "/images/case-studies/allum-lane/full-drawing-08.webp",
+                "src": "/images/case-studies/allum-lane/public-sheets/full-drawing-08.webp",
                 "alt": "Original Allum Lane architectural Drawing 8: Proposed front and rear elevations; complete original page and title block",
                 "caption": "Drawing 8 — Proposed front and rear elevations"
           }
@@ -473,18 +473,18 @@ export const caseStudies: CaseStudy[] = [
       { src: "/images/case-studies/the-reddings/before-20261102.jpg", alt: "Existing Mill Hill house before the architectural works", caption: "Before — existing house" },
       { src: "/images/case-studies/the-reddings/3d-aerial.jpg", alt: "WEDRAWPLANS original aerial 3D architectural design of the house and terrace", caption: "Architectural 3D — elevated view" },
       { src: "/images/case-studies/the-reddings/3d-rear.jpg", alt: "WEDRAWPLANS original top-down 3D design of the extension and garden", caption: "Architectural 3D — roof and garden" },
-      { src: "/images/case-studies/the-reddings/full-sheet-01.jpg", alt: "Proposed lower ground floor plans", caption: "Architectural drawing 1 — Proposed lower ground floor plans" },
-      { src: "/images/case-studies/the-reddings/full-sheet-02.jpg", alt: "Proposed ground floor plans", caption: "Architectural drawing 2 — Proposed ground floor plans" },
-      { src: "/images/case-studies/the-reddings/full-sheet-03.jpg", alt: "Proposed first floor plans", caption: "Architectural drawing 3 — Proposed first floor plans" },
-      { src: "/images/case-studies/the-reddings/full-sheet-04.jpg", alt: "Proposed loft floor plans", caption: "Architectural drawing 4 — Proposed loft floor plans" },
-      { src: "/images/case-studies/the-reddings/full-sheet-05.jpg", alt: "Loft rafter and joist plans", caption: "Architectural drawing 5 — Loft rafter and joist plans" },
-      { src: "/images/case-studies/the-reddings/full-sheet-06.jpg", alt: "Proposed roof plan and section", caption: "Architectural drawing 6 — Proposed roof plan and section" },
-      { src: "/images/case-studies/the-reddings/full-sheet-07.jpg", alt: "Proposed rear, front and side elevations", caption: "Architectural drawing 7 — Proposed rear, front and side elevations" },
-      { src: "/images/case-studies/the-reddings/full-sheet-08.jpg", alt: "Building Regulations construction details", caption: "Architectural drawing 8 — Building Regulations construction details" },
-      { src: "/images/case-studies/the-reddings/full-sheet-09.jpg", alt: "Insulation and U-value specifications", caption: "Architectural drawing 9 — Insulation and U-value specifications" },
-      { src: "/images/case-studies/the-reddings/full-sheet-10.jpg", alt: "Existing ground and first floor plans", caption: "Architectural drawing 10 — Existing ground and first floor plans" },
-      { src: "/images/case-studies/the-reddings/full-sheet-11.jpg", alt: "Existing loft and roof plans", caption: "Architectural drawing 11 — Existing loft and roof plans" },
-      { src: "/images/case-studies/the-reddings/full-sheet-12.jpg", alt: "Existing elevations", caption: "Architectural drawing 12 — Existing elevations" }
+      { src: "/images/case-studies/the-reddings/public-sheets/full-sheet-01.webp", alt: "Proposed lower ground floor plans", caption: "Architectural drawing 1 — Proposed lower ground floor plans" },
+      { src: "/images/case-studies/the-reddings/public-sheets/full-sheet-02.webp", alt: "Proposed ground floor plans", caption: "Architectural drawing 2 — Proposed ground floor plans" },
+      { src: "/images/case-studies/the-reddings/public-sheets/full-sheet-03.webp", alt: "Proposed first floor plans", caption: "Architectural drawing 3 — Proposed first floor plans" },
+      { src: "/images/case-studies/the-reddings/public-sheets/full-sheet-04.webp", alt: "Proposed loft floor plans", caption: "Architectural drawing 4 — Proposed loft floor plans" },
+      { src: "/images/case-studies/the-reddings/public-sheets/full-sheet-05.webp", alt: "Loft rafter and joist plans", caption: "Architectural drawing 5 — Loft rafter and joist plans" },
+      { src: "/images/case-studies/the-reddings/public-sheets/full-sheet-06.webp", alt: "Proposed roof plan and section", caption: "Architectural drawing 6 — Proposed roof plan and section" },
+      { src: "/images/case-studies/the-reddings/public-sheets/full-sheet-07.webp", alt: "Proposed rear, front and side elevations", caption: "Architectural drawing 7 — Proposed rear, front and side elevations" },
+      { src: "/images/case-studies/the-reddings/public-sheets/full-sheet-08.webp", alt: "Building Regulations construction details", caption: "Architectural drawing 8 — Building Regulations construction details" },
+      { src: "/images/case-studies/the-reddings/public-sheets/full-sheet-09.webp", alt: "Insulation and U-value specifications", caption: "Architectural drawing 9 — Insulation and U-value specifications" },
+      { src: "/images/case-studies/the-reddings/public-sheets/full-sheet-10.webp", alt: "Existing ground and first floor plans", caption: "Architectural drawing 10 — Existing ground and first floor plans" },
+      { src: "/images/case-studies/the-reddings/public-sheets/full-sheet-11.webp", alt: "Existing loft and roof plans", caption: "Architectural drawing 11 — Existing loft and roof plans" },
+      { src: "/images/case-studies/the-reddings/public-sheets/full-sheet-12.webp", alt: "Existing elevations", caption: "Architectural drawing 12 — Existing elevations" }
     ],
     projectVideoUrl: "",
     mediaNote: "This completed home-improvement project is illustrated by before-and-after images, architectural plans and Building Regulations details.",
@@ -498,7 +498,7 @@ export const caseStudies: CaseStudy[] = [
     title: "The Hyde, Colindale | Six-Storey Residential & Mixed-Use Development",
     shortTitle: "The Hyde, Colindale",
     seoDescription: "WEDRAWPLANS architectural design and planning approval at The Hyde, Colindale: six-storey mixed-use development with 18 flats and 40sqm of B1 office space. Explore original 3D design, privacy studies and Barnet Council evidence.",
-    location: "1–5 Halt Parade, The Hyde, London NW9 5AH",
+    location: "Halt Parade, The Hyde, Colindale NW9",
     authority: "London Borough of Barnet",
     reference: "17/0660/FUL",
     councilApplicationUrl: "https://publicaccess.barnet.gov.uk/online-applications/applicationDetails.do?activeTab=documents&keyVal=OKT5JEJIMAU00",
@@ -590,7 +590,7 @@ export const caseStudies: CaseStudy[] = [
     decisionDate: "1 July 2020",
     councilApplicationUrl: "https://planning.royalgreenwich.gov.uk/online-applications/applicationDetails.do?activeTab=documents&keyVal=_GRNW_DCAPR_102414",
     service: "PLANNING + BUILDING REG + STRUCTURE + PROJECT MANAGEMENT",
-    outcome: "Planning permission granted · construction completed",
+    outcome: "Planning permission granted for two additional flats",
     approved: true,
     featured: true,
     summary: "WEDRAWPLANS provided Building Regulations design, structural coordination and project management for the entire Woolwich Road mixed-use residential development, from piling and foundations through construction to completion and handover. The original five-storey scheme, approved under 14/0289/F in August 2016, comprised 14 flats and two commercial units. During construction, WEDRAWPLANS undertook pre-planning work and successfully secured further planning permission 20/0899/F for two additional flats, increasing the residential total to 16. That planning success was one part of our wider full-building delivery role.",
@@ -942,7 +942,7 @@ export const caseStudies: CaseStudy[] = [
     outcome: "Planning permission granted",
     approved: true,
     summary: "A vehicle crossover and dropped-kerb proposal supported by WEDRAWPLANS site, elevation and drainage details.",
-    proof: "Waltham Forest granted planning permission on 28 July 2026 for a dropped kerb and vehicle crossover at 135 Hall Lane, Chingford. The decision expressly refers to WEDRAWPLANS drawings PP01–PP05 and requires the front parking area to retain its approved permeable surfacing. Permission for planning purposes is distinct from the separate Highways application needed for construction of the crossover.",
+    proof: "Waltham Forest granted planning permission on 28 July 2026 for a dropped kerb and vehicle crossover on Hall Lane, Chingford. The decision expressly refers to WEDRAWPLANS drawings PP01–PP05 and requires the front parking area to retain its approved permeable surfacing. Permission for planning purposes is distinct from the separate Highways application needed for construction of the crossover.",
     decisionDate: "28 July 2026",
     approvedDrawings: "PP01, PP02, PP03, PP04 and PP05, dated May 2026.",
     keyConditions: ["The front garden and parking area must retain the permeable surfacing shown on PP05.", "Construction of the crossover requires a separate Highways application and compliance with the authority's requirements."],
@@ -972,8 +972,15 @@ export const caseStudies: CaseStudy[] = [
     leadAngle: "Want to extend further under the prior-approval route?",
     relatedService: "/extension-plans",
     relatedArea: "/areas/barnet",
-    heroImage: "/images/barnet-project-single-storey.jpg",
-    secondaryImage: "/images/drawings.jpg"
+    heroImage: "/images/case-studies/leicester-road-barnet-combined-extension/01-planning-existing-proposed-side-elevations.webp",
+    secondaryImage: "/images/case-studies/leicester-road-barnet-combined-extension/02-planning-proposed-floor-and-roof.webp",
+    galleryImages: [
+      { src: "/images/case-studies/leicester-road-barnet-combined-extension/01-planning-existing-proposed-side-elevations.webp", alt: "Existing and proposed side elevations for the Barnet rear extension", caption: "Existing and proposed side elevations" },
+      { src: "/images/case-studies/leicester-road-barnet-combined-extension/02-planning-proposed-floor-and-roof.webp", alt: "Proposed floor and roof plans for the Barnet rear extension", caption: "Proposed floor and roof plans" },
+      { src: "/images/case-studies/leicester-road-barnet-combined-extension/03-planning-existing-floor-and-elevations.webp", alt: "Existing floor plan and elevations for the Barnet rear extension", caption: "Existing floor plan and elevations" },
+      { src: "/images/case-studies/leicester-road-barnet-combined-extension/04-planning-proposed-side-elevation.webp", alt: "Proposed side elevation for the Barnet rear extension", caption: "Proposed side elevation" },
+      { src: "/images/case-studies/leicester-road-barnet-combined-extension/05-planning-front-elevation-and-photo.webp", alt: "Existing front elevation and site photograph for the Barnet rear extension", caption: "Existing front elevation and site photograph" },
+    ]
   },
   {
     slug: "cranbourne-drive-hoddesdon-planning-project",

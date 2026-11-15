@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+#project-drawings,
+#browse-projects,
+.case-study-quote {
+  scroll-margin-top: calc(var(--case-study-header-height, 0px) + 16px);
+}
+
 /* Keep the case-study enquiry card reachable below the sticky desktop header. */
 @media (min-width: 1024px) {
   .case-study-quote {

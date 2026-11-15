@@ -26,10 +26,13 @@ export function CaseStudyHeader() {
     observer?.observe(header);
     window.addEventListener("resize", updateHeaderOffset);
     // Correct deep links where the browser jumped before React measured the header.
-    if (window.location.hash === "#case-study-quote") {
-      window.requestAnimationFrame(() => document.getElementById("case-study-quote")?.scrollIntoView({ block: "start" }));
-    }
+    const anchorId = window.location.hash.slice(1);
+    const hasStickyHeaderOffset = ["case-study-quote", "project-drawings", "browse-projects"].includes(anchorId);
+    const anchorFrame = hasStickyHeaderOffset
+      ? window.requestAnimationFrame(() => document.getElementById(anchorId)?.scrollIntoView({ block: "start" }))
+      : null;
     return () => {
+      if (anchorFrame !== null) window.cancelAnimationFrame(anchorFrame);
       observer?.disconnect();
       window.removeEventListener("resize", updateHeaderOffset);
       document.documentElement.style.removeProperty("--case-study-header-height");
@@ -67,7 +70,10 @@ export function CaseStudyHeader() {
 }
 
 /** Reuses the Barnet bottom-page pattern across the project archive. */
-export function CaseStudyBottom({ projectType = "architectural drawing" }: { projectType?: string }) {
+export function CaseStudyBottom({
+  projectType = "architectural drawing",
+  quoteHref = QUOTE,
+}: { projectType?: string; quoteHref?: string }) {
   return (
     <>
       <section className="border-t border-[#ecdcd5] bg-[#fdf5f2] py-9 sm:py-12" aria-labelledby="project-quote-heading">
@@ -78,7 +84,7 @@ export function CaseStudyBottom({ projectType = "architectural drawing" }: { pro
             Whether you are considering a {projectType}, planning application or Building Regulations drawings, tell us the property postcode and what you would like to achieve. We can review the requirements and provide a fixed-fee quotation.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <Link href={QUOTE} className="rounded-full bg-[#64b7c4] px-6 py-3 text-[13px] font-semibold text-white shadow-sm hover:bg-[#4da4b4]">Get your fixed-fee quote</Link>
+            <Link href={quoteHref} className="rounded-full bg-[#64b7c4] px-6 py-3 text-[13px] font-semibold text-white shadow-sm hover:bg-[#4da4b4]">Get your fixed-fee quote</Link>
             <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="rounded-full border border-slate-300 bg-white px-5 py-3 text-[13px] font-semibold text-slate-800 hover:border-[#64b7c4]">Chat on WhatsApp</a>
           </div>
           <p className="mt-5 text-[13px] text-slate-800">Prefer to speak? Call <a href={PHONE_LINK} className="font-semibold underline">{PHONE_DISPLAY}</a></p>

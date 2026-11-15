@@ -30,6 +30,13 @@ const CONSTRUCTION_PROGRESS_IMAGE = "/images/barnet-6b-construction-progress.jpg
 const BARNET_STREET_IMAGE = "/images/barnet-7a-barnet-street-scene.jpg";
 const PREMIUM_SIDE_EXTENSION_IMAGE = "/images/barnet-11-premium-side-extension.jpg";
 const APPROVED_LOCATIONS_IMAGE = "/images/barnet-approved-locations.jpg";
+const LOCAL_PROJECTS = [
+  { slug: "tithe-walk-mill-hill-loft-conversion", title: "Tithe Walk loft conversion" },
+  { slug: "deans-way-edgware-lawful-loft", title: "Deans Way loft conversion" },
+  { slug: "station-road-hendon-side-extension", title: "Station Road side extension" },
+  { slug: "sefton-avenue-mill-hill-prior-approval", title: "Sefton Avenue rear extension" },
+  { slug: "dryfield-road-edgware-conservation-extension", title: "Dryfield Road conservation area extension" },
+];
 
 export default function BarnetAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -323,9 +330,9 @@ export default function BarnetAreaPage() {
                 </div>
                 <div className="mt-5 grid grid-cols-3 gap-2.5 sm:gap-4">
                   {[
-                    { src: "/images/case-studies/the-reddings/full-sheet-02.jpg", title: "Drawing 1", desc: "Proposed ground floor" },
-                    { src: "/images/case-studies/the-reddings/full-sheet-07.jpg", title: "Drawing 2", desc: "Proposed elevations" },
-                    { src: "/images/case-studies/the-reddings/full-sheet-06.jpg", title: "Drawing 3", desc: "Roof plan & section" },
+                    { src: "/images/case-studies/the-reddings/public-sheets/full-sheet-02.webp", title: "Drawing 1", desc: "Proposed ground floor" },
+                    { src: "/images/case-studies/the-reddings/public-sheets/full-sheet-07.webp", title: "Drawing 2", desc: "Proposed elevations" },
+                    { src: "/images/case-studies/the-reddings/public-sheets/full-sheet-06.webp", title: "Drawing 3", desc: "Roof plan & section" },
                   ].map((drawing) => (
                     <Link href="/case-studies/the-reddings-mill-hill-extension-basement-loft#project-drawings" key={drawing.src} className="group overflow-hidden rounded-[12px] border border-[#dfe9e5] bg-[#f8faf8] transition hover:border-[#91bbb5]">
                       <div className="relative aspect-[4/3] bg-white p-2">
@@ -641,6 +648,16 @@ export default function BarnetAreaPage() {
                 <p className="text-[13px] text-slate-700">
                   Our Barnet portfolio demonstrates WEDRAWPLANS' experience preparing architectural drawings and planning submissions for house extensions, loft conversions, outbuildings, HMOs and new-build projects. Explore approved designs, locally relevant planning decisions and coordinated technical drawings for residential properties across the borough.
                 </p>
+
+                <ul className="grid gap-2 sm:grid-cols-2">
+                  {LOCAL_PROJECTS.map((project) => (
+                    <li key={project.slug}>
+                      <Link href={`/case-studies/${project.slug}`} className="inline-flex min-h-11 items-center gap-2 text-[13px] font-semibold text-[#23727b] underline-offset-4 hover:underline">
+                        {project.title} <span aria-hidden="true">→</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
 
                 <div className="grid gap-6 md:grid-cols-3">
                   <ProofCard

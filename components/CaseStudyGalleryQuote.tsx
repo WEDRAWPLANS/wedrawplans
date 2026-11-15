@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import type { CaseStudy } from "../data/caseStudies";
 import { categoryForCaseStudy } from "../data/caseStudies";
-import ProjectMediaSlider from "./ProjectMediaSlider";
+import ProjectMediaSlider, { projectMedia } from "./ProjectMediaSlider";
 import HydeArchitecturalShowcase from "./HydeArchitecturalShowcase";
 import ProjectQuickQuotePanel from "./ProjectQuickQuotePanel";
 import ApprovedDrawingShowcase from "./ApprovedDrawingShowcase";
@@ -18,10 +18,12 @@ import CranbourneCombinedShowcase from "./CranbourneCombinedShowcase";
 import SuttonLoftShowcase from "./SuttonLoftShowcase";
 import LeicesterRoadExtensionShowcase from "./LeicesterRoadExtensionShowcase";
 import WoolwichRoadCombinedShowcase from "./WoolwichRoadCombinedShowcase";
+import GrangeRoadCombinedShowcase from "./GrangeRoadCombinedShowcase";
 
 type Props = {
   projects: CaseStudy[];
   context: "project" | "hub";
+  councilDocumentsHref?: string;
 };
 
 function serviceFor(project: CaseStudy): string {
@@ -103,9 +105,10 @@ function RealProjectShowcase({ project }: { project: ReddingsProject }) {
               </div>
             </div>
             <figure className="mx-3 mb-4 rounded-[12px] border border-[#dce7e2] bg-[#f5f7f5] p-2 sm:mx-5 sm:p-4">
-              <div className="relative mx-auto h-[320px] w-full sm:h-[440px] lg:h-[485px]">
+              <a href={chosen.src} target="_blank" rel="noopener noreferrer" aria-label="Open full drawing sheet in a new tab" className="relative mx-auto block h-[320px] w-full cursor-zoom-in sm:h-[440px] lg:h-[485px]">
                 <Image key={chosen.src} src={chosen.src} alt={chosen.alt + " — original WEDRAWPLANS architectural drawing"} fill sizes="(max-width: 1024px) 96vw, 62vw" className="pointer-events-none object-contain" draggable={false} />
-              </div>
+                <span className="absolute bottom-2 right-2 rounded-full bg-white px-3 py-1.5 text-[11px] font-semibold text-[#2f6970] shadow-sm">Open full sheet ↗</span>
+              </a>
               
             </figure>
             <div className="border-t border-[#e5ece8] px-3 py-4 sm:px-5">
@@ -184,7 +187,6 @@ function AllumLaneShowcase({ project, quoteHeight }: { project: CaseStudy; quote
             <figure className="mx-3 mb-3 overflow-hidden rounded-[13px] border border-[#dce6e2] bg-[#eef2ef] sm:mx-5">
               <div className="relative aspect-[4/3] w-full">
                 <Image key={featured.src} src={featured.src} alt={featured.alt} fill sizes="(max-width: 1024px) 96vw, 62vw" className="pointer-events-none object-contain" draggable={false} priority={false} />
-                <span aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden"><span className="-rotate-[24deg] whitespace-nowrap text-[clamp(24px,5vw,67px)] font-extrabold tracking-[.10em] text-slate-500/5">WEDRAWPLANS</span></span>
               </div>
               <figcaption className="border-t border-[#e1e9e4] bg-white px-4 py-3 text-[12px] font-semibold leading-5 text-[#41696e]">{featured.caption.replace(/^3D design \d+\s*[—–-]\s*/, "")}</figcaption>
             </figure>
@@ -193,7 +195,6 @@ function AllumLaneShowcase({ project, quoteHeight }: { project: CaseStudy; quote
                 <button key={image.src} type="button" onClick={() => setDesignIndex(i)} aria-label={"View 3D design " + (i + 1)} aria-current={i === designIndex ? "true" : undefined} className={"w-[112px] shrink-0 rounded-lg border p-1.5 transition sm:w-[130px] " + (i === designIndex ? "border-[#399699] bg-[#e9f5f1]" : "border-[#dce7e2] bg-white hover:border-[#9cc6bf]")}>
                   <div className="relative aspect-[4/3] overflow-hidden rounded-md bg-[#eff3f1]">
                     <Image src={image.src} alt="" fill sizes="130px" className="pointer-events-none object-contain" draggable={false} />
-                    <span aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden"><span className="-rotate-[24deg] text-[10px] font-bold tracking-wide text-slate-500/5">WEDRAWPLANS</span></span>
                   </div>
                   <span className="mt-1.5 block text-[10px] font-bold text-[#426970]">3D View {i + 1}</span>
                 </button>
@@ -222,19 +223,18 @@ function AllumLaneShowcase({ project, quoteHeight }: { project: CaseStudy; quote
               </div>
             </div>
             <figure className="mx-3 mb-4 rounded-[12px] border border-[#e0e8e3] bg-[#f7f8f6] p-2 sm:mx-5 sm:p-4">
-              <div className="relative mx-auto h-[320px] w-full sm:h-[440px] lg:h-[485px]">
+              <a href={selectedDrawing.src} target="_blank" rel="noopener noreferrer" aria-label="Open full drawing sheet in a new tab" className="relative mx-auto block h-[320px] w-full cursor-zoom-in sm:h-[440px] lg:h-[485px]">
                 <Image key={selectedDrawing.src} src={selectedDrawing.src} alt={selectedDrawing.alt} fill sizes="(max-width: 1024px) 96vw, 62vw" className="pointer-events-none object-contain" draggable={false} />
-                <span aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden"><span className="-rotate-[24deg] whitespace-nowrap text-[clamp(24px,5vw,67px)] font-extrabold tracking-[.10em] text-slate-500/5">WEDRAWPLANS</span></span>
-              </div>
+                <span className="absolute bottom-2 right-2 rounded-full bg-white px-3 py-1.5 text-[11px] font-semibold text-[#2f6970] shadow-sm">Open full sheet ↗</span>
+              </a>
             </figure>
             <div className="border-t border-[#e6ece7] px-3 py-4 sm:px-5">
               <p className="mb-3 text-[11px] font-semibold text-[#476a6e]">Explore the architectural drawing package:</p>
               <div className="flex gap-2.5 overflow-x-auto pb-2" aria-label="Select architectural drawing">
                 {drawings.map((image, i) => (
-                  <button key={image.src} type="button" onClick={() => setDrawingIndex(i)} aria-label={"View drawing " + (i + 1) + ": " + image.alt} aria-current={i === drawingIndex ? "true" : undefined} className={"w-[102px] shrink-0 rounded-xl border p-1.5 transition sm:w-[117px] " + (i === drawingIndex ? "border-[#379b9a] bg-[#eaf5f0]" : "border-[#dce8e2] bg-white hover:border-[#a1c8bc]")}>
+                  <button key={image.src} type="button" onClick={() => setDrawingIndex(i)} aria-label={"View drawing " + [5, 6, 8][i] + ": " + image.alt} aria-current={i === drawingIndex ? "true" : undefined} className={"w-[102px] shrink-0 rounded-xl border p-1.5 transition sm:w-[117px] " + (i === drawingIndex ? "border-[#379b9a] bg-[#eaf5f0]" : "border-[#dce8e2] bg-white hover:border-[#a1c8bc]")}>
                     <div className="relative h-[82px] rounded-md bg-[#f5f7f4] sm:h-[92px]">
                       <Image src={image.src} alt="" fill sizes="117px" className="pointer-events-none object-contain" draggable={false} />
-                      <span aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden"><span className="-rotate-[24deg] text-[9px] font-bold tracking-wide text-slate-500/5">WEDRAWPLANS</span></span>
                     </div>
                     <span className="mt-2 block text-center text-[10px] font-bold text-[#3d666b]">Drawing {[5, 6, 8][i]}</span>
                   </button>
@@ -258,7 +258,7 @@ function AllumLaneShowcase({ project, quoteHeight }: { project: CaseStudy; quote
   );
 }
 
-export default function CaseStudyGalleryQuote({ projects, context }: Props) {
+export default function CaseStudyGalleryQuote({ projects, context, councilDocumentsHref }: Props) {
   const project = projects[0];
   const isHub = context === "hub";
   const isReddings = !isHub && project?.slug === "the-reddings-mill-hill-extension-basement-loft";
@@ -276,6 +276,7 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
   const isLeicesterCombined = !isHub && project?.slug === "leicester-road-barnet-rear-extension-planning-building-regulations-structural";
   const isWoolwich = !isHub && project?.slug === "700-woolwich-road-greenwich-two-new-flats";
   const isHyde = !isHub && project?.slug === "the-hyde-colindale-major-residential-development";
+  const isGrangeCombined = !isHub && project?.slug === "grange-road-edgware-side-extension-lawful-development-building-regulations";
   const isApprovedDrawingShowcase = isSistova || isCromwell;
   const quotePanelRef = useRef<HTMLDivElement>(null);
   const [quoteHeight, setQuoteHeight] = useState<number | undefined>(undefined);
@@ -304,6 +305,7 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
     return () => observer.disconnect();
   }, [isAllum]);
   if (!project) return null;
+  const hasProjectDrawings = projectMedia(project).length > 0;
   return (
     <section id="project-drawings" aria-labelledby="project-gallery-heading" className="border-y border-[#e3e9e6] bg-[#f4f8f7]">
       <div className="mx-auto max-w-7xl px-5 py-8 pb-8 sm:px-8 sm:py-11 lg:pb-12">
@@ -311,7 +313,7 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
           <div>
             <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-[#a36a63]">WEDRAWPLANS architectural drawings</p>
             <h2 id="project-gallery-heading" className="mt-2 text-2xl font-semibold tracking-tight text-[#284549] sm:text-3xl">
-              {isHub ? "Explore our approved planning projects" : isHyde ? "The Hyde, Colindale · original architectural design" : isReddings ? "Mill Hill home extension · before & after" : isAllum ? "Approved Elstree extension · planning drawings & 3D design" : isApprovedDrawingShowcase ? "Approved planning drawings & architectural 3D design" : isBrockley ? "Approved two-flat conversion · original architectural design" : isHarrowStudios ? "Three studio flats approved above retail · drawings and 3D walkthroughs" : isCannon ? "5 metre rear extension · original design and approved drawings" : isSunburyCare ? "Accessible garden outbuilding · original architectural design" : isGreenwichTen ? "Ten-flat existing-use case · original drawings and planning evidence" : isHendonHMO ? "Seven-bedroom HMO · approved architectural plans and planning assessment" : isCranbourneCombined ? "Extension planning & loft Building Regulations · two coordinated design stages" : isSuttonLoft ? "Approved Sutton loft conversion · original 3D design and planning drawings" : isWoolwich ? "Woolwich Road · Planning + Building Reg + Structure + Project Management" : isLeicesterCombined ? "Barnet rear extension · original animation, planning and Building Regulations drawings" : "Project drawings & design"}
+              {isHub ? "Explore our approved planning projects" : isGrangeCombined ? "Side extension planning and Building Regulations drawings" : isHyde ? "The Hyde, Colindale · original architectural design" : isReddings ? "Mill Hill home extension · before & after" : isAllum ? "Approved Elstree extension · planning drawings & 3D design" : isApprovedDrawingShowcase ? "Approved planning drawings & architectural 3D design" : isBrockley ? "Approved two-flat conversion · original architectural design" : isHarrowStudios ? "Three studio flats approved above retail · drawings and 3D walkthroughs" : isCannon ? "5 metre rear extension · original design and approved drawings" : isSunburyCare ? "Accessible garden outbuilding · original architectural design" : isGreenwichTen ? "Ten-flat existing-use case · original drawings and planning evidence" : isHendonHMO ? "Seven-bedroom HMO · approved architectural plans and planning assessment" : isCranbourneCombined ? "Extension planning & loft Building Regulations · two coordinated design stages" : isSuttonLoft ? "Approved Sutton loft conversion · original 3D design and planning drawings" : isWoolwich ? "Woolwich Road · Planning + Building Reg + Structure + Project Management" : isLeicesterCombined ? "Barnet rear extension · original animation, planning and Building Regulations drawings" : hasProjectDrawings ? "Project drawings & design" : "Project details & enquiries"}
             </h2>
             <p className="mt-3 max-w-3xl text-[14px] leading-7 text-[#61777b]">
               {isHub
@@ -336,14 +338,26 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
                                 ? "For developers and landowners: discover how WEDRAWPLANS provided Building Regulations design for the entire Woolwich Road development and managed the works from piling and foundations to completion and handover. During construction we also undertook pre-planning and secured permission for two additional flats. View selected technical drawings, construction photographs and the finished building."
                               : isLeicesterCombined
                                 ? "See how WEDRAWPLANS combines original design animation and Barnet prior approval with a coordinated Building Regulations drawing package and structural engineer interfaces."
-                                : "See how WEDRAWPLANS approaches architectural planning drawings and design coordination, then request a fixed-fee quotation tailored to your own property."}
+                                : "Explore the project and request a fixed-fee quotation for similar work."}
             </p>
           </div>
           {isHub ? <Link href="#browse-projects" className="text-[13px] font-semibold text-[#27757e] underline-offset-4 hover:underline">Browse all approved projects →</Link> : <span className="text-[12px] text-[#667f81]">{project.shortTitle}</span>}
         </div>
         <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1.3fr)_minmax(330px,.7fr)] lg:gap-7">
           <div className="min-w-0">
-            {isReddings ? <RealProjectShowcase project={project} /> : isAllum ? <AllumLaneShowcase project={project} quoteHeight={quoteHeight} /> : isApprovedDrawingShowcase ? <ApprovedDrawingShowcase project={project} kind={isSistova ? "sistova" : "cromwell"} /> : isBrockley ? <BrockleyCaseStudyShowcase project={project} /> : isHarrowStudios ? <HarrowStudioConversionShowcase project={project} /> : isCannon ? <CannonLaneShowcase project={project} /> : isSunburyCare ? <SunburyCareOutbuildingShowcase project={project} /> : isGreenwichTen ? <GreenwichTenFlatsShowcase project={project} /> : isHendonHMO ? <HendonHMOShowcase project={project} /> : isCranbourneCombined ? <CranbourneCombinedShowcase project={project} /> : isSuttonLoft ? <SuttonLoftShowcase project={project} /> : isLeicesterCombined ? <LeicesterRoadExtensionShowcase project={project} /> : isWoolwich ? <WoolwichRoadCombinedShowcase /> : isHyde ? <HydeArchitecturalShowcase /> : <ProjectMediaSlider projects={projects} mode={context} />}
+            {isReddings ? <RealProjectShowcase project={project} /> : isAllum ? <AllumLaneShowcase project={project} quoteHeight={quoteHeight} /> : isApprovedDrawingShowcase ? <ApprovedDrawingShowcase project={project} kind={isSistova ? "sistova" : "cromwell"} /> : isBrockley ? <BrockleyCaseStudyShowcase project={project} /> : isHarrowStudios ? <HarrowStudioConversionShowcase project={project} /> : isCannon ? <CannonLaneShowcase project={project} /> : isSunburyCare ? <SunburyCareOutbuildingShowcase project={project} /> : isGreenwichTen ? <GreenwichTenFlatsShowcase project={project} /> : isHendonHMO ? <HendonHMOShowcase project={project} /> : isCranbourneCombined ? <CranbourneCombinedShowcase project={project} /> : isSuttonLoft ? <SuttonLoftShowcase project={project} /> : isLeicesterCombined ? <LeicesterRoadExtensionShowcase project={project} /> : isWoolwich ? <WoolwichRoadCombinedShowcase /> : isHyde ? <HydeArchitecturalShowcase /> : isGrangeCombined ? <GrangeRoadCombinedShowcase project={project} /> : isHub || hasProjectDrawings ? <ProjectMediaSlider key={project.slug} projects={projects} mode={context} /> : (
+              <div className="rounded-[18px] border border-[#dce7e4] bg-white p-5 sm:p-6">
+                <h3 className="text-base font-semibold text-[#294c50]">Planning documents</h3>
+                <p className="mt-2 text-[13px] leading-7 text-[#61777b]">
+                  {councilDocumentsHref ? "The council record includes the application drawings and decision documents." : "See the planning outcome and the scope of drawing work for this project below."}
+                </p>
+                {councilDocumentsHref && (
+                  <a href={councilDocumentsHref} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex min-h-11 items-center rounded-full border border-[#b7d2d2] px-4 py-2 text-[13px] font-semibold text-[#2b777e] hover:bg-[#f0f8f6]">
+                    View council drawings and decision ↗
+                  </a>
+                )}
+              </div>
+            )}
             {!isHub && project.projectVideoUrl && project.slug !== "the-reddings-mill-hill-extension-basement-loft" ? (
               <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-[15px] border border-[#dce7e4] bg-white px-5 py-4">
                 <div>
@@ -365,7 +379,6 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
             ref={quotePanelRef}
             className="case-study-quote lg:sticky lg:self-start"
             style={{
-              scrollMarginTop: "calc(var(--case-study-header-height, 0px) + 16px)",
               top: "calc(var(--case-study-header-height, 0px) + 16px)",
             }}
           >
@@ -373,7 +386,7 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
           </div>
         </div>
       </div>
-      {(!quoteVisibleOnMobile && (isReddings || isAllum || isApprovedDrawingShowcase || isBrockley || isHarrowStudios || isCannon || isSunburyCare || isGreenwichTen || isHendonHMO || isCranbourneCombined || isSuttonLoft || isLeicesterCombined || isWoolwich)) ? <a href="#case-study-quote" className="case-study-mobile-quote-bar fixed inset-x-0 bottom-0 z-40 flex min-h-[60px] items-center justify-center border-t border-[#bcd5d0] bg-[#224b4e] px-5 py-3 text-[14px] font-bold text-white shadow-[0_-10px_30px_rgba(0,0,0,.13)] lg:hidden">Get your fixed-fee drawing quote →</a> : null}
+      {(!isHub && !quoteVisibleOnMobile) ? <a href="#case-study-quote" className="case-study-mobile-quote-bar fixed inset-x-0 bottom-0 z-40 flex min-h-[60px] items-center justify-center border-t border-[#bcd5d0] bg-[#224b4e] px-5 py-3 text-[14px] font-bold text-white shadow-[0_-10px_30px_rgba(0,0,0,.13)] lg:hidden">Get your fixed-fee drawing quote →</a> : null}
     </section>
   );
 }

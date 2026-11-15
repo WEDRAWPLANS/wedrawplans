@@ -356,7 +356,7 @@ export default function HertfordshireAreaPage() {
               <div className="mt-6 grid items-stretch gap-5 lg:grid-cols-[minmax(0,1.15fr)_minmax(310px,.85fr)]">
                 <a href="/case-studies/allum-lane-elstree-major-house-extension" className="group block overflow-hidden rounded-[18px] border border-[#d8e5e0] bg-white shadow-[0_14px_32px_rgba(24,61,68,.06)]">
                   <div className="relative aspect-video overflow-hidden bg-[#eef4f0]">
-                    <Image src="/images/case-studies/allum-lane/3d-03.webp" alt="Allum Lane Elstree approved architectural design showing the rear gabled glazing, terrace and garden" fill sizes="(max-width: 1024px) 100vw, 60vw" className="pointer-events-none object-contain transition-transform duration-300 group-hover:scale-[1.02]" draggable={false} />
+                    <Image src="/images/case-studies/allum-lane/public-sheets/3d-03.webp" alt="Allum Lane Elstree approved architectural design showing the rear gabled glazing, terrace and garden" fill sizes="(max-width: 1024px) 100vw, 60vw" className="pointer-events-none object-contain transition-transform duration-300 group-hover:scale-[1.02]" draggable={false} />
                   </div>
                   <div className="flex flex-wrap items-center justify-between gap-2 px-4 py-3 sm:px-5">
                     <strong className="text-[12px] text-[#315f63] sm:text-[14px]">Original architectural 3D design · Rear elevation</strong>
@@ -382,9 +382,9 @@ export default function HertfordshireAreaPage() {
               </div>
               <div className="mt-5 grid grid-cols-3 gap-2.5 sm:gap-4">
                 {[
-                  { src: "/images/case-studies/allum-lane/3d-01.webp", title: "Front architectural design" },
-                  { src: "/images/case-studies/allum-lane/full-drawing-05.webp", title: "Proposed ground-floor drawing" },
-                  { src: "/images/case-studies/allum-lane/full-drawing-08.webp", title: "Proposed elevations" }
+                  { src: "/images/case-studies/allum-lane/public-sheets/3d-01.webp", title: "Front architectural design" },
+                  { src: "/images/case-studies/allum-lane/public-sheets/full-drawing-05.webp", title: "Proposed ground-floor drawing" },
+                  { src: "/images/case-studies/allum-lane/public-sheets/full-drawing-08.webp", title: "Proposed elevations" }
                 ].map((image) => (
                   <a key={image.src} href="/case-studies/allum-lane-elstree-major-house-extension#project-drawings" className="group overflow-hidden rounded-[12px] border border-[#dfe9e4] bg-white hover:border-[#98c3b7]">
                     <div className="relative aspect-[4/3] bg-[#f7faf7]">
