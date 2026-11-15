@@ -583,7 +583,7 @@ export const caseStudies: CaseStudy[] = [
       "Full Building Regulations drawing package and detailed construction information",
       "Structural engineering coordination for the new rooftop steelwork",
       "Planning-condition submissions and construction-stage support",
-      "Completed scheme with final Building Control certification",
+      "Completed residential development documented in project photography",
     ],
     keyConditions: [
       "Architectural design and planning submissions for additional rooftop accommodation",
