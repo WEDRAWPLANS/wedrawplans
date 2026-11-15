@@ -126,9 +126,9 @@ export default function ProjectQuickQuotePanel({
         ) : (
           <>
             <div className="text-center">
-              <h3 className="text-[18px] font-semibold leading-6 text-[#213943]">Get your quick quote in minutes</h3>
+              <h3 className="text-[18px] font-semibold leading-6 text-[#213943]">{developerQuote ? "Discuss your development project" : "Get your quick quote in minutes"}</h3>
               <p className="mx-auto mt-2 max-w-[360px] text-[12px] leading-6 text-[#627379]">
-                {developerQuote ? "Tell us about your development site or property. Email is required and telephone is optional." : "Choose your service and enter the property postcode. Then leave your contact details for a fixed-fee quotation."}
+                {developerQuote ? "Planning + Building Reg + Structure + Project Management. Tell us about your site or development. Email is required; telephone is optional." : "Choose your service and enter the property postcode. Then leave your contact details for a fixed-fee quotation."}
               </p>
             </div>
             <form className="mt-5 space-y-3" onSubmit={submit}>
