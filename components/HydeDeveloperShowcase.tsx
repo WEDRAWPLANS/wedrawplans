@@ -77,7 +77,7 @@ export default function HydeDeveloperShowcase() {
             The Hyde, Colindale — New-build planning experience for landowners and developers
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-[15px] leading-7 text-[#4d686a] sm:text-[17px]">
-            A six-storey mixed-use development at 1–5 Halt Parade, London NW9 5AH.
+            A six-storey mixed-use development in Colindale, London NW9.
             Barnet Council granted planning permission in 2017 for 18 self-contained flats
             and 40 m² of B1 commercial floorspace, with associated parking, refuse and landscaping.
             Explore original WEDRAWPLANS design visuals and architectural drawing studies.
