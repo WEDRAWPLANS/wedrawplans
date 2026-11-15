@@ -560,7 +560,7 @@ export const caseStudies: CaseStudy[] = [
     projectVideoUrl: "https://vimeo.com/396459625",
     title: "Woolwich Road Greenwich | Approved New-Build Development & Two Additional Flats",
     shortTitle: "Woolwich Road, Greenwich",
-    seoDescription: "700–702 Woolwich Road: Greenwich approved the original 14-flat mixed-use new-build scheme in 2016 and two further flats in 2020. Explore WEDRAWPLANS planning, Building Regulations, 3D animation and structural coordination.",
+    seoDescription: "Woolwich Road: Greenwich approved the original 14-flat mixed-use new-build scheme in 2016 and two further flats in 2020. Explore WEDRAWPLANS planning, Building Regulations, 3D animation and structural coordination.",
     location: "Woolwich Road, Charlton, London SE7",
     authority: "Royal Borough of Greenwich",
     reference: "20/0899/F",
