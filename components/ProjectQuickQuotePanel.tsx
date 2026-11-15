@@ -11,7 +11,7 @@ type Props = {
   projectSlug?: string;
   projectTitle?: string;
   suggestedService?: string;
-  source: "case-study-gallery" | "case-studies-hub";
+  source: "case-study-gallery" | "case-studies-hub" | "new-build-developer-showcase";
 };
 
 function fireEvent(name: string, params: Record<string, string>) {
@@ -70,8 +70,8 @@ export default function ProjectQuickQuotePanel({
       return;
     }
 
-    if (!name.trim() || !phone.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
-      setError("Please enter your name, phone number and valid email address.");
+    if (!name.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      setError("Please enter your name and valid email address.");
       return;
     }
 
@@ -89,7 +89,7 @@ export default function ProjectQuickQuotePanel({
           source,
           referringCaseStudy: projectSlug || undefined,
           referringProjectTitle: projectTitle || undefined,
-          referringPage: projectSlug ? "/case-studies/" + projectSlug : "/case-studies",
+          referringPage: source === "new-build-developer-showcase" ? "/new-build-plans" : projectSlug ? "/case-studies/" + projectSlug : "/case-studies",
           projectService: service,
           postcode: normalizedPostcode,
           originalMessage: message.trim(),
@@ -149,7 +149,7 @@ export default function ProjectQuickQuotePanel({
                   </label>
                   <label className="block">
                     <span className="sr-only">Phone number</span>
-                    <input required type="tel" autoComplete="tel" placeholder="Phone number" value={phone} onChange={event=>setPhone(event.target.value)} className="min-h-[50px] w-full rounded-[14px] border border-[#d8e2e5] bg-white px-4 text-[14px] outline-none focus:border-[#64b7c4]" />
+                    <input type="tel" autoComplete="tel" placeholder="Phone number (optional)" value={phone} onChange={event=>setPhone(event.target.value)} className="min-h-[50px] w-full rounded-[14px] border border-[#d8e2e5] bg-white px-4 text-[14px] outline-none focus:border-[#64b7c4]" />
                   </label>
                   <label className="block">
                     <span className="sr-only">Email address</span>
