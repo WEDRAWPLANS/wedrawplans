@@ -167,7 +167,7 @@ function OuterAreaCard({
         <div>
           <div className="text-[15px] font-semibold text-slate-900">{name}</div>
           <div className="mt-2 text-[12px] font-medium uppercase tracking-[0.12em] text-slate-600 transition group-hover:text-[#2f6f8a]">
-            View area page
+            Architectural Drawings in {name}
           </div>
         </div>
         <div className="text-[18px] text-slate-400 transition group-hover:text-[#2f6f8a]">→</div>

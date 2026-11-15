@@ -204,7 +204,7 @@ function BoroughCard({
     >
       <div className="text-sm font-semibold text-slate-900">{borough}</div>
       <div className="mt-2 text-[12px] text-blue-600 underline underline-offset-4">
-        View {borough} page
+        Architectural Drawings in {borough} →
       </div>
     </a>
   );
@@ -281,8 +281,7 @@ export default function ServiceInternalLinks({
 
         <p className="mt-3 max-w-3xl text-slate-700">
           We provide planning and technical drawing services for extensions, loft conversions,
-          garden rooms, outbuildings, solar panels and new build developments. Each service page explains
-          what is included, how approvals work, and how to get a fixed quote.
+          garden rooms, outbuildings, solar panels and new build developments. Every drawing package includes a measured site survey, clear fixed-fee pricing, and full council planning or Building Control submission support.
         </p>
 
         <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
