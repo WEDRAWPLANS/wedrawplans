@@ -21,7 +21,6 @@ const HOMEOWNER_PRIORITY = [
   "reddings-close-mill-hill-lawful-loft",
   "13-reddings-close-mill-hill-first-floor-extension",
   "station-road-hendon-side-extension",
-  "leicester-road-barnet-4m-rear-extension",
 ];
 const preferredPosition = (slug: string) => {
   const index = HOMEOWNER_PRIORITY.indexOf(slug);

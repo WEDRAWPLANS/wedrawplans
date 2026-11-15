@@ -2,6 +2,7 @@
 const nextConfig = {
   async redirects() {
     return [
+      { source: "/case-studies/leicester-road-barnet-4m-rear-extension", destination: "/case-studies/leicester-road-barnet-rear-extension-planning-building-regulations-structural", permanent: true },
       // Retire an old SEO-only keyword page; send visitors to the useful Barnet guide.
       { source: "/barnet-hidden", destination: "/areas/barnet", permanent: true },
 

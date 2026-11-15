@@ -20,6 +20,7 @@ const PRIORITY_PROJECT_SLUGS = [
   "sevington-road-hendon-seven-bedroom-hmo-planning-approval",
   "the-reddings-mill-hill-extension-basement-loft",
   "chestnut-rise-plumstead-greenwich-ten-flats-lawfulness",
+  "leicester-road-barnet-rear-extension-planning-building-regulations-structural",
   "grange-road-edgware-side-extension-lawful-development-building-regulations",
   "burnt-oak-broadway-harrow-retail-flats",
   "finchley-mixed-use-ground-floor-residential-lawfulness",
