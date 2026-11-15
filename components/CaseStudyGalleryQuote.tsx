@@ -5,6 +5,7 @@ import type { CSSProperties } from "react";
 import type { CaseStudy } from "../data/caseStudies";
 import { categoryForCaseStudy } from "../data/caseStudies";
 import ProjectMediaSlider from "./ProjectMediaSlider";
+import HydeArchitecturalShowcase from "./HydeArchitecturalShowcase";
 import ProjectQuickQuotePanel from "./ProjectQuickQuotePanel";
 import ApprovedDrawingShowcase from "./ApprovedDrawingShowcase";
 import BrockleyCaseStudyShowcase from "./BrockleyCaseStudyShowcase";
@@ -325,7 +326,7 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
         </div>
         <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1.3fr)_minmax(330px,.7fr)] lg:gap-7">
           <div className="min-w-0">
-            {isReddings ? <RealProjectShowcase project={project} /> : isAllum ? <AllumLaneShowcase project={project} quoteHeight={quoteHeight} /> : isApprovedDrawingShowcase ? <ApprovedDrawingShowcase project={project} kind={isSistova ? "sistova" : "cromwell"} /> : isBrockley ? <BrockleyCaseStudyShowcase project={project} /> : isHarrowStudios ? <HarrowStudioConversionShowcase project={project} /> : isCannon ? <CannonLaneShowcase project={project} /> : isSunburyCare ? <SunburyCareOutbuildingShowcase project={project} /> : isGreenwichTen ? <GreenwichTenFlatsShowcase project={project} /> : isHendonHMO ? <HendonHMOShowcase project={project} /> : isCranbourneCombined ? <CranbourneCombinedShowcase project={project} /> : isSuttonLoft ? <SuttonLoftShowcase project={project} /> : isLeicesterCombined ? <LeicesterRoadExtensionShowcase project={project} /> : <ProjectMediaSlider projects={projects} mode={context} />}
+            {isReddings ? <RealProjectShowcase project={project} /> : isAllum ? <AllumLaneShowcase project={project} quoteHeight={quoteHeight} /> : isApprovedDrawingShowcase ? <ApprovedDrawingShowcase project={project} kind={isSistova ? "sistova" : "cromwell"} /> : isBrockley ? <BrockleyCaseStudyShowcase project={project} /> : isHarrowStudios ? <HarrowStudioConversionShowcase project={project} /> : isCannon ? <CannonLaneShowcase project={project} /> : isSunburyCare ? <SunburyCareOutbuildingShowcase project={project} /> : isGreenwichTen ? <GreenwichTenFlatsShowcase project={project} /> : isHendonHMO ? <HendonHMOShowcase project={project} /> : isCranbourneCombined ? <CranbourneCombinedShowcase project={project} /> : isSuttonLoft ? <SuttonLoftShowcase project={project} /> : isLeicesterCombined ? <LeicesterRoadExtensionShowcase project={project} /> : isHyde ? <HydeArchitecturalShowcase /> : <ProjectMediaSlider projects={projects} mode={context} />}
             {!isHub && project.projectVideoUrl && project.slug !== "the-reddings-mill-hill-extension-basement-loft" ? (
               <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-[15px] border border-[#dce7e4] bg-white px-5 py-4">
                 <div>
