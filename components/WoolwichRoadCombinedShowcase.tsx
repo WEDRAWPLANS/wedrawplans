@@ -30,7 +30,7 @@ const collections: Record<Stage, { label: string; shortLabel: string; heading: s
   technical: {
     label: "Building Regulations", shortLabel: "Building Regs",
     heading: "Building Regulations and construction drawings",
-    intro: "A coordinated technical drawing package covering construction layout, protected circulation, ventilation, building fabric, roof details and structural interfaces. BR01 leads the collection.",
+    intro: "Selected drawings from WEDRAWPLANS' comprehensive Building Regulations service for the entire mixed-use development, including construction layout, fire protection, circulation, ventilation, building fabric, roof details and structural interfaces. The displayed BR01-led sheets illustrate part of that wider building-wide scope.",
     items: [
       { file: "br-01-fourth-floor-services", title: "BR01 — fourth-floor plan and services", detail: "Fourth-floor accommodation, ventilation and services coordination, protected access and construction information." },
       { file: "br-02-fourth-floor-dimensions", title: "BR02 — dimensioned floor plan", detail: "Setting-out dimensions and the detailed construction layout of the new apartments." },
@@ -98,19 +98,16 @@ export default function WoolwichRoadCombinedShowcase() {
         <div className="bg-[#edf7f1] px-5 py-6 sm:px-8 sm:py-8">
           <p className="text-[11px] font-bold uppercase tracking-[.16em] text-[#27745d]">Greenwich, London · Planning permission secured</p>
           <h2 className="mt-3 max-w-3xl text-[26px] font-semibold leading-tight text-[#23474b] sm:text-[33px]">
-            Woolwich Road — Planning, Building Reg, Structure & Project Management
+            Woolwich Road — Full-Building Delivery from Piling to Handover
           </h2>
           <p className="mt-4 max-w-4xl text-[14px] leading-7 text-[#567174]">
-            WEDRAWPLANS delivered a comprehensive architectural drawing and coordination service
-            for this mixed-use Greenwich development. Following the original 2016 planning approval for the five-storey mixed-use new-build, during construction we secured a further planning permission
-            for two additional two-bedroom apartments at roof level, increasing the scheme from 14 to
-            16 homes alongside two commercial units. WEDRAWPLANS provided the complete Building Regulations drawing package for both additional flats, coordinated the structural engineering and managed the project throughout design development and construction.
+            WEDRAWPLANS delivered Building Regulations design and project management for the entire mixed-use residential development, supporting the works from piling and foundations through structural construction, technical coordination, completion and handover. While the originally approved scheme of 14 flats and two commercial units was under construction, we identified the opportunity for two additional rooftop apartments, undertook pre-planning work and secured further Royal Greenwich planning permission, bringing the scheme to 16 flats. The additional planning approval formed one important part of our much wider whole-building role.
           </p>
           <div className="mt-6 grid gap-3 sm:grid-cols-3">
             {[
-              ["Two more homes", "Additional upper-floor planning approval"],
-              ["Complete technical package", "Building Regulations for both additional flats"],
-              ["Project management", "Structural coordination and construction delivery"],
+              ["Two extra flats", "Pre-planning and planning approval during construction"],
+              ["Whole-building Building Reg", "Full development, from piling to completion"],
+              ["End-to-end management", "From foundations to final handover"],
             ].map(([value, label]) => (
               <div key={label} className="rounded-xl border border-[#d3e3d8] bg-white/80 px-4 py-4">
                 <p className="text-[17px] font-bold text-[#245f5b]">{value}</p>
@@ -129,8 +126,7 @@ export default function WoolwichRoadCombinedShowcase() {
           <p className="text-[11px] font-bold uppercase tracking-[.15em] text-[#a16d63]">Architecture, Building Regulations and structural design</p>
           <h2 id="woolwich-gallery-title" className="mt-2 text-[24px] font-semibold text-[#25484c] sm:text-[28px]">Explore the project drawing packages</h2>
           <p className="mt-3 max-w-3xl text-[12px] leading-6 text-[#617b7a]">
-            Explore the project’s original planning and Building Regulations drawings and rooftop
-            construction photographs. Choose a stage and select a sheet below.
+            Explore selected evidence from the whole-building Building Regulations and project-management service, alongside the drawings for the additional-flats planning application and construction photographs. Choose a stage to view the original project material.
           </p>
         </div>
 
@@ -194,41 +190,34 @@ export default function WoolwichRoadCombinedShowcase() {
 
       <section className="rounded-[20px] border border-[#dce7df] bg-white p-5 sm:p-8">
         <p className="text-[11px] font-bold uppercase tracking-[.16em] text-[#ad7468]">Stage 01 · Planning permission</p>
-        <h2 className="mt-2 text-[23px] font-semibold leading-tight text-[#274b50] sm:text-[28px]">Two additional flats secured during construction</h2>
+        <h2 className="mt-2 text-[23px] font-semibold leading-tight text-[#274b50] sm:text-[28px]">Additional flats secured through pre-planning and planning</h2>
         <p className="mt-4 text-[13px] leading-7 text-[#577276]">
-          Royal Greenwich originally granted permission for the five-storey new-build under 14/0289/F in August 2016, with 14 flats and two commercial units. A further consent, 20/0899/F, granted permission for two additional two-bedroom flats
-          at fourth-floor level. The new accommodation was coordinated with the existing mixed-use building,
-          including access, parking, amenity and external appearance.
+          Royal Greenwich originally granted permission for the five-storey mixed-use development under 14/0289/F in August 2016, comprising 14 flats and two commercial units. During construction, WEDRAWPLANS progressed the pre-planning assessment and secured planning permission 20/0899/F for two additional two-bedroom flats at the upper level. The successful application incorporated access, parking, residential amenity and the revised external appearance, increasing the total to 16 flats.
         </p>
         <a href={council} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex text-[12px] font-semibold text-[#286b70] underline underline-offset-4">See the council planning application and drawings ↗</a>
       </section>
 
       <section className="rounded-[20px] border border-[#dce7df] bg-white p-5 sm:p-8">
         <p className="text-[11px] font-bold uppercase tracking-[.16em] text-[#ad7468]">Stage 02 · Technical design</p>
-        <h2 className="mt-2 text-[23px] font-semibold leading-tight text-[#274b50] sm:text-[28px]">Building Regulations and structural coordination</h2>
+        <h2 className="mt-2 text-[23px] font-semibold leading-tight text-[#274b50] sm:text-[28px]">Complete Building Regulations for the entire development</h2>
         <p className="mt-4 text-[13px] leading-7 text-[#577276]">
-          The comprehensive Building Regulations drawing package for both additional flats, led by BR01, illustrates building fabric, fire protection,
-          services and ventilation, construction details, roof design and integration with the
-          new structural frame. WEDRAWPLANS coordinated detailed drawing information, structural
-          engineering interfaces, planning-condition submissions and project-management requirements.
+          WEDRAWPLANS' Building Regulations service covered the whole development—not only the two flats added during construction. The building-wide technical package addressed piling and foundation interfaces, structural coordination, fire protection, access and circulation, services and ventilation, building fabric, construction details and roof design. The BR01-led gallery shows selected upper-floor drawings from that wider technical commission.
         </p>
       </section>
 
       <section className="rounded-[20px] border border-[#dce7df] bg-white p-5 sm:p-8">
         <p className="text-[11px] font-bold uppercase tracking-[.16em] text-[#ad7468]">Stage 03 · Structural construction</p>
-        <h2 className="mt-2 text-[23px] font-semibold leading-tight text-[#274b50] sm:text-[28px]">Structural works and management through completion</h2>
+        <h2 className="mt-2 text-[23px] font-semibold leading-tight text-[#274b50] sm:text-[28px]">Project management from piling to completion and handover</h2>
         <p className="mt-4 text-[13px] leading-7 text-[#577276]">
-          Original site photography records construction of the rooftop steel-frame superstructure,
-          including beams, columns and connections, alongside the existing residential building.
-          WEDRAWPLANS managed the coordination of the two additional flats through the design and construction stages, with the completed development presented in the project photographs.
+          WEDRAWPLANS managed the wider development throughout the construction process, from piling and foundations to the structural frame, building envelope, internal works, completion and handover. The site photographs show selected rooftop steelwork, beams, columns and connections, while the finished-building photograph demonstrates the completed scheme.
         </p>
       </section>
 
       <section className="rounded-[18px] border border-[#c9e0d3] bg-[#edf7f1] p-5 sm:p-7">
         <p className="text-[11px] font-bold uppercase tracking-[.15em] text-[#28765e]">FOR DEVELOPERS AND LANDOWNERS</p>
-        <h2 className="mt-2 text-[23px] font-semibold leading-tight text-[#274e4e]">A joined-up service for residential development</h2>
+        <h2 className="mt-2 text-[23px] font-semibold leading-tight text-[#274e4e]">A full-development service for landowners and developers</h2>
         <p className="mt-3 text-[13px] leading-7 text-[#597374]">
-          Developing a residential site, adding flats above an existing building or seeking to maximise your property's potential? WEDRAWPLANS combines planning submissions, complete Building Regulations drawings, structural engineering coordination and project management into a clearly scoped service for landowners and developers. We can assess planning constraints, coordinate technical disciplines and support the delivery of ambitious residential projects.
+          For landowners and residential developers, Woolwich Road illustrates the value of one coordinated professional team across a whole-building development. WEDRAWPLANS covered full-building Building Regulations and project management from piling through to handover, alongside structural coordination. During construction, our pre-planning and planning work also secured permission for two further flats. We can help other development sites address technical design, planning opportunities and project delivery under a tailored scope.
         </p>
         <div className="mt-5 flex flex-wrap gap-3">
           <a href="#case-study-quote" className="inline-flex rounded-full bg-[#276f75] px-5 py-3 text-[12px] font-bold text-white hover:bg-[#1d575b]">Discuss your development project</a>
