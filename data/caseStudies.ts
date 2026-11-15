@@ -593,7 +593,7 @@ export const caseStudies: CaseStudy[] = [
     leadAngle: "WEDRAWPLANS provides fixed-fee planning and Building Regulations drawing packages, with structural engineering coordination and application support where required.",
     relatedService: "/building-regulation-drawings",
     relatedArea: "/areas/greenwich",
-    heroImage: "/images/case-studies/700-woolwich-road-greenwich-two-new-flats/completed-woolwich-road.webp",
+    heroImage: "/images/case-studies/700-woolwich-road-greenwich-two-new-flats/construction-01-street-elevation.webp",
     secondaryImage: "/images/case-studies/700-woolwich-road-greenwich-two-new-flats/br-01-fourth-floor-services.webp",
     mediaNote: "WEDRAWPLANS original planning drawings, Building Regulations details, architectural animation and photographic record of the completed Woolwich Road project.",
   },
