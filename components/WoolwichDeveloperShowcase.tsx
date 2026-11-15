@@ -81,7 +81,7 @@ export default function WoolwichDeveloperShowcase() {
                   <img src={mediaBase + item.path} alt={item.title} loading="lazy" className="h-full w-full object-contain p-1.5 transition-transform group-hover:scale-[1.02]" onError={e=>{e.currentTarget.onerror=null;e.currentTarget.src=mediaBase+item.fallback;}} />
                 </div>
                 <div className="border-t border-[#e2eae7] p-4">
-                  <p className="text-[10px] font-bold uppercase tracking-[.13em] text-[#2a7565]">Drawing {i + 1} · {item.label}</p>
+                  <p className="text-[10px] font-bold uppercase tracking-[.13em] text-[#2a7565]">Showcase {i + 1} · {item.label}</p>
                   <p className="mt-2 text-[12px] leading-6 text-[#536c71]">{item.description}</p>
                 </div>
               </Link>
