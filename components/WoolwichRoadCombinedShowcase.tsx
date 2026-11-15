@@ -119,8 +119,7 @@ export default function WoolwichRoadCombinedShowcase() {
             WEDRAWPLANS delivered a comprehensive architectural drawing and coordination service
             for this mixed-use Greenwich development. During construction, we secured planning permission
             for two additional two-bedroom apartments at roof level, increasing the scheme from 14 to
-            16 homes alongside two commercial units. Our detailed Building Regulations drawings, structural
-            engineering coordination and construction support helped bring the project through to completion.
+            16 homes alongside two commercial units. Our Building Regulations drawings, structural engineering coordination and construction-stage information supported the delivery process.
           </p>
           <div className="mt-6 grid gap-3 sm:grid-cols-3">
             {[
@@ -236,7 +235,7 @@ export default function WoolwichRoadCombinedShowcase() {
         <p className="mt-4 text-[13px] leading-7 text-[#577276]">
           Original site photography records construction of the rooftop steel-frame superstructure,
           including beams, columns and connections, alongside the existing residential building.
-          The scheme has been completed and final Building Control certification issued.
+          The finished building is documented in project photography. The Building Regulations drawings shown here are a separate technical stage from the council planning decision.
         </p>
       </section>
 
