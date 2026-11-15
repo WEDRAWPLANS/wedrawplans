@@ -386,7 +386,7 @@ export default function CroydonAreaPage() {
                   <p className="mt-2 text-[13px] text-slate-300">
                     Send your postcode and a short description. We review and reply with a fixed fee and recommended next steps.
                   </p>
-                  <p className="mt-2 text-[13px] text-slate-300">Prefer to speak. Call 020 3654 8508</p>
+                  <p className="mt-2 text-[13px] text-slate-300">Prefer to speak? Call 020 3654 8508</p>
                 </div>
                 <div className="flex flex-col space-y-2 text-[13px]">
                   <a href={PHONE_LINK} className="font-semibold text-emerald-300 underline">

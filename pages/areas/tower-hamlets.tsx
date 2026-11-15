@@ -317,7 +317,7 @@ export default function TowerHamletsAreaPage() {
                 </div>
 
                 <p className="mt-6 text-[13px] font-semibold text-slate-800">
-                  Prefer to speak. Call{" "}
+                  Prefer to speak? Call{" "}
                   <a href={PHONE_LINK} className="underline">
                     {PHONE_DISPLAY}
                   </a>

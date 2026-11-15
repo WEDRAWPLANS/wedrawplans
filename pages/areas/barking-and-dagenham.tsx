@@ -234,7 +234,7 @@ export default function BarkingAndDagenhamAreaPage() {
               </p>
 
               <p className="mt-4 text-[13px] font-semibold text-slate-900">
-                Prefer to speak. Call {PHONE_DISPLAY}
+                Prefer to speak? Call {PHONE_DISPLAY}
               </p>
 
               <div className="mt-5 flex flex-wrap justify-center gap-3">

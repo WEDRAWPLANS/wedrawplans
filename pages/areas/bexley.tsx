@@ -322,7 +322,7 @@ export default function BexleyAreaPage() {
                 </a>
               </div>
 
-              <p className="mt-5 text-[13px] font-medium text-slate-800">Prefer to speak. Call {PHONE_DISPLAY}</p>
+              <p className="mt-5 text-[13px] font-medium text-slate-800">Prefer to speak? Call {PHONE_DISPLAY}</p>
             </div>
           </section>
           <BoroughIntentCapture slug="bexley" />

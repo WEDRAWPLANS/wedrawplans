@@ -247,7 +247,7 @@ export default function IslingtonAreaPage() {
                     Send your postcode and a short brief. We review and reply with a fixed fee and recommended route.
                   </p>
                   <p className="text-[13px] text-slate-300 mt-2">
-                    Prefer to speak. Call 020 3654 8508
+                    Prefer to speak? Call 020 3654 8508
                   </p>
                 </div>
                 <div className="flex flex-col space-y-2 text-[13px]">
