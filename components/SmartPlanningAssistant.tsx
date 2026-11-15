@@ -46,7 +46,7 @@ function sanitizeText(input: string) {
   return input.replace(/\s+/g, " ").trim();
 }
 
-export default function SmartPlanningAssistant({ boroughName, compactMobile = false }: Props) {
+export default function SmartPlanningAssistant({ boroughName }: Props) {
   const area = boroughName || "London";
 
   const [open, setOpen] = useState(false);
@@ -128,17 +128,21 @@ export default function SmartPlanningAssistant({ boroughName, compactMobile = fa
     setError("");
 
     const cleanName = sanitizeText(name);
-    const cleanPhone = sanitizeText(phone);
     const cleanEmail = sanitizeText(email);
     const cleanPostcode = sanitizeText(postcode).toUpperCase();
 
-    if (!service || !propertyType || !cleanPostcode || !cleanName || !cleanPhone || !cleanEmail) {
+    if (!service || !propertyType || !cleanPostcode || !cleanName || !cleanEmail) {
       setError("Please complete all required fields.");
       return;
     }
 
     if (!isValidUkPostcodeLoose(cleanPostcode)) {
       setError("Please enter a valid UK postcode.");
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanEmail)) {
+      setError("Please enter a valid email address so we can reply.");
       return;
     }
 
@@ -159,25 +163,9 @@ export default function SmartPlanningAssistant({ boroughName, compactMobile = fa
     <>
       {!open && (
         <>
-          <div className="fixed bottom-4 right-4 z-50 md:hidden">
-            <button
-              type="button"
-              onClick={() => setOpen(true)}
-              className={compactMobile ? "flex h-12 w-12 items-center justify-center rounded-full border border-[#16213b] bg-[#0f172a] text-[19px] text-white shadow-xl" : "flex items-center gap-2 rounded-full border border-[#16213b] bg-[#0f172a] px-4 py-3 text-[12px] font-semibold text-white shadow-2xl"}
-              aria-label="Open planning assistant"
-            >
-              {compactMobile ? <span aria-hidden="true">?</span> : (
-                <>
-                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#e31c23]">
-                    <span className="block h-3 w-3 rounded-full bg-white" />
-                  </span>
-                  Need help with your plans?
-                </>
-              )}
-            </button>
-          </div>
-
-          <div className="fixed right-5 top-1/2 z-50 hidden -translate-y-1/2 md:block">
+          {/* Mobile and tablet layouts use the visible page enquiry form and header contact options.
+              No floating planning-assistant button is allowed to cover form fields. */}
+          <div className="fixed right-5 top-1/2 z-50 hidden -translate-y-1/2 lg:block">
             <button
               type="button"
               onClick={() => setOpen(true)}
@@ -396,7 +384,7 @@ export default function SmartPlanningAssistant({ boroughName, compactMobile = fa
                               name="phone"
                               value={phone}
                               onChange={(e) => setPhone(e.target.value)}
-                              placeholder="Phone"
+                              placeholder="Phone number (optional)"
                               className="rounded-[16px] border border-[#d7d0c4] bg-[#fcfbf8] px-4 py-4 text-[15px] text-[#1f2a3d] outline-none transition focus:border-[#0f172a]"
                             />
 
@@ -404,7 +392,7 @@ export default function SmartPlanningAssistant({ boroughName, compactMobile = fa
                               name="email"
                               value={email}
                               onChange={(e) => setEmail(e.target.value)}
-                              placeholder="Email"
+                              placeholder="Email address (required)"
                               className="rounded-[16px] border border-[#d7d0c4] bg-[#fcfbf8] px-4 py-4 text-[15px] text-[#1f2a3d] outline-none transition focus:border-[#0f172a]"
                             />
                           </div>
