@@ -149,7 +149,11 @@ export default function SmartPlanningAssistant({ boroughName }: Props) {
     setSubmitting(true);
 
     try {
-      await submitBoroughLead(e, { boroughName: area });
+      const accepted = await submitBoroughLead(e, { boroughName: area, showFormAlerts: false });
+      if (!accepted) {
+        setError("Your enquiry could not be sent. Please try again or contact WEDRAWPLANS directly.");
+        return;
+      }
       setDone(true);
     } catch (err) {
       console.error(err);
@@ -371,9 +375,14 @@ export default function SmartPlanningAssistant({ boroughName }: Props) {
                             type="hidden"
                           />
 
+                          {error ? (
+                            <p role="alert" className="mb-4 rounded-lg bg-red-50 px-3 py-2 text-[13px] font-medium text-red-700">{error}</p>
+                          ) : null}
                           <div className="grid gap-3 md:grid-cols-3">
                             <input
                               name="name"
+                              required
+                              autoComplete="name"
                               value={name}
                               onChange={(e) => setName(e.target.value)}
                               placeholder="Name"
@@ -382,6 +391,8 @@ export default function SmartPlanningAssistant({ boroughName }: Props) {
 
                             <input
                               name="phone"
+                              type="tel"
+                              autoComplete="tel"
                               value={phone}
                               onChange={(e) => setPhone(e.target.value)}
                               placeholder="Phone number (optional)"
@@ -390,6 +401,9 @@ export default function SmartPlanningAssistant({ boroughName }: Props) {
 
                             <input
                               name="email"
+                              type="email"
+                              required
+                              autoComplete="email"
                               value={email}
                               onChange={(e) => setEmail(e.target.value)}
                               placeholder="Email address (required)"
