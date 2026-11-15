@@ -637,7 +637,7 @@ export default function BarnetAreaPage() {
 
               <div className="space-y-5">
                 <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-slate-900">
-                  Selected Planning Approvals &amp; Architectural Drawings in Barnet
+                  Proven Planning Success Across the London Borough of Barnet
                 </h2>
 
                 <p className="text-[13px] text-slate-700">
@@ -656,16 +656,16 @@ export default function BarnetAreaPage() {
 
                 <div className="grid gap-6 md:grid-cols-3">
                   <ProofCard
-                    title="House extensions and loft conversions"
-                    body="We prepare existing and proposed floor plans, elevations and sections for single- and two-storey extensions and loft conversions, with attention to scale, daylight and neighbouring properties."
+                    title="Full Residential &amp; Development Scope"
+                    body="Proven approval track record across single and double-storey rear extensions, loft conversions, outbuildings, HMOs, and new build schemes."
                   />
                   <ProofCard
-                    title="Local Barnet planning experience"
-                    body="Our selected Barnet projects document council planning decisions and the drawings supporting proposals in Mill Hill, Hendon, Finchley, Edgware and nearby areas."
+                    title="Tailored to Barnet Streetscapes"
+                    body="Drawings carefully designed around Barnet's suburban character, conservation areas, and local council validation rules."
                   />
                   <ProofCard
-                    title="Building Regulations and technical detailing"
-                    body="Where instructed, we prepare Building Regulations drawing packs and coordinate structural design information to support the transition from planning to Building Control and construction."
+                    title="Seamless Progression to Build"
+                    body="By combining planning strategy with full Building Regulation technical packs and structural coordination, your project moves smoothly from council approval to site construction."
                   />
                 </div>
 
@@ -674,7 +674,7 @@ export default function BarnetAreaPage() {
                     Larger residential developments and conversion schemes
                   </h3>
                   <p className="mt-2 text-[13px] leading-7 text-slate-700">
-                    Alongside house extensions and loft conversions, WEDRAWPLANS prepares architectural planning and technical drawings for HMOs, residential conversions and larger development proposals, with each package tailored to the property's design, planning and Building Regulations requirements.
+                    Alongside homeowner extensions and lofts, we support property developers and landlords across Barnet with flat conversions, HMO layouts, and multi-unit residential schemes from initial feasibility through to Building Control.
                   </p>
                   <div className="mt-4">
                     <Link
