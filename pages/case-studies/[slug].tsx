@@ -35,7 +35,8 @@ export default function CaseStudyPage({ item }: { item: CaseStudy }) {
   const isHyde = item.slug === "the-hyde-colindale-major-residential-development";
   const isLeicesterCombined = item.slug === "leicester-road-barnet-rear-extension-planning-building-regulations-structural";
   const isGrangeCombined = item.slug === "grange-road-edgware-side-extension-lawful-development-building-regulations";
-  const isFeaturedLayout = isReddings || isAllum || isSistova || isCromwell || isBrockley || isHarrowStudios || isCannon || isSunburyCare || isGreenwichTen || isHendonHMO || isCranbourneCombined || isSuttonLoft || isLeicesterCombined || isGrangeCombined || isHyde;
+  const isWoolwich = item.slug === "700-woolwich-road-greenwich-two-new-flats";
+  const isFeaturedLayout = isReddings || isAllum || isSistova || isCromwell || isBrockley || isHarrowStudios || isCannon || isSunburyCare || isGreenwichTen || isHendonHMO || isCranbourneCombined || isSuttonLoft || isLeicesterCombined || isGrangeCombined || isHyde || isWoolwich;
   const useOriginalDrawingGallery = item.slug === "sistova-road-wandsworth-extension-basement" || item.slug === "cromwell-road-hounslow-rear-extension" || isFeaturedLayout || isHyde;
   const isProduction = process.env.VERCEL_ENV === "production";
   const hasApprovedVisual = [item.heroImage, item.secondaryImage].some(src => Boolean(src) && (src.startsWith("/images/case-studies/") || src.startsWith("/images/hyde-")));

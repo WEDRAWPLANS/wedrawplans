@@ -11,7 +11,7 @@ type Props = {
   projectSlug?: string;
   projectTitle?: string;
   suggestedService?: string;
-  source: "case-study-gallery" | "case-studies-hub";
+  source: "case-study-gallery" | "case-studies-hub" | "new-build-developer-showcase";
   sticky?: boolean;
 };
 
@@ -30,7 +30,8 @@ export default function ProjectQuickQuotePanel({
 }: Props) {
   const [service, setService] = useState(suggestedService);
   const [postcode, setPostcode] = useState("");
-  const [expanded, setExpanded] = useState(false);
+  const developerQuote = source === "new-build-developer-showcase" || projectSlug === "700-woolwich-road-greenwich-two-new-flats";
+  const [expanded, setExpanded] = useState(developerQuote);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -72,8 +73,8 @@ export default function ProjectQuickQuotePanel({
       return;
     }
 
-    if (!name.trim() || !phone.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
-      setError("Please enter your name, phone number and valid email address.");
+    if (!name.trim() || (!developerQuote && !phone.trim()) || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      setError(developerQuote ? "Please enter your name and valid email address." : "Please enter your name, phone number and valid email address.");
       return;
     }
 
@@ -91,7 +92,7 @@ export default function ProjectQuickQuotePanel({
           source,
           referringCaseStudy: projectSlug || undefined,
           referringProjectTitle: projectTitle || undefined,
-          referringPage: projectSlug ? "/case-studies/" + projectSlug : "/case-studies",
+          referringPage: source === "new-build-developer-showcase" ? "/new-build-plans" : projectSlug ? "/case-studies/" + projectSlug : "/case-studies",
           projectService: service,
           postcode: normalizedPostcode,
           originalMessage: message.trim(),
@@ -120,14 +121,14 @@ export default function ProjectQuickQuotePanel({
             <span aria-hidden="true" className="text-3xl text-[#2d927b]">✓</span>
             <h3 className="mt-3 text-xl font-semibold text-[#213d44]">Thank you for your enquiry</h3>
             <p className="mt-3 text-sm leading-7 text-[#617176]">Your request has been received. WEDRAWPLANS will contact you about the next steps.</p>
-            <button type="button" onClick={() => {setSuccess(false);setExpanded(false);setService(suggestedService);setPostcode("");setName("");setPhone("");setEmail("");setMessage("");startedAt.current=null;}} className="mt-5 text-sm font-semibold text-[#277c8d] underline">Make another enquiry</button>
+            <button type="button" onClick={() => {setSuccess(false);setExpanded(developerQuote);setService(suggestedService);setPostcode("");setName("");setPhone("");setEmail("");setMessage("");startedAt.current=null;}} className="mt-5 text-sm font-semibold text-[#277c8d] underline">Make another enquiry</button>
           </div>
         ) : (
           <>
             <div className="text-center">
               <h3 className="text-[18px] font-semibold leading-6 text-[#213943]">Get your quick quote in minutes</h3>
               <p className="mx-auto mt-2 max-w-[360px] text-[12px] leading-6 text-[#627379]">
-                Choose your service and enter the property postcode. Then leave your contact details for a fixed-fee quotation.
+                {developerQuote ? "Tell us about your development site or property. Email is required and telephone is optional." : "Choose your service and enter the property postcode. Then leave your contact details for a fixed-fee quotation."}
               </p>
             </div>
             <form className="mt-5 space-y-3" onSubmit={submit}>
@@ -151,7 +152,7 @@ export default function ProjectQuickQuotePanel({
                   </label>
                   <label className="block">
                     <span className="sr-only">Phone number</span>
-                    <input required type="tel" autoComplete="tel" placeholder="Phone number" value={phone} onChange={event=>setPhone(event.target.value)} className="min-h-[50px] w-full rounded-[14px] border border-[#d8e2e5] bg-white px-4 text-[14px] outline-none focus:border-[#64b7c4]" />
+                    <input required={!developerQuote} type="tel" autoComplete="tel" placeholder={developerQuote ? "Phone number (optional)" : "Phone number"} value={phone} onChange={event=>setPhone(event.target.value)} className="min-h-[50px] w-full rounded-[14px] border border-[#d8e2e5] bg-white px-4 text-[14px] outline-none focus:border-[#64b7c4]" />
                   </label>
                   <label className="block">
                     <span className="sr-only">Email address</span>
