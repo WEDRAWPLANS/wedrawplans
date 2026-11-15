@@ -541,7 +541,7 @@ export default function AreasIndexPage() {
                     <li>• Loft conversions including dormers, mansards and hip to gable schemes</li>
                     <li>• Building regulation drawing packs with structural coordination</li>
                     <li>• Flat conversions, internal remodelling, new builds and small developments</li>
-                    <li>• Strong internal links into borough pages and service pages</li>
+                    <li>• Direct local council planning expertise with fast 48-hour initial site surveys across all London boroughs and the M25.</li>
                     <li>• Same day response on many enquiries</li>
                   </ul>
 

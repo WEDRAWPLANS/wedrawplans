@@ -936,13 +936,12 @@ export default function NewBuildPlansPage() {
             <div className="mx-auto max-w-6xl px-4 py-12">
               <div className="max-w-4xl">
                 <p className="text-[11px] font-extrabold uppercase tracking-[.17em] text-[#287665]">For landowners, developers and investors</p>
-                <h2 id="developer-planning-support" className="mt-2 text-2xl font-extrabold tracking-tight text-[#223f42] sm:text-3xl">Planning-led design for land with new-build potential</h2>
+                <h2 id="developer-planning-support" className="mt-2 text-2xl font-extrabold tracking-tight text-[#223f42] sm:text-3xl">Why Choose WEDRAWPLANS for Your New Build Project</h2>
                 <p className="mt-4 text-[15px] leading-7 text-slate-700">
-                  Every development site has its own constraints and commercial goals. Whether you own a vacant plot,
-                  former commercial premises, a backland parcel or a larger residential redevelopment site,
-                  WEDRAWPLANS can prepare architectural new-build drawings and help structure the planning application.
-                  The Hyde and Woolwich Road showcase different approaches to residential-led development in a
-                  challenging urban location.
+                  Delivering a successful new build in London requires drawings that satisfy both strict local
+                  council planning policies and complex Building Control regulations. We provide complete
+                  architectural packages—from initial site feasibility and massing studies to full technical
+                  construction packs—designed to maximize plot value and secure smooth planning approval.
                 </p>
                 <p className="mt-3 text-[15px] leading-7 text-slate-700">
                   We can assess the proposed use and site capacity, develop building massing and layouts, and prepare
