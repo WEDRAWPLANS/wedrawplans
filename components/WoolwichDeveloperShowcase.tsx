@@ -22,8 +22,8 @@ export default function WoolwichDeveloperShowcase() {
           <p className="inline-flex rounded-full border border-emerald-200 bg-white px-4 py-2 text-[11px] font-bold uppercase tracking-[.17em] text-[#1f745f]">WEDRAWPLANS — PLANNING APPROVAL GRANTED</p>
           <h2 id="woolwich-developer-heading" className="mt-4 text-3xl font-extrabold tracking-tight text-[#192d3c] sm:text-4xl">Woolwich Road, Greenwich — residential development delivered</h2>
           <p className="mt-3 text-[12px] font-bold uppercase tracking-[.14em] text-[#526777]">Planning + Building Regulations + Structural Coordination + Project Management</p>
-          <p className="mx-auto mt-5 max-w-4xl text-[15px] leading-8 text-[#4e6870]">The 700–702 Woolwich Road project illustrates how a coordinated design team can unlock additional residential space during construction. Royal Greenwich granted planning permission on 1 July 2020 for a new upper floor creating two more two-bedroom flats, with associated parking and access changes. WEDRAWPLANS developed the architectural planning and Building Regulations drawing information and supported coordination of the structural and construction stages.</p>
-          <p className="mt-3 text-[13px] font-semibold text-[#236f65]">Royal Borough of Greenwich · Approved 2020 · Reference 20/0899/F · Two additional two-bedroom flats</p>
+          <p className="mx-auto mt-5 max-w-4xl text-[15px] leading-8 text-[#4e6870]">The 700–702 Woolwich Road development demonstrates two stages of successful residential planning. Royal Greenwich first approved a five-storey new-build scheme of 14 flats and two commercial units in 2016 (14/0289/F). In July 2020, permission followed for a further upper floor with two additional two-bedroom flats (20/0899/F), alongside related access and parking changes. WEDRAWPLANS developed the architectural planning and Building Regulations drawing information and supported coordination of the structural and construction stages.</p>
+          <p className="mt-3 text-[13px] font-semibold text-[#236f65]">Royal Borough of Greenwich · Original new-build approval 2016 (14/0289/F) · Additional-floor approval 2020 (20/0899/F)</p>
         </div>
         <div className="mt-9 overflow-hidden rounded-[23px] border border-[#d6e6df] bg-white shadow-[0_18px_55px_rgba(33,62,58,.10)]">
           <div className="relative aspect-[16/8] min-h-[250px] w-full overflow-hidden bg-slate-200">
@@ -98,7 +98,7 @@ export default function WoolwichDeveloperShowcase() {
             <a href={councilDocuments} target="_blank" rel="noopener noreferrer" className="rounded-full border border-[#a9cfc1] px-6 py-3 text-center text-[13px] font-bold text-[#24746e] hover:bg-[#eff8f3]">View Greenwich approved documents ↗</a>
           </div>
         </div>
-        <p className="mt-4 text-[11px] leading-5 text-[#617676]">Planning permission 20/0899/F concerns an additional floor and two flats on an existing approved building; it is not described as permission for a wholly new building. Building Regulations drawings and structural coordination are separate from the planning consent.</p>
+        <p className="mt-4 text-[11px] leading-5 text-[#617676]">The original new-build was approved under 14/0289/F (2016). The 2020 consent 20/0899/F is specifically for the two additional fourth-floor flats. Building Regulations drawings and structural coordination are separate from either planning consent.</p>
       </div>
     </section>
   );
