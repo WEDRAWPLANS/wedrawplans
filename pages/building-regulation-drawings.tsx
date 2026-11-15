@@ -376,8 +376,11 @@ export default function BuildingRegulationDrawingsPage() {
   return (
     <>
       <Head>
-        <title>{PAGE_TITLE}</title>
-        <meta name="description" content={PAGE_DESCRIPTION} />
+        <title>{"Building Regulation Drawings & Technical Packs London | WEDRAWPLANS"}</title>
+        <meta
+          name="description"
+          content={"Builder-ready Building Regulation drawings and structural calculation coordination in London for extensions, lofts, flat conversions & new builds. Call 020 3654 8508."}
+        />
         <meta
           name="keywords"
           content="building regulation drawings London, building control drawings London, building regs drawings London, technical drawing packs London, construction drawings London, extension building regulation drawings, loft conversion building regs drawings, new build building regulation drawings, structural engineer coordination London, building control plans London"
