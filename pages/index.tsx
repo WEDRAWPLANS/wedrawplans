@@ -629,7 +629,10 @@ export default function IndexPage() {
     // Offer the floating quote shortcut only after visitors scroll past the form.
     const updateFloatingQuote = () => {
       const form = heroFormRef.current;
-      setShowFloatingQuote(Boolean(form && form.getBoundingClientRect().bottom < 0));
+      const footer = document.querySelector("footer");
+      const formIsPast = Boolean(form && form.getBoundingClientRect().bottom < 0);
+      const footerIsVisible = Boolean(footer && footer.getBoundingClientRect().top < window.innerHeight);
+      setShowFloatingQuote(formIsPast && !footerIsVisible);
     };
 
     updateFloatingQuote();
@@ -693,9 +696,9 @@ export default function IndexPage() {
       alert("Please enter your name so we can address your quotation.");
       return;
     }
-    if (!phone && !email) {
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       gtagEvent("lead_contact_needed", { form_name: formName });
-      alert("Please enter a telephone number OR an email address so we can reply.");
+      alert("Please enter a valid email address so we can send your quotation. Telephone is optional.");
       return;
     }
 
@@ -1112,21 +1115,23 @@ export default function IndexPage() {
                         value={heroPhone}
                         onChange={(e) => setHeroPhone(e.target.value)}
                         onFocus={() => trackHeroFormStart("mobile_phone")}
-                        placeholder="Phone number (or email)"
+                        placeholder="Phone number (optional)"
                         className="h-14 w-full rounded-[16px] border border-slate-200 bg-white px-4 text-[16px] text-slate-800 shadow-sm outline-none transition focus:border-[#64b7c4]"
                       />
 
                       <input
                         name="email"
                         type="email"
+                        autoComplete="email"
+                        required
                         value={heroEmail}
                         onChange={(e) => setHeroEmail(e.target.value)}
                         onFocus={() => trackHeroFormStart("mobile_email")}
-                        placeholder="Email address (or phone)"
+                        placeholder="Email address (required)"
                         className="h-14 w-full rounded-[16px] border border-slate-200 bg-white px-4 text-[16px] text-slate-800 shadow-sm outline-none transition focus:border-[#64b7c4]"
                       />
 
-                      <p className="text-left text-[12px] font-medium text-slate-600">Provide a phone number or email address; you do not need both.</p>
+                      <p className="text-left text-[12px] font-medium text-slate-600">Email is required so we can reply. Telephone is optional.</p>
                       <textarea
                         name="message"
                         value={heroMessage}
@@ -1239,19 +1244,18 @@ export default function IndexPage() {
               </div>
 
               <div className="lg:pt-2">
-                <div className="mx-auto max-w-[620px] rounded-[24px] bg-white p-3 shadow-[0_18px_48px_rgba(15,23,42,0.10)] sm:p-4 lg:rounded-[24px] lg:p-5">
-                  <div className="rounded-[20px] border border-slate-200/80 bg-[#f7fafc] px-4 py-4 shadow-[0_8px_24px_rgba(15,23,42,0.05)] sm:px-6 sm:py-5 lg:px-6 lg:py-5">
+                <div className="mx-auto w-full min-w-0 max-w-[620px] rounded-[20px] bg-white p-2.5 shadow-[0_14px_35px_rgba(15,23,42,0.09)] sm:p-4 lg:p-5">
+                  <div className="min-w-0 rounded-[16px] bg-white px-2.5 py-3 sm:border sm:border-slate-200/80 sm:bg-[#f7fafc] sm:px-6 sm:py-5">
                     <div className="text-center">
                       <p className="mx-auto max-w-[430px] text-[16px] font-semibold leading-6 text-slate-800">
-                      Get your quick quote in minutes
+                      Request your fixed-fee drawing quote
                       </p>
                       <p className="mx-auto mt-2 max-w-[500px] text-[12px] leading-5 text-slate-600">
-                        Tell us what you would like to build, add your property postcode and your preferred contact details.
-                        We will review the project and provide a clear fixed-fee quotation.
+                        Tell us about your proposed work and property postcode. We will reply with a clear quotation and next steps. No drawings are needed.
                       </p>
                     </div>
 
-                    <form id="home-quote" ref={heroFormRef} onSubmit={handleHeroSubmit} className="mx-auto mt-4 max-w-[520px] scroll-mt-36">
+                    <form id="home-quote" ref={heroFormRef} onSubmit={handleHeroSubmit} className="mx-auto mt-3 w-full min-w-0 max-w-[520px] scroll-mt-28">
                       <input type="text" name="company" autoComplete="off" tabIndex={-1} className="hidden" />
                       <div className="space-y-3">
                         <div className="space-y-1.5">
@@ -1261,13 +1265,13 @@ export default function IndexPage() {
                           <textarea
                             id="home-project-brief"
                             name="message"
-                            rows={3}
+                            rows={2}
                             required
                             value={heroMessage}
                             onChange={(e) => setHeroMessage(e.target.value)}
                             onFocus={() => trackHeroFormStart("project_description")}
                             placeholder="Briefly describe your project..."
-                            className="min-h-[96px] w-full resize-y rounded-[16px] border border-slate-200 bg-white px-4 py-3 text-[14px] leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-[#64b7c4]"
+                            className="min-h-[76px] w-full min-w-0 resize-y rounded-[14px] border border-slate-200 bg-white px-3.5 py-3 text-[16px] leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-[#64b7c4]"
                           />
                         </div>
                         <div className="space-y-1.5">
@@ -1282,7 +1286,7 @@ export default function IndexPage() {
                             onChange={(e) => setHeroPostcode(e.target.value)}
                             onFocus={() => trackHeroFormStart("postcode")}
                             placeholder="e.g. NW7 3AA"
-                            className="h-12 w-full rounded-[14px] border border-slate-200 bg-white px-4 text-[15px] text-slate-800 outline-none transition focus:border-[#64b7c4]"
+                            className="h-12 w-full min-w-0 rounded-[12px] border border-slate-200 bg-white px-3.5 text-[16px] text-slate-800 outline-none transition focus:border-[#64b7c4]"
                           />
                           {postcodeIntel.coverageLabel ? (
                             <p className="text-left text-[12px] font-medium text-[#2f7f4f]">✓ {postcodeIntel.coverageLabel}</p>
@@ -1299,22 +1303,23 @@ export default function IndexPage() {
                             onChange={(e) => setHeroName(e.target.value)}
                             onFocus={() => trackHeroFormStart("name")}
                             placeholder="Your name"
-                            className="h-12 w-full rounded-[14px] border border-slate-200 bg-white px-4 text-[15px] text-slate-800 outline-none transition focus:border-[#64b7c4]"
+                            className="h-12 w-full min-w-0 rounded-[12px] border border-slate-200 bg-white px-3.5 text-[16px] text-slate-800 outline-none transition focus:border-[#64b7c4]"
                           />
                         </div>
-                        <div className="grid gap-3 sm:grid-cols-2">
+                        <div className="grid min-w-0 gap-3 sm:grid-cols-2">
                           <div className="space-y-1.5">
-                            <label htmlFor="home-contact-email" className="block text-left text-[12px] font-semibold text-[#203e4a]">Email (preferred)</label>
+                            <label htmlFor="home-contact-email" className="block text-left text-[12px] font-semibold text-[#203e4a]">Email address (required)</label>
                             <input
                               id="home-contact-email"
                               name="email"
                               type="email"
                               autoComplete="email"
+                              required
                               value={heroEmail}
                               onChange={(e) => setHeroEmail(e.target.value)}
                               onFocus={() => trackHeroFormStart("email")}
                               placeholder="Email address"
-                              className="h-12 w-full rounded-[14px] border border-slate-200 bg-white px-3 text-[15px] text-slate-800 outline-none transition focus:border-[#64b7c4]"
+                              className="h-12 w-full min-w-0 rounded-[12px] border border-slate-200 bg-white px-3.5 text-[16px] text-slate-800 outline-none transition focus:border-[#64b7c4]"
                             />
                           </div>
                           <div className="space-y-1.5">
@@ -1328,19 +1333,19 @@ export default function IndexPage() {
                               onChange={(e) => setHeroPhone(e.target.value)}
                               onFocus={() => trackHeroFormStart("phone")}
                               placeholder="Telephone number"
-                              className="h-12 w-full rounded-[14px] border border-slate-200 bg-white px-3 text-[15px] text-slate-800 outline-none transition focus:border-[#64b7c4]"
+                              className="h-12 w-full min-w-0 rounded-[12px] border border-slate-200 bg-white px-3.5 text-[16px] text-slate-800 outline-none transition focus:border-[#64b7c4]"
                             />
                           </div>
                         </div>
                         <p className="text-left text-[12px] leading-5 text-slate-600">
-                          One way to contact you is enough — email or telephone. No drawings or plans are needed to enquire.
+                          Email is required; telephone is optional. No drawings or plans are needed to enquire.
                         </p>
                         <button
                           type="submit"
                           disabled={heroSubmitting}
                           className="flex min-h-12 w-full items-center justify-center rounded-full bg-[#236f7b] px-5 py-3 text-center text-[14px] font-bold uppercase tracking-[0.10em] text-white shadow-[0_8px_22px_rgba(20,79,91,0.2)] transition hover:bg-[#194e5b] disabled:cursor-not-allowed disabled:opacity-60 sm:text-[15px]"
                         >
-                          {heroSubmitting ? "Submitting..." : "Get my fixed-fee quote →"}
+                          {heroSubmitting ? "Submitting..." : "Request my fixed-fee quote →"}
                         </button>
                         <p className="text-center text-[12px] leading-5 text-slate-600">
                           Prefer to select a service from a list?{" "}
@@ -1351,7 +1356,7 @@ export default function IndexPage() {
                       </div>
                     </form>
 
-                    <div className="mt-4 flex flex-wrap justify-center gap-2">
+                    <div className="mt-4 hidden flex-wrap justify-center gap-2 sm:flex">
                       <div className="rounded-full border border-[#d7e8ee] bg-white px-3 py-1 text-[11px] font-medium text-slate-700">
                         ✓ Fixed price
                       </div>
