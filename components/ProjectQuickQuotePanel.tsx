@@ -28,7 +28,7 @@ export default function ProjectQuickQuotePanel({
 }: Props) {
   const [service, setService] = useState(suggestedService);
   const [postcode, setPostcode] = useState("");
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(source === "new-build-developer-showcase" || projectSlug === "700-woolwich-road-greenwich-two-new-flats");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -118,14 +118,14 @@ export default function ProjectQuickQuotePanel({
             <span aria-hidden="true" className="text-3xl text-[#2d927b]">✓</span>
             <h3 className="mt-3 text-xl font-semibold text-[#213d44]">Thank you for your enquiry</h3>
             <p className="mt-3 text-sm leading-7 text-[#617176]">Your request has been received. WEDRAWPLANS will contact you about the next steps.</p>
-            <button type="button" onClick={() => {setSuccess(false);setExpanded(false);setService(suggestedService);setPostcode("");setName("");setPhone("");setEmail("");setMessage("");startedAt.current=null;}} className="mt-5 text-sm font-semibold text-[#277c8d] underline">Make another enquiry</button>
+            <button type="button" onClick={() => {setSuccess(false);setExpanded(source === "new-build-developer-showcase" || projectSlug === "700-woolwich-road-greenwich-two-new-flats");setService(suggestedService);setPostcode("");setName("");setPhone("");setEmail("");setMessage("");startedAt.current=null;}} className="mt-5 text-sm font-semibold text-[#277c8d] underline">Make another enquiry</button>
           </div>
         ) : (
           <>
             <div className="text-center">
               <h3 className="text-[18px] font-semibold leading-6 text-[#213943]">Get your quick quote in minutes</h3>
               <p className="mx-auto mt-2 max-w-[360px] text-[12px] leading-6 text-[#627379]">
-                Choose your service and enter the property postcode. Then leave your contact details for a fixed-fee quotation.
+                Tell us about your property or development site to request a fixed-fee quotation. Phone is optional; email is required.
               </p>
             </div>
             <form className="mt-5 space-y-3" onSubmit={submit}>
