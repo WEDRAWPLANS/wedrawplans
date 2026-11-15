@@ -20,9 +20,9 @@ export default function WoolwichDeveloperShowcase() {
       <div className="mx-auto max-w-7xl px-4 py-12 sm:py-16 lg:px-6">
         <div className="mx-auto max-w-5xl text-center">
           <p className="inline-flex rounded-full border border-emerald-200 bg-white px-4 py-2 text-[11px] font-bold uppercase tracking-[.17em] text-[#1f745f]">WEDRAWPLANS — PLANNING APPROVAL GRANTED</p>
-          <h2 id="woolwich-developer-heading" className="mt-4 text-3xl font-extrabold tracking-tight text-[#192d3c] sm:text-4xl">Woolwich Road, Greenwich — residential development delivered</h2>
-          <p className="mt-3 text-[12px] font-bold uppercase tracking-[.14em] text-[#526777]">Planning + Building Regulations + Structural Coordination + Project Management</p>
-          <p className="mx-auto mt-5 max-w-4xl text-[15px] leading-8 text-[#4e6870]">The Woolwich Road development demonstrates two stages of successful residential planning. Royal Greenwich first approved a five-storey new-build scheme of 14 flats and two commercial units in 2016 (14/0289/F). In July 2020, permission followed for a further upper floor with two additional two-bedroom flats (20/0899/F), alongside related access and parking changes. WEDRAWPLANS developed the architectural planning and Building Regulations drawing information and supported coordination of the structural and construction stages.</p>
+          <h2 id="woolwich-developer-heading" className="mt-4 text-3xl font-extrabold tracking-tight text-[#192d3c] sm:text-4xl">Woolwich Road, Greenwich — Two Additional Flats, One Complete Development Service</h2>
+          <p className="mt-3 text-[12px] font-bold uppercase tracking-[.14em] text-[#526777]">PLANNING + BUILDING REG + STRUCTURE + PROJECT MANAGEMENT</p>
+          <p className="mx-auto mt-5 max-w-4xl text-[15px] leading-8 text-[#4e6870]">The Woolwich Road development demonstrates two stages of successful residential planning. Royal Greenwich first approved a five-storey new-build scheme of 14 flats and two commercial units in 2016 (14/0289/F). In July 2020, permission followed for a further upper floor with two additional two-bedroom flats (20/0899/F), alongside related access and parking changes. For the two additional apartments, WEDRAWPLANS secured planning approval, prepared the complete Building Regulations drawing package, coordinated structural engineering and managed the project throughout the design and construction process.</p>
           <p className="mt-3 text-[13px] font-semibold text-[#236f65]">Royal Borough of Greenwich · Original new-build approval 2016 (14/0289/F) · Additional-floor approval 2020 (20/0899/F)</p>
         </div>
         <div className="mt-9 overflow-hidden rounded-[23px] border border-[#d6e6df] bg-white shadow-[0_18px_55px_rgba(33,62,58,.10)]">
@@ -36,7 +36,7 @@ export default function WoolwichDeveloperShowcase() {
             />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#061d27]/70 via-transparent to-transparent" />
             <div className="absolute bottom-0 left-0 p-5 text-white sm:p-8">
-              <p className="text-[11px] font-bold uppercase tracking-[.18em]">WEDRAWPLANS · Greenwich residential development</p>
+              <p className="text-[11px] font-bold uppercase tracking-[.18em]">WEDRAWPLANS · PLANNING + BUILDING REG + STRUCTURE + PROJECT MANAGEMENT</p>
               <p className="mt-2 max-w-3xl text-xl font-semibold leading-tight sm:text-3xl">Woolwich Road · completed residential development</p>
             </div>
           </div>
@@ -51,7 +51,7 @@ export default function WoolwichDeveloperShowcase() {
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <p className="text-[11px] font-bold uppercase tracking-[.16em] text-[#247767]">Original WEDRAWPLANS project evidence</p>
-              <h3 className="mt-2 text-2xl font-extrabold tracking-tight text-[#253d42] sm:text-3xl">Five views of the design and delivery</h3>
+              <h3 className="mt-2 text-2xl font-extrabold tracking-tight text-[#253d42] sm:text-3xl">Planning, technical design, structural works and delivery</h3>
             </div>
             <Link href={caseStudy} className="text-[13px] font-bold text-[#217779] underline underline-offset-4">Explore the complete project gallery →</Link>
           </div>
@@ -71,15 +71,15 @@ export default function WoolwichDeveloperShowcase() {
         </div>
         <div className="mt-9 grid gap-5 rounded-[20px] border border-[#d5e6dc] bg-white p-6 lg:grid-cols-[1fr_auto] lg:items-center sm:p-8">
           <div>
-            <h3 className="text-xl font-bold text-[#22454c]">Landowners and developers: planning a new residential project?</h3>
-            <p className="mt-3 max-w-3xl text-[14px] leading-7 text-[#557078]">From apartment buildings and mixed-use redevelopment to roof additions, infill plots and new-build houses, WEDRAWPLANS can assess design options, prepare planning drawings and coordinate the technical information needed for the next stage. We address site capacity, height, massing, access, amenity, refuse, parking and relevant local planning requirements—then provide a clearly scoped fixed-fee proposal.</p>
+            <h3 className="text-xl font-bold text-[#22454c]">Developers and landowners — unlock your site's full potential</h3>
+            <p className="mt-3 max-w-3xl text-[14px] leading-7 text-[#557078]">Whether you own a development plot, an existing building with airspace potential or a site suitable for new homes, WEDRAWPLANS brings planning, Building Regulations, structural coordination and project management together in one clearly defined service. We help landowners and developers evaluate opportunities, secure planning permission, develop coordinated technical information and manage the construction process. Each project is tailored to the site's constraints and commercial objectives.</p>
           </div>
           <div className="flex flex-wrap gap-3 lg:flex-col">
             <a href="#new-build-quote" className="rounded-full bg-[#267481] px-6 py-3 text-center text-[13px] font-bold text-white hover:bg-[#1a606a]">Request a developer quotation</a>
             <a href={councilDocuments} target="_blank" rel="noopener noreferrer" className="rounded-full border border-[#a9cfc1] px-6 py-3 text-center text-[13px] font-bold text-[#24746e] hover:bg-[#eff8f3]">View Greenwich approved documents ↗</a>
           </div>
         </div>
-        <p className="mt-4 text-[11px] leading-5 text-[#617676]">The original new-build was approved under 14/0289/F (2016). The 2020 consent 20/0899/F is specifically for the two additional fourth-floor flats. Building Regulations drawings and structural coordination are separate from either planning consent.</p>
+        <p className="mt-4 text-[11px] leading-5 text-[#617676]">Original new-build permission 14/0289/F was granted in 2016; permission 20/0899/F approved the two additional flats in 2020. Our Building Regulations, structural and project-management services demonstrate the further stages involved in delivering that approved development.</p>
       </div>
     </section>
   );
