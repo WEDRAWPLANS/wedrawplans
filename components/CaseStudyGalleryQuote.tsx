@@ -279,6 +279,19 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
   const isApprovedDrawingShowcase = isSistova || isCromwell;
   const quotePanelRef = useRef<HTMLDivElement>(null);
   const [quoteHeight, setQuoteHeight] = useState<number | undefined>(undefined);
+  const [quoteVisibleOnMobile, setQuoteVisibleOnMobile] = useState(false);
+
+  useEffect(() => {
+    const panel = quotePanelRef.current;
+    if (!panel || typeof IntersectionObserver === "undefined") return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setQuoteVisibleOnMobile(entry.isIntersecting),
+      { rootMargin: "0px 0px -64px 0px", threshold: 0 }
+    );
+    observer.observe(panel);
+    return () => observer.disconnect();
+  }, []);
+
 
   useEffect(() => {
     if (!isAllum || !quotePanelRef.current) return;
@@ -360,7 +373,7 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
           </div>
         </div>
       </div>
-      {(isReddings || isAllum || isApprovedDrawingShowcase || isBrockley || isHarrowStudios || isCannon || isSunburyCare || isGreenwichTen || isHendonHMO || isCranbourneCombined || isSuttonLoft || isLeicesterCombined || isWoolwich) ? <a href="#case-study-quote" className="case-study-mobile-quote-bar fixed inset-x-0 bottom-0 z-40 flex min-h-[60px] items-center justify-center border-t border-[#bcd5d0] bg-[#224b4e] px-5 py-3 text-[14px] font-bold text-white shadow-[0_-10px_30px_rgba(0,0,0,.13)] lg:hidden">Get your fixed-fee drawing quote →</a> : null}
+      {(!quoteVisibleOnMobile && (isReddings || isAllum || isApprovedDrawingShowcase || isBrockley || isHarrowStudios || isCannon || isSunburyCare || isGreenwichTen || isHendonHMO || isCranbourneCombined || isSuttonLoft || isLeicesterCombined || isWoolwich)) ? <a href="#case-study-quote" className="case-study-mobile-quote-bar fixed inset-x-0 bottom-0 z-40 flex min-h-[60px] items-center justify-center border-t border-[#bcd5d0] bg-[#224b4e] px-5 py-3 text-[14px] font-bold text-white shadow-[0_-10px_30px_rgba(0,0,0,.13)] lg:hidden">Get your fixed-fee drawing quote →</a> : null}
     </section>
   );
 }
