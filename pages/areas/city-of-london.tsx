@@ -1,3 +1,4 @@
+import { createFaqPageSchema } from "../../lib/faqSchema";
 import { getLondonAreaMetadata } from "../../data/londonAreas";
 import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
@@ -50,67 +51,25 @@ export default function CityOfLondonAreaPage() {
       "Architectural drawing services in the City of London for extensions, loft conversions, flat conversions, refurbishments and building regulations."
   };
 
-  const faqJson = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Do I need planning permission for works in the City of London?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Often yes. The City has many listed buildings, conservation areas and tighter controls. We confirm the correct route once we review your address, building status and the scope of works."
-        }
-      },
-      {
-        "@type": "Question",
-        name: "Is the City of London strict with alterations and conversions?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "It can be strict, particularly for heritage assets, roofline changes and visible external alterations. A clear strategy and well coordinated drawings help the application process run smoother."
-        }
-      },
-      {
-        "@type": "Question",
-        name: "How long does the City of London take to decide?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Planning timescales vary by proposal type, but many applications follow the standard determination period after validation. We guide you on realistic timings once we confirm the submission route."
-        }
-      },
-      {
-        "@type": "Question",
-        name: "Do you manage the full application to the City of London?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Yes. We prepare drawings, complete the forms, upload documents, submit to the relevant portal and respond to planning officer queries."
-        }
-      }
-    ]
-  };
-
   const visibleFaq = [
     {
-      q: "Do I need planning permission for works in the City of London?",
-      a: "Often yes. The City has many listed buildings, conservation areas and tighter controls. We confirm the correct route once we review your address, building status and the scope of works."
+      question: "Do I need planning permission for works in the City of London?",
+      answer: "Often yes. The City has many listed buildings, conservation areas and tighter controls. We confirm the correct route once we review your address, building status and the scope of works."
     },
     {
-      q: "Is the City of London strict with alterations and conversions?",
-      a: "It can be strict, particularly for heritage assets, roofline changes and visible external alterations. A clear strategy and well coordinated drawings help the application process run smoother."
+      question: "Is the City of London strict with alterations and conversions?",
+      answer: "It can be strict, particularly for heritage assets, roofline changes and visible external alterations. A clear strategy and well coordinated drawings help the application process run smoother."
     },
     {
-      q: "How long does the City of London take to decide?",
-      a: "Planning timescales vary by proposal type, but many applications follow the standard determination period after validation. We guide you on realistic timings once we confirm the submission route."
+      question: "How long does the City of London take to decide?",
+      answer: "Planning timescales vary by proposal type, but many applications follow the standard determination period after validation. We guide you on realistic timings once we confirm the submission route."
     },
     {
-      q: "Do you manage the full application to the City of London?",
-      a: "Yes. We prepare drawings, complete the forms, upload documents, submit to the relevant portal and respond to planning officer queries."
+      question: "Do you manage the full application to the City of London?",
+      answer: "Yes. We prepare drawings, complete the forms, upload documents, submit to the relevant portal and respond to planning officer queries."
     }
   ];
+  const faqJson = createFaqPageSchema(visibleFaq);
 
   return (
     <>
@@ -268,14 +227,14 @@ export default function CityOfLondonAreaPage() {
                 <div className="mt-6 space-y-5">
                   {visibleFaq.map((item) => (
                     <div
-                      key={item.q}
+                      key={item.question}
                       className="border-b border-slate-200 pb-5 last:border-b-0 last:pb-0"
                     >
                       <h3 className="text-[13px] font-semibold text-slate-900">
-                        {item.q}
+                        {item.question}
                       </h3>
                       <p className="mt-2 text-[13px] text-slate-700">
-                        {item.a}
+                        {item.answer}
                       </p>
                     </div>
                   ))}

@@ -1,3 +1,4 @@
+import { createFaqPageSchema } from "../../lib/faqSchema";
 import { getLondonAreaMetadata } from "../../data/londonAreas";
 import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
@@ -15,6 +16,31 @@ const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Brent";
 
 const areaMetadata = getLondonAreaMetadata("Brent");
+
+const FAQ_ITEMS = [
+  {
+    question: "Do I need planning permission for a rear extension in Brent?",
+    answer:
+      "Not always. Many rear extensions in Brent can be carried out under permitted development. We confirm the correct route once we review your address and house type.",
+  },
+  {
+    question: "Is Brent strict with loft conversions and extensions?",
+    answer:
+      "Brent follows national permitted development rules but can be stricter near conservation areas, around key routes and where extensions affect neighbour amenity.",
+  },
+  {
+    question: "How long does Brent Council take to decide?",
+    answer:
+      "Householder planning applications normally take six to eight weeks after validation. Lawful Development Certificates usually take around four to six weeks.",
+  },
+  {
+    question: "Do you manage the full application to Brent Council?",
+    answer:
+      "Yes. We prepare all drawings, complete the forms, upload documents, submit to Brent Council and respond to planning officer queries.",
+  },
+];
+
+const faqJson = createFaqPageSchema(FAQ_ITEMS);
 
 export default function BrentAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -51,49 +77,6 @@ export default function BrentAreaPage() {
     ],
     description:
       "Architectural drawing services in Brent for extensions, loft conversions, outbuildings, refurbishments and building regulations.",
-  };
-
-  const faqJson = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Do I need planning permission for a rear extension in Brent",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Not always. Many rear extensions in Brent can be carried out under permitted development. We confirm the correct route once we review your address and house type.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Is Brent strict with loft conversions and extensions",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Brent follows national permitted development rules but can be stricter near conservation areas, around key routes and where extensions affect neighbour amenity.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "How long does Brent Council take to decide",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Householder planning applications normally take six to eight weeks after validation. Lawful Development Certificates usually take around four to six weeks.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Do you manage the full application to Brent Council",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Yes. We prepare all drawings, complete the forms, upload documents, submit to Brent Council and respond to planning officer queries.",
-        },
-      },
-    ],
   };
 
   return (
@@ -325,30 +308,12 @@ export default function BrentAreaPage() {
               <section className="space-y-4">
                 <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">Frequently asked questions in Brent</h2>
                 <div className="grid md:grid-cols-2 gap-6 text-[13px] text-slate-700">
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">Do I need planning permission for a rear extension in Brent</h3>
-                    <p>
-                      Not always. Many rear extensions in Brent can be carried out under permitted development. We confirm the correct route once we review your address and house type.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">Is Brent strict with loft conversions and extensions</h3>
-                    <p>
-                      Brent follows national permitted development rules but can be stricter near conservation areas, around key routes and where extensions affect neighbour amenity.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">How long does Brent Council take to decide</h3>
-                    <p>
-                      Householder planning applications normally take six to eight weeks after validation. Lawful Development Certificates usually take around four to six weeks.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">Do you manage the full application to Brent Council</h3>
-                    <p>
-                      Yes. We prepare all drawings, complete the forms, upload documents, submit to Brent Council and respond to planning officer queries.
-                    </p>
-                  </div>
+                  {FAQ_ITEMS.map(({ question, answer }) => (
+                    <div key={question} className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                      <h3 className="font-semibold text-slate-900">{question}</h3>
+                      <p>{answer}</p>
+                    </div>
+                  ))}
                 </div>
               </section>
 

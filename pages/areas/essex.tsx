@@ -1,3 +1,4 @@
+import { createFaqPageSchema } from "../../lib/faqSchema";
 import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import React from "react";
@@ -11,6 +12,31 @@ const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
 const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Essex";
+
+const FAQ_ITEMS = [
+  {
+    question: "What drawings do I need for an extension?",
+    answer:
+      "Most projects start with existing and proposed plans and elevations. We confirm the right set once we review your address and scope.",
+  },
+  {
+    question: "How fast can you survey?",
+    answer:
+      "In most cases we can arrange the initial measured survey within forty eight hours of instruction.",
+  },
+  {
+    question: "Do you help with planning submissions?",
+    answer:
+      "Yes. We can prepare drawings and support the submission route, including responding to questions during review.",
+  },
+  {
+    question: "Can you coordinate structural design?",
+    answer:
+      "Yes. We coordinate with structural engineers so beams and load paths are designed and shown clearly on the drawings.",
+  },
+];
+
+const faqJson = createFaqPageSchema(FAQ_ITEMS);
 
 export default function EssexAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -60,49 +86,6 @@ export default function EssexAreaPage() {
     ],
     description:
       "Architectural drawing services in Essex for extensions, loft conversions, refurbishments, residential schemes and building regulation drawing packages.",
-  };
-
-  const faqJson = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "What drawings do I need for a house extension in Essex",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Most homeowners start with existing and proposed plans, elevations, and a site location plan. If your project needs Building Regulations approval, you will also need a detailed Building Regulations drawing set and supporting details. We guide you through what is needed based on your property and scope.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Can you handle planning drawings and Building Regulations drawings",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Yes. We can produce planning drawing packages and Building Regulations drawing packages. Many clients start with planning and then upgrade to Building Regulations once the scheme is agreed.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Do you work across all Essex towns",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Yes. We cover Essex widely, including Epping, Loughton, Buckhurst Hill, Chigwell, Brentwood, Chelmsford, Billericay, Rayleigh, Southend-on-Sea, Basildon, Harlow, Colchester and nearby areas.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "How do you get the measurements for my property",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "We can work from a survey, existing drawings, or we can arrange an initial survey where needed. The aim is accurate, council ready drawings that match the property and the proposed scope.",
-        },
-      },
-    ],
   };
 
   return (
@@ -555,38 +538,12 @@ export default function EssexAreaPage() {
                   Frequently asked questions
                 </h2>
                 <div className="grid md:grid-cols-2 gap-6 text-[13px] text-slate-700">
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      What drawings do I need for an extension
-                    </h3>
-                    <p>
-                      Most projects start with existing and proposed plans and elevations. We confirm the right set once we review your address and scope.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      How fast can you survey
-                    </h3>
-                    <p>
-                      In most cases we can arrange the initial measured survey within forty eight hours of instruction.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Do you help with planning submissions
-                    </h3>
-                    <p>
-                      Yes. We can prepare drawings and support the submission route, including responding to questions during review.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Can you coordinate structural design
-                    </h3>
-                    <p>
-                      Yes. We coordinate with structural engineers so beams and load paths are designed and shown clearly on the drawings.
-                    </p>
-                  </div>
+                  {FAQ_ITEMS.map(({ question, answer }) => (
+                    <div key={question} className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                      <h3 className="font-semibold text-slate-900">{question}</h3>
+                      <p>{answer}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
 

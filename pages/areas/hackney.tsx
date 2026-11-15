@@ -55,49 +55,6 @@ export default function HackneyAreaPage() {
       "Architectural drawing services in Hackney for extensions, loft conversions, flat conversions, outbuildings and building regulation plans. Initial survey within 48 hours and full planning support.",
   };
 
-  const faqJson = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Do I need planning permission for a rear extension in Hackney",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Not always. Many rear extensions in Hackney can be carried out under permitted development. We confirm the correct route once we review your address and house type.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Is Hackney strict with loft conversions and extensions",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Hackney can be strict in conservation areas and streets with strong character. Careful drawings and a strong planning case help.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "How long does Hackney Council take to decide",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Householder planning applications normally take six to eight weeks after validation. Lawful Development Certificates often take around four to six weeks.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Do you manage the full application to Hackney Council",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Yes. We prepare drawings, complete forms, upload documents, submit to Hackney Council and respond to planning officer queries.",
-        },
-      },
-    ],
-  };
-
   return (
     <>
       <Head>
@@ -125,10 +82,6 @@ export default function HackneyAreaPage() {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }}
         />
       </Head>
 

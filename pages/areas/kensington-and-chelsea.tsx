@@ -1,3 +1,4 @@
+import { createFaqPageSchema } from "../../lib/faqSchema";
 import { getLondonAreaMetadata } from "../../data/londonAreas";
 import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
@@ -15,6 +16,31 @@ const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Kensington%20and%20Chelsea";
 
 const areaMetadata = getLondonAreaMetadata("Kensington and Chelsea");
+
+const FAQ_ITEMS = [
+  {
+    question: "Do I need planning permission in Kensington and Chelsea?",
+    answer:
+      "Many projects can proceed under permitted development, but local controls can be stricter. We check your address and advise the best route at the start.",
+  },
+  {
+    question: "How fast can you survey?",
+    answer:
+      "In most cases we can arrange the initial survey within forty eight hours of instruction.",
+  },
+  {
+    question: "Do you submit to the council?",
+    answer:
+      "Yes. We handle the submission, monitor progress and respond to planning officer queries.",
+  },
+  {
+    question: "Can you coordinate structural design?",
+    answer:
+      "Yes. We coordinate with structural engineers so beams and load paths are designed and shown correctly on the drawings.",
+  },
+];
+
+const faqJson = createFaqPageSchema(FAQ_ITEMS);
 
 export default function KensingtonAndChelseaAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -50,49 +76,6 @@ export default function KensingtonAndChelseaAreaPage() {
     ],
     description:
       "Architectural drawing services in Kensington and Chelsea for extensions, loft conversions, refurbishments, basements and building regulations.",
-  };
-
-  const faqJson = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Do I need planning permission for a rear extension in Kensington and Chelsea?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Not always. Some rear extensions can be carried out under permitted development, but many streets have tighter controls, conservation areas, or Article 4 directions. We confirm the correct route once we review your address and house type.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Is Kensington and Chelsea strict with extensions and loft conversions?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Kensington and Chelsea can be strict, especially in conservation areas and character streets. We shape each design to match local expectations and improve approval chances.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "How long does Kensington and Chelsea Council take to decide?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Householder planning applications normally take six to eight weeks after validation. Lawful Development Certificates often take around four to six weeks.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Do you manage the full submission to Kensington and Chelsea Council?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Yes. We prepare drawings, complete forms, upload documents, submit to Kensington and Chelsea Council and respond to planning officer queries.",
-        },
-      },
-    ],
   };
 
   return (
@@ -336,32 +319,12 @@ export default function KensingtonAndChelseaAreaPage() {
                   Frequently asked questions
                 </h2>
                 <div className="grid md:grid-cols-2 gap-6 text-[13px] text-slate-700">
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Do I need planning permission in Kensington and Chelsea
-                    </h3>
-                    <p>
-                      Many projects can proceed under permitted development, but local controls can be stricter. We
-                      check your address and advise the best route at the start.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">How fast can you survey</h3>
-                    <p>In most cases we can arrange the initial survey within forty eight hours of instruction.</p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">Do you submit to the council</h3>
-                    <p>
-                      Yes. We handle the submission, monitor progress and respond to planning officer queries.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">Can you coordinate structural design</h3>
-                    <p>
-                      Yes. We coordinate with structural engineers so beams and load paths are designed and shown
-                      correctly on the drawings.
-                    </p>
-                  </div>
+                  {FAQ_ITEMS.map(({ question, answer }) => (
+                    <div key={question} className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                      <h3 className="font-semibold text-slate-900">{question}</h3>
+                      <p>{answer}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
 

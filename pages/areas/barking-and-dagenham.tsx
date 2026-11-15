@@ -52,45 +52,6 @@ export default function BarkingAndDagenhamAreaPage() {
       "Architectural drawing services in Barking and Dagenham. Planning drawings, extension layouts, loft conversion plans and building regulation packs with clear fixed fees and fast response.",
   };
 
-  const faqJson = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Do you cover all of Barking and Dagenham?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes. We cover Barking, Dagenham, Becontree, Chadwell Heath and nearby areas. Use the form and we will confirm survey and delivery dates.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Can you help with permitted development and lawful development certificates?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes. We can check whether permitted development rights apply and prepare drawings for a lawful development certificate when suitable.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "What do I need to get a fixed quote?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Send your postcode, project type and a short description. If you have photos or a Rightmove link you can mention it in the details box.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Do you provide building regulation drawings as well as planning drawings?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes. We provide building regulation packs including sections, details and notes, coordinated with structural design where required.",
-        },
-      },
-    ],
-  };
-
   return (
     <>
       <Head>
@@ -100,10 +61,6 @@ export default function BarkingAndDagenhamAreaPage() {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }}
         />
       </Head>
 

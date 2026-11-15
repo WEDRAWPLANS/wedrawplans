@@ -1,3 +1,4 @@
+import { createFaqPageSchema } from "../../lib/faqSchema";
 import { getLondonAreaMetadata } from "../../data/londonAreas";
 import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
@@ -16,6 +17,31 @@ const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Tower%20Hamlets";
 
 const areaMetadata = getLondonAreaMetadata("Tower Hamlets");
+
+const FAQ_ITEMS = [
+  {
+    question: "Do I need planning permission for a rear extension in Tower Hamlets?",
+    answer:
+      "Not always. Some rear extensions in Tower Hamlets can fall under permitted development, but many properties are affected by conservation area controls, flat status, listed building constraints or local planning sensitivities. We check the address and advise the correct route.",
+  },
+  {
+    question: "Is Tower Hamlets strict with loft conversions and extensions?",
+    answer:
+      "Tower Hamlets can be strict where properties sit in conservation areas, on prominent terraces or where changes affect the street scene. A well-drawn proposal with the right planning approach is especially important here.",
+  },
+  {
+    question: "How long does Tower Hamlets Council take to decide?",
+    answer:
+      "Householder planning applications are typically around eight weeks after validation. Lawful Development Certificate timescales are often around six to eight weeks, depending on validation and workload.",
+  },
+  {
+    question: "Do you manage the full application to Tower Hamlets Council?",
+    answer:
+      "Yes. We prepare drawings, complete the forms, upload the documents, submit the application to Tower Hamlets Council and deal with planning queries during the process.",
+  },
+];
+
+const faqJson = createFaqPageSchema(FAQ_ITEMS);
 
 export default function TowerHamletsAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -51,49 +77,6 @@ export default function TowerHamletsAreaPage() {
     ],
     description:
       "Architectural drawing services in Tower Hamlets for extensions, loft conversions, flat reconfigurations, refurbishments and building regulation packs.",
-  };
-
-  const faqJson = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Do I need planning permission for a rear extension in Tower Hamlets?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Not always. Some rear extensions in Tower Hamlets can fall under permitted development, but many properties are affected by conservation area controls, flat status, listed building constraints or local planning sensitivities. We check the address and advise the correct route.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Is Tower Hamlets strict with loft conversions and extensions?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Tower Hamlets can be strict where properties sit in conservation areas, on prominent terraces or where changes affect the street scene. A well-drawn proposal with the right planning approach is especially important here.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "How long does Tower Hamlets Council take to decide?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Householder planning applications are typically around eight weeks after validation. Lawful Development Certificate timescales are often around six to eight weeks, depending on validation and workload.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Do you manage the full application to Tower Hamlets Council?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Yes. We prepare drawings, complete the forms, upload the documents, submit the application to Tower Hamlets Council and deal with planning queries during the process.",
-        },
-      },
-    ],
   };
 
   return (
@@ -325,30 +308,12 @@ export default function TowerHamletsAreaPage() {
                   Frequently asked questions
                 </h2>
                 <div className="grid md:grid-cols-2 gap-6 text-[13px] text-slate-700">
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">Do I need planning permission for a rear extension in Tower Hamlets</h3>
-                    <p>
-                      Not always. Some rear extensions in Tower Hamlets can fall under permitted development, but many properties are affected by conservation area controls, flat status, listed building constraints or local planning sensitivities. We check the address and advise the correct route.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">Is Tower Hamlets strict with loft conversions and extensions</h3>
-                    <p>
-                      Tower Hamlets can be strict where properties sit in conservation areas, on prominent terraces or where changes affect the street scene. A well-drawn proposal with the right planning approach is especially important here.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">How long does Tower Hamlets Council take to decide</h3>
-                    <p>
-                      Householder planning applications are typically around eight weeks after validation. Lawful Development Certificate timescales are often around six to eight weeks, depending on validation and workload.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">Do you manage the full application to Tower Hamlets Council</h3>
-                    <p>
-                      Yes. We prepare drawings, complete the forms, upload the documents, submit the application to Tower Hamlets Council and deal with planning queries during the process.
-                    </p>
-                  </div>
+                  {FAQ_ITEMS.map(({ question, answer }) => (
+                    <div key={question} className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                      <h3 className="font-semibold text-slate-900">{question}</h3>
+                      <p>{answer}</p>
+                    </div>
+                  ))}
                 </div>
 
                 <p className="mt-6 text-[13px] font-semibold text-slate-800">

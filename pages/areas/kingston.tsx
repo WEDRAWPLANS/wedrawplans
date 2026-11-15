@@ -1,3 +1,4 @@
+import { createFaqPageSchema } from "../../lib/faqSchema";
 import { getLondonAreaMetadata } from "../../data/londonAreas";
 import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
@@ -20,6 +21,31 @@ const PROJECT_IMAGE_1 = "/images/kingston-project-1.jpg";
 const PROJECT_IMAGE_2 = "/images/kingston-project-2.jpg";
 
 const areaMetadata = getLondonAreaMetadata("Kingston upon Thames");
+
+const FAQ_ITEMS = [
+  {
+    question: "Do I need planning permission in Kingston?",
+    answer:
+      "Many houses can proceed under permitted development, but flats and conservation areas often need planning permission. We check your address and advise the best route at the start.",
+  },
+  {
+    question: "How fast can you survey?",
+    answer:
+      "In most cases we can arrange the initial measured survey within 48 hours of instruction.",
+  },
+  {
+    question: "Do you submit to Kingston Council?",
+    answer:
+      "Yes. We handle the submission, monitor progress and respond to planning officer queries.",
+  },
+  {
+    question: "Can you coordinate structural design?",
+    answer:
+      "Yes. We coordinate with structural engineers so beams and load paths are designed and shown correctly on the drawings.",
+  },
+];
+
+const faqJson = createFaqPageSchema(FAQ_ITEMS);
 
 export default function KingstonAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -55,61 +81,6 @@ export default function KingstonAreaPage() {
       ],
       description:
         "Architectural drawing services in Kingston upon Thames for extensions, loft conversions, refurbishments, outbuildings and building regulation packs. Fixed fees with clear scope and fast communication.",
-    }),
-    []
-  );
-
-  const faqJson = useMemo(
-    () => ({
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: "Do I need planning permission for a rear extension in Kingston upon Thames",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Not always. Many houses can extend under permitted development, but flats and some conservation areas need full planning permission. We confirm the correct route once we review your address and house type.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Is Kingston strict with loft conversions and large extensions",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Kingston can be more sensitive near the river, in conservation areas and on character roads. Roof changes, dormer proportions and neighbour impact are often reviewed closely, so accurate drawings and a clear design approach help.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "How long does Kingston Council take to decide",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Householder planning applications often take around six to eight weeks after validation. Lawful Development Certificates often take around four to six weeks depending on workload.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Do you manage the full application to Kingston Council",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Yes. We prepare drawings, complete forms, upload documents, submit to Kingston Council and respond to planning officer queries.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "How quickly can you survey a property in Kingston upon Thames",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "In most cases we can arrange a measured survey within 48 hours, subject to access and location.",
-          },
-        },
-      ],
     }),
     []
   );
@@ -357,24 +328,12 @@ export default function KingstonAreaPage() {
               <div className="space-y-4">
                 <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">Frequently asked questions</h2>
                 <div className="grid md:grid-cols-2 gap-6 text-[13px] text-slate-700">
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">Do I need planning permission in Kingston</h3>
-                    <p>
-                      Many houses can proceed under permitted development, but flats and conservation areas often need planning permission. We check your address and advise the best route at the start.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">How fast can you survey</h3>
-                    <p>In most cases we can arrange the initial measured survey within 48 hours of instruction.</p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">Do you submit to Kingston Council</h3>
-                    <p>Yes. We handle the submission, monitor progress and respond to planning officer queries.</p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">Can you coordinate structural design</h3>
-                    <p>Yes. We coordinate with structural engineers so beams and load paths are designed and shown correctly on the drawings.</p>
-                  </div>
+                  {FAQ_ITEMS.map(({ question, answer }) => (
+                    <div key={question} className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                      <h3 className="font-semibold text-slate-900">{question}</h3>
+                      <p>{answer}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
 

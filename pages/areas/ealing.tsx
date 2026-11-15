@@ -1,3 +1,4 @@
+import { createFaqPageSchema } from "../../lib/faqSchema";
 import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import Head from "next/head";
@@ -18,6 +19,31 @@ const PROJECT_IMAGE_1 = "/images/case-studies/allum-lane/public-sheets/3d-01.web
 const PROJECT_IMAGE_2 = "/images/case-studies/allum-lane/public-sheets/3d-02.webp";
 
 const areaMetadata = getLondonAreaMetadata("Ealing");
+
+const FAQ_ITEMS = [
+  {
+    question: "Do I need planning permission in Ealing?",
+    answer:
+      "Many houses can proceed under permitted development, but flats and conservation areas often need planning permission. We check your address and advise the best route at the start.",
+  },
+  {
+    question: "How fast can you survey?",
+    answer:
+      "In most cases we can arrange the initial measured survey within 48 hours of instruction.",
+  },
+  {
+    question: "Do you submit to Ealing Council?",
+    answer:
+      "Yes. We handle the submission, monitor progress and respond to planning officer queries.",
+  },
+  {
+    question: "Can you coordinate structural design?",
+    answer:
+      "Yes. We coordinate with structural engineers so beams and load paths are designed and shown correctly on the drawings.",
+  },
+];
+
+const faqJson = createFaqPageSchema(FAQ_ITEMS);
 
 export default function EalingAreaPage() {
   function scrollToForm() {
@@ -47,61 +73,6 @@ export default function EalingAreaPage() {
       ],
       description:
         "Architectural drawing services in Ealing for extensions, loft conversions, refurbishments and building regulation packs. Fixed fees with clear scope and fast communication.",
-    }),
-    []
-  );
-
-  const faqJson = useMemo(
-    () => ({
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: "Do I need planning permission for a rear extension in Ealing",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Not always. Many rear extensions in Ealing can be carried out under permitted development. We confirm the correct route once we review your address and house type.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Is Ealing strict with loft conversions and extensions",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Ealing can be strict in conservation areas and on some streets with strong character. Clear drawings and a strong planning approach help.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "How long does Ealing Council take to decide",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Householder planning applications normally take 6 to 8 weeks after validation. Lawful Development Certificates often take about 4 to 6 weeks, depending on workload and submission quality.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Do you manage the full application to Ealing Council",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Yes. We prepare drawings, complete forms, submit applications and respond to planning officer queries until a decision is issued.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "How quickly can you survey a property in Ealing",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "In most cases we can arrange a measured survey within 48 hours, subject to access and location.",
-          },
-        },
-      ],
     }),
     []
   );
@@ -500,24 +471,12 @@ export default function EalingAreaPage() {
                   Frequently asked questions
                 </h2>
                 <div className="grid md:grid-cols-2 gap-6 text-[13px] text-slate-700">
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">Do I need planning permission in Ealing</h3>
-                    <p>
-                      Many houses can proceed under permitted development, but flats and conservation areas often need planning permission. We check your address and advise the best route at the start.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">How fast can you survey</h3>
-                    <p>In most cases we can arrange the initial measured survey within 48 hours of instruction.</p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">Do you submit to Ealing Council</h3>
-                    <p>Yes. We handle the submission, monitor progress and respond to planning officer queries.</p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">Can you coordinate structural design</h3>
-                    <p>Yes. We coordinate with structural engineers so beams and load paths are designed and shown correctly on the drawings.</p>
-                  </div>
+                  {FAQ_ITEMS.map(({ question, answer }) => (
+                    <div key={question} className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                      <h3 className="font-semibold text-slate-900">{question}</h3>
+                      <p>{answer}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
 

@@ -1,3 +1,4 @@
+import { createFaqPageSchema } from "../../lib/faqSchema";
 import { getLondonAreaMetadata } from "../../data/londonAreas";
 import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
@@ -21,6 +22,31 @@ const PROJECT_IMAGE_1 = "/images/enfield-project-1.jpg";
 const PROJECT_IMAGE_2 = "/images/enfield-project-2.jpg";
 
 const areaMetadata = getLondonAreaMetadata("Enfield");
+
+const FAQ_ITEMS = [
+  {
+    question: "Do I need planning permission for a rear extension in Enfield?",
+    answer:
+      "Not always. Many rear extensions in Enfield can be permitted development, but it depends on your house type, site constraints, and whether restrictions apply. We confirm the best route after a quick review of your address and goals.",
+  },
+  {
+    question: "Is Enfield strict with loft conversions?",
+    answer:
+      "Enfield follows national rules but can be stricter in conservation areas and on streets where roof alterations face the road or affect neighbour amenity. We design the scheme to suit local character and guidance.",
+  },
+  {
+    question: "Do you manage the full application to Enfield Council?",
+    answer:
+      "Yes. We prepare drawings, complete forms, upload documents, submit to the council portal, and respond to planning officer queries through to decision.",
+  },
+  {
+    question: "How fast can you survey a property in Enfield?",
+    answer:
+      "In most cases we can arrange a measured survey within 48 hours, subject to access and location.",
+  },
+];
+
+const faqJson = createFaqPageSchema(FAQ_ITEMS);
 
 export default function EnfieldAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -74,60 +100,6 @@ export default function EnfieldAreaPage() {
       ],
       description:
         "Planning and building regulation drawing packages for Enfield homes, including extensions, loft conversions, refurbishments and outbuildings.",
-    }),
-    []
-  );
-
-  const faqJson = useMemo(
-    () => ({
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: "Do I need planning permission for a rear extension in Enfield",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Not always. Many rear extensions in Enfield can be permitted development, but it depends on your house type, site constraints, and whether restrictions apply. We confirm the best route after a quick review of your address and goals.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Is Enfield strict with loft conversions",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Enfield follows national rules but can be stricter in conservation areas and on streets where roof alterations face the road or affect neighbour amenity. We design the scheme to suit local character and guidance.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "How long does Enfield Council take to decide",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Timescales vary, but householder applications are commonly decided within several weeks after validation. Lawful Development Certificates can be a safer option if you want written confirmation for a permitted development style scheme.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Do you manage the full application to Enfield Council",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Yes. We prepare drawings, complete forms, upload documents, submit to the council portal, and respond to planning officer queries through to decision.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "How fast can you survey a property in Enfield",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "In most cases we can arrange a measured survey within 48 hours, subject to access and location.",
-          },
-        },
-      ],
     }),
     []
   );
@@ -303,31 +275,12 @@ export default function EnfieldAreaPage() {
               <div className="space-y-4">
                 <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">Frequently asked questions</h2>
                 <div className="grid md:grid-cols-2 gap-6 text-[13px] text-slate-700">
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">Do I need planning permission for a rear extension in Enfield</h3>
-                    <p>
-                      Not always. Many rear extensions in Enfield can be permitted development, but it depends on your house type, site constraints, and whether restrictions apply. We confirm the best route after a quick review of your address and goals.
-                    </p>
-                  </div>
-
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">Is Enfield strict with loft conversions</h3>
-                    <p>
-                      Enfield follows national rules but can be stricter in conservation areas and on streets where roof alterations face the road or affect neighbour amenity. We design the scheme to suit local character and guidance.
-                    </p>
-                  </div>
-
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">Do you manage the full application to Enfield Council</h3>
-                    <p>
-                      Yes. We prepare drawings, complete forms, upload documents, submit to the council portal, and respond to planning officer queries through to decision.
-                    </p>
-                  </div>
-
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">How fast can you survey a property in Enfield</h3>
-                    <p>In most cases we can arrange a measured survey within 48 hours, subject to access and location.</p>
-                  </div>
+                  {FAQ_ITEMS.map(({ question, answer }) => (
+                    <div key={question} className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                      <h3 className="font-semibold text-slate-900">{question}</h3>
+                      <p>{answer}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
 

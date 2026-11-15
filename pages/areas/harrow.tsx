@@ -1,3 +1,4 @@
+import { createFaqPageSchema } from "../../lib/faqSchema";
 import { getLondonAreaMetadata } from "../../data/londonAreas";
 import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
@@ -20,6 +21,41 @@ const WHATSAPP_LINK =
 const GOOGLE_BUSINESS_PROFILE_LINK = "https://share.google/D3KId64vHtHSKPALr";
 
 const areaMetadata = getLondonAreaMetadata("Harrow");
+
+const FAQ_ITEMS = [
+  {
+    question: "Do I need planning permission in Harrow?",
+    answer:
+      "Many extensions and lofts can be permitted development. We check your address and advise the best route from the start so you avoid delays.",
+  },
+  {
+    question: "How fast can you survey?",
+    answer:
+      "In most cases we can arrange the initial measured survey within 48 hours of instruction.",
+  },
+  {
+    question: "Do you submit to Harrow Council?",
+    answer:
+      "Yes. We handle submission, monitor progress and respond to planning officer queries.",
+  },
+  {
+    question: "Can you coordinate structural design?",
+    answer:
+      "Yes. We coordinate with structural engineers so beams and load paths are designed and shown correctly on the drawings.",
+  },
+  {
+    question: "How do you help approval chances in Harrow?",
+    answer:
+      "We set out clear dimensions, neighbour relationships and proportionate design. On sensitive sites we focus on scale, roof form and street fit so the proposal reads well to planners.",
+  },
+  {
+    question: "What is the next step?",
+    answer:
+      "Send your postcode and a short description. We reply with fixed drawing fees and the recommended route: permitted development, lawful certificate, prior approval or full planning.",
+  },
+];
+
+const faqJson = createFaqPageSchema(FAQ_ITEMS);
 
 export default function HarrowAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -56,88 +92,6 @@ export default function HarrowAreaPage() {
       ],
       description:
         "Architectural drawings in Harrow for house extensions, loft conversions, refurbishments, garage conversions and new builds. Fixed fee planning and building regulation packs covering Harrow on the Hill, Kenton, Rayners Lane, Wealdstone and the wider borough.",
-    }),
-    []
-  );
-
-  const faqJson = useMemo(
-    () => ({
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: "Do I need planning permission for a rear extension in Harrow",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Not always. Many rear extensions in Harrow can be permitted development, depending on house type, depth, height and location. We confirm the correct route after checking your address.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Are loft conversions usually approved in Harrow",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Many loft conversions are acceptable in Harrow where design is proportionate and respects street character. Conservation areas and corner plots can require more careful design and sometimes full planning.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "How long does Harrow Council take to decide planning applications",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Householder planning applications are normally decided within 6 to 8 weeks after validation. Lawful Development Certificates are typically around 4 to 6 weeks, depending on workload.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Do you manage the submission to Harrow Council",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Yes. We prepare drawings, complete forms, submit via the Planning Portal, monitor progress and respond to planning officer queries where needed.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Can you prepare building regulation drawings for Harrow projects",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Yes. We prepare technical drawings for Building Control, including sections, construction notes, insulation build ups, ventilation layouts, and coordination with structural design.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "How quickly can you carry out a measured survey in Harrow",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "In most cases we can arrange the initial measured survey within 48 hours of instruction, subject to availability and access.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "What drawings are usually required for a Harrow planning submission",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Typical requirements include existing and proposed floor plans, elevations, roof plans, sections, and a site location plan and block plan. We confirm the exact list based on your proposal.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Can you coordinate structural engineer calculations",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Yes. We coordinate with structural engineers so steels, load paths, and critical details align with the drawings and the build.",
-          },
-        },
-      ],
     }),
     []
   );
@@ -476,38 +430,12 @@ export default function HarrowAreaPage() {
                   Frequently asked questions
                 </h2>
                 <div className="grid gap-6 text-[13px] text-slate-700 md:grid-cols-2">
-                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
-                    <h3 className="font-semibold text-slate-900">Do I need planning permission in Harrow</h3>
-                    <p>
-                      Many extensions and lofts can be permitted development. We check your address and advise the best route from the start so you avoid delays.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
-                    <h3 className="font-semibold text-slate-900">How fast can you survey</h3>
-                    <p>In most cases we can arrange the initial measured survey within 48 hours of instruction.</p>
-                  </div>
-                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
-                    <h3 className="font-semibold text-slate-900">Do you submit to Harrow Council</h3>
-                    <p>Yes. We handle submission, monitor progress and respond to planning officer queries.</p>
-                  </div>
-                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
-                    <h3 className="font-semibold text-slate-900">Can you coordinate structural design</h3>
-                    <p>
-                      Yes. We coordinate with structural engineers so beams and load paths are designed and shown correctly on the drawings.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
-                    <h3 className="font-semibold text-slate-900">How do you help approval chances in Harrow</h3>
-                    <p>
-                      We set out clear dimensions, neighbour relationships and proportionate design. On sensitive sites we focus on scale, roof form and street fit so the proposal reads well to planners.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
-                    <h3 className="font-semibold text-slate-900">What is the next step</h3>
-                    <p>
-                      Send your postcode and a short description. We reply with fixed drawing fees and the recommended route: permitted development, lawful certificate, prior approval or full planning.
-                    </p>
-                  </div>
+                  {FAQ_ITEMS.map(({ question, answer }) => (
+                    <div key={question} className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
+                      <h3 className="font-semibold text-slate-900">{question}</h3>
+                      <p>{answer}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
 

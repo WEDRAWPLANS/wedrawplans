@@ -1,3 +1,4 @@
+import { createFaqPageSchema } from "../../lib/faqSchema";
 import { getLondonAreaMetadata } from "../../data/londonAreas";
 import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
@@ -18,6 +19,51 @@ const WHATSAPP_LINK =
 const GOOGLE_BUSINESS_PROFILE_LINK = "https://share.google/D3KId64vHtHSKPALr";
 
 const areaMetadata = getLondonAreaMetadata("Bromley");
+
+const FAQ_ITEMS = [
+  {
+    question: "Do I need planning permission in Bromley?",
+    answer:
+      "Many extensions and lofts can be permitted development. We check your address and advise the best route from the start so you avoid delays.",
+  },
+  {
+    question: "How fast can you survey?",
+    answer:
+      "In most cases we can arrange the initial measured survey within 48 hours of instruction.",
+  },
+  {
+    question: "Do you submit to Bromley Council?",
+    answer:
+      "Yes. We handle submission, monitor progress and respond to planning officer queries.",
+  },
+  {
+    question: "Can you coordinate structural design?",
+    answer:
+      "Yes. We coordinate with structural engineers so beams and load paths are designed and shown correctly on the drawings.",
+  },
+  {
+    question: "Do you cover Orpington and Beckenham?",
+    answer:
+      "Yes. We cover Bromley, Orpington, Beckenham, Chislehurst, Petts Wood, West Wickham and nearby areas. Share your postcode and we will confirm survey options.",
+  },
+  {
+    question: "Can you help with garage conversions and garden rooms?",
+    answer:
+      "Yes. We prepare drawings for both and advise whether the right path is permitted development, lawful certificate or full planning.",
+  },
+  {
+    question: "How do you help approval chances in Bromley?",
+    answer:
+      "We set out clear dimensions, neighbour relationships and a proportionate design approach. In more sensitive settings we focus on roof form, massing and materials so the proposal reads well to planners.",
+  },
+  {
+    question: "What is the next step?",
+    answer:
+      "Send your postcode and a short description. We reply with fixed drawing fees and the recommended route: permitted development, lawful certificate, prior approval or full planning.",
+  },
+];
+
+const faqJson = createFaqPageSchema(FAQ_ITEMS);
 
 export default function BromleyAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -56,106 +102,6 @@ export default function BromleyAreaPage() {
       ],
       description:
         "Architectural drawing services in Bromley for extensions, loft conversions, planning applications, garage conversions, outbuildings, commercial drawing services and building regulation packs. Fixed fees, clear scope, initial survey within 48 hours and fast communication.",
-    }),
-    []
-  );
-
-  const faqJson = useMemo(
-    () => ({
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: "Do I need planning permission for a rear extension in Bromley",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Not always. Many rear extensions in Bromley can be permitted development depending on house type, depth, height, location and any restrictions affecting the property. We confirm the correct route after checking your address.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Are loft conversions usually approved in Bromley",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Many loft conversions are acceptable in Bromley where the design is proportionate and suits the roof form and street character. Conservation areas, corner plots and some sensitive locations may require more careful design and sometimes full planning.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "How long does Bromley Council take to decide planning applications",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Householder planning applications are normally decided within 6 to 8 weeks after validation. Lawful Development Certificates are often around 4 to 6 weeks depending on workload.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Do you manage the submission to Bromley Council",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Yes. We prepare drawings, complete forms, submit via the Planning Portal, monitor progress and respond to planning officer queries where needed.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Can you prepare building regulation drawings for Bromley projects",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Yes. We prepare technical drawings for Building Control, including sections, construction notes, insulation build ups, ventilation layouts, structural coordination and key compliance information.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "How quickly can you carry out a measured survey in Bromley",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "In most cases we can arrange the initial measured survey within 48 hours of instruction, subject to availability and access.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "What drawings are usually required for a Bromley planning submission",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Typical requirements include existing and proposed floor plans, elevations, roof plans, sections, a site location plan and a block plan. We confirm the exact list based on your proposal.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Can you coordinate structural engineer calculations",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Yes. We coordinate with structural engineers so beams, load paths and critical details align with the drawings and the intended construction method.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Do you cover Beckenham, Orpington and Chislehurst",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Yes. We cover the wider Bromley borough including Beckenham, Orpington, Chislehurst, Petts Wood, Hayes, West Wickham, Bickley and nearby areas.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Can you help with garage conversions and garden rooms in Bromley",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Yes. We prepare drawings for garage conversions and garden rooms and advise whether the best route is permitted development, lawful certificate or full planning.",
-          },
-        },
-      ],
     }),
     []
   );
@@ -638,64 +584,12 @@ export default function BromleyAreaPage() {
                 </h2>
 
                 <div className="grid gap-6 text-[13px] text-slate-700 md:grid-cols-2">
-                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
-                    <h3 className="font-semibold text-slate-900">Do I need planning permission in Bromley</h3>
-                    <p>
-                      Many extensions and lofts can be permitted development. We check your address and advise the best
-                      route from the start so you avoid delays.
-                    </p>
-                  </div>
-
-                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
-                    <h3 className="font-semibold text-slate-900">How fast can you survey</h3>
-                    <p>In most cases we can arrange the initial measured survey within 48 hours of instruction.</p>
-                  </div>
-
-                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
-                    <h3 className="font-semibold text-slate-900">Do you submit to Bromley Council</h3>
-                    <p>Yes. We handle submission, monitor progress and respond to planning officer queries.</p>
-                  </div>
-
-                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
-                    <h3 className="font-semibold text-slate-900">Can you coordinate structural design</h3>
-                    <p>
-                      Yes. We coordinate with structural engineers so beams and load paths are designed and shown
-                      correctly on the drawings.
-                    </p>
-                  </div>
-
-                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
-                    <h3 className="font-semibold text-slate-900">Do you cover Orpington and Beckenham</h3>
-                    <p>
-                      Yes. We cover Bromley, Orpington, Beckenham, Chislehurst, Petts Wood, West Wickham and nearby
-                      areas. Share your postcode and we will confirm survey options.
-                    </p>
-                  </div>
-
-                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
-                    <h3 className="font-semibold text-slate-900">Can you help with garage conversions and garden rooms</h3>
-                    <p>
-                      Yes. We prepare drawings for both and advise whether the right path is permitted development,
-                      lawful certificate or full planning.
-                    </p>
-                  </div>
-
-                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
-                    <h3 className="font-semibold text-slate-900">How do you help approval chances in Bromley</h3>
-                    <p>
-                      We set out clear dimensions, neighbour relationships and a proportionate design approach. In more
-                      sensitive settings we focus on roof form, massing and materials so the proposal reads well to
-                      planners.
-                    </p>
-                  </div>
-
-                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
-                    <h3 className="font-semibold text-slate-900">What is the next step</h3>
-                    <p>
-                      Send your postcode and a short description. We reply with fixed drawing fees and the recommended
-                      route: permitted development, lawful certificate, prior approval or full planning.
-                    </p>
-                  </div>
+                  {FAQ_ITEMS.map(({ question, answer }) => (
+                    <div key={question} className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
+                      <h3 className="font-semibold text-slate-900">{question}</h3>
+                      <p>{answer}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
 

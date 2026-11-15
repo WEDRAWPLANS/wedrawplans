@@ -1,3 +1,4 @@
+import { createFaqPageSchema } from "../../lib/faqSchema";
 import { getLondonAreaMetadata } from "../../data/londonAreas";
 import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
@@ -54,67 +55,25 @@ export default function IslingtonAreaPage() {
       "Architectural drawing services in Islington for extensions, loft conversions, refurbishments, flat conversions and building regulation packs. Survey within 48 hours and full planning submission support.",
   };
 
-  const faqJson = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Do I need planning permission for a rear extension in Islington",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Not always. Some houses can extend under permitted development, but flats and many conservation area properties require full planning permission. We confirm the correct route once we review your address and house type.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Is Islington strict with loft conversions",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Islington can be strict, especially in conservation areas and streets with strong character. Roof alterations, dormer proportions and neighbour impact are often closely reviewed.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "How long does Islington Council take to decide",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Householder planning applications usually take around six to eight weeks after validation. Lawful Development Certificates normally take around four to six weeks.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Do you manage the full application to Islington Council",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Yes. We prepare drawings, complete forms, upload documents, submit to Islington Council and respond to planning officer queries.",
-        },
-      },
-    ],
-  };
-
   const visibleFaq = [
     {
-      q: "Do I need planning permission for a rear extension in Islington",
-      a: "Not always. Some houses can extend under permitted development, but flats and many conservation area properties require full planning permission. We confirm the correct route once we review your address and house type.",
+      question: "Do I need planning permission for a rear extension in Islington?",
+      answer: "Not always. Some houses can extend under permitted development, but flats and many conservation area properties require full planning permission. We confirm the correct route once we review your address and house type.",
     },
     {
-      q: "Is Islington strict with loft conversions",
-      a: "Islington can be strict, especially in conservation areas and streets with strong character. Roof alterations, dormer proportions and neighbour impact are often closely reviewed.",
+      question: "Is Islington strict with loft conversions?",
+      answer: "Islington can be strict, especially in conservation areas and streets with strong character. Roof alterations, dormer proportions and neighbour impact are often closely reviewed.",
     },
     {
-      q: "How long does Islington Council take to decide",
-      a: "Householder planning applications usually take around six to eight weeks after validation. Lawful Development Certificates normally take around four to six weeks.",
+      question: "How long does Islington Council take to decide?",
+      answer: "Householder planning applications usually take around six to eight weeks after validation. Lawful Development Certificates normally take around four to six weeks.",
     },
     {
-      q: "Do you manage the full application to Islington Council",
-      a: "Yes. We prepare drawings, complete forms, upload documents, submit to Islington Council and respond to planning officer queries.",
+      question: "Do you manage the full application to Islington Council?",
+      answer: "Yes. We prepare drawings, complete forms, upload documents, submit to Islington Council and respond to planning officer queries.",
     },
   ];
+  const faqJson = createFaqPageSchema(visibleFaq);
 
   return (
     <>
@@ -265,14 +224,14 @@ export default function IslingtonAreaPage() {
                 <div className="mt-6 space-y-5">
                   {visibleFaq.map((item) => (
                     <div
-                      key={item.q}
+                      key={item.question}
                       className="border-b border-slate-200 pb-5 last:border-b-0 last:pb-0"
                     >
                       <h3 className="text-[13px] font-semibold text-slate-900">
-                        {item.q}
+                        {item.question}
                       </h3>
                       <p className="mt-2 text-[13px] text-slate-700">
-                        {item.a}
+                        {item.answer}
                       </p>
                     </div>
                   ))}

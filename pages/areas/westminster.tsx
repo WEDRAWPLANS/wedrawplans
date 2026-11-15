@@ -1,3 +1,4 @@
+import { createFaqPageSchema } from "../../lib/faqSchema";
 import { getLondonAreaMetadata } from "../../data/londonAreas";
 import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
@@ -62,67 +63,25 @@ export default function WestminsterAreaPage() {
       "Planning, listed building and building regulation drawing packages for Westminster homes and flats, including refurbishments, internal reconfiguration, extensions and roof alterations where policy allows.",
   };
 
-  const faqJson = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Do I need permission for a flat refurbishment in Westminster",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Often internal alterations do not need planning permission, but works in listed buildings can need listed building consent and there can be leaseholder or freeholder requirements. We confirm the safest route after reviewing your address and scope.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Are roof terraces and roof alterations difficult in Westminster",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "They can be. Westminster has strict policies in many locations and heritage settings. Careful design, clear drawings and early advice improves the chances of a smoother process.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Do you manage the full application to Westminster City Council",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Yes. We prepare drawings, complete forms, upload documents, submit to the council portal and respond to planning officer queries through to decision.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "What drawings do I get for building regulations",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "A coordinated package typically includes plans, elevations, sections, key construction details and notes for compliance, with coordination points for structure, ventilation, insulation and drainage so contractors can price and build correctly.",
-        },
-      },
-    ],
-  };
-
   const visibleFaq = [
     {
-      q: "Do I need permission for a flat refurbishment in Westminster",
-      a: "Often internal alterations do not need planning permission, but works in listed buildings can need listed building consent and there can be leaseholder or freeholder requirements. We confirm the safest route after reviewing your address and scope.",
+      question: "Do I need permission for a flat refurbishment in Westminster?",
+      answer: "Often internal alterations do not need planning permission, but works in listed buildings can need listed building consent and there can be leaseholder or freeholder requirements. We confirm the safest route after reviewing your address and scope.",
     },
     {
-      q: "Are roof terraces and roof alterations difficult in Westminster",
-      a: "They can be. Westminster has strict policies in many locations and heritage settings. Careful design, clear drawings and early advice improves the chances of a smoother process.",
+      question: "Are roof terraces and roof alterations difficult in Westminster?",
+      answer: "They can be. Westminster has strict policies in many locations and heritage settings. Careful design, clear drawings and early advice improves the chances of a smoother process.",
     },
     {
-      q: "Do you manage the full application to Westminster City Council",
-      a: "Yes. We prepare drawings, complete forms, upload documents, submit to the council portal and respond to planning officer queries through to decision.",
+      question: "Do you manage the full application to Westminster City Council?",
+      answer: "Yes. We prepare drawings, complete forms, upload documents, submit to the council portal and respond to planning officer queries through to decision.",
     },
     {
-      q: "What drawings do I get for building regulations",
-      a: "A coordinated package typically includes plans, elevations, sections, key construction details and notes for compliance, with coordination points for structure, ventilation, insulation and drainage so contractors can price and build correctly.",
+      question: "What drawings do I get for building regulations?",
+      answer: "A coordinated package typically includes plans, elevations, sections, key construction details and notes for compliance, with coordination points for structure, ventilation, insulation and drainage so contractors can price and build correctly.",
     },
   ];
+  const faqJson = createFaqPageSchema(visibleFaq);
 
   return (
     <>
@@ -395,14 +354,14 @@ export default function WestminsterAreaPage() {
                 <div className="mt-6 space-y-5">
                   {visibleFaq.map((item) => (
                     <div
-                      key={item.q}
+                      key={item.question}
                       className="border-b border-slate-200 pb-5 last:border-b-0 last:pb-0"
                     >
                       <h3 className="text-[13px] font-semibold text-slate-900">
-                        {item.q}
+                        {item.question}
                       </h3>
                       <p className="mt-2 text-[13px] text-slate-700">
-                        {item.a}
+                        {item.answer}
                       </p>
                     </div>
                   ))}

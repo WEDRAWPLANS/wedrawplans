@@ -1,3 +1,4 @@
+import { createFaqPageSchema } from "../../lib/faqSchema";
 import { getLondonAreaMetadata } from "../../data/londonAreas";
 import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
@@ -16,6 +17,31 @@ const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Sutton";
 
 const areaMetadata = getLondonAreaMetadata("Sutton");
+
+const FAQ_ITEMS = [
+  {
+    question: "Do I need planning permission in Sutton?",
+    answer:
+      "Many extensions and lofts can proceed under permitted development. We check your address and advise the best route at the start.",
+  },
+  {
+    question: "How fast can you survey?",
+    answer:
+      "In most cases we can arrange the initial survey within forty eight hours of instruction.",
+  },
+  {
+    question: "Do you submit to Sutton Council?",
+    answer:
+      "Yes. We handle the submission, monitor progress and respond to planning officer queries.",
+  },
+  {
+    question: "Can you coordinate structural design?",
+    answer:
+      "Yes. We coordinate with structural engineers so beams and load paths are designed and shown correctly on the drawings.",
+  },
+];
+
+const faqJson = createFaqPageSchema(FAQ_ITEMS);
 
 export default function SuttonAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -50,49 +76,6 @@ export default function SuttonAreaPage() {
     ],
     description:
       "Architectural drawing services in Sutton for extensions, loft conversions, outbuildings, refurbishments and building regulations.",
-  };
-
-  const faqJson = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Do I need planning permission for a rear extension in Sutton?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Not always. Many rear extensions in Sutton can be carried out under permitted development. We confirm the correct route once we review your address and house type.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Is Sutton strict with loft conversions and extensions?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Sutton follows national permitted development rules but can be stricter in conservation areas and character streets. We shape each design to match local expectations.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "How long does Sutton Council take to decide?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Householder planning applications normally take six to eight weeks after validation. Lawful Development Certificates often take around four to six weeks.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Do you manage the full submission to Sutton Council?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Yes. We prepare drawings, complete forms, upload documents, submit to Sutton Council and respond to planning officer queries.",
-        },
-      },
-    ],
   };
 
   return (
@@ -320,28 +303,12 @@ export default function SuttonAreaPage() {
               <div className="space-y-4">
                 <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">Frequently asked questions</h2>
                 <div className="grid md:grid-cols-2 gap-6 text-[13px] text-slate-700">
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">Do I need planning permission in Sutton</h3>
-                    <p>
-                      Many extensions and lofts can proceed under permitted development. We check your address and
-                      advise the best route at the start.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">How fast can you survey</h3>
-                    <p>In most cases we can arrange the initial survey within forty eight hours of instruction.</p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">Do you submit to Sutton Council</h3>
-                    <p>Yes. We handle the submission, monitor progress and respond to planning officer queries.</p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">Can you coordinate structural design</h3>
-                    <p>
-                      Yes. We coordinate with structural engineers so beams and load paths are designed and shown
-                      correctly on the drawings.
-                    </p>
-                  </div>
+                  {FAQ_ITEMS.map(({ question, answer }) => (
+                    <div key={question} className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                      <h3 className="font-semibold text-slate-900">{question}</h3>
+                      <p>{answer}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
 

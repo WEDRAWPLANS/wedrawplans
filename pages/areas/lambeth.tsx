@@ -1,3 +1,4 @@
+import { createFaqPageSchema } from "../../lib/faqSchema";
 import { getLondonAreaMetadata } from "../../data/londonAreas";
 import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
@@ -15,6 +16,31 @@ const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Lambeth";
 
 const areaMetadata = getLondonAreaMetadata("Lambeth");
+
+const FAQ_ITEMS = [
+  {
+    question: "Do I need planning permission for a rear extension in Lambeth?",
+    answer:
+      "Not always. Many rear extensions in Lambeth can be carried out under permitted development. We confirm the correct route once we review your address and house type.",
+  },
+  {
+    question: "Is Lambeth strict with loft conversions and extensions?",
+    answer:
+      "Lambeth can be stricter in conservation areas and on character streets, including parts of Clapham, Brixton and riverside locations. Clear drawings and a strong planning case help.",
+  },
+  {
+    question: "How long does Lambeth Council take to decide?",
+    answer:
+      "Householder planning applications usually take around eight weeks after validation. Lawful Development Certificates are often around six to eight weeks, subject to workload and validation.",
+  },
+  {
+    question: "Do you manage the full application to Lambeth Council?",
+    answer:
+      "Yes. We prepare drawings, complete forms, upload documents, submit to Lambeth Council and respond to planning officer queries.",
+  },
+];
+
+const faqJson = createFaqPageSchema(FAQ_ITEMS);
 
 export default function LambethAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -49,49 +75,6 @@ export default function LambethAreaPage() {
     ],
     description:
       "Architectural drawing services in Lambeth for extensions, loft conversions, flat conversions, outbuildings and building regulation packs.",
-  };
-
-  const faqJson = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Do I need planning permission for a rear extension in Lambeth?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Not always. Many rear extensions in Lambeth can be carried out under permitted development. We confirm the correct route once we review your address and house type.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Is Lambeth strict with loft conversions and extensions?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Lambeth can be stricter in conservation areas and on character streets, including parts of Clapham, Brixton and riverside locations. Clear drawings and a strong planning case help.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "How long does Lambeth Council take to decide?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Householder planning applications usually take around eight weeks after validation. Lawful Development Certificates are often around six to eight weeks, subject to workload and validation.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Do you manage the full application to Lambeth Council?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Yes. We prepare drawings, complete forms, upload documents, submit to Lambeth Council and respond to planning officer queries.",
-        },
-      },
-    ],
   };
 
   return (
@@ -322,30 +305,12 @@ export default function LambethAreaPage() {
                   Frequently asked questions
                 </h2>
                 <div className="grid md:grid-cols-2 gap-6 text-[13px] text-slate-700">
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">Do I need planning permission for a rear extension in Lambeth</h3>
-                    <p>
-                      Not always. Many rear extensions in Lambeth can be carried out under permitted development. We confirm the correct route once we review your address and house type.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">Is Lambeth strict with loft conversions and extensions</h3>
-                    <p>
-                      Lambeth can be stricter in conservation areas and on character streets, including parts of Clapham, Brixton and riverside locations. Clear drawings and a strong planning case help.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">How long does Lambeth Council take to decide</h3>
-                    <p>
-                      Householder planning applications usually take around eight weeks after validation. Lawful Development Certificates are often around six to eight weeks, subject to workload and validation.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">Do you manage the full application to Lambeth Council</h3>
-                    <p>
-                      Yes. We prepare drawings, complete forms, upload documents, submit to Lambeth Council and respond to planning officer queries.
-                    </p>
-                  </div>
+                  {FAQ_ITEMS.map(({ question, answer }) => (
+                    <div key={question} className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                      <h3 className="font-semibold text-slate-900">{question}</h3>
+                      <p>{answer}</p>
+                    </div>
+                  ))}
                 </div>
 
                 <p className="mt-6 text-[13px] font-semibold text-slate-800">

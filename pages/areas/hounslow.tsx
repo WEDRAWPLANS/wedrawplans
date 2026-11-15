@@ -1,3 +1,4 @@
+import { createFaqPageSchema } from "../../lib/faqSchema";
 import { getLondonAreaMetadata } from "../../data/londonAreas";
 import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
@@ -20,6 +21,31 @@ const PROJECT_IMAGE_1 = "/images/hounslow-project-1.jpg";
 const PROJECT_IMAGE_2 = "/images/hounslow-project-2.jpg";
 
 const areaMetadata = getLondonAreaMetadata("Hounslow");
+
+const FAQ_ITEMS = [
+  {
+    question: "Do I need planning permission in Hounslow?",
+    answer:
+      "Many extensions and lofts can proceed under permitted development. We check your address and advise the best route at the start.",
+  },
+  {
+    question: "How fast can you survey?",
+    answer:
+      "In most cases we can arrange the initial measured survey within forty eight hours of instruction.",
+  },
+  {
+    question: "Do you submit to Hounslow Council?",
+    answer:
+      "Yes. We handle the submission, monitor progress and respond to planning officer queries.",
+  },
+  {
+    question: "Can you coordinate structural design?",
+    answer:
+      "Yes. We coordinate with structural engineers so beams and load paths are designed and shown correctly on the drawings.",
+  },
+];
+
+const faqJson = createFaqPageSchema(FAQ_ITEMS);
 
 export default function HounslowAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -63,52 +89,6 @@ export default function HounslowAreaPage() {
       ],
       description:
         "Planning and building regulation drawing packages for Hounslow homes, including extensions, loft conversions, refurbishments and outbuildings.",
-    }),
-    []
-  );
-
-  const faqJson = useMemo(
-    () => ({
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: "Do I need planning permission for an extension in Hounslow",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Not always. Many houses can extend under permitted development, but flats and maisonettes need planning permission. We confirm the correct route once we review your address and house type.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Can you help with a lawful development certificate in Hounslow",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Yes. If your project is permitted development, we prepare the drawings and supporting information for a lawful development certificate so you have written confirmation for your records.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "How long do Hounslow planning decisions take",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Householder planning applications often take around 6 to 8 weeks after validation. Lawful Development Certificates are often around 4 to 6 weeks depending on validation and workload.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Do you manage the full submission to Hounslow Council",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Yes. We prepare drawings, complete forms, upload documents, submit to the council portal and respond to planning officer queries until decision.",
-          },
-        },
-      ],
     }),
     []
   );
@@ -359,24 +339,12 @@ export default function HounslowAreaPage() {
               <div className="space-y-4">
                 <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">Frequently asked questions</h2>
                 <div className="grid md:grid-cols-2 gap-6 text-[13px] text-slate-700">
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">Do I need planning permission in Hounslow</h3>
-                    <p>
-                      Many extensions and lofts can proceed under permitted development. We check your address and advise the best route at the start.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">How fast can you survey</h3>
-                    <p>In most cases we can arrange the initial measured survey within forty eight hours of instruction.</p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">Do you submit to Hounslow Council</h3>
-                    <p>Yes. We handle the submission, monitor progress and respond to planning officer queries.</p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">Can you coordinate structural design</h3>
-                    <p>Yes. We coordinate with structural engineers so beams and load paths are designed and shown correctly on the drawings.</p>
-                  </div>
+                  {FAQ_ITEMS.map(({ question, answer }) => (
+                    <div key={question} className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                      <h3 className="font-semibold text-slate-900">{question}</h3>
+                      <p>{answer}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
 

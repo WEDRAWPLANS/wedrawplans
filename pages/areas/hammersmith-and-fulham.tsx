@@ -48,49 +48,6 @@ export default function HammersmithAndFulhamAreaPage() {
       "Architectural drawing services in Hammersmith and Fulham for extensions, loft conversions, flat conversions, basements and building regulation packs. Initial survey within 48 hours and full planning support.",
   };
 
-  const faqJson = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Do you provide planning drawings for extensions in Hammersmith and Fulham",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Yes. We prepare existing and proposed drawings for house extensions and advise on the best submission route for your property in Hammersmith and Fulham.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Can you produce building regulation drawings for my Hammersmith and Fulham project",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Yes. We can produce a full building regulation pack including plans, sections, key details and coordinated notes for building control and contractors.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Do you offer measured surveys in Hammersmith and Fulham",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Yes. We can arrange an on site measured survey when accurate existing drawings are needed to start the design properly.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "How quickly can I get a fixed quote",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Send your details through the form and we usually respond the same day with a clear fixed fee and next steps.",
-        },
-      },
-    ],
-  };
-
   return (
     <>
       <Head>
@@ -118,10 +75,6 @@ export default function HammersmithAndFulhamAreaPage() {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }}
         />
       </Head>
 

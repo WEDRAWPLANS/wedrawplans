@@ -1,3 +1,4 @@
+import { createFaqPageSchema } from "../../lib/faqSchema";
 import { getLondonAreaMetadata } from "../../data/londonAreas";
 import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
@@ -65,109 +66,28 @@ export default function CroydonAreaPage() {
     []
   );
 
-  const faqJson = useMemo(
-    () => ({
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: "Do I need planning permission for a rear extension in Croydon",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Not always. Many rear extensions can be permitted development, but it depends on your house type, site constraints, and whether any restrictions apply. We confirm the best route after a quick review of your address and goals.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "How long does Croydon Council take to decide",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Timescales vary, but householder applications are often decided about 6 to 8 weeks after validation. If you need certainty for a permitted development style scheme, a Lawful Development Certificate can be a safer option.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Do you manage the full application to Croydon Council",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Yes. We prepare drawings, complete forms, upload documents, submit to the council portal, and respond to planning officer queries through to decision.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "What drawings do I get for building regulations",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "A coordinated package typically includes plans, elevations, sections, key construction details, notes for compliance, and coordination points for structure, ventilation, insulation, and drainage so builders can price and build correctly.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "How fast can you survey a property in Croydon",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "In most cases we can arrange a measured survey within 48 hours, subject to access and location.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Can you help with side extensions, wrap around extensions, and loft dormers",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Yes. We design and draw side extensions, wraparound rear extensions, dormer loft conversions, and internal reconfiguration so the layout works and the planning submission is clear.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Do you cover Purley, Coulsdon, Thornton Heath and Shirley",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Yes. We cover the whole borough including Croydon, Purley, Coulsdon, Kenley, Sanderstead, Selhurst, Thornton Heath, Norbury, Shirley and New Addington.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "What is the fastest way to get a fixed fee quote",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Send your postcode and project type, then share one line describing what you want to build. We reply with a fixed fee, scope, and the recommended planning route for your address.",
-          },
-        },
-      ],
-    }),
-    []
-  );
-
   const visibleFaq = useMemo(
     () => [
       {
-        q: "Do I need planning permission for a rear extension in Croydon",
-        a: "Not always. Many rear extensions can be permitted development, but it depends on your house type, site constraints, and whether any restrictions apply. We confirm the best route after a quick review of your address and goals.",
+        question: "Do I need planning permission for a rear extension in Croydon?",
+        answer: "Not always. Many rear extensions can be permitted development, but it depends on your house type, site constraints, and whether any restrictions apply. We confirm the best route after a quick review of your address and goals.",
       },
       {
-        q: "How long does Croydon Council take to decide",
-        a: "Timescales vary, but householder applications are often decided about 6 to 8 weeks after validation. If you need certainty for a permitted development style scheme, a Lawful Development Certificate can be a safer option.",
+        question: "How long does Croydon Council take to decide?",
+        answer: "Timescales vary, but householder applications are often decided about 6 to 8 weeks after validation. If you need certainty for a permitted development style scheme, a Lawful Development Certificate can be a safer option.",
       },
       {
-        q: "Do you manage the full application to Croydon Council",
-        a: "Yes. We prepare drawings, complete forms, upload documents, submit to the council portal, and respond to planning officer queries through to decision.",
+        question: "Do you manage the full application to Croydon Council?",
+        answer: "Yes. We prepare drawings, complete forms, upload documents, submit to the council portal, and respond to planning officer queries through to decision.",
       },
       {
-        q: "What drawings do I get for building regulations",
-        a: "A coordinated package typically includes plans, elevations, sections, key construction details, notes for compliance, and coordination points for structure, ventilation, insulation, and drainage so builders can price and build correctly.",
+        question: "What drawings do I get for building regulations?",
+        answer: "A coordinated package typically includes plans, elevations, sections, key construction details, notes for compliance, and coordination points for structure, ventilation, insulation, and drainage so builders can price and build correctly.",
       },
     ],
     []
   );
+  const faqJson = createFaqPageSchema(visibleFaq);
 
   return (
     <>
@@ -431,9 +351,9 @@ export default function CroydonAreaPage() {
 
                 <div className="mt-6 space-y-5">
                   {visibleFaq.map((item) => (
-                    <div key={item.q} className="border-b border-slate-200 pb-5 last:border-b-0 last:pb-0">
-                      <h3 className="text-[13px] font-semibold text-slate-900">{item.q}</h3>
-                      <p className="mt-2 text-[13px] text-slate-700">{item.a}</p>
+                    <div key={item.question} className="border-b border-slate-200 pb-5 last:border-b-0 last:pb-0">
+                      <h3 className="text-[13px] font-semibold text-slate-900">{item.question}</h3>
+                      <p className="mt-2 text-[13px] text-slate-700">{item.answer}</p>
                     </div>
                   ))}
                 </div>

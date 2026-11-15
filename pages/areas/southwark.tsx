@@ -1,3 +1,4 @@
+import { createFaqPageSchema } from "../../lib/faqSchema";
 import { getLondonAreaMetadata } from "../../data/londonAreas";
 import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
@@ -15,6 +16,31 @@ const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20plans%20in%20Southwark";
 
 const areaMetadata = getLondonAreaMetadata("Southwark");
+
+const FAQ_ITEMS = [
+  {
+    question: "Do I need planning permission for a rear extension in Southwark?",
+    answer:
+      "Not always. Many householder rear extensions can be permitted development, but conservation areas and Article 4 Directions can change what is allowed. We confirm the correct route once we review your address and house type.",
+  },
+  {
+    question: "Is Southwark strict with loft conversions and dormers?",
+    answer:
+      "Southwark can be stricter in conservation areas and on streets with strong character, especially where roof alterations affect the street scene. Strong drawings and a clear design approach usually help the process.",
+  },
+  {
+    question: "How long does Southwark Council take to decide?",
+    answer:
+      "Householder planning applications usually take six to eight weeks after validation. Lawful Development Certificates are often around four to six weeks, depending on workload and the completeness of the submission.",
+  },
+  {
+    question: "Do you manage the full application to Southwark Council?",
+    answer:
+      "Yes. We prepare drawings, complete forms, upload documents, submit to Southwark Council and respond to planning officer queries until a decision is issued.",
+  },
+];
+
+const faqJson = createFaqPageSchema(FAQ_ITEMS);
 
 export default function SouthwarkAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -50,49 +76,6 @@ export default function SouthwarkAreaPage() {
     ],
     description:
       "Architectural drawing services in Southwark for extensions, loft conversions, flat conversions, outbuildings, refurbishments and building regulations.",
-  };
-
-  const faqJson = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Do I need planning permission for a rear extension in Southwark?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Not always. Many householder rear extensions can be permitted development, but conservation areas and Article 4 Directions can change what is allowed. We confirm the correct route once we review your address and house type.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Is Southwark strict with loft conversions and dormers?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Southwark can be stricter in conservation areas and on streets with strong character, especially where roof alterations affect the street scene. Strong drawings and a clear design approach usually help the process.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "How long does Southwark Council take to decide?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Householder planning applications usually take six to eight weeks after validation. Lawful Development Certificates are often around four to six weeks, depending on workload and the completeness of the submission.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Do you manage the full application to Southwark Council?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Yes. We prepare drawings, complete forms, upload documents, submit to Southwark Council and respond to planning officer queries until a decision is issued.",
-        },
-      },
-    ],
   };
 
   return (
@@ -330,38 +313,12 @@ export default function SouthwarkAreaPage() {
                   Frequently asked questions
                 </h2>
                 <div className="grid md:grid-cols-2 gap-6 text-[13px] text-slate-700">
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Do I need planning permission for a rear extension in Southwark
-                    </h3>
-                    <p>
-                      Not always. Many householder rear extensions can be permitted development, but conservation areas and Article 4 Directions can change what is allowed. We confirm the correct route once we review your address and house type.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Is Southwark strict with loft conversions and dormers
-                    </h3>
-                    <p>
-                      Southwark can be stricter in conservation areas and on streets with strong character, especially where roof alterations affect the street scene. Strong drawings and a clear design approach usually help the process.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      How long does Southwark Council take to decide
-                    </h3>
-                    <p>
-                      Householder planning applications usually take six to eight weeks after validation. Lawful Development Certificates are often around four to six weeks, depending on workload and the completeness of the submission.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Do you manage the full application to Southwark Council
-                    </h3>
-                    <p>
-                      Yes. We prepare drawings, complete forms, upload documents, submit to Southwark Council and respond to planning officer queries until a decision is issued.
-                    </p>
-                  </div>
+                  {FAQ_ITEMS.map(({ question, answer }) => (
+                    <div key={question} className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                      <h3 className="font-semibold text-slate-900">{question}</h3>
+                      <p>{answer}</p>
+                    </div>
+                  ))}
                 </div>
 
                 <p className="mt-6 text-[13px] font-semibold text-slate-800">

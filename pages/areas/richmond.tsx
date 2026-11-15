@@ -1,3 +1,4 @@
+import { createFaqPageSchema } from "../../lib/faqSchema";
 import { getLondonAreaMetadata } from "../../data/londonAreas";
 import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
@@ -23,6 +24,51 @@ const PROJECT_IMAGE_1 = "/images/richmond-project-1.jpg";
 const PROJECT_IMAGE_2 = "/images/richmond-project-2.jpg";
 
 const areaMetadata = getLondonAreaMetadata("Richmond upon Thames");
+
+const FAQ_ITEMS = [
+  {
+    question: "Do I need planning permission in Richmond upon Thames?",
+    answer:
+      "Many extensions and lofts can be permitted development. We check your address and advise the best route from the start so you avoid delays.",
+  },
+  {
+    question: "How fast can you survey?",
+    answer:
+      "In most cases we can arrange the initial measured survey within 48 hours of instruction.",
+  },
+  {
+    question: "Do you submit to Richmond Council?",
+    answer:
+      "Yes. We handle submission, monitor progress and respond to planning officer queries.",
+  },
+  {
+    question: "Can you coordinate structural design?",
+    answer:
+      "Yes. We coordinate with structural engineers so beams and load paths are designed and shown correctly on the drawings.",
+  },
+  {
+    question: "Do you cover Twickenham and Barnes?",
+    answer:
+      "Yes. We cover Richmond, Twickenham, Barnes, Kew, East Sheen, Teddington and nearby areas. Share your postcode and we will confirm survey options.",
+  },
+  {
+    question: "Can you help with outbuildings and garden rooms?",
+    answer:
+      "Yes. We prepare drawings for both and advise whether the right path is permitted development, lawful certificate or full planning.",
+  },
+  {
+    question: "How do you help approval chances in Richmond upon Thames?",
+    answer:
+      "We set out clear dimensions, neighbour relationships and a proportionate design approach. In more sensitive settings we focus on roof form, massing and materials so the proposal reads well to planners.",
+  },
+  {
+    question: "What is the next step?",
+    answer:
+      "Send your postcode and a short description. We reply with fixed drawing fees and the recommended route: permitted development, lawful certificate, prior approval or full planning.",
+  },
+];
+
+const faqJson = createFaqPageSchema(FAQ_ITEMS);
 
 export default function RichmondAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -62,106 +108,6 @@ export default function RichmondAreaPage() {
       ],
       description:
         "Architectural drawing services in Richmond upon Thames for extensions, loft conversions, planning applications, garage conversions, outbuildings, conversions and building regulation packs. Fixed fees, clear scope, initial survey within 48 hours and fast communication.",
-    }),
-    []
-  );
-
-  const faqJson = useMemo(
-    () => ({
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: "Do I need planning permission for a rear extension in Richmond upon Thames",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Not always. Many rear extensions in Richmond upon Thames can be permitted development depending on house type, depth, height, location and any restrictions affecting the property. Conservation areas and Article 4 controls can change what is allowed, so we confirm the correct route after checking your address.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Are loft conversions usually approved in Richmond upon Thames",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Many loft conversions are acceptable where the design is proportionate and suits the existing roof form and street character. Richmond can be more sensitive where conservation areas, visible roof alterations or heritage settings are involved, so careful design is important.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "How long does Richmond Council take to decide planning applications",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Householder planning applications are normally decided within 6 to 8 weeks after validation. Lawful Development Certificates are often around 4 to 6 weeks depending on workload and whether the submission is complete at the start.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Do you manage the submission to Richmond Council",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Yes. We prepare the drawings, complete forms, submit through the Planning Portal, monitor the application and respond to planning officer queries where needed.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Can you prepare building regulation drawings for Richmond projects",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Yes. We prepare technical drawing packs for Building Control including sections, construction notes, insulation build ups, ventilation layouts, structural coordination and key compliance information.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "How quickly can you carry out a measured survey in Richmond upon Thames",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "In most cases we can arrange the initial measured survey within 48 hours of instruction, subject to availability and access.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "What drawings are usually required for a Richmond planning submission",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Typical requirements include existing and proposed floor plans, elevations, roof plans, sections, a site location plan and a block plan. We confirm the exact list based on your property and proposal.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Can you coordinate structural engineer calculations",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Yes. We coordinate with structural engineers so beams, load paths and critical details align with the drawings and the intended construction method.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Do you cover Richmond, Twickenham, Barnes and Kew",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Yes. We cover the wider borough including Richmond, Twickenham, Barnes, Kew, East Sheen, Mortlake, St Margarets, Teddington, Hampton, Hampton Wick, Ham, Petersham and Whitton.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Can you help with outbuildings and garden rooms in Richmond upon Thames",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Yes. We prepare drawings for outbuildings and garden rooms and advise whether the best route is permitted development, lawful certificate or full planning depending on the size, location and intended use.",
-          },
-        },
-      ],
     }),
     []
   );
@@ -637,70 +583,12 @@ export default function RichmondAreaPage() {
                 </h2>
 
                 <div className="grid gap-6 text-[13px] text-slate-700 md:grid-cols-2">
-                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Do I need planning permission in Richmond upon Thames
-                    </h3>
-                    <p>
-                      Many extensions and lofts can be permitted development. We check your address and advise the
-                      best route from the start so you avoid delays.
-                    </p>
-                  </div>
-
-                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
-                    <h3 className="font-semibold text-slate-900">How fast can you survey</h3>
-                    <p>In most cases we can arrange the initial measured survey within 48 hours of instruction.</p>
-                  </div>
-
-                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
-                    <h3 className="font-semibold text-slate-900">Do you submit to Richmond Council</h3>
-                    <p>Yes. We handle submission, monitor progress and respond to planning officer queries.</p>
-                  </div>
-
-                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
-                    <h3 className="font-semibold text-slate-900">Can you coordinate structural design</h3>
-                    <p>
-                      Yes. We coordinate with structural engineers so beams and load paths are designed and shown
-                      correctly on the drawings.
-                    </p>
-                  </div>
-
-                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
-                    <h3 className="font-semibold text-slate-900">Do you cover Twickenham and Barnes</h3>
-                    <p>
-                      Yes. We cover Richmond, Twickenham, Barnes, Kew, East Sheen, Teddington and nearby areas.
-                      Share your postcode and we will confirm survey options.
-                    </p>
-                  </div>
-
-                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Can you help with outbuildings and garden rooms
-                    </h3>
-                    <p>
-                      Yes. We prepare drawings for both and advise whether the right path is permitted development,
-                      lawful certificate or full planning.
-                    </p>
-                  </div>
-
-                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      How do you help approval chances in Richmond upon Thames
-                    </h3>
-                    <p>
-                      We set out clear dimensions, neighbour relationships and a proportionate design approach. In more
-                      sensitive settings we focus on roof form, massing and materials so the proposal reads well to
-                      planners.
-                    </p>
-                  </div>
-
-                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
-                    <h3 className="font-semibold text-slate-900">What is the next step</h3>
-                    <p>
-                      Send your postcode and a short description. We reply with fixed drawing fees and the recommended
-                      route: permitted development, lawful certificate, prior approval or full planning.
-                    </p>
-                  </div>
+                  {FAQ_ITEMS.map(({ question, answer }) => (
+                    <div key={question} className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
+                      <h3 className="font-semibold text-slate-900">{question}</h3>
+                      <p>{answer}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
 

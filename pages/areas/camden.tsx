@@ -1,3 +1,4 @@
+import { createFaqPageSchema } from "../../lib/faqSchema";
 import { getLondonAreaMetadata } from "../../data/londonAreas";
 import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
@@ -51,67 +52,25 @@ export default function CamdenAreaPage() {
       "Architectural drawing services in Camden for extensions, loft conversions, flat conversions, refurbishments and building regulations."
   };
 
-  const faqJson = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Do I need planning permission for a rear extension in Camden?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Not always. Many rear extensions in Camden can be carried out under permitted development. We confirm the correct route once we review your address and building type."
-        }
-      },
-      {
-        "@type": "Question",
-        name: "Is Camden strict with loft conversions and extensions?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Camden can be strict, especially in conservation areas, near Hampstead and Belsize Park, and on terraces with strong character. Good drawings and planning strategy are important."
-        }
-      },
-      {
-        "@type": "Question",
-        name: "How long does Camden Council take to decide?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Householder planning applications normally take six to eight weeks after validation. Lawful Development Certificates usually take around four to six weeks."
-        }
-      },
-      {
-        "@type": "Question",
-        name: "Do you manage the full application to Camden Council?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Yes. We prepare drawings, complete the forms, upload documents, submit to Camden Council and respond to planning officer queries."
-        }
-      }
-    ]
-  };
-
   const visibleFaq = [
     {
-      q: "Do I need planning permission for a rear extension in Camden?",
-      a: "Not always. Many rear extensions in Camden can be carried out under permitted development. We confirm the correct route once we review your address and building type."
+      question: "Do I need planning permission for a rear extension in Camden?",
+      answer: "Not always. Many rear extensions in Camden can be carried out under permitted development. We confirm the correct route once we review your address and building type."
     },
     {
-      q: "Is Camden strict with loft conversions and extensions?",
-      a: "Camden can be strict, especially in conservation areas, near Hampstead and Belsize Park, and on terraces with strong character. Good drawings and planning strategy are important."
+      question: "Is Camden strict with loft conversions and extensions?",
+      answer: "Camden can be strict, especially in conservation areas, near Hampstead and Belsize Park, and on terraces with strong character. Good drawings and planning strategy are important."
     },
     {
-      q: "How long does Camden Council take to decide?",
-      a: "Householder planning applications normally take six to eight weeks after validation. Lawful Development Certificates usually take around four to six weeks."
+      question: "How long does Camden Council take to decide?",
+      answer: "Householder planning applications normally take six to eight weeks after validation. Lawful Development Certificates usually take around four to six weeks."
     },
     {
-      q: "Do you manage the full application to Camden Council?",
-      a: "Yes. We prepare drawings, complete the forms, upload documents, submit to Camden Council and respond to planning officer queries."
+      question: "Do you manage the full application to Camden Council?",
+      answer: "Yes. We prepare drawings, complete the forms, upload documents, submit to Camden Council and respond to planning officer queries."
     }
   ];
+  const faqJson = createFaqPageSchema(visibleFaq);
 
   return (
     <>
@@ -266,12 +225,12 @@ export default function CamdenAreaPage() {
 
                 <div className="mt-6 space-y-5">
                   {visibleFaq.map((item) => (
-                    <div key={item.q} className="border-b border-slate-200 pb-5 last:border-b-0 last:pb-0">
+                    <div key={item.question} className="border-b border-slate-200 pb-5 last:border-b-0 last:pb-0">
                       <h3 className="text-[13px] font-semibold text-slate-900">
-                        {item.q}
+                        {item.question}
                       </h3>
                       <p className="mt-2 text-[13px] text-slate-700">
-                        {item.a}
+                        {item.answer}
                       </p>
                     </div>
                   ))}

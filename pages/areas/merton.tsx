@@ -1,3 +1,4 @@
+import { createFaqPageSchema } from "../../lib/faqSchema";
 import { getLondonAreaMetadata } from "../../data/londonAreas";
 import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
@@ -24,6 +25,51 @@ const PROJECT_IMAGE_1 = "/images/merton-project-1.jpg";
 const PROJECT_IMAGE_2 = "/images/merton-project-2.jpg";
 
 const areaMetadata = getLondonAreaMetadata("Merton");
+
+const FAQ_ITEMS = [
+  {
+    question: "How fast can you start in Merton?",
+    answer:
+      "In many cases we can arrange the initial measured survey within 48 hours and then confirm the drawing programme based on the project scope.",
+  },
+  {
+    question: "Do you submit to Merton Council?",
+    answer:
+      "Yes. We can manage the submission and respond to planning officer queries. If you prefer to submit yourself, we provide validation ready files.",
+  },
+  {
+    question: "Can you coordinate structural design?",
+    answer:
+      "Yes. We coordinate with structural engineers so beams and load paths are designed and shown correctly on the drawings.",
+  },
+  {
+    question: "Can you do building regulations too?",
+    answer:
+      "Yes. We produce building regulation packs with key sections, details and notes so building control and contractors can build from one clear set.",
+  },
+  {
+    question: "Do you cover Wimbledon and Raynes Park?",
+    answer:
+      "Yes. We cover Wimbledon, Raynes Park, Morden, Mitcham, Colliers Wood and nearby areas. Share your postcode and we will confirm survey options.",
+  },
+  {
+    question: "Can you help with flat conversions?",
+    answer:
+      "Yes. We can prepare planning and technical drawings for flat conversion proposals and layout upgrades, subject to the property and planning context.",
+  },
+  {
+    question: "How do you help approval chances in Merton?",
+    answer:
+      "We set out clear dimensions, neighbour relationships and a proportionate design approach so the proposal reads well to planners and is easier to validate and assess.",
+  },
+  {
+    question: "What is the next step?",
+    answer:
+      "Send your postcode and a short description. We reply with fixed drawing fees and the recommended route: permitted development, lawful certificate, prior approval or full planning.",
+  },
+];
+
+const faqJson = createFaqPageSchema(FAQ_ITEMS);
 
 export default function MertonAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -59,88 +105,6 @@ export default function MertonAreaPage() {
       ],
       description:
         "Architectural drawing services in Merton for extensions, loft conversions, planning applications, internal remodelling, flat conversions and building regulation packs. Fixed fees, clear scope, initial survey within 48 hours and fast communication.",
-    }),
-    []
-  );
-
-  const faqJson = useMemo(
-    () => ({
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: "Do I need planning permission for a rear extension in Merton",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Not always. Some rear extensions in Merton can be permitted development depending on property type, previous additions, dimensions and local restrictions. We review the address and advise whether permitted development, a lawful development certificate or a householder application is the safer route.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Can you help with loft conversion drawings in Wimbledon and Raynes Park",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Yes. We prepare existing and proposed drawing sets for dormer and hip to gable loft conversions, plus building regulation packs with key construction details and structural coordination where required.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "How long does Merton Council take to decide planning applications",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Householder planning applications are commonly decided in around 8 weeks after validation. Lawful Development Certificates are often around 6 to 8 weeks depending on workload and whether the submission is complete at the start.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Do you provide measured surveys in Merton",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Yes. We can arrange a measured survey so the existing drawings are accurate before the design stage begins. In many cases the initial survey can be arranged within 48 hours, subject to availability and access.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Can you produce building regulation drawings as well as planning drawings",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Yes. After planning, we can prepare a building regulation pack including sections, construction notes, insulation build ups, ventilation information and coordination with structural design where required.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "What drawings are usually required for a Merton planning submission",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Typical requirements include existing and proposed floor plans, elevations, roof plans, sections, a site location plan and a block plan. We confirm the exact list based on the property and proposal.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Can you help with internal remodelling and open plan layouts in Merton",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Yes. We regularly prepare drawing packages for layout reconfiguration, structural openings, open plan kitchen and living areas, and wider refurbishment work where better use of space is the main goal.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Do you cover Wimbledon, Mitcham, Morden and Colliers Wood",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text:
-              "Yes. We cover the wider borough including Wimbledon, Raynes Park, Morden, Mitcham, Colliers Wood, Merton Park, Lower Morden and surrounding areas.",
-          },
-        },
-      ],
     }),
     []
   );
@@ -616,71 +580,12 @@ export default function MertonAreaPage() {
                 </h2>
 
                 <div className="grid gap-6 text-[13px] text-slate-700 md:grid-cols-2">
-                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
-                    <h3 className="font-semibold text-slate-900">How fast can you start in Merton</h3>
-                    <p>
-                      In many cases we can arrange the initial measured survey within 48 hours and then confirm the
-                      drawing programme based on the project scope.
-                    </p>
-                  </div>
-
-                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
-                    <h3 className="font-semibold text-slate-900">Do you submit to Merton Council</h3>
-                    <p>
-                      Yes. We can manage the submission and respond to planning officer queries. If you prefer to
-                      submit yourself, we provide validation ready files.
-                    </p>
-                  </div>
-
-                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
-                    <h3 className="font-semibold text-slate-900">Can you coordinate structural design</h3>
-                    <p>
-                      Yes. We coordinate with structural engineers so beams and load paths are designed and shown
-                      correctly on the drawings.
-                    </p>
-                  </div>
-
-                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
-                    <h3 className="font-semibold text-slate-900">Can you do building regulations too</h3>
-                    <p>
-                      Yes. We produce building regulation packs with key sections, details and notes so building
-                      control and contractors can build from one clear set.
-                    </p>
-                  </div>
-
-                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
-                    <h3 className="font-semibold text-slate-900">Do you cover Wimbledon and Raynes Park</h3>
-                    <p>
-                      Yes. We cover Wimbledon, Raynes Park, Morden, Mitcham, Colliers Wood and nearby areas.
-                      Share your postcode and we will confirm survey options.
-                    </p>
-                  </div>
-
-                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
-                    <h3 className="font-semibold text-slate-900">Can you help with flat conversions</h3>
-                    <p>
-                      Yes. We can prepare planning and technical drawings for flat conversion proposals and layout
-                      upgrades, subject to the property and planning context.
-                    </p>
-                  </div>
-
-                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      How do you help approval chances in Merton
-                    </h3>
-                    <p>
-                      We set out clear dimensions, neighbour relationships and a proportionate design approach so
-                      the proposal reads well to planners and is easier to validate and assess.
-                    </p>
-                  </div>
-
-                  <div className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
-                    <h3 className="font-semibold text-slate-900">What is the next step</h3>
-                    <p>
-                      Send your postcode and a short description. We reply with fixed drawing fees and the recommended
-                      route: permitted development, lawful certificate, prior approval or full planning.
-                    </p>
-                  </div>
+                  {FAQ_ITEMS.map(({ question, answer }) => (
+                    <div key={question} className="space-y-2 rounded-xl border border-slate-100 bg-white p-4">
+                      <h3 className="font-semibold text-slate-900">{question}</h3>
+                      <p>{answer}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
 

@@ -1,3 +1,4 @@
+import { createFaqPageSchema } from "../../lib/faqSchema";
 import { getLondonAreaMetadata } from "../../data/londonAreas";
 import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
@@ -20,6 +21,31 @@ const PROJECT_IMAGE = "/images/waltham-forest-project.jpg";
 const PROMO_IMAGE = "/images/waltham-forest-promo.jpg";
 
 const areaMetadata = getLondonAreaMetadata("Waltham Forest");
+
+const FAQ_ITEMS = [
+  {
+    question: "Do I need planning permission for a rear extension in Waltham Forest?",
+    answer:
+      "Not always. Many rear extensions in Waltham Forest can be carried out under permitted development, but some homes are affected by conservation area controls, flat status, local constraints or previous planning conditions. We review the address and advise the right route.",
+  },
+  {
+    question: "Is Waltham Forest strict with loft conversions and extensions?",
+    answer:
+      "Waltham Forest can be more sensitive in conservation areas, on strong character streets and where roof alterations affect the front street scene. Clear drawings and a well-shaped planning proposal are important.",
+  },
+  {
+    question: "How long does Waltham Forest Council take to decide?",
+    answer:
+      "Householder planning applications usually take around eight weeks after validation. Lawful Development Certificates are often around six to eight weeks, subject to workload and validation.",
+  },
+  {
+    question: "Do you manage the full application to Waltham Forest Council?",
+    answer:
+      "Yes. We prepare the drawings, complete the forms, upload the documents, submit the application to Waltham Forest Council and respond to planning queries during the process.",
+  },
+];
+
+const faqJson = createFaqPageSchema(FAQ_ITEMS);
 
 export default function WalthamForestAreaPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -54,49 +80,6 @@ export default function WalthamForestAreaPage() {
     ],
     description:
       "Architectural drawing services in Waltham Forest for house extensions, loft conversions, refurbishments, flat reconfigurations and building regulation packs.",
-  };
-
-  const faqJson = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Do I need planning permission for a rear extension in Waltham Forest?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Not always. Many rear extensions in Waltham Forest can be carried out under permitted development, but some homes are affected by conservation area controls, flat status, local constraints or previous planning conditions. We review the address and advise the correct route.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Is Waltham Forest strict with loft conversions and extensions?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Waltham Forest can be more sensitive in conservation areas, on strong character streets and where roof alterations affect the front street scene. Clear drawings and a well-shaped planning proposal are important.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "How long does Waltham Forest Council take to decide?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Householder planning applications usually take around eight weeks after validation. Lawful Development Certificates are often around six to eight weeks, subject to workload and validation.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Do you manage the full application to Waltham Forest Council?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text:
-            "Yes. We prepare the drawings, complete the forms, upload the documents, submit the application to Waltham Forest Council and respond to planning queries during the process.",
-        },
-      },
-    ],
   };
 
   return (
@@ -364,38 +347,12 @@ export default function WalthamForestAreaPage() {
                   Frequently asked questions
                 </h2>
                 <div className="grid md:grid-cols-2 gap-6 text-[13px] text-slate-700">
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Do I need planning permission for a rear extension in Waltham Forest
-                    </h3>
-                    <p>
-                      Not always. Many rear extensions in Waltham Forest can be carried out under permitted development, but some homes are affected by conservation area controls, flat status, local constraints or previous planning conditions. We review the address and advise the right route.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Is Waltham Forest strict with loft conversions and extensions
-                    </h3>
-                    <p>
-                      Waltham Forest can be more sensitive in conservation areas, on strong character streets and where roof alterations affect the front street scene. Clear drawings and a well-shaped planning proposal are important.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      How long does Waltham Forest Council take to decide
-                    </h3>
-                    <p>
-                      Householder planning applications usually take around eight weeks after validation. Lawful Development Certificates are often around six to eight weeks, subject to workload and validation.
-                    </p>
-                  </div>
-                  <div className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
-                    <h3 className="font-semibold text-slate-900">
-                      Do you manage the full application to Waltham Forest Council
-                    </h3>
-                    <p>
-                      Yes. We prepare the drawings, complete the forms, upload the documents, submit the application to Waltham Forest Council and respond to planning queries during the process.
-                    </p>
-                  </div>
+                  {FAQ_ITEMS.map(({ question, answer }) => (
+                    <div key={question} className="space-y-2 rounded-xl bg-white border border-slate-100 p-4">
+                      <h3 className="font-semibold text-slate-900">{question}</h3>
+                      <p>{answer}</p>
+                    </div>
+                  ))}
                 </div>
 
                 <p className="mt-6 text-[13px] font-semibold text-slate-800">
