@@ -134,12 +134,12 @@ export default function SolarPanelPlanningDrawingsPage() {
               </p>
 
               <ul className="mt-6 space-y-2 text-sm leading-7 text-slate-800">
-                <li>• Existing and proposed roof plans</li>
-                <li>• Elevations showing panel location and projection</li>
-                <li>• Panel array layouts and manufacturer dimensions</li>
-                <li>• Flat-roof and pitched-roof solar drawing packages</li>
-                <li>• Planning, permitted development and prior approval support</li>
-                <li>• Conservation and sensitive-location drawing support</li>
+                <li>Existing and proposed roof plans</li>
+                <li>Elevations showing panel location and projection</li>
+                <li>Panel array layouts and manufacturer dimensions</li>
+                <li>Flat-roof and pitched-roof solar drawing packages</li>
+                <li>Planning, permitted development and prior approval support</li>
+                <li>Conservation and sensitive-location drawing support</li>
               </ul>
 
               <div className="mt-7 flex flex-wrap gap-3">

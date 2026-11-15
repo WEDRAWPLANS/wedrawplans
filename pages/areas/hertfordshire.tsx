@@ -194,12 +194,12 @@ export default function HertfordshireAreaPage() {
                 </p>
 
                 <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
-                  <li>• House extensions, wrap around extensions and internal remodelling</li>
-                  <li>• Loft conversions including dormers and hip to gable designs</li>
-                  <li>• Refurbishments and internal layout reconfiguration</li>
-                  <li>• Planning drawings and building regulation packs</li>
-                  <li>• Covering St Albans, Watford, Hemel Hempstead, Welwyn Hatfield and more</li>
-                  <li>• Same day response on most enquiries</li>
+                  <li>House extensions, wrap around extensions and internal remodelling</li>
+                  <li>Loft conversions including dormers and hip to gable designs</li>
+                  <li>Refurbishments and internal layout reconfiguration</li>
+                  <li>Planning drawings and building regulation packs</li>
+                  <li>Covering St Albans, Watford, Hemel Hempstead, Welwyn Hatfield and more</li>
+                  <li>Same day response on most enquiries</li>
                 </ul>
 
                 <div className="mt-5 flex flex-wrap gap-3 items-center">

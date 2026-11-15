@@ -114,12 +114,12 @@ export default function SurreyBordersM25AreaPage() {
                   turnaround and clear communication from initial brief through drawings and submission.
                 </p>
                 <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
-                  <li>• House extensions and open plan remodelling</li>
-                  <li>• Loft conversions and roof alterations</li>
-                  <li>• New build homes and small developments</li>
-                  <li>• Outbuildings and garden studios</li>
-                  <li>• Building regulation drawings and construction packs</li>
-                  <li>• Covering Surrey Borders, Epsom, Ewell, Chessington, Banstead, Purley, Coulsdon, Caterham and M25 areas</li>
+                  <li>House extensions and open plan remodelling</li>
+                  <li>Loft conversions and roof alterations</li>
+                  <li>New build homes and small developments</li>
+                  <li>Outbuildings and garden studios</li>
+                  <li>Building regulation drawings and construction packs</li>
+                  <li>Covering Surrey Borders, Epsom, Ewell, Chessington, Banstead, Purley, Coulsdon, Caterham and M25 areas</li>
                 </ul>
 
                 <div className="mt-5 flex flex-wrap items-center gap-3">
@@ -318,12 +318,12 @@ export default function SurreyBordersM25AreaPage() {
               </p>
 
               <ul className="mt-4 grid gap-2 text-[13px] text-slate-800 md:grid-cols-2">
-                <li>• Epsom, Ewell & Chessington</li>
-                <li>• Banstead, Tadworth & Kingswood</li>
-                <li>• Purley, Kenley & Coulsdon</li>
-                <li>• Caterham, Warlingham & Whyteleafe</li>
-                <li>• M25 corridor south & south-west edges</li>
-                <li>• Surrounding Surrey border villages and towns</li>
+                <li>Epsom, Ewell & Chessington</li>
+                <li>Banstead, Tadworth & Kingswood</li>
+                <li>Purley, Kenley & Coulsdon</li>
+                <li>Caterham, Warlingham & Whyteleafe</li>
+                <li>M25 corridor south & south-west edges</li>
+                <li>Surrounding Surrey border villages and towns</li>
               </ul>
 
               <p className="mt-3 max-w-3xl text-[13px] text-slate-700">

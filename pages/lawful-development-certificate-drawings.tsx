@@ -133,12 +133,12 @@ export default function LawfulDevelopmentCertificateDrawingsPage() {
               </p>
 
               <ul className="mt-6 space-y-2 text-sm leading-7 text-slate-800">
-                <li>• Existing and proposed floor plans</li>
-                <li>• Existing and proposed elevations</li>
-                <li>• Roof plans and sections where relevant</li>
-                <li>• Key dimensions needed to explain the proposal</li>
-                <li>• Extension, loft and roof alteration drawing packages</li>
-                <li>• Every London borough covered</li>
+                <li>Existing and proposed floor plans</li>
+                <li>Existing and proposed elevations</li>
+                <li>Roof plans and sections where relevant</li>
+                <li>Key dimensions needed to explain the proposal</li>
+                <li>Extension, loft and roof alteration drawing packages</li>
+                <li>Every London borough covered</li>
               </ul>
 
               <div className="mt-7 flex flex-wrap gap-3">

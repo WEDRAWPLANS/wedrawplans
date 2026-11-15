@@ -140,12 +140,12 @@ export default function GardenRoomOutbuildingPlansPage() {
               </p>
 
               <ul className="mt-6 space-y-2 text-sm leading-7 text-slate-800">
-                <li>• Existing and proposed site plans and floor plans</li>
-                <li>• Elevations, sections and roof information where required</li>
-                <li>• Key height, boundary and footprint dimensions</li>
-                <li>• Permitted development and Lawful Development Certificate drawings</li>
-                <li>• Retrospective outbuilding drawing packages</li>
-                <li>• Every London borough covered</li>
+                <li>Existing and proposed site plans and floor plans</li>
+                <li>Elevations, sections and roof information where required</li>
+                <li>Key height, boundary and footprint dimensions</li>
+                <li>Permitted development and Lawful Development Certificate drawings</li>
+                <li>Retrospective outbuilding drawing packages</li>
+                <li>Every London borough covered</li>
               </ul>
 
               <div className="mt-7 flex flex-wrap gap-3">

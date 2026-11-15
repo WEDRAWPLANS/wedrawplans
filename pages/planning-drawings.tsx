@@ -139,12 +139,12 @@ export default function PlanningDrawingsPage() {
               </p>
 
               <ul className="mt-6 space-y-2 text-sm leading-7 text-slate-800">
-                <li>• Existing and proposed floor plans</li>
-                <li>• Existing and proposed elevations</li>
-                <li>• Roof plans and sections where required</li>
-                <li>• Location and block plan coordination</li>
-                <li>• Householder, full planning and related application support</li>
-                <li>• Planning Portal submission support where included in scope</li>
+                <li>Existing and proposed floor plans</li>
+                <li>Existing and proposed elevations</li>
+                <li>Roof plans and sections where required</li>
+                <li>Location and block plan coordination</li>
+                <li>Householder, full planning and related application support</li>
+                <li>Planning Portal submission support where included in scope</li>
               </ul>
 
               <div className="mt-7 flex flex-wrap gap-3">

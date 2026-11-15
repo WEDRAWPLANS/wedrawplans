@@ -149,12 +149,12 @@ export default function HackneyAreaPage() {
               </p>
 
               <ul className="grid md:grid-cols-2 gap-2 text-[13px] text-slate-800 mt-4">
-                <li>• Hackney Central</li>
-                <li>• Dalston</li>
-                <li>• Stoke Newington</li>
-                <li>• Clapton</li>
-                <li>• Homerton</li>
-                <li>• Hoxton and Shoreditch edges</li>
+                <li>Hackney Central</li>
+                <li>Dalston</li>
+                <li>Stoke Newington</li>
+                <li>Clapton</li>
+                <li>Homerton</li>
+                <li>Hoxton and Shoreditch edges</li>
               </ul>
 
               <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">

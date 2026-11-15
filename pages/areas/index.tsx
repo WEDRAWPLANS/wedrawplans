@@ -492,12 +492,12 @@ export default function AreasIndexPage() {
                   </div>
 
                   <ul className="space-y-1 text-[13px] text-slate-800">
-                    <li>• House extensions including side return, rear and wraparound layouts</li>
-                    <li>• Loft conversions including dormers, mansards and hip to gable schemes</li>
-                    <li>• Building regulation drawing packs with structural coordination</li>
-                    <li>• Flat conversions, internal remodelling, new builds and small developments</li>
-                    <li>• Direct local council planning expertise with fast 48-hour initial site surveys across all London boroughs and the M25.</li>
-                    <li>• Same day response on many enquiries</li>
+                    <li>House extensions including side return, rear and wraparound layouts</li>
+                    <li>Loft conversions including dormers, mansards and hip to gable schemes</li>
+                    <li>Building regulation drawing packs with structural coordination</li>
+                    <li>Flat conversions, internal remodelling, new builds and small developments</li>
+                    <li>Direct local council planning expertise with fast 48-hour initial site surveys across all London boroughs and the M25.</li>
+                    <li>Same day response on many enquiries</li>
                   </ul>
 
                   <div className="flex flex-wrap items-center gap-3">
@@ -696,10 +696,10 @@ export default function AreasIndexPage() {
                       London wide drawing support
                     </div>
                     <ul className="mt-3 space-y-1 text-[13px] text-slate-700">
-                      <li>• Borough specific guidance when needed</li>
-                      <li>• Service pages for every main project type</li>
-                      <li>• Fast fixed fee route from one central page</li>
-                      <li>• Clear progression from planning to technical stages</li>
+                      <li>Tailored to strict London borough planning policies and Permitted Development rules.</li>
+                      <li>Complete structural engineer coordination for steel beams, padstones, and foundations.</li>
+                      <li>Fast fixed fee route from one central page</li>
+                      <li>Clear progression from planning to technical stages</li>
                     </ul>
                   </div>
                 </div>

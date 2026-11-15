@@ -1974,7 +1974,7 @@ function ServiceColumn({ heading, items, body }: ServiceColumnProps) {
       <h3 className="text-[14px] font-semibold uppercase tracking-[0.12em] text-slate-900">{heading}</h3>
       <ul className="mt-2 space-y-1 text-[13px] text-slate-700">
         {items.map((x) => (
-          <li key={x}>• {x}</li>
+          <li key={x}>{x}</li>
         ))}
       </ul>
       <p className="mt-3 text-[12px] text-slate-600">{body}</p>

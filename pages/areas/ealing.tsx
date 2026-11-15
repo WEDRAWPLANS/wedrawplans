@@ -208,12 +208,12 @@ export default function EalingAreaPage() {
                 </p>
 
                 <ul className="mt-4 hidden space-y-1 text-[13px] text-slate-800 lg:block">
-                  <li>• Rear extensions, side extensions and wraparound layouts</li>
-                  <li>• Loft conversions including dormers and hip to gable</li>
-                  <li>• Refurbishments, internal replanning and structural openings</li>
-                  <li>• Planning drawings and building regulation packs</li>
-                  <li>• Covering Ealing Broadway, Acton, Hanwell, Southall and more</li>
-                  <li>• Same day response on most enquiries</li>
+                  <li>Rear extensions, side extensions and wraparound layouts</li>
+                  <li>Loft conversions including dormers and hip to gable</li>
+                  <li>Refurbishments, internal replanning and structural openings</li>
+                  <li>Planning drawings and building regulation packs</li>
+                  <li>Covering Ealing Broadway, Acton, Hanwell, Southall and more</li>
+                  <li>Same day response on most enquiries</li>
                 </ul>
 
                 <div className="mt-5 hidden flex-wrap gap-3 items-center lg:flex">

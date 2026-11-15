@@ -128,11 +128,11 @@ export default function BoroughMasterHero({ boroughName, formId, headline, showc
             planning route, prepare the drawings and assist with council submissions where required.
           </p>
           <ul className="mt-4 hidden space-y-1 text-[13px] text-slate-800 lg:block">
-            <li>• Rear, side and wraparound extensions</li>
-            <li>• Loft conversions, dormers and roof alterations</li>
-            <li>• Internal remodelling and property conversions</li>
-            <li>• Planning applications and Building Regulations drawing packs</li>
-            <li>• Fixed fees agreed in writing before instruction</li>
+            <li>Rear, side and wraparound extensions</li>
+            <li>Loft conversions, dormers and roof alterations</li>
+            <li>Internal remodelling and property conversions</li>
+            <li>Planning applications and Building Regulations drawing packs</li>
+            <li>Fixed fees agreed in writing before instruction</li>
           </ul>
           <div className="mt-6 hidden overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm lg:block">
             <div className="relative h-[190px] w-full bg-[#f4f8f7]">

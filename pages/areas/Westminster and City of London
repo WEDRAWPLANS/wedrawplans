@@ -92,12 +92,12 @@ export default function CityOfLondonAreaPage() {
                   coordination with consultants.
                 </p>
                 <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
-                  <li>• Office and commercial fit-out plans</li>
-                  <li>• Internal layout alterations and minor works</li>
-                  <li>• Small residential refurbishments within the Square Mile</li>
-                  <li>• Building regulation drawings and coordination</li>
-                  <li>• Support with licence-to-alter style information packs</li>
-                  <li>• Covering the entire City (Bank, Moorgate, Liverpool Street, Monument, Barbican, etc.)</li>
+                  <li>Office and commercial fit-out plans</li>
+                  <li>Internal layout alterations and minor works</li>
+                  <li>Small residential refurbishments within the Square Mile</li>
+                  <li>Building regulation drawings and coordination</li>
+                  <li>Support with licence-to-alter style information packs</li>
+                  <li>Covering the entire City (Bank, Moorgate, Liverpool Street, Monument, Barbican, etc.)</li>
                 </ul>
                 <div className="mt-5 flex flex-wrap items-center gap-3">
                   <button
@@ -302,12 +302,12 @@ export default function CityOfLondonAreaPage() {
                 WEDRAWPLANS cover the entire Square Mile, including:
               </p>
               <ul className="mt-4 grid gap-2 text-[13px] text-slate-800 md:grid-cols-2">
-                <li>• Bank and Mansion House</li>
-                <li>• Moorgate, Liverpool Street and Broadgate</li>
-                <li>• Monument and London Bridge (City side)</li>
-                <li>• Barbican and St Paul’s</li>
-                <li>• Fenchurch Street, Aldgate and Tower (City side)</li>
-                <li>• Blackfriars and City Thameslink (City side)</li>
+                <li>Bank and Mansion House</li>
+                <li>Moorgate, Liverpool Street and Broadgate</li>
+                <li>Monument and London Bridge (City side)</li>
+                <li>Barbican and St Paul’s</li>
+                <li>Fenchurch Street, Aldgate and Tower (City side)</li>
+                <li>Blackfriars and City Thameslink (City side)</li>
               </ul>
               <p className="mt-3 max-w-3xl text-[13px] text-slate-700">
                 Most City projects can be coordinated using existing information

@@ -555,12 +555,12 @@ export default function NewBuildPlansPage() {
                   </div>
 
                   <ul className="space-y-1 text-[13px] text-slate-800">
-                    <li>• Single dwelling new build houses and replacement dwellings</li>
-                    <li>• Apartment schemes, infill plots, backland sites and mixed use projects</li>
-                    <li>• Planning drawings, town planning support and design development</li>
-                    <li>• Structural engineering coordination and Building Regulation packages</li>
-                    <li>• Coverage across London, Outer London and the surrounding M25 area</li>
-                    <li>• Clear fixed fees and fast early advice</li>
+                    <li>Single dwelling new build houses and replacement dwellings</li>
+                    <li>Apartment schemes, infill plots, backland sites and mixed use projects</li>
+                    <li>Planning drawings, town planning support and design development</li>
+                    <li>Structural engineering coordination and Building Regulation packages</li>
+                    <li>Coverage across London, Outer London and the surrounding M25 area</li>
+                    <li>Clear fixed fees and fast early advice</li>
                   </ul>
 
                   <div className="flex flex-wrap items-center gap-3">

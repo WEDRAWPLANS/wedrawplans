@@ -577,12 +577,12 @@ export default function BuildingRegulationDrawingsPage() {
                   </div>
 
                   <ul className="space-y-1 text-[13px] text-slate-800">
-                    <li>• Extension Building Regulation drawings and Building Control packs</li>
-                    <li>• Loft conversion technical drawings, stair layouts and roof build ups</li>
-                    <li>• New-build houses, flat conversions and technical construction packages</li>
-                    <li>• Structural engineer coordination for beams, padstones and openings</li>
-                    <li>• Construction sections, insulation notes and practical build details</li>
-                    <li>• Support for London borough projects and surrounding M25 locations</li>
+                    <li>Extension Building Regulation drawings and Building Control packs</li>
+                    <li>Loft conversion technical drawings, stair layouts and roof build ups</li>
+                    <li>New-build houses, flat conversions and technical construction packages</li>
+                    <li>Structural engineer coordination for beams, padstones and openings</li>
+                    <li>Construction sections, insulation notes and practical build details</li>
+                    <li>Support for London borough projects and surrounding M25 locations</li>
                   </ul>
 
                   <div className="flex flex-wrap items-center gap-3">

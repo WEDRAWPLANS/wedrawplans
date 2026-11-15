@@ -175,10 +175,10 @@ export default function BexleyAreaPage() {
               </p>
 
               <ul className="mt-4 space-y-2 text-[13px] text-slate-800">
-                <li>• We check whether your property benefits from permitted development rights and whether any Article 4 directions apply.</li>
-                <li>• For straightforward house extensions and lofts we can often prepare and submit a householder planning application or Lawful Development Certificate.</li>
-                <li>• For flats, conversions and small new build schemes we prepare full plans, elevations and basic supporting information.</li>
-                <li>• Where helpful, we can add simple diagrams to explain overlooking, daylight or privacy relationships.</li>
+                <li>We check whether your property benefits from permitted development rights and whether any Article 4 directions apply.</li>
+                <li>For straightforward house extensions and lofts we can often prepare and submit a householder planning application or Lawful Development Certificate.</li>
+                <li>For flats, conversions and small new build schemes we prepare full plans, elevations and basic supporting information.</li>
+                <li>Where helpful, we can add simple diagrams to explain overlooking, daylight or privacy relationships.</li>
               </ul>
 
               <p className="mt-3 max-w-3xl text-[13px] text-slate-700">

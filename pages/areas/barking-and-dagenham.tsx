@@ -184,18 +184,18 @@ export default function BarkingAndDagenhamAreaPage() {
 
               <ul className="mt-4 space-y-2 text-[13px] text-slate-800">
                 <li>
-                  • We review local guidance for extensions and lofts for your
+                  We review local guidance for extensions and lofts for your
                   street
                 </li>
                 <li>
-                  • We check whether permitted development rights apply at your
+                  We check whether permitted development rights apply at your
                   address
                 </li>
                 <li>
-                  • We prepare householder and full applications with clear
+                  We prepare householder and full applications with clear
                   drawings
                 </li>
-                <li>• We coordinate with structural engineers where needed</li>
+                <li>We coordinate with structural engineers where needed</li>
               </ul>
 
               <p className="mt-3 max-w-3xl text-[13px] text-slate-700">

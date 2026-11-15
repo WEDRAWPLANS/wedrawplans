@@ -121,12 +121,12 @@ export default function RestaurantAndCafeLayoutsPage() {
                 </p>
 
                 <ul className="mt-4 space-y-1 text-[13px] text-slate-800">
-                  <li>• Seating layouts, covers, circulation and accessibility checks</li>
-                  <li>• Back of house planning, storage, staff areas and customer WCs</li>
-                  <li>• Kitchen and servery zoning coordination</li>
-                  <li>• Extraction and ventilation coordination support</li>
-                  <li>• Building Regulations drawings where required</li>
-                  <li>• Same day response on most enquiries</li>
+                  <li>Seating layouts, covers, circulation and accessibility checks</li>
+                  <li>Back of house planning, storage, staff areas and customer WCs</li>
+                  <li>Kitchen and servery zoning coordination</li>
+                  <li>Extraction and ventilation coordination support</li>
+                  <li>Building Regulations drawings where required</li>
+                  <li>Same day response on most enquiries</li>
                 </ul>
 
                 <div className="mt-5 flex flex-wrap gap-3 items-center">
