@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import AllumLaneSiteFeature from "../components/AllumLaneSiteFeature";
-import HeroSlider from "../components/HeroSlider";
+import HydeDeveloperShowcase from "../components/HydeDeveloperShowcase";
 import { submitBoroughLead } from "../lib/submitBoroughLead";
 
 import ApprovalEvidenceStrip from "../components/ApprovalEvidenceStrip";
@@ -36,7 +36,7 @@ export default function NewBuildPlansPage() {
   const pageTitle =
     "New Build Plans and Planning Drawings | Structural Engineering and Town Planning Support | WEDRAWPLANS";
   const pageDescription =
-    "New build planning drawings, architectural design, structural engineering coordination and town planning support for single dwellings, replacement houses, backland plots, apartment schemes, infill developments and mixed use residential projects across London, Outer London and the M25.";
+    "Architectural new-build planning drawings for landowners and property developers across London and the M25. Explore WEDRAWPLANS The Hyde, Colindale: Barnet planning approval granted in 2017 for an 18-flat, six-storey mixed-use development. Site feasibility, planning submissions, apartment schemes, infill and replacement dwellings, and structural coordination.";
   const canonical = "https://www.wedrawplans.co.uk/new-build-plans";
 
   const localBusinessJson = useMemo(
@@ -819,10 +819,10 @@ export default function NewBuildPlansPage() {
                   APPROVED PROJECT SHOWCASE
                 </div>
                 <h2 className="mt-4 text-2xl font-extrabold tracking-tight sm:text-3xl lg:text-4xl">
-                  Project Colindale – The Hyde
+                  The Hyde, Colindale — WEDRAWPLANS approved planning project
                 </h2>
                 <p className="mt-2 text-sm font-semibold uppercase tracking-[0.16em] text-slate-600">
-                  New build planning drawings for multi storey modern apartments
+                  Six-storey residential development · London Borough of Barnet · Approved 2017
                 </p>
               </div>
 
@@ -876,7 +876,7 @@ export default function NewBuildPlansPage() {
 
               <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-[1.15fr_0.85fr]">
                 <div className="rounded-3xl border bg-white p-6 shadow-sm">
-                  <h3 className="text-lg font-extrabold tracking-tight">Short project case study summary</h3>
+                  <h3 className="text-lg font-extrabold tracking-tight">Planning permission for a six-storey development in Colindale</h3>
                   <p className="mt-4 text-sm leading-7 text-slate-700">
                     Project Colindale – The Hyde showcases WEDRAWPLANS capability in preparing planning-led design work
                     for a modern apartment development in a changing urban context. The approved scheme at 1–5 Halt
@@ -898,7 +898,7 @@ export default function NewBuildPlansPage() {
                 </div>
 
                 <div className="rounded-3xl border bg-slate-900 p-6 text-white shadow-sm">
-                  <h3 className="text-lg font-extrabold tracking-tight">What this project demonstrates</h3>
+                  <h3 className="text-lg font-extrabold tracking-tight">What WEDRAWPLANS brings to a development project</h3>
                   <ul className="mt-4 space-y-3 text-sm leading-7 text-slate-200">
                     <li>Planning drawings for modern apartment developments</li>
                     <li>Strong CGI and visual communication for serious urban schemes</li>
@@ -927,56 +927,50 @@ export default function NewBuildPlansPage() {
             </div>
           </section>
 
-          <section id="hyde-showcase" className="border-y border-slate-200 bg-[#fdf8f3]">
-            <HeroSlider
-              slides={[
-                {
-                  src: "/images/hyde-slide-1.jpg",
-                  alt: "Project Colindale – The Hyde showcase canvas 1",
-                },
-                {
-                  src: "/images/hyde-slide-2.jpg",
-                  alt: "Project Colindale – The Hyde showcase canvas 2",
-                },
-                {
-                  src: "/images/hyde-slide-3.jpg",
-                  alt: "Project Colindale – The Hyde showcase canvas 3",
-                },
-                {
-                  src: "/images/hyde-slide-4.jpg",
-                  alt: "Project Colindale – The Hyde showcase canvas 4",
-                },
-                {
-                  src: "/images/hyde-slide-5.jpg",
-                  alt: "Project Colindale – The Hyde showcase canvas 5",
-                },
-              ]}
-            />
-          </section>
+          <HydeDeveloperShowcase />
 
-          <section className="bg-white">
+
+          <section className="bg-white" aria-labelledby="developer-planning-support">
             <div className="mx-auto max-w-6xl px-4 py-12">
-              <h2 className="text-2xl font-extrabold tracking-tight">Why this type of project matters</h2>
-              <p className="mt-3 max-w-4xl text-slate-700">
-                A page like this does more than describe a service. It shows that WEDRAWPLANS can handle premium
-                architectural drawing services for apartment developments, new build residential schemes, mixed use
-                proposals and more ambitious planning applications where the design must look credible, modern,
-                coordinated and ready for serious review.
-              </p>
-
-              <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
+              <div className="max-w-4xl">
+                <p className="text-[11px] font-extrabold uppercase tracking-[.17em] text-[#287665]">For landowners, developers and investors</p>
+                <h2 id="developer-planning-support" className="mt-2 text-2xl font-extrabold tracking-tight text-[#223f42] sm:text-3xl">Planning-led design for land with new-build potential</h2>
+                <p className="mt-4 text-[15px] leading-7 text-slate-700">
+                  Every development site has its own constraints and commercial goals. Whether you own a vacant plot,
+                  former commercial premises, a backland parcel or a larger residential redevelopment site,
+                  WEDRAWPLANS can prepare architectural new-build drawings and help structure the planning application.
+                  The Hyde is one example of our experience presenting residential-led development proposals in a
+                  challenging urban location.
+                </p>
+                <p className="mt-3 text-[15px] leading-7 text-slate-700">
+                  We can assess the proposed use and site capacity, develop building massing and layouts, and prepare
+                  elevations, sections, 3D views and Design and Access Statement material. Depending on the project,
+                  the application may also need town-planning, daylight and sunlight, access, ecology, transport,
+                  drainage, fire, energy or other specialist evidence. We help identify the required information
+                  early and coordinate the drawing package with appointed consultants.
+                </p>
+              </div>
+              <div className="mt-7 grid grid-cols-1 gap-4 md:grid-cols-3">
                 <InfoCard
-                  title="Planning-led design strength"
-                  body="We build schemes to read clearly in planning terms, with strong massing, context response, amenity logic, access planning and urban presentation."
+                  title="Understand your site and its potential"
+                  body="For landowners considering new-build houses, infill schemes or flats, we review planning constraints, access, neighbours, amenity and likely design opportunities before the layout is fixed."
                 />
                 <InfoCard
-                  title="Premium visual communication"
-                  body="CGI views, drawing sheets, sections, elevations and image-led showcase content help present WEDRAWPLANS as a serious design partner for more ambitious residential work."
+                  title="Present an application clearly"
+                  body="We develop coordinated site plans, floor plans, elevations, sections and CGI views that explain the development to planners and decision-makers, supported by a clear design narrative."
                 />
                 <InfoCard
-                  title="Technical progression after planning"
-                  body="Once planning is secured, we can move the scheme into Building Regulation drawings, structural coordination and contractor-ready technical development."
+                  title="Move toward technical delivery"
+                  body="Following planning permission, we can agree a further scope for Building Regulations drawings, structural engineering coordination and the information needed for the next stage of development."
                 />
+              </div>
+              <div className="mt-7 flex flex-wrap items-center gap-3">
+                <a href="#new-build-quote" className="inline-flex min-h-11 items-center rounded-full bg-[#246e78] px-6 py-3 text-[13px] font-extrabold text-white hover:bg-[#195761]">Request a quote for your site</a>
+                <a href="https://publicaccess.barnet.gov.uk/online-applications/applicationDetails.do?activeTab=documents&keyVal=OKT5JEJIMAU00"
+                   target="_blank" rel="noopener noreferrer"
+                   className="inline-flex min-h-11 items-center rounded-full border border-[#b7d4cb] px-6 py-3 text-[13px] font-extrabold text-[#246a6a] hover:bg-[#eef7f3]">
+                   See The Hyde planning approval — 17/0660/FUL ↗
+                </a>
               </div>
             </div>
           </section>
