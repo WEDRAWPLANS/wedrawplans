@@ -8,10 +8,10 @@ const councilDocuments = "https://planning.royalgreenwich.gov.uk/online-applicat
 
 const canvases = [
   { path: "completed-woolwich-road.webp", fallback: "construction-01-street-elevation.webp", title: "Woolwich Road · completed development", label: "Finished building", description: "Current street elevation of the completed residential development." },
-  { path: "planning-09-elevation.webp", fallback: "planning-09-elevation.webp", title: "WEDRAWPLANS planning elevation", label: "Approved planning", description: "Original submitted elevation drawings; Greenwich 20/0899/F." },
-  { path: "br-01-fourth-floor-services.webp", fallback: "br-01-fourth-floor-services.webp", title: "WEDRAWPLANS Building Regulations drawing BR01", label: "Building Regulations", description: "Proposed fourth-floor layout and services coordination." },
+  { path: "approved-front-elevation-p09.webp", fallback: "planning-09-elevation.webp", title: "WEDRAWPLANS planning elevation", label: "Approved planning", description: "Original submitted elevation drawings; Greenwich 20/0899/F." },
+  { path: "building-regulations-br01.webp", fallback: "br-01-fourth-floor-services.webp", title: "WEDRAWPLANS Building Regulations drawing BR01", label: "Building Regulations", description: "Proposed fourth-floor layout and services coordination." },
   { path: "construction-02-roof-steel-frame.webp", fallback: "construction-02-roof-steel-frame.webp", title: "Rooftop steelwork construction", label: "Structural coordination", description: "Steel beams, columns and construction-stage coordination." },
-  { path: "planning-05-cover-perspective.webp", fallback: "planning-05-cover-perspective.webp", title: "Architectural design perspective", label: "Architectural CGI", description: "Visualisation of the mixed-use residential development." },
+  { path: "planning-artist-impression-p23.webp", fallback: "planning-05-cover-perspective.webp", title: "Architectural design perspective", label: "Architectural CGI", description: "Visualisation of the mixed-use residential development." },
 ] as const;
 
 export default function WoolwichDeveloperShowcase() {
