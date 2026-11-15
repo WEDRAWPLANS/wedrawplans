@@ -107,7 +107,7 @@ export default function WoolwichRoadCombinedShowcase() {
           className="h-auto w-full object-contain"
           onError={e => { e.currentTarget.onerror = null; e.currentTarget.src = base + "construction-01-street-elevation.webp"; }}
         />
-        <figcaption className="px-5 py-3 text-[12px] leading-6 text-[#536f75]">WEDRAWPLANS project photography · 700–702 Woolwich Road, Greenwich. The full finished-building photograph is being added to the media collection.</figcaption>
+        <figcaption className="px-5 py-3 text-[12px] leading-6 text-[#536f75]">WEDRAWPLANS project photography · 700–702 Woolwich Road, Greenwich.</figcaption>
       </figure>
       <section className="overflow-hidden rounded-[22px] border border-[#d5e4dd] bg-white shadow-[0_18px_42px_rgba(25,70,72,.065)]">
         <div className="bg-[#edf7f1] px-5 py-6 sm:px-8 sm:py-8">
