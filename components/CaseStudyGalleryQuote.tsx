@@ -320,7 +320,7 @@ export default function CaseStudyGalleryQuote({ projects, context }: Props) {
                             : isSuttonLoft
                               ? "Explore the successful Wallington loft conversion application with eight genuine WEDRAWPLANS drawing sheets, existing/proposed 3D visualisations and a clearly labelled inspiration gallery."
                               : isWoolwich
-                                ? "For developers and landowners: see how WEDRAWPLANS secured permission for two additional flats, prepared the complete Building Regulations package, coordinated structural engineering and managed the project throughout the works. Explore the drawings, construction photographs and completed development."
+                                ? "For developers and landowners: discover how WEDRAWPLANS provided Building Regulations design for the entire Woolwich Road development and managed the works from piling and foundations to completion and handover. During construction we also undertook pre-planning and secured permission for two additional flats. View selected technical drawings, construction photographs and the finished building."
                               : isLeicesterCombined
                                 ? "See how WEDRAWPLANS combines original design animation and Barnet prior approval with a coordinated Building Regulations drawing package and structural engineer interfaces."
                                 : "See how WEDRAWPLANS approaches architectural planning drawings and design coordination, then request a fixed-fee quotation tailored to your own property."}
