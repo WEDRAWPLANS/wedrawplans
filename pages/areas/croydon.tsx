@@ -1,3 +1,4 @@
+import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import NearbySuttonLoftCaseStudy from "../../components/NearbySuttonLoftCaseStudy";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
@@ -23,46 +24,6 @@ export default function CroydonAreaPage() {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  const localBusinessJson = useMemo(
-    () => ({
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "@id": "https://www.wedrawplans.co.uk/areas/croydon#business",
-      name: "WEDRAWPLANS",
-      url: "https://www.wedrawplans.co.uk/areas/croydon",
-      telephone: "+44 20 3654 8508",
-      email: "info@wedrawplans.com",
-      image: "https://www.wedrawplans.co.uk/images/drawings.jpg",
-      priceRange: "££",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "201 Borough High Street",
-        addressLocality: "London",
-        postalCode: "SE1 1JA",
-        addressCountry: "UK",
-      },
-      areaServed: [
-        "Croydon",
-        "South Croydon",
-        "East Croydon",
-        "West Croydon",
-        "Purley",
-        "Coulsdon",
-        "Kenley",
-        "Sanderstead",
-        "Selhurst",
-        "Thornton Heath",
-        "Norbury",
-        "Shirley",
-        "New Addington",
-      ],
-      description:
-        "Architectural drawing services in Croydon for extensions, loft conversions, refurbishments, outbuildings and building regulation plans. Survey within 48 hours and full planning submission support.",
-      sameAs: ["https://twitter.com/WEDRAWPLANS"],
-    }),
-    []
-  );
-
   const breadcrumbJson = useMemo(
     () => ({
       "@context": "https://schema.org",
@@ -81,11 +42,25 @@ export default function CroydonAreaPage() {
       "@type": "Service",
       "@id": "https://www.wedrawplans.co.uk/areas/croydon#service",
       name: "Architectural drawings in Croydon",
-      provider: {
-        "@type": "LocalBusiness",
-        "@id": "https://www.wedrawplans.co.uk/areas/croydon#business",
-      },
-      areaServed: "London Borough of Croydon",
+      provider: businessReference,
+      url: "https://www.wedrawplans.co.uk/areas/croydon",
+      image: "https://www.wedrawplans.co.uk/images/drawings.jpg",
+      areaServed: [
+        "London Borough of Croydon",
+        "Croydon",
+        "South Croydon",
+        "East Croydon",
+        "West Croydon",
+        "Purley",
+        "Coulsdon",
+        "Kenley",
+        "Sanderstead",
+        "Selhurst",
+        "Thornton Heath",
+        "Norbury",
+        "Shirley",
+        "New Addington",
+      ],
       serviceType: [
         "Planning drawings",
         "Permitted development drawings",
@@ -225,10 +200,6 @@ export default function CroydonAreaPage() {
         />
         <meta name="twitter:image" content="https://www.wedrawplans.co.uk/images/drawings.jpg" />
 
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }}

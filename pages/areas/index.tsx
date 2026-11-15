@@ -1,3 +1,4 @@
+import { businessReference } from "../../data/businessSchema";
 import IntentAreaDirectory from "../../components/IntentAreaDirectory";
 import React, { useMemo } from "react";
 import Head from "next/head";
@@ -268,27 +269,18 @@ export default function AreasIndexPage() {
     { name: "Surrey borders and M25", href: "/areas/surrey-borders-m25" },
   ];
 
-  const localBusinessJson = useMemo(
+  const serviceJson = useMemo(
     () => ({
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      name: "WEDRAWPLANS",
+      "@type": "Service",
+      name: "Architectural drawings across London and the M25",
+      provider: businessReference,
       url: "https://www.wedrawplans.co.uk/areas",
-      telephone: "+44 20 3654 8508",
-      email: "info@wedrawplans.com",
       image:
         "https://www.wedrawplans.co.uk/images/rear-extension-planning-building-reg-drawings.jpg",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "201 Borough High Street",
-        addressLocality: "London",
-        postalCode: "SE1 1JA",
-        addressCountry: "UK",
-      },
       areaServed: ["London", "Greater London", "M25 area", ...boroughNames],
       description:
         "Architectural drawings across London and the M25 for house extensions, loft conversions, planning applications, building regulation packs, flat conversions, new build homes, internal remodelling and commercial drawing services.",
-      sameAs: ["https://twitter.com/WEDRAWPLANS", GOOGLE_BUSINESS_PROFILE_LINK],
     }),
     []
   );
@@ -405,7 +397,7 @@ export default function AreasIndexPage() {
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas" />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }}
         />
         <script
           type="application/ld+json"

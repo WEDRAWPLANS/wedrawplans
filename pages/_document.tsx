@@ -1,10 +1,16 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
+import { businessSchema } from "../data/businessSchema";
 
 class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
         <Head>
+          <script
+            id="wedrawplans-business-schema"
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }}
+          />
           {/* Google Analytics 4 for WEDRAWPLANS */}
           <script
             async

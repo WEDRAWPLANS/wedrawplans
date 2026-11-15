@@ -22,33 +22,6 @@ const GOOGLE_BUSINESS_PROFILE_LINK = "https://share.google/D3KId64vHtHSKPALr";
 const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20my%20project";
 
-const HOME_BUSINESS_JSONLD = {
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "@id": "https://www.wedrawplans.co.uk/#business",
-  name: "WEDRAWPLANS",
-  legalName: "WEDRAWPLANS LTD",
-  url: "https://www.wedrawplans.co.uk/",
-  logo: "https://www.wedrawplans.co.uk/images/wedrawplans-logo.png",
-  telephone: "+44 20 3654 8508",
-  email: "info@wedrawplans.com",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "201 Borough High Street",
-    addressLocality: "London",
-    postalCode: "SE1 1JA",
-    addressCountry: "GB",
-  },
-  areaServed: [
-    { "@type": "City", name: "London" },
-    { "@type": "AdministrativeArea", name: "Greater London" },
-    { "@type": "Place", name: "M25 and surrounding areas" },
-  ],
-  sameAs: [GOOGLE_BUSINESS_PROFILE_LINK, "https://twitter.com/WEDRAWPLANS"],
-  description:
-    "WEDRAWPLANS helps London homeowners with professional architectural and planning drawings for house extensions, loft conversions, garage conversions, garden rooms and new builds. Clear, competitive fixed-fee quotations, planning application preparation and submission, council liaison and Building Regulations drawing packages across London and the M25 area.",
-};
-
 type LeadAction = "phone_click" | "email_click" | "whatsapp_click";
 
 type PostcodeIntel = {
@@ -825,10 +798,6 @@ export default function IndexPage() {
           content="WEDRAWPLANS helps London homeowners with professional extension and loft drawings, clear fixed-fee quotes, planning applications and Building Regulations support."
         />
         <meta property="og:url" content="https://www.wedrawplans.co.uk/" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(HOME_BUSINESS_JSONLD) }}
-        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link

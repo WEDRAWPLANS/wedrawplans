@@ -1,3 +1,4 @@
+import { businessReference } from "../data/businessSchema";
 import IntentAreaDirectory from "../components/IntentAreaDirectory";
 import React from "react";
 import Head from "next/head";
@@ -25,21 +26,13 @@ export default function LoftConversionPlansPage() {
   const pageDescription =
     "Loft conversion plans and drawings in London and the M25 area with fixed fees. Dormer, mansard, hip to gable and rooflight lofts. Planning and Building Regulations packs. Structural engineer included through coordinated structural design and calculations.";
 
-  const localBusinessJson = {
+  const serviceJson = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: "WEDRAWPLANS",
+    "@type": "Service",
+    name: "Loft Conversion Drawings",
+    provider: businessReference,
     url: "https://www.wedrawplans.co.uk/loft-conversion-plans",
-    telephone: "+44 20 3654 8508",
-    email: "info@wedrawplans.com",
     image: "https://www.wedrawplans.co.uk/images/drawings.jpg",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "201 Borough High Street",
-      addressLocality: "London",
-      postalCode: "SE1 1JA",
-      addressCountry: "UK"
-    },
     areaServed: "Greater London and M25",
     description:
       "Loft conversion plans and structural design service in London and the M25 area. Planning drawings and Building Regulations packs for dormer, mansard, hip to gable and rooflight loft conversions."
@@ -117,7 +110,7 @@ export default function LoftConversionPlansPage() {
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }}
         />
         <script
           type="application/ld+json"

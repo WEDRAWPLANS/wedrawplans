@@ -1,3 +1,4 @@
+import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import React from "react";
 import Head from "next/head";
@@ -22,21 +23,13 @@ export default function HertfordshireAreaPage() {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  const localBusinessJson = {
+  const serviceJson = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: "WEDRAWPLANS",
+    "@type": "Service",
+    name: "Architectural drawings in Hertfordshire",
+    provider: businessReference,
     url: "https://www.wedrawplans.co.uk/areas/hertfordshire",
-    telephone: "+44 20 3654 8508",
-    email: "info@wedrawplans.com",
     image: "https://www.wedrawplans.co.uk/images/hero.jpg",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "201 Borough High Street",
-      addressLocality: "London",
-      postalCode: "SE1 1JA",
-      addressCountry: "UK",
-    },
     areaServed: [
       "Hertfordshire",
       "Broxbourne",
@@ -119,7 +112,7 @@ export default function HertfordshireAreaPage() {
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }}
         />
         <script
           type="application/ld+json"

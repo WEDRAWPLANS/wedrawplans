@@ -1,3 +1,4 @@
+import { businessReference } from "../data/businessSchema";
 import React, { useMemo } from "react";
 import Head from "next/head";
 import Link from "next/link";
@@ -40,42 +41,14 @@ export default function NewBuildPlansPage() {
     "Architectural new-build planning drawings for landowners and property developers across London and the M25. Explore WEDRAWPLANS The Hyde, Colindale: Barnet planning approval granted in 2017 for an 18-flat, six-storey mixed-use development. Site feasibility, planning submissions, apartment schemes, infill and replacement dwellings, and structural coordination.";
   const canonical = "https://www.wedrawplans.co.uk/new-build-plans";
 
-  const localBusinessJson = useMemo(
-    () => ({
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      name: "WEDRAWPLANS",
-      url: canonical,
-      telephone: "+44 20 3654 8508",
-      email: "info@wedrawplans.com",
-      image: "https://www.wedrawplans.co.uk/images/hyde-cgi-main.jpg",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "201 Borough High Street",
-        addressLocality: "London",
-        postalCode: "SE1 1JA",
-        addressCountry: "UK",
-      },
-      areaServed: ["London", "Outer London", "M25"],
-      description:
-        "New build planning drawings, Building Regulation drawings, structural engineering coordination and town planning support for residential development projects.",
-      sameAs: ["https://twitter.com/WEDRAWPLANS", GOOGLE_BUSINESS_PROFILE_LINK],
-    }),
-    [canonical]
-  );
-
   const serviceJson = useMemo(
     () => ({
       "@context": "https://schema.org",
       "@type": "Service",
       name: "New Build Plans and Planning Drawings",
-      provider: {
-        "@type": "LocalBusiness",
-        name: "WEDRAWPLANS",
-        telephone: "+44 20 3654 8508",
-        email: "info@wedrawplans.com",
-        url: "https://www.wedrawplans.co.uk/",
-      },
+      provider: businessReference,
+      url: canonical,
+      image: "https://www.wedrawplans.co.uk/images/hyde-cgi-main.jpg",
       areaServed: ["London", "Outer London", "M25"],
       serviceType: [
         "New build planning drawings",
@@ -468,10 +441,6 @@ export default function NewBuildPlansPage() {
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonical} />
         <meta property="og:image" content="https://www.wedrawplans.co.uk/images/hyde-cgi-main.jpg" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }}

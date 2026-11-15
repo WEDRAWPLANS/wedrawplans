@@ -1,3 +1,4 @@
+import { businessReference } from "../data/businessSchema";
 import Head from "next/head";
 import Link from "next/link";
 import type { FormEvent } from "react";
@@ -180,13 +181,12 @@ export default function GetDrawingsQuotePage() {
     }
   }
 
-  const jsonLd = {
+  const serviceJson = {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    name: "WEDRAWPLANS",
+    "@type": "Service",
+    name: "Architectural Drawing Services",
+    provider: businessReference,
     url: canonicalUrl,
-    telephone: "+44 20 3654 8508",
-    email: "info@wedrawplans.com",
     areaServed: [
       "London",
       "Surrounding M25 areas",
@@ -245,7 +245,7 @@ export default function GetDrawingsQuotePage() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }}
         />
       </Head>
 

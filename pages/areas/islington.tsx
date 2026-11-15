@@ -1,3 +1,4 @@
+import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React from "react";
@@ -22,23 +23,14 @@ export default function IslingtonAreaPage() {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  const localBusinessJson = {
+  const serviceJson = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "@id": "https://www.wedrawplans.co.uk/areas/islington#business",
-    name: "WEDRAWPLANS",
+    "@type": "Service",
+    "@id": "https://www.wedrawplans.co.uk/areas/islington#service",
+    name: "Architectural drawings in Islington",
+    provider: businessReference,
     url: "https://www.wedrawplans.co.uk/areas/islington",
-    telephone: "+44 20 3654 8508",
-    email: "info@wedrawplans.com",
     image: "https://www.wedrawplans.co.uk/images/drawings.jpg",
-    priceRange: "££",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "201 Borough High Street",
-      addressLocality: "London",
-      postalCode: "SE1 1JA",
-      addressCountry: "UK",
-    },
     areaServed: [
       "Islington",
       "Angel",
@@ -130,7 +122,7 @@ export default function IslingtonAreaPage() {
 
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }}
         />
         <script
           type="application/ld+json"

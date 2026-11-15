@@ -1,3 +1,4 @@
+import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BarnetCombinedExtensionPromo from "../../components/BarnetCombinedExtensionPromo";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
@@ -28,25 +29,29 @@ export default function EnfieldAreaPage() {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  const localBusinessJson = useMemo(
+  const breadcrumbJson = useMemo(
     () => ({
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "@id": "https://www.wedrawplans.co.uk/areas/enfield#business",
-      name: "WEDRAWPLANS",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://www.wedrawplans.co.uk/" },
+        { "@type": "ListItem", position: 2, name: "Enfield", item: "https://www.wedrawplans.co.uk/areas/enfield" },
+      ],
+    }),
+    []
+  );
+
+  const serviceJson = useMemo(
+    () => ({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "@id": "https://www.wedrawplans.co.uk/areas/enfield#service",
+      name: "Architectural drawings in Enfield",
+      provider: businessReference,
       url: "https://www.wedrawplans.co.uk/areas/enfield",
-      telephone: "+44 20 3654 8508",
-      email: "info@wedrawplans.com",
       image: "https://www.wedrawplans.co.uk/images/drawings.jpg",
-      priceRange: "££",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "201 Borough High Street",
-        addressLocality: "London",
-        postalCode: "SE1 1JA",
-        addressCountry: "UK",
-      },
       areaServed: [
+        "London Borough of Enfield",
         "Enfield",
         "Enfield Town",
         "Southgate",
@@ -69,33 +74,6 @@ export default function EnfieldAreaPage() {
         "Tottenham borders",
         "Chingford borders",
       ],
-      description:
-        "Architectural drawing services in Enfield for extensions, loft conversions, refurbishments, outbuildings and building regulation packs. Survey within 48 hours and full planning submission support.",
-      sameAs: ["https://twitter.com/WEDRAWPLANS"],
-    }),
-    []
-  );
-
-  const breadcrumbJson = useMemo(
-    () => ({
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://www.wedrawplans.co.uk/" },
-        { "@type": "ListItem", position: 2, name: "Enfield", item: "https://www.wedrawplans.co.uk/areas/enfield" },
-      ],
-    }),
-    []
-  );
-
-  const serviceJson = useMemo(
-    () => ({
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "@id": "https://www.wedrawplans.co.uk/areas/enfield#service",
-      name: "Architectural drawings in Enfield",
-      provider: { "@type": "LocalBusiness", "@id": "https://www.wedrawplans.co.uk/areas/enfield#business" },
-      areaServed: "London Borough of Enfield",
       serviceType: [
         "Planning drawings",
         "Permitted development drawings",
@@ -187,7 +165,6 @@ export default function EnfieldAreaPage() {
         />
         <meta name="twitter:image" content="https://www.wedrawplans.co.uk/images/drawings.jpg" />
 
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJson) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }} />

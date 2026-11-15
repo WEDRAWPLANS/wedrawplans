@@ -1,3 +1,4 @@
+import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React, { useMemo } from "react";
@@ -31,22 +32,14 @@ export default function WandsworthAreaPage() {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  const localBusinessJson = useMemo(
+  const serviceJson = useMemo(
     () => ({
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      name: "WEDRAWPLANS",
+      "@type": "Service",
+      name: "Architectural drawings in Wandsworth",
+      provider: businessReference,
       url: "https://www.wedrawplans.co.uk/areas/wandsworth",
-      telephone: "+44 20 3654 8508",
-      email: "info@wedrawplans.com",
       image: "https://www.wedrawplans.co.uk/images/hero.jpg",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "201 Borough High Street",
-        addressLocality: "London",
-        postalCode: "SE1 1JA",
-        addressCountry: "UK",
-      },
       areaServed: [
         "Wandsworth",
         "Wandsworth Town",
@@ -62,7 +55,6 @@ export default function WandsworthAreaPage() {
       ],
       description:
         "Architectural drawing services in Wandsworth for extensions, loft conversions, planning applications, refurbishments, outbuildings and building regulation packs. Fixed fees, clear scope, initial survey within 48 hours and fast communication.",
-      sameAs: ["https://twitter.com/WEDRAWPLANS", GOOGLE_BUSINESS_PROFILE_LINK],
     }),
     []
   );
@@ -194,7 +186,7 @@ export default function WandsworthAreaPage() {
         <meta name="twitter:image" content="https://www.wedrawplans.co.uk/images/hero.jpg" />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }}
         />
         <script
           type="application/ld+json"

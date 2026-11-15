@@ -1,3 +1,4 @@
+import { businessReference } from "../data/businessSchema";
 import React from "react";
 import Head from "next/head";
 import Link from "next/link";
@@ -38,20 +39,7 @@ export default function LawfulDevelopmentCertificateDrawingsPage() {
       "Loft conversion permitted development drawings",
       "Existing and proposed plans and elevations",
     ],
-    provider: {
-      "@type": "ProfessionalService",
-      "@id": "https://www.wedrawplans.co.uk/#business",
-      name: "WEDRAWPLANS",
-      url: "https://www.wedrawplans.co.uk/",
-      telephone: "+44 20 3654 8508",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "201 Borough High Street",
-        addressLocality: "London",
-        postalCode: "SE1 1JA",
-        addressCountry: "GB",
-      },
-    },
+    provider: businessReference,
     areaServed: ["London", "Greater London", "M25 and surrounding areas"],
     description,
   };

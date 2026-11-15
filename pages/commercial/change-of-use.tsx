@@ -1,3 +1,4 @@
+import { businessReference } from "../../data/businessSchema";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
@@ -98,13 +99,7 @@ export default function CommercialChangeOfUsePage() {
       "@context": "https://schema.org",
       "@type": "Service",
       name: "Change of Use Drawings",
-      provider: {
-        "@type": "LocalBusiness",
-        name: "WEDRAWPLANS",
-        url: "https://www.wedrawplans.co.uk",
-        telephone: "+44 20 3654 8508",
-        email: "info@wedrawplans.com",
-      },
+      provider: businessReference,
       areaServed: {
         "@type": "City",
         name: "London",

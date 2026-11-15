@@ -1,3 +1,4 @@
+import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import React from "react";
 import AllumLaneSiteFeature from "../../components/AllumLaneSiteFeature";
@@ -13,7 +14,7 @@ const surreyServiceSchema = {
   serviceType: ["House extension drawings", "Loft conversion plans", "Building Regulations drawings", "New build planning drawings"],
   url: SURREY_PAGE_URL,
   description: "WEDRAWPLANS prepares architectural drawings for planning applications and Building Regulations across Surrey-border towns and the southern M25 corridor.",
-  provider: { "@type": "ProfessionalService", "@id": "https://www.wedrawplans.co.uk/#business", name: "WEDRAWPLANS", url: "https://www.wedrawplans.co.uk/" },
+  provider: businessReference,
   areaServed: [
     { "@type": "Place", name: "Surrey borders and M25 corridor" },
     { "@type": "Place", name: "Epsom and Ewell" },

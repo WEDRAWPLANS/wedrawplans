@@ -1,3 +1,4 @@
+import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React from "react";
@@ -21,42 +22,6 @@ export default function WestminsterAreaPage() {
     const el = document.getElementById("westminster-quote");
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
-
-  const localBusinessJson = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "@id": "https://www.wedrawplans.co.uk/areas/westminster#business",
-    name: "WEDRAWPLANS",
-    url: "https://www.wedrawplans.co.uk/areas/westminster",
-    telephone: "+44 20 3654 8508",
-    email: "info@wedrawplans.com",
-    image: "https://www.wedrawplans.co.uk/images/drawings.jpg",
-    priceRange: "££",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "201 Borough High Street",
-      addressLocality: "London",
-      postalCode: "SE1 1JA",
-      addressCountry: "UK",
-    },
-    areaServed: [
-      "Westminster",
-      "Marylebone",
-      "Fitzrovia (Westminster side)",
-      "Pimlico",
-      "Victoria",
-      "Maida Vale",
-      "Bayswater",
-      "Soho",
-      "Mayfair",
-      "St James",
-      "Knightsbridge (Westminster side)",
-      "Paddington",
-      "Lancaster Gate",
-    ],
-    description:
-      "Architectural drawing services in Westminster for flat refurbishments, internal remodelling, listed buildings, extensions, roof alterations and building regulation packs. Survey within 48 hours and full planning submission support.",
-  };
 
   const breadcrumbJson = {
     "@context": "https://schema.org",
@@ -82,11 +47,25 @@ export default function WestminsterAreaPage() {
     "@type": "Service",
     "@id": "https://www.wedrawplans.co.uk/areas/westminster#service",
     name: "Architectural drawings in Westminster",
-    provider: {
-      "@type": "LocalBusiness",
-      "@id": "https://www.wedrawplans.co.uk/areas/westminster#business",
-    },
-    areaServed: "City of Westminster",
+    provider: businessReference,
+    url: "https://www.wedrawplans.co.uk/areas/westminster",
+    image: "https://www.wedrawplans.co.uk/images/drawings.jpg",
+    areaServed: [
+      "City of Westminster",
+      "Westminster",
+      "Marylebone",
+      "Fitzrovia (Westminster side)",
+      "Pimlico",
+      "Victoria",
+      "Maida Vale",
+      "Bayswater",
+      "Soho",
+      "Mayfair",
+      "St James",
+      "Knightsbridge (Westminster side)",
+      "Paddington",
+      "Lancaster Gate",
+    ],
     serviceType: [
       "Planning drawings",
       "Listed building consent drawings",
@@ -203,10 +182,6 @@ export default function WestminsterAreaPage() {
           content="https://www.wedrawplans.co.uk/images/drawings.jpg"
         />
 
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }}

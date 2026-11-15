@@ -1,3 +1,4 @@
+import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import Head from "next/head";
@@ -27,24 +28,17 @@ export default function HounslowAreaPage() {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  const localBusinessJson = useMemo(
+  const serviceJson = useMemo(
     () => ({
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "@id": "https://www.wedrawplans.co.uk/areas/hounslow#business",
-      name: "WEDRAWPLANS",
+      "@type": "Service",
+      "@id": "https://www.wedrawplans.co.uk/areas/hounslow#service",
+      name: "Architectural drawings in Hounslow",
+      provider: businessReference,
       url: "https://www.wedrawplans.co.uk/areas/hounslow",
-      telephone: "+44 20 3654 8508",
-      email: "info@wedrawplans.com",
       image: "https://www.wedrawplans.co.uk/images/hero.jpg",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "201 Borough High Street",
-        addressLocality: "London",
-        postalCode: "SE1 1JA",
-        addressCountry: "UK",
-      },
       areaServed: [
+        "London Borough of Hounslow",
         "Hounslow",
         "Chiswick",
         "Brentford",
@@ -57,21 +51,6 @@ export default function HounslowAreaPage() {
         "Cranford",
         "Heathrow area",
       ],
-      description:
-        "Architectural drawing services in Hounslow for extensions, loft conversions, refurbishments, planning applications and building regulation packs.",
-      sameAs: ["https://twitter.com/WEDRAWPLANS"],
-    }),
-    []
-  );
-
-  const serviceJson = useMemo(
-    () => ({
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "@id": "https://www.wedrawplans.co.uk/areas/hounslow#service",
-      name: "Architectural drawings in Hounslow",
-      provider: { "@type": "LocalBusiness", "@id": "https://www.wedrawplans.co.uk/areas/hounslow#business" },
-      areaServed: "London Borough of Hounslow",
       serviceType: [
         "Planning drawings",
         "Permitted development drawings",
@@ -167,7 +146,6 @@ export default function HounslowAreaPage() {
         />
         <meta name="twitter:image" content="https://www.wedrawplans.co.uk/images/hero.jpg" />
 
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJson) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }} />

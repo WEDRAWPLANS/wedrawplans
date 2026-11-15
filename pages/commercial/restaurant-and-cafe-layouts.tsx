@@ -1,3 +1,4 @@
+import { businessReference } from "../../data/businessSchema";
 import React from "react";
 import Head from "next/head";
 import Image from "next/image";
@@ -21,21 +22,13 @@ export default function RestaurantAndCafeLayoutsPage() {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  const localBusinessJson = {
+  const serviceJson = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: "WEDRAWPLANS",
+    "@type": "Service",
+    name: "Restaurant and café layout drawings",
+    provider: businessReference,
     url: "https://www.wedrawplans.co.uk/commercial/restaurant-and-cafe-layouts",
-    telephone: "+44 20 3654 8508",
-    email: "info@wedrawplans.com",
     image: "https://www.wedrawplans.co.uk/images/hero.jpg",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "201 Borough High Street",
-      addressLocality: "London",
-      postalCode: "SE1 1JA",
-      addressCountry: "UK",
-    },
     areaServed: ["London"],
     description:
       "Restaurant and cafe layout drawings across London including seating layouts, back of house plans, extraction coordination and Building Regulations support.",
@@ -98,7 +91,7 @@ export default function RestaurantAndCafeLayoutsPage() {
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }}
         />
         <script
           type="application/ld+json"

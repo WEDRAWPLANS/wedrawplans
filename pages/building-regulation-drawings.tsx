@@ -1,3 +1,4 @@
+import { businessReference } from "../data/businessSchema";
 import BuildingRegProofShowcase from "../components/BuildingRegProofShowcase";
 import IntentAreaDirectory from "../components/IntentAreaDirectory";
 import Head from "next/head";
@@ -269,15 +270,7 @@ export default function BuildingRegulationDrawingsPage() {
       "@context": "https://schema.org",
       "@type": "Service",
       name: "Building Regulation Drawings London",
-      provider: {
-        "@type": "LocalBusiness",
-        name: "WEDRAWPLANS",
-        url: "https://www.wedrawplans.co.uk",
-        telephone: PHONE_TEL,
-        email: EMAIL,
-        image: LOGO_IMAGE,
-        sameAs: [GBP_LINK, "https://twitter.com/WEDRAWPLANS"],
-      },
+      provider: businessReference,
       areaServed: [
         {
           "@type": "City",

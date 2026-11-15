@@ -1,3 +1,4 @@
+import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React, { useMemo } from "react";
@@ -32,22 +33,14 @@ export default function HillingdonAreaPage() {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  const localBusinessJson = useMemo(
+  const serviceJson = useMemo(
     () => ({
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      name: "WEDRAWPLANS",
+      "@type": "Service",
+      name: "Architectural drawings in Hillingdon",
+      provider: businessReference,
       url: "https://www.wedrawplans.co.uk/areas/hillingdon",
-      telephone: "+44 20 3654 8508",
-      email: "info@wedrawplans.com",
       image: "https://www.wedrawplans.co.uk/images/hillingdon-hero.jpg",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "201 Borough High Street",
-        addressLocality: "London",
-        postalCode: "SE1 1JA",
-        addressCountry: "UK",
-      },
       areaServed: [
         "Hillingdon",
         "Uxbridge",
@@ -70,7 +63,6 @@ export default function HillingdonAreaPage() {
       ],
       description:
         "Architectural drawing services in Hillingdon for extensions, loft conversions, planning applications, garage conversions, outbuildings, conversions and Building Regulation packs. Fixed fees, clear scope, initial survey within 48 hours and fast communication.",
-      sameAs: ["https://twitter.com/WEDRAWPLANS", GOOGLE_BUSINESS_PROFILE_LINK],
     }),
     []
   );
@@ -187,7 +179,7 @@ export default function HillingdonAreaPage() {
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/hillingdon" />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }}
         />
         <script
           type="application/ld+json"

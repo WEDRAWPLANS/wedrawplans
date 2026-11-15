@@ -1,3 +1,4 @@
+import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React, { useMemo } from "react";
@@ -25,22 +26,14 @@ export default function BromleyAreaPage() {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  const localBusinessJson = useMemo(
+  const serviceJson = useMemo(
     () => ({
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      name: "WEDRAWPLANS",
+      "@type": "Service",
+      name: "Architectural drawings in Bromley",
+      provider: businessReference,
       url: "https://www.wedrawplans.co.uk/areas/bromley",
-      telephone: "+44 20 3654 8508",
-      email: "info@wedrawplans.com",
       image: "https://www.wedrawplans.co.uk/images/bromley-hero-house-extension-front.jpg",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "201 Borough High Street",
-        addressLocality: "London",
-        postalCode: "SE1 1JA",
-        addressCountry: "UK",
-      },
       areaServed: [
         "Bromley",
         "Beckenham",
@@ -60,7 +53,6 @@ export default function BromleyAreaPage() {
       ],
       description:
         "Architectural drawing services in Bromley for extensions, loft conversions, planning applications, garage conversions, outbuildings, commercial drawing services and building regulation packs. Fixed fees, clear scope, initial survey within 48 hours and fast communication.",
-      sameAs: ["https://twitter.com/WEDRAWPLANS", GOOGLE_BUSINESS_PROFILE_LINK],
     }),
     []
   );
@@ -177,7 +169,7 @@ export default function BromleyAreaPage() {
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/bromley" />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }}
         />
         <script
           type="application/ld+json"

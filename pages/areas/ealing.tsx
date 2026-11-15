@@ -1,3 +1,4 @@
+import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import Head from "next/head";
 import React, { useMemo } from "react";
@@ -22,22 +23,14 @@ export default function EalingAreaPage() {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  const localBusinessJson = useMemo(
+  const serviceJson = useMemo(
     () => ({
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      name: "WEDRAWPLANS",
+      "@type": "Service",
+      name: "Architectural drawings in Ealing",
+      provider: businessReference,
       url: "https://www.wedrawplans.co.uk/areas/ealing",
-      telephone: "+44 20 3654 8508",
-      email: "info@wedrawplans.com",
       image: "https://www.wedrawplans.co.uk/images/drawings.jpg",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "201 Borough High Street",
-        addressLocality: "London",
-        postalCode: "SE1 1JA",
-        addressCountry: "UK",
-      },
       areaServed: [
         "Ealing",
         "Ealing Broadway",
@@ -52,8 +45,6 @@ export default function EalingAreaPage() {
       ],
       description:
         "Architectural drawing services in Ealing for extensions, loft conversions, refurbishments and building regulation packs. Fixed fees with clear scope and fast communication.",
-      priceRange: "££",
-      sameAs: ["https://twitter.com/WEDRAWPLANS"],
     }),
     []
   );
@@ -119,7 +110,7 @@ export default function EalingAreaPage() {
         <title>Extension plans and planning drawings in Ealing | WEDRAWPLANS</title>
         <meta name="description" content="Extension plans and planning drawings in Ealing. Planning and Building Regulation drawings in Ealing. Get a fixed-fee quotation." />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/ealing" />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }} />
       </Head>
 

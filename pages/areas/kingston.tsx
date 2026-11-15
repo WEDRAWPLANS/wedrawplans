@@ -1,3 +1,4 @@
+import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import NearbySuttonLoftCaseStudy from "../../components/NearbySuttonLoftCaseStudy";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
@@ -27,22 +28,14 @@ export default function KingstonAreaPage() {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  const localBusinessJson = useMemo(
+  const serviceJson = useMemo(
     () => ({
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      name: "WEDRAWPLANS",
+      "@type": "Service",
+      name: "Architectural drawings in Kingston upon Thames",
+      provider: businessReference,
       url: "https://www.wedrawplans.co.uk/areas/kingston",
-      telephone: "+44 20 3654 8508",
-      email: "info@wedrawplans.com",
       image: "https://www.wedrawplans.co.uk/images/drawings.jpg",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "201 Borough High Street",
-        addressLocality: "London",
-        postalCode: "SE1 1JA",
-        addressCountry: "UK",
-      },
       areaServed: [
         "Kingston upon Thames",
         "Surbiton",
@@ -59,8 +52,6 @@ export default function KingstonAreaPage() {
       ],
       description:
         "Architectural drawing services in Kingston upon Thames for extensions, loft conversions, refurbishments, outbuildings and building regulation packs. Fixed fees with clear scope and fast communication.",
-      priceRange: "££",
-      sameAs: ["https://twitter.com/WEDRAWPLANS"],
     }),
     []
   );
@@ -126,7 +117,7 @@ export default function KingstonAreaPage() {
         <title>House extension plans and loft conversion drawings in Kingston | WEDRAWPLANS</title>
         <meta name="description" content="House extension plans and loft conversion drawings in Kingston. Planning and Building Regulation drawings in Kingston upon Thames. Get a fixed-fee quotation." />
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/kingston" />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }} />
       </Head>
 

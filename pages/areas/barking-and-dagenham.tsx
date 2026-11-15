@@ -1,3 +1,4 @@
+import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
 import React from "react";
@@ -25,21 +26,13 @@ export default function BarkingAndDagenhamAreaPage() {
   const canonicalUrl =
     "https://www.wedrawplans.co.uk/areas/barking-and-dagenham";
 
-  const localBusinessJson = {
+  const serviceJson = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: "WEDRAWPLANS",
+    "@type": "Service",
+    name: "Architectural drawings in Barking and Dagenham",
+    provider: businessReference,
     url: canonicalUrl,
-    telephone: "+44 20 3654 8508",
-    email: "info@wedrawplans.com",
     image: "https://www.wedrawplans.co.uk/images/drawings.jpg",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "201 Borough High Street",
-      addressLocality: "London",
-      postalCode: "SE1 1JA",
-      addressCountry: "GB",
-    },
     areaServed: [
       "Barking and Dagenham",
       "Barking",
@@ -54,7 +47,6 @@ export default function BarkingAndDagenhamAreaPage() {
     ],
     description:
       "Architectural drawing services in Barking and Dagenham. Planning drawings, extension layouts, loft conversion plans and building regulation packs with clear fixed fees and fast response.",
-    sameAs: ["https://twitter.com/WEDRAWPLANS"],
   };
 
   const faqJson = {
@@ -104,7 +96,7 @@ export default function BarkingAndDagenhamAreaPage() {
         <link rel="canonical" href={canonicalUrl} />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }}
         />
         <script
           type="application/ld+json"

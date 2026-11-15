@@ -1,3 +1,4 @@
+import { businessReference } from "../data/businessSchema";
 import GrangeRoadPromo from "../components/GrangeRoadPromo";
 import IntentAreaDirectory from "../components/IntentAreaDirectory";
 import BarnetCombinedExtensionPromo from "../components/BarnetCombinedExtensionPromo";
@@ -23,21 +24,13 @@ export default function ExtensionPlansPage() {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  const localBusinessJson = {
+  const serviceJson = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: "WEDRAWPLANS",
+    "@type": "Service",
+    name: "House Extension Planning Drawings",
+    provider: businessReference,
     url: "https://www.wedrawplans.co.uk/extension-plans",
-    telephone: "+44 20 3654 8508",
-    email: "info@wedrawplans.com",
     image: "https://www.wedrawplans.co.uk/images/drawings.jpg",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "201 Borough High Street",
-      addressLocality: "London",
-      postalCode: "SE1 1JA",
-      addressCountry: "UK"
-    },
     areaServed: "Greater London and M25",
     description:
       "House extension planning drawings in London with clear fixed fees. Rear extensions, side return, wrap around and double storey extensions. Measured survey where required. Covering all London boroughs and the M25."
@@ -138,7 +131,7 @@ export default function ExtensionPlansPage() {
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }}
         />
         <script
           type="application/ld+json"

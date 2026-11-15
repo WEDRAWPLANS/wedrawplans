@@ -1,3 +1,4 @@
+import { businessReference } from "../../data/businessSchema";
 import PortfolioJourneyLinks from "../../components/PortfolioJourneyLinks";
 import Head from "next/head";
 import Link from "next/link";
@@ -97,13 +98,7 @@ export default function CommercialFireStrategyPage() {
       "@context": "https://schema.org",
       "@type": "Service",
       name: "Commercial Fire Strategy Drawings",
-      provider: {
-        "@type": "LocalBusiness",
-        name: "WEDRAWPLANS",
-        url: "https://www.wedrawplans.co.uk",
-        telephone: "+44 20 3654 8508",
-        email: "info@wedrawplans.com",
-      },
+      provider: businessReference,
       areaServed: {
         "@type": "City",
         name: "London",

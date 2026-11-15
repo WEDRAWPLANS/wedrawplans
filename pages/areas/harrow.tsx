@@ -1,3 +1,4 @@
+import { businessReference } from "../../data/businessSchema";
 import BoroughIntentCapture from "../../components/BoroughIntentCapture";
 import BarnetCombinedExtensionPromo from "../../components/BarnetCombinedExtensionPromo";
 import BoroughMasterHero, { BoroughMasterHeader } from "../../components/BoroughMasterHero";
@@ -27,22 +28,14 @@ export default function HarrowAreaPage() {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  const localBusinessJson = useMemo(
+  const serviceJson = useMemo(
     () => ({
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      name: "WEDRAWPLANS",
+      "@type": "Service",
+      name: "Architectural drawings in Harrow",
+      provider: businessReference,
       url: "https://www.wedrawplans.co.uk/areas/harrow",
-      telephone: "+44 20 3654 8508",
-      email: "info@wedrawplans.com",
       image: "https://www.wedrawplans.co.uk/images/case-studies/cannon-lane-pinner-5-metre-rear-extension/cannon-lane-rear-extension-3d.webp",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "201 Borough High Street",
-        addressLocality: "London",
-        postalCode: "SE1 1JA",
-        addressCountry: "UK",
-      },
       areaServed: [
         "Harrow",
         "Harrow on the Hill",
@@ -60,7 +53,6 @@ export default function HarrowAreaPage() {
       ],
       description:
         "Architectural drawings in Harrow for house extensions, loft conversions, refurbishments, garage conversions and new builds. Fixed fee planning and building regulation packs covering Harrow on the Hill, Kenton, Rayners Lane, Wealdstone and the wider borough.",
-      sameAs: ["https://twitter.com/WEDRAWPLANS", GOOGLE_BUSINESS_PROFILE_LINK],
     }),
     []
   );
@@ -165,7 +157,7 @@ export default function HarrowAreaPage() {
         <link rel="canonical" href="https://www.wedrawplans.co.uk/areas/harrow" />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }}
         />
         <script
           type="application/ld+json"
