@@ -557,6 +557,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "700-woolwich-road-greenwich-two-new-flats",
+    projectVideoUrl: "https://vimeo.com/396459625",
     title: "Woolwich Road, Greenwich | Planning, Building Regulations & Structural Engineering",
     shortTitle: "Woolwich Road, Greenwich",
     seoDescription: "Discover how WEDRAWPLANS secured planning permission for two additional flats at Woolwich Road and delivered Building Regulations drawings, structural coordination and construction support.",
@@ -592,9 +593,9 @@ export const caseStudies: CaseStudy[] = [
     leadAngle: "WEDRAWPLANS provides fixed-fee planning and Building Regulations drawing packages, with structural engineering coordination and application support where required.",
     relatedService: "/building-regulation-drawings",
     relatedArea: "/areas/greenwich",
-    heroImage: "/images/case-studies/700-woolwich-road-greenwich-two-new-flats/construction-01-street-elevation.webp",
+    heroImage: "/images/case-studies/700-woolwich-road-greenwich-two-new-flats/completed-woolwich-road.webp",
     secondaryImage: "/images/case-studies/700-woolwich-road-greenwich-two-new-flats/br-01-fourth-floor-services.webp",
-    mediaNote: "WEDRAWPLANS planning drawings, Building Regulations details and construction photographs from the completed Woolwich Road project.",
+    mediaNote: "WEDRAWPLANS original planning drawings, Building Regulations details, architectural animation and photographic record of the completed Woolwich Road project.",
   },
   {
     slug: "brockley-road-lewisham-two-flat-conversion",
