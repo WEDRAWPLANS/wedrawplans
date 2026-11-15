@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const PROJECT = "/case-studies/allum-lane-elstree-major-house-extension";
-const POSTER = "/images/case-studies/allum-lane/3d-03.webp";
+const POSTER = "/images/case-studies/allum-lane/public-sheets/3d-03.webp";
 
 type Props = {
   placement?: "home" | "service" | "regional";

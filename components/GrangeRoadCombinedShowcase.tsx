@@ -5,7 +5,7 @@ import type { CaseStudy } from "../data/caseStudies";
 
 type Sheet = { src: string; code: string; name: string; summary: string; alt: string };
 const base = "/images/case-studies/grange-road-edgware-side-extension/";
-const quote = "/get-drawings-quote?source=case-study&project=grange-road-edgware-side-extension-lawful-development-building-regulations";
+const quote = "#case-study-quote";
 const council = "https://publicaccess.barnet.gov.uk/online-applications/applicationDetails.do?activeTab=documents&keyVal=O4U9H5JII8C00";
 const planning: Sheet[] = [
   { src: base + "planning-01-proposed-floor-and-roof.webp", code: "Planning drawing 1", name: "Proposed floor and roof plans", summary: "The side extension, revised ground-floor layout, front entrance and roof relationship are shown together on the featured proposed sheet.", alt: "Full-sheet WEDRAWPLANS proposed floor and roof drawing, redacted and subtly watermarked, for the Edgware side extension" },

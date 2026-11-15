@@ -390,7 +390,7 @@ export default function ServiceInternalLinks({
             <Link href="/case-studies/allum-lane-elstree-major-house-extension" className="group block">
               <div className="flex h-full min-h-[190px] items-center justify-center bg-[#edf3ee] p-3">
                 <img
-                  src="/images/case-studies/allum-lane/3d-03.webp"
+                  src="/images/case-studies/allum-lane/public-sheets/3d-03.webp"
                   alt="Original WEDRAWPLANS 3D design for an approved major house extension in Allum Lane, Elstree"
                   loading="lazy"
                   draggable={false}

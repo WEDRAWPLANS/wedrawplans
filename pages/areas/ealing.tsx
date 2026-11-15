@@ -13,8 +13,8 @@ const WHATSAPP_LINK =
 
 const HERO_IMAGE = "/images/case-studies/the-reddings/after.jpg";
 const EALING_LOCAL_IMAGE = "/images/drawings.jpg";
-const PROJECT_IMAGE_1 = "/images/case-studies/allum-lane/3d-01.webp";
-const PROJECT_IMAGE_2 = "/images/case-studies/allum-lane/3d-02.webp";
+const PROJECT_IMAGE_1 = "/images/case-studies/allum-lane/public-sheets/3d-01.webp";
+const PROJECT_IMAGE_2 = "/images/case-studies/allum-lane/public-sheets/3d-02.webp";
 
 export default function EalingAreaPage() {
   function scrollToForm() {

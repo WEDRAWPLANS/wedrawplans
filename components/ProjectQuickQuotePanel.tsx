@@ -73,8 +73,8 @@ export default function ProjectQuickQuotePanel({
       return;
     }
 
-    if (!name.trim() || (!developerQuote && !phone.trim()) || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
-      setError(developerQuote ? "Please enter your name and valid email address." : "Please enter your name, phone number and valid email address.");
+    if (!name.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      setError("Please enter your name and a valid email address.");
       return;
     }
 
@@ -135,32 +135,32 @@ export default function ProjectQuickQuotePanel({
               <div className="hidden" aria-hidden="true"><label htmlFor={"company-" + source + projectSlug}>Company</label><input id={"company-" + source + projectSlug} tabIndex={-1} autoComplete="off" value={company} onChange={e=>setCompany(e.target.value)}/></div>
               <label className="block">
                 <span className="sr-only">Which service do you need?</span>
-                <select required value={service} onFocus={trackStart} onChange={(event) => {setService(event.target.value);trackStart();}} className="h-13 min-h-[52px] w-full rounded-[14px] border border-[#d8e2e5] bg-white px-4 text-[14px] text-[#203e49] outline-none focus:border-[#64b7c4] focus:ring-2 focus:ring-[#d0edf1]">
+                <select required value={service} onFocus={trackStart} onChange={(event) => {setService(event.target.value);trackStart();}} className="h-13 min-h-[52px] w-full rounded-[14px] border border-[#d8e2e5] bg-white px-4 text-base lg:text-sm text-[#203e49] outline-none focus:border-[#64b7c4] focus:ring-2 focus:ring-[#d0edf1]">
                   <option value="">✎  Which service do you need?</option>
                   {SERVICE_OPTIONS.map(option=><option value={option.value} key={option.label}>{option.label}</option>)}
                 </select>
               </label>
               <label className="block">
                 <span className="sr-only">Property postcode</span>
-                <input required autoComplete="postal-code" placeholder="📍  Property postcode" value={postcode} onFocus={trackStart} onChange={event=>setPostcode(event.target.value)} className="min-h-[52px] w-full rounded-[14px] border border-[#d8e2e5] bg-white px-4 text-[14px] text-[#203e49] outline-none focus:border-[#64b7c4] focus:ring-2 focus:ring-[#d0edf1]" />
+                <input required autoComplete="postal-code" placeholder="📍  Property postcode" value={postcode} onFocus={trackStart} onChange={event=>setPostcode(event.target.value)} className="min-h-[52px] w-full rounded-[14px] border border-[#d8e2e5] bg-white px-4 text-base lg:text-sm text-[#203e49] outline-none focus:border-[#64b7c4] focus:ring-2 focus:ring-[#d0edf1]" />
               </label>
               {expanded && (
                 <div className="space-y-3 border-t border-[#dbe7e7] pt-4">
                   <label className="block">
                     <span className="sr-only">Your name</span>
-                    <input ref={nameRef} required autoComplete="name" placeholder="Your name" value={name} onChange={event=>setName(event.target.value)} className="min-h-[50px] w-full rounded-[14px] border border-[#d8e2e5] bg-white px-4 text-[14px] outline-none focus:border-[#64b7c4]" />
+                    <input ref={nameRef} required autoComplete="name" placeholder="Your name" value={name} onChange={event=>setName(event.target.value)} className="min-h-[50px] w-full rounded-[14px] border border-[#d8e2e5] bg-white px-4 text-base lg:text-sm outline-none focus:border-[#64b7c4]" />
                   </label>
                   <label className="block">
-                    <span className="sr-only">Phone number</span>
-                    <input required={!developerQuote} type="tel" autoComplete="tel" placeholder={developerQuote ? "Phone number (optional)" : "Phone number"} value={phone} onChange={event=>setPhone(event.target.value)} className="min-h-[50px] w-full rounded-[14px] border border-[#d8e2e5] bg-white px-4 text-[14px] outline-none focus:border-[#64b7c4]" />
+                    <span className="sr-only">Email address (required)</span>
+                    <input required type="email" name="email" autoComplete="email" placeholder="Email address (required)" value={email} onChange={event=>setEmail(event.target.value)} className="min-h-[50px] w-full rounded-[14px] border border-[#d8e2e5] bg-white px-4 text-base lg:text-sm outline-none focus:border-[#64b7c4]" />
                   </label>
                   <label className="block">
-                    <span className="sr-only">Email address</span>
-                    <input required type="email" autoComplete="email" placeholder="Email address" value={email} onChange={event=>setEmail(event.target.value)} className="min-h-[50px] w-full rounded-[14px] border border-[#d8e2e5] bg-white px-4 text-[14px] outline-none focus:border-[#64b7c4]" />
+                    <span className="sr-only">Phone number (optional)</span>
+                    <input type="tel" name="phone" autoComplete="tel" placeholder="Phone number (optional)" value={phone} onChange={event=>setPhone(event.target.value)} className="min-h-[50px] w-full rounded-[14px] border border-[#d8e2e5] bg-white px-4 text-base lg:text-sm outline-none focus:border-[#64b7c4]" />
                   </label>
                   <label className="block">
                     <span className="sr-only">Brief project description (optional)</span>
-                    <textarea rows={3} placeholder="A little about your plans (optional)" value={message} onChange={event=>setMessage(event.target.value)} className="w-full rounded-[14px] border border-[#d8e2e5] bg-white px-4 py-3 text-[14px] outline-none focus:border-[#64b7c4]" />
+                    <textarea rows={3} placeholder="A little about your plans (optional)" value={message} onChange={event=>setMessage(event.target.value)} className="w-full rounded-[14px] border border-[#d8e2e5] bg-white px-4 py-3 text-base lg:text-sm outline-none focus:border-[#64b7c4]" />
                   </label>
                 </div>
               )}

@@ -1474,7 +1474,24 @@ export default function IndexPage() {
         <AllumLaneSiteFeature placement="home" title="Explore the drawings behind an approved house transformation" intro="Allum Lane in Elstree is an approved Hertsmere house-extension design. Explore the three selected architectural drawing sheets and three 3D visuals to see how professional plans explain a complex proposal." />
         <HomeFeaturedResidentialApprovals />
 
-                <NearbySuttonLoftCaseStudy context="home" />
+        <NearbySuttonLoftCaseStudy context="home" />
+        <section aria-labelledby="home-barnet-extension-projects" className="border-b border-[#dce8e1] bg-[#f4faf7] py-8">
+          <div className="mx-auto max-w-6xl px-4 lg:px-6">
+            <h2 id="home-barnet-extension-projects" className="text-xl font-semibold text-[#254b4f]">More approved home extensions in Barnet</h2>
+            <ul className="mt-4 flex flex-wrap gap-3">
+              <li>
+                <Link href="/case-studies/sunbury-avenue-mill-hill-side-rear-extension" className="inline-flex min-h-11 items-center rounded-full border border-[#b0cec5] bg-white px-5 py-2 text-[13px] font-semibold text-[#286b70] hover:bg-[#e7f3ec]">
+                  Sunbury Avenue side and rear extensions →
+                </Link>
+              </li>
+              <li>
+                <Link href="/case-studies/the-reddings-mill-hill-extension-basement-loft" className="inline-flex min-h-11 items-center rounded-full border border-[#b0cec5] bg-white px-5 py-2 text-[13px] font-semibold text-[#286b70] hover:bg-[#e7f3ec]">
+                  The Reddings extension, basement and loft →
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </section>
         <BarnetCombinedExtensionPromo context="home" />
         <GrangeRoadPromo context="home" />
         <section aria-labelledby="home-greenwich-tenflats" className="border-b border-[#dce6df] bg-white py-9">
