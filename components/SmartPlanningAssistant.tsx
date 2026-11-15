@@ -46,7 +46,7 @@ function sanitizeText(input: string) {
   return input.replace(/\s+/g, " ").trim();
 }
 
-export default function SmartPlanningAssistant({ boroughName, compactMobile = false }: Props) {
+export default function SmartPlanningAssistant({ boroughName }: Props) {
   const area = boroughName || "London";
 
   const [open, setOpen] = useState(false);
