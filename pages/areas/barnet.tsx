@@ -517,9 +517,9 @@ export default function BarnetAreaPage() {
                         Local streets and housing context
                       </h3>
                       <p className="text-[13px] leading-7 text-slate-700">
-                        Barnet homeowners want drawings that suit the kind of streets they actually live on. This page
-                        is shaped around borough context, local housing types and the kinds of schemes that are
-                        most likely to generate enquiries and approvals.
+                        Barnet homeowners want drawings that suit the kind of streets they actually live on.
+                        We tailor every drawing package around Barnet&apos;s specific residential character, local streetscapes,
+                        and council planning policies to give your application the strongest path to approval.
                       </p>
                     </div>
                   </div>

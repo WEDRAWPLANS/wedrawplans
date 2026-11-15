@@ -601,7 +601,7 @@ export default function BromleyAreaPage() {
                 <p className="text-[13px] leading-7 text-slate-700">
                   Bromley enquiries do not always stop at standard householder work. Some clients also need drawings
                   for shopfronts, restaurant layouts, office fit outs, mixed use property updates, or planning support
-                  for investment property changes. We can explain which drawings you need for planning or Building Control and agree the scope before work starts.
+                  for investment property changes. Explore our specialist drawing packages below to find the exact planning or Building Regulation support required for your property.
                 </p>
 
                 <div className="grid gap-4 md:grid-cols-2">

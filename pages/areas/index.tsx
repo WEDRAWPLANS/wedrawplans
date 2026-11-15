@@ -482,7 +482,7 @@ export default function AreasIndexPage() {
                   </p>
 
                   <p className="text-[13px] leading-7 text-slate-700">
-                    Many homeowners arrive here looking for one thing only: the fastest route to clear drawings, approval guidance and a fixed fee. That is why this page is built around borough coverage, service coverage, planning confidence, builder ready technical information and repeated enquiry points that make it easy to move forward today.
+                    Many homeowners arrive here looking for one thing only: the fastest route to clear drawings, approval guidance and a fixed fee. Whether you are planning a house extension, loft conversion, flat conversion, or new build, we provide local borough planning expertise, builder-ready technical packs, and clear fixed-fee quotes so you can move forward with confidence.
                   </p>
 
                   <div className="grid gap-3 sm:grid-cols-3">
@@ -698,7 +698,7 @@ export default function AreasIndexPage() {
                     <ul className="mt-3 space-y-1 text-[13px] text-slate-700">
                       <li>Tailored to strict London borough planning policies and Permitted Development rules.</li>
                       <li>Complete structural engineer coordination for steel beams, padstones, and foundations.</li>
-                      <li>Fast fixed fee route from one central page</li>
+                      <li>Transparent fixed-fee quotes delivered the same day with zero hidden extras.</li>
                       <li>Clear progression from planning to technical stages</li>
                     </ul>
                   </div>
@@ -944,7 +944,7 @@ export default function AreasIndexPage() {
                     body="This section helps show the level of clarity, drawing quality and technical progression we aim to provide before a client even sends an enquiry."
                   />
                   <p className="text-[14px] leading-7 text-slate-700">
-                    The video and showcase image below help bridge the gap between search and action. They give visitors enough visual proof to feel comfortable sending their details rather than continuing to compare providers.
+                    Explore the walkthrough video and drawing showcase below to see the exact level of architectural detail, 3D visualisation, and technical clarity we deliver on every project.
                   </p>
                   <div className="flex flex-wrap gap-3">
                     <button
@@ -1001,7 +1001,7 @@ export default function AreasIndexPage() {
             <div className="mx-auto max-w-6xl px-4 lg:px-6">
               <SectionIntro
                 title="Planning drawings, Building Regs and what clients usually need next"
-                body="Many clients know they need drawings, but they do not always know whether they need planning drawings, a lawful development set, a Building Regulation package, structural coordination or all of the above. This section helps remove that confusion."
+                body="Many clients know they need drawings, but they do not always know whether they need planning drawings, a lawful development set, a Building Regulation package, structural coordination or all of the above. Here is how our core drawing stages work together from initial council approval through to construction on site."
               />
 
               <div className="mt-6 grid gap-4 lg:grid-cols-2">
