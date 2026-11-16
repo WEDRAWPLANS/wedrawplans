@@ -1797,132 +1797,100 @@ export default function IndexPage() {
         <HomeGoogleReviews googleProfileUrl={GOOGLE_BUSINESS_PROFILE_LINK} googleReviewsUrl="https://search.google.com/local/reviews?placeid=ChIJ1YtyjfQXdkgR8A8NeJLecA8" />
 
         <IntentAreaDirectory context="home" />
-        <footer className="border-t border-slate-800 bg-[#20243b]">
+        <footer className="border-t border-[#2a3050] bg-[#20243b]">
           <div className="mx-auto max-w-6xl px-4 py-10 lg:px-6">
-            <div className="grid gap-8 lg:grid-cols-[1.25fr_0.9fr_0.9fr_0.9fr]">
-              <div className="text-center">
-                <Link href="/" className="inline-flex items-center justify-center">
-                  <img
-                    src="/images/wedrawplans-logo.png"
-                    alt="WEDRAWPLANS"
-                    loading="lazy"
-                    className="h-20 w-auto object-contain"
-                  />
-                </Link>
+            <div className="flex flex-col items-center text-center">
+              <Link href="/" className="inline-flex items-center justify-center">
+                <img
+                  src="/images/wedrawplans-logo.png"
+                  alt="WEDRAWPLANS"
+                  loading="lazy"
+                  className="h-20 w-auto object-contain"
+                />
+              </Link>
+              <div className="mt-3 text-[11px] uppercase tracking-[0.18em] text-white/70">
+                Architectural Drawing Consultants
+              </div>
+              <p className="mt-4 max-w-2xl text-[13px] leading-7 text-white/80">
+                WEDRAWPLANS provide architectural drawings for house extensions, loft conversions, planning
+                applications, Building Regulations and small residential development projects across London
+                and the surrounding M25 area.
+              </p>
 
-                <div className="mt-3 text-[11px] uppercase tracking-[0.18em] text-white/70">
-                  Architectural Drawing Consultants
-                </div>
-
-                <p className="mx-auto mt-4 max-w-md text-[13px] leading-7 text-white/80">
-                  WEDRAWPLANS provide architectural drawings for house extensions, loft conversions, planning
-                  applications, Building Regulations and small residential development projects across London and the
-                  surrounding M25 area.
-                </p>
-
-                <div className="mt-5 flex flex-wrap justify-center gap-3">
-                  <a
-                    href={PHONE_LINK}
-                    className="inline-flex items-center justify-center rounded-full bg-white px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.12em] text-[#20243b] shadow-sm hover:bg-slate-100"
-                    onClick={() => trackLeadEvent("phone_click")}
-                  >
-                    <span className="mr-2" aria-hidden="true">📞</span>
-                    <span>Call</span>
-                  </a>
-
-                  <a
-                    href={WHATSAPP_LINK}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center rounded-full bg-[#25D366] px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.12em] text-white shadow-sm hover:bg-[#1ebe57]"
-                    onClick={() => trackLeadEvent("whatsapp_click")}
-                  >
-                    <span className="mr-2 inline-flex" aria-hidden="true"><WhatsAppIcon size={20} /></span>
-                    <span>WhatsApp</span>
-                  </a>
-                </div>
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+                <a
+                  href={PHONE_LINK}
+                  onClick={() => trackLeadEvent("phone_click")}
+                  className="inline-flex min-h-11 items-center justify-center rounded-full bg-white px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.12em] text-[#20243b] hover:bg-slate-100"
+                >
+                  Call {PHONE_DISPLAY}
+                </a>
+                <a
+                  href={WHATSAPP_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackLeadEvent("whatsapp_click")}
+                  className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#25D366] px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.12em] text-white hover:bg-[#1ebe57]"
+                >
+                  WhatsApp us
+                </a>
+                <a
+                  href="#home-quote"
+                  className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/35 px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.12em] text-white hover:bg-white hover:text-[#20243b]"
+                >
+                  Request a quote
+                </a>
+                <a
+                  href={GOOGLE_BUSINESS_PROFILE_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/35 px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.12em] text-white hover:bg-white hover:text-[#20243b]"
+                >
+                  Google Profile
+                </a>
               </div>
 
-              <div>
-                <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/85">Services</div>
-                <div className="mt-3 space-y-2 text-[13px] text-white/65">
-                  <Link href="/extension-plans" className="block hover:text-white">
-                    Extension Plans
-                  </Link>
-                  <Link href="/loft-conversion-plans" className="block hover:text-white">
-                    Loft Plans
-                  </Link>
-                  <Link href="/new-build-plans" className="block hover:text-white">
-                    New Build
-                  </Link>
-                  <Link href="/building-regulation-drawings" className="block hover:text-white">
-                    Technical &amp; Support
-                  </Link>
-                  <Link href="/commercial" className="block hover:text-white">
-                    Commercial
-                  </Link>
-                </div>
-              </div>
+              <div className="mt-8 grid w-full max-w-4xl gap-x-8 gap-y-8 border-t border-white/10 pt-8 text-center md:grid-cols-3">
+                <nav aria-label="Footer services">
+                  <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/85">Services</div>
+                  <div className="mt-3 flex flex-col items-center gap-2 text-[12px] text-white/65">
+                    <Link href="/extension-plans" className="hover:text-white">Extension Plans</Link>
+                    <Link href="/loft-conversion-plans" className="hover:text-white">Loft Plans</Link>
+                    <Link href="/new-build-plans" className="hover:text-white">New Build</Link>
+                    <Link href="/building-regulation-drawings" className="hover:text-white">Technical &amp; Support</Link>
+                    <Link href="/commercial" className="hover:text-white">Commercial</Link>
+                  </div>
+                </nav>
 
-              <div>
-                <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/85">Links</div>
-                <div className="mt-3 space-y-2 text-[13px] text-white/65">
-                  <Link href="/areas" className="block hover:text-white">
-                    Areas We Cover
-                  </Link>
-                  <Link href="/case-studies" className="block hover:text-white">
-                    Our Projects &amp; Approvals
-                  </Link>
-                  <a href="#google-reviews" className="block hover:text-white">
-                    Google Reviews
-                  </a>
-                  <a href="#price-guide" className="block hover:text-white">
-                    Price Guide
-                  </a>
-                  <a href="#contact" className="block hover:text-white">
-                    Contact
-                  </a>
-                  <a
-                    href={GOOGLE_BUSINESS_PROFILE_LINK}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block hover:text-white"
-                  >
-                    Google Profile
-                  </a>
-                </div>
-              </div>
+                <nav aria-label="Footer links">
+                  <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/85">Links</div>
+                  <div className="mt-3 flex flex-col items-center gap-2 text-[12px] text-white/65">
+                    <Link href="/areas" className="hover:text-white">Areas We Cover</Link>
+                    <Link href="/case-studies" className="hover:text-white">Our Projects &amp; Approvals</Link>
+                    <a href="#google-reviews" className="hover:text-white">Google Reviews</a>
+                    <a href="#price-guide" className="hover:text-white">Price Guide</a>
+                    <a href="#contact" className="hover:text-white">Contact</a>
+                    <a href={GOOGLE_BUSINESS_PROFILE_LINK} target="_blank" rel="noopener noreferrer" className="hover:text-white">Google Profile</a>
+                  </div>
+                </nav>
 
-              <div>
-                <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/85">Contact</div>
-                <div className="mt-3 space-y-3 text-[13px] text-white/65">
-                  <a
-                    href={PHONE_LINK}
-                    className="block hover:text-white"
-                    onClick={() => trackLeadEvent("phone_click")}
-                  >
-                    {PHONE_DISPLAY}
-                  </a>
-                  <a
-                    href={EMAIL_LINK}
-                    className="block hover:text-white"
-                    onClick={() => trackLeadEvent("email_click")}
-                  >
-                    {EMAIL}
-                  </a>
-                  <div className="leading-6">
-                    201 Borough High Street
-                    <br />
-                    London SE1 1JA
-                    <br />
-                    United Kingdom
+                <div>
+                  <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/85">Contact</div>
+                  <div className="mt-3 flex flex-col items-center gap-2 text-[12px] text-white/65">
+                    <a href={PHONE_LINK} onClick={() => trackLeadEvent("phone_click")} className="hover:text-white">{PHONE_DISPLAY}</a>
+                    <a href={EMAIL_LINK} onClick={() => trackLeadEvent("email_click")} className="break-all hover:text-white">{EMAIL}</a>
+                    <div className="leading-6">
+                      201 Borough High Street<br />
+                      London SE1 1JA<br />
+                      United Kingdom
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div className="mt-8 border-t border-white/10 pt-6 text-[11px] text-white/45">
-              Copyright {new Date().getFullYear()} WEDRAWPLANS. All rights reserved.
+              <div className="mt-8 w-full max-w-4xl border-t border-white/10 pt-6 text-center text-[11px] text-white/45">
+                Copyright {new Date().getFullYear()} WEDRAWPLANS. All rights reserved.
+              </div>
             </div>
           </div>
         </footer>
