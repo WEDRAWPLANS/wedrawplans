@@ -73,7 +73,7 @@ export default function WarbeckTotalRefurbShowcase() {
         </div>
         <dl className="grid border-t border-[#dbe9e2] sm:grid-cols-2">
           {FACTS.map(([label, value]) => <div key={label} className="border-b border-[#e5eee9] px-5 py-3.5 sm:px-7"><dt className="text-[10px] font-bold uppercase tracking-[.12em] text-[#69918a]">{label}</dt><dd className="mt-1 text-[13px] font-semibold leading-6 text-[#2f5053]">{value}</dd></div>)}
-        </div>
+        </dl>
         <div className="p-5 sm:p-7">
           <a href={COUNCIL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-[#276e75] px-5 py-3 text-center text-[13px] font-bold text-white hover:bg-[#1c565d] sm:w-auto">
             View Official Council Approval Record (Ref: 2019/01824/CLP) ↗
