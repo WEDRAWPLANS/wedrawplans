@@ -71,7 +71,7 @@ export default function WarbeckTotalRefurbShowcase() {
           <h3 id="warbeck-project-intro" className="mt-2 text-[25px] font-semibold tracking-tight text-[#253f43] sm:text-[31px]">One coordinated planning and technical design service</h3>
           <p className="mt-3 text-[14px] leading-7 text-[#4c686a]">A rear dormer loft conversion and comprehensive house refurbishment, combining a granted Certificate of Lawfulness with detailed Building Regulations drawings for structural remodelling, fire protection, insulation and services.</p>
         </div>
-        <div className="grid border-t border-[#dbe9e2] sm:grid-cols-2">
+        <dl className="grid border-t border-[#dbe9e2] sm:grid-cols-2">
           {FACTS.map(([label, value]) => <div key={label} className="border-b border-[#e5eee9] px-5 py-3.5 sm:px-7"><dt className="text-[10px] font-bold uppercase tracking-[.12em] text-[#69918a]">{label}</dt><dd className="mt-1 text-[13px] font-semibold leading-6 text-[#2f5053]">{value}</dd></div>)}
         </div>
         <div className="p-5 sm:p-7">
