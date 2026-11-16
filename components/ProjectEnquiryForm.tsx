@@ -682,7 +682,7 @@ export default function ProjectEnquiryForm(props: Props) {
 
                   <div className="wdpFieldRow">
                     <label className="wdpLabel" htmlFor="wdp_phone">
-                      Phone
+                      Phone (optional)
                     </label>
                     <input
                       id="wdp_phone"
@@ -742,6 +742,7 @@ export default function ProjectEnquiryForm(props: Props) {
             {err ? (
               <div className="wdpError" role="alert">
                 {err}
+                <div className="mt-2 flex flex-wrap gap-3"><a href={PHONE_LINK} className="wdpInlineLink">Call 020 3654 8508</a><a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="wdpInlineLink">WhatsApp us</a></div>
               </div>
             ) : null}
 
