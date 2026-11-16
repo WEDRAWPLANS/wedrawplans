@@ -685,7 +685,7 @@ export default function ProjectEnquiryForm(props: Props) {
 
                   <div className="wdpFieldRow">
                     <label className="wdpLabel" htmlFor="wdp_phone">
-                      Phone (optional)
+                      Phone / WhatsApp (Optional - fastest for fixed-fee quotes)
                     </label>
                     <input
                       id="wdp_phone"
