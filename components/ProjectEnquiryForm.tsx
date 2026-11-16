@@ -177,7 +177,6 @@ export default function ProjectEnquiryForm(props: Props) {
       ...gaBaseParams,
       project_type: projectType || "",
       stage: stage || "",
-      postcode: postcode || "",
       ...extra,
     });
   }
@@ -185,7 +184,10 @@ export default function ProjectEnquiryForm(props: Props) {
   function goNext() {
     setErr("");
     const ok = validateCurrentStep();
-    if (!ok) return;
+    if (!ok) {
+      gaEvent("form_submit_error", { ...gaBaseParams, form_name: "project_enquiry", reason: "step_validation", field: step }, true);
+      return;
+    }
 
     gaEvent(
       "lead_step_continue",
@@ -195,8 +197,7 @@ export default function ProjectEnquiryForm(props: Props) {
         next_step: steps[Math.min(stepIndex + 1, steps.length - 1)],
         project_type: projectType || "",
         stage: stage || "",
-        postcode: postcode || "",
-      },
+        },
       true
     );
 
@@ -273,11 +274,7 @@ export default function ProjectEnquiryForm(props: Props) {
         setErr("Please enter your name.");
         return false;
       }
-      if (!p) {
-        setErr("Please enter your phone number.");
-        return false;
-      }
-      if (!isLikelyPhone(p)) {
+      if (p && !isLikelyPhone(p)) {
         setErr("Please enter a valid phone number.");
         return false;
       }
@@ -304,7 +301,6 @@ export default function ProjectEnquiryForm(props: Props) {
       ...gaBaseParams,
       project_type: projectType || "",
       stage: stage || "",
-      postcode: postcode || "",
       has_phone: !!phone,
       has_email: !!email,
     };
@@ -317,7 +313,10 @@ export default function ProjectEnquiryForm(props: Props) {
     e.preventDefault();
     setErr("");
 
-    if (!validateCurrentStep()) return;
+    if (!validateCurrentStep()) {
+      gaEvent("form_submit_error", { ...gaBaseParams, form_name: "project_enquiry", reason: "contact_validation", field: step }, true);
+      return;
+    }
 
     setIsSubmitting(true);
 
@@ -327,15 +326,19 @@ export default function ProjectEnquiryForm(props: Props) {
         ...gaBaseParams,
         project_type: projectType || "",
         stage: stage || "",
-        postcode: postcode || "",
-      },
+        },
       true
     );
 
     try {
       clearOnceFlag("lead_submit_fired");
 
-      await submitBoroughLead(e, { boroughName: borough || "London" });
+      const sent = await submitBoroughLead(e, { boroughName: borough || "London", showFormAlerts: false });
+      if (!sent) {
+        gaEvent("form_submit_error", { ...gaBaseParams, form_name: "project_enquiry", reason: "submission_not_confirmed" }, true);
+        setErr("Your enquiry was not confirmed. Please try again, call 020 3654 8508, or contact us on WhatsApp.");
+        return;
+      }
 
       fireLeadConversionEvent();
 
@@ -350,12 +353,12 @@ export default function ProjectEnquiryForm(props: Props) {
           ...gaBaseParams,
           project_type: projectType || "",
           stage: stage || "",
-          postcode: postcode || "",
-        },
+            },
         true
       );
 
-      setErr("Something went wrong sending your enquiry. Please try again or call us.");
+      gaEvent("form_submit_error", { ...gaBaseParams, form_name: "project_enquiry", reason: "network_error" }, true);
+      setErr("Your enquiry could not be sent. Please try again, call 020 3654 8508, or contact us on WhatsApp.");
     } finally {
       setIsSubmitting(false);
     }
@@ -682,10 +685,11 @@ export default function ProjectEnquiryForm(props: Props) {
 
                   <div className="wdpFieldRow">
                     <label className="wdpLabel" htmlFor="wdp_phone">
-                      Phone
+                      Phone / WhatsApp (Optional - fastest for fixed-fee quotes)
                     </label>
                     <input
                       id="wdp_phone"
+                      type="tel"
                       className="wdpInput"
                       inputMode="tel"
                       placeholder="eg 07900 000 000"
@@ -741,6 +745,7 @@ export default function ProjectEnquiryForm(props: Props) {
             {err ? (
               <div className="wdpError" role="alert">
                 {err}
+                <div className="mt-2 flex flex-wrap gap-3"><a href={PHONE_LINK} className="wdpInlineLink">Call 020 3654 8508</a><a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="wdpInlineLink">WhatsApp us</a></div>
               </div>
             ) : null}
 
@@ -755,7 +760,7 @@ export default function ProjectEnquiryForm(props: Props) {
                     Continue
                   </button>
                 ) : (
-                  <button type="submit" className="wdpPrimary" disabled={isSubmitting || !name || !phone || !email}>
+                  <button type="submit" className="wdpPrimary" disabled={isSubmitting || !name || !email}>
                     {isSubmitting ? "Sending..." : "Get my quote"}
                   </button>
                 )}
