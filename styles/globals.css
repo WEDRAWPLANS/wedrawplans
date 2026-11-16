@@ -53,17 +53,23 @@
     padding-right: 0; /* Center logo across the entire viewport, not the remaining space. */
   }
   .wdp-home-header-row > a { max-width: 100%; min-width: 0; }
-  /* Split contact actions around the truly centered logo without extra header height.
-     44px touch targets; at 320px viewport the 64px logo has safe gaps. */
-  .wdp-home-mobile-actions { position: static; transform: none; }
-  .wdp-home-mobile-actions > * {
+  /* Keep Call, WhatsApp and Menu as one right-hand action group.
+     Position the logo independently at the center of the entire header. */
+  .wdp-home-mobile-actions {
     position: absolute;
+    right: 0;
     top: 50%;
+    left: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     transform: translateY(-50%);
   }
-  .wdp-home-mobile-actions > :nth-child(1) { left: 0; } /* Call */
-  .wdp-home-mobile-actions > :nth-child(2) { right: 3.25rem; } /* WhatsApp */
-  .wdp-home-mobile-actions > :nth-child(3) { right: 0; } /* Menu */
+  .wdp-home-mobile-actions > * {
+    position: static;
+    transform: none;
+    flex-shrink: 0;
+  }
   .wdp-home-logo { height: 4rem; max-width: 100%; }
   .wdp-home-hero { padding-top: 0.625rem; }
   .wdp-home-hero-inner { padding-bottom: 1.25rem; }
@@ -90,7 +96,27 @@
   .wdp-home-quote-form input:not([type="hidden"]) { height: 2.75rem; }
   .wdp-home-quote-form button[type="submit"] { min-height: 2.875rem; }
 }
-@media (max-width: 360px) {
-  .wdp-home-header-row { padding-right: 0; }
+/* Keep three 44px buttons separate from the centered logo on narrower phones. */
+@media (min-width: 360px) and (max-width: 399px) {
+  .wdp-home-logo { height: 3rem; }
+  .wdp-home-mobile-actions { gap: 0.125rem; }
+}
+
+/* On extra-narrow 320-359px devices, use a second compact controls row.
+   No overlap, no hidden actions, and the logo remains centered. */
+@media (max-width: 359px) {
+  .wdp-home-header-row {
+    min-height: 6.5rem;
+    align-items: flex-start;
+    padding-top: 0;
+  }
+  .wdp-home-logo { height: 3rem; }
+  .wdp-home-mobile-actions {
+    top: auto;
+    right: 0;
+    bottom: 0;
+    gap: 0.25rem;
+    transform: none;
+  }
   .wdp-home-mobile-title { letter-spacing: 0.015em; }
 }
