@@ -840,7 +840,7 @@ export default function IndexPage() {
                 </a>
               </div>
 
-              <div className="absolute right-0 top-1/2 flex -translate-y-1/2 items-center gap-2 lg:hidden">
+              <div className="wdp-home-mobile-actions absolute right-0 top-1/2 flex -translate-y-1/2 items-center gap-2 lg:hidden">
                 <IconButton
                   href={PHONE_LINK}
                   label="Call"
