@@ -808,13 +808,13 @@ export default function IndexPage() {
 
       <div className="min-h-screen bg-[#f8f4f0] pb-24 text-slate-900 lg:pb-0">
         <header className="sticky top-0 z-[60] border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur">
-          <div className="mx-auto max-w-6xl px-4 py-3 lg:px-6 lg:py-4">
-            <div className="relative flex min-h-[96px] items-center justify-center sm:min-h-[118px] lg:min-h-[120px]">
+          <div className="wdp-home-header-inner mx-auto max-w-6xl px-4 py-3 lg:px-6 lg:py-4">
+            <div className="wdp-home-header-row relative flex min-h-[96px] items-center justify-center sm:min-h-[118px] lg:min-h-[120px]">
               <Link href="/" className="inline-flex items-center justify-center">
                 <img
                   src="/images/wedrawplans-logo.png"
                   alt="WEDRAWPLANS"
-                  className="h-24 w-auto object-contain sm:h-28 lg:h-28 xl:h-32"
+                  className="wdp-home-logo h-24 w-auto object-contain sm:h-28 lg:h-28 xl:h-32"
                 />
               </Link>
 
@@ -1132,9 +1132,9 @@ export default function IndexPage() {
           </div>
         )}
 
-        <section className="border-b border-slate-200 bg-[#fdf8f3] pt-6 lg:pt-10">
-          <div className="mx-auto max-w-6xl px-4 pb-8 lg:px-6 lg:pb-12">
-            <div className="grid gap-6 lg:grid-cols-[1.02fr_0.98fr] lg:items-start lg:gap-10">
+        <section className="wdp-home-hero border-b border-slate-200 bg-[#fdf8f3] pt-6 lg:pt-10">
+          <div className="wdp-home-hero-inner mx-auto max-w-6xl px-4 pb-8 lg:px-6 lg:pb-12">
+            <div className="wdp-home-hero-grid grid gap-6 lg:grid-cols-[1.02fr_0.98fr] lg:items-start lg:gap-10">
               <div className="text-center lg:text-left">
                 <div className="hidden lg:block">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-red-700">
@@ -1202,31 +1202,31 @@ export default function IndexPage() {
                 </div>
 
                 <div className="lg:hidden">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-red-700">
+                  <p className="wdp-home-mobile-overline text-[11px] font-semibold uppercase tracking-[0.24em] text-red-700">
                     London architectural drawing specialists
                   </p>
 
-                  <h1 className="mx-auto mt-3 max-w-[520px] text-[21px] font-semibold uppercase leading-[1.34] tracking-[0.08em] text-slate-900 sm:text-[24px]">
+                  <h1 className="wdp-home-mobile-title mx-auto mt-3 max-w-[520px] text-[21px] font-semibold uppercase leading-[1.34] tracking-[0.08em] text-slate-900 sm:text-[24px]">
                     House Extension, Loft Conversion and Building Regulation Drawings in London
                   </h1>
                 </div>
               </div>
 
               <div className="lg:pt-2">
-                <div className="mx-auto w-full min-w-0 max-w-[620px] rounded-[20px] bg-white p-2.5 shadow-[0_14px_35px_rgba(15,23,42,0.09)] sm:p-4 lg:p-5">
-                  <div className="min-w-0 rounded-[16px] bg-white px-2.5 py-3 sm:border sm:border-slate-200/80 sm:bg-[#f7fafc] sm:px-6 sm:py-5">
+                <div className="wdp-home-quote-shell mx-auto w-full min-w-0 max-w-[620px] rounded-[20px] bg-white p-2.5 shadow-[0_14px_35px_rgba(15,23,42,0.09)] sm:p-4 lg:p-5">
+                  <div className="wdp-home-quote-inner min-w-0 rounded-[16px] bg-white px-2.5 py-3 sm:border sm:border-slate-200/80 sm:bg-[#f7fafc] sm:px-6 sm:py-5">
                     <div className="text-center">
-                      <p className="mx-auto max-w-[430px] text-[16px] font-semibold leading-6 text-slate-800">
+                      <p className="wdp-home-quote-title mx-auto max-w-[430px] text-[16px] font-semibold leading-6 text-slate-800">
                       Request your fixed-fee drawing quote
                       </p>
-                      <p className="mx-auto mt-2 max-w-[500px] text-[12px] leading-5 text-slate-600">
+                      <p className="wdp-home-quote-caption mx-auto mt-2 max-w-[500px] text-[12px] leading-5 text-slate-600">
                         Tell us about your proposed work and property postcode. We will reply with a clear quotation and next steps. No drawings are needed.
                       </p>
                     </div>
 
-                    <form id="home-quote" ref={heroFormRef} onSubmit={handleHeroSubmit} className="mx-auto mt-3 w-full min-w-0 max-w-[520px] scroll-mt-28">
+                    <form id="home-quote" ref={heroFormRef} onSubmit={handleHeroSubmit} className="wdp-home-quote-form mx-auto mt-3 w-full min-w-0 max-w-[520px] scroll-mt-28">
                       <input type="text" name="company" autoComplete="off" tabIndex={-1} className="hidden" />
-                      <div className="space-y-3">
+                      <div className="wdp-home-quote-fields space-y-3">
                         <div className="space-y-1.5">
                           <label htmlFor="home-project-brief" className="block text-left text-[12px] font-semibold text-[#203e4a]">
                             What would you like to build or change?
