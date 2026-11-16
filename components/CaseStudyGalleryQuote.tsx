@@ -28,6 +28,7 @@ type Props = {
 };
 
 function serviceFor(project: CaseStudy): string {
+  if (project.slug === "warbeck-road-hammersmith-fulham-loft-certificate") return "Planning and building regulation drawing package";
   // Flat conversions should lead to the actual conversion enquiry category, not new-build drawings.
   if (project.slug === "cranbourne-drive-hoddesdon-planning-project") return "House extension drawings";
   if (/hmo|house in multiple occupation/i.test(project.service)) return "HMO plans";
