@@ -177,7 +177,6 @@ export default function ProjectEnquiryForm(props: Props) {
       ...gaBaseParams,
       project_type: projectType || "",
       stage: stage || "",
-      postcode: postcode || "",
       ...extra,
     });
   }
@@ -185,7 +184,10 @@ export default function ProjectEnquiryForm(props: Props) {
   function goNext() {
     setErr("");
     const ok = validateCurrentStep();
-    if (!ok) return;
+    if (!ok) {
+      gaEvent("form_submit_error", { ...gaBaseParams, form_name: "project_enquiry", reason: "step_validation", field: step }, true);
+      return;
+    }
 
     gaEvent(
       "lead_step_continue",
@@ -311,7 +313,10 @@ export default function ProjectEnquiryForm(props: Props) {
     e.preventDefault();
     setErr("");
 
-    if (!validateCurrentStep()) return;
+    if (!validateCurrentStep()) {
+      gaEvent("form_submit_error", { ...gaBaseParams, form_name: "project_enquiry", reason: "contact_validation", field: step }, true);
+      return;
+    }
 
     setIsSubmitting(true);
 
@@ -321,8 +326,7 @@ export default function ProjectEnquiryForm(props: Props) {
         ...gaBaseParams,
         project_type: projectType || "",
         stage: stage || "",
-        postcode: postcode || "",
-      },
+        },
       true
     );
 
@@ -349,8 +353,7 @@ export default function ProjectEnquiryForm(props: Props) {
           ...gaBaseParams,
           project_type: projectType || "",
           stage: stage || "",
-          postcode: postcode || "",
-        },
+            },
         true
       );
 
