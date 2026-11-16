@@ -347,7 +347,7 @@ export default function CaseStudyGalleryQuote({ projects, context, councilDocume
           {isHub ? <Link href="#browse-projects" className="text-[13px] font-semibold text-[#27757e] underline-offset-4 hover:underline">Browse all approved projects →</Link> : <span className="text-[12px] text-[#667f81]">{project.shortTitle}</span>}
         </div>
         <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1.3fr)_minmax(330px,.7fr)] lg:gap-7">
-          <div className="min-w-0">
+          <div className={isWarbeck ? "order-2 min-w-0 lg:order-1" : "min-w-0"}>
             {isReddings ? <RealProjectShowcase project={project} /> : isAllum ? <AllumLaneShowcase project={project} quoteHeight={quoteHeight} /> : isApprovedDrawingShowcase ? <ApprovedDrawingShowcase project={project} kind={isSistova ? "sistova" : "cromwell"} /> : isBrockley ? <BrockleyCaseStudyShowcase project={project} /> : isHarrowStudios ? <HarrowStudioConversionShowcase project={project} /> : isCannon ? <CannonLaneShowcase project={project} /> : isSunburyCare ? <SunburyCareOutbuildingShowcase project={project} /> : isGreenwichTen ? <GreenwichTenFlatsShowcase project={project} /> : isHendonHMO ? <HendonHMOShowcase project={project} /> : isCranbourneCombined ? <CranbourneCombinedShowcase project={project} /> : isSuttonLoft ? <SuttonLoftShowcase project={project} /> : isLeicesterCombined ? <LeicesterRoadExtensionShowcase project={project} /> : isWoolwich ? <WoolwichRoadCombinedShowcase /> : isHyde ? <HydeArchitecturalShowcase /> : isWarbeck ? <WarbeckTotalRefurbShowcase /> : isGrangeCombined ? <GrangeRoadCombinedShowcase project={project} /> : isHub || hasProjectDrawings ? <ProjectMediaSlider key={project.slug} projects={projects} mode={context} /> : (
               <div className="rounded-[18px] border border-[#dce7e4] bg-white p-5 sm:p-6">
                 <h3 className="text-base font-semibold text-[#294c50]">Planning documents</h3>
@@ -380,7 +380,7 @@ export default function CaseStudyGalleryQuote({ projects, context, councilDocume
           <div
             id="case-study-quote"
             ref={quotePanelRef}
-            className="case-study-quote lg:sticky lg:self-start"
+            className={isWarbeck ? "case-study-quote order-1 lg:order-2 lg:sticky lg:self-start" : "case-study-quote lg:sticky lg:self-start"}
             style={{
               top: "calc(var(--case-study-header-height, 0px) + 16px)",
             }}
