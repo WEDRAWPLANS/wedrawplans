@@ -1,6 +1,7 @@
 export type ServiceOption = { label: string; value: string; href: string };
 
 export const SERVICE_OPTIONS: ServiceOption[] = [
+  { label: "Combined Planning + Building Regulations", value: "Planning and building regulation drawing package", href: "/building-regulation-drawings" },
   { label: "Planning Drawings", value: "Planning drawings", href: "/planning-drawings" },
   { label: "Lawful Development Certificate", value: "Lawful development certificate drawings", href: "/lawful-development-certificate-drawings" },
   { label: "Extension Plans", value: "House extension drawings", href: "/extension-plans" },

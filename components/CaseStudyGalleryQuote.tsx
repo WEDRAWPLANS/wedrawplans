@@ -19,6 +19,7 @@ import SuttonLoftShowcase from "./SuttonLoftShowcase";
 import LeicesterRoadExtensionShowcase from "./LeicesterRoadExtensionShowcase";
 import WoolwichRoadCombinedShowcase from "./WoolwichRoadCombinedShowcase";
 import GrangeRoadCombinedShowcase from "./GrangeRoadCombinedShowcase";
+import WarbeckTotalRefurbShowcase from "./WarbeckTotalRefurbShowcase";
 
 type Props = {
   projects: CaseStudy[];
@@ -27,6 +28,7 @@ type Props = {
 };
 
 function serviceFor(project: CaseStudy): string {
+  if (project.slug === "warbeck-road-hammersmith-fulham-loft-certificate") return "Planning and building regulation drawing package";
   // Flat conversions should lead to the actual conversion enquiry category, not new-build drawings.
   if (project.slug === "cranbourne-drive-hoddesdon-planning-project") return "House extension drawings";
   if (/hmo|house in multiple occupation/i.test(project.service)) return "HMO plans";
@@ -277,6 +279,7 @@ export default function CaseStudyGalleryQuote({ projects, context, councilDocume
   const isWoolwich = !isHub && project?.slug === "700-woolwich-road-greenwich-two-new-flats";
   const isHyde = !isHub && project?.slug === "the-hyde-colindale-major-residential-development";
   const isGrangeCombined = !isHub && project?.slug === "grange-road-edgware-side-extension-lawful-development-building-regulations";
+  const isWarbeck = !isHub && project?.slug === "warbeck-road-hammersmith-fulham-loft-certificate";
   const isApprovedDrawingShowcase = isSistova || isCromwell;
   const quotePanelRef = useRef<HTMLDivElement>(null);
   const [quoteHeight, setQuoteHeight] = useState<number | undefined>(undefined);
@@ -313,7 +316,7 @@ export default function CaseStudyGalleryQuote({ projects, context, councilDocume
           <div>
             <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-[#a36a63]">WEDRAWPLANS architectural drawings</p>
             <h2 id="project-gallery-heading" className="mt-2 text-2xl font-semibold tracking-tight text-[#284549] sm:text-3xl">
-              {isHub ? "Explore our approved planning projects" : isGrangeCombined ? "Side extension planning and Building Regulations drawings" : isHyde ? "The Hyde, Colindale · original architectural design" : isReddings ? "Mill Hill home extension · before & after" : isAllum ? "Approved Elstree extension · planning drawings & 3D design" : isApprovedDrawingShowcase ? "Approved planning drawings & architectural 3D design" : isBrockley ? "Approved two-flat conversion · original architectural design" : isHarrowStudios ? "Three studio flats approved above retail · drawings and 3D walkthroughs" : isCannon ? "5 metre rear extension · original design and approved drawings" : isSunburyCare ? "Accessible garden outbuilding · original architectural design" : isGreenwichTen ? "Ten-flat existing-use case · original drawings and planning evidence" : isHendonHMO ? "Seven-bedroom HMO · approved architectural plans and planning assessment" : isCranbourneCombined ? "Extension planning & loft Building Regulations · two coordinated design stages" : isSuttonLoft ? "Approved Sutton loft conversion · original 3D design and planning drawings" : isWoolwich ? "Woolwich Road · Planning + Building Reg + Structure + Project Management" : isLeicesterCombined ? "Barnet rear extension · original animation, planning and Building Regulations drawings" : hasProjectDrawings ? "Project drawings & design" : "Project details & enquiries"}
+              {isHub ? "Explore our approved planning projects" : isWarbeck ? "Warbeck Road · Planning and Building Regulations Drawings" : isGrangeCombined ? "Side extension planning and Building Regulations drawings" : isHyde ? "The Hyde, Colindale · original architectural design" : isReddings ? "Mill Hill home extension · before & after" : isAllum ? "Approved Elstree extension · planning drawings & 3D design" : isApprovedDrawingShowcase ? "Approved planning drawings & architectural 3D design" : isBrockley ? "Approved two-flat conversion · original architectural design" : isHarrowStudios ? "Three studio flats approved above retail · drawings and 3D walkthroughs" : isCannon ? "5 metre rear extension · original design and approved drawings" : isSunburyCare ? "Accessible garden outbuilding · original architectural design" : isGreenwichTen ? "Ten-flat existing-use case · original drawings and planning evidence" : isHendonHMO ? "Seven-bedroom HMO · approved architectural plans and planning assessment" : isCranbourneCombined ? "Extension planning & loft Building Regulations · two coordinated design stages" : isSuttonLoft ? "Approved Sutton loft conversion · original 3D design and planning drawings" : isWoolwich ? "Woolwich Road · Planning + Building Reg + Structure + Project Management" : isLeicesterCombined ? "Barnet rear extension · original animation, planning and Building Regulations drawings" : hasProjectDrawings ? "Project drawings & design" : "Project details & enquiries"}
             </h2>
             <p className="mt-3 max-w-3xl text-[14px] leading-7 text-[#61777b]">
               {isHub
@@ -344,8 +347,8 @@ export default function CaseStudyGalleryQuote({ projects, context, councilDocume
           {isHub ? <Link href="#browse-projects" className="text-[13px] font-semibold text-[#27757e] underline-offset-4 hover:underline">Browse all approved projects →</Link> : <span className="text-[12px] text-[#667f81]">{project.shortTitle}</span>}
         </div>
         <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1.3fr)_minmax(330px,.7fr)] lg:gap-7">
-          <div className="min-w-0">
-            {isReddings ? <RealProjectShowcase project={project} /> : isAllum ? <AllumLaneShowcase project={project} quoteHeight={quoteHeight} /> : isApprovedDrawingShowcase ? <ApprovedDrawingShowcase project={project} kind={isSistova ? "sistova" : "cromwell"} /> : isBrockley ? <BrockleyCaseStudyShowcase project={project} /> : isHarrowStudios ? <HarrowStudioConversionShowcase project={project} /> : isCannon ? <CannonLaneShowcase project={project} /> : isSunburyCare ? <SunburyCareOutbuildingShowcase project={project} /> : isGreenwichTen ? <GreenwichTenFlatsShowcase project={project} /> : isHendonHMO ? <HendonHMOShowcase project={project} /> : isCranbourneCombined ? <CranbourneCombinedShowcase project={project} /> : isSuttonLoft ? <SuttonLoftShowcase project={project} /> : isLeicesterCombined ? <LeicesterRoadExtensionShowcase project={project} /> : isWoolwich ? <WoolwichRoadCombinedShowcase /> : isHyde ? <HydeArchitecturalShowcase /> : isGrangeCombined ? <GrangeRoadCombinedShowcase project={project} /> : isHub || hasProjectDrawings ? <ProjectMediaSlider key={project.slug} projects={projects} mode={context} /> : (
+          <div className={isWarbeck ? "order-2 min-w-0 lg:order-1" : "min-w-0"}>
+            {isReddings ? <RealProjectShowcase project={project} /> : isAllum ? <AllumLaneShowcase project={project} quoteHeight={quoteHeight} /> : isApprovedDrawingShowcase ? <ApprovedDrawingShowcase project={project} kind={isSistova ? "sistova" : "cromwell"} /> : isBrockley ? <BrockleyCaseStudyShowcase project={project} /> : isHarrowStudios ? <HarrowStudioConversionShowcase project={project} /> : isCannon ? <CannonLaneShowcase project={project} /> : isSunburyCare ? <SunburyCareOutbuildingShowcase project={project} /> : isGreenwichTen ? <GreenwichTenFlatsShowcase project={project} /> : isHendonHMO ? <HendonHMOShowcase project={project} /> : isCranbourneCombined ? <CranbourneCombinedShowcase project={project} /> : isSuttonLoft ? <SuttonLoftShowcase project={project} /> : isLeicesterCombined ? <LeicesterRoadExtensionShowcase project={project} /> : isWoolwich ? <WoolwichRoadCombinedShowcase /> : isHyde ? <HydeArchitecturalShowcase /> : isWarbeck ? <WarbeckTotalRefurbShowcase /> : isGrangeCombined ? <GrangeRoadCombinedShowcase project={project} /> : isHub || hasProjectDrawings ? <ProjectMediaSlider key={project.slug} projects={projects} mode={context} /> : (
               <div className="rounded-[18px] border border-[#dce7e4] bg-white p-5 sm:p-6">
                 <h3 className="text-base font-semibold text-[#294c50]">Planning documents</h3>
                 <p className="mt-2 text-[13px] leading-7 text-[#61777b]">
@@ -377,7 +380,7 @@ export default function CaseStudyGalleryQuote({ projects, context, councilDocume
           <div
             id="case-study-quote"
             ref={quotePanelRef}
-            className="case-study-quote lg:sticky lg:self-start"
+            className={isWarbeck ? "case-study-quote order-1 lg:order-2 lg:sticky lg:self-start" : "case-study-quote lg:sticky lg:self-start"}
             style={{
               top: "calc(var(--case-study-header-height, 0px) + 16px)",
             }}

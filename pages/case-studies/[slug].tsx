@@ -34,7 +34,8 @@ export default function CaseStudyPage({ item, indexable }: PageProps) {
   const isLeicesterCombined = item.slug === "leicester-road-barnet-rear-extension-planning-building-regulations-structural";
   const isGrangeCombined = item.slug === "grange-road-edgware-side-extension-lawful-development-building-regulations";
   const isWoolwich = item.slug === "700-woolwich-road-greenwich-two-new-flats";
-  const isFeaturedLayout = isReddings || isAllum || isSistova || isCromwell || isBrockley || isHarrowStudios || isCannon || isSunburyCare || isGreenwichTen || isHendonHMO || isCranbourneCombined || isSuttonLoft || isLeicesterCombined || isGrangeCombined || isHyde || isWoolwich;
+  const isWarbeck = item.slug === "warbeck-road-hammersmith-fulham-loft-certificate";
+  const isFeaturedLayout = isReddings || isAllum || isSistova || isCromwell || isBrockley || isHarrowStudios || isCannon || isSunburyCare || isGreenwichTen || isHendonHMO || isCranbourneCombined || isSuttonLoft || isLeicesterCombined || isGrangeCombined || isHyde || isWoolwich || isWarbeck;
   const canonical = "https://www.wedrawplans.co.uk/case-studies/" + item.slug;
   const quoteHref = "#case-study-quote";
   const category = categoryForCaseStudy(item);
