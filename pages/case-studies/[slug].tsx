@@ -4,6 +4,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { caseStudies, caseStudyBySlug, categoryForCaseStudy, CaseStudy } from "../../data/caseStudies";
 import { CaseStudyHeader, CaseStudyBottom, CaseStudyFooter } from "../../components/CaseStudyChrome";
 import CaseStudyGalleryQuote from "../../components/CaseStudyGalleryQuote";
+import { BernhartConservationStory, HornbyGarageConversionStory } from "../../components/ConservationAndConversionStories";
 import { BARNET_COUNCIL_DOCUMENTS } from "../../data/councilPlanningEvidence";
 
 function Detail({ label, value }: { label: string; value: string }) {
@@ -216,6 +217,8 @@ export default function CaseStudyPage({ item, indexable }: PageProps) {
         </section>
 
         <CaseStudyGalleryQuote projects={[item]} context="project" councilDocumentsHref={primaryCouncilDocumentUrl} />
+        {item.slug === "bernhart-close-barnet-garage-conversion-rear-extension" ? <BernhartConservationStory /> : null}
+        {item.slug === "hornby-close-camden-garage-conversion" ? <HornbyGarageConversionStory /> : null}
 
         {item.slug === "sunbury-avenue-mill-hill-side-rear-extension" ? (
           <section aria-labelledby="sunbury-planning-experience" className="border-y border-[#dce8e1] bg-[#f1f7f3]">
