@@ -1171,9 +1171,9 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "warbeck-road-hammersmith-fulham-loft-certificate",
-    title: "Warbeck Road, Shepherd's Bush, W12 — Planning and Building Regulations Drawings",
+    title: "Total Refurb – Warbeck Road, Shepherd’s Bush W12",
     shortTitle: "Warbeck Road, Shepherd's Bush",
-    seoDescription: "Explore WEDRAWPLANS planning and Building Regulations drawings for Warbeck Road, Shepherd's Bush W12, including a granted roof-works Certificate of Lawfulness (2019/01824/CLP) and coordinated refurbishment drawings.",
+    seoDescription: "Warbeck Road, Shepherd’s Bush W12 total refurbishment: 2019 loft roof Certificate of Lawfulness, 15.5m³ dormer, P05 Rev A planning elevations, Building Regulations construction drawings, authentic site photos and 3D design. WEDRAWPLANS West London.",
     location: "Warbeck Road, Shepherd's Bush, London W12",
     authority: "London Borough of Hammersmith & Fulham",
     reference: "2019/01824/CLP",
@@ -1184,7 +1184,7 @@ export const caseStudies: CaseStudy[] = [
     approved: true,
     decisionDate: "12 August 2019",
     approvedDrawings: "The London Borough of Hammersmith & Fulham's Certificate of Lawfulness 2019/01824/CLP identifies WEDRAWPLANS drawings P04 and P05 Revision A (received 12 August 2019) for the rear dormer and three front rooflights. Separate drawings BR-02 to BR-16 illustrate the wider Building Regulations package; they should not be confused with council-approved planning drawings.",
-    summary: "A West London house refurbishment combining a successful lawful-development application for a rear dormer and three front rooflights with extensive Building Regulations technical drawings for the loft suite, internal structural alterations, open-plan ground floor and services.",
+    summary: "A coordinated total-home refurbishment on Warbeck Road, Shepherd’s Bush, London W12. WEDRAWPLANS secured a 2019 Certificate of Lawfulness for the rear dormer and three front rooflights and prepared separate Building Regulations technical drawings for the master loft suite, structural openings, ground-floor reconfiguration, thermal and acoustic detailing, services and fire precautions. Explore genuine drawings, architectural 3D design and construction-progress photographs.",
     proof: "On 12 August 2019, Hammersmith & Fulham issued a section 192 Certificate of Lawfulness for the proposed rear roof extension and three front rooflights under Classes B and C of permitted development (2019/01824/CLP). The submitted P05 elevation includes a 15.5m³ dormer volume calculation. The certificate does not cover the wider internal refurbishment or constitute Building Regulations sign-off.",
     highlights: [
       "Rear dormer loft conversion certified lawful under permitted development Classes B and C",
@@ -1200,7 +1200,7 @@ export const caseStudies: CaseStudy[] = [
     leadAngle: "Planning a loft conversion, open-plan remodel or complete home refurbishment in Shepherd's Bush or West London?",
     relatedService: "/loft-conversion-plans",
     relatedArea: "/areas/hammersmith-and-fulham",
-    heroImage: "/images/case-studies/warbeck-road/br-07-ground-first-plans.webp",
+    heroImage: "/images/case-studies/warbeck-road/p05-3d-composite.webp",
     secondaryImage: "/images/case-studies/warbeck-road/br-16-section-aa.webp",
     mediaNote: "P05 Rev A planning elevations, selected BR technical drawings, construction progress and illustrative 3D design views."
 

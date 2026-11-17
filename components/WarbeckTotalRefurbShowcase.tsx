@@ -15,31 +15,31 @@ const DRAWINGS: GalleryItem[] = [
     file: "br-07-ground-first-plans.webp",
     label: "Drawing 1 · BR-07",
     heading: "Proposed ground and first-floor plans",
-    description: "Coordinated floor plans illustrating the reconfigured ground-floor living spaces, structural openings and first-floor accommodation."
+    description: "Coordinated existing and proposed floor layouts for the open-plan living areas and circulation, providing context for the technical structural and building services drawings."
   },
   {
     file: "p05-proposed-elevations-cad.webp",
     label: "Drawing 2 · P05 Rev A",
     heading: "Proposed architectural elevations",
-    description: "The proposed rear dormer and front rooflight elevations associated with the Certificate of Lawfulness."
+    description: "P05 Revision A — proposed roof elevations with the 15.5m³ rear dormer volume and three front rooflights certified lawful under Classes B and C in 2019."
   },
   {
     file: "br-16-section-aa.webp",
     label: "Drawing 3 · BR-16",
     heading: "Building Regulations Section A–A",
-    description: "Construction section showing thermal insulation, structural interfaces, acoustic separation and fire protection."
+    description: "2019 technical Section A–A showing specified roof/floor insulation (including a stated U-value of 0.19 W/m²K), resilient bar and double 12.5mm dBCheck acoustic lining, and fire-protected structural steelwork."
   },
   {
     file: "br-02-ground-floor.webp",
     label: "Drawing 4 · BR-02",
     heading: "Ground-floor Building Regulations drawing",
-    description: "The services and structural coordination for the reconfigured ground floor."
+    description: "Open-plan ground floor indicating structural 203 × 203 UC beam interfaces, padstones, pad foundations, FD30 fire doors, drainage and mechanical/electrical services coordination. Engineering design requires separate verification."
   },
   {
     file: "br-05-loft-floor.webp",
     label: "Drawing 5 · BR-05",
     heading: "Loft-floor Building Regulations drawing",
-    description: "The bedroom suite, en-suite, wardrobe, services and escape provisions."
+    description: "Loft bedroom suite with en-suite and walk-in wardrobe; historical technical drawing identifying a 203 × 203 UC52 beam and mains-operated smoke detection along the protected escape route."
   }
 ];
 
@@ -76,6 +76,22 @@ export default function WarbeckTotalRefurbShowcase() {
 
   return (
     <div className="space-y-8">
+      <section aria-labelledby="warbeck-signature" className="overflow-hidden rounded-[20px] border border-[#e2d6cf] bg-white">
+        <div className="border-b border-[#eaded6] px-5 py-5 sm:px-7">
+          <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#a64b45]">Signature presentation · Planning approval meets spatial design</p>
+          <h2 id="warbeck-signature" className="mt-2 text-[22px] font-semibold tracking-tight text-[#2a3538] sm:text-[28px]">3D loft design over the certified roof elevations</h2>
+          <p className="mt-2 text-[13px] leading-7 text-[#617173]">A 3D architectural master-suite visual layered over the original P05 Revision A elevation, linking the proposed interior arrangement with the 15.5m³ rear dormer and three front rooflights.</p>
+        </div>
+        <figure className="relative min-h-[290px] overflow-hidden bg-[#f6f3ef] p-4 sm:min-h-[390px] sm:p-6">
+          <img src={BASE + "p05-proposed-elevations-cad.webp"} alt="Original privacy-cleared P05 Revision A proposed architectural elevations for Warbeck Road, Shepherd’s Bush" className="absolute inset-0 h-full w-full object-contain opacity-50" loading="eager" />
+          <div className="relative ml-auto flex min-h-[265px] w-[72%] max-w-[520px] items-center sm:min-h-[355px]">
+            <img src={BASE + "3d-loft-suite-reverse.webp"} alt="WEDRAWPLANS 3D architectural view of the proposed loft master bedroom and en-suite superimposed on the certified elevations" className="w-full rounded-2xl border-[6px] border-white bg-white object-contain shadow-[0_12px_45px_rgba(38,43,41,.23)]" loading="eager" />
+          </div>
+          <figcaption className="absolute bottom-3 left-3 max-w-[46%] rounded-lg bg-white/95 px-3 py-2 text-[10px] font-semibold leading-5 text-[#435558] shadow-sm sm:left-6 sm:max-w-[34%]">P05 Rev A · 2019 lawful roof alterations · 15.5m³ dormer</figcaption>
+        </figure>
+        <p className="px-5 pb-5 pt-3 text-[11px] leading-6 text-[#6a7b7d] sm:px-7">Architectural 3D design, not a photograph. The separate Hammersmith &amp; Fulham Certificate of Lawfulness covers the roof alterations only.</p>
+      </section>
+
       <section className="overflow-hidden rounded-[20px] border border-[#d8e6e0] bg-white">
         <div className="bg-[#eef6f1] px-5 py-6 sm:px-7">
           <p className="text-[11px] font-bold uppercase tracking-[.14em] text-[#26756c]">Whole-house refurbishment · Rear dormer loft conversion</p>
@@ -126,7 +142,7 @@ export default function WarbeckTotalRefurbShowcase() {
 
       <section aria-labelledby="warbeck-3d-gallery">
         <h3 id="warbeck-3d-gallery" className="text-[23px] font-semibold text-[#284c4e] sm:text-[29px]">3D Architectural Visualisations</h3>
-        <p className="mb-5 mt-2 text-[13px] leading-6 text-[#627a79]">Separate design illustrations for the loft suite and reconfigured living spaces. These are design visualisations, not construction photographs.</p>
+        <p className="mb-5 mt-2 text-[13px] leading-6 text-[#627a79]">Original WEDRAWPLANS architectural 3D views showing the intended master suite, en-suite, storage and open-plan family areas. Visualisations illustrate design proposals, not completed finishes.</p>
         <div className="grid gap-4 sm:grid-cols-2">
           {VISUALS.map((item) => <Photograph item={item} key={item.file} />)}
         </div>
@@ -134,7 +150,7 @@ export default function WarbeckTotalRefurbShowcase() {
 
       <section aria-labelledby="warbeck-site-photos">
         <h3 id="warbeck-site-photos" className="text-[23px] font-semibold text-[#284c4e] sm:text-[29px]">Real Construction Photographs</h3>
-        <p className="mb-5 mt-2 text-[13px] leading-6 text-[#627a79]">Genuine photographs taken during the works. Displayed at their natural image proportions without a separate enlarge-image control.</p>
+        <p className="mb-5 mt-2 text-[13px] leading-6 text-[#627a79]">Two original site progress photographs: exposed roof joists and timber dormer framing, followed by the new stairwell opening and stud-partition works. These are construction progress images, not final completion photographs.</p>
         <div className="grid gap-4 sm:grid-cols-2">
           {PHOTOS.map((item) => <Photograph item={item} key={item.file} />)}
         </div>

@@ -13,6 +13,7 @@ const PRIORITY_PROJECT_SLUGS = [
   "cranbourne-drive-hoddesdon-planning-project",
   "allum-lane-elstree-major-house-extension",
   "cromwell-road-hounslow-rear-extension",
+  "warbeck-road-hammersmith-fulham-loft-certificate",
   "brockley-road-lewisham-two-flat-conversion",
   "sutton-loft-conversion-planning-permission-wallington",
   "cannon-lane-pinner-5-metre-rear-extension",

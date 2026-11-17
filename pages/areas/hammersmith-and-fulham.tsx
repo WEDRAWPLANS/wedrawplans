@@ -181,6 +181,19 @@ export default function HammersmithAndFulhamAreaPage() {
               </div>
             </div>
           </section>
+          <section aria-labelledby="hf-warbeck-proof" className="border-y border-[#e9dcd5] bg-white py-10">
+            <div className="mx-auto grid max-w-5xl gap-6 px-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:items-center lg:px-6">
+              <div className="relative min-h-[220px] overflow-hidden rounded-2xl border border-[#e6ded7] bg-[#f8f6f2] sm:min-h-[270px]">
+                <Image src="/images/case-studies/warbeck-road/p05-3d-composite.webp" alt="WEDRAWPLANS Warbeck Road, Shepherd’s Bush approved roof-elevation drawing and loft design visual" fill sizes="(max-width:1024px) 100vw, 42vw" className="object-contain p-3" />
+              </div>
+              <div>
+                <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-[#a84f49]">Local planning evidence · Shepherd’s Bush W12</p>
+                <h2 id="hf-warbeck-proof" className="mt-2 text-[24px] font-semibold leading-tight text-[#253135]">Warbeck Road: Full architectural refurbishment showcase</h2>
+                <p className="mt-3 text-[13px] leading-7 text-[#586769]">See our 2019 granted loft Certificate of Lawfulness (2019/01824/CLP), proposed rear dormer elevations, loft and ground-floor Building Regulations drawings, construction-progress photography and architectural 3D visualisations. The certificate covers the roof works, not the separate Building Regulations design package.</p>
+                <a href="/case-studies/warbeck-road-hammersmith-fulham-loft-certificate" className="mt-5 inline-flex min-h-11 items-center rounded-full bg-[#a9443f] px-5 py-3 text-[13px] font-bold text-white hover:bg-[#87332f]">View the full Warbeck Road case study →</a>
+              </div>
+            </div>
+          </section>
           <BoroughIntentCapture slug="hammersmith-and-fulham" />
         </main>
       </div>
