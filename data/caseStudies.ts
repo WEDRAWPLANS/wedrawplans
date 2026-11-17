@@ -1028,9 +1028,9 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "warbeck-road-hammersmith-fulham-loft-certificate",
-    title: "Total Refurb — Shepherd's Bush W12 | Planning & Building Regulations",
+    title: "Warbeck Road, Shepherd's Bush, W12 — Planning and Building Regulations Drawings",
     shortTitle: "Warbeck Road, Shepherd's Bush",
-    seoDescription: "Explore WEDRAWPLANS' Shepherd's Bush W12 total refurbishment: lawful rear dormer and three rooflights (2019/01824/CLP), plus detailed Building Regulations drawings for a wider house remodel.",
+    seoDescription: "Explore WEDRAWPLANS planning and Building Regulations drawings for Warbeck Road, Shepherd's Bush W12, including a granted roof-works Certificate of Lawfulness (2019/01824/CLP) and coordinated refurbishment drawings.",
     location: "Warbeck Road, Shepherd's Bush, London W12",
     authority: "London Borough of Hammersmith & Fulham",
     reference: "2019/01824/CLP",
