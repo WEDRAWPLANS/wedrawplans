@@ -89,7 +89,7 @@ export function HornbyGarageConversionStory() {
         </h2>
         <div className="mt-6 grid gap-5 lg:grid-cols-2">
           <p className="text-[15px] leading-8 text-[#536e70]">
-            Converting a garage into living accommodation requires more than removing a garage door. Architectural plans need to distinguish the existing layout from the proposed living space and record any external elevation changes so that planners can assess how the alteration affects the home and its surroundings. The Hornby Close archive contains five original architectural sheets relating to this proposed conversion. Privacy-cleared copies will be added to the drawing gallery once checked.
+            Converting a garage into living accommodation requires more than removing a garage door. Architectural plans need to distinguish the existing layout from the proposed living space and record any external elevation changes so that planners can assess how the alteration affects the home and its surroundings. The Hornby Close project is illustrated by five privacy-redacted, full-sheet WEDRAWPLANS drawings. Select a thumbnail and enlarge each sheet to inspect the existing and proposed plans, elevations and construction details.
           </p>
           <p className="text-[15px] leading-8 text-[#536e70]">
             Planning consent and Building Regulations are separate. A proposed habitable room must also be assessed for matters such as fire safety, thermal performance, ventilation, damp protection and appropriate construction details. The Camden documents link allows readers to inspect the submitted application record directly; the specific planning outcome and approved drawing schedule are still being checked before any grant is claimed on the website.

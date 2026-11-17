@@ -53,8 +53,40 @@ export const caseStudies: CaseStudy[] = [
     "leadAngle": "Considering a garage conversion, rear extension or conservation-area planning application in Barnet, Edgware or North London?",
     "relatedService": "/extension-plans",
     "relatedArea": "/areas/barnet",
-    "heroImage": "",
-    "secondaryImage": "",
+    "heroImage": "/images/case-studies/bernhart-close-barnet-garage-conversion-rear-extension/drawing-01.webp",
+    "secondaryImage": "/images/case-studies/bernhart-close-barnet-garage-conversion-rear-extension/drawing-02.webp",
+    "galleryImages": [
+      {
+        "src": "/images/case-studies/bernhart-close-barnet-garage-conversion-rear-extension/drawing-01.webp",
+        "alt": "Full WEDRAWPLANS architectural drawing 1 for Bernhart Close in Edgware: Garage conversion · Proposed ground floor and front elevation",
+        "caption": "Garage conversion · Proposed ground floor and front elevation"
+      },
+      {
+        "src": "/images/case-studies/bernhart-close-barnet-garage-conversion-rear-extension/drawing-02.webp",
+        "alt": "Full WEDRAWPLANS architectural drawing 2 for Bernhart Close in Edgware: Garage conversion · Existing ground floor and elevations",
+        "caption": "Garage conversion · Existing ground floor and elevations"
+      },
+      {
+        "src": "/images/case-studies/bernhart-close-barnet-garage-conversion-rear-extension/drawing-03.webp",
+        "alt": "Full WEDRAWPLANS architectural drawing 3 for Bernhart Close in Edgware: Garage conversion · Proposed floor plan and front elevation",
+        "caption": "Garage conversion · Proposed floor plan and front elevation"
+      },
+      {
+        "src": "/images/case-studies/bernhart-close-barnet-garage-conversion-rear-extension/drawing-04.webp",
+        "alt": "Full WEDRAWPLANS architectural drawing 4 for Bernhart Close in Edgware: Rear extension · Proposed ground floor and rear elevation",
+        "caption": "Rear extension · Proposed ground floor and rear elevation"
+      },
+      {
+        "src": "/images/case-studies/bernhart-close-barnet-garage-conversion-rear-extension/drawing-05.webp",
+        "alt": "Full WEDRAWPLANS architectural drawing 5 for Bernhart Close in Edgware: Rear extension · Existing layout and elevations",
+        "caption": "Rear extension · Existing layout and elevations"
+      },
+      {
+        "src": "/images/case-studies/bernhart-close-barnet-garage-conversion-rear-extension/drawing-06.webp",
+        "alt": "Full WEDRAWPLANS architectural drawing 6 for Bernhart Close in Edgware: Rear extension · Existing side elevations and roof profiles",
+        "caption": "Rear extension · Existing side elevations and roof profiles"
+      }
+    ],
     "decisionDate": "2018 (two separate decisions)",
     "councilApplicationUrl": "https://publicaccess.barnet.gov.uk/online-applications/applicationDetails.do?activeTab=documents&keyVal=P2YCK1JIKQK00",
     "approvedDrawings": "For the garage conversion, the delegated report lists architectural sheets P01 Rev A, P02 Rev A, P03 Rev A and P04 Rev C. The separate rear-extension drawings and decision notice should be viewed under 18/2968/HSE. Original private sheets are held off the public site until address and client identifiers are irreversibly redacted.",
@@ -74,7 +106,7 @@ export const caseStudies: CaseStudy[] = [
     "wdpService": "The WEDRAWPLANS project archive illustrates how well-defined existing and proposed plans can support proposals in a conservation area. In the garage conversion, the front elevation and retained parking were central to Barnet's assessment. The delegated report provides independent evidence of the officer's reasoning, rather than an unsupported claim of special treatment or guaranteed approval. The rear-extension permission is presented alongside it as a separate decision for the same property.",
     "homeownerGuidance": "Conservation-area status may affect the planning route, design detail and appearance of an alteration. The 2018 Barnet report shows why matching materials, street character, neighbouring amenity, parking provision and responses to representations matter. An identical proposal elsewhere may be assessed differently under today's policies.",
     "projectNote": "The property was explicitly identified within Watling Estate Conservation Area by Barnet's officer. The report is dated April 2018 and recommended approval subject to conditions. The public case study deliberately omits door number, applicant names and unredacted source plans.",
-    "mediaNote": "Selected redacted architectural drawing images are not yet available on this preview. For verified originals and council-held supporting documents, use the direct Barnet Documents-tab links below.",
+    "mediaNote": "Six anonymized full-sheet WEDRAWPLANS architectural drawings are displayed: three for the garage conversion and three for the separate rear extension. The exact council records remain linked.",
     "decisions": [
       {
         "reference": "18/0452/HSE",
@@ -105,8 +137,35 @@ export const caseStudies: CaseStudy[] = [
     "leadAngle": "Planning to convert a garage into habitable space in Camden or North London?",
     "relatedService": "/planning-drawings",
     "relatedArea": "/areas/camden",
-    "heroImage": "",
-    "secondaryImage": "",
+    "heroImage": "/images/case-studies/hornby-close-camden-garage-conversion/drawing-01.webp",
+    "secondaryImage": "/images/case-studies/hornby-close-camden-garage-conversion/drawing-02.webp",
+    "galleryImages": [
+      {
+        "src": "/images/case-studies/hornby-close-camden-garage-conversion/drawing-01.webp",
+        "alt": "Full WEDRAWPLANS architectural drawing 1 for Hornby Close in Camden: PP01 · Existing and proposed ground-floor plans",
+        "caption": "PP01 · Existing and proposed ground-floor plans"
+      },
+      {
+        "src": "/images/case-studies/hornby-close-camden-garage-conversion/drawing-02.webp",
+        "alt": "Full WEDRAWPLANS architectural drawing 2 for Hornby Close in Camden: PP02 · Existing and proposed front elevations and window specification",
+        "caption": "PP02 · Existing and proposed front elevations and window specification"
+      },
+      {
+        "src": "/images/case-studies/hornby-close-camden-garage-conversion/drawing-03.webp",
+        "alt": "Full WEDRAWPLANS architectural drawing 3 for Hornby Close in Camden: PP03 · Existing and proposed sections and 3D design",
+        "caption": "PP03 · Existing and proposed sections and 3D design"
+      },
+      {
+        "src": "/images/case-studies/hornby-close-camden-garage-conversion/drawing-04.webp",
+        "alt": "Full WEDRAWPLANS architectural drawing 4 for Hornby Close in Camden: PP04 · Existing flank and rear elevations",
+        "caption": "PP04 · Existing flank and rear elevations"
+      },
+      {
+        "src": "/images/case-studies/hornby-close-camden-garage-conversion/drawing-05.webp",
+        "alt": "Full WEDRAWPLANS architectural drawing 5 for Hornby Close in Camden: PP05 · Window details and architectural 3D views",
+        "caption": "PP05 · Window details and architectural 3D views"
+      }
+    ],
     "councilApplicationUrl": "https://camdocs.camden.gov.uk/CMWebDrawer/PlanRec?q=recContainer:%222026/1634/P%22",
     "highlights": [
       "Residential garage conversion proposal to create habitable accommodation",
@@ -118,7 +177,7 @@ export const caseStudies: CaseStudy[] = [
     "wdpService": "The project archive comprises existing and proposed architectural information for assessment of a garage conversion. The drawings should explain the proposed habitable-room arrangement and external changes without substituting unverified claims about the council's determination.",
     "homeownerGuidance": "A garage conversion may need planning permission depending on local restrictions, external changes and parking arrangements. Building Regulations compliance, ventilation, thermal performance, drainage and fire safety must be considered separately from the planning outcome.",
     "projectNote": "Use only privacy-cleared original full drawing sheets. Do not expose a precise residential address, applicant name, private contact details or source-file metadata on the public website.",
-    "mediaNote": "The five source drawing sheets remain off the preview until client and address details have been removed from images and thumbnails. Council-held application documents can be opened using the direct link."
+    "mediaNote": "Five anonymized complete WEDRAWPLANS drawing sheets illustrate the proposed garage conversion, and the exact Camden council documents link remains available. Planning decision status is not independently verified."
   },
   {
     slug: "grange-road-edgware-side-extension-lawful-development-building-regulations",
