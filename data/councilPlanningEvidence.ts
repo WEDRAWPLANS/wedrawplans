@@ -7,6 +7,9 @@
  * planning application reference and project location on the council portal.
  */
 export const BARNET_COUNCIL_DOCUMENTS: Record<string, string> = {
+  // Owner-supplied Documents tab URLs (17 November 2026)
+  "18/0452/HSE": "https://publicaccess.barnet.gov.uk/online-applications/applicationDetails.do?activeTab=documents&keyVal=P2YCK1JIKQK00",
+  "18/2968/HSE": "https://publicaccess.barnet.gov.uk/online-applications/applicationDetails.do?activeTab=documents&keyVal=P8RYOIJIHMH00",
   "23/2690/191": "https://publicaccess.barnet.gov.uk/online-applications/applicationDetails.do?activeTab=documents&keyVal=RWK6CJJI09100",
   "20/1467/PNH": "https://publicaccess.barnet.gov.uk/online-applications/applicationDetails.do?activeTab=documents&keyVal=Q7E9EZJI0DC00",
   "18/5641/FUL": "https://publicaccess.barnet.gov.uk/online-applications/applicationDetails.do?activeTab=documents&keyVal=PFAPV5JIMQI00",
