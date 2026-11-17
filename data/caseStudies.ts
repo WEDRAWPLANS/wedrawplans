@@ -1057,7 +1057,7 @@ export const caseStudies: CaseStudy[] = [
     leadAngle: "Planning a loft conversion, open-plan remodel or complete home refurbishment in Shepherd's Bush or West London?",
     relatedService: "/loft-conversion-plans",
     relatedArea: "/areas/hammersmith-and-fulham",
-    heroImage: "/images/case-studies/warbeck-road/p05-3d-composite.webp",
+    heroImage: "/images/case-studies/warbeck-road/br-07-ground-first-plans.webp",
     secondaryImage: "/images/case-studies/warbeck-road/br-16-section-aa.webp",
     mediaNote: "P05 Rev A planning elevations, selected BR technical drawings, construction progress and illustrative 3D design views."
 
