@@ -6,6 +6,7 @@ import { CaseStudyHeader, CaseStudyBottom, CaseStudyFooter } from "../../compone
 import CaseStudyGalleryQuote from "../../components/CaseStudyGalleryQuote";
 import { BernhartConservationStory, HornbyGarageConversionStory } from "../../components/ConservationAndConversionStories";
 import { BARNET_COUNCIL_DOCUMENTS } from "../../data/councilPlanningEvidence";
+import WarbeckFlagshipPage from "../../components/WarbeckFlagshipPage";
 
 function Detail({ label, value }: { label: string; value: string }) {
   return (
@@ -98,6 +99,8 @@ export default function CaseStudyPage({ item, indexable }: PageProps) {
       { "@type": "ListItem", position: 3, name: item.shortTitle, item: canonical },
     ],
   };
+
+  if (isWarbeck) return <WarbeckFlagshipPage item={item} indexable={indexable} />;
 
   return (
     <>
