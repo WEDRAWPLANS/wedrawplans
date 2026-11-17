@@ -37,6 +37,90 @@ export type CaseStudy = {
 
 export const caseStudies: CaseStudy[] = [
   {
+    "slug": "bernhart-close-barnet-garage-conversion-rear-extension",
+    "title": "Bernhart Close, Edgware — Conservation Area Garage Conversion & Rear Extension",
+    "shortTitle": "Bernhart Close, Edgware · Conservation Area",
+    "seoDescription": "Discover two 2018 Barnet planning approvals for a garage conversion and rear extension in the Watling Estate Conservation Area, with officer evidence and drawings.",
+    "location": "Bernhart Close, Edgware, Barnet HA8",
+    "authority": "London Borough of Barnet",
+    "reference": "18/0452/HSE & 18/2968/HSE",
+    "year": "2018",
+    "service": "Conservation-area garage conversion into habitable accommodation and single-storey rear extension",
+    "outcome": "Two householder planning permissions granted",
+    "approved": true,
+    "summary": "One Edgware home, two separate 2018 householder planning approvals within the Watling Estate Conservation Area. Barnet's delegated report explains why converting a garage into habitable accommodation, with a front window in place of the garage door, was compatible with the street's character. Parking, neighbour concerns, matching materials and architectural appearance were all part of the assessment. The same property also received separate consent for a single-storey rear extension. Explore the verified officer reasoning and the two independent council document records.",
+    "proof": "For garage conversion reference 18/0452/HSE, Barnet's April 2018 delegated assessment identifies the Watling Estate Conservation Area, considered the proposed replacement window acceptable, cited similar garage conversions in Bernhart Close and found no significant impact on neighbour amenity or highway safety with one off-street parking space retained. Five neighbours were notified; a representation raised foundation, excavation and drainage concerns, which officers considered before recommending approval subject to conditions. This delegated report documents the officer's recommendation; the council decision record is separate. The rear extension was a distinct 2018 householder permission (18/2968/HSE), not covered by that garage report.",
+    "leadAngle": "Considering a garage conversion, rear extension or conservation-area planning application in Barnet, Edgware or North London?",
+    "relatedService": "/extension-plans",
+    "relatedArea": "/areas/barnet",
+    "heroImage": "",
+    "secondaryImage": "",
+    "decisionDate": "2018 (two separate decisions)",
+    "councilApplicationUrl": "https://publicaccess.barnet.gov.uk/online-applications/applicationDetails.do?activeTab=documents&keyVal=P2YCK1JIKQK00",
+    "approvedDrawings": "For the garage conversion, the delegated report lists architectural sheets P01 Rev A, P02 Rev A, P03 Rev A and P04 Rev C. The separate rear-extension drawings and decision notice should be viewed under 18/2968/HSE. Original private sheets are held off the public site until address and client identifiers are irreversibly redacted.",
+    "keyConditions": [
+      "The garage-conversion officer's recommended conditions required external-facing materials to match the existing dwelling.",
+      "The existing off-street parking and highway access were required to be retained for vehicle parking and turning.",
+      "The 2018 approvals are site-specific historic consents; they are not Building Control approvals or proof that construction was completed."
+    ],
+    "highlights": [
+      "One conservation-area home with two separate 2018 planning permissions",
+      "Garage door replaced by a front window to create habitable accommodation",
+      "Officers considered streetscape character and similar local garage conversions",
+      "Neighbours' foundation, drainage and excavation concerns were recorded and assessed",
+      "Off-street parking retained; highways officers raised no objection",
+      "Separate single-storey rear-extension approval recorded under 18/2968/HSE"
+    ],
+    "wdpService": "The WEDRAWPLANS project archive illustrates how well-defined existing and proposed plans can support proposals in a conservation area. In the garage conversion, the front elevation and retained parking were central to Barnet's assessment. The delegated report provides independent evidence of the officer's reasoning, rather than an unsupported claim of special treatment or guaranteed approval. The rear-extension permission is presented alongside it as a separate decision for the same property.",
+    "homeownerGuidance": "Conservation-area status may affect the planning route, design detail and appearance of an alteration. The 2018 Barnet report shows why matching materials, street character, neighbouring amenity, parking provision and responses to representations matter. An identical proposal elsewhere may be assessed differently under today's policies.",
+    "projectNote": "The property was explicitly identified within Watling Estate Conservation Area by Barnet's officer. The report is dated April 2018 and recommended approval subject to conditions. The public case study deliberately omits door number, applicant names and unredacted source plans.",
+    "mediaNote": "Selected redacted architectural drawing images are not yet available on this preview. For verified originals and council-held supporting documents, use the direct Barnet Documents-tab links below.",
+    "decisions": [
+      {
+        "reference": "18/0452/HSE",
+        "description": "Garage-to-habitable-room conversion with a replacement front window. The council's delegated assessment considered conservation-area character, parking, amenity and public representations.",
+        "outcome": "Planning permission granted in April 2018"
+      },
+      {
+        "reference": "18/2968/HSE",
+        "description": "Separate single-storey rear-extension householder application for the same home. The garage delegated report does not assess this second proposal.",
+        "outcome": "Planning permission granted in 2018"
+      }
+    ]
+  },
+  {
+    "slug": "hornby-close-camden-garage-conversion",
+    "title": "Hornby Close, Camden — Garage Conversion to Habitable Space",
+    "shortTitle": "Hornby Close, Camden · Garage Conversion",
+    "seoDescription": "Camden garage-to-habitable-space conversion case study: proposed room layout, elevation changes and planning drawings with direct access to council documents.",
+    "location": "Hornby Close, Camden, London",
+    "authority": "London Borough of Camden",
+    "reference": "2026/1634/P",
+    "year": "2026",
+    "service": "Garage conversion into habitable accommodation with proposed architectural plans, elevations and construction details",
+    "outcome": "Council planning record available — decision under verification",
+    "approved": false,
+    "summary": "A residential garage conversion proposal in Camden, with architectural documentation showing the existing layout, the proposed use of the space for living accommodation and changes to the building's appearance. The project is supported by five source architectural sheets and an exact council documents link. The approved drawing schedule and final determination must be checked before displaying this as a granted permission.",
+    "proof": "Camden's document portal has the application record 2026/1634/P. The project archive contains five architectural source sheets showing existing and proposed arrangements. The specific decision notice and approved-plan schedule are not yet independently confirmed in this draft, so the case study does not claim an approval or completed construction.",
+    "leadAngle": "Planning to convert a garage into habitable space in Camden or North London?",
+    "relatedService": "/planning-drawings",
+    "relatedArea": "/areas/camden",
+    "heroImage": "",
+    "secondaryImage": "",
+    "councilApplicationUrl": "https://camdocs.camden.gov.uk/CMWebDrawer/PlanRec?q=recContainer:%222026/1634/P%22",
+    "highlights": [
+      "Residential garage conversion proposal to create habitable accommodation",
+      "Architectural layouts documenting existing and proposed ground-floor use",
+      "External appearance and elevation drawings for the altered garage",
+      "Five original source drawing sheets in the private project archive",
+      "Direct access to Camden's planning document library, not the council search homepage"
+    ],
+    "wdpService": "The project archive comprises existing and proposed architectural information for assessment of a garage conversion. The drawings should explain the proposed habitable-room arrangement and external changes without substituting unverified claims about the council's determination.",
+    "homeownerGuidance": "A garage conversion may need planning permission depending on local restrictions, external changes and parking arrangements. Building Regulations compliance, ventilation, thermal performance, drainage and fire safety must be considered separately from the planning outcome.",
+    "projectNote": "Use only privacy-cleared original full drawing sheets. Do not expose a precise residential address, applicant name, private contact details or source-file metadata on the public website.",
+    "mediaNote": "The five source drawing sheets remain off the preview until client and address details have been removed from images and thumbnails. Council-held application documents can be opened using the direct link."
+  },
+  {
     slug: "grange-road-edgware-side-extension-lawful-development-building-regulations",
     title: "Edgware Side Extension | Lawful Development Certificate, Building Regulations & Structural Coordination",
     shortTitle: "Grange Road, Edgware · Side Extension",
