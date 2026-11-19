@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { caseStudies, caseStudyBySlug, categoryForCaseStudy, CaseStudy } from "../../data/caseStudies";
 import { CaseStudyHeader, CaseStudyBottom, CaseStudyFooter } from "../../components/CaseStudyChrome";
+import WarbeckWatermark from "../../components/WarbeckWatermark";
 
 const QUOTE = "/get-drawings-quote";
 const PROJECT_BASE = "/case-studies/";
@@ -13,12 +14,12 @@ const PRIORITY_PROJECT_SLUGS = [
   "cranbourne-drive-hoddesdon-planning-project",
   "allum-lane-elstree-major-house-extension",
   "cromwell-road-hounslow-rear-extension",
-  "warbeck-road-hammersmith-fulham-loft-certificate",
   "brockley-road-lewisham-two-flat-conversion",
   "sutton-loft-conversion-planning-permission-wallington",
   "cannon-lane-pinner-5-metre-rear-extension",
   "sunbury-avenue-mill-hill-side-rear-extension",
   "sunbury-avenue-mill-hill-accessible-garden-care-outbuilding",
+  "warbeck-road-hammersmith-fulham-loft-certificate",
   "sevington-road-hendon-seven-bedroom-hmo-planning-approval",
   "the-reddings-mill-hill-extension-basement-loft",
   "chestnut-rise-plumstead-greenwich-ten-flats-lawfulness",
@@ -48,6 +49,7 @@ function ProjectVisual({ item, featured = false }: { item: CaseStudy; featured?:
           sizes={featured ? "(max-width: 900px) 100vw, 55vw" : "(max-width: 768px) 100vw, 33vw"}
           className={item.slug === "the-reddings-mill-hill-extension-basement-loft" ? "object-cover" : "object-contain"}
         />
+        {item.slug === "warbeck-road-hammersmith-fulham-loft-certificate" && <WarbeckWatermark small />}
       </div>
     );
   }

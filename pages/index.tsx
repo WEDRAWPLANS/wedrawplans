@@ -12,6 +12,7 @@ import Link from "next/link";
 import AllumLaneSiteFeature from "../components/AllumLaneSiteFeature";
 import HomeGoogleReviews from "../components/HomeGoogleReviews";
 import WhatsAppIcon from "../components/WhatsAppIcon";
+import WarbeckWatermark from "../components/WarbeckWatermark";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
@@ -1479,6 +1480,25 @@ export default function IndexPage() {
                 plans and documented occupation history supported the successful decision.
               </p>
               <Link href="/case-studies/chestnut-rise-plumstead-greenwich-ten-flats-lawfulness" className="mt-4 inline-flex rounded-full border border-[#9bc6bb] bg-[#edf7f1] px-5 py-3 text-[12px] font-bold text-[#296e71] hover:bg-[#e4f2e9]">Explore the Greenwich ten-flat case study</Link>
+            </div>
+          </div>
+        </section>
+
+        <section aria-labelledby="home-warbeck-feature" className="border-b border-[#eaded7] bg-[#faf5f1] py-9 sm:py-12">
+          <div className="mx-auto grid max-w-6xl items-center gap-7 px-4 sm:px-6 md:grid-cols-[minmax(0,.95fr)_minmax(0,1.05fr)] lg:px-6">
+            <Link href="/case-studies/warbeck-road-hammersmith-fulham-loft-certificate" className="block overflow-hidden rounded-[18px] border border-[#e7d9d1] bg-white shadow-[0_12px_32px_rgba(43,46,42,.06)]" aria-label="Explore Warbeck Road Shepherd’s Bush total refurbishment case study">
+              <div className="relative flex min-h-[215px] items-center justify-center p-3 sm:min-h-[280px] sm:p-5">
+                <Image src="/images/case-studies/warbeck-road/p05-proposed-elevations-cad.webp" alt="P05 Rev A architectural roof elevations for Warbeck Road, Shepherd’s Bush W12" fill sizes="(max-width: 768px) 100vw, 44vw" className="object-contain p-3 sm:p-5" />
+                <WarbeckWatermark />
+              </div>
+              <p className="border-t border-[#e7d9d1] px-4 py-3 text-[11px] font-semibold text-[#5d686b]">P05 Rev A · 15.5m³ lawful rear roof dormer</p>
+            </Link>
+            <div>
+              <p className="text-[11px] font-bold uppercase tracking-[.16em] text-[#a9443f]">Homeowner case study · West London · W12</p>
+              <h2 id="home-warbeck-feature" className="mt-2 text-[23px] font-semibold leading-tight text-[#293739] sm:text-[29px]">Warbeck Road: total refurbishment, dormer and Building Regulations drawings</h2>
+              <p className="mt-3 text-[13px] leading-7 text-[#536469]">Explore the granted 2019 Hammersmith &amp; Fulham Certificate of Lawfulness for the rear dormer and three front rooflights, plus original planning elevations, technical Building Regulations sheets, on-site construction photographs and architectural 3D views.</p>
+              <p className="mt-2 text-[11px] leading-6 text-[#697477]">The certificate confirms roof alterations only; technical design drawings are presented separately.</p>
+              <Link href="/case-studies/warbeck-road-hammersmith-fulham-loft-certificate" className="mt-5 inline-flex min-h-11 items-center rounded-full bg-[#a9443f] px-5 py-3 text-[12px] font-bold text-white hover:bg-[#87332f]">View the full Warbeck Road showcase →</Link>
             </div>
           </div>
         </section>
