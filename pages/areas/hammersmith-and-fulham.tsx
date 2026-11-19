@@ -7,6 +7,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
 import ServiceInternalLinks from "../../components/ServiceInternalLinks";
+import WarbeckWatermark from "../../components/WarbeckWatermark";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
@@ -184,7 +185,8 @@ export default function HammersmithAndFulhamAreaPage() {
           <section aria-labelledby="hf-warbeck-proof" className="border-y border-[#e9dcd5] bg-white py-10">
             <div className="mx-auto grid max-w-5xl gap-6 px-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:items-center lg:px-6">
               <div className="relative min-h-[220px] overflow-hidden rounded-2xl border border-[#e6ded7] bg-[#f8f6f2] sm:min-h-[270px]">
-                <Image src="/images/case-studies/warbeck-road/p05-3d-composite.webp" alt="WEDRAWPLANS Warbeck Road, Shepherd’s Bush approved roof-elevation drawing and loft design visual" fill sizes="(max-width:1024px) 100vw, 42vw" className="object-contain p-3" />
+                <Image src="/images/case-studies/warbeck-road/p05-proposed-elevations-cad.webp" alt="WEDRAWPLANS Warbeck Road, Shepherd’s Bush original P05 Rev A roof-elevation drawing" fill sizes="(max-width:1024px) 100vw, 42vw" className="object-contain p-3" />
+                <WarbeckWatermark />
               </div>
               <div>
                 <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-[#a84f49]">Local planning evidence · Shepherd’s Bush W12</p>
