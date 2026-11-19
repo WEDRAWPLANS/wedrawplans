@@ -21,6 +21,21 @@ export default function WarbeckFlagshipPage({ item, indexable }: { item: CaseStu
     citation: COUNCIL,
     about: ["Loft conversion", "Certificate of Lawfulness", "Building Regulations drawings", "Home refurbishment"],
   };
+  const architecturalService = {
+    "@context": "https://schema.org",
+    "@type": "ArchitecturalService",
+    "@id": "https://www.wedrawplans.co.uk/#architectural-service",
+    name: "WEDRAWPLANS – Architectural Planning and Building Regulations Drawings",
+    url: "https://www.wedrawplans.co.uk/",
+    description: "Fixed-fee architectural planning, lawful-development and Building Regulations drawing services for homeowners in West London.",
+    serviceType: ["Measured surveys", "Loft conversion drawings", "Certificate of Lawfulness drawings", "Building Regulations technical drawings", "Structural coordination"],
+    provider: { "@type": "Organization", name: "WEDRAWPLANS", url: "https://www.wedrawplans.co.uk/" },
+    areaServed: [
+      { "@type": "Place", name: "Shepherd’s Bush, London W12" },
+      { "@type": "AdministrativeArea", name: "London Borough of Hammersmith and Fulham" },
+      { "@type": "Place", name: "West London" }
+    ]
+  };
   const breadcrumbs = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -43,7 +58,13 @@ export default function WarbeckFlagshipPage({ item, indexable }: { item: CaseStu
         <meta property="og:description" content={item.summary} />
         <meta property="og:url" content={CANONICAL} />
         <meta property="og:image" content="https://www.wedrawplans.co.uk/images/case-studies/warbeck-road/p05-3d-composite.webp" />
+        <meta property="og:image:alt" content="WEDRAWPLANS 3D loft design over P05 Rev A roof elevations, Warbeck Road, Shepherd’s Bush W12" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Total Refurb – Warbeck Road, Shepherd’s Bush W12 | WEDRAWPLANS" />
+        <meta name="twitter:description" content={item.seoDescription} />
+        <meta name="twitter:image" content="https://www.wedrawplans.co.uk/images/case-studies/warbeck-road/p05-3d-composite.webp" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(article) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(architecturalService) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} />
       </Head>
 
@@ -64,7 +85,7 @@ export default function WarbeckFlagshipPage({ item, indexable }: { item: CaseStu
             <div className="max-w-5xl">
               <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#a84f49] sm:text-xs">West London total refurbishment · Shepherd’s Bush, W12</p>
               <h1 className="mt-4 max-w-5xl text-[32px] font-semibold leading-[1.12] tracking-tight text-[#252c30] sm:text-[46px] lg:text-[54px]">Total Refurb – Warbeck Road, Shepherd’s Bush W12</h1>
-              <h2 className="mt-5 max-w-4xl text-[17px] font-medium leading-8 text-[#465459] sm:text-xl">Full Architectural Design, Permitted Development Approval &amp; Building Regulations Package</h2>
+              <h2 className="mt-5 max-w-4xl text-[17px] font-medium leading-8 text-[#465459] sm:text-xl">Full Architectural Design, Certificate of Lawfulness Approval &amp; Building Regulations Package</h2>
               <p className="mt-4 max-w-4xl text-[15px] leading-8 text-[#566468]">{item.summary}</p>
               <div className="mt-7 flex flex-wrap items-center gap-3">
                 <a href={COUNCIL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-[#a9443f] px-5 py-3 text-[13px] font-bold leading-6 text-white hover:bg-[#87332f]">
@@ -114,6 +135,8 @@ export default function WarbeckFlagshipPage({ item, indexable }: { item: CaseStu
                   ["Planning route", "Certificate of Lawfulness – Classes B & C"],
                   ["Rear dormer volume", "15.5 m³"],
                   ["Rooflights", "3 flush front rooflights"],
+                  ["Scope", "Total refurbishment, 15.5 m³ rear dormer loft conversion and Building Regulations pack"],
+                  ["Services delivered", "Measured survey, lawful-development planning drawings, Building Regulations package and structural coordination"],
                   ["Technical package", "Architectural Building Regulations drawings"],
                 ].map(([label, value]) => (
                   <div key={label} className="grid grid-cols-[minmax(0,.8fr)_minmax(0,1.2fr)] gap-3 py-3">
