@@ -1,4 +1,5 @@
 import { useState } from "react";
+import WarbeckWatermark from "./WarbeckWatermark";
 
 const BASE = "/images/case-studies/warbeck-road/";
 const COUNCIL = "https://property.lbhf.gov.uk/NECSWS/ES/Presentation/Planning/OnlinePlanning/OnlinePlanningOverview?applicationNumber=2019%2F01824%2FCLP&guid=84f6c954-95ad-4217-af79-803a51dad2e7#";
@@ -58,8 +59,9 @@ const PHOTOS: GalleryItem[] = [
 function Photograph({ item }: { item: GalleryItem }) {
   return (
     <figure className="overflow-hidden rounded-xl border border-[#e8ddd8] bg-white">
-      <div className="flex min-h-[220px] items-center justify-center bg-[#faf8f5] p-3 sm:p-4">
+      <div className="relative flex min-h-[220px] items-center justify-center bg-[#faf8f5] p-3 sm:p-4">
         <img src={BASE + item.file} alt={item.heading + " — Warbeck Road, Shepherd's Bush"} loading="lazy" className="block h-auto max-h-[360px] w-full object-contain" />
+        <WarbeckWatermark inverse={item.file.startsWith("construction-")} />
       </div>
       <figcaption className="p-4">
         <p className="text-[10px] font-bold uppercase tracking-wider text-[#a9443f]">{item.label}</p>
@@ -78,18 +80,27 @@ export default function WarbeckTotalRefurbShowcase() {
     <div className="space-y-8">
       <section aria-labelledby="warbeck-signature" className="overflow-hidden rounded-[20px] border border-[#e2d6cf] bg-white">
         <div className="border-b border-[#eaded6] px-5 py-5 sm:px-7">
-          <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#a64b45]">Signature presentation · Planning approval meets spatial design</p>
-          <h2 id="warbeck-signature" className="mt-2 text-[22px] font-semibold tracking-tight text-[#2a3538] sm:text-[28px]">3D loft design over the certified roof elevations</h2>
-          <p className="mt-2 text-[13px] leading-7 text-[#617173]">A 3D architectural master-suite visual layered over the original P05 Revision A elevation, linking the proposed interior arrangement with the 15.5m³ rear dormer and three front rooflights.</p>
+          <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#a64b45]">Signature presentation · Planning evidence and architectural design</p>
+          <h2 id="warbeck-signature" className="mt-2 text-[22px] font-semibold tracking-tight text-[#2a3538] sm:text-[28px]">Approved roof elevations and 3D design, clearly presented</h2>
+          <p className="mt-2 max-w-3xl text-[13px] leading-7 text-[#617173]">The full P05 Rev A elevation stays visible beside a separate architectural 3D study. No drawing details are hidden behind a floating render.</p>
         </div>
-        <figure className="relative min-h-[290px] overflow-hidden bg-[#f6f3ef] p-4 sm:min-h-[390px] sm:p-6">
-          <img src={BASE + "p05-proposed-elevations-cad.webp"} alt="P05 Revision A proposed architectural elevations for Warbeck Road, Shepherd’s Bush" className="absolute inset-0 h-full w-full object-contain opacity-50" loading="eager" />
-          <div className="relative ml-auto flex min-h-[265px] w-[72%] max-w-[520px] items-center sm:min-h-[355px]">
-            <img src={BASE + "3d-loft-suite-reverse.webp"} alt="WEDRAWPLANS 3D architectural view of the proposed loft master bedroom and en-suite superimposed on the certified elevations" className="w-full rounded-2xl border-[6px] border-white bg-white object-contain shadow-[0_12px_45px_rgba(38,43,41,.23)]" loading="eager" />
-          </div>
-          <figcaption className="absolute bottom-3 left-3 max-w-[46%] rounded-lg bg-white/95 px-3 py-2 text-[10px] font-semibold leading-5 text-[#435558] shadow-sm sm:left-6 sm:max-w-[34%]">P05 Rev A · 2019 lawful roof alterations · 15.5m³ dormer</figcaption>
-        </figure>
-        <p className="px-5 pb-5 pt-3 text-[11px] leading-6 text-[#6a7b7d] sm:px-7">Architectural 3D design, not a photograph. The separate Hammersmith &amp; Fulham Certificate of Lawfulness covers the roof alterations only.</p>
+        <div className="grid min-w-0 gap-4 bg-[#f8f6f2] p-4 sm:p-6 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,.7fr)]">
+          <figure className="min-w-0 overflow-hidden rounded-xl border border-[#e5dad3] bg-white">
+            <div className="relative flex min-h-[260px] items-center justify-center bg-white p-3 sm:min-h-[360px] sm:p-5">
+              <img src={BASE + "p05-proposed-elevations-cad.webp"} alt="P05 Rev A approved rear roof elevation and 15.5 cubic metre dormer calculation, Warbeck Road Shepherd’s Bush" className="block h-auto max-h-[460px] w-full object-contain" loading="eager" />
+              <WarbeckWatermark />
+            </div>
+            <figcaption className="border-t border-[#ebe4de] px-4 py-3 text-[12px] font-semibold leading-6 text-[#435558]">P05 Rev A · 2019 lawful rear roof extension · 15.5m³ dormer · three front rooflights</figcaption>
+          </figure>
+          <figure className="min-w-0 overflow-hidden rounded-xl border border-[#e5dad3] bg-white">
+            <div className="relative flex min-h-[250px] items-center justify-center bg-[#f9f7f4] p-3 sm:min-h-[360px] sm:p-4">
+              <img src={BASE + "3d-loft-suite-visual.webp"} alt="Original architectural 3D design visual for the Warbeck Road total refurbishment" className="block h-auto max-h-[430px] w-full object-contain" loading="eager" />
+              <WarbeckWatermark />
+            </div>
+            <figcaption className="border-t border-[#ebe4de] px-4 py-3 text-[12px] font-semibold leading-6 text-[#435558]">Architectural 3D design study · Illustrative proposal, not a construction photograph</figcaption>
+          </figure>
+        </div>
+        <p className="px-5 pb-5 pt-1 text-[11px] leading-6 text-[#6a7b7d] sm:px-7">The Hammersmith &amp; Fulham Certificate of Lawfulness applies to the rear dormer and three front rooflights only, not the separate Building Regulations package.</p>
       </section>
 
       <section className="overflow-hidden rounded-[20px] border border-[#e8dcd5] bg-white">
@@ -124,7 +135,10 @@ export default function WarbeckTotalRefurbShowcase() {
           </div>
         </div>
         <figure className="mx-3 mb-3 overflow-hidden rounded-xl border border-[#ebe4de] bg-[#faf8f5] p-3 sm:mx-5 sm:p-5">
-          <img key={drawing.file} src={BASE + drawing.file} alt={drawing.heading + " — WEDRAWPLANS Warbeck Road project drawing"} className="mx-auto block h-auto max-h-[520px] w-full object-contain" />
+          <div className="relative">
+            <img key={drawing.file} src={BASE + drawing.file} alt={drawing.heading + " — WEDRAWPLANS Warbeck Road project drawing"} className="mx-auto block h-auto max-h-[520px] w-full object-contain" />
+            <WarbeckWatermark />
+          </div>
           <figcaption className="mt-3 text-[12px] leading-6 text-[#697477]">{drawing.description}</figcaption>
         </figure>
         <div className="border-t border-[#ebe4de] px-4 py-4 sm:px-6">
@@ -132,7 +146,10 @@ export default function WarbeckTotalRefurbShowcase() {
           <div className="flex gap-3 overflow-x-auto pb-2" aria-label="Architectural drawing thumbnails">
             {DRAWINGS.map((item, index) => (
               <button key={item.file} type="button" onClick={() => setSelected(index)} aria-label={"View " + item.heading} aria-current={selected === index ? "true" : undefined} className={"w-[110px] shrink-0 rounded-xl border p-2 transition sm:w-[126px] " + (selected === index ? "border-[#a9443f] bg-[#fff1ed]" : "border-[#e8dcd5] bg-white hover:border-[#ceb8b2]")}>
-                <img src={BASE + item.file} alt="" loading="lazy" className="block h-[76px] w-full object-contain sm:h-[90px]" />
+                <span className="relative block">
+                  <img src={BASE + item.file} alt="" loading="lazy" className="block h-[76px] w-full object-contain sm:h-[90px]" />
+                  <WarbeckWatermark small />
+                </span>
                 <span className="mt-2 block text-[10px] font-semibold text-[#566468]">{item.label}</span>
               </button>
             ))}
