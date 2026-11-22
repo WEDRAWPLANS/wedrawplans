@@ -13,6 +13,7 @@ import AllumLaneSiteFeature from "../components/AllumLaneSiteFeature";
 import HomeGoogleReviews from "../components/HomeGoogleReviews";
 import WhatsAppIcon from "../components/WhatsAppIcon";
 import WarbeckWatermark from "../components/WarbeckWatermark";
+import PropertyCapture from "../components/PropertyCapture";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
@@ -1214,6 +1215,10 @@ export default function IndexPage() {
               </div>
 
               <div className="lg:pt-2">
+                <div className="mx-auto mb-4 w-full max-w-[620px]">
+                  <PropertyCapture compact />
+                </div>
+
                 <div className="wdp-home-quote-shell mx-auto w-full min-w-0 max-w-[620px] rounded-[20px] bg-white p-2.5 shadow-[0_14px_35px_rgba(15,23,42,0.09)] sm:p-4 lg:p-5">
                   <div className="wdp-home-quote-inner min-w-0 rounded-[16px] bg-white px-2.5 py-3 sm:border sm:border-slate-200/80 sm:bg-[#f7fafc] sm:px-6 sm:py-5">
                     <div className="text-center">
