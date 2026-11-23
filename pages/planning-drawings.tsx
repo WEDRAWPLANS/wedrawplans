@@ -177,8 +177,35 @@ export default function PlanningDrawingsPage() {
               <form onSubmit={handleSubmit} className="mt-5 space-y-3">
                 <input name="name" required placeholder="Name" className="w-full rounded-xl border px-4 py-3 text-sm" />
                 <div className="grid gap-3 sm:grid-cols-2">
-                  <input name="phone" required placeholder="Telephone" className="w-full rounded-xl border px-4 py-3 text-sm" />
-                  <input name="email" required type="email" placeholder="Email" className="w-full rounded-xl border px-4 py-3 text-sm" />
+                  <div>
+                    <label htmlFor="planning-quote-email" className="mb-1 block text-xs font-semibold text-slate-800">
+                      Email (required)
+                    </label>
+                    <input
+                      id="planning-quote-email"
+                      name="email"
+                      type="email"
+                      inputMode="email"
+                      autoComplete="email"
+                      required
+                      placeholder="Email address"
+                      className="w-full rounded-xl border px-4 py-3 text-sm"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="planning-quote-phone" className="mb-1 block text-xs font-semibold text-slate-800">
+                      Phone / WhatsApp (Optional - fastest for fixed-fee quotes)
+                    </label>
+                    <input
+                      id="planning-quote-phone"
+                      name="phone"
+                      type="tel"
+                      inputMode="tel"
+                      autoComplete="tel"
+                      placeholder="Phone number (optional)"
+                      className="w-full rounded-xl border px-4 py-3 text-sm"
+                    />
+                  </div>
                 </div>
                 <input name="postcode" required placeholder="Postcode" className="w-full rounded-xl border px-4 py-3 text-sm" />
                 <select name="projectType" defaultValue="" required className="w-full rounded-xl border px-4 py-3 text-sm">
