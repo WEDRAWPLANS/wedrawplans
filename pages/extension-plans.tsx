@@ -116,9 +116,9 @@ export default function ExtensionPlansPage() {
   };
 
   const pageTitle =
-    "House Extension Plans & Planning Drawings London | Fixed Fees | WEDRAWPLANS";
+    "House Extension Plans London | Fixed-Fee Drawings | WEDRAWPLANS";
   const pageDescription =
-    "Fixed-fee house extension plans and planning drawings across London & M25. Rear, side return, wrap-around & double-storey extensions. 48hr survey. Call 020 3654 8508.";
+    "Rear, side-return and wraparound extension plans for London homes. Fixed-fee planning drawing quotes, fast survey booking and council application support.";
 
   return (
     <>

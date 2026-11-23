@@ -50,7 +50,25 @@ const searchAreaNames: Partial<Record<LondonAreaName, string>> = {
   "City of London": "the City of London",
 };
 
+// Targeted titles for boroughs with high-impression, low-click search queries.
+const targetedAreaMetadata: Partial<Record<LondonAreaName, { title: string; description: string }>> = {
+  "City of London": {
+    title: "City of London Loft & Planning Drawings | WEDRAWPLANS",
+    description: "Architectural, loft and planning drawings for City of London properties. Clear fixed-fee quotes, fast survey booking and support with applications and Building Regulations.",
+  },
+  "Kingston upon Thames": {
+    title: "House Extension Plans Kingston | Fixed Fees | WEDRAWPLANS",
+    description: "House extension planning drawings for Kingston, Surbiton and New Malden. Clear fixed-fee quotes, fast survey booking and practical council application support.",
+  },
+  Lambeth: {
+    title: "Loft & Extension Drawings Lambeth | Fixed Fees | WEDRAWPLANS",
+    description: "Loft conversion and house extension drawings across Lambeth, Brixton and Clapham. Clear fixed-fee quotes, fast survey booking and council planning application support.",
+  },
+};
+
 export function getLondonAreaMetadata(areaName: LondonAreaName) {
+  const targeted = targetedAreaMetadata[areaName];
+  if (targeted) return targeted;
   const location = searchAreaNames[areaName] ?? areaName;
   return {
     title: `Architectural Drawings in ${location} | Extension, Loft & Planning Plans | WEDRAWPLANS`,

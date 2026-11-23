@@ -36,9 +36,9 @@ export default function NewBuildPlansPage() {
   }
 
   const pageTitle =
-    "New Build Plans and Planning Drawings | Structural Engineering and Town Planning Support | WEDRAWPLANS";
+    "New Build House Plans London | Fixed-Fee Quotes | WEDRAWPLANS";
   const pageDescription =
-    "Architectural new-build planning drawings for landowners and property developers across London and the M25. Explore WEDRAWPLANS The Hyde, Colindale: Barnet planning approval granted in 2017 for an 18-flat, six-storey mixed-use development. Site feasibility, planning submissions, apartment schemes, infill and replacement dwellings, and structural coordination.";
+    "New-build house, infill and apartment planning drawings across London. Clear fixed-fee quotations for feasibility, design, planning submissions and structural coordination.";
   const canonical = "https://www.wedrawplans.co.uk/new-build-plans";
 
   const serviceJson = useMemo(

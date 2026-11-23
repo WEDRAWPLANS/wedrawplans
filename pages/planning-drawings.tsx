@@ -26,9 +26,9 @@ export default function PlanningDrawingsPage() {
     });
   }
 
-  const title = "Planning Drawings London | Planning Application Plans | WEDRAWPLANS";
+  const title = "Planning Application Drawings London | Fixed Fees | WEDRAWPLANS";
   const description =
-    "Planning drawings in London for house extensions, loft conversions, outbuildings, conversions and new builds. Existing and proposed plans, elevations, sections and council-ready application packs across every London borough.";
+    "Planning drawings for London extensions, lofts, garden rooms and new homes. Clear fixed-fee quotes, existing and proposed plans, and council application support.";
 
   const serviceSchema = {
     "@context": "https://schema.org",

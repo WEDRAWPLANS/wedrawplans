@@ -305,7 +305,8 @@ export default function ProjectEnquiryForm(props: Props) {
       has_email: !!email,
     };
 
-    gaEvent("generate_lead", common, true);
+    // submitBoroughLead already sends generate_lead after the server confirms success.
+    // Emitting it here as well would double-count a single homeowner enquiry.
     gaEvent("lead_submit", common, true);
   }
 
