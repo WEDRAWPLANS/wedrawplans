@@ -6,7 +6,7 @@ import Link from "next/link";
 import AllumLaneSiteFeature from "../components/AllumLaneSiteFeature";
 import { FormEvent, useMemo, useState } from "react";
 import SmartPlanningAssistant from "../components/SmartPlanningAssistant";
-import { submitBoroughLead } from "../lib/submitBoroughLead";
+import { isValidLeadEmail, submitBoroughLead } from "../lib/submitBoroughLead";
 
 declare global {
   interface Window {
@@ -291,8 +291,14 @@ export default function BuildingRegulationDrawingsPage() {
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (!form.email.trim() && !form.phone.trim()) {
-      setSubmitState({ type: "error", message: "Please enter an email address or telephone number so we can reply." });
+    if (isSubmitting) return;
+    if (!isValidLeadEmail(form.email)) {
+      trackEvent("form_submit_error", {
+        form_name: "building_regulations_quote",
+        page_path: "/building-regulation-drawings",
+        reason: "invalid_email",
+      });
+      setSubmitState({ type: "error", message: "Please enter a valid email address so we can send your fixed-fee quotation. Phone is optional." });
       return;
     }
     setIsSubmitting(true);
@@ -323,30 +329,16 @@ export default function BuildingRegulationDrawingsPage() {
           pageUrl: PAGE_URL,
           projectType: form.projectType,
         },
-      });
+      }, { showFormAlerts: false });
 
       if (!wasSubmitted) {
-        trackEvent("lead_submit_error", {
-          event_category: "technical_enquiry",
-          event_label: "building_regulations_page_submit_error",
-          service: "Building Regulation Drawings",
-          page_path: "/building-regulation-drawings",
-          source: "building_regulations_page",
-        });
         setSubmitState({
           type: "error",
-          message: "Your enquiry could not be sent. Please try again or call 020 3654 8508.",
+          message: "Your enquiry could not be sent. Please retry or contact us directly.",
         });
         return;
       }
-
-      trackEvent("generate_lead_success", {
-        event_category: "technical_enquiry",
-        event_label: "building_regulations_page_submit_success",
-        service: "Building Regulation Drawings",
-        page_path: "/building-regulation-drawings",
-        source: "building_regulations_page",
-      });
+      // submitBoroughLead fires generate_lead only on a confirmed server success.
 
       setSubmitState({
         type: "success",
@@ -354,13 +346,11 @@ export default function BuildingRegulationDrawingsPage() {
           "Thank you. Your enquiry has been sent successfully. We will review the project and get back to you shortly.",
       });
       setForm(initialFormState);
-    } catch (error) {
-      trackEvent("generate_lead_error", {
-        event_category: "technical_enquiry",
-        event_label: "building_regulations_page_submit_error",
-        service: "Building Regulation Drawings",
+    } catch {
+      trackEvent("form_submit_error", {
+        form_name: "building_regulations_quote",
         page_path: "/building-regulation-drawings",
-        source: "building_regulations_page",
+        reason: "unexpected_error",
       });
 
       setSubmitState({
@@ -660,11 +650,14 @@ export default function BuildingRegulationDrawingsPage() {
                             htmlFor="phone"
                             className="mb-2 block text-sm font-medium text-slate-900"
                           >
-                            Telephone (optional if email supplied)
+                            Phone / WhatsApp (Optional - fastest for fixed-fee quotes)
                           </label>
                           <input
                             id="phone"
+                            name="phone"
                             type="tel"
+                            inputMode="tel"
+                            autoComplete="tel"
                             value={form.phone}
                             onChange={(e) =>
                               setForm((prev) => ({ ...prev, phone: e.target.value }))
@@ -678,12 +671,16 @@ export default function BuildingRegulationDrawingsPage() {
                             htmlFor="email"
                             className="mb-2 block text-sm font-medium text-slate-900"
                           >
-                            Email (or telephone)
+                            Email (required)
                           </label>
                           <input
                             id="email"
-                          type="email"
-                          value={form.email}
+                            name="email"
+                            type="email"
+                            inputMode="email"
+                            autoComplete="email"
+                            required
+                            value={form.email}
                             onChange={(e) =>
                               setForm((prev) => ({ ...prev, email: e.target.value }))
                             }
@@ -769,18 +766,29 @@ export default function BuildingRegulationDrawingsPage() {
 
                       {submitState.type !== "idle" ? (
                         <div
+                          role={submitState.type === "error" ? "alert" : "status"}
                           className={`rounded-xl p-4 text-sm ${
                             submitState.type === "success"
                               ? "bg-green-50 text-green-800 ring-1 ring-green-200"
                               : "bg-red-50 text-red-800 ring-1 ring-red-200"
                           }`}
                         >
-                          {submitState.message}
+                          <p>{submitState.message}</p>
+                          {submitState.type === "error" ? (
+                            <div className="mt-3 flex flex-wrap gap-3">
+                              <a href={`tel:${PHONE_TEL}`} className="rounded-lg bg-white px-3 py-2 font-semibold underline">
+                                Call {PHONE_DISPLAY}
+                              </a>
+                              <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="rounded-lg bg-white px-3 py-2 font-semibold underline">
+                                Message on WhatsApp
+                              </a>
+                            </div>
+                          ) : null}
                         </div>
                       ) : null}
 
                       <p className="text-xs leading-5 text-slate-500">
-                        Email or telephone is sufficient. No existing plans are required for an initial enquiry.
+                        Email is required; phone / WhatsApp is optional. No existing plans are required for an initial enquiry.
                         Planning and Building Control approvals are separate; structural calculations are
                         included only when agreed in the written fee scope.
                       </p>

@@ -6,41 +6,78 @@ declare global {
   }
 }
 
-function safeSessionKey(key: string) {
-  return `wdp_${key}`;
+const PHONE_FALLBACK_URL = "tel:+442036548508";
+const WHATSAPP_FALLBACK_URL =
+  "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20need%20help%20with%20my%20drawing%20enquiry.";
+
+const EMAIL_FORMAT = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+export function isValidLeadEmail(value: string) {
+  const email = value.trim();
+  return email.length <= 254 && EMAIL_FORMAT.test(email);
 }
 
-function getOnceFlag(key: string) {
+// Only fixed, non-personal event values are passed to GA4.
+function trackFormSubmitError(reason: "invalid_email" | "server_rejected" | "network_error") {
   try {
-    if (typeof window === "undefined") return false;
-    return window.sessionStorage.getItem(safeSessionKey(key)) === "1";
+    if (typeof window !== "undefined" && typeof window.gtag === "function") {
+      window.gtag("event", "form_submit_error", {
+        form_name: "borough_quote",
+        page_path: getPagePath(),
+        reason,
+      });
+    }
   } catch {
-    return false;
+    // Analytics must never prevent an enquiry or its fallback.
   }
 }
 
-function setOnceFlag(key: string) {
-  try {
-    if (typeof window === "undefined") return;
-    window.sessionStorage.setItem(safeSessionKey(key), "1");
-  } catch {
-    // ignore
-  }
+function clearSubmissionError(form: HTMLFormElement | null) {
+  form?.querySelector("[data-wdp-submission-error]")?.remove();
 }
 
-function fireGenerateLeadOnce(params: Record<string, any>) {
+function displaySubmissionError(form: HTMLFormElement | null, message: string) {
+  if (!form || typeof document === "undefined") return;
+  clearSubmissionError(form);
+
+  const notice = document.createElement("div");
+  notice.setAttribute("data-wdp-submission-error", "");
+  notice.setAttribute("role", "alert");
+  notice.className = "mt-4 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-900";
+
+  const explanation = document.createElement("p");
+  explanation.textContent = message;
+  notice.appendChild(explanation);
+
+  const actions = document.createElement("div");
+  actions.className = "mt-3 flex flex-wrap gap-3";
+  for (const [url, label] of [
+    [PHONE_FALLBACK_URL, "Call 020 3654 8508"],
+    [WHATSAPP_FALLBACK_URL, "Message on WhatsApp"],
+  ]) {
+    const link = document.createElement("a");
+    link.href = url;
+    link.textContent = label;
+    link.className = "inline-flex min-h-11 items-center rounded-lg bg-white px-3 py-2 font-semibold text-red-900 underline";
+    if (url === WHATSAPP_FALLBACK_URL) {
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+    }
+    actions.appendChild(link);
+  }
+  notice.appendChild(actions);
+  form.appendChild(notice);
+}
+
+function fireGenerateLead(params: Record<string, any>) {
   try {
-    if (typeof window === "undefined") return;
-    if (typeof window.gtag !== "function") return;
-
-    const onceKey = "lead_submit_fired";
-    if (getOnceFlag(onceKey)) return;
-    setOnceFlag(onceKey);
-
-    window.gtag("event", "generate_lead", {
-      ...params,
-      transport_type: "beacon",
-    });
+    if (typeof window !== "undefined" && typeof window.gtag === "function") {
+      // Once per confirmed successful server response, not once per browser session.
+      window.gtag("event", "generate_lead", {
+        ...params,
+        transport_type: "beacon",
+      });
+    }
   } catch {
     // ignore
   }
@@ -244,6 +281,13 @@ export async function submitBoroughLead(
     boroughName = built.boroughName;
   }
 
+  clearSubmissionError(form);
+  if (!isValidLeadEmail(coerceToString(payload.email))) {
+    trackFormSubmitError("invalid_email");
+    displaySubmissionError(form, "Please enter a valid email address to receive your quote. Phone is optional.");
+    return false;
+  }
+
   try {
     const res = await fetch("/api/contact-resend", {
       method: "POST",
@@ -264,31 +308,16 @@ export async function submitBoroughLead(
     const acceptedByServer = res.ok && responseData?.success === true;
 
     if (!acceptedByServer) {
-      console.error("submitBoroughLead failed", {
-        status: res.status,
-        statusText: res.statusText,
-        payload,
-        response: responseData,
-      });
-
-      const serverMessage =
-        typeof responseData === "object" && responseData?.error
-          ? String(responseData.error)
-          : typeof responseData === "string" && responseData
-            ? responseData
-            : "Something went wrong. Please try again or call us directly.";
-
-      if (form && showFormAlerts) {
-        alert(serverMessage);
-      }
-
+      console.warn("submitBoroughLead rejected", { status: res.status });
+      trackFormSubmitError("server_rejected");
+      displaySubmissionError(form, "We couldn't send your enquiry. Please try again or use one of the contact options below.");
       return false;
     }
 
-    fireGenerateLeadOnce({
+    fireGenerateLead({
       borough: boroughName || "London",
       project_type: coerceToString(payload.service),
-      // Do not send full customer postcodes to analytics.
+      // No customer contact details or postcodes in GA4 events.
       has_phone: !!payload.phone,
       has_email: !!payload.email,
       page_path: coerceToString(payload.pagePath),
@@ -303,16 +332,10 @@ export async function submitBoroughLead(
     }
 
     return true;
-  } catch (error) {
-    console.error("submitBoroughLead network error", {
-      error,
-      payload,
-    });
-
-    if (form && showFormAlerts) {
-      alert("Network error — please try again.");
-    }
-
+  } catch {
+    console.warn("submitBoroughLead network error");
+    trackFormSubmitError("network_error");
+    displaySubmissionError(form, "We couldn't connect to send your enquiry. Please try again or use one of the contact options below.");
     return false;
   }
 }

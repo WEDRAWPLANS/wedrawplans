@@ -13,6 +13,7 @@ import AllumLaneSiteFeature from "../components/AllumLaneSiteFeature";
 import HomeGoogleReviews from "../components/HomeGoogleReviews";
 import WhatsAppIcon from "../components/WhatsAppIcon";
 import WarbeckWatermark from "../components/WarbeckWatermark";
+import { isValidLeadEmail } from "../lib/submitBoroughLead";
 
 const PHONE_DISPLAY = "020 3654 8508";
 const PHONE_LINK = "tel:+442036548508";
@@ -57,6 +58,31 @@ const trackLeadEvent = (action: LeadAction) => {
     event_label: action,
   });
 };
+
+// Error analytics must not include personal information, including postcodes.
+const trackHomeSubmitError = (formName: string, reason: string) => {
+  gtagEvent("form_submit_error", {
+    form_name: formName,
+    page_path: "/",
+    reason,
+  });
+};
+
+function HomeLeadError({ message }: { message: string }) {
+  return (
+    <div role="alert" className="rounded-xl border border-red-200 bg-red-50 p-4 text-left text-sm text-red-900">
+      <p>{message}</p>
+      <div className="mt-3 flex flex-wrap gap-3">
+        <a href={PHONE_LINK} className="inline-flex min-h-11 items-center rounded-lg bg-white px-3 py-2 font-semibold underline">
+          Call {PHONE_DISPLAY}
+        </a>
+        <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center rounded-lg bg-white px-3 py-2 font-semibold underline">
+          Message on WhatsApp
+        </a>
+      </div>
+    </div>
+  );
+}
 
 const SERVICE_OPTIONS: ServiceOption[] = [
   { label: "Planning Drawings", value: "Planning drawings", href: "/planning-drawings" },
@@ -572,6 +598,7 @@ export default function IndexPage() {
   const heroStartTimeRef = useRef<number | null>(null);
 
   const [heroSubmitting, setHeroSubmitting] = useState(false);
+  const [heroError, setHeroError] = useState("");
   const [heroPostcode, setHeroPostcode] = useState("");
   const [heroService, setHeroService] = useState("");
   const [heroName, setHeroName] = useState("");
@@ -639,11 +666,11 @@ export default function IndexPage() {
       form_name: "homepage_hero",
       service: serviceValue,
       borough_detected: postcodeIntel.borough || "unknown",
-      outward_code: postcodeIntel.outward || "unknown",
     });
   }
 
   async function submitLead(formName: "homepage_hero" | "mobile_floating_widget") {
+    setHeroError("");
     const postcode = postcodeIntel.normalized;
     // Keep the detailed service dropdown in the mobile modal and detailed quote page.
     // Homepage visitors can simply describe their project in their own words.
@@ -670,9 +697,9 @@ export default function IndexPage() {
       alert("Please enter your name so we can address your quotation.");
       return;
     }
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      gtagEvent("lead_contact_needed", { form_name: formName });
-      alert("Please enter a valid email address so we can send your quotation. Telephone is optional.");
+    if (!isValidLeadEmail(email)) {
+      trackHomeSubmitError(formName, "invalid_email");
+      setHeroError("Please enter a valid email address so we can send your quotation. Phone is optional.");
       return;
     }
 
@@ -704,9 +731,7 @@ export default function IndexPage() {
         form_name: formName,
         step: "submit",
         service,
-        postcode,
         borough_detected: postcodeIntel.borough || "unknown",
-        outward_code: postcodeIntel.outward || "unknown",
       });
 
       const res = await fetch("/api/contact-resend", {
@@ -720,9 +745,8 @@ export default function IndexPage() {
         gtagEvent("generate_lead", {
           form_name: formName,
           service,
-          postcode,
+          page_path: "/",
           borough_detected: postcodeIntel.borough || "unknown",
-          outward_code: postcodeIntel.outward || "unknown",
         });
 
         alert("Thank you. Your request has been submitted. WEDRAWPLANS will contact you shortly.");
@@ -736,10 +760,12 @@ export default function IndexPage() {
         heroStartedRef.current = false;
         heroStartTimeRef.current = null;
       } else {
-        alert("Something went wrong. Please try again or call us directly.");
+        trackHomeSubmitError(formName, "server_rejected");
+        setHeroError("Your enquiry was not sent. Please try again or contact us using the options below.");
       }
     } catch {
-      alert("Network error. Please try again.");
+      trackHomeSubmitError(formName, "network_error");
+      setHeroError("We could not connect to send your enquiry. Please retry, call or WhatsApp us.");
     } finally {
       setHeroSubmitting(false);
     }
@@ -1079,15 +1105,23 @@ export default function IndexPage() {
                         className="h-14 w-full rounded-[16px] border border-slate-200 bg-white px-4 text-[16px] text-slate-800 shadow-sm outline-none transition focus:border-[#64b7c4]"
                       />
 
-                      <input
-                        name="phone"
-                        type="tel"
-                        value={heroPhone}
-                        onChange={(e) => setHeroPhone(e.target.value)}
-                        onFocus={() => trackHeroFormStart("mobile_phone")}
-                        placeholder="Phone number (optional)"
-                        className="h-14 w-full rounded-[16px] border border-slate-200 bg-white px-4 text-[16px] text-slate-800 shadow-sm outline-none transition focus:border-[#64b7c4]"
-                      />
+                      <div>
+                        <label htmlFor="mobile-quote-phone" className="mb-1 block text-left text-[12px] font-medium text-slate-700">
+                          Phone / WhatsApp (Optional - fastest for fixed-fee quotes)
+                        </label>
+                        <input
+                          id="mobile-quote-phone"
+                          name="phone"
+                          type="tel"
+                          inputMode="tel"
+                          autoComplete="tel"
+                          value={heroPhone}
+                          onChange={(e) => setHeroPhone(e.target.value)}
+                          onFocus={() => trackHeroFormStart("mobile_phone")}
+                          placeholder="Phone / WhatsApp number"
+                          className="h-14 w-full rounded-[16px] border border-slate-200 bg-white px-4 text-[16px] text-slate-800 shadow-sm outline transition focus:border-[#64b7c4]"
+                        />
+                      </div>
 
                       <input
                         name="email"
@@ -1125,6 +1159,7 @@ export default function IndexPage() {
                       >
                        {heroSubmitting ? "Submitting..." : "Get a quick quote →"}
                       </button>
+                      {heroError ? <HomeLeadError message={heroError} /> : null}
                     </div>
                   </div>
                 </form>
@@ -1293,11 +1328,12 @@ export default function IndexPage() {
                             />
                           </div>
                           <div className="space-y-1.5">
-                            <label htmlFor="home-contact-phone" className="block text-left text-[12px] font-semibold text-[#203e4a]">Phone (optional)</label>
+                            <label htmlFor="home-contact-phone" className="block text-left text-[12px] font-semibold text-[#203e4a]">Phone / WhatsApp (Optional - fastest for fixed-fee quotes)</label>
                             <input
                               id="home-contact-phone"
                               name="phone"
                               type="tel"
+                              inputMode="tel"
                               autoComplete="tel"
                               value={heroPhone}
                               onChange={(e) => setHeroPhone(e.target.value)}
@@ -1317,6 +1353,7 @@ export default function IndexPage() {
                         >
                           {heroSubmitting ? "Submitting..." : "Request my fixed-fee quote →"}
                         </button>
+                        {heroError ? <HomeLeadError message={heroError} /> : null}
                         <p className="text-center text-[12px] leading-5 text-slate-600">
                           Prefer to select a service from a list?{" "}
                           <Link href="/get-drawings-quote" className="font-semibold text-teal-800 underline underline-offset-4 hover:text-teal-600">
@@ -2024,6 +2061,8 @@ function ContactForm() {
   const formStartedRef = useRef<number>(Date.now());
   const [contactSubmitting, setContactSubmitting] = useState(false);
   const [contactService, setContactService] = useState("");
+  const [contactError, setContactError] = useState("");
+  const [contactSucceeded, setContactSucceeded] = useState(false);
 
   useEffect(() => {
     formStartedRef.current = Date.now();
@@ -2032,6 +2071,8 @@ function ContactForm() {
   async function handleContactSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (contactSubmitting) return;
+    setContactError("");
+    setContactSucceeded(false);
 
     const form = e.currentTarget;
     const data = new FormData(form);
@@ -2047,12 +2088,14 @@ function ContactForm() {
     const rawService = String(data.get("service") || "").trim();
 
     if (!rawService) {
-      alert("Please select the service you need.");
+      trackHomeSubmitError("homepage_contact", "missing_service");
+      setContactError("Please select the service you need.");
       return;
     }
 
-    if (!rawName || (!rawPhone && !rawEmail)) {
-      alert("Please add your name and at least a phone number or email address.");
+    if (!rawName || !isValidLeadEmail(rawEmail)) {
+      trackHomeSubmitError("homepage_contact", "invalid_contact");
+      setContactError("Please enter your name and a valid email address. Phone / WhatsApp is optional.");
       return;
     }
 
@@ -2088,20 +2131,21 @@ function ContactForm() {
         gtagEvent("generate_lead", {
           form_name: "homepage_contact",
           service: rawService,
-          postcode: rawPostcode || "unknown",
+          page_path: "/",
           borough_detected: postcodeIntel?.borough || "unknown",
-          outward_code: postcodeIntel?.outward || "unknown",
         });
 
-        alert("Thank you. Your message has been sent to WEDRAWPLANS. We will contact you shortly.");
+        setContactSucceeded(true);
         form.reset();
         setContactService("");
         formStartedRef.current = Date.now();
       } else {
-        alert("Something went wrong. Please try again or call us directly.");
+        trackHomeSubmitError("homepage_contact", "server_rejected");
+        setContactError("Your enquiry was not sent. Please retry, call or message us on WhatsApp.");
       }
     } catch {
-      alert("Network error. Please try again.");
+      trackHomeSubmitError("homepage_contact", "network_error");
+      setContactError("We could not connect to send your enquiry. Please retry, call or WhatsApp us.");
     } finally {
       setContactSubmitting(false);
     }
@@ -2132,15 +2176,20 @@ function ContactForm() {
         <label className="text-[11px] font-medium text-slate-700">Name</label>
         <input
           name="name"
+          required
+          autoComplete="name"
           className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
         />
       </div>
 
       <div className="space-y-1">
-        <label className="text-[11px] font-medium text-slate-700">Telephone</label>
+        <label htmlFor="secondary-home-phone" className="text-[11px] font-medium text-slate-700">Phone / WhatsApp (Optional - fastest for fixed-fee quotes)</label>
         <input
+          id="secondary-home-phone"
           name="phone"
           type="tel"
+          inputMode="tel"
+          autoComplete="tel"
           className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
         />
       </div>
@@ -2154,10 +2203,14 @@ function ContactForm() {
       </div>
 
       <div className="space-y-1">
-        <label className="text-[11px] font-medium text-slate-700">Email</label>
+        <label htmlFor="secondary-home-email" className="text-[11px] font-medium text-slate-700">Email (required)</label>
         <input
+          id="secondary-home-email"
           name="email"
           type="email"
+          inputMode="email"
+          autoComplete="email"
+          required
           className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] focus:border-[#64b7c4] focus:outline-none"
         />
       </div>
@@ -2178,6 +2231,12 @@ function ContactForm() {
       >
         {contactSubmitting ? "Submitting..." : "Submit"}
       </button>
+      {contactError ? <HomeLeadError message={contactError} /> : null}
+      {contactSucceeded ? (
+        <p role="status" className="rounded-xl border border-green-200 bg-green-50 p-3 text-sm text-green-900">
+          Thank you. Your message has been sent to WEDRAWPLANS. We will contact you shortly.
+        </p>
+      ) : null}
     </form>
   );
 }
