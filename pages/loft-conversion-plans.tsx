@@ -22,9 +22,9 @@ export default function LoftConversionPlansPage() {
   }
 
   const pageTitle =
-    "Loft Conversion Plans & Drawings London | Dormer, Mansard, Hip to Gable | WEDRAWPLANS";
+    "Loft Conversion Drawings London | Fixed-Fee Quotes | WEDRAWPLANS";
   const pageDescription =
-    "Specialist loft conversion plans, planning drawings & Building Regulation packs across London. Dormer, Mansard & Hip-to-Gable lofts at fixed fees. Call 020 3654 8508.";
+    "Dormer, mansard and hip-to-gable loft drawings across London. Clear fixed-fee quotes, planning and Building Regulations packs, fast surveys and structural coordination.";
 
   const serviceJson = {
     "@context": "https://schema.org",

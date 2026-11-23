@@ -20,9 +20,9 @@ const PHONE_TEL = "+442036548508";
 const EMAIL = "info@wedrawplans.com";
 const PAGE_URL = "https://www.wedrawplans.co.uk/building-regulation-drawings";
 const PAGE_TITLE =
-  "Building Regulation Drawings London | Extensions, Lofts & Structural Coordination | WEDRAWPLANS";
+  "Fixed-Fee Building Regulation Drawings London | WEDRAWPLANS";
 const PAGE_DESCRIPTION =
-  "Building Regulation drawings in London for house extensions, lofts and new homes. Genuine planning approvals, technical drawing examples and structural coordination. Fixed-fee quotes.";
+  "Building Regulation and Building Control drawing packs for London extensions, lofts and conversions. Clear fixed-fee quotes, technical details and structural coordination.";
 const HERO_IMAGE = "/images/case-studies/cranbourne-drive-hoddesdon-combined/bc-3d-views.webp";
 const SECOND_IMAGE = "/images/building-regulations-detail.jpg";
 const LOGO_IMAGE = "/images/wedrawplans-logo.png";
@@ -366,10 +366,10 @@ export default function BuildingRegulationDrawingsPage() {
   return (
     <>
       <Head>
-        <title>{"Building Regulation Drawings & Technical Packs London | WEDRAWPLANS"}</title>
+        <title>{PAGE_TITLE}</title>
         <meta
           name="description"
-          content={"Builder-ready Building Regulation drawings and structural calculation coordination in London for extensions, lofts, flat conversions & new builds. Call 020 3654 8508."}
+          content={PAGE_DESCRIPTION}
         />
         <meta
           name="keywords"
