@@ -52,6 +52,10 @@ const searchAreaNames: Partial<Record<LondonAreaName, string>> = {
 
 // Targeted titles for boroughs with high-impression, low-click search queries.
 const targetedAreaMetadata: Partial<Record<LondonAreaName, { title: string; description: string }>> = {
+  "Barking and Dagenham": {
+    title: "Planning Drawings Barking & Dagenham | Fixed Fees | WEDRAWPLANS",
+    description: "Planning permission drawings for home extensions and lofts in Barking and Dagenham. Get a clear fixed-fee quote, prompt survey booking and local planning support.",
+  },
   "City of London": {
     title: "City of London Loft & Planning Drawings | WEDRAWPLANS",
     description: "Architectural, loft and planning drawings for City of London properties. Clear fixed-fee quotes, fast survey booking and support with applications and Building Regulations.",
@@ -63,6 +67,14 @@ const targetedAreaMetadata: Partial<Record<LondonAreaName, { title: string; desc
   Lambeth: {
     title: "Loft & Extension Drawings Lambeth | Fixed Fees | WEDRAWPLANS",
     description: "Loft conversion and house extension drawings across Lambeth, Brixton and Clapham. Clear fixed-fee quotes, fast survey booking and council planning application support.",
+  },
+  Greenwich: {
+    title: "Planning Drawings Greenwich | Fixed-Fee Quotes | WEDRAWPLANS",
+    description: "Drawings for planning permission in Greenwich, including house extensions and lofts. Clear fixed-fee quotes, prompt surveys and practical council application support.",
+  },
+  Hackney: {
+    title: "Planning Permission Drawings Hackney | Fixed Fees | WEDRAWPLANS",
+    description: "Planning permission drawings for Hackney extensions, lofts and alterations. Clear fixed-fee quotes, prompt surveys and help preparing council-ready drawing packs.",
   },
 };
 
