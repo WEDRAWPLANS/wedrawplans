@@ -50,6 +50,10 @@ const BOROUGH_LINKS: Record<string, BoroughLinks> = {
     nearby: ["Barnet", "Brent", "Westminster", "Islington", "Haringey", "Hackney", "Kensington and Chelsea"],
     other: ["Hammersmith and Fulham", "Ealing", "Enfield", "Waltham Forest", "Redbridge", "Southwark"],
   },
+  "City of London": {
+    nearby: ["Camden", "Islington", "Hackney", "Tower Hamlets", "Southwark", "Westminster"],
+    other: ["Lambeth", "Newham", "Kensington and Chelsea", "Haringey", "Wandsworth", "Greenwich"],
+  },
   Croydon: {
     nearby: ["Bromley", "Lambeth", "Lewisham", "Merton", "Sutton", "Wandsworth", "Southwark"],
     other: ["Kingston upon Thames", "Richmond upon Thames", "Bexley", "Greenwich", "Ealing", "Barnet"],
