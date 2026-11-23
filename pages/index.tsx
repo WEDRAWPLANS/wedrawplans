@@ -24,7 +24,7 @@ const GOOGLE_BUSINESS_PROFILE_LINK = "https://share.google/D3KId64vHtHSKPALr";
 const WHATSAPP_LINK =
   "https://wa.me/442036548508?text=Hello%20WEDRAWPLANS%2C%20I%20would%20like%20a%20quote%20for%20my%20project";
 
-type LeadAction = "phone_click" | "email_click" | "whatsapp_click";
+type LeadAction = "phone_click" | "email_click";
 
 type PostcodeIntel = {
   normalized: string;
@@ -859,7 +859,6 @@ export default function IndexPage() {
                   href={WHATSAPP_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => trackLeadEvent("whatsapp_click")}
                   className="inline-flex items-center rounded-full bg-[#25D366] px-5 py-2 text-[13px] font-semibold text-white shadow-sm transition hover:bg-[#1ebe57]"
                 >
                   <span className="mr-2 inline-flex" aria-hidden="true"><WhatsAppIcon size={20} /></span>
@@ -879,7 +878,6 @@ export default function IndexPage() {
                   label="Chat with WEDRAWPLANS on WhatsApp"
                   symbol={<WhatsAppIcon size={24} />}
                   variant="whatsapp"
-                  onClick={() => trackLeadEvent("whatsapp_click")}
                 />
                 <HamburgerButton
                   isOpen={mobileMenuOpen}
@@ -1014,7 +1012,6 @@ export default function IndexPage() {
                   label="Chat with WEDRAWPLANS on WhatsApp"
                   symbol={<WhatsAppIcon size={24} />}
                   variant="whatsapp"
-                  onClick={() => trackLeadEvent("whatsapp_click")}
                 />
                 <a
                   href={EMAIL_LINK}
@@ -1220,7 +1217,6 @@ export default function IndexPage() {
                       href={WHATSAPP_LINK}
                       target="_blank"
                       rel="noopener noreferrer"
-                      onClick={() => trackLeadEvent("whatsapp_click")}
                       className="inline-flex items-center rounded-full bg-[#25D366] px-6 py-3 text-[13px] font-semibold uppercase tracking-[0.12em] text-white shadow-sm hover:bg-[#1ebe57]"
                     >
                       <span className="mr-2 inline-flex" aria-hidden="true"><WhatsAppIcon size={20} /></span>
@@ -1389,7 +1385,6 @@ export default function IndexPage() {
                         href={WHATSAPP_LINK}
                         target="_blank"
                         rel="noopener noreferrer"
-                        onClick={() => trackLeadEvent("whatsapp_click")}
                         className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#58a45d] px-5 text-[15px] font-semibold text-white shadow-[0_8px_18px_rgba(34,197,94,0.18)]"
                       >
                         <span className="mr-2 inline-flex" aria-hidden="true"><WhatsAppIcon size={20} /></span>
@@ -1886,7 +1881,6 @@ export default function IndexPage() {
                   href={WHATSAPP_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => trackLeadEvent("whatsapp_click")}
                   className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#25D366] px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.12em] text-white hover:bg-[#1ebe57]"
                 >
                   WhatsApp us
