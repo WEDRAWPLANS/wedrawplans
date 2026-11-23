@@ -2,6 +2,7 @@ import { commercialOverview, commercialServices } from "../data/commercialPages"
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import Link from "next/link";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
 import "../styles/globals.css";
 import FloatingLeadWidget from "../components/FloatingLeadWidget";
@@ -51,6 +52,30 @@ export default function App({ Component, pageProps }: AppProps) {
   const breadcrumbSchema = getBreadcrumbSchema(router.pathname);
   const isBoroughPage = /^\/areas\/[^/]+\/?$/.test(router.pathname);
   const hasLocalQuote = hasLondonBoroughQuote(router.pathname);
+
+  useEffect(() => {
+    function trackWhatsAppClick(event: MouseEvent) {
+      if (!(event.target instanceof Element)) return;
+      const link = event.target.closest("a[href]");
+      if (!link) return;
+
+      const destination = new URL(link.getAttribute("href") || "", window.location.href);
+      if (destination.hostname !== "wa.me" || destination.pathname !== "/442036548508") return;
+
+      const analyticsWindow = window as typeof window & {
+        gtag?: (...args: unknown[]) => void;
+      };
+      // Leave consent handling to the existing Google tag; never pass prefilled
+      // WhatsApp message content (which might contain personal information).
+      analyticsWindow.gtag?.("event", "whatsapp_click", {
+        event_category: "lead",
+        event_label: "whatsapp_click",
+      });
+    }
+
+    document.addEventListener("click", trackWhatsAppClick, true);
+    return () => document.removeEventListener("click", trackWhatsAppClick, true);
+  }, []);
 
   return (
     <>
