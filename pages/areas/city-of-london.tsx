@@ -48,17 +48,17 @@ export default function CityOfLondonAreaPage() {
       "Monument"
     ],
     description:
-      "Architectural drawing services in the City of London for extensions, loft conversions, flat conversions, refurbishments and building regulations."
+      "Architectural drawings in the City of London for flat alterations, conversions, refurbishments and Building Regulations."
   };
 
   const visibleFaq = [
     {
-      question: "Do I need planning permission for works in the City of London?",
-      answer: "Often yes. The City has many listed buildings, conservation areas and tighter controls. We confirm the correct route once we review your address, building status and the scope of works."
+      question: "What approvals do I need to alter a Barbican flat?",
+      answer: "The City of London Corporation requires landlord approval for alterations to Barbican Estate flats. The estate is listed, so changes may also need listed building consent. Check the Corporation's guidance against the work you are planning."
     },
     {
-      question: "Is the City of London strict with alterations and conversions?",
-      answer: "It can be strict, particularly for heritage assets, roofline changes and visible external alterations. A clear strategy and well coordinated drawings help the application process run smoother."
+      question: "What drawings support a listed building consent application?",
+      answer: "Existing and proposed plans show the layout and the fabric affected by the work. Elevations, sections or drawings of individual features may also be needed, depending on what you propose to change."
     },
     {
       question: "How long does the City of London take to decide?",
@@ -95,24 +95,39 @@ export default function CityOfLondonAreaPage() {
 
         <BoroughMasterHeader boroughName={"City of London"} />
         <main>
-          <BoroughMasterHero boroughName={"City of London"} formId={"city-of-london-quote"} headline={"Plans for refurbishments, alterations and conversions in the City of London"} />
+          <BoroughMasterHero
+            boroughName="City of London"
+            formId="city-of-london-quote"
+            headline="Flat alteration and conversion drawings in the City of London"
+          />
 
-          <ServiceInternalLinks boroughName="City of London" />
-
-          <section className="bg-white border-b border-slate-200 py-10">
-            <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
+          <section aria-labelledby="city-flat-drawings" className="bg-white border-b border-slate-200 py-10">
+            <div className="mx-auto max-w-5xl px-4 lg:px-6">
               <div className="grid md:grid-cols-[1.7fr,1.3fr] gap-10 items-start">
                 <div className="space-y-4">
-                  <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
-                    Architectural drawing services in the City of London
+                  <h2 id="city-flat-drawings" className="text-[18px] font-semibold uppercase tracking-[0.16em]">
+                    Drawings for changes to a Barbican or Square Mile flat
                   </h2>
                   <p className="text-[13px] text-slate-700">
-                    WEDRAWPLANS provide full drawing packages for refurbishments, internal alterations,
-                    conversions and compliance upgrades across the City of London.
+                    If you are moving a kitchen, reworking a bathroom or changing a flat layout, we draw the
+                    existing and proposed plans so you can see what changes. On heritage projects, the plans
+                    can identify affected walls, doors and original features, with elevations or sections where needed.
                   </p>
                   <p className="text-[13px] text-slate-700">
-                    We work throughout Bank, Barbican, St Pauls, Moorgate, Liverpool Street and surrounding streets
-                    across EC1, EC2, EC3 and EC4.
+                    For a Barbican flat, check the City&apos;s{" "}
+                    <a
+                      href="https://www.cityoflondon.gov.uk/services/barbican-estate/barbican-estate-home-improvements"
+                      className="font-semibold text-[#226e77] underline underline-offset-2"
+                    >
+                      home improvement and landlord approval guidance
+                    </a>. If the property is listed, use the Corporation&apos;s{" "}
+                    <a
+                      href="https://www.cityoflondon.gov.uk/services/planning/planning-application-requirements/listed-building-consent"
+                      className="font-semibold text-[#226e77] underline underline-offset-2"
+                    >
+                      listed building consent checklist
+                    </a>{" "}
+                    to see what drawings and details you may need.
                   </p>
 
                   <div className="flex flex-wrap gap-3 items-center">
@@ -153,7 +168,13 @@ export default function CityOfLondonAreaPage() {
                   </div>
                 </div>
               </div>
+            </div>
+          </section>
 
+          <ServiceInternalLinks boroughName="City of London" />
+
+          <section className="bg-white border-b border-slate-200 py-10">
+            <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
               <div className="grid md:grid-cols-2 gap-10">
                 <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
                   <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
