@@ -6,6 +6,7 @@ import BoroughMasterHero, { BoroughMasterHeader } from "../../components/Borough
 import React from "react";
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
 import AreaTopHeader from "../../components/AreaTopHeader";
 import ServiceInternalLinks from "../../components/ServiceInternalLinks";
@@ -24,9 +25,9 @@ const FAQ_ITEMS = [
       "Not always. Many householder rear extensions can be permitted development, but conservation areas and Article 4 Directions can change what is allowed. We confirm the correct route once we review your address and house type.",
   },
   {
-    question: "Is Southwark strict with loft conversions and dormers?",
+    question: "What drawings does Southwark Council need for a house extension?",
     answer:
-      "Southwark can be stricter in conservation areas and on streets with strong character, especially where roof alterations affect the street scene. Strong drawings and a clear design approach usually help the process.",
+      "Start with scaled existing and proposed floor plans and elevations. Southwark's checklist also lists drawings that depend on the work. If you are extending a flat, check the application type before preparing the drawings.",
   },
   {
     question: "How long does Southwark Council take to decide?",
@@ -75,7 +76,7 @@ export default function SouthwarkAreaPage() {
       "Bermondsey",
     ],
     description:
-      "Architectural drawing services in Southwark for extensions, loft conversions, flat conversions, outbuildings, refurbishments and building regulations.",
+      "House extension plans and architectural drawings in Southwark, including floor plans, elevations and Building Regulations drawings.",
   };
 
   return (
@@ -99,33 +100,37 @@ export default function SouthwarkAreaPage() {
       <div className="min-h-screen w-full min-w-0 overflow-x-clip bg-[#f8f4f0] text-slate-900">
         <BoroughMasterHeader boroughName={"Southwark"} />
         <main>
-          <BoroughMasterHero boroughName={"Southwark"} formId={"southwark-quote"} headline={"Plans for extensions, lofts and new builds in Southwark"} />
+          <BoroughMasterHero
+            boroughName="Southwark"
+            formId="southwark-quote"
+            headline="House extension and floor plans in Southwark"
+          />
 
-          <ServiceInternalLinks boroughName="Southwark" />
-
-          <section aria-labelledby="southwark-nearby-conversion" className="border-b border-[#dce7e0] bg-[#f2f8f4] py-7">
-            <div className="mx-auto max-w-6xl px-4 lg:px-6">
-              <p className="text-[10px] font-extrabold uppercase tracking-[.16em] text-[#97675c]">Nearby approved project · London Borough of Lewisham</p>
-              <h2 id="southwark-nearby-conversion" className="mt-2 text-[20px] font-semibold leading-snug text-[#23484b]">Two-flat conversion in nearby Brockley</h2>
-              <p className="mt-2 max-w-4xl text-[13px] leading-6 text-[#567176]">Our Lewisham case study shows the planning approval and selected architectural drawings for converting upper floors into two self-contained flats. It is a Lewisham planning permission, not a Southwark approval, and offers a useful example for South East London property owners.</p>
-              <a href="/case-studies/brockley-road-lewisham-two-flat-conversion" className="mt-3 inline-flex text-[12px] font-bold text-[#226e77] underline underline-offset-4">Explore the approved Lewisham conversion →</a>
-            </div>
-          </section>
-
-          <section className="bg-white border-b border-slate-200 py-10">
-            <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
+          <section aria-labelledby="southwark-extension-drawings" className="bg-white border-b border-slate-200 py-10">
+            <div className="mx-auto max-w-5xl px-4 lg:px-6">
               <div className="grid md:grid-cols-[1.7fr,1.3fr] gap-10 items-start">
                 <div className="space-y-4">
-                  <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
-                    Architectural drawing services in Southwark
+                  <h2 id="southwark-extension-drawings" className="text-[18px] font-semibold uppercase tracking-[0.16em]">
+                    Planning drawings for rear and side return extensions
                   </h2>
                   <p className="text-[13px] text-slate-700">
-                    WEDRAWPLANS provide full drawing packages for single and double storey extensions, loft conversions,
-                    internal alterations, outbuildings, flat conversions and small new developments across the borough of Southwark.
+                    For a side return in Peckham, a rear extension in Camberwell or a remodel in Dulwich, we prepare
+                    existing and proposed floor plans so you can see how the new rooms connect to the house and garden.
+                    The elevations show the proposed doors, windows and roof shape.
                   </p>
                   <p className="text-[13px] text-slate-700">
-                    We work throughout Camberwell, Peckham, Nunhead, East Dulwich, Dulwich, Borough, Elephant and Castle,
-                    Walworth, Bermondsey, Surrey Quays and Rotherhithe.
+                    Southwark Council asks for sections if your project changes roof or ceiling heights. Its{" "}
+                    <a
+                      href="https://www.southwark.gov.uk/planning-environment-and-building-control/planning/planning-checklists-householder-application"
+                      className="font-semibold text-[#226e77] underline underline-offset-2"
+                    >
+                      householder application checklist
+                    </a>{" "}
+                    explains when roof plans and other supporting drawings are needed. See our{" "}
+                    <Link href="/extension-plans" className="font-semibold text-[#226e77] underline underline-offset-2">
+                      house extension drawing packages
+                    </Link>{" "}
+                    for planning and technical drawing options.
                   </p>
 
                   <div className="flex flex-wrap gap-3 items-center">
@@ -165,7 +170,25 @@ export default function SouthwarkAreaPage() {
                   </div>
                 </div>
               </div>
+            </div>
+          </section>
 
+          <ServiceInternalLinks boroughName="Southwark" />
+
+          <section aria-labelledby="southwark-nearby-conversion" className="border-b border-[#dce7e0] bg-[#f2f8f4] py-7">
+            <div className="mx-auto max-w-6xl px-4 lg:px-6">
+              <p className="text-[10px] font-extrabold uppercase tracking-[.16em] text-[#97675c]">Nearby approved project · London Borough of Lewisham</p>
+              <h2 id="southwark-nearby-conversion" className="mt-2 text-[20px] font-semibold leading-snug text-[#23484b]">Two-flat conversion in nearby Brockley</h2>
+              <p className="mt-2 max-w-4xl text-[13px] leading-6 text-[#567176]">
+                See the planning approval and selected drawings for a conversion into two upper-floor flats in Brockley,
+                in the London Borough of Lewisham.
+              </p>
+              <a href="/case-studies/brockley-road-lewisham-two-flat-conversion" className="mt-3 inline-flex text-[12px] font-bold text-[#226e77] underline underline-offset-4">Explore the approved Lewisham conversion →</a>
+            </div>
+          </section>
+
+          <section className="bg-white border-b border-slate-200 py-10">
+            <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
               <div className="grid md:grid-cols-2 gap-10">
                 <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
                   <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
@@ -361,7 +384,7 @@ export default function SouthwarkAreaPage() {
                   extension plans
                 </a>
                 ,{" "}
-                <a href="/loft-plans" className="underline">
+                <a href="/loft-conversion-plans" className="underline">
                   loft plans
                 </a>{" "}
                 and{" "}

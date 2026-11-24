@@ -6,6 +6,7 @@ import BoroughMasterHero, { BoroughMasterHeader } from "../../components/Borough
 import React from "react";
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import { submitBoroughLead } from "../../lib/submitBoroughLead";
 import ServiceInternalLinks from "../../components/ServiceInternalLinks";
 
@@ -19,14 +20,14 @@ const areaMetadata = getLondonAreaMetadata("Lambeth");
 
 const FAQ_ITEMS = [
   {
-    question: "Do I need planning permission for a rear extension in Lambeth?",
+    question: "Do I need planning permission for a loft conversion in Lambeth?",
     answer:
-      "Not always. Many rear extensions in Lambeth can be carried out under permitted development. We confirm the correct route once we review your address and house type.",
+      "The planning route depends on the property and the roof changes. A house may have permitted development rights, subject to conditions and restrictions at the address. Check your address and the proposed works before settling on a design.",
   },
   {
-    question: "Is Lambeth strict with loft conversions and extensions?",
+    question: "What drawings do I need for a loft conversion in Lambeth?",
     answer:
-      "Lambeth can be stricter in conservation areas and on character streets, including parts of Clapham, Brixton and riverside locations. Clear drawings and a strong planning case help.",
+      "A planning drawing pack can include existing and proposed floor plans, roof plans, elevations and a section showing headroom and the stair. The drawings depend on whether you are adding a dormer, changing the roof shape or fitting rooflights.",
   },
   {
     question: "How long does Lambeth Council take to decide?",
@@ -74,7 +75,7 @@ export default function LambethAreaPage() {
       "West Norwood",
     ],
     description:
-      "Architectural drawing services in Lambeth for extensions, loft conversions, flat conversions, outbuildings and building regulation packs.",
+      "Loft conversion planning drawings in Lambeth, plus drawings for extensions, flat conversions and Building Regulations.",
   };
 
   return (
@@ -97,28 +98,37 @@ export default function LambethAreaPage() {
         <BoroughMasterHeader boroughName={"Lambeth"} />
 
         <main>
-          <BoroughMasterHero boroughName={"Lambeth"} formId={"lambeth-quote"} headline={"Plans for extensions, lofts and conversions in Lambeth"} />
+          <BoroughMasterHero
+            boroughName="Lambeth"
+            formId="lambeth-quote"
+            headline="Loft conversion drawings in Lambeth"
+          />
 
-          <ServiceInternalLinks boroughName="Lambeth" />
-
-<ApprovalEvidenceStrip
-  slugs={["electric-avenue-brixton-shopfront"]}
-  title="Approved conservation-area shopfront in Brixton"
-  intro="The Electric Avenue project involved the reinstatement of a timber shopfront in the Brixton Conservation Area."
-/>
-
-          <section className="bg-white border-b border-slate-200 py-10">
-            <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
+          <section aria-labelledby="lambeth-loft-drawings" className="bg-white border-b border-slate-200 py-10">
+            <div className="mx-auto max-w-5xl px-4 lg:px-6">
               <div className="grid md:grid-cols-[1.7fr,1.3fr] gap-10 items-start">
                 <div className="space-y-4">
-                  <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">
-                    Architectural drawing services in Lambeth
+                  <h2 id="lambeth-loft-drawings" className="text-[18px] font-semibold uppercase tracking-[0.16em]">
+                    What your Lambeth loft drawings should show
                   </h2>
                   <p className="text-[13px] text-slate-700">
-                    WEDRAWPLANS provide full drawing packages for extensions, loft conversions, internal alterations, outbuildings and flat conversion projects across Lambeth.
+                    If you are turning a loft into a bedroom or office in Brixton, Clapham or Streatham, start with
+                    where the new stair will fit and how much standing room the roof allows. We draw the existing
+                    and proposed floor layouts, elevations showing the roof changes, and a
+                    section so you can see how the roof and stair fit together.
                   </p>
                   <p className="text-[13px] text-slate-700">
-                    We work throughout Clapham, Brixton, Streatham, Stockwell, Tulse Hill, West Norwood, Vauxhall, Waterloo and nearby streets.
+                    The planning route depends on the property and the work. Use{" "}
+                    <a
+                      href="https://www.lambeth.gov.uk/planning-building-control/planning-applications/find-out-if-you-need-planning-permission"
+                      className="font-semibold text-[#226e77] underline underline-offset-2"
+                    >
+                      Lambeth Council&apos;s planning guidance
+                    </a>{" "}
+                    to check the address and any restrictions before settling on a design. Explore our{" "}
+                    <Link href="/loft-conversion-plans" className="font-semibold text-[#226e77] underline underline-offset-2">
+                      loft conversion drawing packages and approved examples
+                    </Link>.
                   </p>
 
                   <div className="flex flex-wrap gap-3 items-center">
@@ -158,7 +168,19 @@ export default function LambethAreaPage() {
                   </div>
                 </div>
               </div>
+            </div>
+          </section>
 
+          <ServiceInternalLinks boroughName="Lambeth" />
+
+          <ApprovalEvidenceStrip
+            slugs={["electric-avenue-brixton-shopfront"]}
+            title="Approved conservation-area shopfront in Brixton"
+            intro="The Electric Avenue project involved the reinstatement of a timber shopfront in the Brixton Conservation Area."
+          />
+
+          <section className="bg-white border-b border-slate-200 py-10">
+            <div className="mx-auto max-w-5xl px-4 lg:px-6 space-y-10">
               <div className="grid md:grid-cols-2 gap-10">
                 <div className="rounded-2xl bg-white shadow-sm border border-slate-100 p-6 space-y-4">
                   <h3 className="text-[14px] font-semibold uppercase tracking-[0.14em] text-slate-900">
@@ -353,7 +375,7 @@ export default function LambethAreaPage() {
                   extension plans
                 </a>
                 ,{" "}
-                <a href="/loft-plans" className="underline">
+                <a href="/loft-conversion-plans" className="underline">
                   loft plans
                 </a>{" "}
                 and{" "}
