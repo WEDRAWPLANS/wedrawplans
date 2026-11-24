@@ -97,7 +97,7 @@ export default function LambethAreaPage() {
         <BoroughMasterHeader boroughName={"Lambeth"} />
 
         <main>
-          <BoroughMasterHero boroughName={"Lambeth"} formId={"lambeth-quote"} headline={"Plans for extensions, lofts and conversions in Lambeth"} />
+          <BoroughMasterHero boroughName={"Lambeth"} formId={"lambeth-quote"} headline={"Loft conversion and house extension drawings in Lambeth"} />
 
           <ServiceInternalLinks boroughName="Lambeth" />
 
@@ -291,14 +291,23 @@ export default function LambethAreaPage() {
                 </div>
               </div>
 
-              <div className="rounded-2xl bg-emerald-50 border border-emerald-100 p-6 space-y-3">
-                <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-emerald-900">
-                  Local planning knowledge for Lambeth projects
+              <section aria-labelledby="lambeth-homeowner-drawings" className="rounded-2xl bg-emerald-50 border border-emerald-100 p-6 space-y-3">
+                <h2 id="lambeth-homeowner-drawings" className="text-[18px] font-semibold leading-7 text-emerald-900">
+                  Loft conversion and extension drawings for Lambeth homes
                 </h2>
-                <p className="text-[13px] text-emerald-900">
-                  Lambeth includes conservation areas, character terraces, busy high streets and sensitive streetscapes. We shape each scheme to fit local context so approval chances are as strong as possible.
+                <p className="text-[13px] leading-6 text-emerald-900">
+                  For loft conversions in Brixton, Clapham and Streatham, the first step is to review the existing roof, house type and any local planning constraints. Existing and proposed roof plans, elevations and sections can explain a dormer, rooflights and the proposed changes clearly.
                 </p>
-              </div>
+                <p className="text-[13px] leading-6 text-emerald-900">
+                  For rear and side extensions in Stockwell, Tulse Hill and West Norwood, drawings need to show the proposed depth, height, roof form and relationship to neighbouring buildings. We check whether a planning application or Lawful Development Certificate may be appropriate; permitted-development rights should not be assumed.
+                </p>
+                <p className="text-[13px] leading-6 text-emerald-900">
+                  Explore our <a href="/loft-conversion-plans" className="font-semibold underline underline-offset-4">loft conversion drawing packages</a> or <a href="/extension-plans" className="font-semibold underline underline-offset-4">house extension plans</a>. Technical Building Regulations drawings and structural calculations are agreed separately where required.
+                </p>
+                <p className="text-[12px] leading-5 text-emerald-900">
+                  The Electric Avenue approval displayed above is for a Brixton conservation-area shopfront, not a residential loft or house extension.
+                </p>
+              </section>
 
               <div className="space-y-4">
                 <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">

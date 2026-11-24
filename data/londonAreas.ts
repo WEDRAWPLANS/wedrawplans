@@ -57,8 +57,8 @@ const targetedAreaMetadata: Partial<Record<LondonAreaName, { title: string; desc
     description: "Planning permission drawings for home extensions and lofts in Barking and Dagenham. Get a clear fixed-fee quote, prompt survey booking and local planning support.",
   },
   "City of London": {
-    title: "City of London Loft & Planning Drawings | WEDRAWPLANS",
-    description: "Architectural, loft and planning drawings for City of London properties. Clear fixed-fee quotes, fast survey booking and support with applications and Building Regulations.",
+    title: "City of London Refurbishment & Planning Drawings | WEDRAWPLANS",
+    description: "Planning and Building Regulations drawings for City of London flat refurbishments, conversions and alterations. Clear written fixed-fee quotes and project-specific guidance.",
   },
   "Kingston upon Thames": {
     title: "House Extension Plans Kingston | Fixed Fees | WEDRAWPLANS",
@@ -66,7 +66,11 @@ const targetedAreaMetadata: Partial<Record<LondonAreaName, { title: string; desc
   },
   Lambeth: {
     title: "Loft & Extension Drawings Lambeth | Fixed Fees | WEDRAWPLANS",
-    description: "Loft conversion and house extension drawings across Lambeth, Brixton and Clapham. Clear fixed-fee quotes, fast survey booking and council planning application support.",
+    description: "Loft conversion and rear extension planning drawings for Lambeth, Brixton, Clapham and Streatham. Check your planning route and request a written fixed-fee quote.",
+  },
+  Southwark: {
+    title: "Southwark Extension & Loft Planning Drawings | WEDRAWPLANS",
+    description: "Rear extension, side-return and loft drawings in Southwark, including Peckham, Camberwell and Dulwich. Property-specific planning advice and written fixed-fee quotes.",
   },
   Greenwich: {
     title: "Planning Drawings Greenwich | Fixed-Fee Quotes | WEDRAWPLANS",

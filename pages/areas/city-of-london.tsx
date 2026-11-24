@@ -95,7 +95,28 @@ export default function CityOfLondonAreaPage() {
 
         <BoroughMasterHeader boroughName={"City of London"} />
         <main>
-          <BoroughMasterHero boroughName={"City of London"} formId={"city-of-london-quote"} headline={"Plans for refurbishments, alterations and conversions in the City of London"} />
+          <BoroughMasterHero boroughName={"City of London"} formId={"city-of-london-quote"} headline={"Refurbishment, conversion and technical drawings in the City of London"} />
+
+          <section aria-labelledby="city-homeowner-refurbishment" className="border-b border-slate-200 bg-[#f4f8f5] py-8">
+            <div className="mx-auto max-w-5xl px-4 lg:px-6">
+              <h2 id="city-homeowner-refurbishment" className="text-[20px] font-semibold leading-7 text-[#214950]">
+                Planning and Building Regulations drawings for City of London flat refurbishments
+              </h2>
+              <p className="mt-3 text-[13px] leading-6 text-slate-700">
+                Planning an internal alteration, flat reconfiguration or refurbishment around Barbican, Bank or Moorgate? We prepare existing and proposed layouts and technical drawing information appropriate to the project. Listed status, conservation-area controls, building ownership and the proposed works must be reviewed before deciding which consents are needed.
+              </p>
+              <p className="mt-3 text-[13px] leading-6 text-slate-700">
+                Where the work affects structure, fire precautions or shared parts of a building, structural, fire and Building Control coordination may also be necessary. These services and any third-party approvals are included only when expressly agreed in the written quotation.
+              </p>
+              <div className="mt-4 flex flex-wrap gap-4 text-[13px] font-semibold">
+                <a href="/planning-drawings" className="text-teal-800 underline underline-offset-4">City of London planning drawing options →</a>
+                <a href="/building-regulation-drawings" className="text-teal-800 underline underline-offset-4">Building Regulations drawing packages →</a>
+              </div>
+              <p className="mt-3 text-[12px] leading-5 text-slate-600">
+                Any completed projects shown elsewhere on this page are labelled with their actual council area; they are not presented as City of London approvals.
+              </p>
+            </div>
+          </section>
 
           <ServiceInternalLinks boroughName="City of London" />
 
