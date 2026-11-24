@@ -99,7 +99,7 @@ export default function SouthwarkAreaPage() {
       <div className="min-h-screen w-full min-w-0 overflow-x-clip bg-[#f8f4f0] text-slate-900">
         <BoroughMasterHeader boroughName={"Southwark"} />
         <main>
-          <BoroughMasterHero boroughName={"Southwark"} formId={"southwark-quote"} headline={"Plans for extensions, lofts and new builds in Southwark"} />
+          <BoroughMasterHero boroughName={"Southwark"} formId={"southwark-quote"} headline={"Rear extension, side-return and loft drawings in Southwark"} />
 
           <ServiceInternalLinks boroughName="Southwark" />
 
@@ -299,14 +299,23 @@ export default function SouthwarkAreaPage() {
                 </div>
               </div>
 
-              <div className="rounded-2xl bg-emerald-50 border border-emerald-100 p-6 space-y-3">
-                <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-emerald-900">
-                  Local planning knowledge for Southwark projects
+              <section aria-labelledby="southwark-homeowner-drawings" className="rounded-2xl bg-emerald-50 border border-emerald-100 p-6 space-y-3">
+                <h2 id="southwark-homeowner-drawings" className="text-[18px] font-semibold leading-7 text-emerald-900">
+                  Side-return and rear extension drawings for Southwark terraces
                 </h2>
-                <p className="text-[13px] text-emerald-900">
-                  Southwark includes conservation areas, dense terraces, mixed use streets and large estates. We shape each scheme to fit local context so approval chances are as strong as possible.
+                <p className="text-[13px] leading-6 text-emerald-900">
+                  For a terraced home in Peckham, Camberwell or East Dulwich, a side-return or wraparound proposal needs clear existing and proposed floor plans, elevations and sections. These show the new roof, boundary relationship and changes beside neighbouring windows before a planning route is selected.
                 </p>
-              </div>
+                <p className="text-[13px] leading-6 text-emerald-900">
+                  We review the property type, conservation-area constraints and the proposal before advising whether planning permission, prior approval or a Lawful Development Certificate is relevant. An approval for a different property does not establish what can be built at yours.
+                </p>
+                <p className="text-[13px] leading-6 text-emerald-900">
+                  See <a href="/extension-plans" className="font-semibold underline underline-offset-4">rear and side-return extension drawing packages</a>, <a href="/planning-drawings" className="font-semibold underline underline-offset-4">planning application drawings</a> and <a href="/building-regulation-drawings" className="font-semibold underline underline-offset-4">technical Building Regulations drawings</a>.
+                </p>
+                <p className="text-[12px] leading-5 text-emerald-900">
+                  The Brockley conversion featured above is a Lewisham approval, not a Southwark house-extension approval.
+                </p>
+              </section>
 
               <div className="space-y-4">
                 <h2 className="text-[18px] font-semibold uppercase tracking-[0.16em]">

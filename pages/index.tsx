@@ -1175,23 +1175,24 @@ export default function IndexPage() {
                   </p>
 
                   <h1 className="mt-3 text-[26px] font-semibold uppercase leading-[1.3] tracking-[0.14em] text-slate-900 xl:text-[34px]">
-                    Get Your House Extension & Planning Drawings Approved Across London & Surrounding Areas
+                    Planning Drawings for London House Extensions & Loft Conversions
                   </h1>
 
                   <p className="mt-3 max-w-[640px] text-[15px] font-medium leading-7 text-slate-800">
-                    Get professional drawings for house extensions, loft conversions, new builds and Building Regulations.
-                    Initial survey within 48 hours and clear fixed pricing.
+                    Fixed-fee drawing packages for rear extensions, side returns and loft conversions.
+                    Send your postcode to start a tailored planning or Building Regulations quote.
                   </p>
 
                   <div className="mt-5 max-w-[640px] text-[14px] leading-7 text-slate-700">
                     <p>
-                      WEDRAWPLANS helps London homeowners plan extensions, loft conversions and other improvements with
-                      professional architectural drawings, clear fixed-fee quotations and guidance through planning applications
-                      and local council requirements. We also support developers and commercial clients across London and the M25 area.
+                      WEDRAWPLANS prepares existing and proposed plans, elevations and technical drawing packs for
+                      London homeowners planning extensions, loft conversions and other residential alterations.
+                      We explain whether planning permission, a Lawful Development Certificate or Building Regulations
+                      drawings may be needed before confirming the work included in your fixed-fee quote.
                     </p>
                     <p className="mt-3">
-                      Send us your house photo on WhatsApp and we will advise instantly. Many quotes are turned around the
-                      same working day.
+                      No drawings or photos are needed for your first enquiry. Send your postcode and a short
+                      description; we will review the project and explain the next steps.
                     </p>
                     <p className="mt-3">
                       Call{" "}
@@ -1422,6 +1423,22 @@ export default function IndexPage() {
                 body="Planning and Building Regulation drawings prepared to move projects forward."
               />
             </div>
+          </div>
+        </section>
+
+        <section aria-labelledby="home-borough-drawings" className="border-b border-slate-200 bg-[#f3f8f5] py-5">
+          <div className="mx-auto max-w-6xl px-4 lg:px-6">
+            <h2 id="home-borough-drawings" className="text-[16px] font-semibold text-[#204d54]">
+              Local planning drawings for London homeowners
+            </h2>
+            <p className="mt-1 text-[13px] leading-6 text-slate-700">
+              Review drawing options for your area, then request a written fixed-fee quote. Planning requirements depend on the property and proposed work.
+            </p>
+            <nav aria-label="Local architectural drawing guides" className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-[13px] font-semibold">
+              <Link href="/areas/lambeth" className="text-teal-800 underline underline-offset-4 hover:text-teal-600">Loft and extension drawings in Lambeth →</Link>
+              <Link href="/areas/southwark" className="text-teal-800 underline underline-offset-4 hover:text-teal-600">Rear and side-return extension drawings in Southwark →</Link>
+              <Link href="/areas/city-of-london" className="text-teal-800 underline underline-offset-4 hover:text-teal-600">City of London refurbishment and planning drawings →</Link>
+            </nav>
           </div>
         </section>
 
