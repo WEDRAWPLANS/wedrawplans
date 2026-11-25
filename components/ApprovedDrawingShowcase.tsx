@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { CaseStudy } from "../data/caseStudies";
 
-type ProjectKind = "sistova" | "cromwell";
+type ProjectKind = "sistova" | "cromwell" | "bernhart";
 
 function SistovaFaintWatermark({ small = false }: { small?: boolean }) {
   return (
@@ -57,6 +57,22 @@ const PROJECTS: Record<ProjectKind, {
     localLink: "/areas/hounslow",
     localText: "Architectural drawing services in Hounslow",
   },
+  bernhart: {
+    eyebrow: "Barnet · Watling Estate Conservation Area · Two approved 2018 applications",
+    heading: "One Edgware home · Two distinct planning permissions",
+    visualIntro: "Explore original existing and proposed architectural drawings for a garage conversion and a separate single-storey rear extension. These are design drawings, not completed construction photographs.",
+    drawingIntro: "Select an original drawing thumbnail to explore the garage-to-habitable-room conversion and the separately approved rear extension. Barnet issued two distinct planning permissions in 2018; the garage delegated report is evidence for the garage application only.",
+    methodHeading: "How two proposals were presented to Barnet",
+    method: [
+      { title: "1 · Garage conversion · Existing and proposed drawings", body: "The proposal replaces the original garage door with a front window to create a habitable room, retaining off-street parking and addressing the conservation-area streetscape." },
+      { title: "2 · Rear extension · Plans and elevations", body: "A separate single-storey rear extension was supported by proposed ground-floor, rear-elevation and side-elevation drawings." },
+      { title: "3 · Two independent Barnet decisions", body: "Garage conversion 18/0452/HSE granted on 5 April 2018. Rear extension 18/2968/HSE granted on 5 July 2018. These are planning decisions, not Building Regulations approval." },
+    ],
+    outcome: "Two separate planning permissions granted · April & July 2018",
+    planning: "London Borough of Barnet · 18/0452/HSE and 18/2968/HSE",
+    localLink: "/areas/barnet",
+    localText: "Architectural drawings in Barnet",
+  },
 };
 
 export default function ApprovedDrawingShowcase({
@@ -66,8 +82,9 @@ export default function ApprovedDrawingShowcase({
   project: CaseStudy;
   kind: ProjectKind;
 }) {
-  const [drawingIndex, setDrawingIndex] = useState(kind === "sistova" ? 0 : 1);
+  const [drawingIndex, setDrawingIndex] = useState(kind === "sistova" || kind === "bernhart" ? 0 : 1);
   const content = PROJECTS[kind];
+  const isBernhart = kind === "bernhart";
   const drawings = project.galleryImages || [];
   const leadDrawing = drawings[0];
   const selected = drawings[Math.min(drawingIndex, drawings.length - 1)];
@@ -95,9 +112,10 @@ export default function ApprovedDrawingShowcase({
                 draggable={false}
               />
               {kind === "sistova" ? <SistovaFaintWatermark /> : null}
+              {isBernhart ? <span aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-0 w-[21%] bg-[#f7f9f6]" /> : null}
             </div>
             <figcaption className="flex flex-wrap justify-between gap-2 border-t border-[#e5ece8] px-4 py-3 text-[11px] font-semibold leading-5 text-[#43666b] sm:px-6 sm:text-[12px]">
-              <span>Existing &amp; proposed 3D architectural drawings</span>
+              <span>{isBernhart ? "Original architectural drawing · garage conversion" : "Existing & proposed 3D architectural drawings"}</span>
               <span>Architectural design by WEDRAWPLANS</span>
             </figcaption>
           </figure>
@@ -134,6 +152,7 @@ export default function ApprovedDrawingShowcase({
                   draggable={false}
                 />
                 {kind === "sistova" ? <SistovaFaintWatermark /> : null}
+                {isBernhart ? <span aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-0 w-[21%] bg-[#f7f8f6]" /> : null}
               </div>
             </figure>
             <div className="border-t border-[#e5ece8] px-3 py-4 sm:px-5">
@@ -151,6 +170,7 @@ export default function ApprovedDrawingShowcase({
                     <div className="relative h-[82px] rounded-md bg-[#f3f5f3] sm:h-[92px]">
                       <Image src={drawing.src} alt={drawing.alt} fill sizes="117px" className="pointer-events-none object-contain" draggable={false} loading="lazy" />
                       {kind === "sistova" ? <SistovaFaintWatermark small /> : null}
+                      {isBernhart ? <span aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-0 w-[21%] bg-[#f3f5f3]" /> : null}
                     </div>
                     <span className="mt-1.5 block text-center text-[10px] font-bold text-[#41656a]">Drawing {i + 1}</span>
                   </button>
@@ -162,6 +182,20 @@ export default function ApprovedDrawingShowcase({
         <div className="border-t border-[#d9e8e1] bg-[#f1f8f3] px-4 py-5 sm:px-6">
           <p className="text-[11px] font-bold uppercase tracking-[.15em] text-[#28674f]">{content.outcome}</p>
           <p className="mt-2 text-[12px] font-semibold leading-6 text-[#345f5b]">{content.planning}</p>
+          {isBernhart ? (
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+              <article className="rounded-xl border border-[#c8ded5] bg-white p-4">
+                <h4 className="text-[13px] font-bold text-[#22565d]">Garage conversion · APPROVED</h4>
+                <p className="mt-1 text-[12px] text-[#4c6c6d]">18/0452/HSE · 5 April 2018</p>
+                <p className="mt-1 text-[12px] leading-5 text-[#5b7472]">Garage door replaced by front window.</p>
+              </article>
+              <article className="rounded-xl border border-[#c8ded5] bg-white p-4">
+                <h4 className="text-[13px] font-bold text-[#22565d]">Single-storey rear extension · APPROVED</h4>
+                <p className="mt-1 text-[12px] text-[#4c6c6d]">18/2968/HSE · 5 July 2018</p>
+                <p className="mt-1 text-[12px] leading-5 text-[#5b7472]">Separate householder permission for rear addition.</p>
+              </article>
+            </div>
+          ) : null}
           <p className="mt-2 text-[12px] leading-6 text-[#4b6b67]">This portfolio displays WEDRAWPLANS' original design drawings. Planning permission relates to the recorded application and approved documents, not to any separate Building Regulations approval.</p>
         </div>
       </section>
