@@ -24,6 +24,7 @@ export default function CaseStudyPage({ item, indexable }: PageProps) {
   const isAllum = item.slug === "allum-lane-elstree-major-house-extension";
   const isSistova = item.slug === "sistova-road-wandsworth-extension-basement";
   const isBernhart = item.slug === "bernhart-close-barnet-garage-conversion-rear-extension";
+  const isHornby = item.slug === "hornby-close-camden-garage-conversion";
   const isCromwell = item.slug === "cromwell-road-hounslow-rear-extension";
   const isBrockley = item.slug === "brockley-road-lewisham-two-flat-conversion";
   const isHarrowStudios = item.slug === "burnt-oak-broadway-harrow-retail-flats";
@@ -38,7 +39,7 @@ export default function CaseStudyPage({ item, indexable }: PageProps) {
   const isGrangeCombined = item.slug === "grange-road-edgware-side-extension-lawful-development-building-regulations";
   const isWoolwich = item.slug === "700-woolwich-road-greenwich-two-new-flats";
   const isWarbeck = item.slug === "warbeck-road-hammersmith-fulham-loft-certificate";
-  const isFeaturedLayout = isReddings || isAllum || isSistova || isBernhart || isCromwell || isBrockley || isHarrowStudios || isCannon || isSunburyCare || isGreenwichTen || isHendonHMO || isCranbourneCombined || isSuttonLoft || isLeicesterCombined || isGrangeCombined || isHyde || isWoolwich || isWarbeck;
+  const isFeaturedLayout = isReddings || isAllum || isSistova || isBernhart || isHornby || isCromwell || isBrockley || isHarrowStudios || isCannon || isSunburyCare || isGreenwichTen || isHendonHMO || isCranbourneCombined || isSuttonLoft || isLeicesterCombined || isGrangeCombined || isHyde || isWoolwich || isWarbeck;
   const canonical = "https://www.wedrawplans.co.uk/case-studies/" + item.slug;
   const quoteHref = "#case-study-quote";
   const category = categoryForCaseStudy(item);
