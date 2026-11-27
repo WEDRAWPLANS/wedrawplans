@@ -53,10 +53,11 @@ async function crop(sourceKey, fractions, x, y, w, h) {
   return {input,left:x,top:y};
 }
 async function compose(index, title, subtitle, shapes, sections) {
-  const layout=svg(header(title,subtitle)+shapes+faintMark());
+  const layout=svg(header(title,subtitle)+shapes);
+  const watermark=svg(faintMark());
   const output=path.join(base,"privacy-drawing-"+String(index).padStart(2,"0")+".webp");
   await sharp({create:{width,height,channels:3,background:bg}})
-    .composite([...sections,{input:layout,left:0,top:0}])
+    .composite([{input:layout,left:0,top:0},...sections,{input:watermark,left:0,top:0}])
     .webp({quality:84,effort:4})
     .toFile(output);
   const check=await sharp(output).metadata();
