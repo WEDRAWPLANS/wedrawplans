@@ -112,7 +112,6 @@ export default function ApprovedDrawingShowcase({
                 draggable={false}
               />
               {kind === "sistova" ? <SistovaFaintWatermark /> : null}
-              {isBernhart ? <span aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-0 w-[21%] bg-[#f7f9f6]" /> : null}
             </div>
             <figcaption className="flex flex-wrap justify-between gap-2 border-t border-[#e5ece8] px-4 py-3 text-[11px] font-semibold leading-5 text-[#43666b] sm:px-6 sm:text-[12px]">
               <span>{isBernhart ? "Original architectural drawing · garage conversion" : "Existing & proposed 3D architectural drawings"}</span>
@@ -152,7 +151,6 @@ export default function ApprovedDrawingShowcase({
                   draggable={false}
                 />
                 {kind === "sistova" ? <SistovaFaintWatermark /> : null}
-                {isBernhart ? <span aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-0 w-[21%] bg-[#f7f8f6]" /> : null}
               </div>
             </figure>
             <div className="border-t border-[#e5ece8] px-3 py-4 sm:px-5">
@@ -170,7 +168,6 @@ export default function ApprovedDrawingShowcase({
                     <div className="relative h-[82px] rounded-md bg-[#f3f5f3] sm:h-[92px]">
                       <Image src={drawing.src} alt={drawing.alt} fill sizes="117px" className="pointer-events-none object-contain" draggable={false} loading="lazy" />
                       {kind === "sistova" ? <SistovaFaintWatermark small /> : null}
-                      {isBernhart ? <span aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-0 w-[21%] bg-[#f3f5f3]" /> : null}
                     </div>
                     <span className="mt-1.5 block text-center text-[10px] font-bold text-[#41656a]">Drawing {i + 1}</span>
                   </button>
