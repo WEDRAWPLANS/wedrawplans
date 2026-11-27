@@ -2,6 +2,11 @@
 
 **Applies to all future case studies and revisions. Do not replace existing site chrome with independently designed static HTML.**
 
+## Canonical client-facing case-study presentation: SISTOVA ROAD
+**Always use the existing Sistova Road case study as the structural benchmark for new WEDRAWPLANS case studies**, unless Abbey explicitly approves a different structure. Reuse the same live website page shell, featured header, project facts, council approval evidence, original drawing showcase, one large selected drawing with previous/next navigation and clickable labelled thumbnail strip, right-side sticky fixed-fee quote form on desktop, mobile quote CTA, homeowner-focused narrative and footer. Adapt only the project-specific text, permission evidence, drawing count and selected original artwork; do not substitute PDF slide decks, generated screenshots or a disconnected microsite for the real Next.js website preview. Always publish a non-production Vercel preview link for Abbey's approval **before** any production publication.
+
+Privacy: original drawing files may contain client names, phone numbers and property door numbers. Before any public production release, create truly redacted derivative image assets (not merely CSS covers) and verify the thumbnails and full-resolution source files disclose no private identifiers.
+
 ## Non-negotiable website shell
 - Reuse the existing Next.js case-study route `pages/case-studies/[slug].tsx` and shared `CaseStudyHeader`, `CaseStudyFooter`, `CaseStudyBottom`, `CaseStudyGalleryQuote` and `ProjectQuickQuotePanel` components. These are the approved Warbeck/Cranbourne site-wide look and behaviour.
 - Maintain the original WEDRAWPLANS logo, font/colour language, navigation, phone, WhatsApp, existing reviews, responsive header/footer, sticky enquiry form and mobile CTA. No alternate logos, invented brand variants or isolated demo website shells.

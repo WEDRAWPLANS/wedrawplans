@@ -53,36 +53,36 @@ export const caseStudies: CaseStudy[] = [
     "leadAngle": "Considering a garage conversion, rear extension or conservation-area planning application in Barnet, Edgware or North London?",
     "relatedService": "/extension-plans",
     "relatedArea": "/areas/barnet",
-    "heroImage": "/images/case-studies/bernhart-close-barnet-garage-conversion-rear-extension/drawing-01.webp",
-    "secondaryImage": "/images/case-studies/bernhart-close-barnet-garage-conversion-rear-extension/drawing-02.webp",
+    "heroImage": "/images/case-studies/bernhart-close-barnet-garage-conversion-rear-extension/privacy-drawing-01.webp",
+    "secondaryImage": "/images/case-studies/bernhart-close-barnet-garage-conversion-rear-extension/privacy-drawing-02.webp",
     "galleryImages": [
       {
-        "src": "/images/case-studies/bernhart-close-barnet-garage-conversion-rear-extension/drawing-01.webp",
+        "src": "/images/case-studies/bernhart-close-barnet-garage-conversion-rear-extension/privacy-drawing-01.webp",
         "alt": "Full WEDRAWPLANS architectural drawing 1 for Bernhart Close in Edgware: Garage conversion · Proposed ground floor and front elevation",
         "caption": "Garage conversion · Proposed ground floor and front elevation"
       },
       {
-        "src": "/images/case-studies/bernhart-close-barnet-garage-conversion-rear-extension/drawing-02.webp",
+        "src": "/images/case-studies/bernhart-close-barnet-garage-conversion-rear-extension/privacy-drawing-02.webp",
         "alt": "Full WEDRAWPLANS architectural drawing 2 for Bernhart Close in Edgware: Garage conversion · Existing ground floor and elevations",
         "caption": "Garage conversion · Existing ground floor and elevations"
       },
       {
-        "src": "/images/case-studies/bernhart-close-barnet-garage-conversion-rear-extension/drawing-03.webp",
+        "src": "/images/case-studies/bernhart-close-barnet-garage-conversion-rear-extension/privacy-drawing-03.webp",
         "alt": "Full WEDRAWPLANS architectural drawing 3 for Bernhart Close in Edgware: Garage conversion · Proposed floor plan and front elevation",
         "caption": "Garage conversion · Proposed floor plan and front elevation"
       },
       {
-        "src": "/images/case-studies/bernhart-close-barnet-garage-conversion-rear-extension/drawing-04.webp",
+        "src": "/images/case-studies/bernhart-close-barnet-garage-conversion-rear-extension/privacy-drawing-04.webp",
         "alt": "Full WEDRAWPLANS architectural drawing 4 for Bernhart Close in Edgware: Rear extension · Proposed ground floor and rear elevation",
         "caption": "Rear extension · Proposed ground floor and rear elevation"
       },
       {
-        "src": "/images/case-studies/bernhart-close-barnet-garage-conversion-rear-extension/drawing-05.webp",
+        "src": "/images/case-studies/bernhart-close-barnet-garage-conversion-rear-extension/privacy-drawing-05.webp",
         "alt": "Full WEDRAWPLANS architectural drawing 5 for Bernhart Close in Edgware: Rear extension · Existing layout and elevations",
         "caption": "Rear extension · Existing layout and elevations"
       },
       {
-        "src": "/images/case-studies/bernhart-close-barnet-garage-conversion-rear-extension/drawing-06.webp",
+        "src": "/images/case-studies/bernhart-close-barnet-garage-conversion-rear-extension/privacy-drawing-06.webp",
         "alt": "Full WEDRAWPLANS architectural drawing 6 for Bernhart Close in Edgware: Rear extension · Existing side elevations and roof profiles",
         "caption": "Rear extension · Existing side elevations and roof profiles"
       }
