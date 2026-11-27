@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prebuild": "node scripts/assemble-woolwich-animation.cjs && node scripts/sanitise-bernhart-drawings.cjs"
+    "prebuild": "node scripts/assemble-woolwich-animation.cjs && node scripts/sanitise-bernhart-drawings.cjs && node scripts/sanitise-hornby-drawings.cjs"
   },
   "dependencies": {
     "@builder.io/react": "^2.0.0",
