@@ -83,24 +83,76 @@ export function HornbyGarageConversionStory() {
   return (
     <section aria-labelledby="hornby-conversion-story" className="border-y border-[#dce7e2] bg-[#f5f9f6]">
       <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-16">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#347b70]">Garage conversion architecture · Camden</p>
-        <h2 id="hornby-conversion-story" className="mt-3 max-w-4xl text-2xl font-semibold text-[#24474b] sm:text-3xl">
-          From garage space to proposed habitable accommodation
+        <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#347b70]">
+          Camden garage conversion · Approved 11 June 2026 · Planning ref 2026/1634/P
+        </p>
+        <h2 id="hornby-conversion-story" className="mt-3 max-w-4xl text-2xl font-semibold leading-snug text-[#24474b] sm:text-3xl">
+          How a garage door became an attractive glazed frontage and a new habitable room
         </h2>
-        <div className="mt-6 grid gap-5 lg:grid-cols-2">
-          <p className="text-[15px] leading-8 text-[#536e70]">
-            Converting a garage into living accommodation requires more than removing a garage door. Architectural plans need to distinguish the existing layout from the proposed living space and record any external elevation changes so that planners can assess how the alteration affects the home and its surroundings. The Hornby Close project is illustrated by five privacy-redacted, full-sheet WEDRAWPLANS drawings. Select a thumbnail and enlarge each sheet to inspect the existing and proposed plans, elevations and construction details.
-          </p>
-          <p className="text-[15px] leading-8 text-[#536e70]">
-            Planning consent and Building Regulations are separate. A proposed habitable room must also be assessed for matters such as fire safety, thermal performance, ventilation, damp protection and appropriate construction details. The Camden documents link allows readers to inspect the submitted application record directly; the specific planning outcome and approved drawing schedule are still being checked before any grant is claimed on the website.
-          </p>
+        <p className="mt-5 max-w-4xl text-[15px] leading-8 text-[#536e70]">
+          This Camden garage conversion shows how thoughtful architectural drawings can turn an underused part of a house into potential extra living accommodation without pushing the building forward. Instead of a conventional garage door, the approved front elevation introduces a wide glazed window within the existing opening, with a top-hung fanlight, white uPVC frames and matching brickwork below. The original plans, elevations and details show what would change, and the council&apos;s decision confirms the planning outcome. These are illustrations of the approved proposal, not photographs of completed works.
+        </p>
+
+        <div className="mt-8 grid gap-4 md:grid-cols-2">
+          <article className="rounded-[18px] border border-[#d7e5df] bg-white p-6">
+            <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#28756d]">01 · The transformation</p>
+            <h3 className="mt-2 text-xl font-semibold text-[#25494c]">Replacing an enclosed garage door with full-width glazing</h3>
+            <p className="mt-3 text-[14px] leading-7 text-[#597074]">
+              WEDRAWPLANS drew the existing garage frontage and the proposed window side by side. The design incorporates a large fixed glazed section with opening lights above, helping the former garage read as a habitable room while respecting the existing building lines. The window remains within the existing garage-door opening; there is no new forward extension.
+            </p>
+          </article>
+          <article className="rounded-[18px] border border-[#d7e5df] bg-white p-6">
+            <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#28756d]">02 · Architectural appearance</p>
+            <h3 className="mt-2 text-xl font-semibold text-[#25494c]">A modern glass feature designed to complement the terrace</h3>
+            <p className="mt-3 text-[14px] leading-7 text-[#597074]">
+              White window framing, a horizontal top-opening fanlight and complementary brick infill were detailed to relate to the original windows and external finishes. Camden considered these changes acceptable in their particular street setting. The decision notice also records that the building is neither listed nor in a conservation area.
+            </p>
+          </article>
+          <article className="rounded-[18px] border border-[#d7e5df] bg-white p-6">
+            <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#28756d]">03 · Council assessment</p>
+            <h3 className="mt-2 text-xl font-semibold text-[#25494c]">Why Camden granted planning permission</h3>
+            <p className="mt-3 text-[14px] leading-7 text-[#597074]">
+              The decision explains that neighbouring garage-conversion examples informed the street-scene assessment. The council accepted the external design and materials, found no unacceptable effect on neighbour daylight, sunlight or overlooking, and recorded no letters of objection. Its assessment referred to policies D1, A1 and T2 of the Camden Local Plan 2017, as applicable to this 2026 application.
+            </p>
+          </article>
+          <article className="rounded-[18px] border border-[#d7e5df] bg-white p-6">
+            <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#28756d]">04 · Coordinated planning drawings</p>
+            <h3 className="mt-2 text-xl font-semibold text-[#25494c]">From existing layout to new glazed living space</h3>
+            <p className="mt-3 text-[14px] leading-7 text-[#597074]">
+              The approved architectural sheets include existing and proposed ground-floor plans (PP01), front elevations and window information (PP02), sections (PP03) and glazing specifications with design views (PP05). The gallery above shows enlarged, privacy-protected extracts from those original sheets to make the frontage transformation easy to understand.
+            </p>
+          </article>
         </div>
-        <div className="mt-6 flex flex-wrap gap-3">
-          <CouncilLink href={CAMDEN_DOCUMENTS}>View Camden application documents · 2026/1634/P</CouncilLink>
-          <Link href="/areas/camden" className="inline-flex min-h-11 items-center rounded-full border border-[#a8cdc7] bg-white px-4 py-2.5 text-[13px] font-semibold text-[#1d6d74] hover:bg-[#edf7f3]">
-            Architectural drawing services in Camden
-          </Link>
+
+        <div className="mt-7 rounded-[18px] border border-[#c8dfd6] bg-white p-6">
+          <p className="text-[11px] font-bold uppercase tracking-[.14em] text-[#28756d]">Independently verified approval</p>
+          <h3 className="mt-2 text-lg font-semibold text-[#25494b]">Camden householder planning permission granted · 11 June 2026</h3>
+          <p className="mt-2 max-w-4xl text-[13px] leading-7 text-[#5b7073]">
+            Application 2026/1634/P was granted for replacement of the garage door with a window in association with use of the garage as habitable space. The decision requires work to follow the approved drawings and new external materials to resemble the existing building. The planning permission is separate from any Building Regulations approval and does not establish that construction has been completed.
+          </p>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <CouncilLink href={CAMDEN_DOCUMENTS}>View the Camden approved application documents · 2026/1634/P</CouncilLink>
+          </div>
         </div>
+
+        <div className="mt-8 grid gap-6 md:grid-cols-2">
+          <div>
+            <h3 className="text-lg font-semibold text-[#25494b]">Do garage-door-to-window conversions need planning permission?</h3>
+            <p className="mt-2 text-[13px] leading-7 text-[#5b7073]">
+              The answer depends on the property, planning restrictions, previous consents and the proposed changes to its external appearance. This Camden homeowner application required approval for the new glazed frontage. WEDRAWPLANS can assess the likely planning route before preparing a fixed-fee drawing package for a similar project.
+            </p>
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold text-[#25494b]">What else is involved in converting a garage to a room?</h3>
+            <p className="mt-2 text-[13px] leading-7 text-[#5b7073]">
+              Aside from planning, a habitable garage conversion may need Building Regulations design for insulation, ventilation, damp protection, glazing safety, fire safety and construction details. The Camden decision notice expressly advises that Building Regulations requirements may apply separately.
+            </p>
+          </div>
+        </div>
+
+        <p className="mt-7 text-[13px] leading-7 text-[#62777a]">
+          Thinking of a similar conversion? Explore <Link className="font-semibold text-[#207681] underline underline-offset-4" href="/areas/camden">architectural drawing services in Camden</Link>, <Link className="font-semibold text-[#207681] underline underline-offset-4" href="/planning-drawings">planning application drawings</Link> and <Link className="font-semibold text-[#207681] underline underline-offset-4" href="/building-regulation-drawings">Building Regulations drawings</Link>, or use the fixed-fee quotation form above.
+        </p>
       </div>
     </section>
   );
