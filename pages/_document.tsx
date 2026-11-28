@@ -6,6 +6,8 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
+          <link rel="icon" type="image/png" href="/images/wedrawplans-logo.png" />
+          <link rel="apple-touch-icon" href="/images/wedrawplans-logo.png" />
           <script
             id="wedrawplans-business-schema"
             type="application/ld+json"
