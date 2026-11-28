@@ -476,22 +476,24 @@ export default function BuildingRegulationDrawingsPage() {
         </header>
 
         <main>
-          <section className="border-b border-slate-200 bg-[#fdf8f3]">
+          <section className="border-b border-slate-200 bg-gradient-to-br from-[#eaf4f6] via-[#f7fafb] to-white">
             <div className="mx-auto max-w-6xl px-4 py-8 lg:px-6 lg:py-10">
               <div className="grid gap-8 lg:grid-cols-[1.04fr,0.96fr] lg:items-start">
                 <div className="space-y-5">
                   <div>
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-red-700">
+                    <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#11677b]">
                       Building Control technical drawing packs
                     </p>
 
-                    <h1 className="mt-2 text-[24px] font-black uppercase leading-snug tracking-[0.10em] text-slate-950 sm:text-[31px] lg:text-[35px]">
-                      Building Regulation Drawings &amp; Structural Coordination in London
+                    <h1 className="mt-2 text-3xl font-extrabold leading-tight tracking-tight text-[#173c4c] sm:text-[42px]">
+                      Building Regulations Drawings in London — Ready for the Next Stage
                     </h1>
 
                     <p className="mt-3 text-[13px] font-semibold tracking-[0.08em] text-slate-800">
                       Extensions • Loft conversions • New homes • Building Control technical packs
                     </p>
+                    <p className="mt-4 text-[16px] leading-7 text-slate-700">Planning approved or ready to build? We prepare the technical drawings needed for Building Control review, contractor pricing and structural coordination. We can also review planning drawings prepared by another designer.</p>
+                    <a href="#quote-form" className="mt-4 inline-flex rounded-full bg-[#087e95] px-6 py-3 text-sm font-bold text-white shadow-md transition hover:bg-[#056779]">Get my fixed-fee technical quote</a>
                   </div>
 
                   <div className="overflow-hidden border border-slate-200 bg-white shadow-md">
@@ -499,7 +501,7 @@ export default function BuildingRegulationDrawingsPage() {
                       src={HERO_IMAGE}
                       alt="Original WEDRAWPLANS BC-10 design sheet showing Cranbourne Drive rear extension and separate loft technical design"
                       {...{ fetchpriority: "high" }}
-                      className="h-[260px] w-full bg-[#f2f7f4] object-contain sm:h-[330px]"
+                      className="h-[190px] w-full bg-[#f2f7f4] object-contain sm:h-[270px]"
                     />
                   </div>
 
@@ -565,7 +567,7 @@ export default function BuildingRegulationDrawingsPage() {
                         })
                       }
                     >
-                      Request technical drawing fees
+                      Get my Building Regulations quote
                     </a>
 
                     <a
@@ -613,7 +615,7 @@ export default function BuildingRegulationDrawingsPage() {
                 <div id="quote-form" className="space-y-6">
                   <aside className="rounded-3xl border border-slate-200 bg-white p-6 shadow-xl">
                     <h2 className="text-2xl font-bold tracking-tight">
-                      Building Regulation drawing enquiry
+                      Get your fixed-fee technical drawing quote
                     </h2>
                     <p className="mt-3 text-slate-700">
                       Tell us what you would like to build and your postcode.
@@ -621,10 +623,7 @@ export default function BuildingRegulationDrawingsPage() {
                       or just the technical stage. No drawings are needed for an initial quote.
                     </p>
 
-                    <form
-                      className="mt-6 space-y-4"
-                      onSubmit={handleSubmit}
-                    >
+                    <form className="mt-6 space-y-4" onSubmit={handleSubmit} onFocusCapture={(e) => { if (e.currentTarget.dataset.wdpStarted) return; e.currentTarget.dataset.wdpStarted = "1"; trackEvent("form_start", { form_name: "building_regulations_quote", page_path: "/building-regulation-drawings" }); }}>
                       <div>
                         <label
                           htmlFor="name"
