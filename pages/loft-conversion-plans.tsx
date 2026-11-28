@@ -1,3 +1,4 @@
+import Link from "next/link";
 import HomeownerServiceJourney from "../components/HomeownerServiceJourney";
 import { businessReference } from "../data/businessSchema";
 import IntentAreaDirectory from "../components/IntentAreaDirectory";
@@ -119,6 +120,63 @@ export default function LoftConversionPlansPage() {
         />
       </Head>
 
+<header className="sticky top-0 z-[60] border-b border-slate-200 bg-[#fdf8f3]/95 backdrop-blur">
+          <div className="mx-auto max-w-6xl px-4 pb-3 pt-4 lg:px-6 lg:pt-5">
+            <div className="flex flex-col items-center text-center">
+              <Link href="/" className="inline-flex items-center justify-center">
+                <img
+                  src="/images/wedrawplans-logo.png"
+                  alt="WEDRAWPLANS"
+                  className="h-24 w-auto object-contain lg:h-28"
+                />
+              </Link>
+
+              <div className="mt-2 text-[11px] uppercase tracking-[0.18em] text-slate-600">
+                Architectural Drawing Consultants
+              </div>
+
+              <div className="mt-4 flex flex-wrap items-center justify-center gap-x-7 gap-y-2 text-[13px] text-slate-900">
+                <Link href="/" className="hover:text-black">
+                  Home
+                </Link>
+                <Link href="/extension-plans" className="hover:text-black">
+                  Extension Drawings
+                </Link>
+                <Link href="/loft-conversion-plans" className="font-semibold text-red-700 hover:text-red-800" aria-current="page">
+                  Loft Drawings
+                </Link>
+                <Link href="/new-build-plans" className="hover:text-black">
+                  New Build Drawings
+                </Link>
+                <Link href="/building-regulation-drawings" className="hover:text-black">
+                  Building Regulations
+                </Link>
+                <Link href="/areas" className="hover:text-black">
+                  Areas We Cover
+                </Link>
+              </div>
+
+              <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
+                <a
+                  href={PHONE_LINK}
+                  className="inline-flex items-center gap-2 rounded-full bg-[#20243b] px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-[#161a2f]"
+                >
+                  <span>📞</span>
+                  <span>Call {PHONE_DISPLAY}</span>
+                </a>
+
+                <a
+                  href={WHATSAPP_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-[#1ebe57]"
+                >
+                  <span>WhatsApp us now</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </header>
       <main className="min-h-screen bg-white text-slate-900">
         {/* HERO + FORM */}
         <section className="border-b border-slate-200 bg-gradient-to-br from-[#eaf4f6] via-[#f7fafb] to-white">
