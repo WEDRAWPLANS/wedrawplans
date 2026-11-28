@@ -83,12 +83,12 @@ export default function PendleLoftStory() {
             To check the source record, search reference PA2026/0478/CLP in Wandsworth Council's official Planning Explorer.
           </p>
           <a
-            href="https://planning.wandsworth.gov.uk/Northgate/PlanningExplorer/ApplicationSearch.aspx"
+            href="https://www.wandsworth.gov.uk/search-planning-applications"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-4 inline-flex rounded-full border border-[#a9cbc1] bg-[#eef7f3] px-5 py-3 text-[12px] font-bold text-[#23696c] hover:bg-[#e2f0ea]"
           >
-            Search the Wandsworth planning record ↗
+            Search Wandsworth application PA2026/0478/CLP ↗
           </a>
         </div>
         <div className="mt-10">
