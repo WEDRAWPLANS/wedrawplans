@@ -4,6 +4,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { caseStudies, caseStudyBySlug, categoryForCaseStudy, CaseStudy } from "../../data/caseStudies";
 import { CaseStudyHeader, CaseStudyBottom, CaseStudyFooter } from "../../components/CaseStudyChrome";
 import CaseStudyGalleryQuote from "../../components/CaseStudyGalleryQuote";
+import PendleLoftStory from "../../components/PendleLoftStory";
 import { BernhartConservationStory, HornbyGarageConversionStory } from "../../components/ConservationAndConversionStories";
 import { BARNET_COUNCIL_DOCUMENTS } from "../../data/councilPlanningEvidence";
 import WarbeckFlagshipPage from "../../components/WarbeckFlagshipPage";
@@ -25,6 +26,7 @@ export default function CaseStudyPage({ item, indexable }: PageProps) {
   const isSistova = item.slug === "sistova-road-wandsworth-extension-basement";
   const isBernhart = item.slug === "bernhart-close-barnet-garage-conversion-rear-extension";
   const isHornby = item.slug === "hornby-close-camden-garage-conversion";
+  const isPendle = item.slug === "pendle-road-wandsworth-max-space-loft-conversion";
   const isCromwell = item.slug === "cromwell-road-hounslow-rear-extension";
   const isBrockley = item.slug === "brockley-road-lewisham-two-flat-conversion";
   const isHarrowStudios = item.slug === "burnt-oak-broadway-harrow-retail-flats";
@@ -39,7 +41,7 @@ export default function CaseStudyPage({ item, indexable }: PageProps) {
   const isGrangeCombined = item.slug === "grange-road-edgware-side-extension-lawful-development-building-regulations";
   const isWoolwich = item.slug === "700-woolwich-road-greenwich-two-new-flats";
   const isWarbeck = item.slug === "warbeck-road-hammersmith-fulham-loft-certificate";
-  const isFeaturedLayout = isReddings || isAllum || isSistova || isBernhart || isHornby || isCromwell || isBrockley || isHarrowStudios || isCannon || isSunburyCare || isGreenwichTen || isHendonHMO || isCranbourneCombined || isSuttonLoft || isLeicesterCombined || isGrangeCombined || isHyde || isWoolwich || isWarbeck;
+  const isFeaturedLayout = isReddings || isAllum || isSistova || isBernhart || isHornby || isPendle || isCromwell || isBrockley || isHarrowStudios || isCannon || isSunburyCare || isGreenwichTen || isHendonHMO || isCranbourneCombined || isSuttonLoft || isLeicesterCombined || isGrangeCombined || isHyde || isWoolwich || isWarbeck;
   const canonical = "https://www.wedrawplans.co.uk/case-studies/" + item.slug;
   const quoteHref = "#case-study-quote";
   const category = categoryForCaseStudy(item);
@@ -223,6 +225,7 @@ export default function CaseStudyPage({ item, indexable }: PageProps) {
         </section>
 
         <CaseStudyGalleryQuote projects={[item]} context="project" councilDocumentsHref={primaryCouncilDocumentUrl} />
+        {isPendle ? <PendleLoftStory /> : null}
         {item.slug === "bernhart-close-barnet-garage-conversion-rear-extension" ? <BernhartConservationStory /> : null}
         {item.slug === "hornby-close-camden-garage-conversion" ? <HornbyGarageConversionStory /> : null}
 
