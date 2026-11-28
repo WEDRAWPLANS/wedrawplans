@@ -33,11 +33,19 @@ function header(title, subtitle) {
 function panel(x,y,w,h) {
   return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="18" fill="#ffffff" stroke="#dce7e2" stroke-width="2"/>';
 }
-function faintMark() {
-  // One quiet grey diagonal ownership mark per composed drawing image.
-  return '<text x="720" y="535" font-size="84" text-anchor="middle" transform="rotate(-23 720 535)" font-family="Arial,sans-serif" font-weight="700" letter-spacing="9" fill="#879899" fill-opacity=".09">WEDRAWPLANS</text>';
-}
 
+// Existing anonymised source sheets had a faint diagonal watermark already
+// baked into some white-background planning drawings. Clean light neutral
+// pixels only in PP01, retaining dark linework and coloured annotations.
+async function removeFaintSourceLettering(pngBuffer) {
+  const { data, info } = await sharp(pngBuffer).ensureAlpha().raw().toBuffer({resolveWithObject:true});
+  for(let k=0;k<data.length;k+=info.channels) {
+    const r=data[k],g=data[k+1],b=data[k+2];
+    const spread=Math.max(r,g,b)-Math.min(r,g,b);
+    if (r>=190 && r<254 && spread<=5) {data[k]=255;data[k+1]=255;data[k+2]=255;}
+  }
+  return sharp(data,{raw:{width:info.width,height:info.height,channels:info.channels}}).png().toBuffer();
+}
 async function crop(sourceKey, fractions, x, y, w, h) {
   const source = sources[sourceKey];
   if (!fs.existsSync(source)) throw new Error("Missing Camden source: " + source);
@@ -47,17 +55,17 @@ async function crop(sourceKey, fractions, x, y, w, h) {
   const left=Math.floor(meta.width*l),top=Math.floor(meta.height*t);
   const right=Math.floor(meta.width*r),bottom=Math.floor(meta.height*b);
   if(right<=left || bottom<=top || right>meta.width || bottom>meta.height) throw new Error("Invalid image crop");
-  const input=await sharp(source).extract({left,top,width:right-left,height:bottom-top})
+  let input=await sharp(source).extract({left,top,width:right-left,height:bottom-top})
     .resize(w,h,{fit:"contain",background:"#ffffff"})
     .png().toBuffer();
+  if(sourceKey==="pp01") input=await removeFaintSourceLettering(input);
   return {input,left:x,top:y};
 }
 async function compose(index, title, subtitle, shapes, sections) {
   const layout=svg(header(title,subtitle)+shapes);
-  const watermark=svg(faintMark());
   const output=path.join(base,"privacy-drawing-"+String(index).padStart(2,"0")+".webp");
   await sharp({create:{width,height,channels:3,background:bg}})
-    .composite([{input:layout,left:0,top:0},...sections,{input:watermark,left:0,top:0}])
+    .composite([{input:layout,left:0,top:0},...sections])
     .webp({quality:84,effort:4})
     .toFile(output);
   const check=await sharp(output).metadata();
@@ -91,13 +99,16 @@ async function compose(index, title, subtitle, shapes, sections) {
     panel(38,137,1364,745),
     [await crop("pp01",[.157,.222,.943,.754],73,170,1295,676)]
   );
-  // PP03: existing and proposed sections & 3D section. The original source
-  // is already anonymised; crop away the full sheet/title-block metadata.
+  // PP03: zoom to the upper left and upper right section views.
+  // Omits the diagonal source watermark in the lower centre of the original sheet.
   await compose(4,
-    "SECTIONAL DESIGN | PP03",
-    "Existing and proposed garage conversion sections with architectural design view",
-    panel(38,137,1364,745),
-    [await crop("pp03",[.082,.061,.931,.827],73,170,1295,676)]
+    "APPROVED GARAGE SECTIONS | PP03",
+    "Compare the proposed habitable room and original garage storage in section",
+    panel(38,137,665,745)+panel(717,137,685,745),
+    [
+      await crop("pp03",[.13,.075,.485,.43],60,184,617,667),
+      await crop("pp03",[.565,.075,.925,.43],744,184,628,667),
+    ]
   );
   // PP05: window frame technical notes + original close-up rendered glazing.
   await compose(5,
