@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { CaseStudy } from "../data/caseStudies";
 
-type ProjectKind = "sistova" | "cromwell" | "bernhart";
+type ProjectKind = "sistova" | "cromwell" | "bernhart" | "hornby";
 
 function SistovaFaintWatermark({ small = false }: { small?: boolean }) {
   return (
@@ -73,6 +73,22 @@ const PROJECTS: Record<ProjectKind, {
     localLink: "/areas/barnet",
     localText: "Architectural drawings in Barnet",
   },
+  hornby: {
+    eyebrow: "Camden · Garage conversion planning permission GRANTED · June 2026",
+    heading: "From garage door to wide glazed frontage",
+    visualIntro: "Compare the original garage frontage with the approved wide glazed window in Camden. The architectural images show the approved proposal—not photographs of finished construction.",
+    drawingIntro: "Browse five selected close-up views from Camden's approved sheets PP01, PP02, PP03 and PP05: before-and-after front elevations, the proposed glazed opening, floor plans, sections and window details. Select a thumbnail or use the arrows to compare the design.",
+    methodHeading: "How the approved Camden garage conversion was developed",
+    method: [
+      { title: "1 · Make better use of the existing garage", body: "The existing storage/garage layout was adapted to provide an additional habitable room within the existing footprint. No forward extension was required." },
+      { title: "2 · Replace the garage door with sympathetic glazing", body: "The approved proposal uses a wide white uPVC glazed window with a fixed lower glass section and top-hung fanlight, with matching brickwork below and proportions related to the existing dwelling." },
+      { title: "3 · Secure permission with clear planning drawings", body: "Camden approved the householder application on 11 June 2026, referencing PP01, PP02, PP03 and PP05. Officers considered the streetscape, matching materials and neighbouring amenity. Building Regulations are a separate approval process." },
+    ],
+    outcome: "PLANNING PERMISSION GRANTED · 11 June 2026",
+    planning: "London Borough of Camden · 2026/1634/P",
+    localLink: "/areas/camden",
+    localText: "Garage conversion and planning-drawing services in Camden",
+  },
 };
 
 export default function ApprovedDrawingShowcase({
@@ -82,9 +98,10 @@ export default function ApprovedDrawingShowcase({
   project: CaseStudy;
   kind: ProjectKind;
 }) {
-  const [drawingIndex, setDrawingIndex] = useState(kind === "sistova" || kind === "bernhart" ? 0 : 1);
+  const [drawingIndex, setDrawingIndex] = useState(kind === "sistova" || kind === "bernhart" || kind === "hornby" ? 0 : 1);
   const content = PROJECTS[kind];
   const isBernhart = kind === "bernhart";
+  const isHornby = kind === "hornby";
   const drawings = project.galleryImages || [];
   const leadDrawing = drawings[0];
   const selected = drawings[Math.min(drawingIndex, drawings.length - 1)];
@@ -114,7 +131,7 @@ export default function ApprovedDrawingShowcase({
               {kind === "sistova" ? <SistovaFaintWatermark /> : null}
             </div>
             <figcaption className="flex flex-wrap justify-between gap-2 border-t border-[#e5ece8] px-4 py-3 text-[11px] font-semibold leading-5 text-[#43666b] sm:px-6 sm:text-[12px]">
-              <span>{isBernhart ? "Original architectural drawing · garage conversion" : "Existing & proposed 3D architectural drawings"}</span>
+              <span>{isHornby ? "Before & after · approved garage conversion frontage" : isBernhart ? "Original architectural drawing · garage conversion" : "Existing & proposed 3D architectural drawings"}</span>
               <span>Architectural design by WEDRAWPLANS</span>
             </figcaption>
           </figure>

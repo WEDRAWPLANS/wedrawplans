@@ -122,62 +122,71 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     "slug": "hornby-close-camden-garage-conversion",
-    "title": "Hornby Close, Camden — Garage Conversion to Habitable Space",
-    "shortTitle": "Hornby Close, Camden · Garage Conversion",
-    "seoDescription": "Camden garage-to-habitable-space conversion case study: proposed room layout, elevation changes and planning drawings with direct access to council documents.",
-    "location": "Hornby Close, Camden, London",
+    "title": "Camden Garage Conversion Approved | Glazed Frontage in NW3",
+    "shortTitle": "Hornby Close, Camden · Approved Garage Conversion",
+    "seoDescription": "Camden garage conversion approved in NW3: see a garage door replaced with wide glazing, original planning drawings and the council's June 2026 decision.",
+    "location": "Hornby Close, Camden, London NW3",
     "authority": "London Borough of Camden",
     "reference": "2026/1634/P",
     "year": "2026",
-    "service": "Garage conversion into habitable accommodation with proposed architectural plans, elevations and construction details",
-    "outcome": "Council planning record available — decision under verification",
-    "approved": false,
-    "summary": "A residential garage conversion proposal in Camden, with architectural documentation showing the existing layout, the proposed use of the space for living accommodation and changes to the building's appearance. The project is supported by five source architectural sheets and an exact council documents link. The approved drawing schedule and final determination must be checked before displaying this as a granted permission.",
-    "proof": "Camden's document portal has the application record 2026/1634/P. The project archive contains five architectural source sheets showing existing and proposed arrangements. The specific decision notice and approved-plan schedule are not yet independently confirmed in this draft, so the case study does not claim an approval or completed construction.",
-    "leadAngle": "Planning to convert a garage into habitable space in Camden or North London?",
+    "service": "Planning drawings for conversion of an existing garage to habitable accommodation, with a wide glazed front window",
+    "outcome": "Householder planning permission GRANTED · 11 June 2026",
+    "approved": true,
+    "summary": "How can an unused garage become an attractive extra room without extending the front of the house? On Hornby Close in Camden, WEDRAWPLANS designed a garage-to-habitable-room conversion with a wide glazed front window replacing the former garage door. The approved proposal introduces a fixed glazed lower section and top-hung fanlight, with matching brick infill below, all within the existing opening. Camden granted householder planning permission on 11 June 2026. Compare the original frontage with the proposed glazing, explore selected plans and sections, and check the council record.",
+    "proof": "Camden's householder decision notice dated 11 June 2026 grants application 2026/1634/P for replacement of the garage door with a window in connection with use of the garage as habitable space. The approved plans are the Planning Statement, Location Plan 1:1250, PP01, PP02, PP03 and PP05. The decision explains that the window and brickwork remain within the existing garage opening with no new forward extension, materials are to match the dwelling, similar conversions were considered on the street, and no neighbour objections were received. Planning permission does not by itself grant Building Regulations approval or establish that works are complete.",
+    "leadAngle": "Could your garage become a bright, usable room? Ask WEDRAWPLANS for a clear fixed-fee garage conversion or planning-drawings quotation in Camden and North London.",
     "relatedService": "/planning-drawings",
     "relatedArea": "/areas/camden",
-    "heroImage": "/images/case-studies/hornby-close-camden-garage-conversion/drawing-01.webp",
-    "secondaryImage": "/images/case-studies/hornby-close-camden-garage-conversion/drawing-02.webp",
+    "heroImage": "/images/case-studies/hornby-close-camden-garage-conversion/privacy-drawing-01.webp",
+    "secondaryImage": "/images/case-studies/hornby-close-camden-garage-conversion/privacy-drawing-02.webp",
     "galleryImages": [
       {
-        "src": "/images/case-studies/hornby-close-camden-garage-conversion/drawing-01.webp",
-        "alt": "Full WEDRAWPLANS architectural drawing 1 for Hornby Close in Camden: PP01 · Existing and proposed ground-floor plans",
+        "src": "/images/case-studies/hornby-close-camden-garage-conversion/privacy-drawing-01.webp",
+        "alt": "Before-and-after front elevation comparison from the approved Camden garage conversion drawings",
+        "caption": "PP02 · Existing garage door and approved glazed frontage"
+      },
+      {
+        "src": "/images/case-studies/hornby-close-camden-garage-conversion/privacy-drawing-02.webp",
+        "alt": "Proposed wide white uPVC glazed garage-front window with top-opening fanlight, shown as an architectural design",
+        "caption": "PP05 · Glazed frontage design close-up"
+      },
+      {
+        "src": "/images/case-studies/hornby-close-camden-garage-conversion/privacy-drawing-03.webp",
+        "alt": "Garage storage changed to habitable-room accommodation, with approved front elevation",
         "caption": "PP01 · Existing and proposed ground-floor plans"
       },
       {
-        "src": "/images/case-studies/hornby-close-camden-garage-conversion/drawing-02.webp",
-        "alt": "Full WEDRAWPLANS architectural drawing 2 for Hornby Close in Camden: PP02 · Existing and proposed front elevations and window specification",
-        "caption": "PP02 · Existing and proposed front elevations and window specification"
+        "src": "/images/case-studies/hornby-close-camden-garage-conversion/privacy-drawing-04.webp",
+        "alt": "Architectural sections and design visualisation for the approved Camden garage conversion",
+        "caption": "PP03 · Existing and proposed building sections"
       },
       {
-        "src": "/images/case-studies/hornby-close-camden-garage-conversion/drawing-03.webp",
-        "alt": "Full WEDRAWPLANS architectural drawing 3 for Hornby Close in Camden: PP03 · Existing and proposed sections and 3D design",
-        "caption": "PP03 · Existing and proposed sections and 3D design"
-      },
-      {
-        "src": "/images/case-studies/hornby-close-camden-garage-conversion/drawing-04.webp",
-        "alt": "Full WEDRAWPLANS architectural drawing 4 for Hornby Close in Camden: PP04 · Existing flank and rear elevations",
-        "caption": "PP04 · Existing flank and rear elevations"
-      },
-      {
-        "src": "/images/case-studies/hornby-close-camden-garage-conversion/drawing-05.webp",
-        "alt": "Full WEDRAWPLANS architectural drawing 5 for Hornby Close in Camden: PP05 · Window details and architectural 3D views",
-        "caption": "PP05 · Window details and architectural 3D views"
+        "src": "/images/case-studies/hornby-close-camden-garage-conversion/privacy-drawing-05.webp",
+        "alt": "Original glazing and matching brick infill detail for approved garage conversion",
+        "caption": "PP05 · Window design and material specification"
       }
     ],
+    "decisionDate": "11 June 2026",
     "councilApplicationUrl": "https://camdocs.camden.gov.uk/CMWebDrawer/PlanRec?q=recContainer:%222026/1634/P%22",
-    "highlights": [
-      "Residential garage conversion proposal to create habitable accommodation",
-      "Architectural layouts documenting existing and proposed ground-floor use",
-      "External appearance and elevation drawings for the altered garage",
-      "Five original source drawing sheets in the private project archive",
-      "Direct access to Camden's planning document library, not the council search homepage"
+    "approvedDrawings": "Camden approved the Planning Statement, Location Plan 1:1250 and drawing sheets PP01, PP02, PP03 and PP05. The five thumbnail views shown here are selected privacy-protected close-ups from those four approved drawing sheets.",
+    "keyConditions": [
+      "The permitted development must begin within three years of 11 June 2026.",
+      "Works must follow the approved plan schedule: PP01, PP02, PP03 and PP05, with the Planning Statement and location plan.",
+      "New external materials must resemble those of the existing dwelling in colour and texture, unless the approved documents specify otherwise."
     ],
-    "wdpService": "The project archive comprises existing and proposed architectural information for assessment of a garage conversion. The drawings should explain the proposed habitable-room arrangement and external changes without substituting unverified claims about the council's determination.",
-    "homeownerGuidance": "A garage conversion may need planning permission depending on local restrictions, external changes and parking arrangements. Building Regulations compliance, ventilation, thermal performance, drainage and fire safety must be considered separately from the planning outcome.",
-    "projectNote": "Use only privacy-cleared original full drawing sheets. Do not expose a precise residential address, applicant name, private contact details or source-file metadata on the public website.",
-    "mediaNote": "Five anonymized complete WEDRAWPLANS drawing sheets illustrate the proposed garage conversion, and the exact Camden council documents link remains available. Planning decision status is not independently verified."
+    "highlights": [
+      "Planning permission GRANTED by Camden on 11 June 2026",
+      "Garage door replaced by a wide glazed window with top-opening fanlight",
+      "Habitable-room conversion within the existing garage footprint; no forward extension",
+      "Front window and brick infill designed to complement the existing façade",
+      "Planning officers considered the existing street character and similar garage conversions",
+      "No neighbour objections recorded in the council decision",
+      "Original approved floor plans, elevations, sections and glazing detail"
+    ],
+    "wdpService": "WEDRAWPLANS prepared a coordinated planning-drawing package showing the original garage frontage, the new glazed window, the proposed habitable-room layout, elevations, sections and material details. The design kept the new window within the garage-door opening, maintained the relationship with the existing façade and addressed the external appearance considered by Camden. The June 2026 decision gives homeowners independently verifiable evidence of the planning outcome.",
+    "homeownerGuidance": "A garage conversion can make use of existing space, but replacing a garage door with glazing alters the external elevation and may require planning permission. Camden's decision considered matching materials, the local streetscape, parking policy and neighbouring amenity. Building Regulations issues such as thermal insulation, ventilation, safety glazing, fire safety and damp protection are assessed separately; approval of this planning application is not Building Control approval.",
+    "projectNote": "Planning permission granted on 11 June 2026. The images show the approved architectural proposal, not photographs of completed building work.",
+    "mediaNote": "Five close-up WEDRAWPLANS drawing views show the approved before-and-after garage frontage, proposed glazing, existing and proposed floor plans, sections and the window specification."
   },
   {
     slug: "grange-road-edgware-side-extension-lawful-development-building-regulations",
