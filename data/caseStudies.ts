@@ -256,7 +256,7 @@ export const caseStudies: CaseStudy[] = [
       }
     ],
     "decisionDate": "25 November 2026",
-    "councilApplicationUrl": "https://planning.wandsworth.gov.uk/Northgate/PlanningExplorer/ApplicationSearch.aspx",
+    "councilApplicationUrl": "https://www.wandsworth.gov.uk/search-planning-applications",
     "approvedDrawings": "Wandsworth's 25 November 2026 certificate lists the Location Plan, ID-00, ID-01, ID-04, ID-05, ID-06, ID-07 and ID-08. The full nine-sheet drawing gallery also provides ID-02 existing plans and ID-03 existing elevations as contextual design drawings; those two are not listed as decision plans.",
     "keyConditions": [
       "Externally visible dormer materials should be of similar appearance to the existing house, as specified by Wandsworth's certificate.",
