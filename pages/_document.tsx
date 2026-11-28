@@ -6,6 +6,7 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
+          <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
           <script
             id="wedrawplans-business-schema"
             type="application/ld+json"
