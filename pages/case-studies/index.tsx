@@ -16,6 +16,7 @@ const PRIORITY_PROJECT_SLUGS = [
   "cromwell-road-hounslow-rear-extension",
   "brockley-road-lewisham-two-flat-conversion",
   "sutton-loft-conversion-planning-permission-wallington",
+  "pendle-road-wandsworth-max-space-loft-conversion",
   "cannon-lane-pinner-5-metre-rear-extension",
   "sunbury-avenue-mill-hill-side-rear-extension",
   "sunbury-avenue-mill-hill-accessible-garden-care-outbuilding",
