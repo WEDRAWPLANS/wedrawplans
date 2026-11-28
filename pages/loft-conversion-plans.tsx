@@ -1,3 +1,4 @@
+import HomeownerServiceJourney from "../components/HomeownerServiceJourney";
 import { businessReference } from "../data/businessSchema";
 import IntentAreaDirectory from "../components/IntentAreaDirectory";
 import React from "react";
@@ -281,6 +282,7 @@ export default function LoftConversionPlansPage() {
             </div>
           </div>
         </section>
+        <HomeownerServiceJourney current="loft" quoteAnchor="#loft-quote" />
 
         {/* QUICK NAV */}
         <section className="bg-white">
