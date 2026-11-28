@@ -1,3 +1,4 @@
+import HomeownerServiceJourney from "../components/HomeownerServiceJourney";
 import { businessReference } from "../data/businessSchema";
 import GrangeRoadPromo from "../components/GrangeRoadPromo";
 import IntentAreaDirectory from "../components/IntentAreaDirectory";
@@ -299,6 +300,7 @@ export default function ExtensionPlansPage() {
             </div>
           </div>
         </section>
+        <HomeownerServiceJourney current="extension" quoteAnchor="#extension-quote" />
 
         <AllumLaneSiteFeature placement="service" title="Real approved extension drawings — Allum Lane, Elstree" intro="See how front, side and rear additions, integrated glazing, a new roof design and a 45-degree right-of-light study were presented in a coordinated Hertsmere householder planning package." />
 
