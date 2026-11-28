@@ -207,42 +207,57 @@ export const caseStudies: CaseStudy[] = [
     "relatedService": "/loft-conversion-plans",
     "relatedArea": "/areas/wandsworth",
     "heroImage": "/images/case-studies/pendle-road-wandsworth-max-space-loft-conversion/drawing-01.webp",
-    "secondaryImage": "/images/case-studies/pendle-road-wandsworth-max-space-loft-conversion/drawing-02.webp",
+    "secondaryImage": "/images/case-studies/pendle-road-wandsworth-max-space-loft-conversion/drawing-06.webp",
     "galleryImages": [
       {
         "src": "/images/case-studies/pendle-road-wandsworth-max-space-loft-conversion/drawing-01.webp",
-        "alt": "WEDRAWPLANS existing versus proposed rear roof 3D views for permitted development loft conversion at Pendle Road Wandsworth",
-        "caption": "Drawing 1 · Before & after: existing roof and proposed rear dormer"
-      },
-      {
-        "src": "/images/case-studies/pendle-road-wandsworth-max-space-loft-conversion/drawing-02.webp",
-        "alt": "Proposed rear dormer roof extension 3D architectural design drawing showing added usable loft space at Pendle Road SW16",
-        "caption": "Drawing 2 · Enlarged rear dormer architectural 3D view"
-      },
-      {
-        "src": "/images/case-studies/pendle-road-wandsworth-max-space-loft-conversion/drawing-03.webp",
-        "alt": "Two proposed loft bedrooms and bathroom shown in original WEDRAWPLANS 3D interior loft floor design drawings",
-        "caption": "Drawing 3 · Maximum use of roof space: 3D bedrooms and bathroom"
-      },
-      {
-        "src": "/images/case-studies/pendle-road-wandsworth-max-space-loft-conversion/drawing-04.webp",
-        "alt": "Architectural proposed loft floor plan showing two bedrooms, a bathroom, internal stairs and rooflights",
-        "caption": "Drawing 4 · Proposed loft floor plan: two bedrooms and bathroom"
-      },
-      {
-        "src": "/images/case-studies/pendle-road-wandsworth-max-space-loft-conversion/drawing-05.webp",
-        "alt": "Proposed rear dormer elevation and vertical section showing increased useful headroom and stairs in loft conversion",
-        "caption": "Drawing 5 · Rear elevation and section showing new headroom"
+        "alt": "Original WEDRAWPLANS ID-01 full architectural sheet with existing and proposed 3D front and rear roof views",
+        "caption": "Drawing 1 · ID-01 — Before & after roof design · 3D views"
       },
       {
         "src": "/images/case-studies/pendle-road-wandsworth-max-space-loft-conversion/drawing-06.webp",
-        "alt": "Lawful development roof enlargement volume calculation showing 33.42 cubic metres below the 40 cubic metre allowance",
-        "caption": "Drawing 6 · Permitted development roof volume: 33.42m³ of 40m³"
+        "alt": "Full WEDRAWPLANS ID-06 drawing sheet showing two loft bedrooms, bathroom and visualisation",
+        "caption": "Drawing 2 · ID-06 — Detailed proposed loft · 3D layout"
+      },
+      {
+        "src": "/images/case-studies/pendle-road-wandsworth-max-space-loft-conversion/drawing-00.webp",
+        "alt": "Original WEDRAWPLANS ID-00 architectural cover drawing showing proposed rear dormer",
+        "caption": "Drawing 3 · ID-00 — Proposed rear dormer · Cover visual"
+      },
+      {
+        "src": "/images/case-studies/pendle-road-wandsworth-max-space-loft-conversion/drawing-04.webp",
+        "alt": "Full WEDRAWPLANS ID-04 plans showing proposed loft bedrooms, bathroom, stairs and rooflights",
+        "caption": "Drawing 4 · ID-04 — Proposed floor and roof plans"
+      },
+      {
+        "src": "/images/case-studies/pendle-road-wandsworth-max-space-loft-conversion/drawing-05.webp",
+        "alt": "Full WEDRAWPLANS ID-05 drawing showing front rooflights, rear dormer and architectural section",
+        "caption": "Drawing 5 · ID-05 — Proposed elevations and section"
+      },
+      {
+        "src": "/images/case-studies/pendle-road-wandsworth-max-space-loft-conversion/drawing-08.webp",
+        "alt": "Full WEDRAWPLANS ID-08 calculation drawing showing proposed dormer within 40m³ allowance",
+        "caption": "Drawing 6 · ID-08 — Roof volume calculation · 33.42m³"
+      },
+      {
+        "src": "/images/case-studies/pendle-road-wandsworth-max-space-loft-conversion/drawing-02.webp",
+        "alt": "Full WEDRAWPLANS ID-02 original existing house, loft and roof plans",
+        "caption": "Drawing 7 · ID-02 — Existing floor and roof plans"
+      },
+      {
+        "src": "/images/case-studies/pendle-road-wandsworth-max-space-loft-conversion/drawing-03.webp",
+        "alt": "Full WEDRAWPLANS ID-03 original existing elevations and section",
+        "caption": "Drawing 8 · ID-03 — Existing elevations and section"
+      },
+      {
+        "src": "/images/case-studies/pendle-road-wandsworth-max-space-loft-conversion/drawing-07.webp",
+        "alt": "Full WEDRAWPLANS ID-07 site-plan comparison for rear dormer and three rooflights",
+        "caption": "Drawing 9 · ID-07 — Existing and proposed site plans"
       }
     ],
     "decisionDate": "25 November 2026",
-    "councilApplicationUrl": "https://planning.wandsworth.gov.uk/Northgate/PlanningExplorer/GeneralSearch.aspx",
-    "approvedDrawings": "The 25 November 2026 LDC specifies ID-00 Cover, ID-01 3D Views, ID-04 Proposed Plans, ID-05 Proposed Elevations and Section, ID-06 Proposed Loft 3D and Floor Plan, ID-07 Site Plans, ID-08 Volume Calculation and the submitted Location Plan. The public gallery shows selected privacy-safe illustrations from ID-01, ID-00, ID-06, ID-04, ID-05 and ID-08. Source drawings ID-02 and ID-03 were reference material but are not on the decision notice's specified plan schedule.",
+    "councilApplicationUrl": "https://planning.wandsworth.gov.uk/Northgate/PlanningExplorer/ApplicationSearch.aspx",
+    "approvedDrawings": "Wandsworth's 25 November 2026 certificate lists the Location Plan, ID-00, ID-01, ID-04, ID-05, ID-06, ID-07 and ID-08. The full nine-sheet drawing gallery also provides ID-02 existing plans and ID-03 existing elevations as contextual design drawings; those two are not listed as decision plans.",
     "keyConditions": [
       "Externally visible dormer materials should be of similar appearance to the existing house, as specified by Wandsworth's certificate.",
       "Original roof eaves are to be maintained or reinstated with the dormer set back from eaves as described in the certificate.",
@@ -261,10 +276,9 @@ export const caseStudies: CaseStudy[] = [
     ],
     "wdpService": "WEDRAWPLANS developed and illustrated a roof-space-maximisation scheme using existing and proposed architectural plans, 3D visualisation, elevations, sections, roof-volume calculations and council-submission documentation. The drawings explain how a rear dormer can use more of the sloping roof and provide meaningful accommodation, while demonstrating how the design fits the specified permitted development framework.",
     "homeownerGuidance": "Every property needs its own assessment before assuming a dormer loft conversion qualifies as permitted development. Previous roof enlargements, Article 4 restrictions, original roof form, conservation controls, materials and site-specific conditions can alter the route. A proposed Lawful Development Certificate provides statutory confirmation on the submitted design; Building Regulations compliance and structural design are separate matters.",
-    "projectNote": "These are illustrative architectural proposal drawings, not photographs of completed work. The case study intentionally omits the property door number, client names and drawing title blocks from all displayed images.",
-    "mediaNote": "Six privacy-cropped design views highlight the before-and-after roof form, proposed rear dormer, the two-bedroom and bathroom loft arrangement, the section and the 33.42m³ volume calculation."
+    "projectNote": "The gallery presents sample architectural proposal drawings rather than completed construction photography. All nine full drawing sheets preserve their original WEDRAWPLANS template, notes and scales, with the client name and property door number omitted.",
+    "mediaNote": "Nine complete original WEDRAWPLANS A1 drawing-sheet illustrations, with the full title-block format, scales, drawing labels and notes retained, show the proposed roof-space conversion and the certified 33.42m³ volume calculation."
   },
-
   {
     slug: "grange-road-edgware-side-extension-lawful-development-building-regulations",
     title: "Edgware Side Extension | Lawful Development Certificate, Building Regulations & Structural Coordination",
