@@ -1,3 +1,4 @@
+import HomeownerServiceJourney from "../components/HomeownerServiceJourney";
 import { businessReference } from "../data/businessSchema";
 import BuildingRegProofShowcase from "../components/BuildingRegProofShowcase";
 import IntentAreaDirectory from "../components/IntentAreaDirectory";
@@ -815,6 +816,7 @@ export default function BuildingRegulationDrawingsPage() {
               </div>
             </div>
           </section>
+        <HomeownerServiceJourney current="building" quoteAnchor="#quote-form" />
 
           <BuildingRegProofShowcase />
 
