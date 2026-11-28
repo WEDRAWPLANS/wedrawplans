@@ -1,3 +1,4 @@
+import HomeownerServiceJourney from "../components/HomeownerServiceJourney";
 import { businessReference } from "../data/businessSchema";
 import IntentAreaDirectory from "../components/IntentAreaDirectory";
 import React from "react";
@@ -120,24 +121,16 @@ export default function LoftConversionPlansPage() {
 
       <main className="min-h-screen bg-white text-slate-900">
         {/* HERO + FORM */}
-        <section className="bg-slate-50">
+        <section className="border-b border-slate-200 bg-gradient-to-br from-[#eaf4f6] via-[#f7fafb] to-white">
           <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-4 py-10 lg:grid-cols-2 lg:py-14">
             <div>
-              <div className="text-xs font-semibold tracking-[0.3em] text-rose-600">
+              <div className="text-xs font-bold tracking-[0.2em] text-[#11677b]">
                 LOFT CONVERSION PLANS AND STRUCTURAL DESIGN
               </div>
 
-              <h1 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">
-                Loft Conversion Plans in London at Clear Fixed Fees
-              </h1>
+              <h1 className="mt-3 max-w-xl text-3xl font-extrabold leading-tight tracking-tight text-[#173c4c] sm:text-[42px]">Loft Conversion Plans in London — Make the Most of Your Roof Space</h1>
 
-              <p className="mt-4 max-w-xl text-base leading-relaxed text-slate-700">
-                WEDRAWPLANS produces professional loft conversion drawings for
-                planning and Building Regulations. We design rooflight lofts,
-                rear dormers, mansards and hip to gable loft conversions with a
-                clear scope, strong compliance logic, and coordinated structural
-                engineering so the drawings and calculations match.
-              </p>
+              <p className="mt-4 max-w-xl text-[16px] leading-7 text-slate-700 sm:text-[17px]">Turn unused loft space into a new bedroom, bathroom or home office. We design usable layouts around headroom, stairs and the roof form, then prepare the drawings you need for planning or a lawful-development certificate and the next technical stage.</p>
 
               <ul className="mt-6 space-y-2 text-slate-800">
                 <li className="flex gap-3">
@@ -150,7 +143,7 @@ export default function LoftConversionPlansPage() {
                 </li>
                 <li className="flex gap-3">
                   <span className="mt-1 h-2 w-2 rounded-full bg-slate-900" />
-                  <span>Structural engineer included through coordinated design and calculations</span>
+                  <span>Structural engineering coordinated where agreed in your quotation</span>
                 </li>
                 <li className="flex gap-3">
                   <span className="mt-1 h-2 w-2 rounded-full bg-slate-900" />
@@ -165,9 +158,9 @@ export default function LoftConversionPlansPage() {
               <div className="mt-7 flex flex-wrap items-center gap-3">
                 <button
                   onClick={scrollToForm}
-                  className="rounded-full bg-sky-600 px-6 py-3 text-sm font-bold text-white hover:bg-sky-700"
+                  className="rounded-full bg-[#087e95] px-6 py-3 text-sm font-bold text-white shadow-md transition hover:bg-[#056779]"
                 >
-                  Get my fixed quote
+                  Get my fixed-fee quote
                 </button>
 
                 <a
@@ -199,31 +192,24 @@ export default function LoftConversionPlansPage() {
 
               <div className="mt-6 rounded-2xl border bg-slate-900 p-6 text-white">
                 <div className="text-sm font-extrabold">
-                  What makes a loft conversion succeed
+                  A real WEDRAWPLANS lawful loft scheme
                 </div>
-                <div className="mt-2 text-sm leading-relaxed text-slate-200">
-                  Success is not only about adding space. Councils and Building
-                  Control assess headroom, stairs, fire safety, structure,
-                  insulation, dormer appearance, and neighbour impact. Our packs
-                  are designed to communicate compliance clearly so approval and
-                  build stages move smoothly.
-                </div>
+                <div className="mt-2 text-sm leading-relaxed text-slate-200">Pendle Road, Wandsworth: a 2026 lawful-development certificate demonstrating maximum practical roof-space use, two rooms and a bathroom. <a href="/case-studies/pendle-road-wandsworth-max-space-loft-conversion" className="mt-3 block font-bold text-white underline underline-offset-4">Explore the approved lawful-development drawings</a></div>
               </div>
             </div>
 
             <div
               id="loft-quote"
-              className="rounded-3xl border bg-white p-6 shadow-sm"
+              className="scroll-mt-24 rounded-3xl border border-[#c9e0e6] bg-white p-6 shadow-xl shadow-slate-200/60"
             >
               <h2 className="text-lg font-extrabold tracking-tight">
-                Free fixed loft quote
+                Get your fixed-fee loft quote
               </h2>
               <p className="mt-2 text-sm text-slate-700">
-                Share a few details and receive a clear fixed fee for loft
-                conversion drawings and structural engineering coordination.
+                Send your postcode and loft idea. We will confirm the appropriate drawings and any structural coordination in your written quote.
               </p>
 
-              <form onSubmit={handleSubmit} className="mt-5 space-y-3">
+              <form onSubmit={handleSubmit} onFocusCapture={(e) => { if (e.currentTarget.dataset.wdpStarted) return; e.currentTarget.dataset.wdpStarted = "1"; if (typeof window.gtag === "function") window.gtag("event", "form_start", { form_name: "loft_quote", page_path: "/loft-conversion-plans" }); }} className="mt-5 space-y-3">
                 <input
                   name="name"
                   placeholder="Name"
@@ -234,13 +220,16 @@ export default function LoftConversionPlansPage() {
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                   <input
                     name="phone"
-                    placeholder="Telephone"
-                    required
+                    type="tel"
+                    autoComplete="tel"
+                    placeholder="Phone / WhatsApp (optional)"
                     className="w-full rounded-xl border px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-sky-300"
                   />
                   <input
                     name="email"
-                    placeholder="Email"
+                    type="email"
+                    autoComplete="email"
+                    placeholder="Email (required)"
                     required
                     className="w-full rounded-xl border px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-sky-300"
                   />
@@ -274,7 +263,7 @@ export default function LoftConversionPlansPage() {
                 <textarea
                   name="message"
                   placeholder="Tell us briefly about your loft project. Example: rear dormer with ensuite, new stairs above existing, rooflight to front."
-                  rows={5}
+                  rows={3}
                   className="w-full rounded-xl border px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-sky-300"
                 />
 
@@ -293,6 +282,7 @@ export default function LoftConversionPlansPage() {
             </div>
           </div>
         </section>
+        <HomeownerServiceJourney current="loft" quoteAnchor="#loft-quote" />
 
         {/* QUICK NAV */}
         <section className="bg-white">

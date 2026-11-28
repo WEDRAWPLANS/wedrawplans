@@ -1,3 +1,4 @@
+import HomeownerServiceJourney from "../components/HomeownerServiceJourney";
 import { businessReference } from "../data/businessSchema";
 import GrangeRoadPromo from "../components/GrangeRoadPromo";
 import IntentAreaDirectory from "../components/IntentAreaDirectory";
@@ -142,22 +143,16 @@ export default function ExtensionPlansPage() {
       {/* No custom header here. Global header will display automatically like Barnet. */}
       <main className="min-h-screen bg-white text-slate-900">
         {/* HERO + FORM */}
-        <section className="bg-slate-50">
+        <section className="border-b border-slate-200 bg-gradient-to-br from-[#eaf4f6] via-[#f7fafb] to-white">
           <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-4 py-10 lg:grid-cols-2 lg:py-14">
             <div>
-              <div className="text-xs font-semibold tracking-[0.3em] text-rose-600">
+              <div className="text-xs font-bold tracking-[0.2em] text-[#11677b]">
                 HOUSE EXTENSION PLANNING DRAWINGS
               </div>
 
-              <h1 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">
-                House Extension Plans in London at Clear Fixed Fees
-              </h1>
+              <h1 className="mt-3 max-w-xl text-3xl font-extrabold leading-tight tracking-tight text-[#173c4c] sm:text-[42px]">House Extension Plans in London — Make More Room for Life</h1>
 
-              <p className="mt-4 max-w-xl text-base leading-relaxed text-slate-700">
-                Professional planning drawings for rear, side return, wrap around
-                and double storey extensions. WEDRAWPLANS produces council ready
-                drawings with strong planning logic and clear communication.
-              </p>
+              <p className="mt-4 max-w-xl text-[16px] leading-7 text-slate-700 sm:text-[17px]">Thinking of a bigger kitchen, brighter living space or a practical family extension? We prepare the planning drawings, check the permission route and offer technical packages for the next stage. Start with your postcode and a clear fixed-fee quote.</p>
 
               <ul className="mt-6 space-y-2 text-slate-800">
                 <li className="flex gap-3">
@@ -189,9 +184,9 @@ export default function ExtensionPlansPage() {
               <div className="mt-7 flex flex-wrap items-center gap-3">
                 <button
                   onClick={scrollToForm}
-                  className="rounded-full bg-sky-600 px-6 py-3 text-sm font-bold text-white hover:bg-sky-700"
+                  className="rounded-full bg-[#087e95] px-6 py-3 text-sm font-bold text-white shadow-md transition hover:bg-[#056779]"
                 >
-                  Get my fixed quote
+                  Get my fixed-fee quote
                 </button>
 
                 <a
@@ -205,10 +200,10 @@ export default function ExtensionPlansPage() {
 
               <div className="mt-6 rounded-2xl border bg-white p-5">
                 <div className="text-sm font-semibold">
-                  Want faster replies
+                  Real planning approval, real project drawings
                 </div>
                 <div className="mt-1 text-sm text-slate-700">
-                  Use WhatsApp and attach photos if you want.
+                  Explore our approved side-and-rear extension at Sistova Road, Wandsworth, and see the original architectural drawings.
                 </div>
                 <div className="mt-3">
                   <a
@@ -217,23 +212,23 @@ export default function ExtensionPlansPage() {
                   >
                     WhatsApp us now
                   </a>
+                  <a href="/case-studies/sistova-road-wandsworth-extension-basement" className="mt-3 block text-sm font-semibold text-[#087e95] underline underline-offset-4">See Wandsworth approval and drawings</a>
                 </div>
               </div>
             </div>
 
             <div
               id="extension-quote"
-              className="rounded-3xl border bg-white p-6 shadow-sm"
+              className="scroll-mt-24 rounded-3xl border border-[#c9e0e6] bg-white p-6 shadow-xl shadow-slate-200/60"
             >
               <h2 className="text-lg font-extrabold tracking-tight">
-                Free fixed extension quote
+                Get your fixed-fee extension quote
               </h2>
               <p className="mt-2 text-sm text-slate-700">
-                Share a few details about your extension and receive a clear
-                fixed fee for your drawings.
+                No drawings or photos needed. Send a postcode and tell us which extension you are considering.
               </p>
 
-              <form onSubmit={handleSubmit} className="mt-5 space-y-3">
+              <form onSubmit={handleSubmit} onFocusCapture={(e) => { if (e.currentTarget.dataset.wdpStarted) return; e.currentTarget.dataset.wdpStarted = "1"; if (typeof window.gtag === "function") window.gtag("event", "form_start", { form_name: "extension_quote", page_path: "/extension-plans" }); }} className="mt-5 space-y-3">
                 <input
                   name="name"
                   placeholder="Name"
@@ -244,13 +239,16 @@ export default function ExtensionPlansPage() {
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                   <input
                     name="phone"
-                    placeholder="Telephone"
-                    required
+                    type="tel"
+                    autoComplete="tel"
+                    placeholder="Phone / WhatsApp (optional)"
                     className="w-full rounded-xl border px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-sky-300"
                   />
                   <input
                     name="email"
-                    placeholder="Email"
+                    type="email"
+                    autoComplete="email"
+                    placeholder="Email (required)"
                     required
                     className="w-full rounded-xl border px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-sky-300"
                   />
@@ -283,7 +281,7 @@ export default function ExtensionPlansPage() {
                 <textarea
                   name="message"
                   placeholder="Tell us briefly about your project"
-                  rows={5}
+                  rows={3}
                   className="w-full rounded-xl border px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-sky-300"
                 />
 
@@ -302,6 +300,7 @@ export default function ExtensionPlansPage() {
             </div>
           </div>
         </section>
+        <HomeownerServiceJourney current="extension" quoteAnchor="#extension-quote" />
 
         <AllumLaneSiteFeature placement="service" title="Real approved extension drawings — Allum Lane, Elstree" intro="See how front, side and rear additions, integrated glazing, a new roof design and a 45-degree right-of-light study were presented in a coordinated Hertsmere householder planning package." />
 

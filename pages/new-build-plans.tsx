@@ -1,3 +1,4 @@
+import HomeownerServiceJourney from "../components/HomeownerServiceJourney";
 import { businessReference } from "../data/businessSchema";
 import React, { useMemo } from "react";
 import Head from "next/head";
@@ -511,17 +512,17 @@ export default function NewBuildPlansPage() {
         </header>
 
         <main>
-          <section id="quote" className="border-b border-slate-200 bg-[#fdf8f3]">
+          <section id="quote" className="border-b border-slate-200 bg-gradient-to-br from-[#eaf4f6] via-[#f7fafb] to-white">
             <div className="mx-auto max-w-6xl px-4 py-8 lg:px-6 lg:py-10">
               <div className="grid gap-8 lg:grid-cols-[1.08fr,0.92fr] lg:items-stretch">
                 <div className="space-y-5">
                   <div>
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-red-700">
+                    <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#11677b]">
                       New build planning drawings
                     </p>
 
-                    <h1 className="mt-2 text-[24px] font-semibold uppercase leading-snug tracking-[0.14em] text-slate-900 sm:text-[30px]">
-                      New Build Plans, Planning Drawings, Structural Engineering and Town Planning Support
+                    <h1 className="mt-2 text-3xl font-extrabold leading-tight tracking-tight text-[#173c4c] sm:text-[42px]">
+                      New Build House Plans in London — From Your Plot to a Planning Proposal
                     </h1>
 
                     <p className="mt-3 text-[13px] font-semibold tracking-[0.08em] text-slate-800">
@@ -529,24 +530,11 @@ export default function NewBuildPlansPage() {
                     </p>
                   </div>
 
-                  <p className="text-[13px] leading-7 text-slate-700">
-                    WEDRAWPLANS provide a complete new build design service for single dwellings, replacement houses,
-                    apartment schemes, mixed use proposals, infill sites and more complex residential plots. We prepare
-                    planning drawings designed for council review, coordinate structural engineering and calculations,
-                    and support the planning process with clear, professional presentation.
-                  </p>
+                  <p className="text-[16px] leading-7 text-slate-700">Have a side plot, back garden or piece of land with potential for a new home? WEDRAWPLANS helps you understand the opportunity, develop a proposal and prepare detailed planning drawings that work with the neighbourhood.</p>
 
-                  <p className="text-[13px] leading-7 text-slate-700">
-                    A strong new build proposal depends on more than floor area. It must respond properly to context,
-                    scale, privacy, daylight, access, servicing, policy expectations and how the finished scheme will
-                    actually be built. Our approach is to make that full story read clearly from the first review.
-                  </p>
+                  <p className="text-[15px] leading-7 text-slate-700">We assess access, scale, privacy, daylight and local policy before developing a design, so you can make decisions with a clearer view of the planning considerations.</p>
 
-                  <p className="text-[13px] leading-7 text-slate-700">
-                    Whether you are preparing a single new build house or a more ambitious residential development, we
-                    shape the drawing package so it is credible, design-led, planning-focused and ready to progress into
-                    Building Regulation drawings once planning is secured.
-                  </p>
+                  <p className="text-[15px] leading-7 text-slate-700">We support individual houses, infill plots and larger projects. Send the site postcode to start; planning, technical and structural stages are clearly scoped in your quotation.</p>
 
                   <div className="grid gap-3 sm:grid-cols-3">
                     <TrustPill title="Planning focused" body="Drawings prepared to read clearly in formal review." />
@@ -555,7 +543,7 @@ export default function NewBuildPlansPage() {
                   </div>
 
                   <ul className="space-y-1 text-[13px] text-slate-800">
-                    <li>Single dwelling new build houses and replacement dwellings</li>
+                    <li>Individual houses, replacement homes and side-plot developments</li>
                     <li>Apartment schemes, infill plots, backland sites and mixed use projects</li>
                     <li>Planning drawings, town planning support and design development</li>
                     <li>Structural engineering coordination and Building Regulation packages</li>
@@ -617,16 +605,15 @@ export default function NewBuildPlansPage() {
                       <div className="text-[12px] font-semibold uppercase tracking-[0.16em] text-slate-900">
                         Built for homeowners, landowners and developers
                       </div>
-                      <h2 className="mt-2 text-[14px] font-semibold uppercase tracking-[0.16em] text-slate-900">
-                        Request your fixed fee quote
+                      <h2 className="mt-2 text-xl font-extrabold tracking-tight text-[#173c4c]">
+                        Get your tailored new-build quote
                       </h2>
 
                       <p className="mt-2 text-[12px] leading-6 text-slate-600">
-                        Share your site details and receive a clear fixed fee proposal covering drawings, planning
-                        support and coordinated structural engineering.
+                        Send the site postcode and what you hope to build. No drawings are required for the first enquiry; we will advise on the next steps.
                       </p>
 
-                      <form onSubmit={handleSubmit} className="mt-4 space-y-3 text-[13px]">
+                      <form onSubmit={handleSubmit} onFocusCapture={(e) => { if (e.currentTarget.dataset.wdpStarted) return; e.currentTarget.dataset.wdpStarted = "1"; if (typeof window.gtag === "function") window.gtag("event", "form_start", { form_name: "new_build_quote", page_path: "/new-build-plans" }); }} className="mt-4 space-y-3 text-sm">
                         <div className="space-y-1">
                           <label className="text-[11px] font-medium text-slate-700">Name</label>
                           <input
@@ -638,11 +625,11 @@ export default function NewBuildPlansPage() {
 
                         <div className="grid gap-3 sm:grid-cols-2">
                           <div className="space-y-1">
-                            <label className="text-[11px] font-medium text-slate-700">Telephone</label>
+                            <label className="text-[11px] font-medium text-slate-700">Phone / WhatsApp (optional)</label>
                             <input
                               name="phone"
-                              required
                               type="tel"
+                              autoComplete="tel"
                               className="w-full border-b border-slate-300 bg-transparent px-1 py-1.5 text-[13px] outline-none focus:border-[#64b7c4]"
                             />
                           </div>
@@ -765,6 +752,7 @@ export default function NewBuildPlansPage() {
               </div>
             </div>
           </section>
+        <HomeownerServiceJourney current="new-build" quoteAnchor="#new-build-quote" />
 
           <section className="bg-white">
             <div className="mx-auto max-w-6xl px-4 py-6">
