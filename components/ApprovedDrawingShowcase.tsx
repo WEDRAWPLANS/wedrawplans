@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { CaseStudy } from "../data/caseStudies";
 
-type ProjectKind = "sistova" | "cromwell" | "bernhart" | "hornby";
+type ProjectKind = "sistova" | "cromwell" | "bernhart" | "hornby" | "pendle";
 
 function SistovaFaintWatermark({ small = false }: { small?: boolean }) {
   return (
@@ -73,6 +73,22 @@ const PROJECTS: Record<ProjectKind, {
     localLink: "/areas/barnet",
     localText: "Architectural drawings in Barnet",
   },
+  pendle: {
+    eyebrow: "Wandsworth · Furzedown SW16 · Certificate of Lawfulness GRANTED",
+    heading: "Maximising the roof space · Rear dormer loft conversion",
+    visualIntro: "This original WEDRAWPLANS sample drawing set shows how a large rear dormer and three front rooflights can make maximum practical use of an existing roof. All nine original A1 drawing sheets retain their detailed layouts, scales and company title blocks.",
+    drawingIntro: "Explore all nine original WEDRAWPLANS drawing sheets, from before-and-after 3D roof views to existing and proposed floor plans, new loft rooms, elevations, sections, site plans and roof-volume calculations. Select a thumbnail or use the arrows to view the full original sheet.",
+    methodHeading: "How the Wandsworth loft was designed for maximum use",
+    method: [
+      { title: "1 · Unlock the usable attic volume", body: "The proposed rear dormer increases useful headroom within the roof and the sample plans show two loft bedrooms and a bathroom." },
+      { title: "2 · Introduce daylight through three front rooflights", body: "Three rooflights to the front slope complement rear dormer glazing, while the sections explain how the new stairs and arrangement work within the existing house." },
+      { title: "3 · Obtain a lawful-development certificate", body: "Wandsworth granted a proposed Certificate of Lawfulness on 25 November 2026 (PA2026/0478/CLP). The original calculations show 33.42m³ of additional roof volume within the stated 40m³ allowance. This is distinct from Building Regulations approval and does not confirm the work is built." },
+    ],
+    outcome: "LAWFUL DEVELOPMENT CERTIFICATE GRANTED · 25 November 2026",
+    planning: "London Borough of Wandsworth · PA2026/0478/CLP",
+    localLink: "/areas/wandsworth",
+    localText: "Loft conversion drawings in Wandsworth",
+  },
   hornby: {
     eyebrow: "Camden · Garage conversion planning permission GRANTED · June 2026",
     heading: "From garage door to wide glazed frontage",
@@ -98,10 +114,11 @@ export default function ApprovedDrawingShowcase({
   project: CaseStudy;
   kind: ProjectKind;
 }) {
-  const [drawingIndex, setDrawingIndex] = useState(kind === "sistova" || kind === "bernhart" || kind === "hornby" ? 0 : 1);
+  const [drawingIndex, setDrawingIndex] = useState(kind === "sistova" || kind === "bernhart" || kind === "hornby" || kind === "pendle" ? 0 : 1);
   const content = PROJECTS[kind];
   const isBernhart = kind === "bernhart";
   const isHornby = kind === "hornby";
+  const isPendle = kind === "pendle";
   const drawings = project.galleryImages || [];
   const leadDrawing = drawings[0];
   const selected = drawings[Math.min(drawingIndex, drawings.length - 1)];
@@ -131,7 +148,7 @@ export default function ApprovedDrawingShowcase({
               {kind === "sistova" ? <SistovaFaintWatermark /> : null}
             </div>
             <figcaption className="flex flex-wrap justify-between gap-2 border-t border-[#e5ece8] px-4 py-3 text-[11px] font-semibold leading-5 text-[#43666b] sm:px-6 sm:text-[12px]">
-              <span>{isHornby ? "Before & after · approved garage conversion frontage" : isBernhart ? "Original architectural drawing · garage conversion" : "Existing & proposed 3D architectural drawings"}</span>
+              <span>{isPendle ? "Original WEDRAWPLANS full-sheet loft drawing" : isHornby ? "Before & after · approved garage conversion frontage" : isBernhart ? "Original architectural drawing · garage conversion" : "Existing & proposed 3D architectural drawings"}</span>
               <span>Architectural design by WEDRAWPLANS</span>
             </figcaption>
           </figure>
@@ -210,7 +227,7 @@ export default function ApprovedDrawingShowcase({
               </article>
             </div>
           ) : null}
-          <p className="mt-2 text-[12px] leading-6 text-[#4b6b67]">This portfolio displays WEDRAWPLANS' original design drawings. Planning permission relates to the recorded application and approved documents, not to any separate Building Regulations approval.</p>
+          <p className="mt-2 text-[12px] leading-6 text-[#4b6b67]">{isPendle ? "A proposed Certificate of Lawfulness confirms the specified loft development would be lawful in the certified circumstances. It is not a planning permission, Building Regulations approval or evidence of completed works." : "This portfolio displays WEDRAWPLANS' original design drawings. Planning permission relates to the recorded application and approved documents, not to any separate Building Regulations approval."}</p>
         </div>
       </section>
 
