@@ -191,7 +191,7 @@ export default function CaseStudyPage({ item, indexable }: PageProps) {
                       className="mt-4 flex min-h-11 w-full items-center justify-between gap-3 rounded-xl bg-[#266f78] px-4 py-3 text-left text-[13px] font-bold text-white no-underline transition-colors hover:bg-[#19545c] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#266f78]"
                       aria-label={`Open official council planning application ${primaryReference || item.reference} (new tab)`}
                     >
-                      <span>View council planning documents</span>
+                      <span>{isPendle ? "Search Wandsworth planning record" : "View council planning documents"}</span>
                       <span aria-hidden="true">↗</span>
                     </a>
                   ) : null}
@@ -216,7 +216,7 @@ export default function CaseStudyPage({ item, indexable }: PageProps) {
                     </div>
                   ) : null}
                   <p className="mt-3 text-[11px] leading-5 text-[#6a7c7e]">
-                    Opens the council-held application record in a new tab. Check its documents section for the submitted drawings, supporting reports and decision notice.
+                    {isPendle ? "Opens Wandsworth Council’s official planning search page in a new tab. Select Search applications and enter PA2026/0478/CLP to find the council record and its documents." : "Opens the council-held application record in a new tab. Check its documents section for the submitted drawings, supporting reports and decision notice."}
                   </p>
                 </div>
               ) : null}
