@@ -1,3 +1,4 @@
+import HomeownerServiceJourney from "../components/HomeownerServiceJourney";
 import { businessReference } from "../data/businessSchema";
 import React, { useMemo } from "react";
 import Head from "next/head";
@@ -751,6 +752,7 @@ export default function NewBuildPlansPage() {
               </div>
             </div>
           </section>
+        <HomeownerServiceJourney current="new-build" quoteAnchor="#new-build-quote" />
 
           <section className="bg-white">
             <div className="mx-auto max-w-6xl px-4 py-6">
